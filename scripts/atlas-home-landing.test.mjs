@@ -39,6 +39,22 @@ test('the bilingual landing offers exactly one local search and the three reques
     assert.equal((html.match(/<form\b[^>]*\brole="search"/g)||[]).length, 1);
     assert.equal((html.match(/\bid="home-search-input"/g)||[]).length, 1);
     assert.ok(html.indexOf('home-search-form') < html.indexOf('home-entrypoints'), 'search precedes the three paths');
+    const order = ['landing-heading','landing-beginner','home-search-form','home-entrypoints','home-collection-grid','landing-about'].map(value=>html.indexOf(value));
+    assert.ok(order.every((value,index)=>value>=0&&(index===0||value>order[index-1])), 'beginner, search, choices and inventories precede the long introduction');
+    const about = html.match(/<details\b[^>]*class="page-width landing-about"[^>]*>[\s\S]*?<\/details>/)?.[0];
+    assert.ok(about, 'the existing long introduction and AI kit remain available on demand');
+    assert.ok(!/^<details\b[^>]*\bopen(?:\s|>|=)/.test(about), 'extra explanation does not bury the front door');
+    assert.ok(decode(about).includes(copy[lang].introduction.details_title));
+    for(const key of ['why','ai'])assert.ok(decode(about).includes(copy[lang].introduction[key]),key+' text retained');
+    assert.ok(decode(about).includes(copy[lang].agent_kit.description));
+    assert.ok(about.includes(copy[lang].agent_kit.href));
+    const primary = html.slice(0,html.indexOf('<details class="page-width landing-about"'));
+    assert.ok(decode(primary).includes(copy[lang].introduction.connections), 'the site purpose stays visible near the lead');
+    assert.equal((html.match(/data-home-purpose="connections"/g)||[]).length,1, 'the visible site-purpose sentence is not duplicated');
+    assert.ok(primary.includes(copy[lang].beginner.title), 'the full beginner title stays above search');
+    for(const kind of ['web','pdf'])assert.ok(primary.includes(copy[lang].beginner[kind].href),kind+' stays outside details');
+    for(const page of ['textbooks','references'])assert.ok(primary.includes('/'+lang+'/read/'+page+'/'),page+' remains directly discoverable');
+    assert.ok(html.includes(copy[lang].introduction.feedback) && html.includes(copy[lang].contact.href), 'feedback and contact stay available');
     assert.ok(!/<input\b[^>]*\bname="(?:q|query|search)"/.test(html), 'keywords are not submitted to a server');
     assert.ok(!/home-goal-choice|data-home-area=|data-static-area=|data-goal-controls|atlas-metrics|atlas-crossover-teaser|atlas-way-grid|data-featured-example=/.test(html), 'detailed inventories do not compete on the landing');
     for (const [index, choice] of choices.entries()) {
@@ -49,6 +65,7 @@ test('the bilingual landing offers exactly one local search and the three reques
     }
     const collection = [...html.matchAll(/<a\b[^>]*data-home-collection-item="[^"]+"[^>]*>[\s\S]*?<\/a>/g)].map(match=>({...attributes(match[0]),html:match[0]}));
     assert.deepEqual(collection.map(link=>link['data-home-collection-item']),['papers','books','methods','tests','solutions','equations','fields']);
+    assert.equal(copy[lang].collection.items.find(item=>item.id==='fields').label,lang==='ja'?'全章目次':'Complete chapter index');
     assert.ok(html.indexOf('home-entrypoints')<html.indexOf('home-collection-grid')&&html.indexOf('home-collection-grid')<html.indexOf('home-kit-entry'));
     for(const [index,item] of copy[lang].collection.items.entries()){
       const link=collection[index],url=actualDestination(link.href);assert.equal(url.searchParams.get('lang'),lang);assert.ok(link.html.includes(item.label));

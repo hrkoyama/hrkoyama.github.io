@@ -226,3 +226,141 @@ def execution_navigation_markdown(route, lang):
     for case in references.get('cases', []):
         lines += ['- ' + _md_link(case['url'][lang], _text(case['title'], lang)) + ' (`' + _id(case['id']) + '`; ' + _reference_label(case, lang) + ')', '', _text(case.get('note'), lang), '']
     return '\n'.join(lines).rstrip() + '\n'
+
+
+# These are presentation groups, not new problem/execution registry entries.
+PROBLEM_EXECUTION_CHOICES = {
+    'bratu': (
+        ('forward', {'ja': '方程式を解く・解法を比べる', 'en': 'Solve the equation and compare solvers'},
+         {'ja': '与えた係数から解を求めます。小さい枝、foldの追跡、Jacobian積の比較は別の固定入力です。',
+          'en': 'Compute a solution for specified coefficients. The lower branch, fold continuation and Jacobian-product comparison have separate fixed inputs.'},
+         (('bratu', 'bratu'), ('bratu-fold-continuation', 'bratu-fold-continuation'),
+          ('bratu-matrix-free-jfnk', 'bratu-matrix-free-jfnk'))),
+        ('sensitivity', {'ja': '解の感度・随伴を確かめる', 'en': 'Check sensitivities and adjoints'},
+         {'ja': '係数を変えたときの解や目的量の変化を調べます。係数そのものを推定する逆問題とは分けます。',
+          'en': 'Check how a solution or objective changes with its coefficients. This is separate from estimating those coefficients.'},
+         (('bratu-fold-sensitivity', 'bratu-fold-sensitivity'), ('bratu-distributed-vjp', 'bratu-distributed-vjp'))),
+        ('inverse', {'ja': '観測から係数を推定する', 'en': 'Estimate coefficients from observations'},
+         {'ja': '固定された観測・目的関数・制約を使います。最適化法の比較と、雑音・正則化の比較を選べます。',
+          'en': 'Use the fixed observations, objectives and constraints. Choose solver comparisons or noise and regularization studies.'},
+         (('bratu-gn-lm-bounds', 'bratu-gn-lm-bounds'), ('bratu-noise-regularization', 'bratu-noise-regularization'))),
+    ),
+    'noh': (
+        ('radial-1d', {'ja': '1D：対称性を仮定して計算する', 'en': '1D: impose planar or radial symmetry'},
+         {'ja': '計算座標は1次元です。平面・円筒・球の形状を選びます。球の断面図を2D・3D Cartesian計算とは扱いません。',
+          'en': 'One computational coordinate, with planar, cylindrical or spherical geometry. A spherical cross-section is not a 2D or 3D Cartesian calculation.'},
+         (('noh', 'noh-shock'),)),
+        ('cartesian-2d', {'ja': '2D：正方形の全領域で計算する', 'en': '2D: evolve the full Cartesian square'},
+         {'ja': '密度・2成分運動量・全エネルギーの2D配列を更新し、軸・対角方向の違いを調べます。',
+          'en': 'Evolve 2D arrays of density, both momenta and total energy, and examine axis/diagonal differences.'},
+         (('noh', 'noh-cartesian-2d'),)),
+    ),
+}
+
+
+def problem_execution_choices(problem_id, problems, routes):
+    """Select existing records without extending or mutating their scientific graph."""
+    if problem_id not in PROBLEM_EXECUTION_CHOICES:
+        return []
+    by_id = {problem['id']: problem for problem in problems}
+    if len(by_id) != len(problems):
+        raise ValueError('Duplicate problem in execution picker')
+    groups = []
+    for purpose, title, note, identities in PROBLEM_EXECUTION_CHOICES[problem_id]:
+        cases = []
+        for owner, ident in identities:
+            problem = by_id[owner]
+            matching = [row for row in problem['executions'] if row['id'] == ident]
+            if len(matching) != 1:
+                raise ValueError('Picker requires its own existing execution: ' + ident)
+            execution = matching[0]
+            route = routes[ident]
+            if (route['id'] != ident or route['kind'] != execution['kind'] or
+                    not route.get('problem') or route['problem']['id'] != owner):
+                raise ValueError('Picker execution route belongs to another case: ' + ident)
+            base = execution['download'].rsplit('/', 1)[0] + '/'
+            for key in ['download', 'input', 'manifest', 'verification']:
+                _url(execution[key])
+            if not all(execution[key].startswith(base) for key in ['input', 'manifest']):
+                raise ValueError('Picker input and manifest must use the selected code edition')
+            edition = re.search(r'/(20\d{2}-\d{2}-\d{2}(?:-r\d+)?)/', base)
+            if edition is None:
+                raise ValueError('Missing explicit picker edition')
+            figure = route['figure']
+            if execution['kind'] == 'supplement':
+                if figure['kind'] != 'case-validation' or figure['url'] != base + 'results/' + ident + '.png':
+                    raise ValueError('Picker figure belongs to another execution: ' + ident)
+            elif any(figure[key] != problem['image'][key] for key in ['url', 'sha256', 'width', 'height']):
+                raise ValueError('Common picker figure must retain its representative-image identity')
+            for language in LANGUAGES:
+                guide = _url(execution['guide'][language])
+                if route['references']['url'][language] != guide + '#' + ident + '-' + language + '-validation':
+                    raise ValueError('Picker reference must belong to the selected execution: ' + ident)
+            cases.append({'execution': execution, 'route': route, 'edition': edition.group(1), 'owner': owner})
+        groups.append({'purpose': purpose, 'title': title, 'note': note, 'cases': cases})
+    return groups
+
+
+def problem_figure_case(problem, groups):
+    """The existing Noh hero is Cartesian 2D; the Bratu hero is the forward case."""
+    ident = {'bratu': 'bratu', 'noh': 'noh-cartesian-2d'}.get(problem['id'])
+    if ident is None or not groups:
+        return None
+    matches = [case['execution'] for group in groups for case in group['cases'] if case['execution']['id'] == ident]
+    if len(matches) != 1:
+        raise ValueError('Missing matching problem-figure execution')
+    return matches[0]
+
+
+def problem_figure_note(problem, groups, language):
+    """Do not turn a problem-representative picture into fixed-input evidence."""
+    execution = problem_figure_case(problem, groups)
+    if execution is None:
+        return ''
+    route = next(case['route'] for group in groups for case in group['cases']
+                 if case['execution']['id'] == execution['id'])
+    return _figure_scope(route, language) if route['figure']['kind'] == 'problem-representative' else ''
+
+
+def render_problem_execution_choices(problem_id, groups, language):
+    """Purpose and conditions come before immutable edition/download details."""
+    ja = _language(language)
+    if not groups:
+        return ''
+    body = '<section class="problem-execution-picker" data-problem-case-picker="' + _id(problem_id) + '" aria-labelledby="choose-' + problem_id + '-' + language + '">'
+    body += '<h2 id="choose-' + problem_id + '-' + language + '">' + ('何を確かめますか？' if ja else 'What would you like to check?') + '</h2>'
+    body += _paragraph('目的と計算条件を選ぶと、その例のコード・入力・参照へ進めます。' if ja else 'Choose the purpose and computational conditions to find its code, inputs and references.', language)
+    for group in groups:
+        purpose = group['purpose']
+        opened = ' open' if problem_id == 'noh' and purpose == 'cartesian-2d' else ''
+        body += '<details class="problem-choice-group" data-execution-purpose="' + purpose + '"' + opened + '><summary><h3 id="choose-' + purpose + '-' + language + '">' + escape(_text(group['title'], language)) + '</h3></summary>'
+        body += _paragraph(group['note'], language) + '<div class="problem-choice-grid">'
+        for case in group['cases']:
+            execution, route = case['execution'], case['route']
+            ident, figure = execution['id'], route['figure']
+            dimension = '1d-bvp' if problem_id == 'bratu' else ('1d-radial' if ident == 'noh-shock' else '2d-cartesian')
+            labels = {'1d-bvp': ('1D境界値問題・固定条件', '1D boundary-value problem · fixed conditions'),
+                      '1d-radial': ('1次元座標：平面・円筒・球対称', 'One coordinate: planar, cylindrical or spherical symmetry'),
+                      '2d-cartesian': ('2D Cartesian・正方形全領域', '2D Cartesian · full square')}
+            attrs = ' data-execution-case="' + ident + '"'
+            guide = execution['guide'][language]
+            body += '<article class="problem-choice-card"' + attrs + ' data-execution-dimension="' + dimension + '"><p class="problem-choice-dimension">' + labels[dimension][0 if ja else 1] + '</p>'
+            body += '<a class="problem-choice-figure"' + attrs + ' data-execution-action="figure" href="' + escape(_url(guide), quote=True) + '"><img src="' + escape(_url(figure['url']), quote=True) + '" width="' + str(figure['width']) + '" height="' + str(figure['height']) + '" alt="' + escape(_text(figure['caption'], language), quote=True) + '" loading="lazy" decoding="async"></a>'
+            if figure['kind'] == 'problem-representative':
+                body += _paragraph(_figure_scope(route, language), language)
+            body += '<h4>' + _link(guide, _text(execution['name'], language), attrs + ' data-execution-action="guide"') + '</h4>'
+            body += _paragraph(execution['scope'], language, 'problem-choice-scope')
+            body += '<p class="problem-choice-action">' + _link(guide, 'この実行例を開く →' if ja else 'Open this execution example →', attrs + ' data-execution-action="open"') + '</p>'
+            body += '<details class="problem-choice-bundle"><summary>' + ('条件・参照・配布版を確認' if ja else 'Conditions, references and edition') + '</summary>'
+            body += '<h5>' + ('この例の前提条件' if ja else 'Assumptions for this example') + '</h5>' + _paragraph(execution['assumptions'], language)
+            body += '<p class="problem-choice-edition">' + ('配布版：' if ja else 'Edition: ') + escape(case['edition']) + '</p><ul>'
+            for url, label in [(execution['input'], '固定入力 / JSON' if ja else 'Fixed input / JSON'),
+                               (route['references']['url'][language], 'この例の参照・判定条件' if ja else 'This example’s references and checks'),
+                               (execution['download'], 'この配布版のコード / ZIP' if ja else 'Code for this edition / ZIP'),
+                               (execution['manifest'], '配布ファイルとハッシュ' if ja else 'File manifest and hashes'),
+                               (execution['verification'], 'この配布版の検証記録' if ja else 'Verification receipt for this edition')]:
+                body += '<li>' + _link(url, label) + '</li>'
+            body += '</ul>' + _paragraph('ZIPには複数の例を含む場合があります。実行案内に示す作業フォルダとコマンドを使います。' if ja else 'A ZIP may contain several examples. Use the working directory and commands given in this example’s guide.', language)
+            body += '<h5>' + ('検証の限界' if ja else 'Validation limits') + '</h5>' + _paragraph(execution['limits'], language) + '</details></article>'
+        body += '</div></details>'
+    return body + '</section>'

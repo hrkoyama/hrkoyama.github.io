@@ -26,3 +26,29 @@
 @media(max-width:1100px){.execution-navigation-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:620px){.execution-navigation-grid{grid-template-columns:minmax(0,1fr)}.execution-navigation .execution-navigation-card{padding:12px}}
 @media(max-width:400px){.execution-navigation .execution-navigation-figure{max-width:none}}
+
+/* Purpose-first choices on the existing Bratu and Noh problem pages. */
+.problem-execution-picker{margin:24px 0 32px;padding:20px;border:1px solid #cdd7c5;background:#f6f8f0;border-radius:6px;min-width:0;overflow-wrap:anywhere}
+.problem-execution-picker,.problem-execution-picker *{box-sizing:border-box}
+.problem-execution-picker>h2{margin:0 0 12px}
+.problem-choice-action a{display:inline-flex;align-items:center;min-height:44px;padding:8px 12px;border:1px solid #aabda2;border-radius:4px;background:#fff;color:#285139;text-underline-offset:3px;max-width:100%}
+.problem-execution-picker a:focus-visible,.problem-execution-picker summary:focus-visible{outline:3px solid #9b5b26;outline-offset:3px}
+.problem-choice-group{margin:12px 0 0;scroll-margin-top:24px;min-width:0;padding:8px 0;border-top:1px solid #cdd7c5}
+.problem-choice-group>summary{min-height:44px;align-content:center;cursor:pointer}
+.problem-choice-group>summary h3{display:inline;margin:0;font-size:1rem;line-height:1.7}
+.problem-choice-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:12px 0}
+.problem-choice-card{min-width:0;padding:14px;border:1px solid #d5dece;background:#fff;border-radius:4px}
+.problem-choice-dimension{margin:0 0 10px;font-size:.82rem;font-weight:650;color:#405b40}
+.problem-choice-figure{display:block;max-width:220px;margin:0 0 10px}
+.problem-choice-figure img{display:block;width:100%;height:auto;max-width:100%}
+.problem-choice-card h4{margin:8px 0;font-size:1rem;line-height:1.6}
+.problem-choice-card h4 a{color:#285139;text-underline-offset:3px}
+.problem-choice-scope,.problem-execution-picker .execution-navigation-note{font-size:.88rem;line-height:1.8;margin:8px 0}
+.problem-choice-action{margin:12px 0}
+.problem-choice-bundle{padding-top:8px;border-top:1px solid #dce4d4}
+.problem-choice-bundle summary{min-height:44px;align-content:center;cursor:pointer;font-size:.88rem}
+.problem-choice-bundle h5{font-size:.9rem;margin:12px 0 6px}
+.problem-choice-bundle ul{padding-left:20px;font-size:.86rem;line-height:1.8}
+.problem-choice-bundle li>a{display:inline-flex;align-items:center;min-height:44px;max-width:100%}
+.problem-choice-edition{font-size:.85rem;font-weight:650}
+@media(max-width:620px){.problem-execution-picker{padding:14px}.problem-choice-grid{grid-template-columns:minmax(0,1fr)}.problem-choice-figure{max-width:180px}}

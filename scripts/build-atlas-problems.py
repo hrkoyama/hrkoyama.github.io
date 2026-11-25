@@ -7,6 +7,8 @@ import hashlib
 import json
 import re
 import subprocess
+from atlas_execution_navigation import (problem_execution_choices, problem_figure_case, problem_figure_note,
+                                        render_problem_execution_choices)
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE = '/numerical-methods-atlas/'
@@ -185,15 +187,25 @@ def code_section(problem, language):
     return body
 
 
-def section(problem, language, rendered):
+def section(problem, language, rendered, choices=None):
     ja = language == 'ja'
     image = problem['image']
     body = '<section data-site-language="'+language+'" lang="'+language+'" class="problem-edition">'
     body += '<nav class="problem-breadcrumb" aria-label="'+('現在位置' if ja else 'Breadcrumb')+'">'+link(BASE+'?lang='+language, 'アトラス' if ja else 'Atlas')+'<span aria-hidden="true"> / </span>'+link(BASE+'gallery/?lang='+language, 'テスト問題を選ぶ' if ja else 'Choose a test problem')+'</nav>'
     body += '<header class="problem-heading"><p class="problem-eyebrow">NUMERICAL METHODS ATLAS · PROBLEM</p><h1>'+escape(problem['name'][language])+'</h1><p>'+('この問題の式、参照の条件、計算法、公開済みのコードをたどります。' if ja else 'Explore this problem’s equations, reference conditions, methods and published code.')+'</p></header>'
     body += '<nav class="problem-jump" aria-label="'+('この問題から探す' if ja else 'Explore this problem')+'">'+''.join(link('#'+key+'-'+language, labels[language]) for key, labels in SECTION_LABELS.items())+'</nav>'
-    body += '<figure class="problem-hero"><a href="'+escape(image['url'], quote=True)+'" aria-label="'+('保存された画像を拡大' if ja else 'Open the full-size saved image')+'"><img src="'+escape(image['url'], quote=True)+'" width="'+str(image['width'])+'" height="'+str(image['height'])+'" alt="'+escape(image['caption'][language], quote=True)+'" decoding="async"></a><figcaption><span class="problem-meta">'+escape(localized(SOURCE_LABELS.get(image['source_kind'], {}), language))+'</span> '+escape(image['caption'][language])+'</figcaption></figure>'
+    figure_case = problem_figure_case(problem, choices or [])
+    image_destination = figure_case['guide'][language] if figure_case else image['url']
+    image_label = ('この問題の実行例を開く' if ja else 'Open this problem’s execution example') if figure_case else ('保存された画像を拡大' if ja else 'Open the full-size saved image')
+    image_attrs = ' data-problem-figure-case="'+escape(figure_case['id'], quote=True)+'"' if figure_case else ''
+    body += '<figure class="problem-hero"><a href="'+escape(image_destination, quote=True)+'"'+image_attrs+' aria-label="'+image_label+'"><img src="'+escape(image['url'], quote=True)+'" width="'+str(image['width'])+'" height="'+str(image['height'])+'" alt="'+escape(image['caption'][language], quote=True)+'" decoding="async"></a><figcaption><span class="problem-meta">'+escape(localized(SOURCE_LABELS.get(image['source_kind'], {}), language))+'</span> '+escape(image['caption'][language])
+    if figure_case:
+        action = ('この問題の前進実行例を開く →' if ja else 'Open the forward execution example →') if problem['id'] == 'bratu' else ('この図の2D実行例を開く →' if ja else 'Open the 2D execution shown here →')
+        body += ' '+link(figure_case['guide'][language], action)+' · '+link(image['url'], '画像を拡大' if ja else 'Open full-size image')
+        body += paragraph(problem_figure_note(problem, choices or [], language), language, 'problem-reference-note')
+    body += '</figcaption></figure>'
     body += '<nav class="problem-actions problem-reading" aria-label="'+('解説と条件' if ja else 'Reading and conditions')+'">'+link(problem['reading'][language], '問題の解説を読む' if ja else 'Read the problem explanation')+link(problem['conditions'][language], '図と問題の条件・根拠' if ja else 'Image and problem conditions / evidence')+'</nav>'
+    body += render_problem_execution_choices(problem['id'], choices or [], language)
     renderers = {'equations': lambda: equations_section(problem, language, rendered), 'references': lambda: references_section(problem, language), 'methods': lambda: methods_section(problem, language), 'code': lambda: code_section(problem, language)}
     for key, labels in SECTION_LABELS.items():
         body += '<section class="problem-section" data-problem-section="'+key+'" aria-labelledby="'+key+'-'+language+'"><h2 id="'+key+'-'+language+'">'+labels[language]+'</h2>'+renderers[key]()+'</section>'
@@ -267,12 +279,15 @@ def markdown(problem):
 
 def build(root=ROOT):
     from atlas_problem_links import load_problem_links
+    from atlas_execution_routes import load_execution_routes
     root = Path(root)
     data = load_problem_links(root=root)
+    execution_routes = load_execution_routes(root)['executions']
     rendered = formula_batches(data, root)
     destination = root/'numerical-methods-atlas/problems'
     destination.mkdir(parents=True, exist_ok=True)
     css_hash = hashlib.sha256((root/'styles/atlas-problems.css').read_bytes()).hexdigest()[:12]
+    navigation_css_hash = hashlib.sha256((root/'numerical-methods-atlas/styles/atlas-execution-navigation.css').read_bytes()).hexdigest()[:12]
     for problem in data['problems']:
         if not re.fullmatch(r'[a-z0-9][a-z0-9.-]*', problem['id']):
             raise ValueError('Unsafe problem identity: '+str(problem['id']))
@@ -280,8 +295,12 @@ def build(root=ROOT):
         head = '<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
         head += '<title data-page-title-ja="'+escape(titles['ja'], quote=True)+'" data-page-title-en="'+escape(titles['en'], quote=True)+'">'+escape(titles['ja'])+'</title>'
         head += '<meta name="description" content="'+escape(problem['name']['ja']+'：方程式、参照解の条件、計算法、公開コードと検証記録。', quote=True)+'"><link rel="canonical" href="'+escape(problem['url'], quote=True)+'">'
-        head += '<link rel="stylesheet" href="/numerical-methods-atlas/vendor/katex.min.css"><link rel="stylesheet" href="/styles/atlas-problems.css?v='+css_hash+'"></head>'
-        document = head+'<body class="profile-page atlas-problem" data-site-language-anchors="suffix"><main id="main" tabindex="-1" class="problem-hub">'+''.join(section(problem, language, rendered) for language in LANGUAGES)+'</main></body></html>\n'
+        head += '<link rel="stylesheet" href="/numerical-methods-atlas/vendor/katex.min.css"><link rel="stylesheet" href="/styles/atlas-problems.css?v='+css_hash+'">'
+        choices = problem_execution_choices(problem['id'], data['problems'], execution_routes)
+        if choices:
+            head += '<link rel="stylesheet" href="/numerical-methods-atlas/styles/atlas-execution-navigation.css?v='+navigation_css_hash+'">'
+        head += '</head>'
+        document = head+'<body class="profile-page atlas-problem" data-site-language-anchors="suffix"><main id="main" tabindex="-1" class="problem-hub">'+''.join(section(problem, language, rendered, choices) for language in LANGUAGES)+'</main></body></html>\n'
         directory = destination/problem['id']
         directory.mkdir(parents=True, exist_ok=True)
         (directory/'index.html').write_text(document)

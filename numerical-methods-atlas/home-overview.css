@@ -123,18 +123,26 @@
 .home-search li p,.home-search li small{font-size:.875rem;color:var(--muted);margin:4px 0 0}
 
 /* A short front door. Detailed maps and inventories live on the exploration page. */
-.home-overview.home-landing{padding-top:36px;padding-bottom:48px}
+.home-overview.home-landing{padding-top:28px;padding-bottom:40px}
 .home-landing .landing-heading .eyebrow{margin-bottom:10px}
 .home-landing .landing-heading h1{font-size:clamp(2rem,3.1vw,2.7rem);line-height:1.4;margin-bottom:12px;letter-spacing:-.025em}
 .home-landing .landing-description{font-size:1.125rem;line-height:1.85;max-width:760px;margin-bottom:0;color:var(--ink)}
-.home-landing .landing-beginner{margin-top:20px;margin-bottom:24px}
-.home-landing .landing-beginner>p{font-size:1rem;font-weight:500;line-height:1.7;margin:0 0 10px}
+.home-landing .landing-connections{font-size:1rem;line-height:1.75;max-width:76ch;margin:10px 0 0;color:var(--muted)}
+.home-landing .landing-beginner{display:flex;align-items:center;flex-wrap:wrap;gap:6px 22px;margin-top:16px;margin-bottom:4px;padding-block:10px;border-block:1px solid var(--line)}
+.home-landing .landing-beginner>p{font-size:1rem;font-weight:500;line-height:1.7;margin:0}
+.home-landing .landing-beginner .home-primary-actions{gap:4px 12px}
+.home-landing .landing-beginner .home-primary-actions a{min-height:44px;padding:5px 10px;border-color:var(--line);font-size:.9375rem}
 .home-landing .landing-purpose{margin-top:18px}
 .home-landing .landing-purpose p,.home-landing .landing-feedback p{max-width:72ch;font-size:1rem;line-height:1.85;margin:0 0 1em;color:var(--ink)}
 .home-landing .landing-ways{font-size:1rem;font-weight:500;line-height:1.8;margin-block:0 12px}
 .home-landing .landing-feedback{margin-top:24px}
+.home-landing .landing-about{margin-top:20px;padding-block:12px;border-top:1px solid var(--line)}
+.home-landing .landing-about>summary{font-size:1rem;font-weight:500;line-height:1.75;min-height:44px;align-content:center;cursor:pointer}
+.home-landing .landing-about>summary:focus-visible{outline:3px solid var(--orange);outline-offset:4px}
+.home-landing .landing-about[open]>summary{margin-bottom:14px}
+.home-landing .landing-about .page-width{padding-inline:0}
 
-.home-overview.home-landing .home-search{padding-top:24px;padding-bottom:30px}
+.home-overview.home-landing .home-search{padding-top:16px;padding-bottom:20px}
 .home-landing .home-search-controls{max-width:840px}
 .home-landing .home-search input,.home-landing .home-search-controls button{min-height:52px}
 .home-landing .home-search #home-search-hint{margin-top:8px}
@@ -142,10 +150,10 @@
 .home-search-static:hover{border-color:var(--orange)}
 .home-entry-grid{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;padding:0;margin:0}
 .home-entry-grid>li{min-width:0;display:flex}
-.home-landing .home-entry{position:relative;display:flex;flex:1;flex-direction:column;min-height:208px;border:1px solid var(--line);background:var(--paper);padding:24px;min-width:0}
+.home-landing .home-entry{position:relative;display:flex;flex:1;flex-direction:column;min-height:156px;border:1px solid var(--line);background:var(--paper);padding:18px;min-width:0}
 .home-landing .home-entry:hover{border-color:var(--orange)}
-.home-landing .home-entry h2{font:500 1.375rem/1.55 var(--sans);margin:0 0 12px}
-.home-landing .home-entry p{font-size:1rem;line-height:1.8;color:var(--muted);margin:0 0 18px}
+.home-landing .home-entry h2{font:500 1.25rem/1.55 var(--sans);margin:0 0 8px}
+.home-landing .home-entry p{font-size:.9375rem;line-height:1.7;color:var(--muted);margin:0 0 12px}
 .home-entry-arrow{font-size:1.375rem;line-height:1;margin-top:auto;align-self:flex-end;color:var(--orange)}
 
 /* Smaller secondary routes, using formulas and an existing computed field. */
@@ -198,31 +206,31 @@
  .home-overview .evidence{padding-top:32px}
  .home-search-controls button{padding-inline:14px}
  .home-example .hero-experiment{padding:20px}
- .home-overview.home-landing{padding-top:24px;padding-bottom:32px}
+ .home-overview.home-landing{padding-top:20px;padding-bottom:28px}
  .home-landing .landing-heading h1{font-size:2rem}
- .home-overview.home-landing .home-search{padding-top:20px;padding-bottom:24px}
+ .home-overview.home-landing .home-search{padding-top:12px;padding-bottom:18px}
  .home-entry-grid{grid-template-columns:1fr;gap:12px}
- .home-landing .home-entry{min-height:0;padding:20px 54px 20px 20px}
- .home-landing .home-entry h2{font-size:1.25rem;margin-bottom:8px}
- .home-landing .home-entry p{font-size:.9375rem;margin-bottom:0}
- .home-entry-arrow{position:absolute;right:20px;top:24px;margin:0}
+ .home-landing .home-entry{min-height:0;padding:14px 48px 14px 16px}
+ .home-landing .home-entry h2{font-size:1.125rem;margin-bottom:4px}
+ .home-landing .home-entry p{font-size:.9375rem;line-height:1.6;margin-bottom:0}
+ .home-entry-arrow{position:absolute;right:18px;top:18px;margin:0}
  .home-browse-grid{grid-template-columns:1fr;gap:0}
  .home-overview .home-browse-card{grid-template-columns:76px minmax(0,1fr);min-height:100px;padding-block:12px}
 }
 @media(prefers-reduced-motion:reduce){.home-overview *{scroll-behavior:auto}}
 
 /* Compact, directly clickable inventory; counts are supplied by existing lists. */
-.home-landing .home-collection{margin-top:28px;padding-top:22px;border-top:1px solid var(--line)}
-.home-landing .home-collection h2{font-size:1.5rem;margin-bottom:8px}
+.home-landing .home-collection{margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}
+.home-landing .home-collection h2{font-size:1.25rem;margin-bottom:8px}
 .home-landing .home-collection>p{font-size:.9375rem;line-height:1.75;margin:0 0 14px;max-width:88ch}
 .home-collection-grid{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
 .home-collection-grid>li{min-width:0}
-.home-collection-grid a{display:flex;flex-direction:column;gap:7px;min-height:94px;padding:13px 15px;background:var(--paper);border:1px solid var(--line);height:100%}
+.home-collection-grid a{display:flex;flex-direction:column;gap:4px;min-height:76px;padding:10px 12px;background:var(--paper);border:1px solid var(--line);height:100%}
 .home-collection-grid a:hover{border-color:var(--orange)}
-.home-collection-number{font:1.65rem/1.1 var(--serif);font-variant-numeric:lining-nums;color:var(--ink)}
+.home-collection-number{font:1.35rem/1.1 var(--serif);font-variant-numeric:lining-nums;color:var(--ink)}
 .home-collection-number small{font:.75rem/1.4 var(--sans);color:var(--muted);margin-left:6px}
 .home-collection-label{display:flex;justify-content:space-between;gap:7px;font-size:.9rem;line-height:1.5}
 .home-collection-label>span{color:var(--orange)}
 .home-landing .home-collection .home-collection-note{font-size:.8125rem;color:var(--muted);margin-top:12px;margin-bottom:0}
 .home-collection-note a{display:inline-flex;align-items:center;min-height:36px;text-decoration:underline;text-underline-offset:3px}
-@media(max-width:700px){.home-collection-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.home-collection-grid a{padding:12px;min-height:90px}.home-landing .home-collection h2{font-size:1.375rem}}
+@media(max-width:700px){.home-collection-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.home-collection-grid a{padding:10px;min-height:76px}.home-landing .home-collection h2{font-size:1.25rem}}

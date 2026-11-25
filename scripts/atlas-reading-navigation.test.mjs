@@ -61,40 +61,95 @@ test('compact reading navigation runs after the chapter directory and before sea
   assert.ok(navigation < refresh.indexOf('scripts/build-atlas-search.py'));
 });
 
-test('every original chapter uses two compact navigation groups with current state only on the actual resource page', () => {
+test('existing chapter sidebars show their own field and collapse other-field routes', () => {
+  const catalog = json('catalog/atlas-reading-index.json'), resources = catalog.resource_chapters;
   for (const lang of ['ja','en']) {
     const content = json(`numerical-methods-atlas/content.${lang}.json`);
-    const labels = lang === 'ja' ? ['学ぶ・調べる','教科書・文献'] : ['Learn and look up','Books and references'];
-    const checked = [];
+    const record = json(`numerical-methods-atlas/${lang}/read/index.json`), checked = [];
     for (const chapter of Object.keys(content)) {
       const html = read(`numerical-methods-atlas/${lang}/read/${chapter}/index.html`);
       if (!html.includes('src="/numerical-methods-atlas/reading.js"')) continue;
       checked.push(chapter);
+      const field = record.groups.find(group => group.chapters.some(row => row.id === chapter));
+      assert.ok(field, `${lang}/${chapter} has a single canonical field`);
       const sidebars = [...html.matchAll(/<aside\b[^>]*class="[^"]*\breading-nav\b[^"]*"[^>]*>([\s\S]*?)<\/aside>/g)];
-      assert.equal(sidebars.length,1,lang+'/'+chapter+' has one compact reading navigation');
+      assert.equal(sidebars.length,1,lang+'/'+chapter+' has one contextual reading navigation');
       const sidebar = sidebars[0][1];
-      assert.doesNotMatch(sidebar,/各章へ|Go to chapters/i);
       const groups = [...sidebar.matchAll(/<nav\b([^>]*\bdata-reading-navigation-group="[^"]+"[^>]*)>([\s\S]*?)<\/nav>/g)];
-      assert.deepEqual(groups.map(group => attrs(group[1])['data-reading-navigation-group']),['learn','resources']);
-      assert.deepEqual(groups.map(group => attrs(group[1])['aria-label']),labels);
-      assert.deepEqual(groups.map(group => text(group[2].match(/<h2\b[^>]*>([\s\S]*?)<\/h2>/)?.[1] || '')),labels);
+      assert.deepEqual(groups.map(group => attrs(group[1])['data-reading-navigation-group']),['field','learn','resources']);
+      assert.equal(attrs(groups[0][1])['data-reading-current-field'],field.id);
+      const peers = resources.includes(chapter) ? [] : field.chapters.filter(row => !resources.includes(row.id));
+      const peerLinks = links(groups[0][2]).filter(link => link['data-reading-field-chapter']);
+      assert.deepEqual(peerLinks.map(link => link['data-reading-field-chapter']),peers.map(row => row.id));
+      assert.deepEqual(peerLinks.map(link => destination(link.href).pathname),peers.map(row => row.url));
+      const other = sidebar.match(/<details\b[^>]*\bdata-reading-other-fields[^>]*>/)?.[0];
+      assert.ok(other,'other fields are available through native disclosure');
+      assert.doesNotMatch(other,/\bopen(?:\s|=|>)/,'other fields start collapsed');
+      const otherLinks = links(sidebar).filter(link => link['data-reading-other-field']);
+      assert.deepEqual(otherLinks.map(link => link['data-reading-other-field']),catalog.groups.filter(group => group.id !== field.id).map(group => group.id));
+      for (const link of otherLinks) {
+        assert.equal(destination(link.href).pathname,`/numerical-methods-atlas/${lang}/read/`);
+        assert.equal(new URL(link.href,origin).hash,'#reading-'+link['data-reading-other-field']);
+        assert.ok(link.parents.some(parent => parent.name === 'details'));
+      }
       const expected = [
-        [`/numerical-methods-atlas/${lang}/read/`,'/numerical-methods-atlas/methods/'],
+        ['/numerical-methods-atlas/explore/',`/numerical-methods-atlas/${lang}/read/`,'/numerical-methods-atlas/methods/'],
         [`/numerical-methods-atlas/${lang}/read/textbooks/`,`/numerical-methods-atlas/${lang}/read/references/`]
       ];
-      assert.equal(links(sidebar).length,4,'the former flat algorithm list is replaced, rather than appended to');
-      for (const [index,group] of groups.entries()) {
+      for (const [index,group] of groups.slice(1).entries()) {
         const entries = links(group[2]);
         assert.deepEqual(entries.map(link => destination(link.href).pathname),expected[index]);
         assert.ok(entries.every(link => ![...link.parents,link].some(element => element.name === 'details' || element.hidden)));
       }
+      assert.match(sidebar,/\bdata-reading-all-chapters(?:\s|>)/);
       const active = links(sidebar).filter(link => link['aria-current'] === 'page');
-      assert.deepEqual(active.map(link => new URL(link.href,origin).pathname),
-        ['textbooks','references'].includes(chapter) ? [`/numerical-methods-atlas/${lang}/read/${chapter}/`] : [],
-        'a regular algorithm chapter does not mark a learning index or a resource as its current page');
+      assert.deepEqual(active.map(link => new URL(link.href,origin).pathname),[`/numerical-methods-atlas/${lang}/read/${chapter}/`]);
+      assert.equal(links(sidebar).length,1+peers.length+catalog.groups.length-1+5,'other chapters are not flattened into every sidebar');
     }
-    assert.ok(['textbooks','references','stability'].every(chapter => checked.includes(chapter)), 'the original reading template is exercised for resources and an algorithm');
+    assert.ok(['textbooks','references','stability'].every(chapter => checked.includes(chapter)));
   }
+});
+
+test('navigation renderer binds current fields, resource roles and actual edition fallback without rewriting pages', () => {
+  const output = execFileSync('python3', ['-B','-c',String.raw`
+import copy,hashlib,importlib.util,json,pathlib,tempfile
+path=pathlib.Path('scripts/build-atlas-reading-navigation.py')
+spec=importlib.util.spec_from_file_location('reading_navigation',path);module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+root=pathlib.Path.cwd();catalog=json.loads((root/'catalog/atlas-reading-index.json').read_text())
+for language in ['ja','en']:
+ record=json.loads((root/'numerical-methods-atlas'/language/'read/index.json').read_text())
+ for chapter in ['stability','textbooks','references']:
+  html=module.navigation(language,chapter,record,catalog['resource_chapters'])
+  field=next(g for g in record['groups'] if any(c['id']==chapter for c in g['chapters']))
+  assert 'data-reading-current-field="'+field['id']+'"' in html
+  assert html.count('aria-current="page"')==1
+  assert '<details data-reading-other-fields>' in html
+  assert 'data-reading-all-chapters' in html
+ try:module.navigation(language,'not-a-chapter',record,catalog['resource_chapters'])
+ except ValueError:pass
+ else:raise AssertionError('unknown chapter accepted')
+ duplicate=copy.deepcopy(record);duplicate['groups'].append(next(g for g in record['groups'] if any(c['id']=='stability' for c in g['chapters'])))
+ try:module.navigation(language,'stability',duplicate,catalog['resource_chapters'])
+ except ValueError:pass
+ else:raise AssertionError('ambiguous field accepted')
+# Only read fixtures are prepared: no builder or site generator is invoked.
+with tempfile.TemporaryDirectory(prefix='reading-nav-contract-') as temporary:
+ fixture=pathlib.Path(temporary);(fixture/'catalog').mkdir();small={'groups':[{'id':'one','chapters':['only-en']}],'resource_chapters':[]}
+ source=fixture/'catalog/atlas-reading-index.json';source.write_text(json.dumps(small));digest=hashlib.sha256(source.read_bytes()).hexdigest()
+ row={'id':'only-en','title':'English only','language':'en','url':'/numerical-methods-atlas/en/read/only-en/'}
+ for language in ['ja','en']:
+  folder=fixture/'numerical-methods-atlas'/language/'read';folder.mkdir(parents=True)
+  record={'language':language,'source_sha256':digest,'groups':[{'id':'one','title':'One','chapters':[row]}]}
+  (folder/'index.json').write_text(json.dumps(record))
+ page=fixture/'numerical-methods-atlas/en/read/only-en/index.html';page.parent.mkdir();page.write_text('<h1>English only</h1>')
+ records,_=module.reading_records(fixture);assert row['url'] in module.navigation('ja','only-en',records['ja'],[])
+ target=fixture/'numerical-methods-atlas/ja/read/index.json';record=json.loads(target.read_text());record['groups'][0]['chapters'][0]['url']='https://other.example/read/only-en/';target.write_text(json.dumps(record))
+ try:module.reading_records(fixture)
+ except ValueError:pass
+ else:raise AssertionError('foreign edition accepted')
+print('field ownership, resource roles, unknown/ambiguous negatives and real-edition fallback checked')
+`],{cwd:fileURLToPath(root),encoding:'utf8'});
+  assert.match(output,/field ownership, resource roles/);
 });
 
 test('navigation changes preserve textbooks and stability articles, anchors and local contents', () => {
@@ -147,12 +202,26 @@ test('both home renderings and the published fallback visibly expose textbooks a
   }
 });
 
-test('the systematic-reading page exposes both resource destinations outside collapsed catalogues', () => {
+test('the learning guide distinguishes suggested paths from the complete index and keeps resource links visible', () => {
   const html = read('numerical-methods-atlas/explore/index.html');
   const record = json('numerical-methods-atlas/explore/index.json'), markdown = read('numerical-methods-atlas/explore/index.md');
+  assert.equal(record.role,'learning-guide');
+  assert.equal((html.match(/\bdata-learning-guide-role(?:\s|>)/g)||[]).length,2);
+  assert.equal((html.match(/\bdata-learning-guide-paths=/g)||[]).length,2);
   const sections = [...html.matchAll(/<section\b([^>]*class="[^"]*\bstudy-references\b[^"]*"[^>]*)>([\s\S]*?)<\/section>/g)];
   assert.equal(sections.length,2,'one visible resource section per language');
   for (const lang of ['ja','en']) {
+    const title = lang === 'ja' ? '学習ガイド：おすすめの順番' : 'Learning guide: suggested order';
+    assert.equal(record.title[lang],title);
+    assert.ok(html.includes('<h1>'+title+'</h1>'));
+    const paths = html.indexOf('data-learning-guide-paths="'+lang+'"');
+    const map = html.indexOf('id="atlas-map-'+lang+'"');
+    const references = html.indexOf('id="study-references-title-'+lang+'"');
+    assert.ok(paths >= 0 && map > paths && references > map,'suggested learning paths and field map precede supporting references');
+    assert.equal(record.chapters[lang],`/numerical-methods-atlas/${lang}/read/`);
+    const toc = links(html).filter(link => new URL(link.href,origin).pathname === record.chapters[lang]);
+    assert.ok(toc.some(link => link.text === (lang === 'ja' ? '分野別の全章目次' : 'Complete chapter index')));
+    assert.ok(markdown.includes(origin+record.chapters[lang]));
     resourceLinksAreVisible(html,lang,lang+' explore');
     const section = sections.find(section => attrs(section[1])['aria-labelledby'] === 'study-references-title-'+lang);
     assert.ok(section);

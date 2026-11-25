@@ -70,16 +70,22 @@ test('three new groups render their own figures, code and reference routes',asyn
   expect(await link.evaluate(node=>node.href)).toBe(new URL(beginnerCopy[kind].href,page.url()).href);
  }
  expect(await beginner.locator('[data-home-beginner="pdf"]').getAttribute('download')).toBeNull();
+ const about=home.locator('details.landing-about');
+ await expect(about).not.toHaveAttribute('open','');
+ await expect(home.locator('[data-home-purpose="connections"]')).toBeVisible();
+ await about.locator('summary').click();
  for(const key of ['why','connections','ai']){
   const paragraph=home.locator(`[data-home-purpose="${key}"]`);
   await expect(paragraph).toHaveCount(1);await expect(paragraph).toBeVisible();await expect(paragraph).toHaveText(intro[key]);
  }
- await expect(home.locator('.landing-purpose details,.landing-purpose [hidden]')).toHaveCount(0);
+ await about.locator('summary').click();
+ await expect(home.locator('[data-home-purpose="why"]')).not.toBeVisible();
+ await expect(home.locator('[data-home-purpose="connections"]')).toBeVisible();
  await expect(home.locator('.landing-ways')).toHaveText(intro.ways);
  await expect(home.locator('.home-entrypoints [data-home-entry]')).toHaveCount(3);
  await expect(home.locator('.landing-feedback p')).toBeVisible();await expect(home.locator('.landing-feedback p')).toHaveText(intro.feedback);
  expect(await home.evaluate(root=>{
-  const nodes=['.landing-description','.landing-beginner','.landing-purpose','.home-search','.landing-ways','.home-entrypoints','.landing-feedback','a[href^="mailto:"]'].map(selector=>root.querySelector(selector));
+  const nodes=['.landing-description','.landing-beginner','.home-search','.landing-ways','.home-entrypoints','.home-collection','.landing-about','.landing-feedback','a[href^="mailto:"]'].map(selector=>root.querySelector(selector));
   return nodes.every(Boolean)&&nodes.slice(1).every((node,index)=>!!(nodes[index].compareDocumentPosition(node)&Node.DOCUMENT_POSITION_FOLLOWING));
  })).toBe(true);
  await expect(page.locator('.site-header .brand > span:last-child')).toHaveText('NaN');

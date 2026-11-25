@@ -34,6 +34,8 @@ test('one bilingual editorial catalog covers every existing chapter exactly once
   const chapters = catalog.groups.flatMap(group => group.chapters);
   assert.equal(chapters.length, new Set(chapters).size, 'chapters are not appended to a second section');
   assert.deepEqual([...chapters].sort(), allChapters, 'existing chapter URLs are neither dropped nor invented');
+  assert.deepEqual([...catalog.resource_chapters].sort(),['references','textbooks']);
+  assert.ok(catalog.resource_chapters.every(id=>chapters.includes(id)),'learning resources retain their place in the complete index');
   for (const group of catalog.groups) {
     assert.match(group.id, /^[a-z0-9-]+$/);
     assert.ok(group.chapters.length > 0);
@@ -94,10 +96,10 @@ test('both contents pages share group order and one consistent entry per real ch
   }
 });
 
-test('the reading introduction explains its learning role and prominently links to the methods and code reference', () => {
+test('the complete index distinguishes lookup, suggested learning order and learning resources', () => {
   const expected = {
-    ja:{title:'分野別に解説を読む',purpose:/理論・導出・計算例/,reference:'手法・コードの対応表',referencePurpose:/適用条件・コード・検証例/},
-    en:{title:'Learn by field',purpose:/theory, derivations and worked examples/,reference:'Methods and code reference',referencePurpose:/conditions, code and checks/}
+    ja:{title:'分野別の全章目次',purpose:/理論・導出・計算例/,reference:'手法・コードの対応表',referencePurpose:/適用条件・コード・検証例/},
+    en:{title:'Complete chapter index',purpose:/theory, derivations and worked examples/,reference:'Methods and code reference',referencePurpose:/conditions, code and checks/}
   };
   const text = html => decode(html.replace(/<[^>]+>/g, '')).trim();
   for (const lang of ['ja','en']) {
@@ -118,6 +120,14 @@ test('the reading introduction explains its learning role and prominently links 
     assert.equal(destination.searchParams.get('lang'), lang);
     assert.ok(existsSync(new URL('numerical-methods-atlas/methods/index.html', root)));
     const record = json(`numerical-methods-atlas/${lang}/read/index.json`);
+    assert.equal(record.role,'complete-chapter-index');
+    assert.equal(record.learning_guide.url,`/numerical-methods-atlas/explore/?lang=${lang}`);
+    assert.match(heading,/\bdata-reading-index-role(?:\s|>)/);
+    assert.match(body,/\bdata-reading-learning-guide(?:\s|>)/);
+    assert.ok(record.classification_note.includes(String(catalog.groups.length)));
+    const resourceRows = record.groups.flatMap(group => group.chapters).filter(row => row.kind === 'learning-resource');
+    assert.deepEqual(resourceRows.map(row=>row.id).sort(),[...catalog.resource_chapters].sort());
+    assert.equal((body.match(/\bdata-reading-resource-label(?:\s|>)/g)||[]).length,catalog.resource_chapters.length);
     assert.equal(record.title, expected[lang].title);
     assert.match(record.description, expected[lang].purpose, 'JSON presents the same learning purpose');
     const markdown = read(`numerical-methods-atlas/${lang}/read/index.md`);

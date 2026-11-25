@@ -2,13 +2,17 @@
   "schema_version": 1,
   "reviewed_on": "2026-11-25",
   "title": {
-    "ja": "分野別に解説を読む",
-    "en": "Learn by field"
+    "ja": "分野別の全章目次",
+    "en": "Complete chapter index"
   },
   "description": {
-    "ja": "理論・導出・計算例を、分野ごとにまとめた読み物です。基礎から関連する手法と検証例へ進めます。",
-    "en": "Read the theory, derivations and worked examples by field, from foundations to related methods and verification."
+    "ja": "理論・導出・計算例の全章と学習資料を、分野別に引く目次です。おすすめの学ぶ順番は、学習ガイドで案内します。",
+    "en": "Look up every chapter of theory, derivations and worked examples, plus learning resources, by field. The learning guide suggests an order of study."
   },
+  "resource_chapters": [
+    "textbooks",
+    "references"
+  ],
   "groups": [
     {
       "id": "foundations-time",
