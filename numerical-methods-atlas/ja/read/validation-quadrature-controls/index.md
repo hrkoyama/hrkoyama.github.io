@@ -54,6 +54,10 @@ Simpsonの特異節点失敗と未達精度を保存し、推定誤差の一般�
 
 領域と重みを明示しfull_outputの活動prefixを保持。既存Simpson関数は不変。
 
+$$
+I=\int_\Omega f(x)\,dx
+$$
+
 ### 比較・検証
 
 独立の解析区間参照と実callback数を照合します。有限Gaussianは点値でなく厳密区間です。
@@ -291,6 +295,10 @@ exp(x)、x^(-1/3)、−log(x)を[0,1]で積分。h=1/2〜1/16、切断T=3/4。
 ### 採用した計算法
 
 共有15節点、G7次数13/K15次数23。DEは安定log式と全端点重みです。
+
+$$
+I=\int_\Omega f(x)\,dx
+$$
 
 ### 比較・検証
 
@@ -550,6 +558,10 @@ Original code: MIT. Text/figures/inputs/data/third-party material: separate term
 ### 採用した計算法
 
 正規化dyadic角キーで同一節点を所有し、符号付き重みと評価台帳を保持。
+
+$$
+I=\int_\Omega f(x)\,dx
+$$
 
 ### 比較・検証
 

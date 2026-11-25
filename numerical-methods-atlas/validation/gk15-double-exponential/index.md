@@ -50,6 +50,10 @@ exp(x)、x^(-1/3)、−log(x)を[0,1]で積分。h=1/2〜1/16、切断T=3/4。
 
 共有15節点、G7次数13/K15次数23。DEは安定log式と全端点重みです。
 
+$$
+I=\int_\Omega f(x)\,dx
+$$
+
 ## 比較・検証
 
 解析区間参照で全誤差、連続tail、有限窓誤差を分離します。
@@ -309,6 +313,10 @@ Half-line exp-sinh and whole-line sinh-sinh are unimplemented; no omitted infini
 ## Adopted numerical method
 
 Shared15-node G7 degree13/K15 degree23; DE uses stable logarithmic products and full endpoint weights.
+
+$$
+I=\int_\Omega f(x)\,dx
+$$
 
 ## References and validation
 

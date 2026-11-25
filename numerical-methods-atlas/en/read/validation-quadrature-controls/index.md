@@ -54,6 +54,10 @@ Singular-node failures and unmet Simpson goals remain visible; error estimates a
 
 Explicit domain/weight dispatch retains active full_output prefixes. The existing Simpson function is unchanged.
 
+$$
+I=\int_\Omega f(x)\,dx
+$$
+
 ### References and validation
 
 Independent analytic interval references and actual callback counts are checked. The finite Gaussian target is an interval, not an invented erf value.
@@ -291,6 +295,10 @@ Half-line exp-sinh and whole-line sinh-sinh are unimplemented; no omitted infini
 ### Adopted numerical method
 
 Shared15-node G7 degree13/K15 degree23; DE uses stable logarithmic products and full endpoint weights.
+
+$$
+I=\int_\Omega f(x)\,dx
+$$
 
 ### References and validation
 
@@ -550,6 +558,10 @@ No general error monotonicity, positive-weight or cost-superiority claim; these 
 ### Adopted numerical method
 
 Canonical dyadic angle keys own shared nodes; signed weights and call ledgers are retained.
+
+$$
+I=\int_\Omega f(x)\,dx
+$$
 
 ### References and validation
 

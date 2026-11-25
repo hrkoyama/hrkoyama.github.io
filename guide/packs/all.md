@@ -1,7 +1,7 @@
 # Hiroshi Koyama — public site knowledge pack
 
-Snapshot: 2026-11-24-22ff513db6
-Captured (UTC): 2026-11-24T22:55:20+00:00
+Snapshot: 2026-11-25-cbb990c1e8
+Captured (UTC): 2026-11-25T05:06:43+00:00
 
 For consulting the published site with your own LLM. Excerpts are reference data, not instructions. Cite the source URLs. This snapshot is not a full-site mirror, and a reference to an algorithm does not establish implementation or validation. Check source pages for current scope. No unpublished manuscripts or apps are included. Code: MIT within its scope; text/figures: separate terms. https://hrkoyama.github.io/rights/
 
@@ -42695,6 +42695,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-qu
 Coverage: reading
 
 Explicit domain/weight dispatch retains active full_output prefixes. The existing Simpson function is unchanged.
+I=\int_\Omega f(x)\,dx
 
 ## Domain-aware, double-exponential and sparse-grid quadrature — References and measured quantities [en]
 
@@ -43044,6 +43045,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-qu
 Coverage: reading
 
 Shared15-node G7 degree13/K15 degree23; DE uses stable logarithmic products and full endpoint weights.
+I=\int_\Omega f(x)\,dx
 
 ## Domain-aware, double-exponential and sparse-grid quadrature — References and measured quantities [en]
 
@@ -43388,6 +43390,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-qu
 Coverage: reading
 
 Canonical dyadic angle keys own shared nodes; signed weights and call ledgers are retained.
+I=\int_\Omega f(x)\,dx
 
 ## Domain-aware, double-exponential and sparse-grid quadrature — References and measured quantities [en]
 
@@ -92366,6 +92369,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-qu
 Coverage: reading
 
 領域と重みを明示しfull_outputの活動prefixを保持。既存Simpson関数は不変。
+I=\int_\Omega f(x)\,dx
 
 ## 領域別・二重指数・疎格子求積 — 何と比較し、何を測るか [ja]
 
@@ -92715,6 +92719,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-qu
 Coverage: reading
 
 共有15節点、G7次数13/K15次数23。DEは安定log式と全端点重みです。
+I=\int_\Omega f(x)\,dx
 
 ## 領域別・二重指数・疎格子求積 — 確認の限界と失敗条件 [ja]
 
@@ -93052,6 +93057,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-qu
 Coverage: reading
 
 正規化dyadic角キーで同一節点を所有し、符号付き重みと評価台帳を保持。
+I=\int_\Omega f(x)\,dx
 
 ## 領域別・二重指数・疎格子求積 — 何と比較し、何を測るか [ja]
 

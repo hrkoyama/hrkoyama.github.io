@@ -48,6 +48,10 @@ Simpsonの特異節点失敗と未達精度を保存し、推定誤差の一般�
 
 領域と重みを明示しfull_outputの活動prefixを保持。既存Simpson関数は不変。
 
+$$
+I=\int_\Omega f(x)\,dx
+$$
+
 ## 比較・検証
 
 独立の解析区間参照と実callback数を照合します。有限Gaussianは点値でなく厳密区間です。
@@ -283,6 +287,10 @@ Singular-node failures and unmet Simpson goals remain visible; error estimates a
 ## Adopted numerical method
 
 Explicit domain/weight dispatch retains active full_output prefixes. The existing Simpson function is unchanged.
+
+$$
+I=\int_\Omega f(x)\,dx
+$$
 
 ## References and validation
 

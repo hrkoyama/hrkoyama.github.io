@@ -1,8 +1,8 @@
 // Generated from frontend/search/home-search.js by scripts/search_assets.py. Edit the source template.
-import {atlasSearch} from '../search/engine.mjs?v=445302541936';
+import {atlasSearch} from '../search/engine.mjs?v=435452f9b73f';
 import {currentLanguage} from './i18n.js';
 import {readingURL} from './reading-urls.js';
-import {appendMethodCard,tokenIncludes} from '../search/method-search.mjs?v=ced37cb9d9a9';
+import {appendMethodCard,tokenIncludes} from '../search/method-search.mjs?v=65b1257a6f10';
 import {appendSearchNavigation,publicNavigationPath} from '../search/navigation.mjs?v=cbd24e09fe05';
 const esc=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export const normalizeSearch=value=>String(value).normalize('NFKC').toLocaleLowerCase().replace(/[‐‑‒–—−-]/g,' ').replace(/\s+/g,' ').trim();
@@ -68,7 +68,7 @@ export function homeSearchPage({compact=false,staticMode=false}={}){
 }
 let indexPromise;
 function loadIndex(){
- if(!indexPromise)indexPromise=fetch(new URL('../search/atlas-query-index.json?v=6ce673d49408',import.meta.url)).then(r=>{if(!r.ok)throw Error('Search index unavailable');return r.json();}).catch(error=>{indexPromise=null;throw error;});
+ if(!indexPromise)indexPromise=fetch(new URL('../search/atlas-query-index.json?v=e527e741954c',import.meta.url)).then(r=>{if(!r.ok)throw Error('Search index unavailable');return r.json();}).catch(error=>{indexPromise=null;throw error;});
  return indexPromise;
 }
 export function wireHomeSearch(){

@@ -49,6 +49,10 @@
 
 正規化dyadic角キーで同一節点を所有し、符号付き重みと評価台帳を保持。
 
+$$
+I=\int_\Omega f(x)\,dx
+$$
+
 ## 比較・検証
 
 解析積分と独立Delta/combination組立を区別し、L<dの相互作用未解像を可視化。
@@ -440,6 +444,10 @@ No general error monotonicity, positive-weight or cost-superiority claim; these 
 ## Adopted numerical method
 
 Canonical dyadic angle keys own shared nodes; signed weights and call ledgers are retained.
+
+$$
+I=\int_\Omega f(x)\,dx
+$$
 
 ## References and validation
 
