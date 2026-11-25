@@ -297,6 +297,97 @@ def encode_row_shapes(data):
     return {**data, field: packed, 'row_structure_encoding': 'key-shapes-v1', 'row_shapes': shapes}
 
 
+ROW_LITERAL_ENCODING = 'scalar-bijection-v1'
+MAX_ROW_LITERAL_ALPHABET = 8192
+
+
+def encode_row_literals(data):
+    """Optional scalar bijection of four literal roots; old valid inputs can fall back."""
+    if 'row_literal_encoding' in data or 'row_literal_alphabet' in data:
+        raise ValueError('Reserved row literal header')
+    if data.get('format') != 'compact-search-v1' or data.get('kind') not in ('atlas', 'site'):
+        raise ValueError('Expected compact atlas/site rows')
+    if data.get('row_string_encoding') is None or data.get('row_structure_encoding') is None:
+        return data
+    if data['row_string_encoding'] != ENCODING or data['row_structure_encoding'] != 'key-shapes-v1':
+        raise ValueError('Unknown row literal source stages')
+    field = 'entries' if data['kind'] == 'atlas' else 'documents'
+    details = data.get('details')
+    if not isinstance(details, dict) or 'keys' not in details:
+        return data
+    roots = ((field, data.get(field)), ('row_strings', data.get('row_strings')),
+             ('row_shapes', data.get('row_shapes')), ('details.keys', details['keys']))
+    if any(not isinstance(value, list) for _, value in roots):
+        raise ValueError('Invalid row literal roots')
+    if len(data[field]) > 2000 or len(data['row_strings']) > MAX_POOL or len(data['row_shapes']) > MAX_POOL:
+        raise ValueError('Existing row count limit exceeded')
+    counts, nodes, total = Counter(), 0, 0
+    root_units = Counter()
+
+    class UnsupportedSubset(Exception):
+        pass
+
+    def scan(value, depth, root):
+        nonlocal nodes, total
+        nodes += 1
+        if nodes > MAX_NODES or depth > MAX_DEPTH:
+            raise UnsupportedSubset()
+        if depth == 1 and root == field and not isinstance(value, list):
+            raise ValueError('Expected shaped outer row')
+        if root in ('row_strings', 'details.keys') and depth == 1 and not isinstance(value, str):
+            raise ValueError('Expected row literal string')
+        if root == 'row_shapes' and ((depth == 1 and not isinstance(value, list)) or
+                                     (depth >= 2 and not isinstance(value, str))):
+            raise ValueError('Expected row shape key strings')
+        if isinstance(value, str):
+            if any(0xD800 <= ord(c) <= 0xDFFF for c in value):
+                raise ValueError('Non-scalar row literal')
+            size = len(value.encode('utf-16-le')) // 2
+            total += size
+            root_units[root] += size
+            if (total > MAX_EXPANDED_UNITS or
+                    (root in ('row_strings', 'row_shapes') and root_units[root] > MAX_POOL_UNITS) or
+                    (root == 'row_strings' and size > MAX_STRING_UNITS)):
+                raise UnsupportedSubset()
+            for c in value:
+                counts[c] += 1
+                if len(counts) > MAX_ROW_LITERAL_ALPHABET:
+                    raise UnsupportedSubset()
+        elif isinstance(value, list):
+            if len(value) > MAX_NODES - nodes:
+                raise UnsupportedSubset()
+            for child in value:
+                scan(child, depth + 1, root)
+        elif value is not None and not isinstance(value, (bool, int, float)):
+            raise ValueError('Non-JSON shaped literal')
+        elif isinstance(value, float) and not math.isfinite(value):
+            raise ValueError('Nonfinite shaped literal')
+
+    try:
+        for root, value in roots:
+            scan(value, 0, root)
+    except UnsupportedSubset:
+        return data  # No partial mapping: retain the exact original old wire.
+    if not counts:
+        return data
+    alphabet = sorted(counts, key=lambda c: (-counts[c], ord(c)))
+    translation = {ord(c): (_ALPHABET_ASCII[i] if i < len(_ALPHABET_ASCII)
+                            else chr(128 + i - len(_ALPHABET_ASCII))) for i, c in enumerate(alphabet)}
+
+    def mapped(value):
+        if isinstance(value, str):
+            return value.translate(translation)
+        if isinstance(value, list):
+            return [mapped(child) for child in value]
+        return value
+
+    out = {**data, field: mapped(data[field]), 'row_strings': mapped(data['row_strings']),
+           'row_shapes': mapped(data['row_shapes']),
+           'details': {**details, 'keys': mapped(details['keys'])}}
+    return {**out, 'row_literal_encoding': ROW_LITERAL_ENCODING,
+            'row_literal_alphabet': ''.join(alphabet)}
+
+
 def pack_term_memberships(rows, term_count):
     """Transpose sorted term IDs, sharing identical posting lists losslessly.
 
@@ -430,5 +521,5 @@ def write_compact(root, source, kind):
         'scope': 'Same public search terms; original text and explicit navigation are loaded from fixed public files as needed. Search queries are never transmitted.',
     }
     path = root/'search'/('atlas-query-index.json' if kind == 'atlas' else 'query-index.json')
-    path.write_bytes(encoded(encode_row_shapes(encode_row_pool(encode_vocabulary_columns(encode_vocabulary_alphabet(encode_row_strings(payload)))))))
+    path.write_bytes(encoded(encode_row_literals(encode_row_shapes(encode_row_pool(encode_vocabulary_columns(encode_vocabulary_alphabet(encode_row_strings(payload))))))))
     return path
