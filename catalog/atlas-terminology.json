@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "language": "ja",
+  "scope": "Current Atlas display wording only. Raw scientific packets, metadata and dated editions remain unchanged.",
+  "cases": {
+    "radiation-transport": {
+      "source": {
+        "path": "code/validated-examples/2026-11-22/particles/cases.json",
+        "sha256": "f6e68b2ec8d0cd56357b1aeecea3f9c40cf22f89e7f9c1b8b9442ad020ddbf86"
+      },
+      "fields": {
+        "title": {
+          "before": "純吸収平板の離散座標放射輸送",
+          "after": "純吸収平板の離散座標輻射輸送"
+        },
+        "summary": {
+          "before": "純吸収の定常放射輸送を角度と空間で離散化し、Beer–Lambert解と積分された出射フラックスで検証します。",
+          "after": "純吸収の定常輻射輸送を角度と空間で離散化し、Beer–Lambert解と積分された出射フラックスで検証します。"
+        },
+        "assumptions": {
+          "before": "光学的厚さ0.7の一様平板。正の半球から単位強度が入射し、逆向きの入射・散乱・内部放射はゼロです。",
+          "after": "光学的厚さ0.7の一様平板。正の半球から単位強度が入射し、逆向きの入射・散乱・内部輻射はゼロです。"
+        },
+        "limits": {
+          "before": "多重散乱、熱放射、周波数再分配、動的媒質、放射流体連成は未実装です。StamnesらのDISORTの全機能・安定化を再現したとは表示しません。",
+          "after": "多重散乱、熱輻射、周波数再分配、動的媒質、輻射流体連成は未実装です。StamnesらのDISORTの全機能・安定化を再現したとは表示しません。"
+        }
+      },
+      "reason": "Preferred Japanese radiation terminology for current display only."
+    },
+    "radiation-convergence": {
+      "source": {
+        "path": "code/validated-examples/2026-11-22/particle-transport/cases.json",
+        "sha256": "3d3dd9cbc6c62666bb76f893762cf27b33b2606a34e87ffe8c4275e258b96f66"
+      },
+      "fields": {
+        "title": {
+          "before": "放射輸送：空間・角度収束と光子統計",
+          "after": "輻射輸送：空間・角度収束と光子統計"
+        },
+        "assumptions": {
+          "before": "定常一様平板、光学的厚さ.1/.7/3、正の半球から単位強度、逆入射・散乱・内部放射0。フラックス基準の光子入射方向はpdf=2muです。",
+          "after": "定常一様平板、光学的厚さ.1/.7/3、正の半球から単位強度、逆入射・散乱・内部輻射0。フラックス基準の光子入射方向はpdf=2muです。"
+        },
+        "limits": {
+          "before": "区間被覆は有限の固定seedでの観測で、ちょうど95%の実測値や全seedの成功を保証しません。決定論的求積誤差を統計誤差へ含めず、多重散乱・周波数依存・熱放射・放射流体連成は未検証です。",
+          "after": "区間被覆は有限の固定seedでの観測で、ちょうど95%の実測値や全seedの成功を保証しません。決定論的求積誤差を統計誤差へ含めず、多重散乱・周波数依存・熱輻射・輻射流体連成は未検証です。"
+        }
+      },
+      "reason": "Preferred Japanese radiation terminology for current display only."
+    },
+    "su-olson-diffusion1996": {
+      "source": {
+        "path": "code/validated-examples/2026-11-24-r2/radiation-matter/cases.json",
+        "sha256": "c5522498e8c797035b7c093d4371d88a7950e19f26ab6c6495faa81e7e1b8ebb"
+      },
+      "fields": {
+        "summary": {
+          "before": "実際の放射・物質2場とMarshak境界を進め、固定版ExactPackの独立積分参照と比較します。",
+          "after": "実際の輻射・物質2場とMarshak境界を進め、固定版ExactPackの独立積分参照と比較します。"
+        },
+        "algorithm": {
+          "before": "保存的FVと後退Euler。放射物質の反対sourceを同じSchur補元で結合し、Robinのβ+h/2半セル抵抗を用います。ε.25/2の同じ交換operatorも解析検査します。",
+          "after": "保存的FVと後退Euler。輻射物質の反対sourceを同じSchur補元で結合し、Robinのβ+h/2半セル抵抗を用います。ε.25/2の同じ交換operatorも解析検査します。"
+        }
+      },
+      "reason": "Preferred Japanese radiation terminology for current display only."
+    },
+    "kepler-eccentricity": {
+      "source": {
+        "path": "code/validated-examples/2026-11-24/geometric-controls/cases.json",
+        "sha256": "f97c3c5cef1540cba0c16b8f8d32d70696d4d22105eaf784ff2e17cd3ccecd8b"
+      },
+      "fields": {
+        "algorithm": {
+          "before": "独自の中心力KDK Verlet。固定・保存刻み再生・再生成刻みを区別し、cubic Hermite軌道の正の放射速度交差をbrentqで局在化。",
+          "after": "独自の中心力KDK Verlet。固定・保存刻み再生・再生成刻みを区別し、cubic Hermite軌道の正の動径速度での交差をbrentqで局在化。"
+        }
+      },
+      "reason": "Correct the radial-velocity Japanese wording; not a radiation substitution."
+    }
+  }
+}

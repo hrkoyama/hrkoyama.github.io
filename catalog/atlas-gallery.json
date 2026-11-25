@@ -888,7 +888,7 @@
           "id": "radiation-transport",
           "url": "/numerical-methods-atlas/validation/radiation-transport/",
           "name": {
-            "ja": "純吸収平板の離散座標放射輸送",
+            "ja": "純吸収平板の離散座標輻射輸送",
             "en": "Discrete-ordinate radiation transport through an absorbing slab"
           }
         },
@@ -896,7 +896,7 @@
           "id": "radiation-convergence",
           "url": "/numerical-methods-atlas/validation/radiation-convergence/",
           "name": {
-            "ja": "放射輸送：空間・角度収束と光子統計",
+            "ja": "輻射輸送：空間・角度収束と光子統計",
             "en": "Radiation transport: space/angle convergence and photon statistics"
           }
         }

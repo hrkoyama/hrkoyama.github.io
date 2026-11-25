@@ -112,8 +112,11 @@
     {
       "id": "equation.m1-radiation",
       "en": "Relativistic radiation moments / M1",
-      "ja": "相対論的放射モーメント／M1",
-      "chapter": "relativistic-hydrodynamics"
+      "ja": "相対論的輻射モーメント／M1",
+      "chapter": "relativistic-hydrodynamics",
+      "aliases": [
+        "相対論的放射モーメント／M1"
+      ]
     },
     {
       "id": "equation.causal-viscous",
@@ -545,7 +548,11 @@
       "id": "method.sph",
       "en": "SPH kernel reconstruction",
       "ja": "SPHカーネル再構成",
-      "chapter": "particles-sph"
+      "chapter": "particles-sph",
+      "aliases": [
+        "平滑化粒子流体力学",
+        "粒子法と平滑化粒子流体力学"
+      ]
     },
     {
       "id": "method.ale",

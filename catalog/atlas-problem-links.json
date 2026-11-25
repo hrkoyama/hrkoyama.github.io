@@ -2144,7 +2144,7 @@
       "id": "absorbing-slab",
       "equation_ids": [],
       "reference_note": {
-        "ja": "純吸収・指定流入の平板に対する各方向の解析的な指数減衰と離散座標解を比較します。相対論的M1モーメント閉包とは別の放射モデルです。 追加版は解析rayと連続角度参照を保持し、固定角度の空間誤差と厳密rayの角度誤差、流入・流出・体積吸収の収支を分けます。散乱や多次元閉包へ拡張しません。",
+        "ja": "純吸収・指定流入の平板に対する各方向の解析的な指数減衰と離散座標解を比較します。相対論的M1モーメント閉包とは別の輻射モデルです。 追加版は解析rayと連続角度参照を保持し、固定角度の空間誤差と厳密rayの角度誤差、流入・流出・体積吸収の収支を分けます。散乱や多次元閉包へ拡張しません。",
         "en": "Compare discrete ordinates with analytic directional exponential attenuation through a purely absorbing slab with specified inflow. This differs from relativistic M1 moment closure. The companion retains analytic rays and a continuum-angle reference, separating fixed-ordinate spatial error, exact-ray angular error and inflow/outflow/volume-absorption balance. It does not extend to scattering or multidimensional closures."
       },
       "references": [],
@@ -3056,7 +3056,7 @@
         "verlet"
       ],
       "method_note": {
-        "ja": "位置のみの力でkick半分→drift→kick半分。独立のbracketed Kepler rootと解析速度を使用。 独自の中心力KDK Verlet。固定・保存刻み再生・再生成刻みを区別し、cubic Hermite軌道の正の放射速度交差をbrentqで局在化。",
+        "ja": "位置のみの力でkick半分→drift→kick半分。独立のbracketed Kepler rootと解析速度を使用。 独自の中心力KDK Verlet。固定・保存刻み再生・再生成刻みを区別し、cubic Hermite軌道の正の動径速度での交差をbrentqで局在化。",
         "en": "Position-only kick-half/drift/kick-half; separate bracketed Kepler root and analytic velocities. Original central-force KDK Verlet. Fixed, replayed and regenerated schedules are distinct. Positive radial crossings of cubic Hermite trajectories are localized by brentq."
       }
     },
@@ -3375,7 +3375,7 @@
         "backward-euler"
       ],
       "method_note": {
-        "ja": "保存的FVと後退Euler。放射物質の反対sourceを同じSchur補元で結合し、Robinのβ+h/2半セル抵抗を用います。ε.25/2の同じ交換operatorも解析検査します。",
+        "ja": "保存的FVと後退Euler。輻射物質の反対sourceを同じSchur補元で結合し、Robinのβ+h/2半セル抵抗を用います。ε.25/2の同じ交換operatorも解析検査します。",
         "en": "Conservative FV/backwardEuler with opposite exchange sources coupled by a shared Schur complement and Robin half-cell resistance beta+h/2. Analytic nonunitepsilon.25/2controls exercise the same exchange operators."
       }
     },
@@ -3386,7 +3386,7 @@
         "heat"
       ],
       "equation_note": {
-        "ja": "主検証は1997型の放射輸送・物質交換です。熱・拡散方程式への関連は、別の周期Fourier制御におけるE約V、拡散係数1/[3κ(ε+1)]の極限に限ります。1996Marshak境界や輸送全体の厳密解とは区別します。",
+        "ja": "主検証は1997型の輻射輸送・物質交換です。熱・拡散方程式への関連は、別の周期Fourier制御におけるE約V、拡散係数1/[3κ(ε+1)]の極限に限ります。1996Marshak境界や輸送全体の厳密解とは区別します。",
         "en": "The main benchmark uses1997-type radiation/material transport. The heat equation is a limiting companion for separate periodic Fourier controls with E approximately V and diffusivity1/[3kappa(epsilon+1)],not the1996Marshak boundary problem or an exact solution of full transport."
       },
       "reference_note": {

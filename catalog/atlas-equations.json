@@ -520,7 +520,7 @@
     {
       "id": "m1-radiation",
       "name": {
-        "ja": "相対論的放射モーメント・M1",
+        "ja": "相対論的輻射モーメント・M1",
         "en": "Relativistic radiation moments / M1"
       },
       "formula": [
@@ -529,7 +529,7 @@
       ],
       "chapter": "relativistic-hydrodynamics",
       "note": {
-        "ja": "Gνを物質が受け取る四元力と定義した模式形。Rは放射の応力エネルギー、Pは放射圧テンソル。M1は角度モーメントの閉包で、放射分布全体を厳密に解くものではありません。文献解説のみ。",
+        "ja": "Gνを物質が受け取る四元力と定義した模式形。Rは輻射の応力エネルギー、Pは輻射圧テンソル。M1は角度モーメントの閉包で、輻射分布全体を厳密に解くものではありません。文献解説のみ。",
         "en": "Schematic moment system defining Gν as the four-force received by matter. R is radiation stress-energy and P the radiation-pressure tensor. M1 closes angular moments rather than exactly resolving the full distribution. Literature-only."
       },
       "section": "2013-onward-radiation-and-microphysics-add-stiff-systems",
@@ -1751,7 +1751,7 @@
     {
       "id": "static-grey-transfer",
       "name": {
-        "ja": "静止媒質の灰色放射輸送・散乱・線形交換",
+        "ja": "静止媒質の灰色輻射輸送・散乱・線形交換",
         "en": "Static grey radiative transfer,scattering and linear exchange"
       },
       "formula": [
@@ -1760,7 +1760,7 @@
       ],
       "chapter": "validation-radiation-matter",
       "note": {
-        "ja": "正規化した角度平均を使います。物質交換は1997輸送例と周期Fourier比較で進めます。1997の光学座標では係数1、物理座標の比較ではκを放射・物質の両交換項に掛けます。",
+        "ja": "正規化した角度平均を使います。物質交換は1997輸送例と周期Fourier比較で進めます。1997の光学座標では係数1、物理座標の比較ではκを輻射・物質の両交換項に掛けます。",
         "en": "Use a normalized angular mean. Material exchange is evolved in the1997 transport example and periodic Fourier controls. The1997 optical coordinates give a unit exchange coefficient; physical-coordinate controls multiply both exchange terms by kappa."
       },
       "status": "local-example",
@@ -1806,7 +1806,7 @@
       ],
       "chapter": "validation-radiation-geometry",
       "note": {
-        "ja": "c=1、2D空間で3D圧力のPzzを保持。等方・真空分岐、閉じたPDEの製造解、角度法とのビーム差を区別し、相対論的放射流体とは扱いません。",
+        "ja": "c=1、2D空間で3D圧力のPzzを保持。等方・真空分岐、閉じたPDEの製造解、角度法とのビーム差を区別し、相対論的輻射流体とは扱いません。",
         "en": "c=1,2D space with full3D pressure including Pzz. Separate isotropic/vacuum branches,closed-PDE MMS and beam defects against angular transport; no relativistic-fluid claim."
       },
       "status": "local-example",

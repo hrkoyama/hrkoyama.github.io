@@ -66,7 +66,7 @@
   "catalogs": {
     "catalog/atlas-methods.json": {
       "before": "04077d913520c37b28aad2ba718f4accadff1098aae3dd2f4d3ad2904e254b7b",
-      "after": "f1d86f6bde0f0e00343a69821fcd4b767edc2ea8e58cd2dc57c5633fcb558e17",
+      "after": "06d59a4a880cb58c01424aa2cb0b03791106d457343bf316b62d4321ad42ff83",
       "delta": {
         "kind": "object",
         "keys": [
@@ -81,7 +81,7 @@
           "priority_review"
         ],
         "before": "04077d913520c37b28aad2ba718f4accadff1098aae3dd2f4d3ad2904e254b7b",
-        "after": "f1d86f6bde0f0e00343a69821fcd4b767edc2ea8e58cd2dc57c5633fcb558e17",
+        "after": "06d59a4a880cb58c01424aa2cb0b03791106d457343bf316b62d4321ad42ff83",
         "changes": {
           "methods": {
             "kind": "rows",
@@ -255,7 +255,7 @@
               "pchip"
             ],
             "before": "356ef3b74ac74507b5f9c3a50838d5c2bb7c440f925d4c593a01faa7fe4f0614",
-            "after": "f88c3d0cae53309119624df05be7a46d04ab2f98188ae44a81b12778fce4d3d5",
+            "after": "b71fdfeeaf79327842c1bc4b479041a0bd3e47f678894416805325d884788f75",
             "changes": {
               "centered-difference": {
                 "kind": "object",
@@ -924,8 +924,20 @@
                   "aliases"
                 ],
                 "before": "b08897da357c47b51009c0bdfc552b1647a2d1f6257730e7b5ec8ca695a058e6",
-                "after": "4a1305f27be17cfe7933d65659305db3b6f47a496b4d8447ffef98a29b88f755",
-                "changes": {},
+                "after": "8f74ea377f5161b344b5b2d1bc4ca12d7455b6bdad514e40d71fac2d8b9bd5fd",
+                "changes": {
+                  "aliases": {
+                    "kind": "value",
+                    "before": "ce2fb8ac0142fc6c369d7ead1be424b80025906b68bda0cfcc146b6bf217911c",
+                    "after": "b2d1cd3ce4549711ba784f59a2693e06f78541232dc5d7c31475824246198997",
+                    "value": [
+                      "SPH法",
+                      "smoothed particle hydrodynamics",
+                      "平滑化粒子法",
+                      "SPH kernel interpolation"
+                    ]
+                  }
+                },
                 "restore": {}
               },
               "ale": {
@@ -1577,6 +1589,121 @@
                         "before": "785e55cfae909c5fb0c4b842b6c0f48cd30afd4de34dcc9950c0f08400b73039",
                         "after": "1b6d16cd619569cf3c023298f3be44a19ed249f49af20ef503fbc0e2692ba465",
                         "value": "Finite-basis FCI is not the exact continuum solution. Check size consistency of truncated CI and the assumptions behind variational bounds."
+                      }
+                    },
+                    "restore": {}
+                  }
+                },
+                "restore": {}
+              },
+              "radiation-transport": {
+                "kind": "object",
+                "keys": [
+                  "id",
+                  "name",
+                  "group",
+                  "summary",
+                  "status",
+                  "origin",
+                  "reading",
+                  "code_modules",
+                  "test_files",
+                  "references",
+                  "assumptions",
+                  "units",
+                  "boundary_conditions",
+                  "next_deliverable",
+                  "limitations",
+                  "metadata_review",
+                  "aliases",
+                  "depth_previous_status",
+                  "depth_release",
+                  "depth_scope",
+                  "depth_additional_releases",
+                  "supplemental_scope_profiles"
+                ],
+                "before": "cf268035c21d878aab99ccb6567b534f6f4828cc75c0955a4499b8e5d31e6f21",
+                "after": "b70c4c5c8e4fe2ad36a7235e995c6381388ce5e1a91298d7b5950dede1d5667f",
+                "changes": {
+                  "name": {
+                    "kind": "object",
+                    "keys": [
+                      "ja",
+                      "en"
+                    ],
+                    "before": "92333db20d8557f13f803a15da5b081bc6f1d1682556ab055a69cf09f25fcbbc",
+                    "after": "ff6074b57a5b79b94f6fd4894774b467d970ec8d52fa5fdc725f54ac4b3b6084",
+                    "changes": {
+                      "ja": {
+                        "kind": "value",
+                        "before": "fb21618afab05bf8ecced2394e971933785a680abfb90dbe4efe65d69e8a4587",
+                        "after": "034dcfa77823ab14e21821ecac9aabb7fdb4ee4a9c2bf460a706577540c4d297",
+                        "value": "放射輸送・モーメント法"
+                      }
+                    },
+                    "restore": {}
+                  },
+                  "summary": {
+                    "kind": "object",
+                    "keys": [
+                      "ja",
+                      "en"
+                    ],
+                    "before": "dbada2a166872e0166a080cdfe3cb1634b3275ea193f71ba536f8e887409e6c5",
+                    "after": "2be95ff75561b6e5b4ffb3d91ff02cb8a3297979bdd768e44cecb7ae6e5a392a",
+                    "changes": {
+                      "ja": {
+                        "kind": "value",
+                        "before": "37a235df1a364713b4150898f4149d570654ceb4eb82f1a41128814138c12ed1",
+                        "after": "b39555a764efa1632dd4c74984bc69f5273d92c53fd23c052de3f1bc95417e88",
+                        "value": "純吸収平板の離散座標放射輸送: 純吸収の定常放射輸送を角度と空間で離散化し、Beer–Lambert解と積分された出射フラックスで検証します。 放射輸送：空間・角度収束と光子統計: 純吸収平板で特性解・独立適応求積・光子生存率を比較し、離散収支と標本誤差・区間被覆を別々に測ります。 追加固定例：等方散乱平板の反射・透過・吸収。条件と検証範囲は各配布版で確認してください。 追加固定例：Su–Olson1996非平衡拡散、Su–Olson1997角度輸送の独立公開表比較。条件と検証範囲は各配布版で確認してください。 追加固定例：2D吸収影と保存的M1輸送、2D反向beamとM1閉包の情報損失。条件と検証範囲は各配布版で確認してください。"
+                      }
+                    },
+                    "restore": {}
+                  },
+                  "limitations": {
+                    "kind": "object",
+                    "keys": [
+                      "ja",
+                      "en"
+                    ],
+                    "before": "94b5496af8ae7d2a4d7f9f9bed4b029057cea877cc55a7bea955722e2c4e592e",
+                    "after": "c11e6d701c66990ceedc10a2a07267f6a983e5768228f8d9a74da713eebaee8e",
+                    "changes": {
+                      "ja": {
+                        "kind": "value",
+                        "before": "39e6e4fcc07367a9f2b858897c521887d8a9c47c44eb1a19ded824a83a1f0260",
+                        "after": "40cea37765313cdc11a911fe95640dc88d795d06de44a4a2d522361eb77a7c45",
+                        "value": "純吸収平板の離散座標放射輸送: 多重散乱、熱放射、周波数再分配、動的媒質、放射流体連成は未実装です。StamnesらのDISORTの全機能・安定化を再現したとは表示しません。 放射輸送：空間・角度収束と光子統計: 区間被覆は有限の固定seedでの観測で、ちょうど95%の実測値や全seedの成功を保証しません。決定論的求積誤差を統計誤差へ含めず、多重散乱・周波数依存・熱放射・放射流体連成は未検証です。 今回の追加固定例：有限の4平板に限定。MC、一般角度phase関数、DISORT再現、普遍的次数や厳密連続体誤差境界は認証しません。 今回の追加固定例：1996拡散であり1997角度輸送とは別です。原典本文は未読、公式ソフトの選択値を資格。物理単位の質量opacity解釈は使わず無次元関数を直接参照します。 原1997本文・原表と直接照合したとはしません。公開表の転記か再生成かは著者READMEに未記載。source停止後、一般散乱、全時空間の連続体誤差や角度次数は未認証です。 この追加はκhを解像したN∝κ²の半離散周期制御で、固定格子AP性や主SSPRK2の拡散時間次数を認証しません。初期F0と非零Fick流束の初期層を保持し、極限判定は最終s=.25のみ。両行列伝播にSciPy sparse expm_multiplyを共有し、DOP853照合は参照伝播器の資格です。 今回の追加固定例：6軸は整列beam用で一般角度収束ではありません。反向beamのM1差はモデル情報損失として示し、角度輸送への収束を要求しません。相対論・気体流体・多周波RHDではありません。 6軸は整列beam用で一般角度収束ではありません。反向beamのM1差はモデル情報損失として示し、角度輸送への収束を要求しません。相対論・気体流体・多周波RHDではありません。"
+                      }
+                    },
+                    "restore": {}
+                  },
+                  "aliases": {
+                    "kind": "value",
+                    "before": "a7ab60bdc432dc870d119d48f18a8766f19d9ca7d9c76967ae95ba5bed6ef291",
+                    "after": "011a2fa6eaf7fabab5cedb9d0f270574383ddd530dc0f78d163352648a462219",
+                    "value": [
+                      "放射輸送法",
+                      "radiative transfer",
+                      "radiation transport",
+                      "放射モーメント法"
+                    ]
+                  },
+                  "depth_scope": {
+                    "kind": "object",
+                    "keys": [
+                      "ja",
+                      "en"
+                    ],
+                    "before": "008c8cead8ee376dc6c00b20c1e7282292994345cf478b6db5f980a6eda6e690",
+                    "after": "09bc502f2e5e4e43c112ac95f4d47c107e633110b20718c8e0a447655f264f98",
+                    "changes": {
+                      "ja": {
+                        "kind": "value",
+                        "before": "82dc6092509efcbaaf501450ec8b711c29fcab5e5d60195f0b48f3dd456904d3",
+                        "after": "00709a24b5589a88058f1ecc9f8518370c40bf4e65b9094272c82607e5d4fb64",
+                        "value": "純吸収平板の離散座標放射輸送: 純吸収の定常放射輸送を角度と空間で離散化し、Beer–Lambert解と積分された出射フラックスで検証します。 放射輸送：空間・角度収束と光子統計: 純吸収平板で特性解・独立適応求積・光子生存率を比較し、離散収支と標本誤差・区間被覆を別々に測ります。"
                       }
                     },
                     "restore": {}
@@ -2585,7 +2712,7 @@
     },
     "catalog/atlas-equations.json": {
       "before": "bdc1a3a3d83cb73404846aa6aa8d21cf9e5ae67b447be397c9ce06d7ae59d20a",
-      "after": "1498188b3f204de7489f8fb6b1cce4c8938d10d4da46e0ac04b7c51f04854706",
+      "after": "7c16fbd91f4911a25739e05f24eac35daa2f1cf3394f46b2a706c3abaa7f4b01",
       "delta": {
         "kind": "object",
         "keys": [
@@ -2597,7 +2724,7 @@
           "equations"
         ],
         "before": "bdc1a3a3d83cb73404846aa6aa8d21cf9e5ae67b447be397c9ce06d7ae59d20a",
-        "after": "1498188b3f204de7489f8fb6b1cce4c8938d10d4da46e0ac04b7c51f04854706",
+        "after": "7c16fbd91f4911a25739e05f24eac35daa2f1cf3394f46b2a706c3abaa7f4b01",
         "changes": {
           "equations": {
             "kind": "rows",
@@ -2689,7 +2816,7 @@
               "seir-compartment"
             ],
             "before": "f3ca0626bafda21f0d8874acbd2e926125ec1a5797c7b469f3cf9a5b19006567",
-            "after": "42a684ede3089f8c1fc11ac6dbfb0ede8f66550381ef5f2088068f8891bf3458",
+            "after": "39d9b76bc94568a785577249b8452d96b3b89ee3fa122bd3821938aa9075ec5a",
             "changes": {
               "euler": {
                 "kind": "object",
@@ -2734,6 +2861,61 @@
                       "kepler-eccentricity",
                       "multifrequency-resonance"
                     ]
+                  }
+                },
+                "restore": {}
+              },
+              "m1-radiation": {
+                "kind": "object",
+                "keys": [
+                  "id",
+                  "name",
+                  "formula",
+                  "chapter",
+                  "note",
+                  "section",
+                  "status",
+                  "group",
+                  "coverage_scope"
+                ],
+                "before": "46f64c6a9663ad12ca1806583eaa969f5b4aa0ea63e2552827580b6b372b280d",
+                "after": "be763823ca744c1079b10f3a5b521351f4c7d33688cfd3bcab6c4e10ac5d9d8a",
+                "changes": {
+                  "name": {
+                    "kind": "object",
+                    "keys": [
+                      "ja",
+                      "en"
+                    ],
+                    "before": "b502a587b782141c89a1edc33870671bdf0a6b3c3986d36e5fe9cffb75c6c240",
+                    "after": "a8673229d0372363ddfc90880c4275c2cbd51f9c5f445acc3cbf3b077b8d7346",
+                    "changes": {
+                      "ja": {
+                        "kind": "value",
+                        "before": "e4e3cb0f5e3c4e8490b0d6bfe0a112edee6aa68c5210073e1ffd2d3fc0757c76",
+                        "after": "9e056c8428236651ba702a0c9869f0ef411c3d6c6755af87399cd73ea4818a49",
+                        "value": "相対論的放射モーメント・M1"
+                      }
+                    },
+                    "restore": {}
+                  },
+                  "note": {
+                    "kind": "object",
+                    "keys": [
+                      "ja",
+                      "en"
+                    ],
+                    "before": "4e8c2e00595cf5ac84be5d49842dfcdc2eda026943927e43800587ce5373ff44",
+                    "after": "24ac16523a998a8318f0e67a8df12425bd67f6003561462672c9c33c4874c90e",
+                    "changes": {
+                      "ja": {
+                        "kind": "value",
+                        "before": "a10638b59b18f25d1087f1d55a4f187d2097e9d9be33a0021b047d9a0582ebe0",
+                        "after": "fcb6162383b02879474fd531fe1adf60bbdd3252ed2d5563bb75624b51eb12f0",
+                        "value": "Gνを物質が受け取る四元力と定義した模式形。Rは放射の応力エネルギー、Pは放射圧テンソル。M1は角度モーメントの閉包で、放射分布全体を厳密に解くものではありません。文献解説のみ。"
+                      }
+                    },
+                    "restore": {}
                   }
                 },
                 "restore": {}
@@ -3121,6 +3303,96 @@
                 "after": "df7b171be8bd9b7bf6f8817e938c2b40ba71715bf910d86ace62088b06bdb16b",
                 "changes": {},
                 "restore": {}
+              },
+              "static-grey-transfer": {
+                "kind": "object",
+                "keys": [
+                  "id",
+                  "name",
+                  "formula",
+                  "chapter",
+                  "note",
+                  "status",
+                  "group",
+                  "supplemental_examples"
+                ],
+                "before": "0698362720c693e9f4b4a25c7038909212fa5cbc91351097654a46c8e999cec2",
+                "after": "f17d79b67ef3f645e4bc45fd35d87462bdc26adf4a24f9a87f0eaa4d3b3db934",
+                "changes": {
+                  "name": {
+                    "kind": "object",
+                    "keys": [
+                      "ja",
+                      "en"
+                    ],
+                    "before": "44a610b484e2113003da8cfda4c81baf3fc9291888c1834c1550da3a5d7f2a2d",
+                    "after": "b5a1f26f3e2e0a07a425062ed02e26f6140608889b0a0a5854dfc815fbd61ffc",
+                    "changes": {
+                      "ja": {
+                        "kind": "value",
+                        "before": "ff0dc40f8c1ea30fce89d6d9f8d29341fe970e1401a1555a2165954c0d781856",
+                        "after": "aca87c12b7e623798f4af0569e9536d85f935c46c504e9fdcede5ec43474c2f8",
+                        "value": "静止媒質の灰色放射輸送・散乱・線形交換"
+                      }
+                    },
+                    "restore": {}
+                  },
+                  "note": {
+                    "kind": "object",
+                    "keys": [
+                      "ja",
+                      "en"
+                    ],
+                    "before": "287b2c0bef672a69504d52252c78ffe6647acdcdcf5d652f04bc958ef8ca3a81",
+                    "after": "6e54be74969df1194290d857e7f96525a1844a9370b8c4aa4b9129f70b5d6139",
+                    "changes": {
+                      "ja": {
+                        "kind": "value",
+                        "before": "b0b963c0fad3b009df1a3e6cecc413da281fbc55edbe0a7762b7f7a94ff4dc48",
+                        "after": "e5919b1dbbd5d45f26668186c0e396f152aed73d2bbced35f2a324551c3d7bbe",
+                        "value": "正規化した角度平均を使います。物質交換は1997輸送例と周期Fourier比較で進めます。1997の光学座標では係数1、物理座標の比較ではκを放射・物質の両交換項に掛けます。"
+                      }
+                    },
+                    "restore": {}
+                  }
+                },
+                "restore": {}
+              },
+              "static-grey-m1": {
+                "kind": "object",
+                "keys": [
+                  "id",
+                  "name",
+                  "formula",
+                  "chapter",
+                  "note",
+                  "status",
+                  "group",
+                  "supplemental_examples"
+                ],
+                "before": "91f7457a287d066851383d06c826748e914532d0bc9cc4fa2cccbf774682a615",
+                "after": "c4c7fceca8e6a0b1c331d9ae5f48eceecadcded5f7065ef6db9968ce9aa10d27",
+                "changes": {
+                  "note": {
+                    "kind": "object",
+                    "keys": [
+                      "ja",
+                      "en"
+                    ],
+                    "before": "f32de9f65c11a9c90c6b2fde07e7a7b150b81e7cf7bbf7f10f07f108b51b1955",
+                    "after": "83875caf272387682892fde1cfa9411ff8504663699ec003e1a6d10a8c0a3f7d",
+                    "changes": {
+                      "ja": {
+                        "kind": "value",
+                        "before": "2007567388bf4047d120207f4f717f2ffa00826fa61711d2353cae5c39d381fd",
+                        "after": "a670d4e1f4bb1ebe00d654f7bc64a815bec649327de5610640261a5ea94aa488",
+                        "value": "c=1、2D空間で3D圧力のPzzを保持。等方・真空分岐、閉じたPDEの製造解、角度法とのビーム差を区別し、相対論的放射流体とは扱いません。"
+                      }
+                    },
+                    "restore": {}
+                  }
+                },
+                "restore": {}
               }
             }
           }
@@ -3130,7 +3402,7 @@
     },
     "catalog/atlas-test-problems.json": {
       "before": "dfc4303c69a5478fdcfb87fb55a8045dfdd892374642d20adb96750c291648ee",
-      "after": "916e6be40c7132a63c0e042d1b6ec367230fba2fe74f35dbb8b75adb12e9faa9",
+      "after": "ff3d8cfb6129206b43e3bdc3ee51dc1099d7d314e2f6e5d3ed0df981d4aff65e",
       "delta": {
         "kind": "object",
         "keys": [
@@ -3142,7 +3414,7 @@
           "excluded_examples"
         ],
         "before": "dfc4303c69a5478fdcfb87fb55a8045dfdd892374642d20adb96750c291648ee",
-        "after": "916e6be40c7132a63c0e042d1b6ec367230fba2fe74f35dbb8b75adb12e9faa9",
+        "after": "ff3d8cfb6129206b43e3bdc3ee51dc1099d7d314e2f6e5d3ed0df981d4aff65e",
         "changes": {
           "problems": {
             "kind": "rows",
@@ -3307,7 +3579,7 @@
               "seir-linearization"
             ],
             "before": "1f564c718cb656ab684f040ee79a043814f426bfc4de80a7567d280fe8e715e0",
-            "after": "567ee1bf43ebb25f7c2709eb6ac1f0e63793de4575dc317b9fb39dcdc50c00aa",
+            "after": "1e9241156d848e4ad1620e8532e3c5584cb79273a9ed690a229fd34b3a59d46f",
             "changes": {
               "sod": {
                 "kind": "object",
@@ -3381,6 +3653,118 @@
                 "changes": {},
                 "restore": {}
               },
+              "absorbing-slab": {
+                "kind": "object",
+                "keys": [
+                  "id",
+                  "group",
+                  "name",
+                  "chapter",
+                  "reading_section",
+                  "availability",
+                  "code_base",
+                  "verification",
+                  "commands",
+                  "evidence",
+                  "supplemental_examples"
+                ],
+                "before": "2cd188378b7a96203f321ead447af35b3b3ef4738cd1b676a42e020a99c7d816",
+                "after": "ca5b6519b3af0a93f64205e368f9fb719903e443e5dccbf069dacaa60138b5ed",
+                "changes": {
+                  "name": {
+                    "kind": "object",
+                    "keys": [
+                      "ja",
+                      "en"
+                    ],
+                    "before": "991dda5afd1f93e246bc1139e9f22206f3678be52ab1f295e92d199162931904",
+                    "after": "1551683ddcc1c827c841c5ddf64bf1a883f79e1b04179efda7667924a84751eb",
+                    "changes": {
+                      "ja": {
+                        "kind": "value",
+                        "before": "96ec8c48a2a6b3349d574602c627c96547e2f64aa4cdaa15a34c90af0a1e65ac",
+                        "after": "2f7d4ca6bf400d6b2cac53f7c6e0ec1d57a198fe9d9fdc5dcdd32bdcc42f332d",
+                        "value": "純吸収平板の離散座標放射輸送"
+                      }
+                    },
+                    "restore": {}
+                  },
+                  "supplemental_examples": {
+                    "kind": "rows",
+                    "ids": [
+                      "radiation-transport",
+                      "radiation-convergence"
+                    ],
+                    "before": "cde47d2161c5b3ed6b617f3e918705246f73d44cfb02cd1db581b2ff112c8c16",
+                    "after": "458cdeaf6a6843b1defc3c147750a36e90ec278f44c7863bc41ea016ed6e68e3",
+                    "changes": {
+                      "radiation-transport": {
+                        "kind": "object",
+                        "keys": [
+                          "id",
+                          "url",
+                          "name"
+                        ],
+                        "before": "c8630d125edaaf4d7d4c3c5ec66f0df5232261c6a68139a0d404e7a7a3a5340b",
+                        "after": "efae3fbf72e86701202ca1d16d84a6e148f16a09cab053364ab584b33b57d407",
+                        "changes": {
+                          "name": {
+                            "kind": "object",
+                            "keys": [
+                              "ja",
+                              "en"
+                            ],
+                            "before": "991dda5afd1f93e246bc1139e9f22206f3678be52ab1f295e92d199162931904",
+                            "after": "1551683ddcc1c827c841c5ddf64bf1a883f79e1b04179efda7667924a84751eb",
+                            "changes": {
+                              "ja": {
+                                "kind": "value",
+                                "before": "96ec8c48a2a6b3349d574602c627c96547e2f64aa4cdaa15a34c90af0a1e65ac",
+                                "after": "2f7d4ca6bf400d6b2cac53f7c6e0ec1d57a198fe9d9fdc5dcdd32bdcc42f332d",
+                                "value": "純吸収平板の離散座標放射輸送"
+                              }
+                            },
+                            "restore": {}
+                          }
+                        },
+                        "restore": {}
+                      },
+                      "radiation-convergence": {
+                        "kind": "object",
+                        "keys": [
+                          "id",
+                          "url",
+                          "name"
+                        ],
+                        "before": "0ed643e0d64b0ada070d64e83452f89e28c9f1cf9f9468156576772389a5b888",
+                        "after": "9529af1c056a0468c16a5267501bad6b719f2b8377900b6773813f7cf463b0a9",
+                        "changes": {
+                          "name": {
+                            "kind": "object",
+                            "keys": [
+                              "ja",
+                              "en"
+                            ],
+                            "before": "6a51bf886172c8af8395f07c5fcde4885c9e8353ec421585cecfecf1fdd844a2",
+                            "after": "6c31b424c8750cd45bd2cdd60069014fd23fd870e0a5b3d6ceb2a05377154c26",
+                            "changes": {
+                              "ja": {
+                                "kind": "value",
+                                "before": "322c93354090000b80ebb73dbde9e3c18ef4e583199707d0faf4e9d07807a2e5",
+                                "after": "9d7195fdee02efc2170dba0ca34da7ae1e5ae04d0ad5dcb990f9a60c63086e0b",
+                                "value": "放射輸送：空間・角度収束と光子統計"
+                              }
+                            },
+                            "restore": {}
+                          }
+                        },
+                        "restore": {}
+                      }
+                    }
+                  }
+                },
+                "restore": {}
+              },
               "thermostatted-quartic": {
                 "kind": "object",
                 "keys": [
@@ -3419,7 +3803,7 @@
     },
     "catalog/atlas-gallery.json": {
       "before": "dfb341e7c1af5a5a3e78afbb81907460e6530234e6406783234c6636555d9e13",
-      "after": "84b36cc0641cbd7a9b6afd8f66b34bda91e4ddfc78c9f279517d04af52e69a0f",
+      "after": "54410956b853ad963e426e7e5850569cbc67fd22f9a7f75476b1267f3335edf9",
       "delta": {
         "kind": "object",
         "keys": [
@@ -3429,7 +3813,7 @@
           "items"
         ],
         "before": "dfb341e7c1af5a5a3e78afbb81907460e6530234e6406783234c6636555d9e13",
-        "after": "84b36cc0641cbd7a9b6afd8f66b34bda91e4ddfc78c9f279517d04af52e69a0f",
+        "after": "54410956b853ad963e426e7e5850569cbc67fd22f9a7f75476b1267f3335edf9",
         "changes": {
           "items": {
             "kind": "rows",
@@ -3594,8 +3978,98 @@
               "seir-linearization"
             ],
             "before": "2fec77acb962c1d23bbf4a6cfcd7bf0e64a147f3a70bad0b8e34aff747e5d420",
-            "after": "61db735fe4cfb471aa1c30919d5de59b90268b85afdd753447a4f31d3d1694c7",
-            "changes": {}
+            "after": "addd012d906e7e2ae75c9bdf972ae3c7406b15a745241198afc6cc1fa9d1cc2e",
+            "changes": {
+              "absorbing-slab": {
+                "kind": "object",
+                "keys": [
+                  "id",
+                  "kind",
+                  "source",
+                  "caption",
+                  "supplemental_examples",
+                  "related_figures"
+                ],
+                "before": "8c32ddd85eb2095ecdb1f6ad569c5f08dcd07d81e2fae95f5de2167566b452dc",
+                "after": "f0773c937d8b458e8da196c84d31a1da6e859e8ea35550438ebedf2ba205aa54",
+                "changes": {
+                  "supplemental_examples": {
+                    "kind": "rows",
+                    "ids": [
+                      "radiation-transport",
+                      "radiation-convergence"
+                    ],
+                    "before": "cde47d2161c5b3ed6b617f3e918705246f73d44cfb02cd1db581b2ff112c8c16",
+                    "after": "458cdeaf6a6843b1defc3c147750a36e90ec278f44c7863bc41ea016ed6e68e3",
+                    "changes": {
+                      "radiation-transport": {
+                        "kind": "object",
+                        "keys": [
+                          "id",
+                          "url",
+                          "name"
+                        ],
+                        "before": "c8630d125edaaf4d7d4c3c5ec66f0df5232261c6a68139a0d404e7a7a3a5340b",
+                        "after": "efae3fbf72e86701202ca1d16d84a6e148f16a09cab053364ab584b33b57d407",
+                        "changes": {
+                          "name": {
+                            "kind": "object",
+                            "keys": [
+                              "ja",
+                              "en"
+                            ],
+                            "before": "991dda5afd1f93e246bc1139e9f22206f3678be52ab1f295e92d199162931904",
+                            "after": "1551683ddcc1c827c841c5ddf64bf1a883f79e1b04179efda7667924a84751eb",
+                            "changes": {
+                              "ja": {
+                                "kind": "value",
+                                "before": "96ec8c48a2a6b3349d574602c627c96547e2f64aa4cdaa15a34c90af0a1e65ac",
+                                "after": "2f7d4ca6bf400d6b2cac53f7c6e0ec1d57a198fe9d9fdc5dcdd32bdcc42f332d",
+                                "value": "純吸収平板の離散座標放射輸送"
+                              }
+                            },
+                            "restore": {}
+                          }
+                        },
+                        "restore": {}
+                      },
+                      "radiation-convergence": {
+                        "kind": "object",
+                        "keys": [
+                          "id",
+                          "url",
+                          "name"
+                        ],
+                        "before": "0ed643e0d64b0ada070d64e83452f89e28c9f1cf9f9468156576772389a5b888",
+                        "after": "9529af1c056a0468c16a5267501bad6b719f2b8377900b6773813f7cf463b0a9",
+                        "changes": {
+                          "name": {
+                            "kind": "object",
+                            "keys": [
+                              "ja",
+                              "en"
+                            ],
+                            "before": "6a51bf886172c8af8395f07c5fcde4885c9e8353ec421585cecfecf1fdd844a2",
+                            "after": "6c31b424c8750cd45bd2cdd60069014fd23fd870e0a5b3d6ceb2a05377154c26",
+                            "changes": {
+                              "ja": {
+                                "kind": "value",
+                                "before": "322c93354090000b80ebb73dbde9e3c18ef4e583199707d0faf4e9d07807a2e5",
+                                "after": "9d7195fdee02efc2170dba0ca34da7ae1e5ae04d0ad5dcb990f9a60c63086e0b",
+                                "value": "放射輸送：空間・角度収束と光子統計"
+                              }
+                            },
+                            "restore": {}
+                          }
+                        },
+                        "restore": {}
+                      }
+                    }
+                  }
+                },
+                "restore": {}
+              }
+            }
           }
         },
         "restore": {}
@@ -3603,7 +4077,7 @@
     },
     "catalog/atlas-depth-expansion.json": {
       "before": "a0eb5bc57016f26581a9b5827ca70e4f840bc968905df20d93c1428dc3d209d5",
-      "after": "9e088f16666a8f63918cc48daff7dd6090640a34f77af664fc52c27334859037",
+      "after": "c81c922e6f63105d7b28b59b3a2b10441d619d1e8850a17faae86c3144beff5e",
       "delta": {
         "kind": "object",
         "keys": [
@@ -3619,7 +4093,7 @@
           "case_equations"
         ],
         "before": "a0eb5bc57016f26581a9b5827ca70e4f840bc968905df20d93c1428dc3d209d5",
-        "after": "9e088f16666a8f63918cc48daff7dd6090640a34f77af664fc52c27334859037",
+        "after": "c81c922e6f63105d7b28b59b3a2b10441d619d1e8850a17faae86c3144beff5e",
         "changes": {
           "groups": {
             "kind": "rows",
@@ -3689,8 +4163,71 @@
               "small-models"
             ],
             "before": "eb5f8a9e762f355be4176c20594c2e867b37abcbd507a3f18d14bbfb86a58f33",
-            "after": "025b61b2ede408ec19aada6d06e87e73eb9b5e60fe8fb4cd465051936340bdca",
+            "after": "b5def2d0be8f39cc41d570cdf1eeacbaef54394ba6037483d64c2f472bc88b1d",
             "changes": {
+              "particles": {
+                "kind": "object",
+                "keys": [
+                  "id",
+                  "title",
+                  "fields"
+                ],
+                "before": "234953e2bf5f2507c17cd95d26e8db8bb2c8ab0a196d7811f08ff996e8a99edf",
+                "after": "eb64c87724a7036dd325be7919d1d43594326e973f80bec499b537f364a6d1a0",
+                "changes": {
+                  "title": {
+                    "kind": "object",
+                    "keys": [
+                      "ja",
+                      "en"
+                    ],
+                    "before": "b2144155f42cb854c5a34cf0341a26b1e5f6b0135d969e81b4ba60d6e056ef53",
+                    "after": "341d2e6c6caba14010f733174230b2ad2564e46b59727078525f1a9aee9bc7ab",
+                    "changes": {
+                      "ja": {
+                        "kind": "value",
+                        "before": "586ccf3bffd0f1cbe5411b55efc5ba477408254db931515b7f041540ce7c19cd",
+                        "after": "09fbbef13fc53d8a0e3b775ed65b4df7af02cf102e19394a997c0c84c712d065",
+                        "value": "粒子・静電場・運動論・放射輸送"
+                      }
+                    },
+                    "restore": {}
+                  }
+                },
+                "restore": {}
+              },
+              "particle-transport": {
+                "kind": "object",
+                "keys": [
+                  "id",
+                  "title",
+                  "fields",
+                  "intro"
+                ],
+                "before": "8941bbbeb130f2ca3363ca9a318bf4fa374ccd2ed10a1e5798d659cce65dc43c",
+                "after": "3c63ed16d54c9e5b7d56cb7366447676c66c0ee97512ce688bada9bdfc424e97",
+                "changes": {
+                  "intro": {
+                    "kind": "object",
+                    "keys": [
+                      "ja",
+                      "en"
+                    ],
+                    "before": "ec263f6e7fa0fdd7a3f9d4820430b5d00faae463b6a3f650102392f7ad453f74",
+                    "after": "83e2bb14198f03d34327f018fc97251ef497648b8b3d80ababdb10916f0f59b6",
+                    "changes": {
+                      "ja": {
+                        "kind": "value",
+                        "before": "2ff94cbdd9d10a43190a8fe7ca1d5bcd7dcacb5fd09597e60578a8de62cc21d5",
+                        "after": "812f067a987e22e689397acb4562325b4f1a92fc8a84955b6db08b51b04b83ec",
+                        "value": "周期力、FMM、PIC、衝突、放射輸送の既存問題を別版で検証します。決定論的な離散誤差、保存則、有限粒子数の偏りと統計誤差を分けます。"
+                      }
+                    },
+                    "restore": {}
+                  }
+                },
+                "restore": {}
+              },
               "moving-waves": {
                 "kind": "object",
                 "keys": [
@@ -3723,6 +4260,39 @@
                         "before": "1ace14490d43df44f6cc72db35224451f4c2b54dc8a3224ddcd38deeea4d2b24",
                         "after": "bd8ed69fd1d10ff574058cdec7ec9b424eb9d234c2d1811254cf3a04e0f5bf47",
                         "value": "Time-advance conservative ALE transport on genuinely nonuniform moving cells with GCL, and2D linear rotating C-grid shallow-water waves. Saltzman pistons and global Williamson problems remain future work."
+                      }
+                    },
+                    "restore": {}
+                  }
+                },
+                "restore": {}
+              },
+              "radiation-matter": {
+                "kind": "object",
+                "keys": [
+                  "id",
+                  "edition",
+                  "title",
+                  "fields",
+                  "intro"
+                ],
+                "before": "fe44b07f0d849b2dbd748f9a81046422b3025c650ed49ba51b1d687f2a2dd582",
+                "after": "9c7ad67f4147f1f8a0a491ffffb02eaec3a738e9e73e1364da385fd33e0fc396",
+                "changes": {
+                  "title": {
+                    "kind": "object",
+                    "keys": [
+                      "ja",
+                      "en"
+                    ],
+                    "before": "48175a196b3bc796951a1c05c3590ea2bca3f9ae8a1644a988ef4af50caae597",
+                    "after": "1c3c2f3c5e5fa7e230fb8869965f543f4fec7320365fa6e4d6080a0c4006bf0e",
+                    "changes": {
+                      "ja": {
+                        "kind": "value",
+                        "before": "f43db28fa1eb24a0834d71047c13112a94e81da5c0f097900a543a17ebeda001",
+                        "after": "c9ec80488345499ca33e342c05349fbf4ef08dc8f0ab49311bd24bbaa77621b3",
+                        "value": "非平衡放射：拡散と輸送を分ける"
                       }
                     },
                     "restore": {}
@@ -3995,8 +4565,27 @@
               "seir-linearization"
             ],
             "before": "07a04e3b109be834b521a8bff557892cd6bb0cbe012be58c09ae9da49f2e99a9",
-            "after": "d84e9d7fd934bc07263cfdbab6fcff30115cf55893659a87833f75a5519d5b27",
-            "changes": {},
+            "after": "5079f3e8564d21f9a34909f991263013cb1ba1eb1cdeaec46243fbe23e35ae5d",
+            "changes": {
+              "radiation-convergence": {
+                "kind": "object",
+                "keys": [
+                  "ja",
+                  "en"
+                ],
+                "before": "3293baf3675aa9fc2ff064d4e37eda8c823dee1cf1aa77d64e8dc0e3a7a61995",
+                "after": "1af5bda387e89d8698e01c2e9ff554107c2938bd30ae2cf4a72646ba8e898c2a",
+                "changes": {
+                  "ja": {
+                    "kind": "value",
+                    "before": "8a80fec9578b2e3c14ea11d72250dbfac3c17f09fdfcc05428ae1c835b30d2d8",
+                    "after": "1a0be9e5925ab1d690d43b07e4c26ef0d09c554880e196a2a0404f61e5677800",
+                    "value": "純吸収平板の空間・角度誤差を分離し、特性解・適応求積・光子生存率を照合します。有限seedの区間被覆を全seed保証とせず、散乱や放射流体連成は未検証です。"
+                  }
+                },
+                "restore": {}
+              }
+            },
             "restore": {}
           },
           "case_equations": {
@@ -4102,8 +4691,39 @@
               "seir-linearization"
             ],
             "before": "a46ef00516bd4bcb9167b63961cef0ca6d234b63100a98ba794bcf265adbcc2a",
-            "after": "48f6d4a5895e2958c6f135a33353e3b6c8d6b8445d0247d8ef84452e9e5da5e4",
-            "changes": {},
+            "after": "e01d3bd314d1dbd7d3f05aae916f2f0d8fc6e0ade4dabe66bcd918ecfcd48e1c",
+            "changes": {
+              "su-olson-transport1997": {
+                "kind": "object",
+                "keys": [
+                  "ids",
+                  "note"
+                ],
+                "before": "ded3fcbdbd073000011ac54eabbde1bcacb1975ae0ed7f99ac02342f62243fb5",
+                "after": "1e368b99cf5299b908412012001d9fa5480860e75a7e3a974f3b2a4054c8702a",
+                "changes": {
+                  "note": {
+                    "kind": "object",
+                    "keys": [
+                      "ja",
+                      "en"
+                    ],
+                    "before": "921f772b77b3d7014a8714227299531e13aba4f9640d6e1e64649455d873045b",
+                    "after": "699d662ad5c43b3da93a8b830c725ac6bfa090390e9722a0bcb7481fe263cfab",
+                    "changes": {
+                      "ja": {
+                        "kind": "value",
+                        "before": "6d5595b7d3425326ca7761ada28b3956da306678b07a497ea445fbd3ff8a0ddb",
+                        "after": "9afadbb18894cda7f74b680ef8ffd4c41340376ae598ae2a8209040f5bf8dcd8",
+                        "value": "主検証は1997型の放射輸送・物質交換です。熱・拡散方程式への関連は、別の周期Fourier制御におけるE約V、拡散係数1/[3κ(ε+1)]の極限に限ります。1996Marshak境界や輸送全体の厳密解とは区別します。"
+                      }
+                    },
+                    "restore": {}
+                  }
+                },
+                "restore": {}
+              }
+            },
             "restore": {}
           }
         },
@@ -4112,7 +4732,7 @@
     },
     "catalog/atlas-problem-links.json": {
       "before": "bd6f708369d1e0bb20a3471a9fdba40437a2d3ae33de79e689a4e07ddae999e7",
-      "after": "706cb4511a351d3d2693093a05c2bec420062c5fd71cdc7e8b74d76b707f06bd",
+      "after": "8b36c6979ebb3eb3b07fbd489ebcb3ba1116daaa69eac4cba01f96923db3379d",
       "delta": {
         "kind": "object",
         "keys": [
@@ -4122,7 +4742,7 @@
           "reviewed_on"
         ],
         "before": "bd6f708369d1e0bb20a3471a9fdba40437a2d3ae33de79e689a4e07ddae999e7",
-        "after": "706cb4511a351d3d2693093a05c2bec420062c5fd71cdc7e8b74d76b707f06bd",
+        "after": "8b36c6979ebb3eb3b07fbd489ebcb3ba1116daaa69eac4cba01f96923db3379d",
         "changes": {
           "problems": {
             "kind": "rows",
@@ -4287,7 +4907,7 @@
               "seir-linearization"
             ],
             "before": "dcc57d2ecd8b6c7d2ca6e66cdd232ea60cb1603076ebaa3c496a20207ac621fb",
-            "after": "939a32141a896a520a1a4458c3dfb073332b4a45a2f5967e79bacf7300ff57de",
+            "after": "e0f66ef4a8a6048a88d37c2ce5be53cae70b85bc5454aceeb75bc10a3e09a818",
             "changes": {
               "sod": {
                 "kind": "object",
@@ -4644,6 +5264,41 @@
                 },
                 "restore": {}
               },
+              "absorbing-slab": {
+                "kind": "object",
+                "keys": [
+                  "id",
+                  "equation_ids",
+                  "reference_note",
+                  "references",
+                  "method_ids",
+                  "method_note",
+                  "equation_note"
+                ],
+                "before": "e0a47fc226eb1c2127df8ec3150c32cd2127cdcc1b2549638b23afb9a2ce3e6c",
+                "after": "deeb565193e309e381e6100548c1d5bd75d65999c7b060918cdddaacf338e685",
+                "changes": {
+                  "reference_note": {
+                    "kind": "object",
+                    "keys": [
+                      "ja",
+                      "en"
+                    ],
+                    "before": "42561d62ee8bde550309ca9906b924f44f5979bcda9fda4cda744a4a5c9536f0",
+                    "after": "fa2e1a7bc6b8e64396bbb6af34bb15d32bf9789e46e89532649a6753b94ca288",
+                    "changes": {
+                      "ja": {
+                        "kind": "value",
+                        "before": "6d3d05e89e9ac4cd2acf4697de9a82c194bc9d8b17f91975765b89a000d13f9c",
+                        "after": "f20327bc020e8f65b482eef195c5fcd62eb145bd762b8c16268644934cc01ce0",
+                        "value": "純吸収・指定流入の平板に対する各方向の解析的な指数減衰と離散座標解を比較します。相対論的M1モーメント閉包とは別の放射モデルです。 追加版は解析rayと連続角度参照を保持し、固定角度の空間誤差と厳密rayの角度誤差、流入・流出・体積吸収の収支を分けます。散乱や多次元閉包へ拡張しません。"
+                      }
+                    },
+                    "restore": {}
+                  }
+                },
+                "restore": {}
+              },
               "thermostatted-quartic": {
                 "kind": "object",
                 "keys": [
@@ -4681,6 +5336,111 @@
                       "stochastic-velocity-rescaling",
                       "langevin-thermostat"
                     ]
+                  }
+                },
+                "restore": {}
+              },
+              "gravity-kepler": {
+                "kind": "object",
+                "keys": [
+                  "id",
+                  "equation_ids",
+                  "equation_note",
+                  "reference_note",
+                  "references",
+                  "method_ids",
+                  "method_note"
+                ],
+                "before": "4fd1019a3f184a56002a13a966e38509a45a16865da8364644d02bd5f86919bc",
+                "after": "488073bacf1aaf688f86d1ceb3b9c38ea6be9b7e7e7f729890a7b7f55caae30f",
+                "changes": {
+                  "method_note": {
+                    "kind": "object",
+                    "keys": [
+                      "ja",
+                      "en"
+                    ],
+                    "before": "8b5edbc065cdf3f47dc994fe8ed1b4657b1f332cba01bd1c5f985856df754797",
+                    "after": "f764f6c0d1948e705da18624be1da21a59dde3dd28a23fdee5dfbfcab7f8acd9",
+                    "changes": {
+                      "ja": {
+                        "kind": "value",
+                        "before": "3d9c32d46c26a804cdd8d4b9a66a0070ef5edac4bf716cfbf6ade1c370bee7b4",
+                        "after": "dc8fd96a748b2db8f46eca09cc7ef349cf60ad48d355e89a3c2055cb01d29066",
+                        "value": "位置のみの力でkick半分→drift→kick半分。独立のbracketed Kepler rootと解析速度を使用。 独自の中心力KDK Verlet。固定・保存刻み再生・再生成刻みを区別し、cubic Hermite軌道の正の放射速度交差をbrentqで局在化。"
+                      }
+                    },
+                    "restore": {}
+                  }
+                },
+                "restore": {}
+              },
+              "su-olson-diffusion1996": {
+                "kind": "object",
+                "keys": [
+                  "id",
+                  "equation_ids",
+                  "equation_note",
+                  "reference_note",
+                  "references",
+                  "method_ids",
+                  "method_note"
+                ],
+                "before": "d3b2d906900f817361292884f1c48e3e25ec69c5158af5f71790c8c037391e21",
+                "after": "4ba26230e2edf422db97cebbd204add66b9d03a74ba6007e010a783476d09385",
+                "changes": {
+                  "method_note": {
+                    "kind": "object",
+                    "keys": [
+                      "ja",
+                      "en"
+                    ],
+                    "before": "a62b4b0a3c7b39f24fcbe49b82dafa08b941644f00e6150318a15d738b18f48b",
+                    "after": "4e685f1f28d971d55599355b2c5f705969b978f7933dd9d241f7067823c7855d",
+                    "changes": {
+                      "ja": {
+                        "kind": "value",
+                        "before": "32545697e7edb437c0ef8849078ba76f53089e999033831edb3d6f77ea6c1993",
+                        "after": "a43177478e11ab107e2e0a6a069fee34e014c79f22eb5236ffb6446fedee15ef",
+                        "value": "保存的FVと後退Euler。放射物質の反対sourceを同じSchur補元で結合し、Robinのβ+h/2半セル抵抗を用います。ε.25/2の同じ交換operatorも解析検査します。"
+                      }
+                    },
+                    "restore": {}
+                  }
+                },
+                "restore": {}
+              },
+              "su-olson-transport1997": {
+                "kind": "object",
+                "keys": [
+                  "id",
+                  "equation_ids",
+                  "equation_note",
+                  "reference_note",
+                  "references",
+                  "method_ids",
+                  "method_note"
+                ],
+                "before": "5f62fbefabc6e275b4e57b9abe2c7ab6b59a0659f2223568945c8f0ce8ebbafd",
+                "after": "b8157ef3eff658ae7d426ab9ae572bcc42d211b632d1594de1af82954fcab1e2",
+                "changes": {
+                  "equation_note": {
+                    "kind": "object",
+                    "keys": [
+                      "ja",
+                      "en"
+                    ],
+                    "before": "921f772b77b3d7014a8714227299531e13aba4f9640d6e1e64649455d873045b",
+                    "after": "699d662ad5c43b3da93a8b830c725ac6bfa090390e9722a0bcb7481fe263cfab",
+                    "changes": {
+                      "ja": {
+                        "kind": "value",
+                        "before": "6d5595b7d3425326ca7761ada28b3956da306678b07a497ea445fbd3ff8a0ddb",
+                        "after": "9afadbb18894cda7f74b680ef8ffd4c41340376ae598ae2a8209040f5bf8dcd8",
+                        "value": "主検証は1997型の放射輸送・物質交換です。熱・拡散方程式への関連は、別の周期Fourier制御におけるE約V、拡散係数1/[3κ(ε+1)]の極限に限ります。1996Marshak境界や輸送全体の厳密解とは区別します。"
+                      }
+                    },
+                    "restore": {}
                   }
                 },
                 "restore": {}
@@ -6869,7 +7629,7 @@
     },
     "sph": {
       "before": "b08897da357c47b51009c0bdfc552b1647a2d1f6257730e7b5ec8ca695a058e6",
-      "after": "4a1305f27be17cfe7933d65659305db3b6f47a496b4d8447ffef98a29b88f755",
+      "after": "8f74ea377f5161b344b5b2d1bc4ca12d7455b6bdad514e40d71fac2d8b9bd5fd",
       "delta": {
         "kind": "object",
         "keys": [
@@ -6892,8 +7652,20 @@
           "aliases"
         ],
         "before": "b08897da357c47b51009c0bdfc552b1647a2d1f6257730e7b5ec8ca695a058e6",
-        "after": "4a1305f27be17cfe7933d65659305db3b6f47a496b4d8447ffef98a29b88f755",
-        "changes": {},
+        "after": "8f74ea377f5161b344b5b2d1bc4ca12d7455b6bdad514e40d71fac2d8b9bd5fd",
+        "changes": {
+          "aliases": {
+            "kind": "value",
+            "before": "ce2fb8ac0142fc6c369d7ead1be424b80025906b68bda0cfcc146b6bf217911c",
+            "after": "b2d1cd3ce4549711ba784f59a2693e06f78541232dc5d7c31475824246198997",
+            "value": [
+              "SPH法",
+              "smoothed particle hydrodynamics",
+              "平滑化粒子法",
+              "SPH kernel interpolation"
+            ]
+          }
+        },
         "restore": {}
       }
     },
@@ -7821,8 +8593,122 @@
     },
     "radiation-transport": {
       "before": "cf268035c21d878aab99ccb6567b534f6f4828cc75c0955a4499b8e5d31e6f21",
-      "after": "cf268035c21d878aab99ccb6567b534f6f4828cc75c0955a4499b8e5d31e6f21",
-      "delta": null
+      "after": "b70c4c5c8e4fe2ad36a7235e995c6381388ce5e1a91298d7b5950dede1d5667f",
+      "delta": {
+        "kind": "object",
+        "keys": [
+          "id",
+          "name",
+          "group",
+          "summary",
+          "status",
+          "origin",
+          "reading",
+          "code_modules",
+          "test_files",
+          "references",
+          "assumptions",
+          "units",
+          "boundary_conditions",
+          "next_deliverable",
+          "limitations",
+          "metadata_review",
+          "aliases",
+          "depth_previous_status",
+          "depth_release",
+          "depth_scope",
+          "depth_additional_releases",
+          "supplemental_scope_profiles"
+        ],
+        "before": "cf268035c21d878aab99ccb6567b534f6f4828cc75c0955a4499b8e5d31e6f21",
+        "after": "b70c4c5c8e4fe2ad36a7235e995c6381388ce5e1a91298d7b5950dede1d5667f",
+        "changes": {
+          "name": {
+            "kind": "object",
+            "keys": [
+              "ja",
+              "en"
+            ],
+            "before": "92333db20d8557f13f803a15da5b081bc6f1d1682556ab055a69cf09f25fcbbc",
+            "after": "ff6074b57a5b79b94f6fd4894774b467d970ec8d52fa5fdc725f54ac4b3b6084",
+            "changes": {
+              "ja": {
+                "kind": "value",
+                "before": "fb21618afab05bf8ecced2394e971933785a680abfb90dbe4efe65d69e8a4587",
+                "after": "034dcfa77823ab14e21821ecac9aabb7fdb4ee4a9c2bf460a706577540c4d297",
+                "value": "放射輸送・モーメント法"
+              }
+            },
+            "restore": {}
+          },
+          "summary": {
+            "kind": "object",
+            "keys": [
+              "ja",
+              "en"
+            ],
+            "before": "dbada2a166872e0166a080cdfe3cb1634b3275ea193f71ba536f8e887409e6c5",
+            "after": "2be95ff75561b6e5b4ffb3d91ff02cb8a3297979bdd768e44cecb7ae6e5a392a",
+            "changes": {
+              "ja": {
+                "kind": "value",
+                "before": "37a235df1a364713b4150898f4149d570654ceb4eb82f1a41128814138c12ed1",
+                "after": "b39555a764efa1632dd4c74984bc69f5273d92c53fd23c052de3f1bc95417e88",
+                "value": "純吸収平板の離散座標放射輸送: 純吸収の定常放射輸送を角度と空間で離散化し、Beer–Lambert解と積分された出射フラックスで検証します。 放射輸送：空間・角度収束と光子統計: 純吸収平板で特性解・独立適応求積・光子生存率を比較し、離散収支と標本誤差・区間被覆を別々に測ります。 追加固定例：等方散乱平板の反射・透過・吸収。条件と検証範囲は各配布版で確認してください。 追加固定例：Su–Olson1996非平衡拡散、Su–Olson1997角度輸送の独立公開表比較。条件と検証範囲は各配布版で確認してください。 追加固定例：2D吸収影と保存的M1輸送、2D反向beamとM1閉包の情報損失。条件と検証範囲は各配布版で確認してください。"
+              }
+            },
+            "restore": {}
+          },
+          "limitations": {
+            "kind": "object",
+            "keys": [
+              "ja",
+              "en"
+            ],
+            "before": "94b5496af8ae7d2a4d7f9f9bed4b029057cea877cc55a7bea955722e2c4e592e",
+            "after": "c11e6d701c66990ceedc10a2a07267f6a983e5768228f8d9a74da713eebaee8e",
+            "changes": {
+              "ja": {
+                "kind": "value",
+                "before": "39e6e4fcc07367a9f2b858897c521887d8a9c47c44eb1a19ded824a83a1f0260",
+                "after": "40cea37765313cdc11a911fe95640dc88d795d06de44a4a2d522361eb77a7c45",
+                "value": "純吸収平板の離散座標放射輸送: 多重散乱、熱放射、周波数再分配、動的媒質、放射流体連成は未実装です。StamnesらのDISORTの全機能・安定化を再現したとは表示しません。 放射輸送：空間・角度収束と光子統計: 区間被覆は有限の固定seedでの観測で、ちょうど95%の実測値や全seedの成功を保証しません。決定論的求積誤差を統計誤差へ含めず、多重散乱・周波数依存・熱放射・放射流体連成は未検証です。 今回の追加固定例：有限の4平板に限定。MC、一般角度phase関数、DISORT再現、普遍的次数や厳密連続体誤差境界は認証しません。 今回の追加固定例：1996拡散であり1997角度輸送とは別です。原典本文は未読、公式ソフトの選択値を資格。物理単位の質量opacity解釈は使わず無次元関数を直接参照します。 原1997本文・原表と直接照合したとはしません。公開表の転記か再生成かは著者READMEに未記載。source停止後、一般散乱、全時空間の連続体誤差や角度次数は未認証です。 この追加はκhを解像したN∝κ²の半離散周期制御で、固定格子AP性や主SSPRK2の拡散時間次数を認証しません。初期F0と非零Fick流束の初期層を保持し、極限判定は最終s=.25のみ。両行列伝播にSciPy sparse expm_multiplyを共有し、DOP853照合は参照伝播器の資格です。 今回の追加固定例：6軸は整列beam用で一般角度収束ではありません。反向beamのM1差はモデル情報損失として示し、角度輸送への収束を要求しません。相対論・気体流体・多周波RHDではありません。 6軸は整列beam用で一般角度収束ではありません。反向beamのM1差はモデル情報損失として示し、角度輸送への収束を要求しません。相対論・気体流体・多周波RHDではありません。"
+              }
+            },
+            "restore": {}
+          },
+          "aliases": {
+            "kind": "value",
+            "before": "a7ab60bdc432dc870d119d48f18a8766f19d9ca7d9c76967ae95ba5bed6ef291",
+            "after": "011a2fa6eaf7fabab5cedb9d0f270574383ddd530dc0f78d163352648a462219",
+            "value": [
+              "放射輸送法",
+              "radiative transfer",
+              "radiation transport",
+              "放射モーメント法"
+            ]
+          },
+          "depth_scope": {
+            "kind": "object",
+            "keys": [
+              "ja",
+              "en"
+            ],
+            "before": "008c8cead8ee376dc6c00b20c1e7282292994345cf478b6db5f980a6eda6e690",
+            "after": "09bc502f2e5e4e43c112ac95f4d47c107e633110b20718c8e0a447655f264f98",
+            "changes": {
+              "ja": {
+                "kind": "value",
+                "before": "82dc6092509efcbaaf501450ec8b711c29fcab5e5d60195f0b48f3dd456904d3",
+                "after": "00709a24b5589a88058f1ecc9f8518370c40bf4e65b9094272c82607e5d4fb64",
+                "value": "純吸収平板の離散座標放射輸送: 純吸収の定常放射輸送を角度と空間で離散化し、Beer–Lambert解と積分された出射フラックスで検証します。 放射輸送：空間・角度収束と光子統計: 純吸収平板で特性解・独立適応求積・光子生存率を比較し、離散収支と標本誤差・区間被覆を別々に測ります。"
+              }
+            },
+            "restore": {}
+          }
+        },
+        "restore": {}
+      }
     },
     "dsmc": {
       "before": "1aed05d76c7ed30f330534ff209309217a86abc29958f9a42850e409d8994b0b",

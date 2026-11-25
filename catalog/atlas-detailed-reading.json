@@ -1842,11 +1842,11 @@
         "radiation-transport"
       ],
       "title": {
-        "ja": "放射輸送・モーメント法",
+        "ja": "輻射輸送・モーメント法",
         "en": "Radiation transport and moment methods"
       },
       "intro": {
-        "ja": "放射輸送では位置・方向・周波数に依存する強度を解きます。角度を積分したモーメント法は未知数を減らしますが、失われた角度情報を閉包で補う必要があります。",
+        "ja": "輻射輸送では位置・方向・周波数に依存する強度を解きます。角度を積分したモーメント法は未知数を減らしますが、失われた角度情報を閉包で補う必要があります。",
         "en": "Radiation transport resolves intensity in space, direction and frequency. Moment methods reduce the angular dimension but require closure for information removed by integration."
       },
       "sections": [
@@ -1858,7 +1858,7 @@
           },
           "paragraphs": {
             "ja": [
-              "ここでは静止媒質・周波数積分済みの灰色強度Iを考え、等方な放射源ηと吸収係数κを使い、散乱は省略します。κは長さの逆数です。E=(1/c)∫I dΩ、F=∫nI dΩ、P=(1/c)∫nnI dΩを定義すると、EとFの方程式はPを含みます。"
+              "ここでは静止媒質・周波数積分済みの灰色強度Iを考え、等方な輻射源ηと吸収係数κを使い、散乱は省略します。κは長さの逆数です。E=(1/c)∫I dΩ、F=∫nI dΩ、P=(1/c)∫nnI dΩを定義すると、EとFの方程式はPを含みます。"
             ],
             "en": [
               "Use frequency-integrated grey intensity I in a static medium, with isotropic emissivity η and absorption coefficient κ of inverse-length units; omit scattering here. Define E=(1/c)∫I dΩ, F=∫nI dΩ and P=(1/c)∫nnI dΩ. Moment equations for E and F require a prescription for P."
@@ -1892,7 +1892,7 @@
           "paragraphs": {
             "ja": [
               "M1は異なる方向の交差ビームを一般には独立に運べません。FLDは勾配方向に流束を結び付けるため影や強い異方性に制約があります。縮約光速は物理的な伝播/緩和時間を変えるので、支配的な時間尺度との関係を明示します。",
-              "追加版も1次元定常・純吸収・指定流入の平板で、μ∂xI=−κIを解きます。一般の放射モーメント閉包、散乱、時間依存、多周波数や流体との結合は検証しません。"
+              "追加版も1次元定常・純吸収・指定流入の平板で、μ∂xI=−κIを解きます。一般の輻射モーメント閉包、散乱、時間依存、多周波数や流体との結合は検証しません。"
             ],
             "en": [
               "M1 generally cannot propagate crossing beams independently. FLD ties flux to the energy gradient, limiting shadows and strongly anisotropic fields. A reduced light speed changes transport/relaxation scales and must be justified against the physical time scales of interest.",
@@ -1908,7 +1908,7 @@
           },
           "paragraphs": {
             "ja": [
-              "吸収だけの指数減衰、等方拡散、自由流と影、交差ビームを分けて調べます。E≥0、|F|≤cEという実現可能性、放射と物質の総エネルギー、角度/空間/時間収束を確認します。閉包誤差と離散化誤差を混同しません。",
+              "吸収だけの指数減衰、等方拡散、自由流と影、交差ビームを分けて調べます。E≥0、|F|≤cEという実現可能性、輻射と物質の総エネルギー、角度/空間/時間収束を確認します。閉包誤差と離散化誤差を混同しません。",
               "Beer–Lambertの各ray解析解と連続角度の指数積分を使い、固定角度での風上空間誤差と、厳密ray伝播での角度求積誤差を分離します。流入−流出と体積吸収の収支・正値性を別に確認し、保存則だけで角度分布の精度を判定しません。",
               "光学的厚さ0.1・0.7・3で、連続角度参照を指数積分expnと別の適応QUADPACK求積でも照合します。独立な輸送標本化では入射fluxに対応するμ=√Uを用い、透過をBernoulli変数として数えます。64反復の有限標本で二項信頼区間とRMSEを調べますが、公称95%の被覆を任意の入力や標本で保証したとは表示しません。"
             ],

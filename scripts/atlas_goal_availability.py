@@ -11,6 +11,7 @@ def load_supplemental_examples(root, identifiers):
     assert isinstance(identifiers, list) and len(identifiers) == len(set(identifiers))
     if not identifiers:
         return []
+    from atlas_terminology import project_case, editorial_sources
     config = json.loads((root / 'catalog/atlas-depth-expansion.json').read_text())
     selected = {}
     for group in config['groups']:
@@ -27,6 +28,7 @@ def load_supplemental_examples(root, identifiers):
                 continue
             assert ident not in selected, 'Repeated supplemental case: ' + ident
             gallery = depth_gallery_figure(data['directory'], data['manifest'], case)
+            case = project_case(root, case)
             selected[ident] = {
                 **case, 'name': case['title'], 'group': group['id'],
                 'url': '/numerical-methods-atlas/validation/' + ident + '/',
@@ -35,7 +37,7 @@ def load_supplemental_examples(root, identifiers):
                 'download': data['base'] + data['verification']['archive']['file'],
                 'results': data['base'] + 'results/result.json',
                 'verification': data['base'] + 'verification.json',
-                'source_sha256': data['source_sha256'],
+                'source_sha256': {**data['source_sha256'], **editorial_sources(case)},
                 **({'gallery_preview': {**gallery, 'url': data['base']+'results/'+gallery['file']}} if gallery else {}),
             }
     assert set(selected) == set(identifiers), 'Unknown supplemental case IDs: ' + str(set(identifiers) - set(selected))

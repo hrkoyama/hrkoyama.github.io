@@ -1350,7 +1350,7 @@
   },
   "atlas.from-sr-riemann-solvers-and-valencia-to-grmhd.883e1a": {
     "en": "From SR Riemann solvers and Valencia to GRMHD, primitive recovery, high-order hybrids, radiation, and GPU merger codes. Literature through November 2026.",
-    "ja": "特殊相対論のリーマンソルバーとValencia形式から、GRMHD、基本変数回復、高次混合法、放射、GPU合体計算まで。2026年11月までの文献調査です。"
+    "ja": "特殊相対論のリーマンソルバーとValencia形式から、GRMHD、基本変数回復、高次混合法、輻射、GPU合体計算まで。2026年11月までの文献調査です。"
   },
   "atlas.weak-forms-triangular-p1-assembly-dirichlet-e.88558f": {
     "en": "Weak forms, triangular P1 assembly, Dirichlet elimination, and measured L2/H1 convergence.",
@@ -1686,7 +1686,7 @@
   },
   "term.equation.m1-radiation": {
     "en": "Relativistic radiation moments / M1",
-    "ja": "相対論的放射モーメント／M1"
+    "ja": "相対論的輻射モーメント／M1"
   },
   "term.equation.causal-viscous": {
     "en": "Causal relativistic viscous fluid",
@@ -3210,7 +3210,7 @@
   },
   "gallery.follow-conservative-sr-gr-fluids-magnetic-.7620e7": {
     "en": "Follow conservative SR/GR fluids, magnetic constraints, state recovery, radiation, and evolving-spacetime GPU calculations. Source notes, not an implemented relativistic solver.",
-    "ja": "保存形SR／GR流体、磁場制約、状態回復、放射、動的時空のGPU計算をたどります。出典ノートであり、相対論ソルバーは未実装です。"
+    "ja": "保存形SR／GR流体、磁場制約、状態回復、輻射、動的時空のGPU計算をたどります。出典ノートであり、相対論ソルバーは未実装です。"
   },
   "gallery.particles-meet-a-riemann-problem.632e66": {
     "en": "Particles meet a Riemann problem",
@@ -7137,8 +7137,8 @@
     "ja": "まず、小さな実験から。"
   },
   "home-map.first-description": {
-    "ja": "ブラウザ展示で動きと誤差をつかみ、前提と安定条件を読みます。上の固定入力の入口から、コードと検証手順へ進めます。",
-    "en": "Use browser exhibits to inspect motion and error, then read assumptions and stability conditions. Follow the fixed-input entries above for code and verification steps."
+    "ja": "ブラウザ展示で動きと誤差をつかみ、前提と安定条件を読みます。「まず計算を試す」から、固定入力例のコードと検証手順へ進めます。",
+    "en": "Use browser exhibits to inspect motion and error, then read assumptions and stability conditions. Choose “Try a calculation” for fixed-input code examples and verification steps."
   },
   "home-map.first-wave": {
     "en": "See waves in an equation",
@@ -7986,7 +7986,7 @@
   },
   "reference.batch38-47.3b354c1eadfd": {
     "en": "Plane-parallel steady optical-depth slab, unit incoming radiance on the left,vacuum incoming on the right,isotropic single-scattering albedo. Incoming hemispherical flux pi; signed-angle J=.5*integral I.",
-    "ja": "平行平板の定常な光学厚さ座標を用い、左の入射放射輝度は1、右の入射は真空、等方散乱の単一散乱アルベドを固定します。入射半球流束はπ、符号付き角度の平均はJ=(1/2)∫I dμです。"
+    "ja": "平行平板の定常な光学厚さ座標を用い、左の入射輻射輝度は1、右の入射は真空、等方散乱の単一散乱アルベドを固定します。入射半球流束はπ、符号付き角度の平均はJ=(1/2)∫I dμです。"
   },
   "reference.batch38-47.3dc411cfb75d": {
     "en": "Su–Olson1996 diffusion: pinned independent integral evaluator",
@@ -7994,7 +7994,7 @@
   },
   "reference.batch38-47.a97b112af906": {
     "en": "Half-space Marshak diffusion with zero initial radiation/material variables and epsilon1. Direct dimensionless evaluator; no ambiguous physical mass-opacity wrapper convention.",
-    "ja": "初期の放射・物質変数が0、ε=1の半無限Marshak拡散です。無次元評価関数を直接用い、物理単位の質量吸収係数ラッパーに起因する曖昧な規約は持ち込みません。"
+    "ja": "初期の輻射・物質変数が0、ε=1の半無限Marshak拡散です。無次元評価関数を直接用い、物理単位の質量吸収係数ラッパーに起因する曖昧な規約は持ち込みません。"
   },
   "reference.batch38-47.05b0a538cc4a": {
     "en": "Su–Olson transport: primary2023author-provided analytical benchmark data",
@@ -8718,7 +8718,7 @@
   },
   "reference.batch68-77.af4c5099b261": {
     "en": "Original central-force KDK Verlet. Fixed, replayed and regenerated schedules are distinct. Positive radial crossings of cubic Hermite trajectories are localized by brentq.",
-    "ja": "独自の中心力KDK Verlet。固定・保存刻み再生・再生成刻みを区別し、cubic Hermite軌道の正の放射速度交差をbrentqで局在化。"
+    "ja": "独自の中心力KDK Verlet。固定・保存刻み再生・再生成刻みを区別し、cubic Hermite軌道の正の動径速度での交差をbrentqで局在化。"
   },
   "reference.batch68-77.eebde48ef245": {
     "en": "An independent Kepler-equation family, qualified with brentq and bisection, supports 92 main decisions: full-state error, energy/angular momentum, at least eight periapses, finite-window order and reversal defects.",

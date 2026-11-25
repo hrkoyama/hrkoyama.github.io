@@ -348,6 +348,7 @@ def markdown_case(case, measured, data, language, heading_level=1, editorial_not
 
 
 def build():
+    from atlas_terminology import project_cases, editorial_sources
     catalog = read_json(ROOT/CATALOG.lstrip('/'))
     navigation = load_execution_routes(ROOT)
     routes = navigation['executions']
@@ -362,8 +363,8 @@ def build():
     if not isinstance(formula_supplements, dict) or not set(formula_supplements) <= set(identifiers):
         raise ValueError('Editorial formula supplement names an unknown execution case')
     for current in data.values():
-        current['metadata'] = [with_formula_supplement(case, formula_supplements.get(case['id']))
-                               for case in current['metadata']]
+        current['metadata'] = project_cases(ROOT, [with_formula_supplement(case, formula_supplements.get(case['id']))
+                                                 for case in current['metadata']])
     formula_sources = {}
     for supplement in formula_supplements.values():
         for name, expected in supplement['source_sha256'].items():
@@ -392,6 +393,8 @@ def build():
     source_hashes.update(formula_sources)
     for group in data.values():
         source_hashes.update(group['source_sha256'])
+        for case in group['metadata']:
+            source_hashes.update(editorial_sources(case))
     formulas = [{'id': 'depth-'+case['id']+'-'+str(i), 'formula': [formula]}
                 for group in data.values() for case in group['metadata']
                 for i, formula in enumerate(case_formulas(case))]

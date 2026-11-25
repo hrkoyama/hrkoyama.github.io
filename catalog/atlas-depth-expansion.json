@@ -36,7 +36,7 @@
     {
       "id": "particles",
       "title": {
-        "ja": "粒子・静電場・運動論・放射輸送",
+        "ja": "粒子・静電場・運動論・輻射輸送",
         "en": "Particles, electrostatics, kinetic and radiative transport"
       },
       "fields": [
@@ -133,7 +133,7 @@
         "transport"
       ],
       "intro": {
-        "ja": "周期力、FMM、PIC、衝突、放射輸送の既存問題を別版で検証します。決定論的な離散誤差、保存則、有限粒子数の偏りと統計誤差を分けます。",
+        "ja": "周期力、FMM、PIC、衝突、輻射輸送の既存問題を別版で検証します。決定論的な離散誤差、保存則、有限粒子数の偏りと統計誤差を分けます。",
         "en": "Extend existing periodic-force, FMM, PIC, collision and radiation problems in a separate release. Separate deterministic discretization, conservation, finite-particle bias and statistical error."
       }
     },
@@ -638,7 +638,7 @@
       "id": "radiation-matter",
       "edition": "2026-11-24-r2",
       "title": {
-        "ja": "非平衡放射：拡散と輸送を分ける",
+        "ja": "非平衡輻射：拡散と輸送を分ける",
         "en": "Non-equilibrium radiation: distinct diffusion and transport"
       },
       "fields": [
@@ -1250,7 +1250,7 @@
       "en": "Use the finite-N equilibrium beta law and independent sphere samples at fixed invariants. Account for particle correlation via independent-seed error; collision rounds are not calibrated time or hard-sphere transport."
     },
     "radiation-convergence": {
-      "ja": "純吸収平板の空間・角度誤差を分離し、特性解・適応求積・光子生存率を照合します。有限seedの区間被覆を全seed保証とせず、散乱や放射流体連成は未検証です。",
+      "ja": "純吸収平板の空間・角度誤差を分離し、特性解・適応求積・光子生存率を照合します。有限seedの区間被覆を全seed保証とせず、散乱や輻射流体連成は未検証です。",
       "en": "Separate space and angle errors for a pure-absorption slab, comparing characteristics, adaptive quadrature and photon survival. Finite-seed coverage is no all-seed guarantee; scattering and radiation hydrodynamics remain unvalidated."
     },
     "noh-shock": {
@@ -2154,7 +2154,7 @@
         "heat"
       ],
       "note": {
-        "ja": "主検証は1997型の放射輸送・物質交換です。熱・拡散方程式への関連は、別の周期Fourier制御におけるE約V、拡散係数1/[3κ(ε+1)]の極限に限ります。1996Marshak境界や輸送全体の厳密解とは区別します。",
+        "ja": "主検証は1997型の輻射輸送・物質交換です。熱・拡散方程式への関連は、別の周期Fourier制御におけるE約V、拡散係数1/[3κ(ε+1)]の極限に限ります。1996Marshak境界や輸送全体の厳密解とは区別します。",
         "en": "The main benchmark uses1997-type radiation/material transport. The heat equation is a limiting companion for separate periodic Fourier controls with E approximately V and diffusivity1/[3kappa(epsilon+1)],not the1996Marshak boundary problem or an exact solution of full transport."
       }
     },

@@ -233,19 +233,20 @@ def _depth_release_record(root, method, config):
     assert method['status'] == 'educational-example'
     assert set(config) >= {'group', 'edition', 'case_ids'}
     data = load_depth_group(root, config['group'], config['edition'])
+    from atlas_terminology import project_case, editorial_sources
     selected = config['case_ids']
     assert isinstance(selected, list) and selected and len(selected) == len(set(selected))
     metadata = {case['id']: case for case in data['metadata']}
     measured = {case['id']: case for case in data['results']['cases']}
     assert set(selected) <= metadata.keys()
     assert all(method['id'] in metadata[ident]['method_ids'] for ident in selected), 'Unrelated validation borrowed by method'
-    examples = [{**metadata[ident], 'measured': measured[ident],
+    examples = [{**project_case(root, metadata[ident]), 'measured': measured[ident],
                  'entry': ORIGIN+'/numerical-methods-atlas/validation/'+ident+'/',
                  'reading': {language: ORIGIN+'/numerical-methods-atlas/'+language+'/read/validation-'+data['group']+'/#'+ident
                              for language in ['ja', 'en']}}
                 for ident in selected]
     base = ORIGIN+data['base']
-    return {'group': data['group'], 'case_ids': selected,
+    record = {'group': data['group'], 'case_ids': selected,
             'code_base': base, 'code_edition': data['edition'],
             'code_urls': depth_code_urls(data, selected), 'test_urls': data['test_urls'],
             'run_commands': ['python -m pytest -q', 'python run.py --input inputs.json --output output'],
@@ -255,6 +256,10 @@ def _depth_release_record(root, method, config):
             'code_archive_sha256': data['verification']['archive']['sha256'],
             'results': base+'results/result.json', 'passed_tests': data['verification']['passed_tests'],
             'examples': examples}
+    editorial = {name: checksum for case in examples for name, checksum in editorial_sources(case).items()}
+    if editorial:
+        record['editorial_source_sha256'] = editorial
+    return record
 
 
 def depth_release_record(root, method):

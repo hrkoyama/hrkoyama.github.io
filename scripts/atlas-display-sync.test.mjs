@@ -63,7 +63,7 @@ from unittest import mock
 import atlas_equation_availability as equation_module
 
 requested_ids=list(dict.fromkeys(ident for row in equations for ident in row.get('supplemental_examples',[])))
-snapshot_paths=set(['scripts/atlas_equation_availability.py','scripts/atlas_goal_availability.py','scripts/atlas_depth_release.py','scripts/atlas_registration.py','scripts/atlas_execution_discovery.py','scripts/atlas-display-sync.test.mjs','catalog/atlas-registration.json','catalog/schemas/atlas-registration.schema.json','catalog/atlas-equations.json','catalog/atlas-execution-examples.json','catalog/atlas-execution-discovery.json','catalog/atlas-depth-expansion.json','numerical-methods-atlas/assets/biological-models.json','numerical-methods-atlas/code-and-data/examples.json'])
+snapshot_paths=set(['scripts/atlas_terminology.py','catalog/atlas-terminology.json','scripts/atlas_equation_availability.py','scripts/atlas_goal_availability.py','scripts/atlas_depth_release.py','scripts/atlas_registration.py','scripts/atlas_execution_discovery.py','scripts/atlas-display-sync.test.mjs','catalog/atlas-registration.json','catalog/schemas/atlas-registration.schema.json','catalog/atlas-equations.json','catalog/atlas-execution-examples.json','catalog/atlas-execution-discovery.json','catalog/atlas-depth-expansion.json','numerical-methods-atlas/assets/biological-models.json','numerical-methods-atlas/code-and-data/examples.json'])
 
 def checked_file(relative):
  path=ROOT/relative
