@@ -7,6 +7,7 @@ test('choose learning order, full chapter index and the matching Bratu and Noh c
  // The candidate server mirrors reviewed HR pages locally; downloads are checked
  // separately after publication. Never run or fetch a ZIP in this UI scenario.
  const base=new URL(baseURL);
+ try {
  await page.route('https://hrkoyama.github.io/**',async route=>{
   const url=new URL(route.request().url());
   if(url.pathname.endsWith('.zip'))return route.abort('blockedbyclient');
@@ -75,4 +76,8 @@ test('choose learning order, full chapter index and the matching Bratu and Noh c
  await expect(active().locator('a[href$=".zip"]').first()).toBeVisible();
  await noOverflow();
  expect(errors).toEqual([]);
+ }finally{
+  // Drain fixture requests before Playwright tears down its page/context.
+  await page.unrouteAll({behavior:'wait'});
+ }
 });
