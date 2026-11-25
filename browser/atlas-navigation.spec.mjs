@@ -31,6 +31,19 @@ test('choose learning order, full chapter index and the matching Bratu and Noh c
  await expect(page.locator('[data-reading-group]')).toHaveCount(10);
  await expect(page.locator('[data-reading-learning-guide]')).toBeVisible();
  await noOverflow();
+ const stability=page.locator('[data-reading-chapter="stability"] a');
+ const readingField=await stability.evaluate(node=>node.closest('[data-reading-group]').getAttribute('data-reading-group'));
+ await stability.click();
+ await expect(page).toHaveURL(new RegExp(`/${lang}/read/stability/`));
+ const sidebar=page.locator('aside.atlas-reading-nav');
+ await expect(sidebar.locator('[data-reading-current-field]')).toHaveAttribute('data-reading-current-field',readingField);
+ await expect(sidebar.locator('[data-reading-field-chapter="stability"]')).toHaveAttribute('aria-current','page');
+ await expect(sidebar.locator('[data-reading-other-fields]')).not.toHaveAttribute('open','');
+ if(info.project.use.viewport.width<=620){
+  expect(await page.locator('article').evaluate(node=>node.getBoundingClientRect().top)).toBeLessThan(await sidebar.evaluate(node=>node.getBoundingClientRect().top));
+ }
+ await noOverflow();
+ await page.screenshot({path:info.outputPath('stability-navigation.png'),fullPage:false});
 
  await page.goto(`/numerical-methods-atlas/problems/bratu/?lang=${lang}`);
  const bratu=active().locator('[data-problem-case-picker="bratu"]');

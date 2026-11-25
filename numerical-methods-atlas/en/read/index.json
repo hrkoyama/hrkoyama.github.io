@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "language": "en",
-  "title": "Learn by field",
-  "description": "Read the theory, derivations and worked examples by field, from foundations to related methods and verification.",
+  "title": "Complete chapter index",
+  "description": "Look up every chapter of theory, derivations and worked examples, plus learning resources, by field. The learning guide suggests an order of study.",
   "source": "/catalog/atlas-reading-index.json",
-  "source_sha256": "67a2a5f9ec21459fc38bc49b844e7c082ec0bf5cbe133666104f3ec09932d2ce",
+  "source_sha256": "095966008ff7e883b2b57df86f4b832cdfe26f61fa5c1945ca033f44ef420e9f",
   "chapter_count": 153,
   "groups": [
     {
@@ -16,6 +16,7 @@
           "id": "stability",
           "title": "Differences, CFL, von Neumann analysis, and Lax",
           "url": "/numerical-methods-atlas/en/read/stability/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -27,6 +28,7 @@
           "id": "accuracy-stability",
           "title": "A-stability, L-stability and error norms",
           "url": "/numerical-methods-atlas/en/read/accuracy-stability/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -38,6 +40,7 @@
           "id": "time-integration",
           "title": "Time integration and leapfrog",
           "url": "/numerical-methods-atlas/en/read/time-integration/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -49,6 +52,7 @@
           "id": "runge-kutta",
           "title": "Runge–Kutta families: stages, order, stability, and SSP",
           "url": "/numerical-methods-atlas/en/read/runge-kutta/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -60,6 +64,7 @@
           "id": "stiff-integration",
           "title": "Stiff integration: solve the stage, control the time error",
           "url": "/numerical-methods-atlas/en/read/stiff-integration/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -71,6 +76,7 @@
           "id": "operator-splitting",
           "title": "Operator splitting: Lie–Trotter and Strang",
           "url": "/numerical-methods-atlas/en/read/operator-splitting/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -82,6 +88,7 @@
           "id": "validation-splitting",
           "title": "Operator splitting: Lie–Trotter and Strang on the same reaction–diffusion problem",
           "url": "/numerical-methods-atlas/en/read/validation-splitting/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -93,6 +100,7 @@
           "id": "symplectic",
           "title": "Symplectic integration: a canonical map, not an exact energy promise",
           "url": "/numerical-methods-atlas/en/read/symplectic/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -104,6 +112,7 @@
           "id": "dae",
           "title": "Differential-algebraic equations / DAE",
           "url": "/numerical-methods-atlas/en/read/dae/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -115,6 +124,7 @@
           "id": "validation-ode-adaptivity",
           "title": "Stiff ODEs, RK45 and boundary splitting",
           "url": "/numerical-methods-atlas/en/read/validation-ode-adaptivity/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -126,6 +136,7 @@
           "id": "validation-steady-rk",
           "title": "Modal damping of steady multistage RK",
           "url": "/numerical-methods-atlas/en/read/validation-steady-rk/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -137,6 +148,7 @@
           "id": "validation-dae-controls",
           "title": "DAE initialization, conservation and constraint drift",
           "url": "/numerical-methods-atlas/en/read/validation-dae-controls/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -148,6 +160,7 @@
           "id": "validation-geometric-controls",
           "title": "Geometric integration of constraints, orbits and multiple frequencies",
           "url": "/numerical-methods-atlas/en/read/validation-geometric-controls/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -166,6 +179,7 @@
           "id": "elliptic",
           "title": "Diffusion, elliptic equations, boundary conditions, and iteration",
           "url": "/numerical-methods-atlas/en/read/elliptic/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -177,6 +191,7 @@
           "id": "hyperbolic-diffusion",
           "title": "Nishikawa's hyperbolic diffusion: iterate a first-order system",
           "url": "/numerical-methods-atlas/en/read/hyperbolic-diffusion/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -188,6 +203,7 @@
           "id": "sparse-nonlinear",
           "title": "Sparse and nonlinear systems: measure the actual residual",
           "url": "/numerical-methods-atlas/en/read/sparse-nonlinear/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -199,6 +215,7 @@
           "id": "amg",
           "title": "Algebraic multigrid / AMG",
           "url": "/numerical-methods-atlas/en/read/amg/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -210,6 +227,7 @@
           "id": "qr-svd",
           "title": "QR, SVD and least squares",
           "url": "/numerical-methods-atlas/en/read/qr-svd/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -221,6 +239,7 @@
           "id": "eigensolvers",
           "title": "Krylov eigenvalue solvers",
           "url": "/numerical-methods-atlas/en/read/eigensolvers/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -232,6 +251,7 @@
           "id": "basis-functions",
           "title": "Orthogonal polynomials and mesh basis functions",
           "url": "/numerical-methods-atlas/en/read/basis-functions/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -243,6 +263,7 @@
           "id": "splines",
           "title": "Spline interpolation",
           "url": "/numerical-methods-atlas/en/read/splines/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -254,6 +275,7 @@
           "id": "quadrature",
           "title": "Gaussian and adaptive quadrature",
           "url": "/numerical-methods-atlas/en/read/quadrature/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -265,6 +287,7 @@
           "id": "chebyshev",
           "title": "Chebyshev approximation",
           "url": "/numerical-methods-atlas/en/read/chebyshev/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -276,6 +299,7 @@
           "id": "wavelets",
           "title": "Wavelets",
           "url": "/numerical-methods-atlas/en/read/wavelets/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -287,6 +311,7 @@
           "id": "validation-foundations",
           "title": "AMG, factorizations, eigenvalues and quadrature",
           "url": "/numerical-methods-atlas/en/read/validation-foundations/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -298,6 +323,7 @@
           "id": "validation-foundations-conditioning",
           "title": "Numerical foundations: conditioning, residuals, convergence and independent references",
           "url": "/numerical-methods-atlas/en/read/validation-foundations-conditioning/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -309,6 +335,7 @@
           "id": "validation-coefficient-diffusion",
           "title": "MG/AMG for coefficient jumps and rotated anisotropy",
           "url": "/numerical-methods-atlas/en/read/validation-coefficient-diffusion/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -320,6 +347,7 @@
           "id": "validation-linear-algebra-spectral",
           "title": "Linear algebra: factorizations, saddle systems, restarting and mass eigenpairs",
           "url": "/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -331,6 +359,7 @@
           "id": "validation-bratu-continuation-jfnk",
           "title": "Bratu fold continuation and Jacobian-free Newton-Krylov",
           "url": "/numerical-methods-atlas/en/read/validation-bratu-continuation-jfnk/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -342,6 +371,7 @@
           "id": "validation-quadrature-controls",
           "title": "Domain-aware, double-exponential and sparse-grid quadrature",
           "url": "/numerical-methods-atlas/en/read/validation-quadrature-controls/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -353,6 +383,7 @@
           "id": "validation-approximation-controls",
           "title": "Fixed interpolation, spline and Haar controls",
           "url": "/numerical-methods-atlas/en/read/validation-approximation-controls/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -371,6 +402,7 @@
           "id": "automatic-differentiation",
           "title": "Automatic differentiation: derivatives for numerical solvers",
           "url": "/numerical-methods-atlas/en/read/automatic-differentiation/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -382,6 +414,7 @@
           "id": "adjoint",
           "title": "Implicit differentiation and adjoints: Bratu parameter sensitivity",
           "url": "/numerical-methods-atlas/en/read/adjoint/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -393,6 +426,7 @@
           "id": "optimization",
           "title": "Gradient and quasi-Newton optimization",
           "url": "/numerical-methods-atlas/en/read/optimization/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -404,6 +438,7 @@
           "id": "bratu-inverse",
           "title": "Bratu inverse problem: estimate λ from synthetic observations with adjoint gradients",
           "url": "/numerical-methods-atlas/en/read/bratu-inverse/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -415,6 +450,7 @@
           "id": "bratu-multi-inverse",
           "title": "Multi-parameter Bratu inversion: regularization and identifiability",
           "url": "/numerical-methods-atlas/en/read/bratu-multi-inverse/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -426,6 +462,7 @@
           "id": "pinn-operators",
           "title": "PINNs and neural operators",
           "url": "/numerical-methods-atlas/en/read/pinn-operators/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -437,6 +474,7 @@
           "id": "validation-globalization-controls",
           "title": "Line searches and trust regions from identical starts",
           "url": "/numerical-methods-atlas/en/read/validation-globalization-controls/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -448,6 +486,7 @@
           "id": "validation-reverse-higher-ad",
           "title": "Reverse mode, HVPs and nonsmooth branches",
           "url": "/numerical-methods-atlas/en/read/validation-reverse-higher-ad/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -459,6 +498,7 @@
           "id": "validation-adjoint",
           "title": "Adjoints through time steps, folds and distributed coefficients",
           "url": "/numerical-methods-atlas/en/read/validation-adjoint/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -470,6 +510,7 @@
           "id": "validation-inverse-optimization",
           "title": "Optimization, noise and regularization in the Bratu inverse problem",
           "url": "/numerical-methods-atlas/en/read/validation-inverse-optimization/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -481,6 +522,7 @@
           "id": "validation-small-models",
           "title": "Small learned models and independently checked biological ODEs",
           "url": "/numerical-methods-atlas/en/read/validation-small-models/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -499,6 +541,7 @@
           "id": "reconstruction",
           "title": "Euler reconstruction: PPM, characteristics, WENO-Z and AUSM",
           "url": "/numerical-methods-atlas/en/read/reconstruction/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -510,6 +553,7 @@
           "id": "limiters",
           "title": "Slope limiters: minmod, Superbee, MC, van Leer, and van Albada",
           "url": "/numerical-methods-atlas/en/read/limiters/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -521,6 +565,7 @@
           "id": "advanced-limiters",
           "title": "Advanced limiters: TVB and positivity preservation",
           "url": "/numerical-methods-atlas/en/read/advanced-limiters/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -532,6 +577,7 @@
           "id": "validation-euler-positivity",
           "title": "Euler double rarefaction: positivity at every stage",
           "url": "/numerical-methods-atlas/en/read/validation-euler-positivity/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -543,6 +589,7 @@
           "id": "validation-zalesak",
           "title": "Zalesak-type 2D rotation: conservation, bounds and shape error",
           "url": "/numerical-methods-atlas/en/read/validation-zalesak/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -554,6 +601,7 @@
           "id": "level-set",
           "title": "Level sets: moving interfaces and comparison with VOF",
           "url": "/numerical-methods-atlas/en/read/level-set/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -565,6 +613,7 @@
           "id": "validation-level-set",
           "title": "Level sets: 2D circle translation and rigid rotation",
           "url": "/numerical-methods-atlas/en/read/validation-level-set/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -576,6 +625,7 @@
           "id": "rotated-hybrid",
           "title": "Rotated-hybrid Riemann solver",
           "url": "/numerical-methods-atlas/en/read/rotated-hybrid/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -587,6 +637,7 @@
           "id": "shock-expansion",
           "title": "Traced PPM, AUSM variants and curved bow shocks",
           "url": "/numerical-methods-atlas/en/read/shock-expansion/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -598,6 +649,7 @@
           "id": "carbuncle",
           "title": "The carbuncle phenomenon",
           "url": "/numerical-methods-atlas/en/read/carbuncle/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -609,6 +661,7 @@
           "id": "double-mach",
           "title": "Double Mach Reflection",
           "url": "/numerical-methods-atlas/en/read/double-mach/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -620,6 +673,7 @@
           "id": "validation-double-mach",
           "title": "Double Mach reflection: lightweight grid verification",
           "url": "/numerical-methods-atlas/en/read/validation-double-mach/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -631,6 +685,7 @@
           "id": "keep",
           "title": "KEEP schemes: preserve the smooth-flow balance, test the limits",
           "url": "/numerical-methods-atlas/en/read/keep/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -642,6 +697,7 @@
           "id": "advanced",
           "title": "Preconditioning, dual time stepping, and residual distribution",
           "url": "/numerical-methods-atlas/en/read/advanced/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -653,6 +709,7 @@
           "id": "low-mach-preconditioning",
           "title": "Preconditioning matrices, low Mach numbers, sonic points and entropy fixes",
           "url": "/numerical-methods-atlas/en/read/low-mach-preconditioning/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -664,6 +721,7 @@
           "id": "validation-low-mach",
           "title": "Low-Mach isentropic vortex: preconditioned Roe flux verification",
           "url": "/numerical-methods-atlas/en/read/validation-low-mach/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -675,6 +733,7 @@
           "id": "steady-runge-kutta",
           "title": "Damping Runge–Kutta iterations for steady solutions",
           "url": "/numerical-methods-atlas/en/read/steady-runge-kutta/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -686,6 +745,7 @@
           "id": "nasa-2d",
           "title": "NASA 2D verification and validation case catalog",
           "url": "/numerical-methods-atlas/en/read/nasa-2d/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -697,6 +757,7 @@
           "id": "validation-forward-step",
           "title": "Mach-3 forward-facing step: lightweight 2D verification",
           "url": "/numerical-methods-atlas/en/read/validation-forward-step/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -708,6 +769,7 @@
           "id": "validation-noh",
           "title": "Noh shocks: exact reference, origin heating and refinement",
           "url": "/numerical-methods-atlas/en/read/validation-noh/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -719,6 +781,7 @@
           "id": "validation-noh-cartesian",
           "title": "Noh:2D Cartesian flow and grid orientation error",
           "url": "/numerical-methods-atlas/en/read/validation-noh-cartesian/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -730,6 +793,7 @@
           "id": "validation-sedov",
           "title": "Sedov–Taylor point blast: lightweight spherical-radial validation",
           "url": "/numerical-methods-atlas/en/read/validation-sedov/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -741,6 +805,7 @@
           "id": "validation-guderley",
           "title": "Guderley converging shock: lightweight spherical-radial verification",
           "url": "/numerical-methods-atlas/en/read/validation-guderley/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -752,6 +817,7 @@
           "id": "validation-weno-critical",
           "title": "WENO critical points and epsilon dependence",
           "url": "/numerical-methods-atlas/en/read/validation-weno-critical/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -763,6 +829,7 @@
           "id": "validation-instability-growth",
           "title": "KH/RT initial growth and independent linear references",
           "url": "/numerical-methods-atlas/en/read/validation-instability-growth/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -774,6 +841,7 @@
           "id": "validation-mhd-transport",
           "title": "Independent MHD transport, waves and compression comparisons",
           "url": "/numerical-methods-atlas/en/read/validation-mhd-transport/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -785,6 +853,7 @@
           "id": "validation-relativistic",
           "title": "SRHD collision and nonlinear SRMHD Alfven wave",
           "url": "/numerical-methods-atlas/en/read/validation-relativistic/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -803,6 +872,7 @@
           "id": "meshes",
           "title": "Structured, unstructured, and triangular meshes",
           "url": "/numerical-methods-atlas/en/read/meshes/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -814,6 +884,7 @@
           "id": "fem",
           "title": "Continuous finite elements: from weak form to sparse assembly",
           "url": "/numerical-methods-atlas/en/read/fem/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -825,6 +896,7 @@
           "id": "spectral-element",
           "title": "Spectral elements: high-order finite elements and 2D Poisson",
           "url": "/numerical-methods-atlas/en/read/spectral-element/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -836,6 +908,7 @@
           "id": "flux-reconstruction",
           "title": "Flux reconstruction: flux correction, DG and 1D periodic advection",
           "url": "/numerical-methods-atlas/en/read/flux-reconstruction/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -847,6 +920,7 @@
           "id": "validation-sem-fr",
           "title": "Spectral elements and FR: small comparisons with existing FEM/DG",
           "url": "/numerical-methods-atlas/en/read/validation-sem-fr/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -858,6 +932,7 @@
           "id": "ale",
           "title": "Arbitrary Lagrangian–Eulerian methods",
           "url": "/numerical-methods-atlas/en/read/ale/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -869,6 +944,7 @@
           "id": "coordinates-viscosity",
           "title": "Polar and cylindrical coordinates: tensors and viscosity",
           "url": "/numerical-methods-atlas/en/read/coordinates-viscosity/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -880,6 +956,7 @@
           "id": "geophysical-grids",
           "title": "Spherical meshes and Arakawa A, B and C grids",
           "url": "/numerical-methods-atlas/en/read/geophysical-grids/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -891,6 +968,7 @@
           "id": "cip",
           "title": "CIP: carry the value and the gradient",
           "url": "/numerical-methods-atlas/en/read/cip/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -902,6 +980,7 @@
           "id": "incompressible",
           "title": "Incompressible flow: project with compatible discrete operators",
           "url": "/numerical-methods-atlas/en/read/incompressible/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -913,6 +992,7 @@
           "id": "mhd",
           "title": "MHD: constrained transport and divergence cleaning",
           "url": "/numerical-methods-atlas/en/read/mhd/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -924,6 +1004,7 @@
           "id": "relativistic-hydrodynamics",
           "title": "Relativistic hydrodynamics: SRHD, GRHD, and GRMHD",
           "url": "/numerical-methods-atlas/en/read/relativistic-hydrodynamics/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -935,6 +1016,7 @@
           "id": "validation-mhd",
           "title": "Independent fluid/MHD comparisons and CT/GLM",
           "url": "/numerical-methods-atlas/en/read/validation-mhd/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -946,6 +1028,7 @@
           "id": "validation-mhd-convergence",
           "title": "CT and GLM: matched controls, independent checks and grid/time convergence",
           "url": "/numerical-methods-atlas/en/read/validation-mhd-convergence/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -957,6 +1040,7 @@
           "id": "validation-shallow-water",
           "title": "Shallow water: topography, lakes and dry beds",
           "url": "/numerical-methods-atlas/en/read/validation-shallow-water/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -968,6 +1052,7 @@
           "id": "validation-wall-flow",
           "title": "Nonperiodic walls: cavity and manufactured flow",
           "url": "/numerical-methods-atlas/en/read/validation-wall-flow/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -979,6 +1064,7 @@
           "id": "validation-mesh-boundary",
           "title": "Corner singularities, curved coordinates and Neumann/Robin boundaries",
           "url": "/numerical-methods-atlas/en/read/validation-mesh-boundary/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -990,6 +1076,7 @@
           "id": "validation-moving-waves",
           "title": "Nonuniform ALE transport and2D rotating shallow-water waves",
           "url": "/numerical-methods-atlas/en/read/validation-moving-waves/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1001,6 +1088,7 @@
           "id": "validation-continuum-particle-controls",
           "title": "Scoped ALE piston, sphere transport and SPH/GSPH controls",
           "url": "/numerical-methods-atlas/en/read/validation-continuum-particle-controls/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1019,6 +1107,7 @@
           "id": "particles-sph",
           "title": "Particle methods and smoothed particle hydrodynamics",
           "url": "/numerical-methods-atlas/en/read/particles-sph/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1030,6 +1119,7 @@
           "id": "gsph",
           "title": "Godunov smoothed particle hydrodynamics (GSPH)",
           "url": "/numerical-methods-atlas/en/read/gsph/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1041,6 +1131,7 @@
           "id": "lattice-boltzmann",
           "title": "Lattice Boltzmann: collide, stream, recover fluid motion",
           "url": "/numerical-methods-atlas/en/read/lattice-boltzmann/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1052,6 +1143,7 @@
           "id": "chapman-enskog",
           "title": "Chapman–Enskog expansion: from populations to transport",
           "url": "/numerical-methods-atlas/en/read/chapman-enskog/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1063,6 +1155,7 @@
           "id": "dsmc",
           "title": "DSMC and kinetic transport",
           "url": "/numerical-methods-atlas/en/read/dsmc/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1074,6 +1167,7 @@
           "id": "particle-gravity",
           "title": "Particle gravity: PM, P³M, Tree, multipoles, and multigrid",
           "url": "/numerical-methods-atlas/en/read/particle-gravity/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1085,6 +1179,7 @@
           "id": "gravity-boundaries",
           "title": "Gravity kernels: isolated FFTs and a periodic slab",
           "url": "/numerical-methods-atlas/en/read/gravity-boundaries/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1096,6 +1191,7 @@
           "id": "radiation-transport",
           "title": "Radiation transport and moment methods",
           "url": "/numerical-methods-atlas/en/read/radiation-transport/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1107,6 +1203,7 @@
           "id": "validation-particles",
           "title": "Particles, electrostatics, kinetic and radiative transport",
           "url": "/numerical-methods-atlas/en/read/validation-particles/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1118,6 +1215,7 @@
           "id": "validation-particle-transport",
           "title": "Particles and transport: independent references, conservation and statistical error",
           "url": "/numerical-methods-atlas/en/read/validation-particle-transport/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1129,6 +1227,7 @@
           "id": "validation-fmm3d",
           "title": "3D1/r kernels: expansions,trees and force checks",
           "url": "/numerical-methods-atlas/en/read/validation-fmm3d/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1140,6 +1239,7 @@
           "id": "validation-gravity-dynamics",
           "title": "Gravitational trajectories: Kepler and softened finite particles",
           "url": "/numerical-methods-atlas/en/read/validation-gravity-dynamics/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1151,6 +1251,7 @@
           "id": "validation-warm-pic",
           "title": "Warm PIC: Landau damping and two-stream instability",
           "url": "/numerical-methods-atlas/en/read/validation-warm-pic/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1162,6 +1263,7 @@
           "id": "validation-pic-spatial",
           "title": "PIC checks against independent spatial kernels",
           "url": "/numerical-methods-atlas/en/read/validation-pic-spatial/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1173,6 +1275,7 @@
           "id": "validation-dsmc-wall",
           "title": "Finite-Knudsen Couette and Fourier flows",
           "url": "/numerical-methods-atlas/en/read/validation-dsmc-wall/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1184,6 +1287,7 @@
           "id": "validation-dsmc-shock",
           "title": "Mach2 planar shock with hard-sphere DSMC",
           "url": "/numerical-methods-atlas/en/read/validation-dsmc-shock/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1195,6 +1299,7 @@
           "id": "validation-lbm-cavity",
           "title": "LBM lid-driven cavity at Re100",
           "url": "/numerical-methods-atlas/en/read/validation-lbm-cavity/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1206,6 +1311,7 @@
           "id": "validation-lbm-taylor-green",
           "title": "LBM Taylor–Green vortex and finite-Mach errors",
           "url": "/numerical-methods-atlas/en/read/validation-lbm-taylor-green/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1217,6 +1323,7 @@
           "id": "validation-lbm-annulus",
           "title": "Annular Couette control for curved-wall LBM",
           "url": "/numerical-methods-atlas/en/read/validation-lbm-annulus/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1228,6 +1335,7 @@
           "id": "validation-lbm-curved-boundary",
           "title": "LBM curved walls and a Re20 cylinder",
           "url": "/numerical-methods-atlas/en/read/validation-lbm-curved-boundary/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1239,6 +1347,7 @@
           "id": "validation-radiation-scattering",
           "title": "Isotropically scattering slabs and continuum-angle references",
           "url": "/numerical-methods-atlas/en/read/validation-radiation-scattering/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1250,6 +1359,7 @@
           "id": "validation-radiation-matter",
           "title": "Non-equilibrium radiation: distinct diffusion and transport",
           "url": "/numerical-methods-atlas/en/read/validation-radiation-matter/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1261,6 +1371,7 @@
           "id": "validation-radiation-geometry",
           "title": "2D shadows,beams and M1 closure",
           "url": "/numerical-methods-atlas/en/read/validation-radiation-geometry/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1279,6 +1390,7 @@
           "id": "ewald",
           "title": "Ewald summation",
           "url": "/numerical-methods-atlas/en/read/ewald/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1290,6 +1402,7 @@
           "id": "pme",
           "title": "Particle mesh Ewald / PME",
           "url": "/numerical-methods-atlas/en/read/pme/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1301,6 +1414,7 @@
           "id": "spme",
           "title": "Smooth particle mesh Ewald / SPME",
           "url": "/numerical-methods-atlas/en/read/spme/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1312,6 +1426,7 @@
           "id": "slab-ewald",
           "title": "Slab electrostatics and 2D-periodic Ewald",
           "url": "/numerical-methods-atlas/en/read/slab-ewald/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1323,6 +1438,7 @@
           "id": "fdtd",
           "title": "Yee FDTD: foundations and verified examples",
           "url": "/numerical-methods-atlas/en/read/fdtd/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1334,6 +1450,7 @@
           "id": "pic",
           "title": "Particle-in-cell / PIC",
           "url": "/numerical-methods-atlas/en/read/pic/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1345,6 +1462,7 @@
           "id": "quantum-chemistry",
           "title": "Quantum chemistry and DFT: approximations and equations",
           "url": "/numerical-methods-atlas/en/read/quantum-chemistry/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1356,6 +1474,7 @@
           "id": "quantum-atoms",
           "title": "Hydrogenic atoms and helium: runnable validation examples",
           "url": "/numerical-methods-atlas/en/read/quantum-atoms/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1367,6 +1486,7 @@
           "id": "h2-hf",
           "title": "Closed-shell HF for H₂: independent references, SCF residuals and basis refinement",
           "url": "/numerical-methods-atlas/en/read/h2-hf/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1378,6 +1498,7 @@
           "id": "periodic-dft",
           "title": "Periodic DFT: Γ points, k-point integration, basis sets, SCF and an independent reference",
           "url": "/numerical-methods-atlas/en/read/periodic-dft/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1389,6 +1510,7 @@
           "id": "periodic-forces",
           "title": "From DFT to atomic forces: finite differences, independent references, force convergence and the BOMD interface",
           "url": "/numerical-methods-atlas/en/read/periodic-forces/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1400,6 +1522,7 @@
           "id": "validation-slab-ewald",
           "title": "Neutral slabs: corrected3P and genuine2P references",
           "url": "/numerical-methods-atlas/en/read/validation-slab-ewald/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1411,6 +1534,7 @@
           "id": "validation-maxwell-cylinder",
           "title": "Mie scattering width of a two-dimensional dielectric cylinder",
           "url": "/numerical-methods-atlas/en/read/validation-maxwell-cylinder/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1422,6 +1546,7 @@
           "id": "validation-maxwell-lorentz",
           "title": "Oblique s/p incidence on a Lorentz-dispersive slab",
           "url": "/numerical-methods-atlas/en/read/validation-maxwell-lorentz/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1433,6 +1558,7 @@
           "id": "validation-maxwell-grazing",
           "title": "Long-time grazing PML in a dispersive medium",
           "url": "/numerical-methods-atlas/en/read/validation-maxwell-grazing/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1444,6 +1570,7 @@
           "id": "validation-quantum-small",
           "title": "Small quantum models and saved-reference cards",
           "url": "/numerical-methods-atlas/en/read/validation-quantum-small/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1462,6 +1589,7 @@
           "id": "monte-carlo",
           "title": "Monte Carlo integration",
           "url": "/numerical-methods-atlas/en/read/monte-carlo/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1473,6 +1601,7 @@
           "id": "mcmc",
           "title": "Markov-chain Monte Carlo / MCMC",
           "url": "/numerical-methods-atlas/en/read/mcmc/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1484,6 +1613,7 @@
           "id": "validation-mcmc",
           "title": "Multimodal MCMC: independent checks of poor mixing and convergence diagnostics",
           "url": "/numerical-methods-atlas/en/read/validation-mcmc/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1495,6 +1625,7 @@
           "id": "sde",
           "title": "Stochastic differential equations",
           "url": "/numerical-methods-atlas/en/read/sde/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1506,6 +1637,7 @@
           "id": "biological-models",
           "title": "Biological model equations and numerical verification",
           "url": "/numerical-methods-atlas/en/read/biological-models/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1517,6 +1649,7 @@
           "id": "validation-biology",
           "title": "Independent validation of nonlinear reaction–diffusion and pattern formation",
           "url": "/numerical-methods-atlas/en/read/validation-biology/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1528,6 +1661,7 @@
           "id": "thermostats",
           "title": "Thermostats: temperature control and distributions",
           "url": "/numerical-methods-atlas/en/read/thermostats/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1539,6 +1673,7 @@
           "id": "validation-models",
           "title": "MCMC, temperature control and biological models",
           "url": "/numerical-methods-atlas/en/read/validation-models/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1550,6 +1685,7 @@
           "id": "validation-thermostats",
           "title": "CSVR and Langevin: distributions, fluctuations and correlations",
           "url": "/numerical-methods-atlas/en/read/validation-thermostats/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1561,6 +1697,7 @@
           "id": "validation-stochastic-accuracy",
           "title": "Weak/strong SDE errors and sampling uncertainty",
           "url": "/numerical-methods-atlas/en/read/validation-stochastic-accuracy/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1572,6 +1709,7 @@
           "id": "validation-stochastic-estimation",
           "title": "Importance sampling and correlated-Gaussian diagnostics",
           "url": "/numerical-methods-atlas/en/read/validation-stochastic-estimation/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1583,6 +1721,7 @@
           "id": "validation-biology-ode-controls",
           "title": "Independent checks of membrane dynamics and reaction SSA",
           "url": "/numerical-methods-atlas/en/read/validation-biology-ode-controls/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1594,6 +1733,7 @@
           "id": "validation-biology-space-controls",
           "title": "Biological reaction–diffusion: two-dimensional and boundary controls",
           "url": "/numerical-methods-atlas/en/read/validation-biology-space-controls/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1605,6 +1745,7 @@
           "id": "validation-thermostat-constraint-controls",
           "title": "Deterministic thermostats and constrained degrees of freedom",
           "url": "/numerical-methods-atlas/en/read/validation-thermostat-constraint-controls/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1623,6 +1764,7 @@
           "id": "equation-gallery",
           "title": "Equation gallery: choose the equation before the algorithm",
           "url": "/numerical-methods-atlas/en/read/equation-gallery/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1634,6 +1776,7 @@
           "id": "benchmarks",
           "title": "Benchmark library",
           "url": "/numerical-methods-atlas/en/read/benchmarks/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1645,6 +1788,7 @@
           "id": "reference-solutions",
           "title": "Exact and reference solutions",
           "url": "/numerical-methods-atlas/en/read/reference-solutions/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1656,6 +1800,7 @@
           "id": "experiments",
           "title": "Interactive experiment guide",
           "url": "/numerical-methods-atlas/en/read/experiments/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1667,6 +1812,7 @@
           "id": "movies",
           "title": "Time-dependent tests: movies and saved states",
           "url": "/numerical-methods-atlas/en/read/movies/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1685,6 +1831,7 @@
           "id": "history",
           "title": "Historical atlas",
           "url": "/numerical-methods-atlas/en/read/history/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1696,6 +1843,7 @@
           "id": "references",
           "title": "References by original publication year",
           "url": "/numerical-methods-atlas/en/read/references/",
+          "kind": "learning-resource",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1707,6 +1855,7 @@
           "id": "textbooks",
           "title": "Textbooks: where to look next",
           "url": "/numerical-methods-atlas/en/read/textbooks/",
+          "kind": "learning-resource",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1718,6 +1867,7 @@
           "id": "roe-memorial",
           "title": "Remembering Philip L. Roe",
           "url": "/numerical-methods-atlas/en/read/roe-memorial/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1729,6 +1879,7 @@
           "id": "site-coverage",
           "title": "Site coverage and counting rules",
           "url": "/numerical-methods-atlas/en/read/site-coverage/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1740,6 +1891,7 @@
           "id": "roadmap",
           "title": "Implementation roadmap",
           "url": "/numerical-methods-atlas/en/read/roadmap/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1751,6 +1903,7 @@
           "id": "release-notes-v0.1.0",
           "title": "v0.1.0 — First edition",
           "url": "/numerical-methods-atlas/en/read/release-notes-v0.1.0/",
+          "kind": "chapter",
           "language": "en",
           "available_languages": [
             "ja",
@@ -1784,5 +1937,11 @@
         "en"
       ]
     }
-  ]
+  ],
+  "role": "complete-chapter-index",
+  "learning_guide": {
+    "label": "Learning guide (suggested order)",
+    "url": "/numerical-methods-atlas/explore/?lang=en"
+  },
+  "classification_note": "This index covers every chapter and resource in 10 categories. The learning guide’s field map is a separate view of suggested paths."
 }

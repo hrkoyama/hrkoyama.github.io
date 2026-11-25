@@ -1,6 +1,10 @@
-# 分野別に解説を読む
+# 分野別の全章目次
 
-理論・導出・計算例を、分野ごとにまとめた読み物です。基礎から関連する手法と検証例へ進めます。
+理論・導出・計算例の全章と学習資料を、分野別に引く目次です。おすすめの学ぶ順番は、学習ガイドで案内します。
+
+この目次は全章・資料を10分類で網羅します。学習ガイドの分野地図は、おすすめの経路を示す別の見方です。
+
+[学習ガイド（おすすめの順番）](https://hrkoyama.github.io/numerical-methods-atlas/explore/?lang=ja)
 
 ## [初学者のための数値計算の基礎：全19章](https://hrkoyama.github.io/numerical-methods-atlas/learn/numerical-foundations/)
 
@@ -202,8 +206,8 @@
 数値計算法の系譜と出典、教科書、収録範囲・整備記録を確認します。
 
 - [数値計算法の歴史アトラス](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/history/)
-- [原著の出版年順に並べた参考文献](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/references/)
-- [教科書案内：次に何を調べるか](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/textbooks/)
+- [原著の出版年順に並べた参考文献](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/references/) — 学習資料
+- [教科書案内：次に何を調べるか](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/textbooks/) — 学習資料
 - [Philip L. Roeを偲んで](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/roe-memorial/)
 - [収録範囲と数え方](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage/)
 - [実装ロードマップ](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/roadmap/)

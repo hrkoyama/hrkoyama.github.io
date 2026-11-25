@@ -1,6 +1,10 @@
-# Learn by field
+# Complete chapter index
 
-Read the theory, derivations and worked examples by field, from foundations to related methods and verification.
+Look up every chapter of theory, derivations and worked examples, plus learning resources, by field. The learning guide suggests an order of study.
+
+This index covers every chapter and resource in 10 categories. The learning guide’s field map is a separate view of suggested paths.
+
+[Learning guide (suggested order)](https://hrkoyama.github.io/numerical-methods-atlas/explore/?lang=en)
 
 ## [Numerical foundations: a 19-chapter beginner course](https://hrkoyama.github.io/numerical-methods-atlas/learn/numerical-foundations/en/)
 
@@ -202,8 +206,8 @@ Choose equations and references, and distinguish exhibits, saved results and run
 Trace numerical methods and their sources, then consult textbooks, coverage and development records.
 
 - [Historical atlas](https://hrkoyama.github.io/numerical-methods-atlas/en/read/history/)
-- [References by original publication year](https://hrkoyama.github.io/numerical-methods-atlas/en/read/references/)
-- [Textbooks: where to look next](https://hrkoyama.github.io/numerical-methods-atlas/en/read/textbooks/)
+- [References by original publication year](https://hrkoyama.github.io/numerical-methods-atlas/en/read/references/) — Learning resource
+- [Textbooks: where to look next](https://hrkoyama.github.io/numerical-methods-atlas/en/read/textbooks/) — Learning resource
 - [Remembering Philip L. Roe](https://hrkoyama.github.io/numerical-methods-atlas/en/read/roe-memorial/)
 - [Site coverage and counting rules](https://hrkoyama.github.io/numerical-methods-atlas/en/read/site-coverage/)
 - [Implementation roadmap](https://hrkoyama.github.io/numerical-methods-atlas/en/read/roadmap/)

@@ -14,7 +14,7 @@
 .atlas-reading-nav a,.atlas-reading-nav summary {overflow-wrap:anywhere}
 [data-reading-resource] .prose>h1 {font-size:clamp(30px,3.2vw,44px);line-height:1.35;letter-spacing:-.02em}
 @media(max-width:620px){
-  .reading-nav.atlas-reading-nav {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid var(--line,#d2d3c8)}
+  .reading-nav.atlas-reading-nav {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;order:1;margin-top:28px;margin-bottom:24px;padding-top:20px;border-top:1px solid var(--line,#d2d3c8)}
   .reading-nav.atlas-reading-nav>nav {display:block;min-width:0}
   .reading-nav.atlas-reading-nav>nav[data-reading-current-field] {grid-column:1/-1}
   .atlas-reading-nav .reading-field-list>ul {max-height:240px}

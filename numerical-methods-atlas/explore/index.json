@@ -2,8 +2,13 @@
   "schema_version": 1,
   "source": "/catalog/atlas-home.json",
   "title": {
-    "ja": "体系的に読む",
-    "en": "Read systematically"
+    "ja": "学習ガイド：おすすめの順番",
+    "en": "Learning guide: suggested order"
+  },
+  "role": "learning-guide",
+  "description": {
+    "ja": "基礎から学ぶための案内です。おすすめの順番と分野の地図から、学びたい経路を選べます。",
+    "en": "A guide to learning from the foundations. Choose a path using the suggested study order and field map."
   },
   "home": {
     "ja": "/numerical-methods-atlas/?lang=ja",

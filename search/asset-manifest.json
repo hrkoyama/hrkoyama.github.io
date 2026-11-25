@@ -6,9 +6,9 @@
       "source": "frontend/search/home-search.js",
       "output": "numerical-methods-atlas/home-search.js",
       "source_sha256": "bdaf2dfdb9ea693d04280c81d69f7e4ede482ba1f91d42a46e952e2f84ed04ed",
-      "sha256": "5810697f0e89bebcf4f8b980890d6b3a06bc6349f8aa7acd11a3c770589d9308",
+      "sha256": "ff15bf3252fd2a721f8808ab65ef88d26d0ab1aaab794766fa6de362ca8a6c81",
       "dependencies": {
-        "search/atlas-query-index.json": "d7c10648a5090e981703e2698cc6f431cabcf96b3f2b67476c704385a479ca11",
+        "search/atlas-query-index.json": "c62ca83f4ef2dd939459827948ae447486cef55a86b10c93094b7e55211fc9a3",
         "search/engine.mjs": "977d5bde899f9d239a97ff94df4a2f8fdf8520648fdbc369e3f851d16fa048a9",
         "search/method-search.mjs": "4b377a4b35cec24d010f3a1b72ac0797f3bb16b4a14cbc70c940eb47543702c8",
         "search/navigation.mjs": "cbd24e09fe0584a5e25143938746ebc2e3ffd5e276fdceb6fb9d324b64dad74b"

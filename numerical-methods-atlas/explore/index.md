@@ -1,4 +1,8 @@
-# 体系的に読む / Read systematically
+# 学習ガイド：おすすめの順番 / Learning guide: suggested order
+
+おすすめ経路と分野の地図から学ぶ順番を選びます。全章・学習資料を探す索引は、分野別の全章目次です。
+
+Choose a suggested learning path. The complete chapter index is a separate lookup of every chapter and resource.
 
 - ja: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/
 - en: https://hrkoyama.github.io/numerical-methods-atlas/en/read/
