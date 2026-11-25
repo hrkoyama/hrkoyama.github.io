@@ -70,6 +70,46 @@ def png_size(path):
     return width, height
 
 
+def canonical_picture_binding(metadata, expansion, ident, member):
+    """Bind one registered problem to its declared canonical saved image.
+
+    Legacy extra figures keep their original caption-plus-note-suffix contract.
+    Standard primary figures use the immutable case summary plus the explicitly
+    authored case_note; this is display provenance, not a claimed plot caption.
+    """
+    candidates = [case for case in metadata
+                  if expansion['case_problem_ids'].get(case['id']) == ident
+                  and member == 'results/' + case.get('gallery_figure', case['id'] + '.png')]
+    require(len(candidates) == 1,
+            'Saved image needs one explicit canonical case/problem/member binding')
+    case = candidates[0]
+    notes = expansion['case_notes'][case['id']]
+    require(isinstance(notes, dict) and all(isinstance(notes.get(language), str)
+            and notes[language].strip() for language in ['ja', 'en']),
+            'Saved image needs an explicit bilingual case note')
+    expected_caption = {}
+    if 'gallery_figure' in case:
+        captions = [extra['caption'] for extra in case['additional_figures']
+                    if extra['file'] == case['gallery_figure']]
+        require(len(captions) == 1, 'Saved case needs one gallery caption')
+        for language in ['ja', 'en']:
+            original_limits = case['limits'][language]
+            require(notes[language].startswith(original_limits),
+                    'Source case notes lost the canonical limits prefix')
+            expected_caption[language] = captions[0][language] + notes[language][len(original_limits):]
+        contract = 'pre-run-contract.json'
+    else:
+        require(case.get('plot', case['id'] + '.png') == case['id'] + '.png',
+                'Declared standard primary plot differs')
+        for language in ['ja', 'en']:
+            summary = case['summary'][language]
+            require(isinstance(summary, str) and summary.strip(),
+                    'Primary image needs a canonical bilingual case summary')
+            expected_caption[language] = summary + ' ' + notes[language]
+        contract = 'freeze.json'
+    return case, expected_caption, contract
+
+
 def assemble(root, *, load_group=None):
     """Return a metadata-only append; no writes, numerical imports or renders."""
     root = Path(root).resolve(strict=True)
@@ -165,31 +205,13 @@ def assemble(root, *, load_group=None):
                 'Canonical packet identity differs')
         files = manifest['files']
         metadata = qualified['metadata']
-        candidates = [case for case in metadata if case['id'] == ident]
-        require(len(candidates) == 1 and expansion['case_problem_ids'].get(ident) == ident,
-                'Missing explicit saved-image case/problem identity')
-        case = candidates[0]
         member = source.removeprefix('/' + prefix)
-        require(member == 'results/' + case['gallery_figure'],
-                'Image is not the case-declared gallery figure')
-        captions = [extra['caption'] for extra in case['additional_figures']
-                    if extra['file'] == case['gallery_figure']]
-        require(len(captions) == 1, 'Saved case needs one gallery caption')
-        # The source integrator appends its explicit display note to BOTH
-        # case_notes (after case limits) and the gallery caption. Recover only
-        # that exact declared suffix; arbitrary caption additions are rejected.
-        notes = expansion['case_notes'][ident]
-        expected_caption = {}
-        for language in ['ja', 'en']:
-            original_limits = case['limits'][language]
-            require(notes[language].startswith(original_limits),
-                    'Source case notes lost the canonical limits prefix')
-            suffix = notes[language][len(original_limits):]
-            expected_caption[language] = captions[0][language] + suffix
+        case, expected_caption, contract = canonical_picture_binding(
+            metadata, expansion, ident, member)
         require(expected_caption == item['caption'], 'Saved case/gallery caption differs')
         for name in ['cases.json', 'inputs.json', 'acceptance.json',
-                     'pre-run-contract.json', 'results/result.json',
-                     'results/' + ident + '.png', member]:
+                     contract, 'results/result.json',
+                     'results/' + case['id'] + '.png', member]:
             require(name in files and re.fullmatch('[a-f0-9]{64}', files[name]),
                     'Missing immutable member SHA')
             bind(prefix + name, files[name])
