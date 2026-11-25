@@ -49,6 +49,20 @@ GSPH、摂動した128粒子、t=0.2。初期カーネル再構成誤差は最�
 
 固定入力・宣言したアルゴリズム・補正しない停止条件を用います。
 
+$$
+\partial_tU+\partial_xF(U)=0
+$$
+
+$$
+U=(\rho,\rho u,E)^{\mathsf T}
+$$
+
+$$
+F=(\rho u,\rho u^2+p,u(E+p))^{\mathsf T}
+$$
+
+数式の編集補足：凍結配布版のコードと登録済み方程式に基づく記述です。配布版・計算・受入条件・保存結果は変更しません。
+
 ## 比較・検証
 
 解析参照、保存量、細分化、独立成分検査と意図した誤式の負例を区別して保存します。
@@ -152,6 +166,20 @@ GSPH with 128 jittered particles at t=0.2. The initial kernel reconstruction err
 ## Adopted numerical method
 
 Regular/deterministicallyjitteredperiodicparticles, fixedhSPHcontrol vs adaptivehGSPH. Separateinitialkernelerror and fluidupdate, finiteamplitudeO(A²)linearizedreference remainder. No universalGSPHsuperiorityclaim.
+
+$$
+\partial_tU+\partial_xF(U)=0
+$$
+
+$$
+U=(\rho,\rho u,E)^{\mathsf T}
+$$
+
+$$
+F=(\rho u,\rho u^2+p,u(E+p))^{\mathsf T}
+$$
+
+Editorial equations from the frozen code and registered models. The release, calculations, acceptance conditions and saved results are unchanged.
 
 ## References and validation
 

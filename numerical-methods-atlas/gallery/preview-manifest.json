@@ -2116,7 +2116,7 @@
     "code/periodic-forces/2026-11-22/results/preview.png": "ea952ee104c44d0b229c56751d9c147629d58f661ebb95c2821e6b895b24e4fb",
     "code/periodic-forces/2026-11-22/verification.json": "e29d65bc89b7edac45a81d3cbae4048911f7fc8848cc47a35764f0041e296b7f",
     "catalog/atlas-test-problems.json": "8aa618c508f213ea8e07e2683c2573357f06d052517326508d85465e4da81c43",
-    "catalog/atlas-depth-expansion.json": "a3fa27c909cda00ef31a0919afffe3275a132bc03193841879563384fdb84249",
+    "catalog/atlas-depth-expansion.json": "d559e4bbc6643cb6f149f97a7c3d9b27eed2d9f38ac3b5f1e9811f83c3db0936",
     "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
     "code/validated-examples/2026-11-22/foundations/inputs.json": "9b07ca782d9b9de4ef467189d6710f3fa346d23be154200358f005e4eceebff1",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
@@ -3320,6 +3320,27 @@
         "catalog/atlas-depth-expansion.json": {
           "before": "a99cdc630a84a3e908c0ac95e907af1860206a31acb690711d152d5f4ed511d7",
           "after": "a3fa27c909cda00ef31a0919afffe3275a132bc03193841879563384fdb84249"
+        }
+      },
+      "producer": {
+        "path": "scripts/prime-atlas-gallery-metadata.py",
+        "sha256": "a00a82bf2607067296ae6ea8a143f891a4fa3adaa74051440eb5964540cf3265"
+      },
+      "historical_primary_records_unchanged": true,
+      "scientific_preview_execution": false,
+      "historical_figures_rerendered": false
+    },
+    {
+      "on": "2026-11-25",
+      "date_role": "Source catalog reviewed_on; not execution time.",
+      "scope": "Register already qualified canonical PNG metadata before reverse routes; retain all prior picture records/images and original numerical-preview receipts.",
+      "primary_item_count_before": 172,
+      "primary_item_count_after": 172,
+      "added_primary_ids": [],
+      "changed_catalog_bindings": {
+        "catalog/atlas-depth-expansion.json": {
+          "before": "a3fa27c909cda00ef31a0919afffe3275a132bc03193841879563384fdb84249",
+          "after": "d559e4bbc6643cb6f149f97a7c3d9b27eed2d9f38ac3b5f1e9811f83c3db0936"
         }
       },
       "producer": {

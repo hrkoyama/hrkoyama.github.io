@@ -55,6 +55,28 @@ Tan–Lv–Zhu (2023) Example 8 variant with e0=1e-4 and finite initial pressure
 
 Tan–Lv–Zhu2023 Example8 e0=1e-4 initialvariant. PrescribedaffineALEmesh, not theirWENO/materialLagrangian/remap scheme. Finitepressure RH cellaverages.
 
+$$
+U=(\rho,\rho u,\rho v,E)^{\mathsf T},\quad p=(\gamma-1)\left[E-\frac{\rho}{2}(u^2+v^2)\right]
+$$
+
+$$
+\frac{d}{dt}(|K|\overline U_K)=-\sum_{f\subset\partial K}|f|\widehat F_{\mathrm{ALE}}(U_f^-,U_f^+;\mathbf n_f,w_{n,f})
+$$
+
+$$
+F_{\mathrm{ALE}}(U;\mathbf n,w_n)=(u_n-w_n)U+p(0,n_x,n_y,u_n)^{\mathsf T},\quad u_n=\mathbf u\cdot\mathbf n
+$$
+
+$$
+\widehat F_{\mathrm{ALE}}=\frac{F_{\mathrm{ALE}}(U_L)+F_{\mathrm{ALE}}(U_R)}{2}-\frac{a_{\max}}{2}(U_R-U_L),\quad a_{\max}=\max_{s=L,R}(|u_{n,s}-w_n|+c_s)
+$$
+
+$$
+x(t)=t+(1-t)x_0,\quad y(t)=y_0,\quad\mathbf w=(1-x_0,0)
+$$
+
+Editorial equations from the frozen code and registered models. The release, calculations, acceptance conditions and saved results are unchanged. These specify the prescribed affine mesh and 2D ALE/Rusanov flux, not a material grid or remap algorithm.
+
 ### References and validation
 
 Separate analytic/reference errors, conservation, refinement, independent component qualification and deliberately wrong-formula controls.
@@ -177,6 +199,16 @@ Only prescribed scalar solid-body rotation on a unit sphere. Original W92 equati
 
 Limitedprescribedscalartransport, radius1/3 nondimensionalvariant; not nonlinearSWE or exact1992fullpaperreproduction. Nair1999 selectedformulascrosscheck; bilinear method isAtlasoriginal.
 
+$$
+q_t+\mathbf v\cdot\nabla_{\mathbb S^2}q=0,\quad q(\mathbf r,t)=q_0(R_{\mathbf n}(-2\pi t/T)\mathbf r)
+$$
+
+$$
+\mathbf n=(-\sin\alpha,0,\cos\alpha),\quad q_0(r)=\tfrac12[1+\cos(\pi r/R)]\ (r<R),\quad q_0=0\ (r\ge R)
+$$
+
+Editorial equations from the frozen code and registered models. The release, calculations, acceptance conditions and saved results are unchanged.
+
 ### References and validation
 
 Separate analytic/reference errors, conservation, refinement, independent component qualification and deliberately wrong-formula controls.
@@ -282,6 +314,20 @@ Axisymmetric nondimensional subproblem with a=g=1, Omega=2, u0=.5 and h0=10. Act
 ### Adopted numerical method
 
 NondimensionalWilliamson2-type axisymmetricsubproblem. Analyticstaticstatevsactualtimeintegration; not fullglobaldynamicalcore/PVclaim.
+
+$$
+h_t+\frac{\partial_\phi(hv\cos\phi)}{a\cos\phi}=0,\quad u_t+\frac va u_\phi-(2\Omega\sin\phi+u\tan\phi/a)v=0
+$$
+
+$$
+v_t+\frac va v_\phi+(2\Omega\sin\phi+u\tan\phi/a)u+\frac ga h_\phi=0
+$$
+
+$$
+u=u_0\cos\phi,\quad v=0,\quad h=h_0-\frac{a\Omega u_0+u_0^2/2}{g}\sin^2\phi
+$$
+
+Editorial equations from the frozen code and registered models. The release, calculations, acceptance conditions and saved results are unchanged.
 
 ### References and validation
 
@@ -398,6 +444,20 @@ Actual Gaussian linear-specific-volume GSPH overlap with symmetric variable h, i
 ### Adopted numerical method
 
 ActualInutsuka-linear-overlap variablehGSPH approximation withfirstorderpair states, comparedwithdistinctstandardSPHcontrol. Periodictwointerfaces; centralwindowbeforeouterwaves. Not cubic/MUSCLpaperreproduction or plainSPH-pressure-star surrogate.
+
+$$
+\partial_tU+\partial_xF(U)=0
+$$
+
+$$
+U=(\rho,\rho u,E)^{\mathsf T}
+$$
+
+$$
+F=(\rho u,\rho u^2+p,u(E+p))^{\mathsf T}
+$$
+
+Editorial equations from the frozen code and registered models. The release, calculations, acceptance conditions and saved results are unchanged.
 
 ### References and validation
 
@@ -529,6 +589,20 @@ GSPH with 128 jittered particles at t=0.2. The initial kernel reconstruction err
 ### Adopted numerical method
 
 Regular/deterministicallyjitteredperiodicparticles, fixedhSPHcontrol vs adaptivehGSPH. Separateinitialkernelerror and fluidupdate, finiteamplitudeO(A²)linearizedreference remainder. No universalGSPHsuperiorityclaim.
+
+$$
+\partial_tU+\partial_xF(U)=0
+$$
+
+$$
+U=(\rho,\rho u,E)^{\mathsf T}
+$$
+
+$$
+F=(\rho u,\rho u^2+p,u(E+p))^{\mathsf T}
+$$
+
+Editorial equations from the frozen code and registered models. The release, calculations, acceptance conditions and saved results are unchanged.
 
 ### References and validation
 

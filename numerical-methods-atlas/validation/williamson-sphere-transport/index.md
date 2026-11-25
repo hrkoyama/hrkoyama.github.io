@@ -48,6 +48,16 @@
 
 固定入力・宣言したアルゴリズム・補正しない停止条件を用います。
 
+$$
+q_t+\mathbf v\cdot\nabla_{\mathbb S^2}q=0,\quad q(\mathbf r,t)=q_0(R_{\mathbf n}(-2\pi t/T)\mathbf r)
+$$
+
+$$
+\mathbf n=(-\sin\alpha,0,\cos\alpha),\quad q_0(r)=\tfrac12[1+\cos(\pi r/R)]\ (r<R),\quad q_0=0\ (r\ge R)
+$$
+
+数式の編集補足：凍結配布版のコードと登録済み方程式に基づく記述です。配布版・計算・受入条件・保存結果は変更しません。
+
 ## 比較・検証
 
 解析参照、保存量、細分化、独立成分検査と意図した誤式の負例を区別して保存します。
@@ -152,6 +162,16 @@ Only prescribed scalar solid-body rotation on a unit sphere. Original W92 equati
 ## Adopted numerical method
 
 Limitedprescribedscalartransport, radius1/3 nondimensionalvariant; not nonlinearSWE or exact1992fullpaperreproduction. Nair1999 selectedformulascrosscheck; bilinear method isAtlasoriginal.
+
+$$
+q_t+\mathbf v\cdot\nabla_{\mathbb S^2}q=0,\quad q(\mathbf r,t)=q_0(R_{\mathbf n}(-2\pi t/T)\mathbf r)
+$$
+
+$$
+\mathbf n=(-\sin\alpha,0,\cos\alpha),\quad q_0(r)=\tfrac12[1+\cos(\pi r/R)]\ (r<R),\quad q_0=0\ (r\ge R)
+$$
+
+Editorial equations from the frozen code and registered models. The release, calculations, acceptance conditions and saved results are unchanged.
 
 ## References and validation
 

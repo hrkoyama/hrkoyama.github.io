@@ -67,10 +67,1442 @@
   "depth_additional_releases": [
     {
       "group": "biology-space-controls",
-      "edition": "2026-11-25",
       "case_ids": [
         "schnakenberg-2d-boundary-modes"
-      ]
+      ],
+      "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/",
+      "code_edition": "2026-11-25",
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/common.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/schnakenberg.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/fisher.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/keller_segel.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/test_models.py"
+      ],
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "run_from": "atlas-biology-space-controls-2026-11-25",
+      "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/atlas-biology-space-controls-2026-11-25.zip",
+      "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/source-manifest.json",
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/verification.json",
+      "code_archive_sha256": "8abffcd65c0fc14eb1a346dba17e70097e2dc8806b348e114fc449b4fe0e0419",
+      "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/results/result.json",
+      "passed_tests": 11,
+      "examples": [
+        {
+          "id": "schnakenberg-2d-boundary-modes",
+          "method_ids": [
+            "crank-nicolson",
+            "strang-splitting",
+            "rk45"
+          ],
+          "title": {
+            "ja": "Schnakenberg：2D境界と初期モード",
+            "en": "Schnakenberg:2D boundaries and initial modes"
+          },
+          "summary": {
+            "ja": "2つのNeumann摂動とDirichlet摂動を独立な非線形Galerkin参照と比較します。",
+            "en": "Compare two Neumann perturbations and a Dirichlet perturbation against nonlinear Galerkin references."
+          },
+          "assumptions": {
+            "ja": "[0,2π]²、T=2、a=0.1,b=0.9,Du=0.01,Dv=1。平衡(1,0.9)のまわりで3初期値と12/24/48セル、一定の非周期境界を使います。",
+            "en": "On[0,2π]² toT2,use a.1,b.9,Du.01,Dv1. Compare three perturbations of(1,.9),12/24/48cell grids and fixed nonperiodic boundary conditions."
+          },
+          "algorithm": {
+            "ja": "セル平均のCN拡散と局所陰的中点反応をStrang分割します。独立参照は正規直交sin/cos Galerkin、K12/18,Q96/192と2許容誤差の4列を全初期値で残します。 元のDirichlet K12/18参照は初回の相対資格基準を満たさなかったため、失敗を残し、D境界だけK24/32・Q128/192の4参照を追加します。",
+            "en": "Strang-split cell-averageCN diffusion and local implicit-midpoint reactions. Independent orthonormal sine/cosine Galerkin references retain four K12/18,Q96/192,tolerance rows for every initial condition. The original Dirichlet K12/18 reference failed its first relative qualification. Preserve that failure and add four D-only K24/32,Q128/192 reference actions."
+          },
+          "validation": {
+            "ja": "線形モードの連続・離散記号、角の面所有、平衡、物質収支を照合。K/Q/時間許容差感度を別に測り、参照が資格条件を満たさなければ精度・次数を未確定にします。 精度目標には、新しい細参照が同じ絶対・相対基準に合格した場合だけその参照を用います。旧参照の不合格を合格へ読み替えません。",
+            "en": "Check continuum/discrete linear symbols, corner-face ownership, equilibrium and mass ledgers. Separate K/Q/tolerance sensitivity; unqualified references leave related accuracy/order unresolved. Use the new finer reference for accuracy goals only after the same absolute/relative criteria pass; the original failed qualification is retained."
+          },
+          "limits": {
+            "ja": "短時間の小振幅・固定初期値です。一般的な模様選択、成長後の成熟パターン、原著図の再現は主張しません。有限の参照差を連続体誤差の厳密上界と呼びません。",
+            "en": "This short small-amplitude study does not establish general pattern selection, mature patterns or reproduction of original figures. Finite reference differences are not rigorous continuum error bounds."
+          },
+          "domains": [
+            "biology"
+          ],
+          "code_files": [
+            "run.py",
+            "common.py",
+            "schnakenberg.py"
+          ],
+          "reference_files": [
+            "PROTOCOL.md",
+            "source-reading.json",
+            "acceptance.json"
+          ],
+          "references": [
+            {
+              "id": "schnakenberg1979",
+              "title": "Schnakenberg(1979), Simple chemical reaction systems with limit cycle behaviour",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/537379/",
+              "year": 1979,
+              "year_role": "publication",
+              "review_level": "selected-primary-or-bibliographic-see-provenance",
+              "review": {
+                "ja": "source-reading.jsonに実際の読取範囲と未読部分を記録。原著の全式・全図の再現とは主張しません。",
+                "en": "Actual selected read scopes and unread limits are recorded in source-reading.json; no full original-paper equation/figure reproduction claim."
+              }
+            }
+          ],
+          "additional_figures": [
+            {
+              "file": "schnakenberg-2d-boundary-modes-diagnostics.png",
+              "caption": {
+                "ja": "精度・参照・統計の実測値と未達目標を分けて表示します。",
+                "en": "Separate actual accuracy,reference and statistical measurements,including unmet targets."
+              }
+            }
+          ],
+          "formulas": [
+            "u_t=.01\\Delta u+.1-u+u^2v,\\qquad v_t=\\Delta v+.9-u^2v"
+          ],
+          "measured": {
+            "id": "schnakenberg-2d-boundary-modes",
+            "passed": true,
+            "checks": {
+              "Schnakenberg/mode/N/1/1/12": true,
+              "Schnakenberg/exp/N/1/1/12/0.1": true,
+              "Schnakenberg/exp/N/1/1/12/0.5": true,
+              "Schnakenberg/exp/N/1/1/12/1.0": true,
+              "Schnakenberg/mode/N/1/1/24": true,
+              "Schnakenberg/exp/N/1/1/24/0.1": true,
+              "Schnakenberg/exp/N/1/1/24/0.5": true,
+              "Schnakenberg/exp/N/1/1/24/1.0": true,
+              "Schnakenberg/mode/N/1/1/48": true,
+              "Schnakenberg/exp/N/1/1/48/0.1": true,
+              "Schnakenberg/exp/N/1/1/48/0.5": true,
+              "Schnakenberg/exp/N/1/1/48/1.0": true,
+              "Schnakenberg/mode/N/4/2/12": true,
+              "Schnakenberg/exp/N/4/2/12/0.1": true,
+              "Schnakenberg/exp/N/4/2/12/0.5": true,
+              "Schnakenberg/exp/N/4/2/12/1.0": true,
+              "Schnakenberg/mode/N/4/2/24": true,
+              "Schnakenberg/exp/N/4/2/24/0.1": true,
+              "Schnakenberg/exp/N/4/2/24/0.5": true,
+              "Schnakenberg/exp/N/4/2/24/1.0": true,
+              "Schnakenberg/mode/N/4/2/48": true,
+              "Schnakenberg/exp/N/4/2/48/0.1": true,
+              "Schnakenberg/exp/N/4/2/48/0.5": true,
+              "Schnakenberg/exp/N/4/2/48/1.0": true,
+              "Schnakenberg/mode/N/3/1/12": true,
+              "Schnakenberg/exp/N/3/1/12/0.1": true,
+              "Schnakenberg/exp/N/3/1/12/0.5": true,
+              "Schnakenberg/exp/N/3/1/12/1.0": true,
+              "Schnakenberg/mode/N/3/1/24": true,
+              "Schnakenberg/exp/N/3/1/24/0.1": true,
+              "Schnakenberg/exp/N/3/1/24/0.5": true,
+              "Schnakenberg/exp/N/3/1/24/1.0": true,
+              "Schnakenberg/mode/N/3/1/48": true,
+              "Schnakenberg/exp/N/3/1/48/0.1": true,
+              "Schnakenberg/exp/N/3/1/48/0.5": true,
+              "Schnakenberg/exp/N/3/1/48/1.0": true,
+              "Schnakenberg/mode/D/1/1/12": true,
+              "Schnakenberg/exp/D/1/1/12/0.1": true,
+              "Schnakenberg/exp/D/1/1/12/0.5": true,
+              "Schnakenberg/exp/D/1/1/12/1.0": true,
+              "Schnakenberg/mode/D/1/1/24": true,
+              "Schnakenberg/exp/D/1/1/24/0.1": true,
+              "Schnakenberg/exp/D/1/1/24/0.5": true,
+              "Schnakenberg/exp/D/1/1/24/1.0": true,
+              "Schnakenberg/mode/D/1/1/48": true,
+              "Schnakenberg/exp/D/1/1/48/0.1": true,
+              "Schnakenberg/exp/D/1/1/48/0.5": true,
+              "Schnakenberg/exp/D/1/1/48/1.0": true,
+              "Schnakenberg/mode/D/4/2/12": true,
+              "Schnakenberg/exp/D/4/2/12/0.1": true,
+              "Schnakenberg/exp/D/4/2/12/0.5": true,
+              "Schnakenberg/exp/D/4/2/12/1.0": true,
+              "Schnakenberg/mode/D/4/2/24": true,
+              "Schnakenberg/exp/D/4/2/24/0.1": true,
+              "Schnakenberg/exp/D/4/2/24/0.5": true,
+              "Schnakenberg/exp/D/4/2/24/1.0": true,
+              "Schnakenberg/mode/D/4/2/48": true,
+              "Schnakenberg/exp/D/4/2/48/0.1": true,
+              "Schnakenberg/exp/D/4/2/48/0.5": true,
+              "Schnakenberg/exp/D/4/2/48/1.0": true,
+              "Schnakenberg/mode/D/3/1/12": true,
+              "Schnakenberg/exp/D/3/1/12/0.1": true,
+              "Schnakenberg/exp/D/3/1/12/0.5": true,
+              "Schnakenberg/exp/D/3/1/12/1.0": true,
+              "Schnakenberg/mode/D/3/1/24": true,
+              "Schnakenberg/exp/D/3/1/24/0.1": true,
+              "Schnakenberg/exp/D/3/1/24/0.5": true,
+              "Schnakenberg/exp/D/3/1/24/1.0": true,
+              "Schnakenberg/mode/D/3/1/48": true,
+              "Schnakenberg/exp/D/3/1/48/0.1": true,
+              "Schnakenberg/exp/D/3/1/48/0.5": true,
+              "Schnakenberg/exp/D/3/1/48/1.0": true,
+              "Schnakenberg/equilibrium-face-zero": true,
+              "Schnakenberg/constant-equilibrium/N": true,
+              "Schnakenberg/constant-equilibrium/D": true,
+              "Schnakenberg/wrong-boundary-control": true,
+              "Schnakenberg/corner-doublecount-control": true,
+              "Schnakenberg/linear-action-count": true,
+              "Schnakenberg/ledger/N-mode42/12": true,
+              "Schnakenberg/ledger/N-mode42/24": true,
+              "Schnakenberg/ledger/N-mode42/48": true,
+              "Schnakenberg/reference/N-mode42": true,
+              "Schnakenberg/ledger/N-mixed/12": true,
+              "Schnakenberg/ledger/N-mixed/24": true,
+              "Schnakenberg/ledger/N-mixed/48": true,
+              "Schnakenberg/reference/N-mixed": true,
+              "Schnakenberg/ledger/D-mode42/12": true,
+              "Schnakenberg/ledger/D-mode42/24": true,
+              "Schnakenberg/ledger/D-mode42/48": true,
+              "Schnakenberg/reference/D-mode42": true
+            },
+            "metrics": {
+              "fixed_records": 33,
+              "Schnakenberg/positivity/N-mode42/12/minimum": 0.8880521241619382,
+              "Schnakenberg/positivity/N-mode42/24/minimum": 0.8860615561401685,
+              "Schnakenberg/positivity/N-mode42/48/minimum": 0.8855372535923153,
+              "Schnakenberg/space-finest/N-mode42/actual": 8.250442438972883e-05,
+              "Schnakenberg/space-order/N-mode42/actual": 1.944655350128315,
+              "Schnakenberg/positivity/N-mixed/12/minimum": 0.8798143344957898,
+              "Schnakenberg/positivity/N-mixed/24/minimum": 0.8771054043233121,
+              "Schnakenberg/positivity/N-mixed/48/minimum": 0.8763952220795853,
+              "Schnakenberg/space-finest/N-mixed/actual": 0.00011769804580841203,
+              "Schnakenberg/space-order/N-mixed/actual": 1.9477700373628166,
+              "Schnakenberg/time-contamination/actual": 1.1208580182516432e-07,
+              "Schnakenberg/positivity/D-mode42/12/minimum": 0.8862155577223321,
+              "Schnakenberg/positivity/D-mode42/24/minimum": 0.8860670448524426,
+              "Schnakenberg/positivity/D-mode42/48/minimum": 0.8855435379971976,
+              "Schnakenberg/space-finest/D-mode42/actual": 8.370124740819662e-05,
+              "Schnakenberg/space-order/D-mode42/actual": 1.9463235349282928
+            },
+            "records": [
+              {
+                "id": "schnakenberg-components",
+                "linear_actions": [
+                  {
+                    "bc": "N",
+                    "mode": [
+                      1,
+                      1
+                    ],
+                    "N": 12,
+                    "time": 0.1,
+                    "symbol_error": 3.1086244689504383e-15,
+                    "exponential_error": 4.440892098500626e-16
+                  },
+                  {
+                    "bc": "N",
+                    "mode": [
+                      1,
+                      1
+                    ],
+                    "N": 12,
+                    "time": 0.5,
+                    "symbol_error": 3.1086244689504383e-15,
+                    "exponential_error": 2.6645352591003757e-15
+                  },
+                  {
+                    "bc": "N",
+                    "mode": [
+                      1,
+                      1
+                    ],
+                    "N": 12,
+                    "time": 1.0,
+                    "symbol_error": 3.1086244689504383e-15,
+                    "exponential_error": 5.995204332975845e-15
+                  },
+                  {
+                    "bc": "N",
+                    "mode": [
+                      1,
+                      1
+                    ],
+                    "N": 24,
+                    "time": 0.1,
+                    "symbol_error": 1.1213252548714081e-14,
+                    "exponential_error": 2.220446049250313e-16
+                  },
+                  {
+                    "bc": "N",
+                    "mode": [
+                      1,
+                      1
+                    ],
+                    "N": 24,
+                    "time": 0.5,
+                    "symbol_error": 1.1213252548714081e-14,
+                    "exponential_error": 2.6645352591003757e-15
+                  },
+                  {
+                    "bc": "N",
+                    "mode": [
+                      1,
+                      1
+                    ],
+                    "N": 24,
+                    "time": 1.0,
+                    "symbol_error": 1.1213252548714081e-14,
+                    "exponential_error": 5.995204332975845e-15
+                  },
+                  {
+                    "bc": "N",
+                    "mode": [
+                      1,
+                      1
+                    ],
+                    "N": 48,
+                    "time": 0.1,
+                    "symbol_error": 5.773159728050814e-14,
+                    "exponential_error": 4.440892098500626e-16
+                  },
+                  {
+                    "bc": "N",
+                    "mode": [
+                      1,
+                      1
+                    ],
+                    "N": 48,
+                    "time": 0.5,
+                    "symbol_error": 5.773159728050814e-14,
+                    "exponential_error": 2.6645352591003757e-15
+                  },
+                  {
+                    "bc": "N",
+                    "mode": [
+                      1,
+                      1
+                    ],
+                    "N": 48,
+                    "time": 1.0,
+                    "symbol_error": 5.773159728050814e-14,
+                    "exponential_error": 5.995204332975845e-15
+                  },
+                  {
+                    "bc": "N",
+                    "mode": [
+                      4,
+                      2
+                    ],
+                    "N": 12,
+                    "time": 0.1,
+                    "symbol_error": 5.329070518200751e-15,
+                    "exponential_error": 4.440892098500626e-16
+                  },
+                  {
+                    "bc": "N",
+                    "mode": [
+                      4,
+                      2
+                    ],
+                    "N": 12,
+                    "time": 0.5,
+                    "symbol_error": 5.329070518200751e-15,
+                    "exponential_error": 5.995204332975845e-15
+                  },
+                  {
+                    "bc": "N",
+                    "mode": [
+                      4,
+                      2
+                    ],
+                    "N": 12,
+                    "time": 1.0,
+                    "symbol_error": 5.329070518200751e-15,
+                    "exponential_error": 1.509903313490213e-14
+                  },
+                  {
+                    "bc": "N",
+                    "mode": [
+                      4,
+                      2
+                    ],
+                    "N": 24,
+                    "time": 0.1,
+                    "symbol_error": 2.375877272697835e-14,
+                    "exponential_error": 6.661338147750939e-16
+                  },
+                  {
+                    "bc": "N",
+                    "mode": [
+                      4,
+                      2
+                    ],
+                    "N": 24,
+                    "time": 0.5,
+                    "symbol_error": 2.375877272697835e-14,
+                    "exponential_error": 3.1086244689504383e-15
+                  },
+                  {
+                    "bc": "N",
+                    "mode": [
+                      4,
+                      2
+                    ],
+                    "N": 24,
+                    "time": 1.0,
+                    "symbol_error": 2.375877272697835e-14,
+                    "exponential_error": 8.43769498715119e-15
+                  },
+                  {
+                    "bc": "N",
+                    "mode": [
+                      4,
+                      2
+                    ],
+                    "N": 48,
+                    "time": 0.1,
+                    "symbol_error": 1.8340884366807586e-13,
+                    "exponential_error": 4.440892098500626e-16
+                  },
+                  {
+                    "bc": "N",
+                    "mode": [
+                      4,
+                      2
+                    ],
+                    "N": 48,
+                    "time": 0.5,
+                    "symbol_error": 1.8340884366807586e-13,
+                    "exponential_error": 4.440892098500626e-15
+                  },
+                  {
+                    "bc": "N",
+                    "mode": [
+                      4,
+                      2
+                    ],
+                    "N": 48,
+                    "time": 1.0,
+                    "symbol_error": 1.8340884366807586e-13,
+                    "exponential_error": 1.199040866595169e-14
+                  },
+                  {
+                    "bc": "N",
+                    "mode": [
+                      3,
+                      1
+                    ],
+                    "N": 12,
+                    "time": 0.1,
+                    "symbol_error": 5.773159728050814e-15,
+                    "exponential_error": 8.881784197001252e-16
+                  },
+                  {
+                    "bc": "N",
+                    "mode": [
+                      3,
+                      1
+                    ],
+                    "N": 12,
+                    "time": 0.5,
+                    "symbol_error": 5.773159728050814e-15,
+                    "exponential_error": 6.439293542825908e-15
+                  },
+                  {
+                    "bc": "N",
+                    "mode": [
+                      3,
+                      1
+                    ],
+                    "N": 12,
+                    "time": 1.0,
+                    "symbol_error": 5.773159728050814e-15,
+                    "exponential_error": 1.5987211554602254e-14
+                  },
+                  {
+                    "bc": "N",
+                    "mode": [
+                      3,
+                      1
+                    ],
+                    "N": 24,
+                    "time": 0.1,
+                    "symbol_error": 3.58046925441613e-14,
+                    "exponential_error": 6.661338147750939e-16
+                  },
+                  {
+                    "bc": "N",
+                    "mode": [
+                      3,
+                      1
+                    ],
+                    "N": 24,
+                    "time": 0.5,
+                    "symbol_error": 3.58046925441613e-14,
+                    "exponential_error": 6.439293542825908e-15
+                  },
+                  {
+                    "bc": "N",
+                    "mode": [
+                      3,
+                      1
+                    ],
+                    "N": 24,
+                    "time": 1.0,
+                    "symbol_error": 3.58046925441613e-14,
+                    "exponential_error": 1.5987211554602254e-14
+                  },
+                  {
+                    "bc": "N",
+                    "mode": [
+                      3,
+                      1
+                    ],
+                    "N": 48,
+                    "time": 0.1,
+                    "symbol_error": 1.603162047558726e-13,
+                    "exponential_error": 4.440892098500626e-16
+                  },
+                  {
+                    "bc": "N",
+                    "mode": [
+                      3,
+                      1
+                    ],
+                    "N": 48,
+                    "time": 0.5,
+                    "symbol_error": 1.603162047558726e-13,
+                    "exponential_error": 6.439293542825908e-15
+                  },
+                  {
+                    "bc": "N",
+                    "mode": [
+                      3,
+                      1
+                    ],
+                    "N": 48,
+                    "time": 1.0,
+                    "symbol_error": 1.603162047558726e-13,
+                    "exponential_error": 1.5987211554602254e-14
+                  },
+                  {
+                    "bc": "D",
+                    "mode": [
+                      1,
+                      1
+                    ],
+                    "N": 12,
+                    "time": 0.1,
+                    "symbol_error": 3.733124920302089e-15,
+                    "exponential_error": 4.440892098500626e-16
+                  },
+                  {
+                    "bc": "D",
+                    "mode": [
+                      1,
+                      1
+                    ],
+                    "N": 12,
+                    "time": 0.5,
+                    "symbol_error": 3.733124920302089e-15,
+                    "exponential_error": 2.6645352591003757e-15
+                  },
+                  {
+                    "bc": "D",
+                    "mode": [
+                      1,
+                      1
+                    ],
+                    "N": 12,
+                    "time": 1.0,
+                    "symbol_error": 3.733124920302089e-15,
+                    "exponential_error": 5.995204332975845e-15
+                  },
+                  {
+                    "bc": "D",
+                    "mode": [
+                      1,
+                      1
+                    ],
+                    "N": 24,
+                    "time": 0.1,
+                    "symbol_error": 1.0380585280245214e-14,
+                    "exponential_error": 2.220446049250313e-16
+                  },
+                  {
+                    "bc": "D",
+                    "mode": [
+                      1,
+                      1
+                    ],
+                    "N": 24,
+                    "time": 0.5,
+                    "symbol_error": 1.0380585280245214e-14,
+                    "exponential_error": 2.6645352591003757e-15
+                  },
+                  {
+                    "bc": "D",
+                    "mode": [
+                      1,
+                      1
+                    ],
+                    "N": 24,
+                    "time": 1.0,
+                    "symbol_error": 1.0380585280245214e-14,
+                    "exponential_error": 5.995204332975845e-15
+                  },
+                  {
+                    "bc": "D",
+                    "mode": [
+                      1,
+                      1
+                    ],
+                    "N": 48,
+                    "time": 0.1,
+                    "symbol_error": 5.861977570020827e-14,
+                    "exponential_error": 4.440892098500626e-16
+                  },
+                  {
+                    "bc": "D",
+                    "mode": [
+                      1,
+                      1
+                    ],
+                    "N": 48,
+                    "time": 0.5,
+                    "symbol_error": 5.861977570020827e-14,
+                    "exponential_error": 2.6645352591003757e-15
+                  },
+                  {
+                    "bc": "D",
+                    "mode": [
+                      1,
+                      1
+                    ],
+                    "N": 48,
+                    "time": 1.0,
+                    "symbol_error": 5.861977570020827e-14,
+                    "exponential_error": 5.995204332975845e-15
+                  },
+                  {
+                    "bc": "D",
+                    "mode": [
+                      4,
+                      2
+                    ],
+                    "N": 12,
+                    "time": 0.1,
+                    "symbol_error": 1.1102230246251565e-14,
+                    "exponential_error": 4.440892098500626e-16
+                  },
+                  {
+                    "bc": "D",
+                    "mode": [
+                      4,
+                      2
+                    ],
+                    "N": 12,
+                    "time": 0.5,
+                    "symbol_error": 1.1102230246251565e-14,
+                    "exponential_error": 5.995204332975845e-15
+                  },
+                  {
+                    "bc": "D",
+                    "mode": [
+                      4,
+                      2
+                    ],
+                    "N": 12,
+                    "time": 1.0,
+                    "symbol_error": 1.1102230246251565e-14,
+                    "exponential_error": 1.509903313490213e-14
+                  },
+                  {
+                    "bc": "D",
+                    "mode": [
+                      4,
+                      2
+                    ],
+                    "N": 24,
+                    "time": 0.1,
+                    "symbol_error": 2.353672812205332e-14,
+                    "exponential_error": 6.661338147750939e-16
+                  },
+                  {
+                    "bc": "D",
+                    "mode": [
+                      4,
+                      2
+                    ],
+                    "N": 24,
+                    "time": 0.5,
+                    "symbol_error": 2.353672812205332e-14,
+                    "exponential_error": 3.1086244689504383e-15
+                  },
+                  {
+                    "bc": "D",
+                    "mode": [
+                      4,
+                      2
+                    ],
+                    "N": 24,
+                    "time": 1.0,
+                    "symbol_error": 2.353672812205332e-14,
+                    "exponential_error": 8.43769498715119e-15
+                  },
+                  {
+                    "bc": "D",
+                    "mode": [
+                      4,
+                      2
+                    ],
+                    "N": 48,
+                    "time": 0.1,
+                    "symbol_error": 1.9828583219805296e-13,
+                    "exponential_error": 4.440892098500626e-16
+                  },
+                  {
+                    "bc": "D",
+                    "mode": [
+                      4,
+                      2
+                    ],
+                    "N": 48,
+                    "time": 0.5,
+                    "symbol_error": 1.9828583219805296e-13,
+                    "exponential_error": 4.440892098500626e-15
+                  },
+                  {
+                    "bc": "D",
+                    "mode": [
+                      4,
+                      2
+                    ],
+                    "N": 48,
+                    "time": 1.0,
+                    "symbol_error": 1.9828583219805296e-13,
+                    "exponential_error": 1.199040866595169e-14
+                  },
+                  {
+                    "bc": "D",
+                    "mode": [
+                      3,
+                      1
+                    ],
+                    "N": 12,
+                    "time": 0.1,
+                    "symbol_error": 8.548717289613705e-15,
+                    "exponential_error": 8.881784197001252e-16
+                  },
+                  {
+                    "bc": "D",
+                    "mode": [
+                      3,
+                      1
+                    ],
+                    "N": 12,
+                    "time": 0.5,
+                    "symbol_error": 8.548717289613705e-15,
+                    "exponential_error": 6.439293542825908e-15
+                  },
+                  {
+                    "bc": "D",
+                    "mode": [
+                      3,
+                      1
+                    ],
+                    "N": 12,
+                    "time": 1.0,
+                    "symbol_error": 8.548717289613705e-15,
+                    "exponential_error": 1.5987211554602254e-14
+                  },
+                  {
+                    "bc": "D",
+                    "mode": [
+                      3,
+                      1
+                    ],
+                    "N": 24,
+                    "time": 0.1,
+                    "symbol_error": 2.2593038551121936e-14,
+                    "exponential_error": 6.661338147750939e-16
+                  },
+                  {
+                    "bc": "D",
+                    "mode": [
+                      3,
+                      1
+                    ],
+                    "N": 24,
+                    "time": 0.5,
+                    "symbol_error": 2.2593038551121936e-14,
+                    "exponential_error": 6.439293542825908e-15
+                  },
+                  {
+                    "bc": "D",
+                    "mode": [
+                      3,
+                      1
+                    ],
+                    "N": 24,
+                    "time": 1.0,
+                    "symbol_error": 2.2593038551121936e-14,
+                    "exponential_error": 1.5987211554602254e-14
+                  },
+                  {
+                    "bc": "D",
+                    "mode": [
+                      3,
+                      1
+                    ],
+                    "N": 48,
+                    "time": 0.1,
+                    "symbol_error": 1.63202784619898e-13,
+                    "exponential_error": 4.440892098500626e-16
+                  },
+                  {
+                    "bc": "D",
+                    "mode": [
+                      3,
+                      1
+                    ],
+                    "N": 48,
+                    "time": 0.5,
+                    "symbol_error": 1.63202784619898e-13,
+                    "exponential_error": 6.439293542825908e-15
+                  },
+                  {
+                    "bc": "D",
+                    "mode": [
+                      3,
+                      1
+                    ],
+                    "N": 48,
+                    "time": 1.0,
+                    "symbol_error": 1.63202784619898e-13,
+                    "exponential_error": 1.5987211554602254e-14
+                  }
+                ],
+                "matrix_actions_total": 216,
+                "data": null
+              },
+              {
+                "id": "schnak-N-mode42-N12",
+                "ic": "N-mode42",
+                "N": 12,
+                "steps": 1600,
+                "dt": 0.00125,
+                "minimum": 0.8880521241619382,
+                "max_Newton_residual": 1.1143904267256477e-16,
+                "mass_balance_residual": [
+                  1.5122451901827816e-15,
+                  -1.1150802503578916e-14
+                ],
+                "mass_scale": [
+                  40.48207834452456,
+                  36.537342941016455
+                ],
+                "integrated_boundary_flux": [
+                  0.0,
+                  0.0
+                ],
+                "integrated_reaction": [
+                  0.0036607401671331784,
+                  -0.006767097094769033
+                ],
+                "data": "schnak-N-mode42-N12.npz"
+              },
+              {
+                "id": "schnak-N-mode42-N24",
+                "ic": "N-mode42",
+                "N": 24,
+                "steps": 1600,
+                "dt": 0.00125,
+                "minimum": 0.8860615561401685,
+                "max_Newton_residual": 1.1143904267256477e-16,
+                "mass_balance_residual": [
+                  5.62310614737882e-15,
+                  1.42785089307651e-14
+                ],
+                "mass_scale": [
+                  40.4828964273337,
+                  36.538787010464794
+                ],
+                "integrated_boundary_flux": [
+                  0.0,
+                  0.0
+                ],
+                "integrated_reaction": [
+                  0.004478822976275926,
+                  -0.008211166543105787
+                ],
+                "data": "schnak-N-mode42-N24.npz"
+              },
+              {
+                "id": "schnak-N-mode42-N48",
+                "ic": "N-mode42",
+                "N": 48,
+                "steps": 1600,
+                "dt": 0.00125,
+                "minimum": 0.8855372535923153,
+                "max_Newton_residual": 1.1143904267256477e-16,
+                "mass_balance_residual": [
+                  1.0853297427448894e-14,
+                  -5.377642775528102e-16
+                ],
+                "mass_scale": [
+                  40.48311824457079,
+                  36.539177617282824
+                ],
+                "integrated_boundary_flux": [
+                  0.0,
+                  0.0
+                ],
+                "integrated_reaction": [
+                  0.0047006402133680505,
+                  -0.008601773361135118
+                ],
+                "data": "schnak-N-mode42-N48.npz"
+              },
+              {
+                "id": "schnak-ref-N-mode42-K12-Q96-t1e-10",
+                "K": 12,
+                "Q": 96,
+                "Gram_error": 4.958669244444029e-15,
+                "method": "DP54",
+                "accepted": 98,
+                "rejected": 0,
+                "nfev": 686,
+                "rtol": 1e-10,
+                "atol": 1e-12,
+                "complete": true,
+                "data": "schnak-ref-N-mode42-K12-Q96-t1e-10.npz"
+              },
+              {
+                "id": "schnak-ref-N-mode42-K18-Q96-t1e-10",
+                "K": 18,
+                "Q": 96,
+                "Gram_error": 5.755627031595042e-15,
+                "method": "DP54",
+                "accepted": 101,
+                "rejected": 2,
+                "nfev": 721,
+                "rtol": 1e-10,
+                "atol": 1e-12,
+                "complete": true,
+                "data": "schnak-ref-N-mode42-K18-Q96-t1e-10.npz"
+              },
+              {
+                "id": "schnak-ref-N-mode42-K18-Q192-t1e-10",
+                "K": 18,
+                "Q": 192,
+                "Gram_error": 2.565855440668069e-14,
+                "method": "DP54",
+                "accepted": 101,
+                "rejected": 1,
+                "nfev": 714,
+                "rtol": 1e-10,
+                "atol": 1e-12,
+                "complete": true,
+                "data": "schnak-ref-N-mode42-K18-Q192-t1e-10.npz"
+              },
+              {
+                "id": "schnak-ref-N-mode42-K18-Q192-t1e-12",
+                "K": 18,
+                "Q": 192,
+                "Gram_error": 2.565855440668069e-14,
+                "method": "DP54",
+                "accepted": 234,
+                "rejected": 0,
+                "nfev": 1638,
+                "rtol": 1e-12,
+                "atol": 1e-14,
+                "complete": true,
+                "data": "schnak-ref-N-mode42-K18-Q192-t1e-12.npz"
+              },
+              {
+                "id": "schnak-summary-N-mode42",
+                "reference_deltas": [
+                  7.613877928136503e-07,
+                  6.505906924303417e-14,
+                  2.4635848916432224e-13
+                ],
+                "reference_sum": 7.613881042312087e-07,
+                "reference_qualified": true,
+                "finest_denominator": 8.250442438972883e-05,
+                "zero_floor": 1e-12,
+                "grid_errors": [
+                  0.0010844810056118703,
+                  0.00031759732092773163,
+                  8.250442438972883e-05
+                ],
+                "spatial_order": 1.944655350128315,
+                "reference_role": "original4-rowreference",
+                "reference_scope": "Finite modal/quadrature/tolerance sensitivity indicators, not rigorous continuum bounds",
+                "data": "schnak-summary-N-mode42.npz"
+              },
+              {
+                "id": "schnak-N-mixed-N12",
+                "ic": "N-mixed",
+                "N": 12,
+                "steps": 1600,
+                "dt": 0.00125,
+                "minimum": 0.8798143344957898,
+                "max_Newton_residual": 1.1130012926921506e-16,
+                "mass_balance_residual": [
+                  -1.4127154307486123e-14,
+                  4.133846043252731e-15
+                ],
+                "mass_scale": [
+                  40.48189852416706,
+                  36.53710378394009
+                ],
+                "integrated_boundary_flux": [
+                  0.0,
+                  0.0
+                ],
+                "integrated_reaction": [
+                  0.0034809198096325262,
+                  -0.006527940018398097
+                ],
+                "data": "schnak-N-mixed-N12.npz"
+              },
+              {
+                "id": "schnak-N-mixed-N24",
+                "ic": "N-mixed",
+                "N": 24,
+                "steps": 1600,
+                "dt": 0.00125,
+                "minimum": 0.8771054043233121,
+                "max_Newton_residual": 1.1143904267256477e-16,
+                "mass_balance_residual": [
+                  1.222459633520856e-14,
+                  -7.504413757075667e-15
+                ],
+                "mass_scale": [
+                  40.482759046795586,
+                  36.53863057796566
+                ],
+                "integrated_boundary_flux": [
+                  0.0,
+                  0.0
+                ],
+                "integrated_reaction": [
+                  0.004341442438162911,
+                  -0.008054734043973211
+                ],
+                "data": "schnak-N-mixed-N24.npz"
+              },
+              {
+                "id": "schnak-N-mixed-N48",
+                "ic": "N-mixed",
+                "N": 48,
+                "steps": 1600,
+                "dt": 0.00125,
+                "minimum": 0.8763952220795853,
+                "max_Newton_residual": 1.1143904267256477e-16,
+                "mass_balance_residual": [
+                  -6.296178856057821e-15,
+                  1.5456386170953351e-15
+                ],
+                "mass_scale": [
+                  40.4829923295782,
+                  36.53904338692758
+                ],
+                "integrated_boundary_flux": [
+                  0.0,
+                  0.0
+                ],
+                "integrated_reaction": [
+                  0.0045747252207767,
+                  -0.008467543005893799
+                ],
+                "data": "schnak-N-mixed-N48.npz"
+              },
+              {
+                "id": "schnak-ref-N-mixed-K12-Q96-t1e-10",
+                "K": 12,
+                "Q": 96,
+                "Gram_error": 4.958669244444029e-15,
+                "method": "DP54",
+                "accepted": 99,
+                "rejected": 0,
+                "nfev": 693,
+                "rtol": 1e-10,
+                "atol": 1e-12,
+                "complete": true,
+                "data": "schnak-ref-N-mixed-K12-Q96-t1e-10.npz"
+              },
+              {
+                "id": "schnak-ref-N-mixed-K18-Q96-t1e-10",
+                "K": 18,
+                "Q": 96,
+                "Gram_error": 5.755627031595042e-15,
+                "method": "DP54",
+                "accepted": 102,
+                "rejected": 1,
+                "nfev": 721,
+                "rtol": 1e-10,
+                "atol": 1e-12,
+                "complete": true,
+                "data": "schnak-ref-N-mixed-K18-Q96-t1e-10.npz"
+              },
+              {
+                "id": "schnak-ref-N-mixed-K18-Q192-t1e-10",
+                "K": 18,
+                "Q": 192,
+                "Gram_error": 2.565855440668069e-14,
+                "method": "DP54",
+                "accepted": 102,
+                "rejected": 1,
+                "nfev": 721,
+                "rtol": 1e-10,
+                "atol": 1e-12,
+                "complete": true,
+                "data": "schnak-ref-N-mixed-K18-Q192-t1e-10.npz"
+              },
+              {
+                "id": "schnak-ref-N-mixed-K18-Q192-t1e-12",
+                "K": 18,
+                "Q": 192,
+                "Gram_error": 2.565855440668069e-14,
+                "method": "DP54",
+                "accepted": 236,
+                "rejected": 0,
+                "nfev": 1652,
+                "rtol": 1e-12,
+                "atol": 1e-14,
+                "complete": true,
+                "data": "schnak-ref-N-mixed-K18-Q192-t1e-12.npz"
+              },
+              {
+                "id": "schnak-summary-N-mixed",
+                "reference_deltas": [
+                  1.0061035745634328e-06,
+                  3.83026943495679e-14,
+                  4.289901767151605e-13
+                ],
+                "reference_sum": 1.0061040418563039e-06,
+                "reference_qualified": true,
+                "finest_denominator": 0.00011769804580841203,
+                "zero_floor": 1e-12,
+                "grid_errors": [
+                  0.0015678188483445599,
+                  0.00045405290439126667,
+                  0.00011769804580841203
+                ],
+                "spatial_order": 1.9477700373628166,
+                "reference_role": "original4-rowreference",
+                "reference_scope": "Finite modal/quadrature/tolerance sensitivity indicators, not rigorous continuum bounds",
+                "data": "schnak-summary-N-mixed.npz"
+              },
+              {
+                "id": "schnak-time-200",
+                "steps": 400,
+                "dt": 0.005,
+                "minimum": 0.8763965338878951,
+                "max_Newton_residual": 1.1268926330271212e-16,
+                "mass_balance_residual": [
+                  -4.154662724964453e-16,
+                  -6.7758298971654085e-15
+                ],
+                "mass_scale": [
+                  40.482991803033464,
+                  36.53904245107021
+                ],
+                "integrated_boundary_flux": [
+                  0.0,
+                  0.0
+                ],
+                "integrated_reaction": [
+                  0.004574198676039447,
+                  -0.00846660714852054
+                ],
+                "data": "schnak-time-200.npz"
+              },
+              {
+                "id": "schnak-time-400",
+                "steps": 800,
+                "dt": 0.0025,
+                "minimum": 0.8763954844494254,
+                "max_Newton_residual": 1.1185578288261389e-16,
+                "mass_balance_residual": [
+                  -6.315260814293566e-15,
+                  -6.331740687315346e-16
+                ],
+                "mass_scale": [
+                  40.482992224265146,
+                  36.53904319974951
+                ],
+                "integrated_boundary_flux": [
+                  0.0,
+                  0.0
+                ],
+                "integrated_reaction": [
+                  0.004574619907720665,
+                  -0.00846735582781769
+                ],
+                "data": "schnak-time-400.npz"
+              },
+              {
+                "id": "schnak-time-summary",
+                "errors_to_continuum_reference": [
+                  0.00011937928470340253,
+                  0.00011803430257639747,
+                  0.00011769804580841203
+                ],
+                "same_grid_pair_differences": [
+                  1.3449824467492988e-06,
+                  3.36257405475493e-07
+                ],
+                "observed_order": null,
+                "finest_time_indicator": 1.1208580182516432e-07,
+                "data": null
+              },
+              {
+                "id": "schnak-D-mode42-N12",
+                "ic": "D-mode42",
+                "N": 12,
+                "steps": 1600,
+                "dt": 0.00125,
+                "minimum": 0.8862155577223321,
+                "max_Newton_residual": 1.1130012926921506e-16,
+                "mass_balance_residual": [
+                  -1.258281673299777e-14,
+                  -2.3507237822961713e-14
+                ],
+                "mass_scale": [
+                  40.48368721856097,
+                  36.54327355643294
+                ],
+                "integrated_boundary_flux": [
+                  -2.7856976883969742e-05,
+                  0.0036001342953684025
+                ],
+                "integrated_reaction": [
+                  0.005241757226660534,
+                  -0.00909757821588442
+                ],
+                "data": "schnak-D-mode42-N12.npz"
+              },
+              {
+                "id": "schnak-D-mode42-N24",
+                "ic": "D-mode42",
+                "N": 24,
+                "steps": 1600,
+                "dt": 0.00125,
+                "minimum": 0.8860670448524426,
+                "max_Newton_residual": 1.1143904267256477e-16,
+                "mass_balance_residual": [
+                  4.272623921330876e-15,
+                  -8.217385105702135e-15
+                ],
+                "mass_scale": [
+                  40.48484332831696,
+                  36.546076124381784
+                ],
+                "integrated_boundary_flux": [
+                  -1.2247718017517128e-05,
+                  0.004433603689124673
+                ],
+                "integrated_reaction": [
+                  0.00641347624152124,
+                  -0.011066676770974242
+                ],
+                "data": "schnak-D-mode42-N24.npz"
+              },
+              {
+                "id": "schnak-D-mode42-N48",
+                "ic": "D-mode42",
+                "N": 48,
+                "steps": 1600,
+                "dt": 0.00125,
+                "minimum": 0.8855435379971976,
+                "max_Newton_residual": 1.1143904267256477e-16,
+                "mass_balance_residual": [
+                  9.75261538194161e-15,
+                  1.7034984534092246e-15
+                ],
+                "mass_scale": [
+                  40.48516700681382,
+                  36.54687745916411
+                ],
+                "integrated_boundary_flux": [
+                  -7.531580989803015e-06,
+                  0.004685081591690642
+                ],
+                "integrated_reaction": [
+                  0.00674187087540529,
+                  -0.011616533650727682
+                ],
+                "data": "schnak-D-mode42-N48.npz"
+              },
+              {
+                "id": "schnak-ref-D-mode42-K12-Q96-t1e-10",
+                "K": 12,
+                "Q": 96,
+                "Gram_error": 3.3306690738754696e-15,
+                "method": "DP54",
+                "accepted": 95,
+                "rejected": 0,
+                "nfev": 665,
+                "rtol": 1e-10,
+                "atol": 1e-12,
+                "complete": true,
+                "data": "schnak-ref-D-mode42-K12-Q96-t1e-10.npz"
+              },
+              {
+                "id": "schnak-ref-D-mode42-K18-Q96-t1e-10",
+                "K": 18,
+                "Q": 96,
+                "Gram_error": 3.9968028886505635e-15,
+                "method": "DP54",
+                "accepted": 111,
+                "rejected": 6,
+                "nfev": 819,
+                "rtol": 1e-10,
+                "atol": 1e-12,
+                "complete": true,
+                "data": "schnak-ref-D-mode42-K18-Q96-t1e-10.npz"
+              },
+              {
+                "id": "schnak-ref-D-mode42-K18-Q192-t1e-10",
+                "K": 18,
+                "Q": 192,
+                "Gram_error": 1.3766765505351941e-14,
+                "method": "DP54",
+                "accepted": 111,
+                "rejected": 6,
+                "nfev": 819,
+                "rtol": 1e-10,
+                "atol": 1e-12,
+                "complete": true,
+                "data": "schnak-ref-D-mode42-K18-Q192-t1e-10.npz"
+              },
+              {
+                "id": "schnak-ref-D-mode42-K18-Q192-t1e-12",
+                "K": 18,
+                "Q": 192,
+                "Gram_error": 1.3766765505351941e-14,
+                "method": "DP54",
+                "accepted": 230,
+                "rejected": 0,
+                "nfev": 1610,
+                "rtol": 1e-12,
+                "atol": 1e-14,
+                "complete": true,
+                "data": "schnak-ref-D-mode42-K18-Q192-t1e-12.npz"
+              },
+              {
+                "id": "schnak-legacy-reference-summary-D-mode42",
+                "role": "legacy-reference-qualification",
+                "reference_rows": 4,
+                "reference_deltas": [
+                  4.995141182306817e-05,
+                  1.5543122344752192e-15,
+                  3.1374902675906924e-13
+                ],
+                "reference_sum": 4.995141213837151e-05,
+                "reference_qualified_in_this_run": false,
+                "grid_errors": [
+                  0.0012654646650283041,
+                  0.00032652993641701933,
+                  9.088196030337947e-05
+                ],
+                "finest_denominator": 9.088196030337947e-05,
+                "original_R4_first_qualification": "FAIL, preserved in source-reading.json#/prior_reference_qualification",
+                "used_for_current_accuracy_goals": false,
+                "relabelled_as_original_protocol_pass": false,
+                "data": "schnak-legacy-reference-summary-D-mode42.npz"
+              },
+              {
+                "id": "schnak-ref-extension-D-mode42-K24-Q128-t1e-10",
+                "K": 24,
+                "Q": 128,
+                "Gram_error": 5.440092820663267e-15,
+                "method": "DP54",
+                "accepted": 178,
+                "rejected": 8,
+                "nfev": 1302,
+                "rtol": 1e-10,
+                "atol": 1e-12,
+                "complete": true,
+                "role": "controlledD-onlyfinerreferenceextension",
+                "data": "schnak-ref-extension-D-mode42-K24-Q128-t1e-10.npz"
+              },
+              {
+                "id": "schnak-ref-extension-D-mode42-K32-Q128-t1e-10",
+                "K": 32,
+                "Q": 128,
+                "Gram_error": 5.440092820663267e-15,
+                "method": "DP54",
+                "accepted": 310,
+                "rejected": 16,
+                "nfev": 2282,
+                "rtol": 1e-10,
+                "atol": 1e-12,
+                "complete": true,
+                "role": "controlledD-onlyfinerreferenceextension",
+                "data": "schnak-ref-extension-D-mode42-K32-Q128-t1e-10.npz"
+              },
+              {
+                "id": "schnak-ref-extension-D-mode42-K32-Q192-t1e-10",
+                "K": 32,
+                "Q": 192,
+                "Gram_error": 1.3766765505351941e-14,
+                "method": "DP54",
+                "accepted": 310,
+                "rejected": 16,
+                "nfev": 2282,
+                "rtol": 1e-10,
+                "atol": 1e-12,
+                "complete": true,
+                "role": "controlledD-onlyfinerreferenceextension",
+                "data": "schnak-ref-extension-D-mode42-K32-Q192-t1e-10.npz"
+              },
+              {
+                "id": "schnak-ref-extension-D-mode42-K32-Q192-t1e-12",
+                "K": 32,
+                "Q": 192,
+                "Gram_error": 1.3766765505351941e-14,
+                "method": "DP54",
+                "accepted": 327,
+                "rejected": 15,
+                "nfev": 2394,
+                "rtol": 1e-12,
+                "atol": 1e-14,
+                "complete": true,
+                "role": "controlledD-onlyfinerreferenceextension",
+                "data": "schnak-ref-extension-D-mode42-K32-Q192-t1e-12.npz"
+              },
+              {
+                "id": "schnak-summary-D-mode42",
+                "reference_deltas": [
+                  2.888731544303802e-06,
+                  1.532107773982716e-14,
+                  3.4638958368304884e-14
+                ],
+                "reference_sum": 2.888731594263838e-06,
+                "reference_qualified": true,
+                "finest_denominator": 8.370124740819662e-05,
+                "zero_floor": 1e-12,
+                "grid_errors": [
+                  0.0012636317080267911,
+                  0.0003225772206343347,
+                  8.370124740819662e-05
+                ],
+                "spatial_order": 1.9463235349282928,
+                "reference_role": "controlledD-onlyK24/32extension;newfineK32Q192tight",
+                "reference_scope": "Finite modal/quadrature/tolerance sensitivity indicators, not rigorous continuum bounds",
+                "data": "schnak-summary-D-mode42.npz"
+              }
+            ]
+          },
+          "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-2d-boundary-modes/",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology-space-controls/#schnakenberg-2d-boundary-modes",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology-space-controls/#schnakenberg-2d-boundary-modes"
+          }
+        }
+      ],
+      "scope": {
+        "ja": "2つのNeumann摂動とDirichlet摂動を独立な非線形Galerkin参照と比較します。 短時間の小振幅・固定初期値です。一般的な模様選択、成長後の成熟パターン、原著図の再現は主張しません。有限の参照差を連続体誤差の厳密上界と呼びません。",
+        "en": "Compare two Neumann perturbations and a Dirichlet perturbation against nonlinear Galerkin references. This short small-amplitude study does not establish general pattern selection, mature patterns or reproduction of original figures. Finite reference differences are not rigorous continuum error bounds."
+      }
     }
   ],
   "supplemental_scope_profiles": [
@@ -100,12 +1532,18 @@
   "code_urls": [
     "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/linear.py",
     "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/multigrid.py",
-    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/poisson_comparison.py"
+    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/poisson_comparison.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/common.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/schnakenberg.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/fisher.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/keller_segel.py"
   ],
   "test_urls": [
     "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_linear.py",
     "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_multigrid.py",
-    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_poisson_comparison.py"
+    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_poisson_comparison.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/test_models.py"
   ],
   "run_commands": [
     "python -m pytest -q tests/test_linear.py tests/test_multigrid.py tests/test_poisson_comparison.py"
@@ -113,7 +1551,17 @@
   "run_from": "Extracted code edition directory",
   "code_base": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/",
   "code_edition": "2026-11-21",
-  "execution_examples": [],
+  "execution_examples": [
+    {
+      "id": "schnakenberg-2d-boundary-modes",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-2d-boundary-modes/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-2d-boundary-modes/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    }
+  ],
   "problem_navigation": {
     "method_id": "crank-nicolson",
     "status": "educational-example",

@@ -49,6 +49,28 @@ Tan–Lv–Zhu (2023) Example 8 の e0=10^-4 を明示した有限圧力版。�
 
 固定入力・宣言したアルゴリズム・補正しない停止条件を用います。
 
+$$
+U=(\rho,\rho u,\rho v,E)^{\mathsf T},\quad p=(\gamma-1)\left[E-\frac{\rho}{2}(u^2+v^2)\right]
+$$
+
+$$
+\frac{d}{dt}(|K|\overline U_K)=-\sum_{f\subset\partial K}|f|\widehat F_{\mathrm{ALE}}(U_f^-,U_f^+;\mathbf n_f,w_{n,f})
+$$
+
+$$
+F_{\mathrm{ALE}}(U;\mathbf n,w_n)=(u_n-w_n)U+p(0,n_x,n_y,u_n)^{\mathsf T},\quad u_n=\mathbf u\cdot\mathbf n
+$$
+
+$$
+\widehat F_{\mathrm{ALE}}=\frac{F_{\mathrm{ALE}}(U_L)+F_{\mathrm{ALE}}(U_R)}{2}-\frac{a_{\max}}{2}(U_R-U_L),\quad a_{\max}=\max_{s=L,R}(|u_{n,s}-w_n|+c_s)
+$$
+
+$$
+x(t)=t+(1-t)x_0,\quad y(t)=y_0,\quad\mathbf w=(1-x_0,0)
+$$
+
+数式の編集補足：凍結配布版のコードと登録済み方程式に基づく記述です。配布版・計算・受入条件・保存結果は変更しません。 所与のアフィン格子運動と2次元ALE/Rusanov流束の式で、物質追従格子やremapの式ではありません。
+
 ## 比較・検証
 
 解析参照、保存量、細分化、独立成分検査と意図した誤式の負例を区別して保存します。
@@ -171,6 +193,28 @@ Tan–Lv–Zhu (2023) Example 8 variant with e0=1e-4 and finite initial pressure
 ## Adopted numerical method
 
 Tan–Lv–Zhu2023 Example8 e0=1e-4 initialvariant. PrescribedaffineALEmesh, not theirWENO/materialLagrangian/remap scheme. Finitepressure RH cellaverages.
+
+$$
+U=(\rho,\rho u,\rho v,E)^{\mathsf T},\quad p=(\gamma-1)\left[E-\frac{\rho}{2}(u^2+v^2)\right]
+$$
+
+$$
+\frac{d}{dt}(|K|\overline U_K)=-\sum_{f\subset\partial K}|f|\widehat F_{\mathrm{ALE}}(U_f^-,U_f^+;\mathbf n_f,w_{n,f})
+$$
+
+$$
+F_{\mathrm{ALE}}(U;\mathbf n,w_n)=(u_n-w_n)U+p(0,n_x,n_y,u_n)^{\mathsf T},\quad u_n=\mathbf u\cdot\mathbf n
+$$
+
+$$
+\widehat F_{\mathrm{ALE}}=\frac{F_{\mathrm{ALE}}(U_L)+F_{\mathrm{ALE}}(U_R)}{2}-\frac{a_{\max}}{2}(U_R-U_L),\quad a_{\max}=\max_{s=L,R}(|u_{n,s}-w_n|+c_s)
+$$
+
+$$
+x(t)=t+(1-t)x_0,\quad y(t)=y_0,\quad\mathbf w=(1-x_0,0)
+$$
+
+Editorial equations from the frozen code and registered models. The release, calculations, acceptance conditions and saved results are unchanged. These specify the prescribed affine mesh and 2D ALE/Rusanov flux, not a material grid or remap algorithm.
 
 ## References and validation
 

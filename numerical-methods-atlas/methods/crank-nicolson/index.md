@@ -21,6 +21,20 @@ Other names: Crank Nicolson, Crank-Nicolson法, クランク・ニコルソン�
 - Reference: https://doi.org/10.1090/S0025-5718-1977-0431719-X — Cited by the linked chapter; inspect its source-review notes before treating this as a method-specific derivation.
 - Reference: https://doi.org/10.1137/1.9780898719505 — Cited by the linked chapter; inspect its source-review notes before treating this as a method-specific derivation.
 
+## Small fixed-input validation supplements
+
+Compare two Neumann perturbations and a Dirichlet perturbation against nonlinear Galerkin references. This short small-amplitude study does not establish general pattern selection, mature patterns or reproduction of original figures. Finite reference differences are not rigorous continuum error bounds.
+
+2つのNeumann摂動とDirichlet摂動を独立な非線形Galerkin参照と比較します。 短時間の小振幅・固定初期値です。一般的な模様選択、成長後の成熟パターン、原著図の再現は主張しません。有限の参照差を連続体誤差の厳密上界と呼びません。
+
+- Schnakenberg:2D boundaries and initial modes: https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-2d-boundary-modes/
+
+Download: https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/atlas-biology-space-controls-2026-11-25.zip
+Verification: https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/verification.json
+Results: https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/results/result.json
+
+Common execution records: [{"id": "schnakenberg-2d-boundary-modes", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-2d-boundary-modes/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-2d-boundary-modes/?lang=en"}, "kind": "dedicated-supplement"}]
+
 Source: https://hrkoyama.github.io/numerical-methods-atlas/methods/crank-nicolson/
 Edition and terms: https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/
 
@@ -112,12 +126,18 @@ Related chapter modules and test files; not a claim that each test covers every 
 - [/code/numerical-methods-atlas/2026-11-21/numart/linear.py](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/linear.py)
 - [/code/numerical-methods-atlas/2026-11-21/numart/multigrid.py](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/multigrid.py)
 - [/code/numerical-methods-atlas/2026-11-21/numart/poisson_comparison.py](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/poisson_comparison.py)
+- [/code/validated-examples/2026-11-25/biology-space-controls/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/run.py)
+- [/code/validated-examples/2026-11-25/biology-space-controls/common.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/common.py)
+- [/code/validated-examples/2026-11-25/biology-space-controls/schnakenberg.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/schnakenberg.py)
+- [/code/validated-examples/2026-11-25/biology-space-controls/fisher.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/fisher.py)
+- [/code/validated-examples/2026-11-25/biology-space-controls/keller_segel.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/keller_segel.py)
 
 ###### 配布版のテスト
 
 - [/code/numerical-methods-atlas/2026-11-21/tests/test_linear.py](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_linear.py)
 - [/code/numerical-methods-atlas/2026-11-21/tests/test_multigrid.py](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_multigrid.py)
 - [/code/numerical-methods-atlas/2026-11-21/tests/test_poisson_comparison.py](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_poisson_comparison.py)
+- [/code/validated-examples/2026-11-25/biology-space-controls/test_models.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/test_models.py)
 
 配布版の案内で条件と作業フォルダを確認してください。複数例の検査や図生成を含む場合があります。
 
@@ -212,12 +232,18 @@ Related chapter modules and test files; not a claim that each test covers every 
 - [/code/numerical-methods-atlas/2026-11-21/numart/linear.py](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/linear.py)
 - [/code/numerical-methods-atlas/2026-11-21/numart/multigrid.py](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/multigrid.py)
 - [/code/numerical-methods-atlas/2026-11-21/numart/poisson_comparison.py](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/poisson_comparison.py)
+- [/code/validated-examples/2026-11-25/biology-space-controls/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/run.py)
+- [/code/validated-examples/2026-11-25/biology-space-controls/common.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/common.py)
+- [/code/validated-examples/2026-11-25/biology-space-controls/schnakenberg.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/schnakenberg.py)
+- [/code/validated-examples/2026-11-25/biology-space-controls/fisher.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/fisher.py)
+- [/code/validated-examples/2026-11-25/biology-space-controls/keller_segel.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/keller_segel.py)
 
 ###### Package tests
 
 - [/code/numerical-methods-atlas/2026-11-21/tests/test_linear.py](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_linear.py)
 - [/code/numerical-methods-atlas/2026-11-21/tests/test_multigrid.py](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_multigrid.py)
 - [/code/numerical-methods-atlas/2026-11-21/tests/test_poisson_comparison.py](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_poisson_comparison.py)
+- [/code/validated-examples/2026-11-25/biology-space-controls/test_models.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/test_models.py)
 
 Consult the edition’s guide for conditions and working directory; commands may check or generate figures for several cases.
 

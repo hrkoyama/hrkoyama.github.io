@@ -49,6 +49,20 @@ a=g=1, Ω=2, u0=.5, h0=10 の軸対称な無次元部分問題。運動量中心
 
 固定入力・宣言したアルゴリズム・補正しない停止条件を用います。
 
+$$
+h_t+\frac{\partial_\phi(hv\cos\phi)}{a\cos\phi}=0,\quad u_t+\frac va u_\phi-(2\Omega\sin\phi+u\tan\phi/a)v=0
+$$
+
+$$
+v_t+\frac va v_\phi+(2\Omega\sin\phi+u\tan\phi/a)u+\frac ga h_\phi=0
+$$
+
+$$
+u=u_0\cos\phi,\quad v=0,\quad h=h_0-\frac{a\Omega u_0+u_0^2/2}{g}\sin^2\phi
+$$
+
+数式の編集補足：凍結配布版のコードと登録済み方程式に基づく記述です。配布版・計算・受入条件・保存結果は変更しません。
+
 ## 比較・検証
 
 解析参照、保存量、細分化、独立成分検査と意図した誤式の負例を区別して保存します。
@@ -160,6 +174,20 @@ Axisymmetric nondimensional subproblem with a=g=1, Omega=2, u0=.5 and h0=10. Act
 ## Adopted numerical method
 
 NondimensionalWilliamson2-type axisymmetricsubproblem. Analyticstaticstatevsactualtimeintegration; not fullglobaldynamicalcore/PVclaim.
+
+$$
+h_t+\frac{\partial_\phi(hv\cos\phi)}{a\cos\phi}=0,\quad u_t+\frac va u_\phi-(2\Omega\sin\phi+u\tan\phi/a)v=0
+$$
+
+$$
+v_t+\frac va v_\phi+(2\Omega\sin\phi+u\tan\phi/a)u+\frac ga h_\phi=0
+$$
+
+$$
+u=u_0\cos\phi,\quad v=0,\quad h=h_0-\frac{a\Omega u_0+u_0^2/2}{g}\sin^2\phi
+$$
+
+Editorial equations from the frozen code and registered models. The release, calculations, acceptance conditions and saved results are unchanged.
 
 ## References and validation
 

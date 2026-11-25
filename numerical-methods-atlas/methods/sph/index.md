@@ -18,6 +18,21 @@ Other names: SPH法, smoothed particle hydrodynamics, 平滑化粒子法, SPH ke
 - Reference: https://doi.org/10.1093/mnras/181.3.375 — Cited by the linked chapter; inspect its source-review notes before treating this as a method-specific derivation.
 - Reference: https://doi.org/10.1086/112164 — Cited by the linked chapter; inspect its source-review notes before treating this as a method-specific derivation.
 
+## Small fixed-input validation supplements
+
+Only the named fixed examples in this five-case protocol. Actual Gaussian linear-specific-volume GSPH overlap with symmetric variable h, independent pair Riemann solves and antisymmetric total-energy exchange; not substitution of star pressure into ordinary SPH. First-order reconstruction only, not the paper cubic/MUSCL implementation or a general accuracy claim. GSPH with 128 jittered particles at t=0.2. The initial kernel reconstruction error reaches 0.011834, exceeding the acoustic amplitude 0.001 and remaining visible in the left density profile; the right panel shows that initial error. Acceptance concerns the fundamental Fourier mode phase/amplitude and other fixed conservation controls, not pointwise high accuracy or general superiority.
+
+固定された5ケース群のうち当該手法に対応する限定例です。 Gaussianの線形比体積畳み込み、対称な可変h、独立な対Riemann解と反対称な全エネルギー交換を持つGSPHです。通常SPHへp*を代入する代用ではありません。一次再構成に限定し、論文のcubic/MUSCLや一般精度を主張しません。 GSPH、摂動した128粒子、t=0.2。初期カーネル再構成誤差は最大0.011834で、音波振幅0.001より大きく、左の密度分布にその影響が残ります。右は初期誤差です。判定は基本Fourierモードの位相・振幅と保存量などの固定条件であり、点ごとの高精度や一般的な優位性を示しません。
+
+- Sod-type particle shock tube with Gaussian-convolution GSPH: https://hrkoyama.github.io/numerical-methods-atlas/validation/gsph-sod/
+- Uniform pressure and acoustics: particle-layout effects in SPH/GSPH: https://hrkoyama.github.io/numerical-methods-atlas/validation/sph-pressure-acoustics/
+
+Download: https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/atlas-continuum-particle-controls-2026-11-25.zip
+Verification: https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/verification.json
+Results: https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/results/result.json
+
+Common execution records: [{"id": "gsph-sod", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gsph-sod/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gsph-sod/?lang=en"}, "kind": "dedicated-supplement"}, {"id": "sph-pressure-acoustics", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sph-pressure-acoustics/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sph-pressure-acoustics/?lang=en"}, "kind": "dedicated-supplement"}]
+
 Source: https://hrkoyama.github.io/numerical-methods-atlas/methods/sph/
 Edition and terms: https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/
 
@@ -124,10 +139,17 @@ Related chapter modules and test files; not a claim that each test covers every 
 ###### 関連ソース
 
 - [/code/numerical-methods-atlas/2026-11-21/numart/geometry.py](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/geometry.py)
+- [/code/validated-examples/2026-11-25/continuum-particle-controls/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/run.py)
+- [/code/validated-examples/2026-11-25/continuum-particle-controls/ale_piston.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/ale_piston.py)
+- [/code/validated-examples/2026-11-25/continuum-particle-controls/failure_support.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/failure_support.py)
+- [/code/validated-examples/2026-11-25/continuum-particle-controls/gsph.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/gsph.py)
+- [/code/validated-examples/2026-11-25/continuum-particle-controls/sphere.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/sphere.py)
+- [/code/validated-examples/2026-11-25/continuum-particle-controls/reference_riemann.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/reference_riemann.py)
 
 ###### 配布版のテスト
 
 - [/code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py)
+- [/code/validated-examples/2026-11-25/continuum-particle-controls/test_components.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/test_components.py)
 
 配布版の案内で条件と作業フォルダを確認してください。複数例の検査や図生成を含む場合があります。
 
@@ -237,10 +259,17 @@ Related chapter modules and test files; not a claim that each test covers every 
 ###### Related source
 
 - [/code/numerical-methods-atlas/2026-11-21/numart/geometry.py](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/geometry.py)
+- [/code/validated-examples/2026-11-25/continuum-particle-controls/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/run.py)
+- [/code/validated-examples/2026-11-25/continuum-particle-controls/ale_piston.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/ale_piston.py)
+- [/code/validated-examples/2026-11-25/continuum-particle-controls/failure_support.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/failure_support.py)
+- [/code/validated-examples/2026-11-25/continuum-particle-controls/gsph.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/gsph.py)
+- [/code/validated-examples/2026-11-25/continuum-particle-controls/sphere.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/sphere.py)
+- [/code/validated-examples/2026-11-25/continuum-particle-controls/reference_riemann.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/reference_riemann.py)
 
 ###### Package tests
 
 - [/code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py)
+- [/code/validated-examples/2026-11-25/continuum-particle-controls/test_components.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/test_components.py)
 
 Consult the edition’s guide for conditions and working directory; commands may check or generate figures for several cases.
 

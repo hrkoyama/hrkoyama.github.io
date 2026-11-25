@@ -1,5 +1,5 @@
 // Generated from frontend/search/engine.mjs by scripts/search_assets.py. Edit the source template.
-import {findMethods,tokenIncludes} from './method-search.mjs?v=873e9c53bc9f';
+import {findMethods,tokenIncludes} from './method-search.mjs?v=4b377a4b35ce';
 import {unpackSearchIndex} from './compact-index.mjs?v=5ac38c56172d';
 import {publicNavigationPath} from './navigation.mjs?v=cbd24e09fe05';
 const ORIGIN = 'https://hrkoyama.github.io';
@@ -79,7 +79,7 @@ export function makeSearch(documents) {
     for (const entry of scoped) {
       if(executionPaths.has(entry.doc.url))continue;
       if(methods.length && entry.doc.method)continue;
-      const entityPriority=['equation','reference'].includes(entry.doc.kind)&&[
+      const entityPriority=['equation','reference','connection'].includes(entry.doc.kind)&&[
         String(entry.doc.id||entry.doc.search_navigation?.id||'').replace(/^(?:equation|reference)-/,''),
         entry.doc.title,entry.doc.titleEn,...Object.values(entry.doc.name||{})
       ].filter(value=>typeof value==='string'&&value).some(identity=>normalize(identity)===phrase);

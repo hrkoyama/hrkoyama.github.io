@@ -335,7 +335,8 @@
         "ou-weak-moments",
         "gbm-milstein-strong",
         "normal-tail-importance",
-        "correlated-gaussian-mcmc"
+        "correlated-gaussian-mcmc",
+        "immigration-death-ssa"
       ]
     },
     {
@@ -641,10 +642,10 @@
   "registry": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
   "verification_receipt": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json",
   "source_sha256": {
-    "catalog/atlas-depth.json": "b9829bb20804de2570af0b378db7723fc03bf0e4e0269871c07211fb1a5b42b0",
+    "catalog/atlas-depth.json": "2bdfa9f245e35a4c6ad436907291b2b14b129dc2e677640d2ceac183e1c58e66",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "catalog/atlas-depth-expansion.json": "a3fa27c909cda00ef31a0919afffe3275a132bc03193841879563384fdb84249",
+    "catalog/atlas-depth-expansion.json": "d559e4bbc6643cb6f149f97a7c3d9b27eed2d9f38ac3b5f1e9811f83c3db0936",
     "catalog/atlas-equations.json": "f904a3d85199505331f3ef3ba6cd52530fbc7423120f0551dde0063e4e51d093",
     "code/validated-examples/2026-11-22/mhd/source-manifest.json": "49c66703b1b7891c41437abaf871fc69d9b3a2067731f9a1f7b0a2d4e5ff4061",
     "code/validated-examples/2026-11-22/mhd/verification.json": "272fdb476f16cd8f97e5cf3b8f9c7aab921ff56ed2448a0714a6473fa0c72597",

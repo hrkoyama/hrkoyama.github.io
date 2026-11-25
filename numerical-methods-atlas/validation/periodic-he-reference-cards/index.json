@@ -163,7 +163,12 @@
     "passed_tests": 18
   },
   "source_sha256": {
-    "catalog/atlas-depth-expansion.json": "a3fa27c909cda00ef31a0919afffe3275a132bc03193841879563384fdb84249",
+    "catalog/atlas-depth-expansion.json": "d559e4bbc6643cb6f149f97a7c3d9b27eed2d9f38ac3b5f1e9811f83c3db0936",
+    "code/validated-examples/2026-11-25/continuum-particle-controls/ale_piston.py": "a0afb8cfc9372a8865ec1d73fef62cb5516eedc5bb5396f4f281ff5f671d2cae",
+    "code/validated-examples/2026-11-25/continuum-particle-controls/inputs.json": "5f49881f37b07c47f674979a4886e6da0421be06ddb6bb213ab7dfea6bf6e0f5",
+    "catalog/atlas-equations.json": "f904a3d85199505331f3ef3ba6cd52530fbc7423120f0551dde0063e4e51d093",
+    "code/validated-examples/2026-11-25/continuum-particle-controls/sphere.py": "b352773dd6418e04e3f44892cb3e89873f9d650153a0da0f7a04ada90d39b56b",
+    "code/validated-examples/2026-11-25/continuum-particle-controls/gsph.py": "aa9d35837e97a772a46e9aa358f56f1ca9bc7b69e98e34d8626fc3e742bbf5e2",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
     "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
     "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
@@ -693,7 +698,7 @@
     }
   },
   "navigation_source_sha256": {
-    "catalog/atlas-depth-expansion.json": "a3fa27c909cda00ef31a0919afffe3275a132bc03193841879563384fdb84249",
+    "catalog/atlas-depth-expansion.json": "d559e4bbc6643cb6f149f97a7c3d9b27eed2d9f38ac3b5f1e9811f83c3db0936",
     "catalog/atlas-equations.json": "f904a3d85199505331f3ef3ba6cd52530fbc7423120f0551dde0063e4e51d093",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
     "catalog/atlas-methods.json": "989b31c7bfe335ebf0c6d44cb9ed126aa79aad9c74d913f6d41ec853890a6418",
@@ -1201,7 +1206,7 @@
     "numerical-methods-atlas/assets/reference-solutions.json": "c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "numerical-methods-atlas/gallery/preview-manifest.json": "c6b31ad5af0fe30f0a9fdd0a4122bbb70510d15c48f49fd9edd85dba0b6c4e6f",
+    "numerical-methods-atlas/gallery/preview-manifest.json": "8c3e0bc226cc36e0c3f22172f61744f80a530278ecfecfcc91ac5a942ad3fdce",
     "numerical-methods-atlas/locales/messages.json": "014c9a41fe537bca0a1bae7698174b9b6b236e56cd1f7935029d5408c95d630d"
   }
 }

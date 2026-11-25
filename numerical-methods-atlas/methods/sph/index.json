@@ -58,11 +58,717 @@
   "depth_additional_releases": [
     {
       "group": "continuum-particle-controls",
-      "edition": "2026-11-25",
       "case_ids": [
         "gsph-sod",
         "sph-pressure-acoustics"
-      ]
+      ],
+      "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/",
+      "code_edition": "2026-11-25",
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/ale_piston.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/failure_support.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/gsph.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/sphere.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/reference_riemann.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/test_components.py"
+      ],
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "run_from": "atlas-continuum-particle-controls-2026-11-25",
+      "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/atlas-continuum-particle-controls-2026-11-25.zip",
+      "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/source-manifest.json",
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/verification.json",
+      "code_archive_sha256": "1d12a6ecd9d87ae95585a984e66411b2314eb7804b064f023aa57addc3142f49",
+      "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/results/result.json",
+      "passed_tests": 17,
+      "examples": [
+        {
+          "id": "gsph-sod",
+          "method_ids": [
+            "gsph",
+            "sph"
+          ],
+          "title": {
+            "ja": "Gaussian畳込みGSPHによるSod型粒子衝撃管",
+            "en": "Sod-type particle shock tube with Gaussian-convolution GSPH"
+          },
+          "summary": {
+            "ja": "Gaussian畳込みの線形比体積近似と対称な可変平滑化長を使う、限定GSPH粒子流体計算。",
+            "en": "ActualInutsuka-linear-overlap variablehGSPH approximation withfirstorderpair states, comparedwithdistinctstandardSPHcontrol. Periodictwointerfaces; centralwindowbeforeouterwaves. Not cubic/MUSCLpaperreproduction or plainSPH-pressure-star surrogate."
+          },
+          "assumptions": {
+            "ja": "Gaussian畳込みの線形比体積近似と対称な可変平滑化長を使う、限定GSPH粒子流体計算。 固定入力の条件・境界・参照の範囲はinputs.jsonを参照。",
+            "en": "ActualInutsuka-linear-overlap variablehGSPH approximation withfirstorderpair states, comparedwithdistinctstandardSPHcontrol. Periodictwointerfaces; centralwindowbeforeouterwaves. Not cubic/MUSCLpaperreproduction or plainSPH-pressure-star surrogate."
+          },
+          "algorithm": {
+            "ja": "固定入力・宣言したアルゴリズム・補正しない停止条件を用います。",
+            "en": "ActualInutsuka-linear-overlap variablehGSPH approximation withfirstorderpair states, comparedwithdistinctstandardSPHcontrol. Periodictwointerfaces; centralwindowbeforeouterwaves. Not cubic/MUSCLpaperreproduction or plainSPH-pressure-star surrogate."
+          },
+          "validation": {
+            "ja": "解析参照、保存量、細分化、独立成分検査と意図した誤式の負例を区別して保存します。",
+            "en": "Separate analytic/reference errors, conservation, refinement, independent component qualification and deliberately wrong-formula controls."
+          },
+          "limits": {
+            "ja": "限定した教育用モデルです。元論文の全条件・全アルゴリズムや一般的な性能の再現ではありません。",
+            "en": "ActualInutsuka-linear-overlap variablehGSPH approximation withfirstorderpair states, comparedwithdistinctstandardSPHcontrol. Periodictwointerfaces; centralwindowbeforeouterwaves. Not cubic/MUSCLpaperreproduction or plainSPH-pressure-star surrogate."
+          },
+          "domains": [
+            "pde",
+            "particles"
+          ],
+          "code_files": [
+            "ale_piston.py",
+            "failure_support.py",
+            "gsph.py",
+            "run.py",
+            "sphere.py"
+          ],
+          "reference_files": [
+            "reference_riemann.py",
+            "source-reading.json",
+            "acceptance.json",
+            "PROTOCOL.md"
+          ],
+          "references": [
+            {
+              "id": "inutsuka2002",
+              "authors": "Shu-ichiro Inutsuka",
+              "year": 2002,
+              "title": "Reformulation of Smoothed Particle Hydrodynamics with Riemann Solver",
+              "doi": "10.1006/jcph.2002.7053",
+              "url": "https://arxiv.org/pdf/astro-ph/0206401",
+              "roles": [
+                "numerical-method",
+                "original-GSPH-test-definition"
+              ],
+              "read_scope": "Author PDF selected passages in sections3.1.1/3.2/3.3/3.4 and4.1, equations48–52,66–67,79–85,94 and Figure6 caption. No new whole-paper audit. Gaussian convolution overlap, variableh approximation and matched pair energy are distinguished from substituting star pressure into ordinarySPH.",
+              "limits": "Draft will use the linear specific-volume overlap and first-order pair reconstruction, not the paper cubic/MUSCL production variant. Variableh is the paper approximate formulation, not a rigorous grad-h variationalSPH scheme.",
+              "review_level": "selected-original-author-paper-sections-and-equations"
+            },
+            {
+              "id": "saltzman2023-configuration",
+              "authors": "Yan Tan; Hui Lv; Jun Zhu",
+              "year": 2023,
+              "title": "New Third-Order Finite Volume Unequal-Sized WENO Lagrangian Schemes for Solving Euler Equations",
+              "doi": "10.3390/math11234842",
+              "url": "https://www.mdpi.com/2227-7390/11/23/4842",
+              "roles": [
+                "explicit-benchmark-configuration"
+              ],
+              "read_scope": "Publisher full-text Example8, equation42 and Figures8–9 captions: 2D skewedpiston geometry and finite nonzero internalenergy. Only the benchmark configuration is borrowed; the new solver is not that WENO/Lagrangian method.",
+              "limits": "Saltzman/Colella1985 LA-UR-85-678 is cited historically but original full text was not obtained. Later papers use different skew maps/cold pressures; they must not be silently mixed.",
+              "review_level": "selected-publisher-fulltext-example-8"
+            },
+            {
+              "id": "saltzman-colella1985",
+              "authors": "J. Saltzman; P. Colella",
+              "year": 1985,
+              "title": "Second Order Corner Coupled Upwind Transport Methods for Lagrangian Hydrodynamics",
+              "report": "LA-UR-85-678",
+              "url": "https://www.osti.gov/servlets/purl/15005665",
+              "roles": [
+                "historical-original-problem"
+              ],
+              "read_scope": "Bibliographic identity found in the authors LLNL comparison report reference27, not the original1985 report.",
+              "limits": "Do not claim original1985 parameters or originalmethod reproduction.",
+              "review_level": "secondary-bibliographic-identity-original-report-unread"
+            },
+            {
+              "id": "williamson1992",
+              "authors": "D. L. Williamson; J. B. Drake; J. J. Hack; R. Jakob; P. N. Swarztrauber",
+              "year": 1992,
+              "title": "A standard test set for numerical approximations to the shallow water equations in spherical geometry",
+              "doi": "10.1016/S0021-9991(05)80016-6",
+              "url": "https://digital.library.unt.edu/ark:/67531/metadc1069483/",
+              "roles": [
+                "original-problem-suite"
+              ],
+              "read_scope": "DOE/ORNL1991 author-report bibliography/abstract and suite identity. FullPDF/page fetch timed out; do not mark original equation read.",
+              "limits": "Primary author implementation/formula confirmation still required before claiming exactstandard W92 parameterreproduction.",
+              "review_level": "author-report-bibliography-and-abstract-original-formulas-unread"
+            },
+            {
+              "id": "nair-author-sphere",
+              "authors": "Ramachandran Nair; Jean Côté; Andrew Staniforth",
+              "year": 1999,
+              "title": "Cascade interpolation for semi-Lagrangian advection over the sphere",
+              "url": "https://www.image.ucar.edu/staff/rnair/qj99_sph.pdf",
+              "roles": [
+                "author-formula-crosscheck"
+              ],
+              "read_scope": "Author-hosted selected section3 gives velocity/bell formulas and explicitly distinguishes radius7pi/64 from W92 radius1/3.",
+              "limits": "Selected solidbody-rotation definitions only. Our bilinear tensor interpolation is not their cascade algorithm; our radius1/3 uses the W92-associated variant, not their7pi/64 radius. Original W92 full text remains unread.",
+              "doi": "10.1002/qj.1999.49712555617",
+              "journal": "Quarterly Journal of the Royal Meteorological Society",
+              "volume": 125,
+              "issue": 556,
+              "pages": "1445–1468",
+              "bibliography_verification": {
+                "publisher": "https://rmets.onlinelibrary.wiley.com/doi/10.1002/qj.1999.49712555617",
+                "author_institution": "https://impacts.ucar.edu/en/publications/cascade-interpolation-for-semi-lagrangian-advection-over-the-sphe/",
+                "read_at_utc": "2026-11-25T09:01:07.880299+00:00"
+              },
+              "review_level": "selected-author-hosted-formulas-and-publisher-bibliography"
+            }
+          ],
+          "plot": "gsph-sod.png",
+          "preview": "gsph-sod-preview.png",
+          "planned_equation_ids": [
+            "euler"
+          ],
+          "measured": {
+            "id": "gsph-sod",
+            "passed": true,
+            "metrics": {
+              "finest_GSPH": {
+                "method": "gsph",
+                "right_particles": 32,
+                "rho_error": 0.03789937718353325,
+                "pressure_error": 0.040752681798075875,
+                "shock_error": 0.011271366170524794,
+                "defect": [
+                  0.0,
+                  2.220446049250313e-16,
+                  0.0
+                ],
+                "h_change": 1.5560167029698944,
+                "steps": 518,
+                "h_residual": 9.994160761956033e-11,
+                "Riemann_residual": 1.5300261058115439e-15
+              },
+              "pair_swap_force_residual": 0.0,
+              "pair_swap_energy_residual": 1.1102230246251565e-16,
+              "oracle_pressure_root": 0.30313017805063625,
+              "oracle_root_diagnostics": {
+                "iterations": 45,
+                "log_bracket_width": 1.3078427230084344e-13,
+                "wave_residual": -5.773159728050814e-14
+              }
+            },
+            "checks": {
+              "pair_swap_force": true,
+              "pair_swap_energy": true,
+              "conservation": true,
+              "rho": true,
+              "pressure": true,
+              "refinement": true,
+              "shock": true,
+              "h_solve": true,
+              "Riemann": true,
+              "adaptive_h": true
+            },
+            "records": [
+              {
+                "method": "gsph",
+                "right_particles": 16,
+                "rho_error": 0.05859811714229003,
+                "pressure_error": 0.05834178880702191,
+                "shock_error": 0.01583330771536892,
+                "defect": [
+                  0.0,
+                  2.7755575615628914e-17,
+                  -4.440892098500626e-16
+                ],
+                "h_change": 1.4033364886019801,
+                "steps": 255,
+                "h_residual": 9.994144972561693e-11,
+                "Riemann_residual": 1.4432899320127035e-15
+              },
+              {
+                "method": "gsph",
+                "right_particles": 32,
+                "rho_error": 0.03789937718353325,
+                "pressure_error": 0.040752681798075875,
+                "shock_error": 0.011271366170524794,
+                "defect": [
+                  0.0,
+                  2.220446049250313e-16,
+                  0.0
+                ],
+                "h_change": 1.5560167029698944,
+                "steps": 518,
+                "h_residual": 9.994160761956033e-11,
+                "Riemann_residual": 1.5300261058115439e-15
+              },
+              {
+                "method": "sph",
+                "right_particles": 16,
+                "rho_error": 0.04687701674940342,
+                "pressure_error": 0.06471491872635392,
+                "shock_error": 0.022487023693831015,
+                "defect": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "h_change": 0.0,
+                "steps": 268,
+                "h_residual": 0.0,
+                "Riemann_residual": 0.0
+              },
+              {
+                "method": "sph",
+                "right_particles": 32,
+                "rho_error": 0.0467804408027692,
+                "pressure_error": 0.06137069262338928,
+                "shock_error": 0.018114954873250183,
+                "defect": [
+                  0.0,
+                  0.0,
+                  -4.440892098500626e-16
+                ],
+                "h_change": 0.0,
+                "steps": 524,
+                "h_residual": 0.0,
+                "Riemann_residual": 0.0
+              }
+            ]
+          },
+          "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gsph-sod/",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-continuum-particle-controls/#gsph-sod",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-continuum-particle-controls/#gsph-sod"
+          }
+        },
+        {
+          "id": "sph-pressure-acoustics",
+          "method_ids": [
+            "gsph",
+            "sph"
+          ],
+          "title": {
+            "ja": "一様圧力と線形音波：SPH/GSPHの粒子配置依存",
+            "en": "Uniform pressure and acoustics: particle-layout effects in SPH/GSPH"
+          },
+          "summary": {
+            "ja": "規則・摂動粒子の一様圧力と小振幅音波について、初期カーネル誤差と時間発展誤差を区別する。",
+            "en": "Regular/deterministicallyjitteredperiodicparticles, fixedhSPHcontrol vs adaptivehGSPH. Separateinitialkernelerror and fluidupdate, finiteamplitudeO(A²)linearizedreference remainder. No universalGSPHsuperiorityclaim."
+          },
+          "assumptions": {
+            "ja": "規則・摂動粒子の一様圧力と小振幅音波について、初期カーネル誤差と時間発展誤差を区別する。 固定入力の条件・境界・参照の範囲はinputs.jsonを参照。",
+            "en": "Regular/deterministicallyjitteredperiodicparticles, fixedhSPHcontrol vs adaptivehGSPH. Separateinitialkernelerror and fluidupdate, finiteamplitudeO(A²)linearizedreference remainder. No universalGSPHsuperiorityclaim."
+          },
+          "algorithm": {
+            "ja": "固定入力・宣言したアルゴリズム・補正しない停止条件を用います。",
+            "en": "Regular/deterministicallyjitteredperiodicparticles, fixedhSPHcontrol vs adaptivehGSPH. Separateinitialkernelerror and fluidupdate, finiteamplitudeO(A²)linearizedreference remainder. No universalGSPHsuperiorityclaim."
+          },
+          "validation": {
+            "ja": "解析参照、保存量、細分化、独立成分検査と意図した誤式の負例を区別して保存します。",
+            "en": "Separate analytic/reference errors, conservation, refinement, independent component qualification and deliberately wrong-formula controls."
+          },
+          "limits": {
+            "ja": "限定した教育用モデルです。元論文の全条件・全アルゴリズムや一般的な性能の再現ではありません。",
+            "en": "Regular/deterministicallyjitteredperiodicparticles, fixedhSPHcontrol vs adaptivehGSPH. Separateinitialkernelerror and fluidupdate, finiteamplitudeO(A²)linearizedreference remainder. No universalGSPHsuperiorityclaim."
+          },
+          "domains": [
+            "pde",
+            "particles"
+          ],
+          "code_files": [
+            "ale_piston.py",
+            "failure_support.py",
+            "gsph.py",
+            "run.py",
+            "sphere.py"
+          ],
+          "reference_files": [
+            "reference_riemann.py",
+            "source-reading.json",
+            "acceptance.json",
+            "PROTOCOL.md"
+          ],
+          "references": [
+            {
+              "id": "inutsuka2002",
+              "authors": "Shu-ichiro Inutsuka",
+              "year": 2002,
+              "title": "Reformulation of Smoothed Particle Hydrodynamics with Riemann Solver",
+              "doi": "10.1006/jcph.2002.7053",
+              "url": "https://arxiv.org/pdf/astro-ph/0206401",
+              "roles": [
+                "numerical-method",
+                "original-GSPH-test-definition"
+              ],
+              "read_scope": "Author PDF selected passages in sections3.1.1/3.2/3.3/3.4 and4.1, equations48–52,66–67,79–85,94 and Figure6 caption. No new whole-paper audit. Gaussian convolution overlap, variableh approximation and matched pair energy are distinguished from substituting star pressure into ordinarySPH.",
+              "limits": "Draft will use the linear specific-volume overlap and first-order pair reconstruction, not the paper cubic/MUSCL production variant. Variableh is the paper approximate formulation, not a rigorous grad-h variationalSPH scheme.",
+              "review_level": "selected-original-author-paper-sections-and-equations"
+            },
+            {
+              "id": "saltzman2023-configuration",
+              "authors": "Yan Tan; Hui Lv; Jun Zhu",
+              "year": 2023,
+              "title": "New Third-Order Finite Volume Unequal-Sized WENO Lagrangian Schemes for Solving Euler Equations",
+              "doi": "10.3390/math11234842",
+              "url": "https://www.mdpi.com/2227-7390/11/23/4842",
+              "roles": [
+                "explicit-benchmark-configuration"
+              ],
+              "read_scope": "Publisher full-text Example8, equation42 and Figures8–9 captions: 2D skewedpiston geometry and finite nonzero internalenergy. Only the benchmark configuration is borrowed; the new solver is not that WENO/Lagrangian method.",
+              "limits": "Saltzman/Colella1985 LA-UR-85-678 is cited historically but original full text was not obtained. Later papers use different skew maps/cold pressures; they must not be silently mixed.",
+              "review_level": "selected-publisher-fulltext-example-8"
+            },
+            {
+              "id": "saltzman-colella1985",
+              "authors": "J. Saltzman; P. Colella",
+              "year": 1985,
+              "title": "Second Order Corner Coupled Upwind Transport Methods for Lagrangian Hydrodynamics",
+              "report": "LA-UR-85-678",
+              "url": "https://www.osti.gov/servlets/purl/15005665",
+              "roles": [
+                "historical-original-problem"
+              ],
+              "read_scope": "Bibliographic identity found in the authors LLNL comparison report reference27, not the original1985 report.",
+              "limits": "Do not claim original1985 parameters or originalmethod reproduction.",
+              "review_level": "secondary-bibliographic-identity-original-report-unread"
+            },
+            {
+              "id": "williamson1992",
+              "authors": "D. L. Williamson; J. B. Drake; J. J. Hack; R. Jakob; P. N. Swarztrauber",
+              "year": 1992,
+              "title": "A standard test set for numerical approximations to the shallow water equations in spherical geometry",
+              "doi": "10.1016/S0021-9991(05)80016-6",
+              "url": "https://digital.library.unt.edu/ark:/67531/metadc1069483/",
+              "roles": [
+                "original-problem-suite"
+              ],
+              "read_scope": "DOE/ORNL1991 author-report bibliography/abstract and suite identity. FullPDF/page fetch timed out; do not mark original equation read.",
+              "limits": "Primary author implementation/formula confirmation still required before claiming exactstandard W92 parameterreproduction.",
+              "review_level": "author-report-bibliography-and-abstract-original-formulas-unread"
+            },
+            {
+              "id": "nair-author-sphere",
+              "authors": "Ramachandran Nair; Jean Côté; Andrew Staniforth",
+              "year": 1999,
+              "title": "Cascade interpolation for semi-Lagrangian advection over the sphere",
+              "url": "https://www.image.ucar.edu/staff/rnair/qj99_sph.pdf",
+              "roles": [
+                "author-formula-crosscheck"
+              ],
+              "read_scope": "Author-hosted selected section3 gives velocity/bell formulas and explicitly distinguishes radius7pi/64 from W92 radius1/3.",
+              "limits": "Selected solidbody-rotation definitions only. Our bilinear tensor interpolation is not their cascade algorithm; our radius1/3 uses the W92-associated variant, not their7pi/64 radius. Original W92 full text remains unread.",
+              "doi": "10.1002/qj.1999.49712555617",
+              "journal": "Quarterly Journal of the Royal Meteorological Society",
+              "volume": 125,
+              "issue": 556,
+              "pages": "1445–1468",
+              "bibliography_verification": {
+                "publisher": "https://rmets.onlinelibrary.wiley.com/doi/10.1002/qj.1999.49712555617",
+                "author_institution": "https://impacts.ucar.edu/en/publications/cascade-interpolation-for-semi-lagrangian-advection-over-the-sphe/",
+                "read_at_utc": "2026-11-25T09:01:07.880299+00:00"
+              },
+              "review_level": "selected-author-hosted-formulas-and-publisher-bibliography"
+            }
+          ],
+          "plot": "sph-pressure-acoustics.png",
+          "preview": "sph-pressure-acoustics-preview.png",
+          "planned_equation_ids": [
+            "euler"
+          ],
+          "measured": {
+            "id": "sph-pressure-acoustics",
+            "passed": true,
+            "metrics": {
+              "profiles": 16,
+              "linearization_remainder_scale": 1e-06
+            },
+            "checks": {
+              "regular_static_force": true,
+              "jittered_static_velocity": true,
+              "acoustic_phase": true,
+              "acoustic_amplitude": true,
+              "conservation": true
+            },
+            "records": [
+              {
+                "method": "gsph",
+                "acoustic": false,
+                "jitter": false,
+                "particles": 64,
+                "initial_force": 5.329070518200751e-15,
+                "initial_kernel_error": 1.3450449076746196e-06,
+                "velocity_max": 8.937271492775838e-17,
+                "phase_error": 0.0,
+                "amplitude_relative_error": 0.0,
+                "defect": [
+                  0.0,
+                  -3.864096621486545e-17,
+                  0.0
+                ],
+                "steps": 18
+              },
+              {
+                "method": "gsph",
+                "acoustic": false,
+                "jitter": false,
+                "particles": 128,
+                "initial_force": 1.0658141036401503e-14,
+                "initial_kernel_error": 1.3450449076746196e-06,
+                "velocity_max": 1.2545612240167544e-16,
+                "phase_error": 0.0,
+                "amplitude_relative_error": 0.0,
+                "defect": [
+                  0.0,
+                  -7.719084818624856e-17,
+                  0.0
+                ],
+                "steps": 36
+              },
+              {
+                "method": "gsph",
+                "acoustic": false,
+                "jitter": true,
+                "particles": 64,
+                "initial_force": 0.051176097875732296,
+                "initial_kernel_error": 0.023370288508501424,
+                "velocity_max": 0.0019391365583129809,
+                "phase_error": 0.0,
+                "amplitude_relative_error": 0.0,
+                "defect": [
+                  0.0,
+                  -2.681706311007115e-18,
+                  0.0
+                ],
+                "steps": 18
+              },
+              {
+                "method": "gsph",
+                "acoustic": false,
+                "jitter": true,
+                "particles": 128,
+                "initial_force": 0.007156950187948041,
+                "initial_kernel_error": 0.011828899475329946,
+                "velocity_max": 0.0002879130436727492,
+                "phase_error": 0.0,
+                "amplitude_relative_error": 0.0,
+                "defect": [
+                  0.0,
+                  -5.345201413648262e-18,
+                  2.220446049250313e-16
+                ],
+                "steps": 36
+              },
+              {
+                "method": "gsph",
+                "acoustic": true,
+                "jitter": false,
+                "particles": 64,
+                "initial_force": 0.00635278955696883,
+                "initial_kernel_error": 4.811805334625774e-06,
+                "velocity_max": 0.0009236746451309551,
+                "phase_error": 0.04457604532856833,
+                "amplitude_relative_error": 0.04352830048396161,
+                "defect": [
+                  0.0,
+                  -3.3462036581281135e-18,
+                  -2.220446049250313e-16
+                ],
+                "steps": 72
+              },
+              {
+                "method": "gsph",
+                "acoustic": true,
+                "jitter": false,
+                "particles": 128,
+                "initial_force": 0.006301073254409317,
+                "initial_kernel_error": 2.2126406166167456e-06,
+                "velocity_max": 0.0009594084170960964,
+                "phase_error": 0.023412776265260362,
+                "amplitude_relative_error": 0.021061997782465758,
+                "defect": [
+                  0.0,
+                  5.803446238112839e-18,
+                  -2.220446049250313e-16
+                ],
+                "steps": 143
+              },
+              {
+                "method": "gsph",
+                "acoustic": true,
+                "jitter": true,
+                "particles": 64,
+                "initial_force": 0.056837028043483784,
+                "initial_kernel_error": 0.023368234849200253,
+                "velocity_max": 0.0015039517861971483,
+                "phase_error": 0.044622031978529285,
+                "amplitude_relative_error": 0.043487498119571866,
+                "defect": [
+                  0.0,
+                  3.7070396936584454e-18,
+                  0.0
+                ],
+                "steps": 72
+              },
+              {
+                "method": "gsph",
+                "acoustic": true,
+                "jitter": true,
+                "particles": 128,
+                "initial_force": 0.012764558853660901,
+                "initial_kernel_error": 0.01183431287289971,
+                "velocity_max": 0.0010878602877072378,
+                "phase_error": 0.023413015107400417,
+                "amplitude_relative_error": 0.021058606998279994,
+                "defect": [
+                  0.0,
+                  3.2749470114403455e-18,
+                  0.0
+                ],
+                "steps": 144
+              },
+              {
+                "method": "sph",
+                "acoustic": false,
+                "jitter": false,
+                "particles": 64,
+                "initial_force": 7.105427357601002e-15,
+                "initial_kernel_error": 1.3450449076746196e-06,
+                "velocity_max": 3.153033121141567e-16,
+                "phase_error": 0.0,
+                "amplitude_relative_error": 0.0,
+                "defect": [
+                  0.0,
+                  1.1535892740664254e-17,
+                  0.0
+                ],
+                "steps": 18
+              },
+              {
+                "method": "sph",
+                "acoustic": false,
+                "jitter": false,
+                "particles": 128,
+                "initial_force": 1.4210854715202004e-14,
+                "initial_kernel_error": 1.3450449076746196e-06,
+                "velocity_max": 3.896885437174613e-16,
+                "phase_error": 0.0,
+                "amplitude_relative_error": 0.0,
+                "defect": [
+                  0.0,
+                  -2.9923720091518844e-18,
+                  0.0
+                ],
+                "steps": 36
+              },
+              {
+                "method": "sph",
+                "acoustic": false,
+                "jitter": true,
+                "particles": 64,
+                "initial_force": 0.03588704060697623,
+                "initial_kernel_error": 0.023370288508501424,
+                "velocity_max": 0.0014844854358780502,
+                "phase_error": 0.0,
+                "amplitude_relative_error": 0.0,
+                "defect": [
+                  0.0,
+                  4.3080095697353715e-18,
+                  0.0
+                ],
+                "steps": 18
+              },
+              {
+                "method": "sph",
+                "acoustic": false,
+                "jitter": true,
+                "particles": 128,
+                "initial_force": 0.004832933053840804,
+                "initial_kernel_error": 0.011828899475329946,
+                "velocity_max": 0.0002034276651211021,
+                "phase_error": 0.0,
+                "amplitude_relative_error": 0.0,
+                "defect": [
+                  0.0,
+                  -1.4376266697273613e-18,
+                  2.220446049250313e-16
+                ],
+                "steps": 36
+              },
+              {
+                "method": "sph",
+                "acoustic": true,
+                "jitter": false,
+                "particles": 64,
+                "initial_force": 0.006333389883472762,
+                "initial_kernel_error": 4.811805334625774e-06,
+                "velocity_max": 0.0009903070776615692,
+                "phase_error": 0.008796105207573908,
+                "amplitude_relative_error": 0.018057134199508162,
+                "defect": [
+                  0.0,
+                  1.143113313967041e-17,
+                  0.0
+                ],
+                "steps": 72
+              },
+              {
+                "method": "sph",
+                "acoustic": true,
+                "jitter": false,
+                "particles": 128,
+                "initial_force": 0.006295731997411735,
+                "initial_kernel_error": 2.2126406166167456e-06,
+                "velocity_max": 0.0009937796617539212,
+                "phase_error": 0.00562227198386485,
+                "amplitude_relative_error": 0.008160556154479526,
+                "defect": [
+                  0.0,
+                  -2.4013384054659415e-19,
+                  -2.220446049250313e-16
+                ],
+                "steps": 143
+              },
+              {
+                "method": "sph",
+                "acoustic": true,
+                "jitter": true,
+                "particles": 64,
+                "initial_force": 0.04131920329160366,
+                "initial_kernel_error": 0.023368234849200253,
+                "velocity_max": 0.001921508672921766,
+                "phase_error": 0.008279445341194505,
+                "amplitude_relative_error": 0.01817465468130519,
+                "defect": [
+                  0.0,
+                  -3.218301683092714e-18,
+                  0.0
+                ],
+                "steps": 73
+              },
+              {
+                "method": "sph",
+                "acoustic": true,
+                "jitter": true,
+                "particles": 128,
+                "initial_force": 0.01039100564375417,
+                "initial_kernel_error": 0.01183431287289971,
+                "velocity_max": 0.0011322600135208862,
+                "phase_error": 0.005581954436149254,
+                "amplitude_relative_error": 0.00819551780633443,
+                "defect": [
+                  0.0,
+                  -2.510288018306526e-18,
+                  0.0
+                ],
+                "steps": 144
+              }
+            ]
+          },
+          "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sph-pressure-acoustics/",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-continuum-particle-controls/#sph-pressure-acoustics",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-continuum-particle-controls/#sph-pressure-acoustics"
+          }
+        }
+      ],
+      "scope": {
+        "ja": "固定された5ケース群のうち当該手法に対応する限定例です。 Gaussianの線形比体積畳み込み、対称な可変h、独立な対Riemann解と反対称な全エネルギー交換を持つGSPHです。通常SPHへp*を代入する代用ではありません。一次再構成に限定し、論文のcubic/MUSCLや一般精度を主張しません。 GSPH、摂動した128粒子、t=0.2。初期カーネル再構成誤差は最大0.011834で、音波振幅0.001より大きく、左の密度分布にその影響が残ります。右は初期誤差です。判定は基本Fourierモードの位相・振幅と保存量などの固定条件であり、点ごとの高精度や一般的な優位性を示しません。",
+        "en": "Only the named fixed examples in this five-case protocol. Actual Gaussian linear-specific-volume GSPH overlap with symmetric variable h, independent pair Riemann solves and antisymmetric total-energy exchange; not substitution of star pressure into ordinary SPH. First-order reconstruction only, not the paper cubic/MUSCL implementation or a general accuracy claim. GSPH with 128 jittered particles at t=0.2. The initial kernel reconstruction error reaches 0.011834, exceeding the acoustic amplitude 0.001 and remaining visible in the left density profile; the right panel shows that initial error. Acceptance concerns the fundamental Fourier mode phase/amplitude and other fixed conservation controls, not pointwise high accuracy or general superiority."
+      }
     }
   ],
   "supplemental_scope_profiles": [
@@ -95,10 +801,17 @@
   "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/sph/index.json",
   "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/sph/index.md",
   "code_urls": [
-    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/geometry.py"
+    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/geometry.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/ale_piston.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/failure_support.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/gsph.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/sphere.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/reference_riemann.py"
   ],
   "test_urls": [
-    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py"
+    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/test_components.py"
   ],
   "run_commands": [
     "python -m pytest -q tests/test_time_geometry.py"
@@ -106,7 +819,26 @@
   "run_from": "Extracted code edition directory",
   "code_base": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/",
   "code_edition": "2026-11-21",
-  "execution_examples": [],
+  "execution_examples": [
+    {
+      "id": "gsph-sod",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gsph-sod/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gsph-sod/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    },
+    {
+      "id": "sph-pressure-acoustics",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sph-pressure-acoustics/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sph-pressure-acoustics/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    }
+  ],
   "problem_navigation": {
     "method_id": "sph",
     "status": "educational-example",

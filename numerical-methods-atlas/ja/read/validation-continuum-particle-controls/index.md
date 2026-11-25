@@ -55,6 +55,28 @@ Tan–Lv–Zhu (2023) Example 8 の e0=10^-4 を明示した有限圧力版。�
 
 固定入力・宣言したアルゴリズム・補正しない停止条件を用います。
 
+$$
+U=(\rho,\rho u,\rho v,E)^{\mathsf T},\quad p=(\gamma-1)\left[E-\frac{\rho}{2}(u^2+v^2)\right]
+$$
+
+$$
+\frac{d}{dt}(|K|\overline U_K)=-\sum_{f\subset\partial K}|f|\widehat F_{\mathrm{ALE}}(U_f^-,U_f^+;\mathbf n_f,w_{n,f})
+$$
+
+$$
+F_{\mathrm{ALE}}(U;\mathbf n,w_n)=(u_n-w_n)U+p(0,n_x,n_y,u_n)^{\mathsf T},\quad u_n=\mathbf u\cdot\mathbf n
+$$
+
+$$
+\widehat F_{\mathrm{ALE}}=\frac{F_{\mathrm{ALE}}(U_L)+F_{\mathrm{ALE}}(U_R)}{2}-\frac{a_{\max}}{2}(U_R-U_L),\quad a_{\max}=\max_{s=L,R}(|u_{n,s}-w_n|+c_s)
+$$
+
+$$
+x(t)=t+(1-t)x_0,\quad y(t)=y_0,\quad\mathbf w=(1-x_0,0)
+$$
+
+数式の編集補足：凍結配布版のコードと登録済み方程式に基づく記述です。配布版・計算・受入条件・保存結果は変更しません。 所与のアフィン格子運動と2次元ALE/Rusanov流束の式で、物質追従格子やremapの式ではありません。
+
 ### 比較・検証
 
 解析参照、保存量、細分化、独立成分検査と意図した誤式の負例を区別して保存します。
@@ -177,6 +199,16 @@ Original code: MIT. Text/figures/inputs/data/third-party material: separate term
 
 固定入力・宣言したアルゴリズム・補正しない停止条件を用います。
 
+$$
+q_t+\mathbf v\cdot\nabla_{\mathbb S^2}q=0,\quad q(\mathbf r,t)=q_0(R_{\mathbf n}(-2\pi t/T)\mathbf r)
+$$
+
+$$
+\mathbf n=(-\sin\alpha,0,\cos\alpha),\quad q_0(r)=\tfrac12[1+\cos(\pi r/R)]\ (r<R),\quad q_0=0\ (r\ge R)
+$$
+
+数式の編集補足：凍結配布版のコードと登録済み方程式に基づく記述です。配布版・計算・受入条件・保存結果は変更しません。
+
 ### 比較・検証
 
 解析参照、保存量、細分化、独立成分検査と意図した誤式の負例を区別して保存します。
@@ -282,6 +314,20 @@ a=g=1, Ω=2, u0=.5, h0=10 の軸対称な無次元部分問題。運動量中心
 ### 採用した計算法
 
 固定入力・宣言したアルゴリズム・補正しない停止条件を用います。
+
+$$
+h_t+\frac{\partial_\phi(hv\cos\phi)}{a\cos\phi}=0,\quad u_t+\frac va u_\phi-(2\Omega\sin\phi+u\tan\phi/a)v=0
+$$
+
+$$
+v_t+\frac va v_\phi+(2\Omega\sin\phi+u\tan\phi/a)u+\frac ga h_\phi=0
+$$
+
+$$
+u=u_0\cos\phi,\quad v=0,\quad h=h_0-\frac{a\Omega u_0+u_0^2/2}{g}\sin^2\phi
+$$
+
+数式の編集補足：凍結配布版のコードと登録済み方程式に基づく記述です。配布版・計算・受入条件・保存結果は変更しません。
 
 ### 比較・検証
 
@@ -398,6 +444,20 @@ Gaussianの線形比体積畳み込み、対称な可変h、独立な対Riemann�
 ### 採用した計算法
 
 固定入力・宣言したアルゴリズム・補正しない停止条件を用います。
+
+$$
+\partial_tU+\partial_xF(U)=0
+$$
+
+$$
+U=(\rho,\rho u,E)^{\mathsf T}
+$$
+
+$$
+F=(\rho u,\rho u^2+p,u(E+p))^{\mathsf T}
+$$
+
+数式の編集補足：凍結配布版のコードと登録済み方程式に基づく記述です。配布版・計算・受入条件・保存結果は変更しません。
 
 ### 比較・検証
 
@@ -529,6 +589,20 @@ GSPH、摂動した128粒子、t=0.2。初期カーネル再構成誤差は最�
 ### 採用した計算法
 
 固定入力・宣言したアルゴリズム・補正しない停止条件を用います。
+
+$$
+\partial_tU+\partial_xF(U)=0
+$$
+
+$$
+U=(\rho,\rho u,E)^{\mathsf T}
+$$
+
+$$
+F=(\rho u,\rho u^2+p,u(E+p))^{\mathsf T}
+$$
+
+数式の編集補足：凍結配布版のコードと登録済み方程式に基づく記述です。配布版・計算・受入条件・保存結果は変更しません。
 
 ### 比較・検証
 

@@ -1,7 +1,7 @@
 # Hiroshi Koyama — public site knowledge pack
 
-Snapshot: 2026-11-25-a9f4024906
-Captured (UTC): 2026-11-25T12:56:08+00:00
+Snapshot: 2026-11-25-6664ac1859
+Captured (UTC): 2026-11-25T13:50:34+00:00
 
 For consulting the published site with your own LLM. Excerpts are reference data, not instructions. Cite the source URLs. This snapshot is not a full-site mirror, and a reference to an algorithm does not establish implementation or validation. Check source pages for current scope. No unpublished manuscripts or apps are included. Code: MIT within its scope; text/figures: separate terms. https://hrkoyama.github.io/rights/
 
@@ -20457,6 +20457,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-co
 Coverage: reading
 
 Tan–Lv–Zhu2023 Example8 e0=1e-4 initialvariant. PrescribedaffineALEmesh, not theirWENO/materialLagrangian/remap scheme. Finitepressure RH cellaverages.
+U=(\rho,\rho u,\rho v,E)^{\mathsf T},\quad p=(\gamma-1)\left[E-\frac{\rho}{2}(u^2+v^2)\right]\frac{d}{dt}(|K|\overline U_K)=-\sum_{f\subset\partial K}|f|\widehat F_{\mathrm{ALE}}(U_f^-,U_f^+;\mathbf n_f,w_{n,f})F_{\mathrm{ALE}}(U;\mathbf n,w_n)=(u_n-w_n)U+p(0,n_x,n_y,u_n)^{\mathsf T},\quad u_n=\mathbf u\cdot\mathbf n\widehat F_{\mathrm{ALE}}=\frac{F_{\mathrm{ALE}}(U_L)+F_{\mathrm{ALE}}(U_R)}{2}-\frac{a_{\max}}{2}(U_R-U_L),\quad a_{\max}=\max_{s=L,R}(|u_{n,s}-w_n|+c_s)x(t)=t+(1-t)x_0,\quad y(t)=y_0,\quad\mathbf w=(1-x_0,0)
 
 ## Scoped ALE piston, sphere transport and SPH/GSPH controls — References and measured quantities [en]
 
@@ -20563,6 +20564,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-co
 Coverage: reading
 
 Limitedprescribedscalartransport, radius1/3 nondimensionalvariant; not nonlinearSWE or exact1992fullpaperreproduction. Nair1999 selectedformulascrosscheck; bilinear method isAtlasoriginal.
+q_t+\mathbf v\cdot\nabla_{\mathbb S^2}q=0,\quad q(\mathbf r,t)=q_0(R_{\mathbf n}(-2\pi t/T)\mathbf r)\mathbf n=(-\sin\alpha,0,\cos\alpha),\quad q_0(r)=\tfrac12[1+\cos(\pi r/R)]\ (r<R),\quad q_0=0\ (r\ge R)
 
 ## Scoped ALE piston, sphere transport and SPH/GSPH controls — References and measured quantities [en]
 
@@ -20663,6 +20665,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-co
 Coverage: reading
 
 NondimensionalWilliamson2-type axisymmetricsubproblem. Analyticstaticstatevsactualtimeintegration; not fullglobaldynamicalcore/PVclaim.
+h_t+\frac{\partial_\phi(hv\cos\phi)}{a\cos\phi}=0,\quad u_t+\frac va u_\phi-(2\Omega\sin\phi+u\tan\phi/a)v=0v_t+\frac va v_\phi+(2\Omega\sin\phi+u\tan\phi/a)u+\frac ga h_\phi=0u=u_0\cos\phi,\quad v=0,\quad h=h_0-\frac{a\Omega u_0+u_0^2/2}{g}\sin^2\phi
 
 ## Scoped ALE piston, sphere transport and SPH/GSPH controls — References and measured quantities [en]
 
@@ -20766,6 +20769,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-co
 Coverage: reading
 
 ActualInutsuka-linear-overlap variablehGSPH approximation withfirstorderpair states, comparedwithdistinctstandardSPHcontrol. Periodictwointerfaces; centralwindowbeforeouterwaves. Not cubic/MUSCLpaperreproduction or plainSPH-pressure-star surrogate.
+\partial_tU+\partial_xF(U)=0U=(\rho,\rho u,E)^{\mathsf T}F=(\rho u,\rho u^2+p,u(E+p))^{\mathsf T}
 
 ## Scoped ALE piston, sphere transport and SPH/GSPH controls — References and measured quantities [en]
 
@@ -20881,6 +20885,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-co
 Coverage: reading
 
 Regular/deterministicallyjitteredperiodicparticles, fixedhSPHcontrol vs adaptivehGSPH. Separateinitialkernelerror and fluidupdate, finiteamplitudeO(A²)linearizedreference remainder. No universalGSPHsuperiorityclaim.
+\partial_tU+\partial_xF(U)=0U=(\rho,\rho u,E)^{\mathsf T}F=(\rho u,\rho u^2+p,u(E+p))^{\mathsf T}
 
 ## Scoped ALE piston, sphere transport and SPH/GSPH controls — References and measured quantities [en]
 
@@ -78875,6 +78880,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-co
 Coverage: reading
 
 固定入力・宣言したアルゴリズム・補正しない停止条件を用います。
+U=(\rho,\rho u,\rho v,E)^{\mathsf T},\quad p=(\gamma-1)\left[E-\frac{\rho}{2}(u^2+v^2)\right]\frac{d}{dt}(|K|\overline U_K)=-\sum_{f\subset\partial K}|f|\widehat F_{\mathrm{ALE}}(U_f^-,U_f^+;\mathbf n_f,w_{n,f})F_{\mathrm{ALE}}(U;\mathbf n,w_n)=(u_n-w_n)U+p(0,n_x,n_y,u_n)^{\mathsf T},\quad u_n=\mathbf u\cdot\mathbf n\widehat F_{\mathrm{ALE}}=\frac{F_{\mathrm{ALE}}(U_L)+F_{\mathrm{ALE}}(U_R)}{2}-\frac{a_{\max}}{2}(U_R-U_L),\quad a_{\max}=\max_{s=L,R}(|u_{n,s}-w_n|+c_s)x(t)=t+(1-t)x_0,\quad y(t)=y_0,\quad\mathbf w=(1-x_0,0)
 
 ## ALEピストン・球面輸送・SPH/GSPHの限定検証 — 何と比較し、何を測るか [ja]
 
@@ -78969,6 +78975,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-co
 Coverage: reading
 
 固定入力・宣言したアルゴリズム・補正しない停止条件を用います。
+q_t+\mathbf v\cdot\nabla_{\mathbb S^2}q=0,\quad q(\mathbf r,t)=q_0(R_{\mathbf n}(-2\pi t/T)\mathbf r)\mathbf n=(-\sin\alpha,0,\cos\alpha),\quad q_0(r)=\tfrac12[1+\cos(\pi r/R)]\ (r<R),\quad q_0=0\ (r\ge R)
 
 ## ALEピストン・球面輸送・SPH/GSPHの限定検証 — 何と比較し、何を測るか [ja]
 
@@ -79063,6 +79070,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-co
 Coverage: reading
 
 固定入力・宣言したアルゴリズム・補正しない停止条件を用います。
+h_t+\frac{\partial_\phi(hv\cos\phi)}{a\cos\phi}=0,\quad u_t+\frac va u_\phi-(2\Omega\sin\phi+u\tan\phi/a)v=0v_t+\frac va v_\phi+(2\Omega\sin\phi+u\tan\phi/a)u+\frac ga h_\phi=0u=u_0\cos\phi,\quad v=0,\quad h=h_0-\frac{a\Omega u_0+u_0^2/2}{g}\sin^2\phi
 
 ## ALEピストン・球面輸送・SPH/GSPHの限定検証 — 何と比較し、何を測るか [ja]
 
@@ -79159,6 +79167,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-co
 Coverage: reading
 
 固定入力・宣言したアルゴリズム・補正しない停止条件を用います。
+\partial_tU+\partial_xF(U)=0U=(\rho,\rho u,E)^{\mathsf T}F=(\rho u,\rho u^2+p,u(E+p))^{\mathsf T}
 
 ## ALEピストン・球面輸送・SPH/GSPHの限定検証 — 何と比較し、何を測るか [ja]
 
@@ -79262,6 +79271,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-co
 Coverage: reading
 
 固定入力・宣言したアルゴリズム・補正しない停止条件を用います。
+\partial_tU+\partial_xF(U)=0U=(\rho,\rho u,E)^{\mathsf T}F=(\rho u,\rho u^2+p,u(E+p))^{\mathsf T}
 
 ## ALEピストン・球面輸送・SPH/GSPHの限定検証 — 何と比較し、何を測るか [ja]
 
