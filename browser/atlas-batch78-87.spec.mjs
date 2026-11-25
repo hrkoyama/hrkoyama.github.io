@@ -40,6 +40,7 @@ test('three new groups render their own figures, code and reference routes',asyn
  expect(['ja','en']).toContain(language);
  expect([390,1280]).toContain(info.project.use.viewport.width);
  page.on('pageerror',error=>errors.push(error.message));
+ try {
  await page.route('**/*.zip',route=>route.request().method()==='HEAD'?route.continue():route.abort('blockedbyclient'));
  await page.route(url=>fixtures.has(url.href),async route=>{
   const original=new URL(route.request().url()),fixture=fixtures.get(original.href);
@@ -76,6 +77,9 @@ test('three new groups render their own figures, code and reference routes',asyn
   await page.goto(referenceURL.pathname+referenceURL.search+referenceURL.hash);
   await expect(page.locator(referenceURL.hash)).toBeVisible();
   const back=page.locator(`a[href*="/validation/${id}/?lang=${language}"]:visible`).first();await expect(back).toBeVisible();
+ }
+ } finally {
+  await page.unrouteAll({behavior:'wait'});
  }
  expect(errors).toEqual([]);
  await writeFile(info.outputPath('candidate-figure-mirror.json'),JSON.stringify({scope:'Candidate-only exact HR manifest PNG paths mirrored to the local server; no ZIP bodies, numerical runs or public-UI completion claim.',representatives,language,viewport:info.project.use.viewport,mirrored},null,2));
