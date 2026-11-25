@@ -75,11 +75,15 @@ export function homeOverviewPage(coverage,selected,{staticMode=false}={}){
  const lang=currentLanguage(),copy=homeLandingCopy[lang],suffix=staticMode?'-'+lang:'';
  return `<div class="home-overview home-landing" id="home-overview${suffix}" data-localize="false">
  <header class="page-width landing-heading"><h1 id="home-landing-title${suffix}">${esc(copy.title)}</h1><p class="landing-description">${esc(copy.description)}</p></header>
+ <div class="page-width landing-beginner"><p id="home-beginner-title${suffix}">${esc(copy.beginner.title)}</p><nav class="home-primary-actions" aria-labelledby="home-beginner-title${suffix}"><a data-home-beginner="web" href="${esc(copy.beginner.web.href)}">${esc(copy.beginner.web.label)}</a><a data-home-beginner="pdf" href="${esc(copy.beginner.pdf.href)}" type="application/pdf">${esc(copy.beginner.pdf.label)}</a></nav></div>
+ <div class="page-width landing-purpose">${['why','connections','ai'].map(key=>`<p data-home-purpose="${key}">${esc(copy.introduction[key])}</p>`).join('')}</div>
  ${homeSearchPage({compact:true,staticMode})}
+ <p class="page-width landing-ways">${esc(copy.introduction.ways)}</p>
  <nav class="page-width home-entrypoints" aria-label="${lang==='ja'?'3つの入口':'Three ways to begin'}"><ul class="home-entry-grid">${copy.entries.map(entry=>`<li><a class="home-entry" data-home-entry="${esc(entry.id)}" href="${esc(entry.href)}"><h2>${esc(entry.title)}</h2><p>${esc(entry.description)}</p><span class="home-entry-arrow" aria-hidden="true">→</span></a></li>`).join('')}</ul></nav>
  <section class="page-width home-reference-links home-kit-entry" aria-labelledby="home-kit-title${suffix}"><h2 id="home-kit-title${suffix}">${esc(copy.agent_kit.title)}</h2><p>${esc(copy.agent_kit.description)}</p><p><a href="${esc(copy.agent_kit.href)}">${esc(copy.agent_kit.label)}</a></p></section>
  <aside class="page-width home-reference-links" aria-labelledby="home-reference-title${suffix}"><h2 id="home-reference-title${suffix}">${lang==='ja'?'教科書・参考文献を探す':'Find textbooks and references'}</h2><p><a href="/numerical-methods-atlas/${lang}/read/textbooks/">${lang==='ja'?'教科書案内':'Textbook guide'}</a><a href="/numerical-methods-atlas/${lang}/read/references/">${lang==='ja'?'参考文献一覧':'Reference list'}</a></p></aside>
  ${renderHomeBrowse(lang,{headingId:'home-browse-title'+suffix})}
+ <div class="page-width landing-feedback"><p>${esc(copy.introduction.feedback)}</p></div>
  ${copy.contact?`<p class="page-width home-reference-links"><span>${esc(copy.contact.label)}</span><a href="${esc(copy.contact.href)}">${esc(copy.contact.email)}</a></p>`:''}
  </div>`;
 }

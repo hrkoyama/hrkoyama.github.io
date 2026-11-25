@@ -7,6 +7,7 @@ import {createHash} from 'node:crypto';
 const root=new URL('../',import.meta.url),read=p=>JSON.parse(readFileSync(new URL(p,root)));
 const registry=read('numerical-methods-atlas/validation/releases.json');
 const freeze=read('scripts/fixtures/atlas-batch78-87-freeze.json');
+const landingCopy=read('catalog/atlas-home.json').landing;
 if(freeze.status!=='ROOT_REVIEWED_ACTUAL_CANONICAL_FREEZE')throw new Error('Actual canonical freeze required');
 const EXPECTED={
  'quadrature-controls':['quadpack-domain-selection','gk15-double-exponential','tensor-smolyak-dimensions'],
@@ -58,6 +59,29 @@ test('three new groups render their own figures, code and reference routes',asyn
  await expect(page).toHaveTitle(siteTitle);
  await expect(page.locator('main h1:visible')).toHaveCount(1);
  await expect(page.locator('main h1:visible')).toHaveText(siteTitle);
+ const home=page.locator('#home-overview'),intro=landingCopy[language].introduction;
+ await expect(home.locator('.landing-description')).toHaveText(landingCopy[language].description);
+ const beginner=home.locator('.landing-beginner'),beginnerCopy=landingCopy[language].beginner;
+ await expect(beginner.locator('p')).toHaveText(beginnerCopy.title);
+ await expect(beginner.locator('a')).toHaveCount(2);
+ for(const kind of ['web','pdf']){
+  const link=beginner.locator(`[data-home-beginner="${kind}"]`);
+  await expect(link).toBeVisible();await expect(link).toBeInViewport({ratio:1});await expect(link).toHaveText(beginnerCopy[kind].label);
+  expect(await link.evaluate(node=>node.href)).toBe(new URL(beginnerCopy[kind].href,page.url()).href);
+ }
+ expect(await beginner.locator('[data-home-beginner="pdf"]').getAttribute('download')).toBeNull();
+ for(const key of ['why','connections','ai']){
+  const paragraph=home.locator(`[data-home-purpose="${key}"]`);
+  await expect(paragraph).toHaveCount(1);await expect(paragraph).toBeVisible();await expect(paragraph).toHaveText(intro[key]);
+ }
+ await expect(home.locator('.landing-purpose details,.landing-purpose [hidden]')).toHaveCount(0);
+ await expect(home.locator('.landing-ways')).toHaveText(intro.ways);
+ await expect(home.locator('.home-entrypoints [data-home-entry]')).toHaveCount(3);
+ await expect(home.locator('.landing-feedback p')).toBeVisible();await expect(home.locator('.landing-feedback p')).toHaveText(intro.feedback);
+ expect(await home.evaluate(root=>{
+  const nodes=['.landing-description','.landing-beginner','.landing-purpose','.home-search','.landing-ways','.home-entrypoints','.landing-feedback','a[href^="mailto:"]'].map(selector=>root.querySelector(selector));
+  return nodes.every(Boolean)&&nodes.slice(1).every((node,index)=>!!(nodes[index].compareDocumentPosition(node)&Node.DOCUMENT_POSITION_FOLLOWING));
+ })).toBe(true);
  await expect(page.locator('.site-header .brand > span:last-child')).toHaveText('NaN');
  const homeContact=page.locator(`#home-overview a[href="${contactHref}"]`);
  await expect(homeContact).toHaveCount(1);await expect(homeContact).toBeVisible();await expect(homeContact).toHaveText(contactEmail);
