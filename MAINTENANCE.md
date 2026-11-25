@@ -443,3 +443,8 @@ published表示・公開記録・対応索引だけの更新は日次集約方�
 ## 候補68〜77の実公開確認（表示更新は次回集約）
 
 最終 35e34ae130d47cc43445765b88e99c0c556c38bb をHR mainで公開。追加4群11実行例・10候補・8新physical primary・116pytest。公開Linux全60群127例1572pytestと全60JUnit、実24browser、12cold-search、匿名HTTP 2089件、実HR UI 16表示と代表画像目視の証跡を保存。元の未達目標を成功へ変更せず、旧科学・出典・失敗履歴を保持する。残33候補。published表示と公開記録だけの更新は次回の承認済み集約へ保留。詳細は /numerical-methods-atlas/validation/verification/2026-11-24-batch68-77-public.json 。
+
+
+## 2026-11-25 batch78–87 public confirmation (daily aggregate)
+
+Published 9e594d215f9646443b1facc44b09b93d7f19f05e on hrkoyama.github.io: 3 groups/11 cases/87 new pytest, 25 saved PNGs; source86 is references only. All6 main workflows, full63-group/138-case/1659-pytest public-ZIP Linux, Node660/browser28/Cold12, HTTP, nativeUI16 and root9-image review passed. Original accuracy study goals remain mixed: quadrature75 met/27 unmet/3 unresolved (no numeric return); small-models60/65. Scientific packets and15069 earlier immutable files remain unchanged. Record: /numerical-methods-atlas/validation/verification/2026-11-25-batch78-87-public.json

@@ -3,7 +3,7 @@
   "landing": {
     "ja": {
       "title": "NaN — Not just Algorithms, but Numerics.",
-      "description": "知りたい手法を検索するか、3つの入口から選んでください。",
+      "description": "An Atlas of Numerical Methods。解説・コード・検証を人とAIで活用し、軽量・低コストなLLMでの開発にも役立てる数値計算資料集です。",
       "entries": [
         {
           "id": "goals",
@@ -29,11 +29,16 @@
         "description": "2D RKDGの完成コード・固定テスト・実行案内を、一式で渡せます。",
         "label": "RKDG開発キットを取得する",
         "href": "/numerical-methods-atlas/agent-kits/rkdg2d/?lang=ja"
+      },
+      "contact": {
+        "label": "連絡先",
+        "email": "hrkoyamacontact@gmail.com",
+        "href": "mailto:hrkoyamacontact@gmail.com"
       }
     },
     "en": {
       "title": "NaN — Not just Algorithms, but Numerics.",
-      "description": "Search for a method, or choose where to begin.",
+      "description": "An Atlas of Numerical Methods for people and AI: explanations, code and validation, with structured resources for development using lightweight, lower-cost LLMs.",
       "entries": [
         {
           "id": "goals",
@@ -59,6 +64,11 @@
         "description": "Get working 2D RKDG code, fixed tests and agent execution instructions together.",
         "label": "Get the RKDG agent kit",
         "href": "/numerical-methods-atlas/agent-kits/rkdg2d/?lang=en"
+      },
+      "contact": {
+        "label": "Contact",
+        "email": "hrkoyamacontact@gmail.com",
+        "href": "mailto:hrkoyamacontact@gmail.com"
       }
     }
   }

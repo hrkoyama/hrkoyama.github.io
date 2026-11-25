@@ -42,6 +42,16 @@ test('three new groups render their own figures, code and reference routes',asyn
  page.on('pageerror',error=>errors.push(error.message));
  try {
  await page.route('**/*.zip',route=>route.request().method()==='HEAD'?route.continue():route.abort('blockedbyclient'));
+ // Introduction/contact follow-up: inspect mailto attributes only, never send mail.
+ const contactEmail='hrkoyamacontact@gmail.com',contactHref='mailto:'+contactEmail;
+ await page.goto(`/?lang=${language}`);
+ const portfolio=page.locator(`[data-site-language="${language}"]`);
+ const atlasHomeURL=new URL('/numerical-methods-atlas/?lang='+language,page.url()).href;
+ const atlasFeature=portfolio.locator(`.home-feature`).filter({has:page.locator(`h3 a[href="${atlasHomeURL}"]`)});
+ await expect(atlasFeature.locator('h3 a')).toHaveText(language==='ja'?'NaN — 数値計算アトラス':'NaN — An Atlas of Numerical Methods');
+ await expect(atlasFeature).toBeVisible();
+ const profileContact=page.locator(`#profile-${language} a[href="${contactHref}"]`);
+ await expect(profileContact).toHaveCount(1);await expect(profileContact).toBeVisible();await expect(profileContact).toHaveText(contactEmail);
  // Current home branding only; fixed chapter names and published editions stay descriptive.
  const siteTitle='NaN — Not just Algorithms, but Numerics.';
  await page.goto(`/numerical-methods-atlas/?lang=${language}`);
@@ -49,6 +59,8 @@ test('three new groups render their own figures, code and reference routes',asyn
  await expect(page.locator('main h1:visible')).toHaveCount(1);
  await expect(page.locator('main h1:visible')).toHaveText(siteTitle);
  await expect(page.locator('.site-header .brand > span:last-child')).toHaveText('NaN');
+ const homeContact=page.locator(`#home-overview a[href="${contactHref}"]`);
+ await expect(homeContact).toHaveCount(1);await expect(homeContact).toBeVisible();await expect(homeContact).toHaveText(contactEmail);
  expect(await page.locator('meta[property="og:title"]').getAttribute('content')).toBe(siteTitle);
  expect(await page.evaluate(()=>document.documentElement.scrollWidth-document.documentElement.clientWidth)).toBeLessThanOrEqual(1);
  await page.route(url=>fixtures.has(url.href),async route=>{

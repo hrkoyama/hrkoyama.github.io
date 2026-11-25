@@ -5824,7 +5824,7 @@
       "priority": "P2",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "verified",
+      "state": "published",
       "current": "Gauss–Legendre 生成・多項式モーメント、adaptive Simpson、解析 atan/QUADPACK 参照がある。追加 conditioning で狭い Lorentz、相殺、sqrt 端点、零積分、意図的に見逃す bump、推定誤差の過信まで検証済み。",
       "tasks": [
         "Gaussian 無限区間、sin(ωx) 型、内部特異点分割の小さな固定例を追加",
@@ -5866,7 +5866,7 @@
         }
       ],
       "completion": {
-        "verification": "/code/validated-examples/2026-11-25/quadrature-controls/verification.json",
+        "verification": "/numerical-methods-atlas/validation/verification/2026-11-25-batch78-87-public.json",
         "inputs": [
           "/code/validated-examples/2026-11-25/quadrature-controls/inputs.json",
           "/code/validated-examples/2026-11-25/quadrature-controls/acceptance.json",
@@ -5884,7 +5884,8 @@
         "references": [
           "/code/validated-examples/2026-11-25/quadrature-controls/README.md",
           "/code/validated-examples/2026-11-25/quadrature-controls/cases.json",
-          "/code/validated-examples/2026-11-25/quadrature-controls/source-reading.json"
+          "/code/validated-examples/2026-11-25/quadrature-controls/source-reading.json",
+          "/code/validated-examples/2026-11-25/quadrature-controls/verification.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#quadpack-domain-selection-ja",
         "execution": "/numerical-methods-atlas/validation/quadpack-domain-selection/?lang=ja#quadpack-domain-selection-ja-measurements",
@@ -5906,7 +5907,7 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "verified",
+      "state": "published",
       "current": "Gauss–Legendre 生成・多項式モーメント、adaptive Simpson、解析 atan/QUADPACK 参照がある。追加 conditioning で狭い Lorentz、相殺、sqrt 端点、零積分、意図的に見逃す bump、推定誤差の過信まで検証済み。",
       "tasks": [
         "滑らかな関数と可積分端点特異性で、解析積分値・独立参照を照合",
@@ -5954,7 +5955,7 @@
         }
       ],
       "completion": {
-        "verification": "/code/validated-examples/2026-11-25/quadrature-controls/verification.json",
+        "verification": "/numerical-methods-atlas/validation/verification/2026-11-25-batch78-87-public.json",
         "inputs": [
           "/code/validated-examples/2026-11-25/quadrature-controls/inputs.json",
           "/code/validated-examples/2026-11-25/quadrature-controls/acceptance.json",
@@ -5972,7 +5973,8 @@
         "references": [
           "/code/validated-examples/2026-11-25/quadrature-controls/README.md",
           "/code/validated-examples/2026-11-25/quadrature-controls/cases.json",
-          "/code/validated-examples/2026-11-25/quadrature-controls/source-reading.json"
+          "/code/validated-examples/2026-11-25/quadrature-controls/source-reading.json",
+          "/code/validated-examples/2026-11-25/quadrature-controls/verification.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#gk15-double-exponential-ja",
         "execution": "/numerical-methods-atlas/validation/gk15-double-exponential/?lang=ja#gk15-double-exponential-ja-measurements",
@@ -5994,7 +5996,7 @@
       "priority": "P3",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "verified",
+      "state": "published",
       "current": "Gauss–Legendre 生成・多項式モーメント、adaptive Simpson、解析 atan/QUADPACK 参照がある。追加 conditioning で狭い Lorentz、相殺、sqrt 端点、零積分、意図的に見逃す bump、推定誤差の過信まで検証済み。",
       "tasks": [
         "2〜4次元の分離可能な既知積分値だけで軽量比較",
@@ -6036,7 +6038,7 @@
         }
       ],
       "completion": {
-        "verification": "/code/validated-examples/2026-11-25/quadrature-controls/verification.json",
+        "verification": "/numerical-methods-atlas/validation/verification/2026-11-25-batch78-87-public.json",
         "inputs": [
           "/code/validated-examples/2026-11-25/quadrature-controls/inputs.json",
           "/code/validated-examples/2026-11-25/quadrature-controls/acceptance.json",
@@ -6053,7 +6055,8 @@
         "references": [
           "/code/validated-examples/2026-11-25/quadrature-controls/README.md",
           "/code/validated-examples/2026-11-25/quadrature-controls/cases.json",
-          "/code/validated-examples/2026-11-25/quadrature-controls/source-reading.json"
+          "/code/validated-examples/2026-11-25/quadrature-controls/source-reading.json",
+          "/code/validated-examples/2026-11-25/quadrature-controls/verification.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#tensor-smolyak-dimensions-ja",
         "execution": "/numerical-methods-atlas/validation/tensor-smolyak-dimensions/?lang=ja#tensor-smolyak-dimensions-ja-measurements",
@@ -6075,7 +6078,7 @@
       "priority": "P1",
       "kind": "implementation",
       "initial_coverage": "解説のみ",
-      "state": "verified",
+      "state": "published",
       "current": "splines/chebyshev/wavelets の章・公式・引用は既存だが各 status は planned。Legendre/nodal basis、GLL と等間隔節点、L² 投影、三角形 P1/P2 と質量行列は別に実装済み。",
       "tasks": [
         "1/(1+25x²) と非滑らかな |x| の独立細密点誤差を保存",
@@ -6127,7 +6130,7 @@
         }
       ],
       "completion": {
-        "verification": "/code/validated-examples/2026-11-25/approximation-controls/verification.json",
+        "verification": "/numerical-methods-atlas/validation/verification/2026-11-25-batch78-87-public.json",
         "inputs": [
           "/code/validated-examples/2026-11-25/approximation-controls/inputs.json",
           "/code/validated-examples/2026-11-25/approximation-controls/acceptance.json",
@@ -6144,7 +6147,8 @@
         "references": [
           "/code/validated-examples/2026-11-25/approximation-controls/README.md",
           "/code/validated-examples/2026-11-25/approximation-controls/cases.json",
-          "/code/validated-examples/2026-11-25/approximation-controls/source-reading.json"
+          "/code/validated-examples/2026-11-25/approximation-controls/source-reading.json",
+          "/code/validated-examples/2026-11-25/approximation-controls/verification.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#runge-barycentric-clenshaw-ja",
         "execution": "/numerical-methods-atlas/validation/runge-barycentric-clenshaw/?lang=ja#runge-barycentric-clenshaw-ja-measurements",
@@ -6166,7 +6170,7 @@
       "priority": "P1",
       "kind": "implementation",
       "initial_coverage": "解説のみ",
-      "state": "verified",
+      "state": "published",
       "current": "splines/chebyshev/wavelets の章・公式・引用は既存だが各 status は planned。Legendre/nodal basis、GLL と等間隔節点、L² 投影、三角形 P1/P2 と質量行列は別に実装済み。",
       "tasks": [
         "自然/端点微分指定 spline の境界条件、連続性と導関数を照合",
@@ -6218,7 +6222,7 @@
         }
       ],
       "completion": {
-        "verification": "/code/validated-examples/2026-11-25/approximation-controls/verification.json",
+        "verification": "/numerical-methods-atlas/validation/verification/2026-11-25-batch78-87-public.json",
         "inputs": [
           "/code/validated-examples/2026-11-25/approximation-controls/inputs.json",
           "/code/validated-examples/2026-11-25/approximation-controls/acceptance.json",
@@ -6235,7 +6239,8 @@
         "references": [
           "/code/validated-examples/2026-11-25/approximation-controls/README.md",
           "/code/validated-examples/2026-11-25/approximation-controls/cases.json",
-          "/code/validated-examples/2026-11-25/approximation-controls/source-reading.json"
+          "/code/validated-examples/2026-11-25/approximation-controls/source-reading.json",
+          "/code/validated-examples/2026-11-25/approximation-controls/verification.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#spline-shape-controls-ja",
         "execution": "/numerical-methods-atlas/validation/spline-shape-controls/?lang=ja#spline-shape-controls-ja-measurements",
@@ -6257,7 +6262,7 @@
       "priority": "P3",
       "kind": "implementation",
       "initial_coverage": "解説のみ",
-      "state": "verified",
+      "state": "published",
       "current": "splines/chebyshev/wavelets の章・公式・引用は既存だが各 status は planned。Legendre/nodal basis、GLL と等間隔節点、L² 投影、三角形 P1/P2 と質量行列は別に実装済み。",
       "tasks": [
         "短い既知信号で完全再構成・直交系のエネルギーを確認",
@@ -6309,7 +6314,7 @@
         }
       ],
       "completion": {
-        "verification": "/code/validated-examples/2026-11-25/approximation-controls/verification.json",
+        "verification": "/numerical-methods-atlas/validation/verification/2026-11-25-batch78-87-public.json",
         "inputs": [
           "/code/validated-examples/2026-11-25/approximation-controls/inputs.json",
           "/code/validated-examples/2026-11-25/approximation-controls/acceptance.json",
@@ -6326,7 +6331,8 @@
         "references": [
           "/code/validated-examples/2026-11-25/approximation-controls/README.md",
           "/code/validated-examples/2026-11-25/approximation-controls/cases.json",
-          "/code/validated-examples/2026-11-25/approximation-controls/source-reading.json"
+          "/code/validated-examples/2026-11-25/approximation-controls/source-reading.json",
+          "/code/validated-examples/2026-11-25/approximation-controls/verification.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#haar-mallat-boundary-threshold-ja",
         "execution": "/numerical-methods-atlas/validation/haar-mallat-boundary-threshold/?lang=ja#haar-mallat-boundary-threshold-ja-measurements",
@@ -6348,7 +6354,7 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "解説のみ",
-      "state": "verified",
+      "state": "published",
       "current": "pinn-operators 章は PINN と FNO を区別し、残差・境界・スケーリング・問題単位分割・OOD と複数 seed を説明。status planned で学習コード/保存ベンチマークなし。引用 raissi2019/li2021fno は abstract-and-metadata。",
       "tasks": [
         "小さい固定ネットワークと少数 seed で、独立格子の解誤差・PDE残差・境界誤差を保存",
@@ -6389,7 +6395,7 @@
         }
       ],
       "completion": {
-        "verification": "/code/validated-examples/2026-11-25/small-models/verification.json",
+        "verification": "/numerical-methods-atlas/validation/verification/2026-11-25-batch78-87-public.json",
         "inputs": [
           "/code/validated-examples/2026-11-25/small-models/inputs.json",
           "/code/validated-examples/2026-11-25/small-models/acceptance.json",
@@ -6408,7 +6414,8 @@
         "references": [
           "/code/validated-examples/2026-11-25/small-models/README.md",
           "/code/validated-examples/2026-11-25/small-models/cases.json",
-          "/code/validated-examples/2026-11-25/small-models/source-reading.json"
+          "/code/validated-examples/2026-11-25/small-models/source-reading.json",
+          "/code/validated-examples/2026-11-25/small-models/verification.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#poisson-1d-dirichlet-ja",
         "execution": "/numerical-methods-atlas/validation/pinn-poisson/?lang=ja#pinn-poisson-ja-measurements",
@@ -6435,7 +6442,7 @@
       "priority": "P3",
       "kind": "implementation",
       "initial_coverage": "解説のみ",
-      "state": "verified",
+      "state": "published",
       "current": "pinn-operators 章は PINN と FNO を区別し、残差・境界・スケーリング・問題単位分割・OOD と複数 seed を説明。status planned で学習コード/保存ベンチマークなし。引用 raissi2019/li2021fno は abstract-and-metadata。",
       "tasks": [
         "小さな周期拡散又は Burgers 族で固定データと計算予算を公開",
@@ -6476,7 +6483,7 @@
         }
       ],
       "completion": {
-        "verification": "/code/validated-examples/2026-11-25/small-models/verification.json",
+        "verification": "/numerical-methods-atlas/validation/verification/2026-11-25-batch78-87-public.json",
         "inputs": [
           "/code/validated-examples/2026-11-25/small-models/inputs.json",
           "/code/validated-examples/2026-11-25/small-models/acceptance.json",
@@ -6496,7 +6503,8 @@
         "references": [
           "/code/validated-examples/2026-11-25/small-models/README.md",
           "/code/validated-examples/2026-11-25/small-models/cases.json",
-          "/code/validated-examples/2026-11-25/small-models/source-reading.json"
+          "/code/validated-examples/2026-11-25/small-models/source-reading.json",
+          "/code/validated-examples/2026-11-25/small-models/verification.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#heat-periodic-ja",
         "execution": "/numerical-methods-atlas/validation/fno-periodic-heat/?lang=ja#fno-periodic-heat-ja-measurements",
@@ -6523,7 +6531,7 @@
       "priority": "P3",
       "kind": "references",
       "initial_coverage": "出典整備不足",
-      "state": "verified",
+      "state": "published",
       "current": "pinn-operators 章は PINN と FNO を区別し、残差・境界・スケーリング・問題単位分割・OOD と複数 seed を説明。status planned で学習コード/保存ベンチマークなし。引用 raissi2019/li2021fno は abstract-and-metadata。",
       "tasks": [
         "既存の abstract-and-metadata を上書きせず、利用する本文節・式・実験条件を追加確認",
@@ -6576,13 +6584,14 @@
           "pinn-poisson",
           "fno-periodic-heat"
         ],
-        "verification": "/code/validated-examples/2026-11-25/small-models/verification.json",
+        "verification": "/numerical-methods-atlas/validation/verification/2026-11-25-batch78-87-public.json",
         "inputs": [
           "/code/validated-examples/2026-11-25/small-models/source-reading.json"
         ],
         "references": [
           "https://arxiv.org/pdf/1711.10561",
-          "https://arxiv.org/html/2010.08895v3"
+          "https://arxiv.org/html/2010.08895v3",
+          "/code/validated-examples/2026-11-25/small-models/verification.json"
         ],
         "reading": {
           "ja": "/numerical-methods-atlas/ja/read/pinn-operators/#selected-original-source-roles",
@@ -6614,7 +6623,7 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "解説のみ",
-      "state": "verified",
+      "state": "published",
       "current": "ロジスティック増殖、閉鎖SIR、空間なしFitzHugh–Nagumoの限定例は実行済み。生物22モデル族全体の実装ではない。",
       "tasks": [
         "酵素の保存量と準定常近似の誤差を分離する。",
@@ -6651,7 +6660,7 @@
         }
       ],
       "completion": {
-        "verification": "/code/validated-examples/2026-11-25/small-models/verification.json",
+        "verification": "/numerical-methods-atlas/validation/verification/2026-11-25-batch78-87-public.json",
         "inputs": [
           "/code/validated-examples/2026-11-25/small-models/inputs.json",
           "/code/validated-examples/2026-11-25/small-models/acceptance.json",
@@ -6674,7 +6683,8 @@
         "references": [
           "/code/validated-examples/2026-11-25/small-models/README.md",
           "/code/validated-examples/2026-11-25/small-models/cases.json",
-          "/code/validated-examples/2026-11-25/small-models/source-reading.json"
+          "/code/validated-examples/2026-11-25/small-models/source-reading.json",
+          "/code/validated-examples/2026-11-25/small-models/verification.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#enzyme-qssa-ja",
         "execution": "/numerical-methods-atlas/validation/enzyme-qssa/?lang=ja#enzyme-qssa-ja-measurements",
