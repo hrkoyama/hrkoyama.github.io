@@ -365,6 +365,10 @@
       "args": [],
       "depends_on": [
         "build-atlas-textbook-papers"
+      ],
+      "inputs": [
+        "catalog/atlas-foundations-books.json",
+        "numerical-methods-atlas/learn/numerical-foundations/books/2026-11-25/*"
       ]
     },
     {
@@ -423,7 +427,9 @@
         "numerical-methods-atlas/solutions/index.json",
         "catalog/atlas-reading-index.json",
         "numerical-methods-atlas/gallery/index.json",
-        "numerical-methods-atlas/equations/index.json"
+        "numerical-methods-atlas/equations/index.json",
+        "catalog/atlas-foundations-books.json",
+        "numerical-methods-atlas/learn/numerical-foundations/books/2026-11-25/*"
       ],
       "outputs": [
         "numerical-methods-atlas/app.js",
@@ -488,7 +494,9 @@
         "numerical-methods-atlas/solutions/index.json",
         "catalog/atlas-reading-index.json",
         "numerical-methods-atlas/gallery/index.json",
-        "numerical-methods-atlas/equations/index.json"
+        "numerical-methods-atlas/equations/index.json",
+        "catalog/atlas-foundations-books.json",
+        "numerical-methods-atlas/learn/numerical-foundations/books/2026-11-25/*"
       ],
       "outputs": [
         "numerical-methods-atlas/app.js",

@@ -41,6 +41,10 @@ discovery=load_discovery(ROOT)
 discovery_by_id={x['id']:x for x in discovery['examples']}
 format_counts={**coverage['counts'],'execution_examples':len(discovery['examples']),'gallery_runnable_problems':json.loads((ATLAS/'gallery/index.json').read_text())['counts']['runnable_problems']}
 home=json.loads((ROOT/'catalog/atlas-home.json').read_text())
+from foundations_books import current_books
+books=current_books(ROOT)
+for language in ['ja','en']:
+    assert home['landing'][language]['beginner']['pdf']['href']=='/'+books['primary'][language]['pdf']['path'],'Homepage PDF must use the QA-verified book edition'
 goals=json.loads((ROOT/'catalog/atlas-goals.json').read_text())
 (ATLAS/'atlas-home-data.js').write_text('// Generated from catalog/atlas-home.json; navigation copy only.\nexport const homeLandingCopy='+json.dumps(home['landing'],ensure_ascii=False)+';\nexport const homeCollectionInventory='+json.dumps(home_collection_inventory(ROOT),ensure_ascii=False)+';\nexport const homeNavigationData='+json.dumps({'goalDomains':[x['id'] for x in goals['domains']]},ensure_ascii=False)+';\n')
 # Reading links follow the editions that actually exist, including new chapters.

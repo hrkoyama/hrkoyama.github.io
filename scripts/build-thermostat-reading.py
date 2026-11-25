@@ -13,6 +13,52 @@ import subprocess
 import xml.etree.ElementTree as ET
 from atlas_goal_availability import load_supplemental_examples
 
+def qualified_deterministic_thermostats(methods, supplements):
+    """Accept only the separately verified fixed four-method contrast.
+
+    Supplements must come from the existing immutable-release loader; this
+    guard binds method promotion and scope to that actual case, not its title.
+    """
+    original={'langevin-thermostat','stochastic-velocity-rescaling'}
+    additional={'velocity-rescaling','berendsen-thermostat','nose-hoover','nose-hoover-chains'}
+    by_method={row['id']:row for row in methods}
+    by_case={row['id']:row for row in supplements}
+    assert len(by_method)==len(methods) and len(by_case)==len(supplements)
+    implemented={row['id'] for row in methods if row['status']=='educational-example'}
+    case=by_case.get('deterministic-thermostat-contrasts')
+    if case is None:
+        assert implemented==original, 'Unqualified thermostat promotion'
+        return None
+    assert implemented==original|additional, 'Unrelated thermostat family promoted'
+    assert case['group']=='thermostat-constraint-controls'
+    assert len(case['method_ids'])==len(additional) and set(case['method_ids'])==additional
+    release={'group':'thermostat-constraint-controls','edition':'2026-11-25','case_ids':[case['id']]}
+    base='code/validated-examples/2026-11-25/thermostat-constraint-controls/'
+    for name in ['cases.json','source-manifest.json','verification.json','results/result.json']:
+        checksum=case['source_sha256'][base+name]
+        assert isinstance(checksum,str) and len(checksum)==64 and all(c in '0123456789abcdef' for c in checksum)
+    for key in ['summary','assumptions','limits']:
+        assert all(isinstance(case[key].get(lang),str) and case[key][lang].strip() for lang in ['ja','en'])
+    for ident in additional:
+        method=by_method[ident]
+        assert method['depth_release']==release, 'Thermostat borrows a different primary release'
+        profiles=[row for row in method.get('supplemental_scope_profiles',[]) if row.get('release')==release]
+        assert len(profiles)==1 and profiles[0]['scope']==case['summary']
+        assert profiles[0]['limits']==[case['limits']], 'Keep the exact fixed-case limits'
+    return case
+
+
+def deterministic_section(case, methods, lang):
+    """Display this limited contrast separately from the older CSVR evidence."""
+    if case is None:return ''
+    names={row['id']:row['name'][lang] for row in methods}
+    body='<section id="deterministic-fixed-contrasts" data-thermostat-case="'+case['id']+'"><h2>'+esc(case['title'][lang])+'</h2>'
+    body+='<p>'+('別配布の固定入力比較：' if lang=='ja' else 'Separate fixed-input contrast: ')+esc(' / '.join(names[ident] for ident in case['method_ids']))+'</p>'
+    for key in ['assumptions','validation','limits']:body+='<p>'+esc(case[key][lang])+'</p>'
+    body+='<p><a href="'+case['url']+'?lang='+lang+'">'+('実測値・未達／未解決の原目標・コード・検査' if lang=='ja' else 'Measurements, unmet/unresolved original goals, code and checks')+'</a></p>'
+    return body+'</section>'
+
+
 ROOT=Path(__file__).resolve().parents[1]
 ATLAS=ROOT/'numerical-methods-atlas'
 ORIGIN='https://hrkoyama.github.io'
@@ -25,10 +71,10 @@ selected_ids={item['id'] for item in supplements}
 comparison_ids=set(comparison['case_ids'])
 assert not comparison_ids.intersection(selected_ids) or comparison_ids <= selected_ids, 'Partial CSVR comparison evidence'
 comparison_enabled=comparison_ids <= selected_ids
+deterministic_comparison=None
 if comparison_enabled:
     assert {item['group'] for item in supplements if item['id'] in comparison_ids}=={'thermostats'}
-    implemented={item['id'] for item in methods if item['status']=='educational-example'}
-    assert implemented=={'langevin-thermostat','stochastic-velocity-rescaling'}, 'Do not promote other thermostat families'
+    deterministic_comparison=qualified_deterministic_thermostats(methods,supplements)
     rendered=json.loads(subprocess.check_output(['node','scripts/render-atlas-math.cjs'],cwd=ROOT,
         input=json.dumps([{'id':key,'formula':[tex]} for key,tex in comparison['formulas'].items()]).encode()))['rendered']
 else:
@@ -93,6 +139,9 @@ def companion_documents(lang,title,description):
         markdown+='## '+('出典と確認範囲' if lang=='ja' else 'Sources and review scope')+'\n\n'+comparison['source_scope'][lang]+'\n\n'
         for item in comparison['references']:markdown+='- '+item['author']+' ('+str(item['year'])+'). '+item['title']+'. '+item['url']+'\n'
         markdown+='\n'
+    if deterministic_comparison is not None:
+        markdown+='## '+deterministic_comparison['title'][lang]+'\n\n'
+        markdown+='\n\n'.join(deterministic_comparison[key][lang] for key in ['assumptions','validation','limits'])+'\n\n'
     markdown+='## '+('実行・検証例' if lang=='ja' else 'Execution and validation entries')+'\n\n'
     for item in supplements:
         markdown+='### '+item['title'][lang]+'\n\n'+item['limits'][lang]+'\n\n'
@@ -109,7 +158,8 @@ for lang in ['ja','en']:
     body+='<p><a href="index.json">JSON</a> · <a href="index.md">Markdown</a></p>'
     for ident,heading,text in paragraphs[lang][:3]:body+=f'<section><h2 id="{ident}">{esc(heading)}</h2><p>{esc(text)}</p></section>'
     if comparison_enabled:body+=comparison_section(lang)
-    body+='<section id="executed-scope"><h2>'+((('CSVR・Langevinの実行・検証例' if ja else 'Runnable CSVR/Langevin validations')) if comparison_enabled else ('調和Langevinの実行・検証例' if ja else 'Runnable harmonic-Langevin validation'))+'</h2><p>'+esc(field['refinement'][lang])+'</p><ul>'
+    body+=deterministic_section(deterministic_comparison,methods,lang)
+    body+='<section id="executed-scope"><h2>'+((('温度制御と小模型連成の固定入力例' if ja else 'Fixed-input thermostat and small-model coupling cases')) if comparison_enabled else ('調和Langevinの実行・検証例' if ja else 'Runnable harmonic-Langevin validation'))+'</h2><p>'+esc(field['refinement'][lang])+'</p><ul>'
     for item in supplements:
         body+='<li><a href="'+item['url']+'?lang='+lang+'">'+esc(item['title'][lang])+'</a> · <a href="'+item['download']+'">ZIP</a> · <a href="'+item['results']+'">'+('保存結果' if ja else 'Stored results')+'</a> · <a href="'+item['verification']+'">'+('追試記録' if ja else 'Rerun receipt')+'</a><p>'+esc(item['limits'][lang])+'</p></li>'
     body+='</ul></section>'
@@ -144,6 +194,6 @@ for lang in ['ja','en']:
 ET.register_namespace('',ns[1:-1]);xml.write(ATLAS/'sitemap.xml',encoding='utf-8',xml_declaration=True)
 guide=ROOT/'llms.txt';text=guide.read_text()
 text=re.sub(r'^- \[Thermostats: comparison and planned checks\].*\n?','',text,flags=re.M)
-line='- [Thermostats: comparison and planned checks]('+ORIGIN+'/numerical-methods-atlas/en/read/thermostats/): '+('CSVR and Langevin share a small OBABO harmonic/anharmonic comparison, with a separate exact kinetic-bath test. Signed CSVR follows the 2007/2008 primary papers and author correction. Canonical distributions, fluctuations and method-dependent correlations are distinguished; the earlier BAOAB release remains intact. The other ten methods remain planned. JSON/Markdown and immutable code/test/results/receipt links are available.' if comparison_enabled else '12 method introductions with primary-reference entry points. Only Langevin BAOAB for a 1D harmonic oscillator has dedicated code, fixed inputs, canonical-distribution/correlation checks and an independent linear-Gaussian reference; the other 11 methods remain planned.')+'\n'
+line='- [Thermostats: comparison and planned checks]('+ORIGIN+'/numerical-methods-atlas/en/read/thermostats/): '+('CSVR and Langevin share a small OBABO harmonic/anharmonic comparison, with a separate exact kinetic-bath test. Signed CSVR follows the 2007/2008 primary papers and author correction. Canonical distributions, fluctuations and method-dependent correlations are distinguished; the earlier BAOAB release remains intact. A separate fixed two-mode release contrasts direct rescaling, Berendsen, Nose-Hoover and NHC3 while retaining unmet or unresolved goals; six other methods remain planned. Fixed linear-constraint/COM and dimensionless two-state BO/CP/OU cases retain their own limits. JSON/Markdown and immutable code/test/results/receipt links are available.' if comparison_enabled else '12 method introductions with primary-reference entry points. Only Langevin BAOAB for a 1D harmonic oscillator has dedicated code, fixed inputs, canonical-distribution/correlation checks and an independent linear-Gaussian reference; the other 11 methods remain planned.')+'\n'
 guide.write_text(text.rstrip()+'\n'+line)
 print('Built bilingual thermostat comparisons and reading-index entries for',len(methods),'methods.')

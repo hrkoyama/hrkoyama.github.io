@@ -73,8 +73,15 @@ test('thermostat overview is bilingual and distinguishes comparisons from execut
   assert.equal(methods.length,12);
   assert.equal(methods.filter(x=>x.tier==='basic').length,8);
   assert.ok(methods.every(x=>!x.code_modules.length&&x.references.length));
-  assert.deepEqual(methods.filter(x=>x.status==='educational-example').map(x=>x.id),['langevin-thermostat','stochastic-velocity-rescaling']);
-  assert.equal(methods.filter(x=>x.status==='planned').length,10);
+  assert.deepEqual(methods.filter(x=>x.status==='educational-example').map(x=>x.id),['velocity-rescaling','berendsen-thermostat','langevin-thermostat','nose-hoover','nose-hoover-chains','stochastic-velocity-rescaling']);
+  assert.equal(methods.filter(x=>x.status==='planned').length,6);
+  const contrast=JSON.parse(read('code/validated-examples/2026-11-25/thermostat-constraint-controls/results/result.json')).cases.find(x=>x.id==='deterministic-thermostat-contrasts');
+  assert.equal(contrast.passed,true);assert.ok(Object.values(contrast.checks).every(x=>x===true));
+  for(const id of ['velocity-rescaling','berendsen-thermostat','nose-hoover','nose-hoover-chains']){
+    const row=methods.find(x=>x.id===id);assert.equal(row.depth_release.group,'thermostat-constraint-controls');
+    assert.equal(row.depth_release.edition,'2026-11-25');assert.deepEqual(row.depth_release.case_ids,['deterministic-thermostat-contrasts']);
+    assert.ok(row.depth_scope.ja&&row.depth_scope.en);
+  }
   const langevin=methods.find(x=>x.id==='langevin-thermostat');
   assert.equal(langevin.depth_release.group,'models');
   assert.deepEqual(langevin.depth_release.case_ids,['langevin-harmonic']);
@@ -90,10 +97,12 @@ test('thermostat overview is bilingual and distinguishes comparisons from execut
     assert.ok(JSON.parse(read('guide/index.json')).pages.some(x=>x.url==='https://hrkoyama.github.io'+route));
     assert.ok(html.includes(`/numerical-methods-atlas/validation/langevin-harmonic/?lang=${lang}`));
     assert.ok(html.includes('BAOAB'));
-    assert.ok(html.includes(lang==='ja'?'他の10手法は実装予定':'other 10 methods remain planned'));
+    assert.ok(html.includes(lang==='ja'?'残る6手法は実装予定です。':'The remaining six methods are planned.'));
+    for(const id of ['velocity-rescaling','berendsen-thermostat','langevin-thermostat','nose-hoover','nose-hoover-chains','stochastic-velocity-rescaling'])assert.ok(html.includes(`/numerical-methods-atlas/methods/${id}/`));
+    for(const id of ['deterministic-thermostat-contrasts','projected-canonical-dof','two-state-bo-cp-ou'])assert.ok(html.includes(`/numerical-methods-atlas/validation/${id}/?lang=${lang}`));
   }
   const html=read('numerical-methods-atlas/methods/nose-hoover/index.html');
-  assert.ok(html.includes('のせフーバー')&&html.includes('解説あり・実装予定'));
+  assert.ok(html.includes('のせフーバー')&&html.includes('教育用例・関連コードあり'));
   assert.ok(html.includes('/ja/read/thermostats/'));
 });
 

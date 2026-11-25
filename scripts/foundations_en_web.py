@@ -1,12 +1,14 @@
 """Render English course HTML from its PDF manuscript; never generate PDF or science."""
 import json
 from html import escape as e
+from foundations_books import current_books
 from foundations_en_contract import ROOT,SOURCE,sha,verify_frozen
 
 ORIGIN='https://hrkoyama.github.io'
 JA='/numerical-methods-atlas/learn/numerical-foundations/'
 
 def build(root=ROOT):
+    current_pdf='/'+current_books(root)['primary']['en']['pdf']['path']
     d,receipt=verify_frozen(root)
     base=d['base'];assets=d['assets_base'];out=root/base.lstrip('/')
     pdf=base+d['edition']+'/numerical-foundations-en.pdf'
@@ -23,7 +25,7 @@ def build(root=ROOT):
         footer='<footer><a href="'+base+'">Contents: all 19 chapters</a> · <a href="'+pdf+'">Same-content PDF</a> · <a href="'+release['zip']+'">Worked-example code ZIP</a><p>24 November 2026 edition · '+e(d['rights'])+'</p></footer>'
         return '<!doctype html><html lang="en"><head>'+head+'</head><body data-content-language="en"><main>'+nav+body+footer+'</main></body></html>\n'
     body='<p class="eyebrow">NUMERICAL METHODS ATLAS / FOUNDATIONS</p><h1>'+e(d['title'])+'</h1><p class="subtitle">'+e(d['subtitle'])+'</p><p>19 chapters · 19 figures · 38 review questions with answers · 24 November 2026</p>'
-    body+='<div class="downloads"><a href="'+pdf+'">Download the PDF</a><a href="'+release['zip']+'">Small-example code ZIP</a><a href="/'+SOURCE+'">Shared manuscript JSON</a></div><section><h2 id="start">Introduction</h2>'+paragraphs(d['preface'])+'<p>Audience: '+e(d['audience'])+'</p><p>Run code snippets from the extracted ZIP directory. Enter the Chapter 19 commands in a shell rather than Python.</p></section>'
+    body+='<div class="downloads"><a href="'+current_pdf+'">Download the book PDF (US Letter)</a><a href="'+pdf+'">Previous PDF (24 November 2026)</a><a href="'+release['zip']+'">Small-example code ZIP</a><a href="/'+SOURCE+'">Shared manuscript JSON</a></div><section><h2 id="start">Introduction</h2>'+paragraphs(d['preface'])+'<p>Audience: '+e(d['audience'])+'</p><p>Run code snippets from the extracted ZIP directory. Enter the Chapter 19 commands in a shell rather than Python.</p></section>'
     for part in d['parts']:
         body+='<section><h2 id="'+part['id']+'">'+e(part['title'])+'</h2><ol start="'+part['range'].split('-')[0]+'">'+''.join('<li><a href="'+base+c['id']+'/">'+e(c['title'])+'</a><p>'+e(c['goals'][0])+'</p></li>' for c in d['chapters'] if c['part']==part['id'])+'</ol></section>'
     body+='<section><h2 id="symbols">Frequently used notation</h2><dl>'+''.join('<dt>'+e(t)+'</dt><dd>'+e(v)+'</dd>' for t,v in d['glossary'])+'</dl></section><section><h2 id="lab">Using the examples</h2>'+paragraphs(d['lab_guide'])+'</section><section><h2 id="references">References and reproduction</h2>'

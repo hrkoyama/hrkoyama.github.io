@@ -1,0 +1,1673 @@
+{
+  "schema_version": 1,
+  "state": "FROZEN_VERIFIED",
+  "passed": true,
+  "layout_edition": "2026-11-25",
+  "edition_manifest": {
+    "path": "numerical-methods-atlas/learn/numerical-foundations/books/2026-11-25/manifest.json",
+    "sha256": "c34d1b974da519c7ad2042a16201f8e92aa6199d823920661fa839ebc687b457"
+  },
+  "books": {
+    "ja": {
+      "pdf_sha256": "79c9e9586f714f9a8942c92cfae6af9b9d10c97c7e0d8eb71defe22b6f32d23e",
+      "pages": 63,
+      "checks": {
+        "all_manuscript_fragments": true,
+        "chapter_fragments_in_order": true,
+        "all_19_chapters_38_answers_36_equations_19_figures": true,
+        "paper_all_pages": true,
+        "fonts_and_glyphs": true,
+        "exact_contact_text_and_mailto": true,
+        "actual_19_chapter_outline_map": true,
+        "print_request_and_console_checks": true,
+        "full_page_visual_review": true
+      },
+      "actual_fragments_checked": 602,
+      "actual_fonts": [
+        {
+          "base_font": "/AAAAAA+Georgia",
+          "subtype": "/Type0",
+          "embedded_files": [
+            {
+              "kind": "/FontFile2",
+              "bytes": 12076,
+              "sha256": "a453fd4ddef1c55ec13f00d3339eac130dabd39188398c77bd6de03ca801cee2"
+            }
+          ],
+          "type3_charprocs": 0,
+          "to_unicode_sha256": "b87a6a1640df1963ab42eec55527c31f2b5e7b9c862d562a0917670bb762c9a5"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 3,
+          "to_unicode_sha256": "5c03e789e4c7757c09d66b72fc8ae1b96f250f5cc78166276034c08381b86556"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 2,
+          "to_unicode_sha256": "cf5464a4722fa3f790f115e9ec04158a4e504d6f99c0bfe3557f5a96c2e998ab"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 2,
+          "to_unicode_sha256": "9516d728869d19ebd85a78d99763bb22639b64818316fbc7cf48db9a01b2d541"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 2,
+          "to_unicode_sha256": "c95306acc1b1e1e635269a6ec4de8d75331c15f5321bb69e6688a636138ddb37"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 2,
+          "to_unicode_sha256": "42e21702267bbc67687a7264d1105487b93b914cce49f6812542c73a164b4645"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 2,
+          "to_unicode_sha256": "908ec82737327855d44cc0da48609268a4d9f3647c44df98d38e64cedfe455f9"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 22,
+          "to_unicode_sha256": "8d5a006235bc8c831f3dfcf36349d9a669cc4aaa415d7a9e97d6fc2182205298"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 2,
+          "to_unicode_sha256": "d2ce6c1997fbda1e21312bb724e76f8eda0b2438fa70df39c355def0db97eb2e"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 2,
+          "to_unicode_sha256": "92fb3b58775a4caed89b24f3b56496928d488bc9424dc7003b43bbae67d2ca9b"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 6,
+          "to_unicode_sha256": "114ef46978d153a9a50d0ff7aad9ba44e1610922b986c1df9c32c7951910be99"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 3,
+          "to_unicode_sha256": "08596445628f800b6a19dbbbd384017abd048182ff7f25ce5faf44fbd8183411"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 3,
+          "to_unicode_sha256": "cda2002ee23d9cf03ce7403c6de0b18c6ac54103e8a1d2b7fc4e4b951afe3c73"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 2,
+          "to_unicode_sha256": "b5ba1aacc8920a89af199cd513913ae21b7da523bd1f4ce554084124a745e073"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 3,
+          "to_unicode_sha256": "5c03e789e4c7757c09d66b72fc8ae1b96f250f5cc78166276034c08381b86556"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 2,
+          "to_unicode_sha256": "9516d728869d19ebd85a78d99763bb22639b64818316fbc7cf48db9a01b2d541"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 2,
+          "to_unicode_sha256": "908ec82737327855d44cc0da48609268a4d9f3647c44df98d38e64cedfe455f9"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 3,
+          "to_unicode_sha256": "a5c7c2af1975ca81bd018bd30a24a5262850e4b41d76f5de526d467576aaacf4"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 3,
+          "to_unicode_sha256": "fd394aea250d5269f6e68e124131750c07fcae8deaad999d6df613a68fd8cfc0"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 2,
+          "to_unicode_sha256": "5e931e5e9598f11ccfc822e69bbf745896420f6da29152881f8ad5162b4cdf39"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 3,
+          "to_unicode_sha256": "0465dd81cfc6e47014631c50ae1869e09ccc6fc559912b2b075c50f51646c3c9"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 2,
+          "to_unicode_sha256": "15d06fccf29c75bd137accc7e9a3db8ea958512b59c52c6af2868e50801f4c9b"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 3,
+          "to_unicode_sha256": "b178a2f10bb7b75a132d6a5a28b8c6079ed7ac843194d0ef1f02df6a7a0d6c7c"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 2,
+          "to_unicode_sha256": "7d858fef9fcacdedf1790c2d14915e6570fa0e3d57314a45d50dfe5784684fa7"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 3,
+          "to_unicode_sha256": "bb0838b72145eba3331c395dbad14af971697667211ce48f3bea0207b57e7fd8"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 3,
+          "to_unicode_sha256": "187f97c76f5f00f4250ec71a09c48bff42427077a0dd22fb870ddeb76090a0c4"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 4,
+          "to_unicode_sha256": "bac13800c62fdaf783c9dddbf4dcadce23addf250eef5ef0b78c3098542a1ca7"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 2,
+          "to_unicode_sha256": "e90f0346bd0f7462d551c9060f35da49feb3b3cfbcfb46a24bbca5332d60c2e8"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 4,
+          "to_unicode_sha256": "0934e650f94284a173ed298eeff602be3c4f0778ae2407d0b468d719e35131fe"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 2,
+          "to_unicode_sha256": "c942f12bf4ff122d5d34d49d561c76f884ce50aecd66dc4dd8ed7a65e50d48ec"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 4,
+          "to_unicode_sha256": "fa8a542fab843393060ea3c137a50a5e2775ed093286bd2e97bdf3199129380d"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 15,
+          "to_unicode_sha256": "eceab6ea7b3e9997b7a0fb5df3c171c3235f3d8f99c7268a68cc904a2b3a7df8"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 49,
+          "to_unicode_sha256": "3ff2222a6ed5ae5039592d1f3410e1ce51940acf0a9b1c831d8c7f64da26ca21"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 54,
+          "to_unicode_sha256": "619541b9fd89677ad61c57299415bf328fa1a4de2c60acb48d8042840cfaac99"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 82,
+          "to_unicode_sha256": "df5ab34049cc69e12df1bbf8bbf94488559b9ec54a11bfb07be025f1f2c0efcf"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 52,
+          "to_unicode_sha256": "44e52e4332813556f1098f7376a3177d25609940db807d9fa51f99858871d413"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 3,
+          "to_unicode_sha256": "12594a8fc18396b3788682dcd37fcf1f2e4833ae166168ddfbebe3ac0bfd7677"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 2,
+          "to_unicode_sha256": "6525f7bc128ab01df5357df79208497eac9dedcde6e043a28d2bdcfca467427f"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 2,
+          "to_unicode_sha256": "d172c1fa62d7b4a4530de300316ea90014287734f11e5433ca495cb997736a30"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 16,
+          "to_unicode_sha256": "16e1220444292e660e438dfbc6102a7342675a0edc93c29ee8f7b69fdd683104"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 37,
+          "to_unicode_sha256": "eb12a0bda5184039cdda08fd42ca20c3e9eb3d6b32cf8fac34a39d575649359e"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 109,
+          "to_unicode_sha256": "1241c68c05ecf40ff72b82a52283063e02f0485a109f0ed9f5fbce0451606170"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 48,
+          "to_unicode_sha256": "22d0be1be1d56bf1302d4fdb7e04c94c3fc7488709abd09235ba85f9efce9914"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 12,
+          "to_unicode_sha256": "17bd0cf3027979ca10f7890d63c6313f8c04d810b3f639a1f2fafa69a2a2a484"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 40,
+          "to_unicode_sha256": "a9b5932dcb90c29f73299af64b683fb6237429f117dfbc9010b3e1d80f0f880e"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 43,
+          "to_unicode_sha256": "3290e09a7e5bc182314889ebfbf3a362078709b6cc426edfa222952f5094ca9a"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 48,
+          "to_unicode_sha256": "2098308390c0a8b03bc673912347a014015f9cc8e59eda23a31fd088bb34da49"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 54,
+          "to_unicode_sha256": "71c488f8c306f6bfee9c5370dc76a8f83416a3c19768cc69eb9987f624154f92"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 33,
+          "to_unicode_sha256": "2101bcdb1679524fa09a960ce53c0bec9ab85ac023d22b5cb7f9b3e7b130cf67"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 42,
+          "to_unicode_sha256": "f8ff5d0e155709ba14fef57f4d7a069dde10a66527a2281371e169751ea3ca10"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 55,
+          "to_unicode_sha256": "2734f4a2aa899918f5218884395bcb491cb86b389232f3e185c9e921168f8fd8"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 41,
+          "to_unicode_sha256": "39d20a5b48c20a9ce6b5acd6c04ef0fcc02cd0b77937ce5cf4bc77f8f18ab8aa"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 6,
+          "to_unicode_sha256": "796207757654fd995cf6334c2539a9f73931cff6cd675aa5700c484d339b4583"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 12,
+          "to_unicode_sha256": "c11c644b09787a4db7fedd4266e214e55973687119b4e13259c738221963232c"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 53,
+          "to_unicode_sha256": "2f9e122ad2d9fdd3f7b40b2326531fd9ef3d746d569d78a78e64bf4c7655d9a1"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 26,
+          "to_unicode_sha256": "a228bbfd766cc505d72b12bf2b47aeea76e348e5ab54a1d3005974db5a35d403"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 19,
+          "to_unicode_sha256": "334231dcb4472c7186dfd6c71d291d110b887aeb80c7ef334d56c5d2b70f9d00"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 54,
+          "to_unicode_sha256": "fb8b0d6c28713ae37bc1bf03471ec0cb8e189712de69fb0c9adacb41be457a24"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 21,
+          "to_unicode_sha256": "f9defe257a66db890e8703231706d063ee70c14e54e0c3b5f3cb1002e548de9a"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 4,
+          "to_unicode_sha256": "f27bf124d73411b132aba8ff6614b1545edc75db015cfd76cddd2cf602f4b797"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 15,
+          "to_unicode_sha256": "cdd076a8a712a7cf5406426d51e8d40de49cb7f5c95fb560dae8bc23545225b7"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 14,
+          "to_unicode_sha256": "aaf4b3d9851cd622a426f7e98adce0900da2d38be6e9021ee746bc4f65b06717"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 4,
+          "to_unicode_sha256": "aa7449d3f76f1dd746ffd04da941ba4d3c38132f7e5f5f305f88cc7a26cbb7ee"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 9,
+          "to_unicode_sha256": "e71c6c1174f32fc5d4222fb8bef71904f4fe55cc93c861f157f018dca979df6c"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 19,
+          "to_unicode_sha256": "7a27208d3c830fa0d62b0de63f74cadd88ff3b387d3438e18b600262fab55442"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 9,
+          "to_unicode_sha256": "fcc69bd17cb7c40e69fc5bbf91e7d5ea85a398fa2c1c78a543176fb6f990321f"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 17,
+          "to_unicode_sha256": "89007b4620928d42b63a6ce6fa887d468558993f6d5eb5feebada2d7f5131561"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 17,
+          "to_unicode_sha256": "48ea9ff8f20385db503b08319aa143037bee6b413c4740f7a328114c2b6f0db1"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 14,
+          "to_unicode_sha256": "0a92c985fbf1f3ec33a6726bebabe7da086ba164a2315d2fa20fbc2e211777c9"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 16,
+          "to_unicode_sha256": "4c85cdae6373262c82b9aee9b72cc92c9dca52277ee1b2399a4d36571721b5ad"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 8,
+          "to_unicode_sha256": "d39a78d9d91ccd0aecd577bc202bbf01220ca1dfb7eda1ec5e45c407a6240f1a"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 12,
+          "to_unicode_sha256": "71e356b2a7cc0faca5c50ed0cc893d7f13d8e0796ee78ca8a45876f8dafc1aeb"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 2,
+          "to_unicode_sha256": "76d35868c3384c6456ff7b25fd46edf63c5861112a2e78128af73fae5f3db11f"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 10,
+          "to_unicode_sha256": "1bbb74d224aeb92562aae9e0026b30193464b89dc9d2165f6d96788ae8a5bb8c"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 24,
+          "to_unicode_sha256": "bb36e967b9d095ef909ce2fe1124f27614b67805e58416a79d124a05bd3d6ef7"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 29,
+          "to_unicode_sha256": "7dfae0d4cd6f7828a4a13214df8d3abcbc25443589e559698403186c86e9a0d9"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 24,
+          "to_unicode_sha256": "3389d54a509235ff57bd9015dc0d3ee459bccafa492934db15695b75c741ba28"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 26,
+          "to_unicode_sha256": "3f3c11d6d1860577541324db1293ec57d06156640e44db9585c2fb44531db62b"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 6,
+          "to_unicode_sha256": "166de9bbd8853c9bd2e86ad0c603712b5476f77ce52f175fa7bc0da955373a6b"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 27,
+          "to_unicode_sha256": "03384126d36174dd4158d5f19dc65b40eb4b15501b04b034fd569a836213c7da"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 30,
+          "to_unicode_sha256": "14ad4c84df7c4c62c9f2a46b83f1f875852f089354941f5bc79423ca6d06e21e"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 31,
+          "to_unicode_sha256": "4fb9132f20039f71345b9418dfd48eca21211add3b5dacf8ae56ccae322c484f"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 20,
+          "to_unicode_sha256": "b8e7bf263bf5ad4c451cbfe5ce83e136874af9729fd669d1b0462c9f83516a13"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 73,
+          "to_unicode_sha256": "794c53b72fd6b625dccbf5ddc12062452d394db121258c169f67400a55883354"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 30,
+          "to_unicode_sha256": "74bdf15dea0e8138c4f28a2f6573d0c2f6d20b2f3aeb16eb4970cb1bd6a1058d"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 15,
+          "to_unicode_sha256": "e893ab64b5005abe9c44496ab980245dbabda5d02e394e275b8e563cdaf0987e"
+        },
+        {
+          "base_font": "/LAAAAA+Menlo-Regular",
+          "subtype": "/Type0",
+          "embedded_files": [
+            {
+              "kind": "/FontFile2",
+              "bytes": 14536,
+              "sha256": "bcf6af27d8f73b8e1c142b9c4ffd8ced510f0d52ce1cd33248d2b8509839ccbd"
+            }
+          ],
+          "type3_charprocs": 0,
+          "to_unicode_sha256": "36572718006f10dbb6c2945c2f65ddfe25b527f6236a51f8bde7bbfb8da95470"
+        },
+        {
+          "base_font": "/MAAAAA+Times-Roman",
+          "subtype": "/Type0",
+          "embedded_files": [
+            {
+              "kind": "/FontFile2",
+              "bytes": 23568,
+              "sha256": "e47e71da1ed893c80065323d9774ae0a69f6fd5e9d65c6f4154c8fa9c250108e"
+            }
+          ],
+          "type3_charprocs": 0,
+          "to_unicode_sha256": "b69f95b6bcbd51067733826c4c8d6aeafa6f560fd109127739e06a1c93fadf56"
+        },
+        {
+          "base_font": "/NAAAAA+Times-Roman",
+          "subtype": "/Type0",
+          "embedded_files": [
+            {
+              "kind": "/FontFile2",
+              "bytes": 23120,
+              "sha256": "c9c1d9a3fca9b6abdf46a2d3e87864129f3f7bcd41e78405e8efc7b9cb190f52"
+            }
+          ],
+          "type3_charprocs": 0,
+          "to_unicode_sha256": "dce01c3682d1fca541a454ee2e12655fcac8ae4764cb97438b1a39b98cf94dcf"
+        },
+        {
+          "base_font": "/OAAAAA+Times-Roman",
+          "subtype": "/Type0",
+          "embedded_files": [
+            {
+              "kind": "/FontFile2",
+              "bytes": 18408,
+              "sha256": "8e2986b0e350f21c0576b17e6e59cefe400405604c2cebcbe19896d1f3381c1b"
+            }
+          ],
+          "type3_charprocs": 0,
+          "to_unicode_sha256": "4e0e1507ea2f9626e232be175aa49e04cb384706919272f4a893db3da9ad6df8"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 72,
+          "to_unicode_sha256": "c2314e68042e6c2a7c63c31d96902800c31c50fadc7f264f5f92083e16e3c8bf"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 25,
+          "to_unicode_sha256": "05c6ef5a8a3ead5a2fb6dc71a4736ac826dc4fe9c5d3ef3518fad479f9ffd39b"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 24,
+          "to_unicode_sha256": "0e99fe3f6cfe072d7098f50980b6ddda8e53cf3b14101f37506df8cbd6f9cb17"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 15,
+          "to_unicode_sha256": "66a1cac93c50ef0bdec39af5079b8c051c15e4d70cbaa70e7368c4dfe0a28c21"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 37,
+          "to_unicode_sha256": "526180e098d59a2daba9bbe348465544b2b2d0446de92f6e597246c087919cd7"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 9,
+          "to_unicode_sha256": "4de0ac939c2b1e4e0977968b4a36a389074587074578dcab658b564c84ada6a4"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 18,
+          "to_unicode_sha256": "d55daf8bbd2a726606ddd46c91517497a6bbc7ca3362f13cec05ac6d6158145e"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 20,
+          "to_unicode_sha256": "5ffb19afe59f85eff8c0a324ba55c0b687ad13929584b837851572afc071680d"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 17,
+          "to_unicode_sha256": "654f0e2a8c4c65d1b73d58a46e95fa27bc0ba8f478c77cc684105e3eec6c9948"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 19,
+          "to_unicode_sha256": "61d18b8a75d50a410fd916acd2d667589820fdd234bb2fb22e3c311cbcf2bf12"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 67,
+          "to_unicode_sha256": "e9ac7e00c167081090c71089531a229cff9bdcabc691d4da49c0689811475330"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 10,
+          "to_unicode_sha256": "055a0d199741b6657d84b9c0417105a4fb504b6297658eb81bcda359feaaf6e3"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 16,
+          "to_unicode_sha256": "50a39a2d03e127cfe8f8cb2a3eb56c884042a86be9316d04b676234d08142094"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 16,
+          "to_unicode_sha256": "bf524b1f7281d0a245f72e4b04f801e74dbb0f5d31ce872ef732877794db20d8"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 10,
+          "to_unicode_sha256": "217092a895e4b4be672c5f16c2e749ae9ea4904dce9aa854bd05bf1ad362442f"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 11,
+          "to_unicode_sha256": "a641f93f9c6ff592d54df45e2599fc887d304280ef5be0d6c5a0e04fe1ac448d"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 30,
+          "to_unicode_sha256": "422379adee5e6f45f0c1865d4827af87ce22f0967b54f5f96c4214995a63a0bd"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 4,
+          "to_unicode_sha256": "4e2c6a8495f3ee12696781b834874ebc89aa312d04bd6e233dc9023993e267d7"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 2,
+          "to_unicode_sha256": "6babf8bc62b557c55a9dd8c1f82bab1867c7abc7d6951a89cf05b975fed3d71b"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 2,
+          "to_unicode_sha256": "29b365b7504e0708407ce362cb9f62209ae65d4ff622e9f18228ceda15b1102b"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 18,
+          "to_unicode_sha256": "096c7c5f59fa94f94875c9baf47cd2901b5361ffcb4df72621ac6012ec0a029d"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 10,
+          "to_unicode_sha256": "7ad0e3c3c7b8cd83c70e1f73aadca22d4f8b1ebd16699dc84400161683a3d9f5"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 2,
+          "to_unicode_sha256": "6babf8bc62b557c55a9dd8c1f82bab1867c7abc7d6951a89cf05b975fed3d71b"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 13,
+          "to_unicode_sha256": "fa4cf7dedcd0e418252c94cf509c6d1b4a5c6d070b6c6bbc95d245d683e4feae"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 12,
+          "to_unicode_sha256": "8176db96e86194df9bb9cec36ddea96cb524743dd401b105c4d2947968fa988f"
+        },
+        {
+          "base_font": "/QAAAAA+AppleSymbols",
+          "subtype": "/Type0",
+          "embedded_files": [
+            {
+              "kind": "/FontFile2",
+              "bytes": 19780,
+              "sha256": "95dfe240c201ef9d20b47c1312811543fc824c2e974e8cf3d5cd4141518e6405"
+            }
+          ],
+          "type3_charprocs": 0,
+          "to_unicode_sha256": "cdfe57ba3462ca8e8b5e6efe18116985d29affe4994d340ac77c3c6723de6894"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 9,
+          "to_unicode_sha256": "791d4bb5947780d370716f300f26d4af1f4e03e94cc8085e599e1b0606377908"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 12,
+          "to_unicode_sha256": "d31ad5fbf9a2075f1ad0bb0597fa2fed91744190018b840178868e432bfdb7fe"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 2,
+          "to_unicode_sha256": "5b1cff8302bf5604b9b39105e46bdaa9a72c6cd0b7f1dae7613bab329d16d47b"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 3,
+          "to_unicode_sha256": "5d11599f1f8cedc40a6cb7cd27047da88e72f95895134bf79067e00aeea9e772"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 3,
+          "to_unicode_sha256": "48406a1aee2c16b7f6769e39728abe5dcb6443b7b089cbae581cdac0729f7474"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 3,
+          "to_unicode_sha256": "215dfdc8434810d77f18276e0524d42d71e1322964a8fb949e843b1453a89aa0"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 4,
+          "to_unicode_sha256": "3136cd7c093c08134ae8dd4c5483ecac731e7983f1b8448b965198703ac4d2be"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 3,
+          "to_unicode_sha256": "7d25f2157ceed0e7a36f544e0014f20f28220e3d04a15f9e67fee44d450e979f"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 8,
+          "to_unicode_sha256": "108b3e5bdef5b19d70befc4397d66e80cbb635b1e9442c26d738fd0b5eb0048b"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 6,
+          "to_unicode_sha256": "04bf0676bb8ca263051698e8e17ae04b68b8e93a43902d24716c6466a997dfd6"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 8,
+          "to_unicode_sha256": "b412732871790c7d97671b98b922bd64d7cb32ba50c7ec2544518e418e152055"
+        },
+        {
+          "base_font": "/SAAAAA+TimesNewRomanPSMT",
+          "subtype": "/Type0",
+          "embedded_files": [
+            {
+              "kind": "/FontFile2",
+              "bytes": 18008,
+              "sha256": "bef8f4daef6c81c3980c9cc88f48ada3a14601a466efcbd90ffb281ebaffb6fe"
+            }
+          ],
+          "type3_charprocs": 0,
+          "to_unicode_sha256": "bc88e71098fd87894241af1f66bfad6933f3cecce60f58e6b3f844d6dfbf6e53"
+        },
+        {
+          "base_font": "/TAAAAA+Times-Roman",
+          "subtype": "/Type0",
+          "embedded_files": [
+            {
+              "kind": "/FontFile2",
+              "bytes": 12348,
+              "sha256": "1542114f87f70d1e088b8503fb1bae39a0ef6d3732e4ed75245b52b3e83dfc59"
+            }
+          ],
+          "type3_charprocs": 0,
+          "to_unicode_sha256": "df5b0b9596ff0701b6fd3a98d45399db5b2098f2415da3c4b3f905e4e8e6bc47"
+        },
+        {
+          "base_font": "/UAAAAA+Times-Roman",
+          "subtype": "/Type0",
+          "embedded_files": [
+            {
+              "kind": "/FontFile2",
+              "bytes": 8844,
+              "sha256": "2fcff74100d2e75dd564d04f12760fd8af4744c245a1c6917c608825a7164fce"
+            }
+          ],
+          "type3_charprocs": 0,
+          "to_unicode_sha256": "41acd7df3567bb87a49d018741a748bdcc68eee81cb582a1a8133b6a8992174d"
+        },
+        {
+          "base_font": "/VAAAAA+Times-Roman",
+          "subtype": "/Type0",
+          "embedded_files": [
+            {
+              "kind": "/FontFile2",
+              "bytes": 15260,
+              "sha256": "3270969e5bbb4e59d40fd55b05514991f8cd96680fa03f377a0ac6dae2daa091"
+            }
+          ],
+          "type3_charprocs": 0,
+          "to_unicode_sha256": "1f46c477d62fbcf012ffd7bdb2fa554a2c1928a0af21e21297e3e5ef380ab3fa"
+        },
+        {
+          "base_font": "/WAAAAA+TimesNewRomanPSMT",
+          "subtype": "/Type0",
+          "embedded_files": [
+            {
+              "kind": "/FontFile2",
+              "bytes": 18008,
+              "sha256": "bef8f4daef6c81c3980c9cc88f48ada3a14601a466efcbd90ffb281ebaffb6fe"
+            }
+          ],
+          "type3_charprocs": 0,
+          "to_unicode_sha256": "bc88e71098fd87894241af1f66bfad6933f3cecce60f58e6b3f844d6dfbf6e53"
+        },
+        {
+          "base_font": "/XAAAAA+TimesNewRomanPS-BoldMT",
+          "subtype": "/Type0",
+          "embedded_files": [
+            {
+              "kind": "/FontFile2",
+              "bytes": 18964,
+              "sha256": "0631f16b0a5dfc069035b5bff9ea595793ac7148ecfa917f78bb6f0b481bd2c9"
+            }
+          ],
+          "type3_charprocs": 0,
+          "to_unicode_sha256": "bc88e71098fd87894241af1f66bfad6933f3cecce60f58e6b3f844d6dfbf6e53"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 2,
+          "to_unicode_sha256": "aad3e6eef84288ea7030345e39091b2ec4abd7285d1eb929fdfbb986f0724ade"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 7,
+          "to_unicode_sha256": "6b88e47443b9f2a301642b73b2cd9aba3d032ce41d872cc4f38dea54c9503723"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 2,
+          "to_unicode_sha256": "aad3e6eef84288ea7030345e39091b2ec4abd7285d1eb929fdfbb986f0724ade"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 7,
+          "to_unicode_sha256": "7d9a8b39bca60dce25f99a1835a82c51f209e440f5bf554dab97d59a254d94a4"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 2,
+          "to_unicode_sha256": "ea981815d6ca0192759fd5b1ee4abf59f764417cb14ceb13462009326b375d1c"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 2,
+          "to_unicode_sha256": "1f79f8b6ba498e9a448a554e8ca96eafac1e94c4b07b98baf195e5d774a140d9"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 3,
+          "to_unicode_sha256": "39a09b75241e120b6ec45f00084bcfac3a4bf74bb0f35b204e63635b26619e2f"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 5,
+          "to_unicode_sha256": "4e43a866df2b49d6dacdbc57ac3e54249da7ee5e42161d05b64b8c4ab098ca8f"
+        },
+        {
+          "base_font": "/YAAAAA+Times-Roman",
+          "subtype": "/Type0",
+          "embedded_files": [
+            {
+              "kind": "/FontFile2",
+              "bytes": 12636,
+              "sha256": "8ab20ab7dfcab94374393672669894962f3aae13a3a57a8677c913227543a08d"
+            }
+          ],
+          "type3_charprocs": 0,
+          "to_unicode_sha256": "22b2763d812d461a6d8b2b69ec2d3d41841fe54918692b4775bdc1c948c1d34a"
+        },
+        {
+          "base_font": "/ZAAAAA+Times-Roman",
+          "subtype": "/Type0",
+          "embedded_files": [
+            {
+              "kind": "/FontFile2",
+              "bytes": 11704,
+              "sha256": "870411596de8cf04d67671e360859be36028dfc56f775a17694e5548fbb5d827"
+            }
+          ],
+          "type3_charprocs": 0,
+          "to_unicode_sha256": "1f3c9e77ab1622383e8c9e2b049536b78c6d6db3d88490ffec3f6f1e4c7f8eb7"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 3,
+          "to_unicode_sha256": "e3206547a0752cc822ad2683e31ffaf2c053025f0d29b9a20996a0d413c55889"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 2,
+          "to_unicode_sha256": "29b365b7504e0708407ce362cb9f62209ae65d4ff622e9f18228ceda15b1102b"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 2,
+          "to_unicode_sha256": "5ee9e20ee9ae46622fd8670d49514012e456322cceaa1284de2738a35cfc3e54"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 2,
+          "to_unicode_sha256": "b89a862b4b75da3e2e1fadcf185993b1d6c1f8edbe73c069c776e47d1fbe4170"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 3,
+          "to_unicode_sha256": "8ffb265bb3265a2717852aec8169bf12ff0b3cf7b7ed0cb867e33162802f3746"
+        }
+      ],
+      "visual_review": {
+        "completed": true,
+        "all_page_count": 63,
+        "receipt_sha256": "4bfc1f88e27e809936b250c5c4967bca5e6d2230d6cb75ae26262b04c189c60c"
+      },
+      "ordered_chapter_checks": [
+        {
+          "chapter": "01",
+          "first_page": 5,
+          "fragments_in_order": 31
+        },
+        {
+          "chapter": "02",
+          "first_page": 8,
+          "fragments_in_order": 33
+        },
+        {
+          "chapter": "03",
+          "first_page": 11,
+          "fragments_in_order": 33
+        },
+        {
+          "chapter": "04",
+          "first_page": 14,
+          "fragments_in_order": 32
+        },
+        {
+          "chapter": "05",
+          "first_page": 17,
+          "fragments_in_order": 30
+        },
+        {
+          "chapter": "06",
+          "first_page": 20,
+          "fragments_in_order": 33
+        },
+        {
+          "chapter": "07",
+          "first_page": 23,
+          "fragments_in_order": 30
+        },
+        {
+          "chapter": "08",
+          "first_page": 26,
+          "fragments_in_order": 30
+        },
+        {
+          "chapter": "09",
+          "first_page": 29,
+          "fragments_in_order": 30
+        },
+        {
+          "chapter": "10",
+          "first_page": 32,
+          "fragments_in_order": 30
+        },
+        {
+          "chapter": "11",
+          "first_page": 35,
+          "fragments_in_order": 31
+        },
+        {
+          "chapter": "12",
+          "first_page": 38,
+          "fragments_in_order": 31
+        },
+        {
+          "chapter": "13",
+          "first_page": 41,
+          "fragments_in_order": 32
+        },
+        {
+          "chapter": "14",
+          "first_page": 44,
+          "fragments_in_order": 32
+        },
+        {
+          "chapter": "15",
+          "first_page": 47,
+          "fragments_in_order": 34
+        },
+        {
+          "chapter": "16",
+          "first_page": 50,
+          "fragments_in_order": 35
+        },
+        {
+          "chapter": "17",
+          "first_page": 53,
+          "fragments_in_order": 31
+        },
+        {
+          "chapter": "18",
+          "first_page": 56,
+          "fragments_in_order": 32
+        },
+        {
+          "chapter": "19",
+          "first_page": 59,
+          "fragments_in_order": 29
+        }
+      ],
+      "body_normalized_sha256": "064dd64d4d2afdffd4c0b058e763f86dde522487b5ac6ec659fdf9d3b23378c7"
+    },
+    "en": {
+      "pdf_sha256": "aa97e026daa8d7b65af699e8504b93fb4a3998f08066bfdbd9b8a5d8becdf308",
+      "pages": 63,
+      "checks": {
+        "all_manuscript_fragments": true,
+        "chapter_fragments_in_order": true,
+        "all_19_chapters_38_answers_36_equations_19_figures": true,
+        "paper_all_pages": true,
+        "fonts_and_glyphs": true,
+        "exact_contact_text_and_mailto": true,
+        "actual_19_chapter_outline_map": true,
+        "print_request_and_console_checks": true,
+        "full_page_visual_review": true
+      },
+      "actual_fragments_checked": 605,
+      "actual_fonts": [
+        {
+          "base_font": "/AAAAAA+Georgia",
+          "subtype": "/Type0",
+          "embedded_files": [
+            {
+              "kind": "/FontFile2",
+              "bytes": 17664,
+              "sha256": "1010bdb4979b9168fcb45487e36cab0c30b98cc5eefc54bf971658c910af3977"
+            }
+          ],
+          "type3_charprocs": 0,
+          "to_unicode_sha256": "b2f0dbc0756197e9518d0c59814e3c9436729c9b99ec55984dae9ac400ff2ad9"
+        },
+        {
+          "base_font": "/BAAAAA+Georgia",
+          "subtype": "/Type0",
+          "embedded_files": [
+            {
+              "kind": "/FontFile2",
+              "bytes": 18416,
+              "sha256": "3caac48943572a97e80c4d66fbaeea5c85d7cdeb94b71ad45531cecc0cfa023c"
+            }
+          ],
+          "type3_charprocs": 0,
+          "to_unicode_sha256": "91ca8eb34b06b09cf54d68b68f81aee72faa780d8e62defb8e9ee6d698f52d6d"
+        },
+        {
+          "base_font": "/CAAAAA+Georgia-Bold",
+          "subtype": "/Type0",
+          "embedded_files": [
+            {
+              "kind": "/FontFile2",
+              "bytes": 13164,
+              "sha256": "7d4aa20f561a919bb04a2aa3bdb034889fc8af9a06f50bd296e98cde73a780be"
+            }
+          ],
+          "type3_charprocs": 0,
+          "to_unicode_sha256": "314f41ea8307822af2e9b59192767dbb7964a8a1c48b862abdad99208feb5e6e"
+        },
+        {
+          "base_font": "/DAAAAA+Georgia",
+          "subtype": "/Type0",
+          "embedded_files": [
+            {
+              "kind": "/FontFile2",
+              "bytes": 16216,
+              "sha256": "20b52d22d554e1716222c1a362c5faec36d59252160b3d12a52ca7dec96250d9"
+            }
+          ],
+          "type3_charprocs": 0,
+          "to_unicode_sha256": "5ade197f24b7ba9e66c1844e4633b01978e274ca7fb937f1d0575f16f8ed3a71"
+        },
+        {
+          "base_font": "/EAAAAA+Georgia",
+          "subtype": "/Type0",
+          "embedded_files": [
+            {
+              "kind": "/FontFile2",
+              "bytes": 23184,
+              "sha256": "7898297a8b0f2f75c646df9fa59d7cc87faf3ef39f43375a90948d05e9055f9d"
+            }
+          ],
+          "type3_charprocs": 0,
+          "to_unicode_sha256": "90236e4f1244d8ffbd057bf35709fa22e3321cfeb787dc1ec34ab0c4e2f56918"
+        },
+        {
+          "base_font": "/FAAAAA+Georgia",
+          "subtype": "/Type0",
+          "embedded_files": [
+            {
+              "kind": "/FontFile2",
+              "bytes": 59168,
+              "sha256": "4fad8700e923e3929f4c1173bc6b4f87e8ab9488a289ad51237f2cbc0a9f9d16"
+            }
+          ],
+          "type3_charprocs": 0,
+          "to_unicode_sha256": "4de7b7471c854bbfbde2eba86c92ad14c69bcaaebfd26dd5876b83ca3f707939"
+        },
+        {
+          "base_font": "/GAAAAA+Georgia",
+          "subtype": "/Type0",
+          "embedded_files": [
+            {
+              "kind": "/FontFile2",
+              "bytes": 15232,
+              "sha256": "1357717075c392d3bb686bc0ba48f062978bb6c74de23af5769bbb4a55734a76"
+            }
+          ],
+          "type3_charprocs": 0,
+          "to_unicode_sha256": "d495854582e49bd05a7080584f92bf9f09f9ccdb8528f84427363a68a5ba45e7"
+        },
+        {
+          "base_font": "/HAAAAA+Georgia-Bold",
+          "subtype": "/Type0",
+          "embedded_files": [
+            {
+              "kind": "/FontFile2",
+              "bytes": 22204,
+              "sha256": "d6722c599a407ab5d6bcef2141581aecf1647d4dcca485bf66b400db85b22f60"
+            }
+          ],
+          "type3_charprocs": 0,
+          "to_unicode_sha256": "4d71de51809be50a63ebfa73c1a0f5eae8ace70ddad53a2417fc355ed701bc84"
+        },
+        {
+          "base_font": "/IAAAAA+Georgia-Bold",
+          "subtype": "/Type0",
+          "embedded_files": [
+            {
+              "kind": "/FontFile2",
+              "bytes": 23700,
+              "sha256": "afb9c0629836bddfa4462c84084887765656eafa8bd13ef32ca88ca99adde5f3"
+            }
+          ],
+          "type3_charprocs": 0,
+          "to_unicode_sha256": "40a38d28b6c0cbbc77e082f3bb7ace2154ff5a13c1f46da3e56d9d14c58e2e6b"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 2,
+          "to_unicode_sha256": "f829978bdc527464e316e5c264478c147842bdc4a3bbf6e4c9585d851a66055d"
+        },
+        {
+          "base_font": "/KAAAAA+Georgia",
+          "subtype": "/Type0",
+          "embedded_files": [
+            {
+              "kind": "/FontFile2",
+              "bytes": 45716,
+              "sha256": "ca62641b12909d9e5c9a539dfea5e11a18e0de7ed97a96d64d5707ca5517c082"
+            }
+          ],
+          "type3_charprocs": 0,
+          "to_unicode_sha256": "88eefb5e671e39d1192a9574e0d4854dfa06e69a745468cfbdac552583a090bf"
+        },
+        {
+          "base_font": "/LAAAAA+Menlo-Regular",
+          "subtype": "/Type0",
+          "embedded_files": [
+            {
+              "kind": "/FontFile2",
+              "bytes": 14876,
+              "sha256": "6464e2200036d3d0796b8e2db73a2278a595ffe412aff0a2438f2707a5a1acbf"
+            }
+          ],
+          "type3_charprocs": 0,
+          "to_unicode_sha256": "c9742c43acbf1dd5d8ce8400c5a3d771792f55051464270bba353c70e1c9a499"
+        },
+        {
+          "base_font": "/MAAAAA+Times-Roman",
+          "subtype": "/Type0",
+          "embedded_files": [
+            {
+              "kind": "/FontFile2",
+              "bytes": 23568,
+              "sha256": "e47e71da1ed893c80065323d9774ae0a69f6fd5e9d65c6f4154c8fa9c250108e"
+            }
+          ],
+          "type3_charprocs": 0,
+          "to_unicode_sha256": "b69f95b6bcbd51067733826c4c8d6aeafa6f560fd109127739e06a1c93fadf56"
+        },
+        {
+          "base_font": "/NAAAAA+Times-Roman",
+          "subtype": "/Type0",
+          "embedded_files": [
+            {
+              "kind": "/FontFile2",
+              "bytes": 23120,
+              "sha256": "c9c1d9a3fca9b6abdf46a2d3e87864129f3f7bcd41e78405e8efc7b9cb190f52"
+            }
+          ],
+          "type3_charprocs": 0,
+          "to_unicode_sha256": "dce01c3682d1fca541a454ee2e12655fcac8ae4764cb97438b1a39b98cf94dcf"
+        },
+        {
+          "base_font": "/OAAAAA+Times-Roman",
+          "subtype": "/Type0",
+          "embedded_files": [
+            {
+              "kind": "/FontFile2",
+              "bytes": 18408,
+              "sha256": "8e2986b0e350f21c0576b17e6e59cefe400405604c2cebcbe19896d1f3381c1b"
+            }
+          ],
+          "type3_charprocs": 0,
+          "to_unicode_sha256": "4e0e1507ea2f9626e232be175aa49e04cb384706919272f4a893db3da9ad6df8"
+        },
+        {
+          "base_font": "/PAAAAA+Georgia-Bold",
+          "subtype": "/Type0",
+          "embedded_files": [
+            {
+              "kind": "/FontFile2",
+              "bytes": 35364,
+              "sha256": "d9562a3294bb5aa207f79acc96741093dfeebac85578e348e51c3eaaae5993fb"
+            }
+          ],
+          "type3_charprocs": 0,
+          "to_unicode_sha256": "422ec147e85190636c36312d72b93aefdfe4eb8f9a10cd789189f23a371e5894"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 2,
+          "to_unicode_sha256": "f829978bdc527464e316e5c264478c147842bdc4a3bbf6e4c9585d851a66055d"
+        },
+        {
+          "base_font": "",
+          "subtype": "/Type3",
+          "embedded_files": [],
+          "type3_charprocs": 2,
+          "to_unicode_sha256": "2f2bcb9d3c1aa28d486969c16ca41eb13af64b2c4a71bfdd8318f31274a00116"
+        },
+        {
+          "base_font": "/SAAAAA+Times-Roman",
+          "subtype": "/Type0",
+          "embedded_files": [
+            {
+              "kind": "/FontFile2",
+              "bytes": 12348,
+              "sha256": "1542114f87f70d1e088b8503fb1bae39a0ef6d3732e4ed75245b52b3e83dfc59"
+            }
+          ],
+          "type3_charprocs": 0,
+          "to_unicode_sha256": "df5b0b9596ff0701b6fd3a98d45399db5b2098f2415da3c4b3f905e4e8e6bc47"
+        },
+        {
+          "base_font": "/TAAAAA+Times-Roman",
+          "subtype": "/Type0",
+          "embedded_files": [
+            {
+              "kind": "/FontFile2",
+              "bytes": 8844,
+              "sha256": "2fcff74100d2e75dd564d04f12760fd8af4744c245a1c6917c608825a7164fce"
+            }
+          ],
+          "type3_charprocs": 0,
+          "to_unicode_sha256": "41acd7df3567bb87a49d018741a748bdcc68eee81cb582a1a8133b6a8992174d"
+        },
+        {
+          "base_font": "/UAAAAA+Times-Roman",
+          "subtype": "/Type0",
+          "embedded_files": [
+            {
+              "kind": "/FontFile2",
+              "bytes": 15260,
+              "sha256": "3270969e5bbb4e59d40fd55b05514991f8cd96680fa03f377a0ac6dae2daa091"
+            }
+          ],
+          "type3_charprocs": 0,
+          "to_unicode_sha256": "1f46c477d62fbcf012ffd7bdb2fa554a2c1928a0af21e21297e3e5ef380ab3fa"
+        },
+        {
+          "base_font": "/VAAAAA+Times-Roman",
+          "subtype": "/Type0",
+          "embedded_files": [
+            {
+              "kind": "/FontFile2",
+              "bytes": 12636,
+              "sha256": "8ab20ab7dfcab94374393672669894962f3aae13a3a57a8677c913227543a08d"
+            }
+          ],
+          "type3_charprocs": 0,
+          "to_unicode_sha256": "22b2763d812d461a6d8b2b69ec2d3d41841fe54918692b4775bdc1c948c1d34a"
+        },
+        {
+          "base_font": "/WAAAAA+Times-Roman",
+          "subtype": "/Type0",
+          "embedded_files": [
+            {
+              "kind": "/FontFile2",
+              "bytes": 11704,
+              "sha256": "870411596de8cf04d67671e360859be36028dfc56f775a17694e5548fbb5d827"
+            }
+          ],
+          "type3_charprocs": 0,
+          "to_unicode_sha256": "1f3c9e77ab1622383e8c9e2b049536b78c6d6db3d88490ffec3f6f1e4c7f8eb7"
+        }
+      ],
+      "visual_review": {
+        "completed": true,
+        "all_page_count": 63,
+        "receipt_sha256": "94306ab3699d61a10c7ee53bdbeb09f974aa49adfd23f1feb73e095e6bafc99e"
+      },
+      "ordered_chapter_checks": [
+        {
+          "chapter": "01",
+          "first_page": 5,
+          "fragments_in_order": 31
+        },
+        {
+          "chapter": "02",
+          "first_page": 8,
+          "fragments_in_order": 33
+        },
+        {
+          "chapter": "03",
+          "first_page": 11,
+          "fragments_in_order": 33
+        },
+        {
+          "chapter": "04",
+          "first_page": 14,
+          "fragments_in_order": 32
+        },
+        {
+          "chapter": "05",
+          "first_page": 17,
+          "fragments_in_order": 30
+        },
+        {
+          "chapter": "06",
+          "first_page": 20,
+          "fragments_in_order": 33
+        },
+        {
+          "chapter": "07",
+          "first_page": 23,
+          "fragments_in_order": 30
+        },
+        {
+          "chapter": "08",
+          "first_page": 26,
+          "fragments_in_order": 30
+        },
+        {
+          "chapter": "09",
+          "first_page": 29,
+          "fragments_in_order": 30
+        },
+        {
+          "chapter": "10",
+          "first_page": 32,
+          "fragments_in_order": 30
+        },
+        {
+          "chapter": "11",
+          "first_page": 35,
+          "fragments_in_order": 31
+        },
+        {
+          "chapter": "12",
+          "first_page": 38,
+          "fragments_in_order": 31
+        },
+        {
+          "chapter": "13",
+          "first_page": 41,
+          "fragments_in_order": 32
+        },
+        {
+          "chapter": "14",
+          "first_page": 44,
+          "fragments_in_order": 32
+        },
+        {
+          "chapter": "15",
+          "first_page": 47,
+          "fragments_in_order": 34
+        },
+        {
+          "chapter": "16",
+          "first_page": 50,
+          "fragments_in_order": 35
+        },
+        {
+          "chapter": "17",
+          "first_page": 53,
+          "fragments_in_order": 31
+        },
+        {
+          "chapter": "18",
+          "first_page": 56,
+          "fragments_in_order": 32
+        },
+        {
+          "chapter": "19",
+          "first_page": 59,
+          "fragments_in_order": 29
+        }
+      ],
+      "body_normalized_sha256": "9abc53892a2b55ac557669c148584c2b10f92cfe03f2f8881c7c048f07a33ce2"
+    }
+  },
+  "immutable_assets_and_manuscripts_unchanged": true,
+  "science_rerun": false,
+  "actual_started_at_utc": "2026-11-25T11:39:03.854277+00:00",
+  "actual_completed_at_utc": "2026-11-25T11:39:39.423160+00:00",
+  "normalization": "NFKC plus whitespace removal only",
+  "evidence_sha256": {
+    "independent_text_font_paper_contact_audit": "5464a7e7c5c5ab014a160ab29456a08fd086311f71614049e0740b5b889b45ee",
+    "actual_19_chapter_outline_page_map": "1c7b1be8a10da6cd8cdfb3eb0def0821d0034ec391c76d7209c6dd44d079bc78",
+    "original_all_126_pages_visual_review": "94306ab3699d61a10c7ee53bdbeb09f974aa49adfd23f1feb73e095e6bafc99e",
+    "final_JA_63_pages_render_equivalence": "4bfc1f88e27e809936b250c5c4967bca5e6d2230d6cb75ae26262b04c189c60c",
+    "effective_CMap_and_xref_postconditions": "9a3ae999e9f92742d10f515a001550fa173b116134393dcf7d6f74fcfddd062b"
+  },
+  "scope_notes": [
+    "Every original prose and nonblank code-line fragment is checked after NFKC and whitespace removal, in chapter order. PDF extraction does not mechanically certify code indentation.",
+    "All 126 pages were visually reviewed via 12 contact sheets and four full-size samples. All 63 final Japanese page renders are byte-identical to that reviewed layout.",
+    "No numerical calculations were rerun; original manuscripts, 95 old assets and the original scientific ZIP remain unchanged.",
+    "This is a layout edition of the 2026-11-24 manuscript, not a new scientific edition."
+  ]
+}

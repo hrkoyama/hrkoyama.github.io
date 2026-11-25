@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "state": "FROZEN_VERIFIED",
+  "origin": "https://hrkoyama.github.io",
+  "current_layout_edition": "2026-11-25",
+  "edition_manifest": {
+    "path": "numerical-methods-atlas/learn/numerical-foundations/books/2026-11-25/manifest.json",
+    "sha256": "c34d1b974da519c7ad2042a16201f8e92aa6199d823920661fa839ebc687b457"
+  },
+  "book_verification": {
+    "path": "numerical-methods-atlas/learn/numerical-foundations/books/2026-11-25/book-verification.json",
+    "sha256": "7ad7e58257dde1dbb6e5205a3c757ebc714a09943432f7d86fa889722f521078"
+  },
+  "primary": {
+    "ja": {
+      "pdf": {
+        "path": "numerical-methods-atlas/learn/numerical-foundations/books/2026-11-25/numerical-foundations-ja-a4.pdf",
+        "sha256": "79c9e9586f714f9a8942c92cfae6af9b9d10c97c7e0d8eb71defe22b6f32d23e",
+        "bytes": 2817606,
+        "pages": 63
+      },
+      "paper": {
+        "name": "A4",
+        "width_pt": 595.2755905511812,
+        "height_pt": 841.8897637795277
+      },
+      "manuscript": {
+        "path": "catalog/atlas-foundations-course.json",
+        "sha256": "231338afd44d8126863eba326dbc98ff9a2a9efd85cc5a228a503835f51cf9d9"
+      },
+      "web": "/numerical-methods-atlas/learn/numerical-foundations/",
+      "previous_pdf": {
+        "path": "numerical-methods-atlas/learn/numerical-foundations/2026-11-24/numerical-foundations-ja.pdf",
+        "sha256": "99fd73f16f8af17ef0d6addb35b6ef3034879854b1919fe11b030a6a6e2ea74d"
+      }
+    },
+    "en": {
+      "pdf": {
+        "path": "numerical-methods-atlas/learn/numerical-foundations/books/2026-11-25/numerical-foundations-en-letter.pdf",
+        "sha256": "aa97e026daa8d7b65af699e8504b93fb4a3998f08066bfdbd9b8a5d8becdf308",
+        "bytes": 1213315,
+        "pages": 63
+      },
+      "paper": {
+        "name": "USLetter",
+        "width_pt": 612,
+        "height_pt": 792
+      },
+      "manuscript": {
+        "path": "catalog/atlas-foundations-course.en.json",
+        "sha256": "1b1dceef84892e3c113ca080b1fea1217af0c335b3a0c616e1e3610dc38807f2"
+      },
+      "web": "/numerical-methods-atlas/learn/numerical-foundations/en/",
+      "previous_pdf": {
+        "path": "numerical-methods-atlas/learn/numerical-foundations/en/2026-11-24/numerical-foundations-en.pdf",
+        "sha256": "d0c61b494711e9abce178425f6c2e3f7268a060f322593d70a0f133427847c5d"
+      }
+    }
+  }
+}

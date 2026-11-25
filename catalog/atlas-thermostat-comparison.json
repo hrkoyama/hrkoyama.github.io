@@ -130,12 +130,12 @@
     }
   ],
   "verification": {
-    "ja": "3つの新例は、熱浴単独の厳密則、少自由度の調和系、弱い非調和系を別々に検査します。各例で固定入力、実測値、誤差と不確かさ、受入条件、コード、テスト、配布ZIP、独立展開からの追試記録へ進めます。旧BAOAB例は別の根拠です。他の10手法は専用の実装・検証をまだ持ちません。",
-    "en": "Three new cases separate the exact isolated-bath law, a few-degree harmonic system and a weakly anharmonic system. Each entry exposes fixed inputs, measurements, errors/uncertainty, criteria, code, tests, ZIP and independent-extraction receipt. The earlier BAOAB example is separate evidence. The other 10 methods still have no dedicated implementation or validation."
+    "ja": "3つの新例は、熱浴単独の厳密則、少自由度の調和系、弱い非調和系を別々に検査します。各例で固定入力、実測値、誤差と不確かさ、受入条件、コード、テスト、配布ZIP、独立展開からの追試記録へ進めます。旧BAOAB例は別の根拠です。このCSVR比較を他方式の検証へ流用しません。別配布で決定論的4方式の固定入力比較を行い、未達・未解決の原目標も表示します。残る6方式は実装予定です。",
+    "en": "Three new cases separate the exact isolated-bath law, a few-degree harmonic system and a weakly anharmonic system. Each entry exposes fixed inputs, measurements, errors/uncertainty, criteria, code, tests, ZIP and independent-extraction receipt. The earlier BAOAB example is separate evidence. These CSVR comparisons are not evidence for other algorithms. A separate fixed-input release contrasts four deterministic schemes and retains unmet/unresolved original goals; six other schemes remain planned."
   },
   "source_scope": {
-    "ja": "CSVRについては2007年原著の著者稿の運動エネルギー式と付録、2008年原著の著者稿の符号付き更新式、原著者の誤植訂正を確認し、採用した小規模な古典例を独立参照・求積・再実行で検証しています。原著のLennard–JonesやTIP4P水の数値実験の再現ではありません。他の10方式は比較解説・一次文献への案内であり、ここで数値検証したと表示しません。Gaussian isokineticの個別原論文の整理も継続課題です。",
-    "en": "For CSVR, the kinetic-energy equations/appendix in the 2007 author manuscript, signed update in the 2008 manuscript and author correction were checked. The adopted small classical examples are validated by separate references, quadrature and actual reruns. They do not reproduce the original Lennard–Jones or TIP4P-water experiments. The other ten schemes remain comparative reading and primary-source entry points, not numerically validated here. Individual original-paper curation for Gaussian isokinetic remains open."
+    "ja": "CSVRについては2007年原著の著者稿の運動エネルギー式と付録、2008年原著の著者稿の符号付き更新式、原著者の誤植訂正を確認し、採用した小規模な古典例を独立参照・求積・再実行で検証しています。原著のLennard–JonesやTIP4P水の数値実験の再現ではありません。このCSVR原著確認を他方式へ広げません。決定論的4方式は別配布の限定例であり、残る6方式は比較解説・一次文献への案内です。Gaussian isokineticの個別原論文の整理も継続課題です。",
+    "en": "For CSVR, the kinetic-energy equations/appendix in the 2007 author manuscript, signed update in the 2008 manuscript and author correction were checked. The adopted small classical examples are validated by separate references, quadrature and actual reruns. They do not reproduce the original Lennard–Jones or TIP4P-water experiments. This CSVR source audit is not transferred to other algorithms. Four deterministic schemes have a separate limited release; the remaining six schemes are comparative reading and primary-source entry points. Individual original-paper curation for Gaussian isokinetic remains open."
   },
   "references": [
     {

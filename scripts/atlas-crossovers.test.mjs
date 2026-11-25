@@ -595,8 +595,12 @@ test('citations and machine-readable provenance retain review scope and matching
 test('supplement descriptions keep oscillator and zero-dimensional excitability evidence separate from coupled physical routes', () => {
   const stage = id => published.routes.flatMap(route => route.stages).find(item => item.id === id);
   const thermostat = stage('thermostat');
-  assert.match(thermostat.gap.ja, /他10手法/);
-  assert.match(thermostat.gap.en, /other 10 methods/);
+  const sourceThermostat=source.routes.flatMap(route=>route.stages).find(item=>item.id==='thermostat');
+  assert.deepEqual(thermostat.gap,sourceThermostat.gap);
+  assert.equal(methods.filter(x=>x.group.id==='thermostats'&&x.status==='planned').length,6);
+  assert.deepEqual(thermostat.supplemental_ids,['langevin-harmonic','csvr-kinetic-kernel','csvr-langevin-harmonic','csvr-langevin-quartic']);
+  assert.match(thermostat.gap.ja,/この段階に結び付ける要素例は2手法/);
+  assert.match(thermostat.gap.en,/This stage links two thermostat component methods/);
   assert.match(thermostat.supplemental_scope.en, /one harmonic-oscillator degree of freedom/i);
   assert.match(thermostat.supplemental_scope.en, /same OBABO/);
   assert.match(thermostat.supplemental_scope.en, /quartic lambda=0.2/);

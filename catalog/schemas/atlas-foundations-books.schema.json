@@ -1,0 +1,266 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Verified numerical-foundations print editions",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "state",
+    "origin",
+    "current_layout_edition",
+    "edition_manifest",
+    "book_verification",
+    "primary"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "state": {
+      "const": "FROZEN_VERIFIED"
+    },
+    "origin": {
+      "const": "https://hrkoyama.github.io"
+    },
+    "current_layout_edition": {
+      "const": "2026-11-25"
+    },
+    "edition_manifest": {
+      "type": "object",
+      "required": [
+        "path",
+        "sha256"
+      ],
+      "properties": {
+        "path": {
+          "type": "string",
+          "pattern": "^[^/].*"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "book_verification": {
+      "type": "object",
+      "required": [
+        "path",
+        "sha256"
+      ],
+      "properties": {
+        "path": {
+          "type": "string",
+          "pattern": "^[^/].*"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "primary": {
+      "type": "object",
+      "required": [
+        "ja",
+        "en"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "ja": {
+          "type": "object",
+          "required": [
+            "pdf",
+            "paper",
+            "manuscript",
+            "web",
+            "previous_pdf"
+          ],
+          "properties": {
+            "pdf": {
+              "allOf": [
+                {
+                  "type": "object",
+                  "required": [
+                    "path",
+                    "sha256"
+                  ],
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "pattern": "^[^/].*"
+                    },
+                    "sha256": {
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{64}$"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "required": [
+                    "bytes",
+                    "pages"
+                  ],
+                  "properties": {
+                    "bytes": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 5242880
+                    },
+                    "pages": {
+                      "type": "integer",
+                      "minimum": 19,
+                      "maximum": 120
+                    }
+                  }
+                }
+              ]
+            },
+            "paper": {
+              "type": "object",
+              "required": [
+                "name",
+                "width_pt",
+                "height_pt"
+              ]
+            },
+            "manuscript": {
+              "type": "object",
+              "required": [
+                "path",
+                "sha256"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string",
+                  "pattern": "^[^/].*"
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                }
+              }
+            },
+            "web": {
+              "type": "string"
+            },
+            "previous_pdf": {
+              "type": "object",
+              "required": [
+                "path",
+                "sha256"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string",
+                  "pattern": "^[^/].*"
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                }
+              }
+            }
+          }
+        },
+        "en": {
+          "type": "object",
+          "required": [
+            "pdf",
+            "paper",
+            "manuscript",
+            "web",
+            "previous_pdf"
+          ],
+          "properties": {
+            "pdf": {
+              "allOf": [
+                {
+                  "type": "object",
+                  "required": [
+                    "path",
+                    "sha256"
+                  ],
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "pattern": "^[^/].*"
+                    },
+                    "sha256": {
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{64}$"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "required": [
+                    "bytes",
+                    "pages"
+                  ],
+                  "properties": {
+                    "bytes": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 5242880
+                    },
+                    "pages": {
+                      "type": "integer",
+                      "minimum": 19,
+                      "maximum": 120
+                    }
+                  }
+                }
+              ]
+            },
+            "paper": {
+              "type": "object",
+              "required": [
+                "name",
+                "width_pt",
+                "height_pt"
+              ]
+            },
+            "manuscript": {
+              "type": "object",
+              "required": [
+                "path",
+                "sha256"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string",
+                  "pattern": "^[^/].*"
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                }
+              }
+            },
+            "web": {
+              "type": "string"
+            },
+            "previous_pdf": {
+              "type": "object",
+              "required": [
+                "path",
+                "sha256"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string",
+                  "pattern": "^[^/].*"
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

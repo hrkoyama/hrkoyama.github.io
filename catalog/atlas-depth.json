@@ -345,8 +345,8 @@
         "en": "Temperature control"
       },
       "scope": {
-        "ja": "12手法のうちLangevinとCSVRの2手法に専用実装。旧1自由度Langevin/BAOABの調和例を保持し、別版の同じOBABO分割で、非縮退2自由度の調和系とquartic係数λ=0.2の2自由度非調和系を比較します。CSVR単独の運動エネルギー核も検査。他の10手法は実装予定です。",
-        "en": "Two of the 12 methods have dedicated implementations: Langevin and CSVR. Preserve the earlier one-degree-of-freedom harmonic Langevin/BAOAB case. A separate edition compares both baths with the same OBABO splitting for a nondegenerate two-degree harmonic system and a two-degree anharmonic system with quartic coefficient lambda=0.2, and checks the standalone CSVR kinetic-energy kernel. The other 10 methods remain planned."
+        "ja": "旧LangevinとCSVRの2手法の比較を保持します。旧1自由度Langevin/BAOABの調和例を保持し、別版の同じOBABO分割で、非縮退2自由度の調和系とquartic係数λ=0.2の2自由度非調和系を比較します。CSVR単独の運動エネルギー核も検査。別配布の固定2モード系で、単純速度固定・Berendsen・Nosé–Hoover・NHC3の4手法を比較し、未達・未解決の原目標も保存します。残る6手法は実装予定です。",
+        "en": "Retain the earlier two-method comparison of Langevin and CSVR. Preserve the earlier one-degree-of-freedom harmonic Langevin/BAOAB case. A separate edition compares both baths with the same OBABO splitting for a nondegenerate two-degree harmonic system and a two-degree anharmonic system with quartic coefficient lambda=0.2, and checks the standalone CSVR kinetic-energy kernel. A separate fixed two-mode release contrasts direct rescaling, Berendsen, Nosé–Hoover and NHC3 while retaining unmet or unresolved original goals. The remaining six methods are planned."
       },
       "examples": [],
       "reading": {
@@ -362,8 +362,8 @@
         "en": "Compare bath choices under the same OBABO splitting; separate step/coupling effects and independent-stream sampling uncertainty. Check distributions and temperature fluctuations separately from correlations. Langevin and CSVR correlations need not agree: they describe method-dependent sampling dynamics."
       },
       "next": {
-        "ja": "非調和系は固定した小さな2自由度例に限定。一般多体系・拘束・重心除去、広い結合時間走査、他10手法、BOMD／CPMDと熱浴の連成は未検証。CSVR核の診断を独立した物理問題へ加算しません。",
-        "en": "Anharmonic evidence covers only the fixed small two-degree example. General many-body systems, constraints/center-of-mass removal, broad coupling sweeps, the other 10 methods and BOMD/CPMD-to-bath coupling remain unvalidated. The CSVR-kernel diagnostic is not an additional independent physical problem."
+        "ja": "非調和系は固定した小さな2自由度例に限定。固定線形拘束・重心除去と無次元2準位BO/CP/OU連成は別の小入力例です。一般多体系・非線形分子拘束、広い結合時間走査、残る6手法、実物質のBOMD／CPMDと熱浴の連成は未検証。CSVR核の診断を独立した物理問題へ加算しません。",
+        "en": "Anharmonic evidence covers only the fixed small two-degree example. Fixed linear-constraint/center-of-mass and dimensionless two-state BO/CP/OU coupling cases are separate small inputs. General many-body systems, nonlinear molecular constraints, broad coupling sweeps, the remaining six methods and real-material BOMD/CPMD-to-bath coupling remain unvalidated. The CSVR-kernel diagnostic is not an additional independent physical problem."
       },
       "supplemental_examples": [
         "langevin-harmonic",

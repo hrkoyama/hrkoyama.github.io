@@ -1,3 +1,4 @@
+import {projectCatalogBeforeFinal23} from './fixtures/atlas-final23-projection.mjs';
 import {problemCount,supplementCaseCount,supplementGroupCount} from './fixtures/atlas-inventory.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -10,25 +11,26 @@ const json=p=>JSON.parse(read(p));
 const sha=p=>createHash('sha256').update(readFileSync(new URL(p,root))).digest('hex');
 const cases=['csvr-kinetic-kernel','csvr-langevin-harmonic','csvr-langevin-quartic'];
 const methods=json('numerical-methods-atlas/methods/index.json').methods;
+const historicalMethods=projectCatalogBeforeFinal23('catalog/atlas-methods.json',json('catalog/atlas-methods.json')).methods;
 
-test('only CSVR and Langevin are implemented thermostats and old evidence remains the primary Langevin edition',()=>{
- const thermal=methods.filter(x=>x.group.id==='thermostats');
+test('historical CSVR and Langevin status is retained and old evidence remains the primary Langevin edition',()=>{
+ const thermal=historicalMethods.filter(x=>x.group.id==='thermostats');
  assert.equal(thermal.length,12);
  assert.deepEqual(thermal.filter(x=>x.status==='educational-example').map(x=>x.id).sort(),['langevin-thermostat','stochastic-velocity-rescaling']);
  assert.equal(thermal.filter(x=>x.status==='planned').length,10);
- const langevin=thermal.find(x=>x.id==='langevin-thermostat');
+ const langevin=methods.find(x=>x.id==='langevin-thermostat');
  assert.equal(langevin.depth_release.group,'models');
  assert.deepEqual(langevin.depth_release.case_ids,['langevin-harmonic']);
  assert.equal(langevin.code_edition,'2026-11-22');
- assert.equal(langevin.depth_additional_releases.length,1);
+ assert.equal(thermal.find(x=>x.id==='langevin-thermostat').depth_additional_releases.length,1);
  assert.deepEqual(langevin.depth_additional_releases[0].case_ids,cases.slice(1));
  assert.ok(langevin.execution_examples.some(x=>x.id==='langevin-harmonic'));
  for(const id of cases.slice(1))assert.ok(langevin.execution_examples.some(x=>x.id===id));
  assert.ok(!langevin.execution_examples.some(x=>x.id==='csvr-kinetic-kernel'),'CSVR bath diagnostic cannot be borrowed by the Langevin method');
- const csvr=thermal.find(x=>x.id==='stochastic-velocity-rescaling');
+ const csvr=methods.find(x=>x.id==='stochastic-velocity-rescaling');
  assert.deepEqual(csvr.depth_release.case_ids,cases);
  assert.ok(csvr.code_urls.some(x=>x.endsWith('/thermostats/thermostats.py')));
- for(const row of thermal.filter(x=>x.status==='planned')){assert.deepEqual(row.code_urls,[]);assert.deepEqual(row.execution_examples,[]);}
+ for(const row of methods.filter(x=>x.group.id==='thermostats'&&x.status==='planned')){assert.deepEqual(row.code_urls,[]);assert.deepEqual(row.execution_examples,[]);}
 });
 
 test('old four immutable archives and the common 22-example registry remain byte-identical',()=>{
@@ -45,7 +47,7 @@ import copy,json,sys
 from pathlib import Path
 sys.path.insert(0,'scripts')
 from atlas_depth_release import depth_release_records
-m=next(x for x in json.load(open('catalog/atlas-methods.json'))['methods'] if x['id']=='langevin-thermostat')
+m=json.loads(sys.argv[1])
 r=depth_release_records(Path.cwd(),m)
 assert [x['group'] for x in r]==['models','thermostats']
 for extra in [dict(m['depth_additional_releases'][0],case_ids=['csvr-kinetic-kernel']),m['depth_release']]:
@@ -54,7 +56,7 @@ for extra in [dict(m['depth_additional_releases'][0],case_ids=['csvr-kinetic-ker
  except AssertionError:pass
  else:raise AssertionError('Borrowed or repeated evidence accepted')
 `;
- execFileSync('python3',['-B','-c',source],{cwd:root,encoding:'utf8',timeout:30000});
+ execFileSync('python3',['-B','-c',source,JSON.stringify(historicalMethods.find(x=>x.id==='langevin-thermostat'))],{cwd:root,encoding:'utf8',timeout:30000});
 });
 
 test('new diagnostic and additional method do not inflate the physical-problem inventory',()=>{

@@ -5,24 +5,26 @@ import {execFileSync} from 'node:child_process';
 
 const root=new URL('../',import.meta.url);
 const json=path=>JSON.parse(readFileSync(new URL(path,root),'utf8'));
-const ids=['langevin-harmonic','csvr-kinetic-kernel','csvr-langevin-harmonic','csvr-langevin-quartic'];
+const oldIds=['langevin-harmonic','csvr-kinetic-kernel','csvr-langevin-harmonic','csvr-langevin-quartic'];
+const ids=[...oldIds,'two-state-bo-cp-ou','deterministic-thermostat-contrasts','projected-canonical-dof'];
 const depth=json('catalog/atlas-depth.json');
 const goal=json('catalog/atlas-goals.json').goals.find(item=>item.id==='temperature-control');
 const route=json('catalog/atlas-crossovers.json').routes.find(item=>item.id==='dft-md');
 const stage=route.stages.find(item=>item.id==='thermostat');
 
-test('field, goal and crossover resolve the same four thermal components and distinguish OBABO comparisons from older BAOAB',()=>{
+test('field and goal retain the old four thermal components plus separate fixed cases; crossover keeps its four-component scope',()=>{
  const field=depth.fields.find(item=>item.id==='temperature');
  assert.deepEqual(field.supplemental_examples,ids);
  assert.deepEqual(goal.supplemental_examples,ids);
- assert.deepEqual(stage.supplemental_ids,ids);
+ assert.deepEqual(stage.supplemental_ids,oldIds);
  assert.deepEqual(field.examples,[]);assert.deepEqual(goal.examples,[]);assert.deepEqual(stage.example_ids,[]);
- for(const item of [field,goal])for(const lang of ['ja','en']){
+ for(const item of [field])for(const lang of ['ja','en']){
   assert.ok(item.scope[lang].includes('CSVR')&&item.scope[lang].includes('Langevin'));
   assert.ok(item.scope[lang].includes('OBABO')&&item.scope[lang].includes('BAOAB'));
  }
- assert.match(field.scope.ja,/2手法/);assert.match(field.scope.ja,/他の10手法/);
- assert.match(field.scope.en,/other 10 methods/);
+ assert.match(field.scope.ja,/2手法/);assert.match(field.scope.ja,/残る6手法/);
+ assert.match(field.scope.en,/remaining six methods/);
+ for(const lang of ['ja','en'])assert.match(goal.scope[lang],lang==='ja'?/未達・未解決/:/unmet\/unresolved/);
  assert.match(field.reference.en,/Gamma/);assert.match(field.reference.en,/CIR/);
  assert.match(field.reference.en,/shadow Gaussian/);assert.match(field.reference.en,/independent quadrature/);
  assert.match(field.refinement.en,/correlations need not agree/);
@@ -41,7 +43,7 @@ test('new classical thermostat evidence does not enter first-principles stages o
   assert.deepEqual(item.coupled_validation.supplemental_ids||[],[]);
  }
  assert.match(stage.supplemental_scope.en,/consume neither BOMD\/CPMD nuclear geometries nor interatomic forces/);
- assert.match(stage.gap.en,/other 10 methods/);
+ assert.match(stage.gap.en,/separate fixed-input examples of other algorithms are not evidence of coupling/);
  const reference=json('catalog/atlas-crossovers.json').references.find(item=>item.id==='bussi2007csvr');
  assert.equal(reference.year,2007);assert.ok(reference.review_level&&reference.review.ja&&reference.review.en);
  assert.ok(route.connections.find(item=>item.id==='md-to-thermostat').reference_ids.includes(reference.id));

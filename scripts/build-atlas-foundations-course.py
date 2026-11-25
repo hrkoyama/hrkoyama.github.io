@@ -4,6 +4,7 @@ import hashlib
 import json
 from html import escape as e
 from pathlib import Path
+from foundations_books import current_books
 ROOT=Path(__file__).resolve().parents[1]
 ORIGIN='https://hrkoyama.github.io'
 
@@ -14,6 +15,7 @@ def items(values):return '<ul>'+''.join('<li>'+e(t)+'</li>' for t in values)+'</
 
 
 def build(root=ROOT):
+    current_pdf='/'+current_books(root)['primary']['ja']['pdf']['path']
     source=root/'catalog/atlas-foundations-course.json';d=json.loads(source.read_text());base=d['base'];out=root/base.lstrip('/');edition=out/d['edition'];assets=base+d['edition']+'/'
     receipt=json.loads((edition/'book-verification.json').read_text())
     assert receipt['source_sha256']==sha(source),'PDF manuscript is stale: rebuild PDF and inspect before refreshing indexes'
@@ -26,7 +28,7 @@ def build(root=ROOT):
         alternates='<link rel="alternate" hreflang="ja" href="'+ORIGIN+route+'"><link rel="alternate" hreflang="en" href="'+ORIGIN+counterpart+'">'
         language='<nav class="course-language" aria-label="教材の言語"><a href="'+route+'" hreflang="ja" aria-current="page">日本語</a> · <a href="'+counterpart+'" hreflang="en" lang="en">English</a></nav>'
         return document.replace('</head>',alternates+'</head>').replace('<body>','<body data-content-language="ja">').replace('<main>','<main>'+language,1)
-    downloads='<div class="downloads"><a href="'+assets+'numerical-foundations-ja.pdf">PDFをダウンロード</a><a href="'+release['zip']+'">小さな計算例のコードZIP</a><a href="/catalog/atlas-foundations-course.json">共通の原稿JSON</a></div>'
+    downloads='<div class="downloads"><a href="'+current_pdf+'">PDFをダウンロード（A4・書籍版）</a><a href="'+assets+'numerical-foundations-ja.pdf">旧PDF（2026-11-24版）</a><a href="'+release['zip']+'">小さな計算例のコードZIP</a><a href="/catalog/atlas-foundations-course.json">共通の原稿JSON</a></div>'
     intro='<p class="eyebrow">NUMERICAL METHODS ATLAS / FOUNDATIONS</p><h1>'+e(d['title'])+'</h1><p class="subtitle">'+e(d['subtitle'])+'</p><p>全19章 · 19枚の図 · 38問の確認問題と解答 · 2026年11月24日版</p>'+downloads+'<section><h2 id="start">はじめに</h2>'+paragraphs(d['preface'])+'<p>想定読者：'+e(d['audience'])+'</p><p>コード断片は配布ZIPのディレクトリで実行します。第19章のコマンドはシェルに入力します。</p></section>'
     for part in d['parts']:
         intro+='<section><h2 id="'+part['id']+'">'+e(part['title'])+'</h2><ol start="'+part['range'].split('-')[0]+'">'+''.join('<li><a href="'+base+c['id']+'/">'+e(c['title'])+'</a><p>'+e(c['goals'][0])+'</p></li>' for c in d['chapters'] if c['part']==part['id'])+'</ol></section>'

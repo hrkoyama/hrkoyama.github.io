@@ -29,6 +29,9 @@ jobs:
             /scripts/foundations_en_contract.py
             /scripts/foundations_pdf_text.py
             /scripts/verify-foundations-course-en-public.py
+            /scripts/foundations_books.py
+            /scripts/verify-foundations-books-public.py
+            /catalog/atlas-foundations-books.json
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -43,5 +46,19 @@ jobs:
         with:
           name: foundations-en-public-${{ github.sha }}-${{ github.run_id }}
           path: ${{ runner.temp }}/foundations-en-public/
+          if-no-files-found: error
+          retention-days: 90
+      - name: Check separately verified Japanese and English book delivery
+        env:
+          REPORT_DIR: ${{ runner.temp }}/foundations-books-public
+        run: |
+          BOOKS_REGISTRY_SHA=$(sha256sum catalog/atlas-foundations-books.json | cut -d ' ' -f 1)
+          python scripts/verify-foundations-books-public.py --registry-sha256 "$BOOKS_REGISTRY_SHA" --target-sha "${{ github.sha }}" --output "$REPORT_DIR"
+      - name: Retain separate book-delivery receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: foundations-books-public-${{ github.sha }}-${{ github.run_id }}
+          path: ${{ runner.temp }}/foundations-books-public/
           if-no-files-found: error
           retention-days: 90
