@@ -55,6 +55,12 @@ test('the bilingual landing offers exactly one local search and the three reques
     for(const kind of ['web','pdf'])assert.ok(primary.includes(copy[lang].beginner[kind].href),kind+' stays outside details');
     for(const page of ['textbooks','references'])assert.ok(primary.includes('/'+lang+'/read/'+page+'/'),page+' remains directly discoverable');
     assert.ok(html.includes(copy[lang].introduction.feedback) && html.includes(copy[lang].contact.href), 'feedback and contact stay available');
+    const continuity = html.match(/<a\b[^>]*data-site-continuity-entry="atlas"[^>]*>[\s\S]*?<\/a>/g) || [];
+    assert.equal(continuity.length,1,'one short continuity link stays outside the long introduction');
+    assert.ok(continuity[0].includes(copy[lang].continuity.label));
+    const continuityURL = actualDestination(attributes(continuity[0]).href);
+    assert.equal(continuityURL.pathname,'/rights/');assert.equal(continuityURL.searchParams.get('lang'),lang);assert.equal(continuityURL.hash,'#site-continuity');
+    assert.ok(html.indexOf(continuity[0])>html.indexOf('landing-feedback'),'the new link does not compete with the three primary entrances');
     assert.ok(!/<input\b[^>]*\bname="(?:q|query|search)"/.test(html), 'keywords are not submitted to a server');
     assert.ok(!/home-goal-choice|data-home-area=|data-static-area=|data-goal-controls|atlas-metrics|atlas-crossover-teaser|atlas-way-grid|data-featured-example=/.test(html), 'detailed inventories do not compete on the landing');
     for (const [index, choice] of choices.entries()) {
@@ -100,6 +106,7 @@ test('static and client landings keep the same entrances without requiring JavaS
     assert.equal(searchURL.searchParams.get('lang'), lang);
     assert.ok(!searchURL.searchParams.has('q'));
     for (const choice of choices) actualDestination(choice.href);
+    assert.ok(html.includes(`data-site-continuity-entry="atlas" href="/rights/?lang=${lang}#site-continuity"`),'static and client landings share the language-preserving continuity link');
   }
   const allIds = ids(homepage); assert.equal(allIds.length, new Set(allIds).size);
 });

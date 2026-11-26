@@ -95,6 +95,7 @@ export function homeOverviewPage(coverage,selected,{staticMode=false}={}){
  </details>
  <div class="page-width landing-feedback"><p>${esc(copy.introduction.feedback)}</p></div>
  ${copy.contact?`<p class="page-width home-reference-links"><span>${esc(copy.contact.label)}</span><a href="${esc(copy.contact.href)}">${esc(copy.contact.email)}</a></p>`:''}
+ <p class="page-width home-reference-links"><a data-site-continuity-entry="atlas" href="${esc(copy.continuity.href)}">${esc(copy.continuity.label)}</a></p>
  </div>`;
 }
 export function wireHomeOverview({rewriteLinks=html=>html}={}){

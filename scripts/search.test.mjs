@@ -79,14 +79,15 @@ test('case, full-width letters and scientific dashes are normalized without alte
 test('the built index includes public content only, with clean titles and all notebook records',()=>{
   assert.equal(data.documents.filter(row=>/^\/notebooks\/notebook.html\?id=/.test(row.url)).length,41);
   assert.ok(data.documents.every(row=>safePath(row.url) && row.title.length<400 && row.text.trim()));
-  // The owner publishes this exact bilingual contact on these two pages only.
+  // The owner publishes this exact bilingual contact on these three pages only.
   // Inline labels and links join in the atlas index, so fix their exact tokens.
   // Mask only complete whitespace-delimited tokens in those documents' text;
   // every other field, document and Gmail address retains the privacy guard.
   const publicContact='hrkoyamacontact@gmail.com';
   const contactTokens=new Map([
     ['/',[publicContact,publicContact]],
-    ['/numerical-methods-atlas/',['連絡先'+publicContact,'Contact'+publicContact]]
+    ['/numerical-methods-atlas/',['連絡先'+publicContact,'Contact'+publicContact]],
+    ['/rights/',['ご関心のある方は、'+publicContact,publicContact+'.']]
   ]);
   for(const [url,tokens] of contactTokens){
     const rows=data.documents.filter(row=>row.url===url);
