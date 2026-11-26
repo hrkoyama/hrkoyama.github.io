@@ -4,7 +4,7 @@ import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import assert from 'node:assert/strict';
 const bytes=readFileSync(new URL('./atlas-vef-vet-metadata-delta.json',import.meta.url));
-assert.equal(createHash('sha256').update(bytes).digest('hex'),'3adf46825338ffdb5d13d663d9dfb286e276334fa90c170aa41e59eccf1e3cf1','reviewed VEF/VET metadata stage');
+assert.equal(createHash('sha256').update(bytes).digest('hex'),'52b9de7b50dfcd70613b5844bc642671c0a89c278e645f131427896ebb2f0ac8','reviewed VEF/VET metadata stage');
 const frozen=JSON.parse(bytes);
 assert.equal(frozen.base_commit,'8c268badb3e04a6f0cca03544561877342f5d981');
 export const methodIdsAddedInVefVet=Object.freeze(frozen.new_method_ids);

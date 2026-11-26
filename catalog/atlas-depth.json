@@ -538,7 +538,9 @@
         "shadow-absorber2d",
         "opposing-beams2d",
         "williamson-sphere-transport",
-        "sph-pressure-acoustics"
+        "sph-pressure-acoustics",
+        "vef-fourier-scattering1d",
+        "vet-fourier-source2d"
       ],
       "scope": {
         "ja": "従来の1次元純吸収平板を保持します。追加の固定例では、等方散乱平板、規格化を分けた非平衡拡散と輸送・物質交換、2Dの影・ビームと静止M1を扱います。拡散極限の比較は平均自由行程を解像したFourierモードに限定し、固定格子APや一般の輻射流体連成へは広げません。",

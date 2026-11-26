@@ -28,3 +28,22 @@ test('the two VEF/VET methods are a separate exact cohort and do not change fina
  const previous=JSON.parse(read('scripts/fixtures/atlas-final23-metadata-delta.json'));
  assert.deepEqual(previous.new_method_ids,['gillespie-ssa','semi-lagrangian']);
 });
+
+test('source field entrances cover every registered supplemental case before generation',()=>{
+ const source=JSON.parse(read('catalog/atlas-depth.json'));
+ const expansion=JSON.parse(read('catalog/atlas-depth-expansion.json'));
+ const expected=Object.keys(expansion.case_problem_ids);
+ assert.equal(expected.length,159,'the current canonical source cohort contains 159 supplemental cases');
+ const all=[];
+ for(const field of source.fields){
+  const ids=field.supplemental_examples||[];
+  assert.equal(new Set(ids).size,ids.length,field.id+'/no duplicate field entrance');
+  all.push(...ids);
+ }
+ assert.deepEqual(new Set(all),new Set(expected),'source field entrances must cover exactly the canonical supplemental case IDs');
+ const added=['vef-fourier-scattering1d','vet-fourier-source2d'];
+ for(const id of added){
+  assert.ok(Object.hasOwn(expansion.case_problem_ids,id),id+'/registered canonical case');
+  assert.deepEqual(source.fields.filter(field=>(field.supplemental_examples||[]).includes(id)).map(field=>field.id),['transport'],id+'/transport field only');
+ }
+});

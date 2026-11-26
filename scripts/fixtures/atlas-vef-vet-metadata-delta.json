@@ -1764,6 +1764,28 @@
           ]
         }
       ]
+    },
+    "catalog/atlas-depth.json": {
+      "before": "d221c9db43004c8acd8683c1426bc2748bbbdab5f27de3b0cbda2d88a9c8e9af",
+      "after": "23f54399d29dbf0930b060c0f2d6053c0c13cbe6218dc4fc1a8ba393d6157dc0",
+      "source_before_sha256": "2e1f2d3ced4117feebfe44d997b54de61aecdcc57882fa4c10e4ee4f7e784c47",
+      "source_after_sha256": "d0fa66fd7385addfffbc746fb488f3516034f75d4b0280c255894cec37a7defa",
+      "before_git": "100644 blob a40b24142cba929c62707ce1cbf8fa3bdd42f79c",
+      "operations": [
+        {
+          "kind": "append",
+          "parts": [
+            "fields",
+            11,
+            "supplemental_examples"
+          ],
+          "before_length": 9,
+          "appended": [
+            "vef-fourier-scattering1d",
+            "vet-fourier-source2d"
+          ]
+        }
+      ]
     }
   },
   "baseline_method_hashes": {
