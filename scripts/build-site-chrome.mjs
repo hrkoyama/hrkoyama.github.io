@@ -1,6 +1,6 @@
 import { readFile, writeFile, readdir } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
-import { decorateSite } from './site-chrome.mjs';
+import { decorateSite, immutablePresentations } from './site-chrome.mjs';
 const root = new URL('../', import.meta.url);
 // Each archive keeps its own design; changed viewing assets must reach readers
 // even when their browser has cached the previous stylesheet or module.
@@ -35,8 +35,13 @@ async function walk(dir) {
       const path = decodeURIComponent(url.pathname.slice(root.pathname.length));
       const reading = /^numerical-methods-atlas\/(en|ja)\/read\//.exec(path);
       const fixed = reading ? reading[1] : path === 'academic-roots/index.html' || path.startsWith('notebooks/') ? 'ja' : path.startsWith('gordon-bell/') || path.startsWith('the-art-of-thermal-instability/') ? 'en' : '';
-      const decorated = decorateSite(await readFile(url,'utf8'), {contentLanguage:fixed});
-      await writeFile(url, await versionViewingAssets(decorated, url));
+      const decorated = decorateSite(await readFile(url,'utf8'), {contentLanguage:fixed, pagePath:path});
+      const completed = await versionViewingAssets(decorated, url);
+      const immutable = immutablePresentations.get(path);
+      if (immutable && createHash('sha256').update(completed).digest('hex') !== immutable.sha256) {
+        throw Error('Immutable presentation differs: ' + path);
+      }
+      await writeFile(url, completed);
     }
   }
 }

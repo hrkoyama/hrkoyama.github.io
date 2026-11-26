@@ -8,7 +8,14 @@ const iconVersion = createHash('sha256')
   .update(readFileSync(new URL('../favicon.svg', import.meta.url)))
   .digest('hex').slice(0, 12);
 const text = (ja, en) => `<span data-ui-ja="${ja}" data-ui-en="${en}">${ja} / ${en}</span>`;
-export function decorateSite(html, { contentLanguage = '' } = {}) {
+// These two historical presentations preserve every recorded byte, including
+// asset URLs. The writer verifies their complete approved HTML SHA below.
+export const immutablePresentations = new Map([
+  ["numerical-methods-atlas/agent-kits/rkdg2d/index.html", { sharedVersion: 'dd1850095415', sha256: '950e9796b1ff9f514a690960b6d54862a2173b628c4781f68187ee4e55cf2b31' }],
+  ["numerical-methods-atlas/agent-kits/rkdg2d/results/2026-11-23-v1/index.html", { sharedVersion: 'dd1850095415', sha256: '0d44249eca43b41661424af923c9a8571522a70cac044e9f4b2e675132c7dacc' }],
+]);
+export function decorateSite(html, { contentLanguage = '', pagePath = '' } = {}) {
+  const sharedVersion = immutablePresentations.get(pagePath)?.sharedVersion ?? version;
   html = html.replace(/<!-- site-head -->[\s\S]*?<!-- \/site-head -->\n?/g, '')
     .replace(/<!-- site-top -->[\s\S]*?<!-- \/site-top -->\n?/g, '')
     .replace(/<!-- site-bottom -->[\s\S]*?<!-- \/site-bottom -->\n?/g, '')
@@ -23,7 +30,7 @@ export function decorateSite(html, { contentLanguage = '' } = {}) {
   };
   if (policyDescriptions[canonical]) html = html.replace(/<meta name="description" content="([^"]*)"[^>]*>/, (_, ja) => `<meta name="description" content="${ja}" data-description-ja="${ja}" data-description-en="${policyDescriptions[canonical]}">`);
   const alternates = canonical && !contentLanguage && !/rel="alternate"[^>]*hreflang=/.test(html) ? ['ja','en','x-default'].map(lang => `<link rel="alternate" hreflang="${lang}" href="${canonical}${lang === 'x-default' ? '' : '?lang=' + lang}">`).join('\n') + '\n' : '';
-  const head = `<!-- site-head -->\n${alternates}<link rel="icon" href="/favicon.svg?v=${iconVersion}" type="image/svg+xml">\n<link rel="stylesheet" href="/site.css?v=${version}">\n<script src="/site.js?v=${version}" defer></script>\n<link rel="describedby" href="/llms.txt">\n<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1">\n<!-- /site-head -->\n`;
+  const head = `<!-- site-head -->\n${alternates}<link rel="icon" href="/favicon.svg?v=${iconVersion}" type="image/svg+xml">\n<link rel="stylesheet" href="/site.css?v=${sharedVersion}">\n<script src="/site.js?v=${sharedVersion}" defer></script>\n<link rel="describedby" href="/llms.txt">\n<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1">\n<!-- /site-head -->\n`;
   const fixedNote = contentLanguage ? `<p class="site-content-note">${text(contentLanguage === 'ja' ? 'このコンテンツの本文は日本語です。' : 'このコンテンツの本文は英語です。', contentLanguage === 'ja' ? 'This content is in Japanese.' : 'This content is in English.')}</p>` : '';
   const top = `<!-- site-top -->\n<div class="site-chrome site-top"><div class="site-inner"><a class="site-brand" href="/">Hiroshi Koyama</a><nav class="site-nav" aria-label="Site navigation"><a href="/">${text('ホーム', 'Home')}</a><a href="/rights/">${text('利用条件・AI方針', 'Rights &amp; AI policy')}</a></nav><nav class="site-languages" aria-label="言語 / Language"><a href="?lang=ja" data-site-lang="ja" lang="ja">日本語</a><a href="?lang=en" data-site-lang="en" lang="en">English</a></nav><form class="site-search" action="/search/" role="search" aria-label="サイト内検索 / Site search" data-site-search-form><input type="search" data-site-search-input aria-label="サイト内検索 / Search this site" placeholder="サイト内検索 / Search this site" maxlength="200" autocomplete="off" enterkeyhint="search"><button type="submit">${text('検索', 'Search')}</button></form>${fixedNote}</div></div>\n<!-- /site-top -->\n`;
   const footer = `<!-- site-bottom -->\n<footer class="site-chrome site-bottom"><div class="site-inner"><div class="site-legal"><p>© 2026 Hiroshi Koyama / 小山 洋</p><p>${text('公開資料のAI検索・要約・出典付き引用を歓迎します。', 'AI search, summaries and source-linked quotation are welcome.')}</p><p>${text('自作コード：MIT。本文・図・画像・PDF・データ・第三者資料は別条件です。', 'Original code: MIT. Text, figures, images, PDFs, data and third-party material have separate terms.')}</p><p class="site-credit">${text('Webサイト制作：ChatGPTとCodexの支援を利用。', 'Website developed with assistance from ChatGPT and Codex.')}</p></div><nav class="site-links" aria-label="Site policies and resources"><a href="/search/">${text('サイト内検索', 'Site search')}</a><a href="/rights/">${text('利用条件・AI方針', 'Rights &amp; AI policy')}</a><a href="/using/">${text('資料の使い方・引用', 'Use &amp; cite')}</a><a data-site-continuity-entry="footer" href="/rights/#site-continuity">${text('保存・継承への協力', 'Help preserve this site')}</a><a href="/llms.txt">${text('AI向け案内', 'AI site guide')}</a><a href="/sitemap.xml">${text('サイトマップ', 'Sitemap')}</a></nav></div></footer>\n<!-- /site-bottom -->\n`;
