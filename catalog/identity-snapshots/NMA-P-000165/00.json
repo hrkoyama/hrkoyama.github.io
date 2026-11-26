@@ -1,0 +1,19 @@
+{
+  "id": "traffic-jam",
+  "group": "transport",
+  "name": {
+    "ja": "交通流の渋滞衝撃波",
+    "en": "Traffic jam shock"
+  },
+  "chapter": "equation-gallery",
+  "evidence": [
+    {
+      "path": "numerical-methods-atlas/equation-gallery.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "traffic-upstream-jam"
+      }
+    }
+  ],
+  "availability": "saved-output"
+}

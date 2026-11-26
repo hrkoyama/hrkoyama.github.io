@@ -1,0 +1,44 @@
+{
+  "id": "two-state-bo-cp-model",
+  "group": "quantum",
+  "name": {
+    "ja": "2準位模型のBO/CP型連成と短い核熱浴",
+    "en": "A two-state BO / CP-type model with a short nuclear thermostat coupling"
+  },
+  "chapter": "validation-quantum-small",
+  "reading_section": "two-state-bo-cp-ou",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-25/quantum-small/",
+  "verification": "/code/validated-examples/2026-11-25/quantum-small/verification.json",
+  "commands": [
+    "python -B -W error -m pytest -q -p no:cacheprovider test_quantum_small.py",
+    "python -B -W error run.py --input inputs.json --output fresh-output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-25/quantum-small/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "two-state-bo-cp-ou"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-25/quantum-small/results/two-state-bo-cp-ou.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-25/quantum-small/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "two-state-bo-cp-ou",
+      "url": "/numerical-methods-atlas/validation/two-state-bo-cp-ou/",
+      "name": {
+        "ja": "2準位模型のBO/CP型連成と短い核熱浴",
+        "en": "A two-state BO / CP-type model with a short nuclear thermostat coupling"
+      }
+    }
+  ]
+}

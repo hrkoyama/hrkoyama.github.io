@@ -1,0 +1,16 @@
+{
+  "id": "sinusoidal-sheet",
+  "group": "gravity",
+  "name": {
+    "ja": "正弦波状薄層の重力",
+    "en": "Sinusoidal sheet gravity"
+  },
+  "chapter": "gravity-boundaries",
+  "evidence": [
+    {
+      "path": "numerical-methods-atlas/assets/gravity-boundaries.json",
+      "json_pointer": "/sinusoidal_sheet_max_error"
+    }
+  ],
+  "availability": "saved-output"
+}

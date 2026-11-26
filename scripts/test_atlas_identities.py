@@ -6,10 +6,14 @@ from pathlib import Path
 import tempfile
 import subprocess
 import sys
+import stat
+import types
 import unittest
+from unittest import mock
 import zipfile
 
 from atlas_identities import (IdentityError, canonical_sha256, file_sha256,
+                              binding_key,
                               format_revision, load_json, resolve_pointer,
                               revision_number, safe_path, validate_registry)
 
@@ -312,6 +316,188 @@ class IdentityTests(unittest.TestCase):
         result = self.cli("--baseline-ref", previous)
         self.assertEqual(result.returncode, 1)
         self.assertIn("frozen revision rewritten", result.stdout)
+
+    def expanded_contract(self, *, external=None, standalone=False):
+        """Tiny canonical coverage stand-in; real inventory has separate tests."""
+        files = load_json(self.root / "data/source-manifest.json")["files"]
+        return {
+            "source_contracts": {"NMA-S-000001@00": {
+                "root": "data", "files": files,
+                "archive_path": None if standalone else "data/source.zip",
+                "archive_members": {} if standalone else {name: "release/" + name for name in files},
+                "kind": "standalone" if standalone else "flat",
+            }},
+            "allowed_external_case_bindings": external or {},
+            "report": {"complete_fixture_coverage": True},
+        }
+
+    def coverage(self, contract=None, callback=None):
+        module = types.ModuleType("atlas_identity_coverage")
+        module.validate_current_coverage = callback or (lambda *args: contract or self.expanded_contract())
+        return mock.patch.dict(sys.modules, {"atlas_identity_coverage": module})
+
+    def member_source(self):
+        old = self.revision(2)["bindings"][0]
+        self.revision(2)["bindings"][0] = {
+            "role": "source", "path": "data/source.zip", "member": "release/source.py",
+            "sha256": old["sha256"],
+        }
+
+    def test_expanded_member_binding_validates_raw_bytes_and_source_archive(self):
+        self.data["scope"] = "atlas-current"
+        self.member_source()
+        with self.coverage():
+            report = validate_registry(self.root, self.data)
+        self.assertEqual(report["coverage"], "atlas-current")
+        self.assertTrue(report["complete_fixture_coverage"])
+        self.assertFalse(report["numerical_execution"])
+        self.revision(2)["bindings"][0]["sha256"] = "0" * 64
+        with self.coverage():
+            self.reject("SHA-256 mismatch")
+
+    def test_member_selector_safety_applies_without_artifact_hashing(self):
+        self.data["scope"] = "atlas-current"
+        self.member_source()
+        binding = self.revision(2)["bindings"][0]
+        binding["pointer"] = ""
+        with self.coverage():
+            self.reject("mutually exclusive")
+        del binding["pointer"]
+        for member in ["../source.py", "/source.py", "C:/source.py", "release//source.py",
+                       "release/./source.py", "release\\source.py", "release/\x00source.py",
+                       "release/\x7fsource.py", "release/", "missing.py"]:
+            with self.subTest(member=member), self.coverage(), self.assertRaises(IdentityError):
+                binding["member"] = member
+                validate_registry(self.root, self.data, check_artifacts=False)
+
+    def test_unsafe_zip_directory_is_rejected_before_any_member_is_opened(self):
+        self.data["scope"] = "atlas-current"
+        self.member_source()
+        original = (self.root / "data/source.zip").read_bytes()
+        variants = ["duplicate", "symlink", "fifo", "traversal", "absolute", "backslash", "nul"]
+        for variant in variants:
+            with self.subTest(variant=variant):
+                (self.root / "data/source.zip").write_bytes(original)
+                with zipfile.ZipFile(self.root / "data/source.zip", "a") as archive:
+                    if variant == "duplicate":
+                        with self.assertWarns(UserWarning):
+                            archive.writestr("release/source.py", "duplicate")
+                    elif variant in {"symlink", "fifo"}:
+                        info = zipfile.ZipInfo("release/special")
+                        info.create_system = 3
+                        kind = stat.S_IFLNK if variant == "symlink" else stat.S_IFIFO
+                        info.external_attr = (kind | 0o777) << 16
+                        archive.writestr(info, "target")
+                    else:
+                        name = {"traversal": "../escape.py", "absolute": "/escape.py",
+                                "backslash": "release\\escape.py", "nul": "badX.py"}[variant]
+                        archive.writestr(name, "unselected")
+                if variant == "nul":
+                    path = self.root / "data/source.zip"
+                    path.write_bytes(path.read_bytes().replace(b"badX.py", b"bad\x00.py"))
+                self.revision(2)["bindings"][-1] = self.binding("archive", "data/source.zip")
+                with self.coverage(), mock.patch.object(
+                        zipfile.ZipFile, "open", side_effect=AssertionError("unsafe member opened")):
+                    self.reject()
+
+    def test_expanded_normal_case_artifacts_still_require_source_membership(self):
+        self.data["scope"] = "atlas-current"
+        self.write_json("external/input.json", {"n": 8})
+        self.revision(1)["bindings"][1] = self.binding("input", "external/input.json", "")
+        with self.coverage():
+            self.reject("case artifact outside referenced source release")
+
+    def test_only_exact_prevalidated_external_case_bindings_bypass_legacy_checks(self):
+        self.data["scope"] = "atlas-current"
+        self.write_json("metadata/common.json", {"id": "sine-fixed", "acceptance": {"e": 1e-6},
+                                                 "reference": "saved analytic sine"})
+        self.write_json("metadata/common-verification.json", {"examples": ["sine-fixed"], "passed": True})
+        bindings = self.revision(1)["bindings"]
+        for index, role, pointer in [(0, "case-definition", ""), (2, "acceptance", "/acceptance"),
+                                     (3, "reference", "/reference")]:
+            bindings[index] = self.binding(role, "metadata/common.json", pointer)
+        bindings[-1] = self.binding("saved-verification", "metadata/common-verification.json")
+        allowed = {binding_key(b) for b in bindings if b["path"].startswith("metadata/")}
+        profile = self.expanded_contract(external={"NMA-C-000001@00": allowed})
+        with self.coverage(profile):
+            self.assertTrue(validate_registry(self.root, self.data)["passed"])
+        for omitted in [bindings[2], bindings[-1]]:
+            with self.subTest(role=omitted["role"]), self.coverage(self.expanded_contract(
+                    external={"NMA-C-000001@00": allowed - {binding_key(omitted)}})):
+                self.reject()
+        wrong = set(allowed)
+        wrong.add(("input", "external/unreviewed.json", None, None, "0" * 64))
+        with self.coverage(self.expanded_contract(external={"NMA-C-000001@00": wrong})):
+            self.reject("invalid external case binding allowlist")
+
+    def test_expanded_current_coverage_is_not_required_of_historical_baseline(self):
+        self.data["scope"] = "atlas-current"
+        baseline = copy.deepcopy(self.data)
+        self.write_json("catalog/atlas-test-problems.json", {"problems": [{"id": "sine"}, {"id": "second"}]})
+        self.write_json("data/second.json", {"id": "second"})
+        extra = self.entity("P", "problem", "second", [self.binding("problem", "data/second.json", "")])
+        extra["id"] = "NMA-P-000002"
+        self.data["entities"].append(extra)
+        self.data["allocation"]["P"] = 3
+        seen = []
+        def current_only(root, data, entities, snapshots):
+            seen.append(len(entities))
+            self.assertEqual(len(entities), 4)
+            return self.expanded_contract()
+        with self.coverage(callback=current_only):
+            self.assertTrue(validate_registry(self.root, self.data, baseline)["passed"])
+        self.assertEqual(seen, [4])
+
+    def test_structural_current_validation_still_requires_complete_coverage(self):
+        self.data["scope"] = "atlas-current"
+        def incomplete(*args):
+            raise IdentityError("missing canonical coverage")
+        with self.coverage(callback=incomplete), self.assertRaisesRegex(IdentityError, "missing canonical coverage"):
+            validate_registry(self.root, self.data, check_artifacts=False)
+
+    def test_expanded_scope_cannot_be_downgraded_to_pilot(self):
+        baseline = copy.deepcopy(self.data)
+        baseline["scope"] = "atlas-current"
+        self.reject("coverage scope downgraded", baseline=baseline)
+
+    def test_expanded_diagnostics_and_frozen_source_problem_subsets(self):
+        self.data["scope"] = "atlas-current"
+        self.revision(1)["problem_refs"] = []
+        self.revision(2)["problem_refs"] = []
+        self.write_json("catalog/atlas-depth-expansion.json", {"case_problem_ids": {"sine-fixed": None}})
+        with self.coverage():
+            self.assertTrue(validate_registry(self.root, self.data)["passed"])
+        self.write_json("catalog/atlas-test-problems.json", {"problems": [{"id": "sine"}, {"id": "second"}]})
+        self.write_json("data/second.json", {"id": "second"})
+        extra = self.entity("P", "problem", "second", [self.binding("problem", "data/second.json", "")])
+        extra["id"] = "NMA-P-000002"
+        self.data["entities"].append(extra); self.data["allocation"]["P"] = 3
+        self.revision(1)["problem_refs"] = ["NMA-P-000002@00"]
+        self.revision(2)["problem_refs"] = ["NMA-P-000001@00"]
+        self.write_json("catalog/atlas-depth-expansion.json", {"case_problem_ids": {"sine-fixed": "second"}})
+        with self.coverage():
+            self.assertTrue(validate_registry(self.root, self.data)["passed"])
+
+    def test_only_standalone_source_contract_can_omit_archive(self):
+        self.data["scope"] = "atlas-current"
+        self.data["entities"].pop(1)
+        self.revision(1)["bindings"].pop()
+        profile = self.expanded_contract(standalone=True)
+        with self.coverage(profile):
+            self.assertTrue(validate_registry(self.root, self.data)["passed"])
+        profile["source_contracts"]["NMA-S-000001@00"]["kind"] = "flat"
+        with self.coverage(profile):
+            self.reject("source archive differs from contract")
+
+    def test_same_zip_case_contract_guard_remains_in_expanded_scope(self):
+        self.data["scope"] = "atlas-current"
+        changed = copy.deepcopy(self.revision(1))
+        changed["revision"] = "01"
+        changed["bindings"][1] = self.binding("input", "data/case.json", "/acceptance")
+        self.data["entities"][1]["revisions"].append(changed)
+        self.data["entities"][1]["current_revision"] = "01"
+        with self.coverage():
+            self.reject("case contract changed with unchanged source release bytes")
 
 
 if __name__ == "__main__":

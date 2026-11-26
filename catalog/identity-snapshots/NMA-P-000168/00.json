@@ -1,0 +1,16 @@
+{
+  "id": "uniform-slab",
+  "group": "gravity",
+  "name": {
+    "ja": "一様平面スラブの重力",
+    "en": "Uniform plane-slab gravity"
+  },
+  "chapter": "gravity-boundaries",
+  "evidence": [
+    {
+      "path": "numerical-methods-atlas/assets/gravity-boundaries.json",
+      "json_pointer": "/uniform_slab_gauge_aligned_max_error"
+    }
+  ],
+  "availability": "saved-output"
+}

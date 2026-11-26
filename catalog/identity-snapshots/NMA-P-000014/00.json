@@ -1,0 +1,45 @@
+{
+  "id": "bratu-gn-lm-bounds",
+  "group": "differentiation-inverse",
+  "name": {
+    "ja": "GN・LMと有界最小二乗のBratu比較",
+    "en": "Bratu comparisons of GN, LM and bounded least squares"
+  },
+  "chapter": "validation-inverse-optimization",
+  "reading_section": "bratu-gn-lm-bounds",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-24/inverse-optimization/",
+  "verification": "/code/validated-examples/2026-11-24/inverse-optimization/verification.json",
+  "commands": [
+    "python -B -W error -m pytest -q -p no:cacheprovider",
+    "python -B -W error run.py --input inputs.json --output fresh-output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-24/inverse-optimization/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "bratu-gn-lm-bounds"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-24/inverse-optimization/results/bratu-gn-lm-bounds-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-24/inverse-optimization/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "bratu-gn-lm-bounds",
+      "url": "/numerical-methods-atlas/validation/bratu-gn-lm-bounds/",
+      "name": {
+        "ja": "GN・LMと有界最小二乗のBratu比較",
+        "en": "Bratu comparisons of GN, LM and bounded least squares"
+      }
+    }
+  ],
+  "parent_problem_id": "bratu"
+}

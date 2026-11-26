@@ -1,0 +1,44 @@
+{
+  "id": "neutral-slab-yb",
+  "group": "gravity",
+  "name": {
+    "ja": "中性長方形スラブ：真2P参照とYB補正",
+    "en": "Neutral rectangular slab: genuine2P reference and YB"
+  },
+  "chapter": "validation-slab-ewald",
+  "reading_section": "neutral-slab-yb",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-23/slab-ewald/",
+  "verification": "/code/validated-examples/2026-11-23/slab-ewald/verification.json",
+  "commands": [
+    "python -W error -m pytest -q -p no:cacheprovider",
+    "python -W error run.py --input inputs.json --output output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-23/slab-ewald/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "neutral-slab-yb"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/slab-ewald/results/neutral-slab-yb-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/slab-ewald/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "neutral-slab-yb",
+      "url": "/numerical-methods-atlas/validation/neutral-slab-yb/",
+      "name": {
+        "ja": "中性長方形スラブ：真2P参照とYB補正",
+        "en": "Neutral rectangular slab: genuine2P reference and YB"
+      }
+    }
+  ]
+}

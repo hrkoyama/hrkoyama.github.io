@@ -1,0 +1,37 @@
+{
+  "id": "helium-ground-state",
+  "group": "quantum",
+  "name": {
+    "ja": "He基底状態：閉殻HF・交換のみLDA",
+    "en": "Helium ground state: closed-shell HF and exchange-only LDA"
+  },
+  "chapter": "quantum-atoms",
+  "reading_section": "helium",
+  "availability": "saved-output",
+  "code_base": "/code/quantum-atoms/2026-11-21/",
+  "verification": "/code/quantum-atoms/2026-11-21/verification.json",
+  "commands": [
+    "python -m pytest -q",
+    "python run.py --input inputs.json --output output --figures"
+  ],
+  "evidence": [
+    {
+      "path": "code/quantum-atoms/2026-11-21/results/results.json",
+      "json_pointer": "/helium/refinement"
+    },
+    {
+      "path": "code/quantum-atoms/2026-11-21/test_atomic_radial.py",
+      "python_symbol": "test_helium_scf_and_independent_reference"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "atomic-reference-cards",
+      "url": "/numerical-methods-atlas/validation/atomic-reference-cards/",
+      "name": {
+        "ja": "H/Heの式・密度・固定参照カード",
+        "en": "Hydrogenic formulas and immutable finite-basis helium reference cards"
+      }
+    }
+  ]
+}

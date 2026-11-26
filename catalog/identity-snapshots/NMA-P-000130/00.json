@@ -1,0 +1,44 @@
+{
+  "id": "reverse-vjp-duality",
+  "group": "differentiation-inverse",
+  "name": {
+    "ja": "独自逆モードVJPとJVP/VJP双対性",
+    "en": "Original reverse-mode VJP and JVP/VJP duality"
+  },
+  "chapter": "validation-reverse-higher-ad",
+  "reading_section": "reverse-vjp-duality",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-24/reverse-higher-ad/",
+  "verification": "/code/validated-examples/2026-11-24/reverse-higher-ad/verification.json",
+  "commands": [
+    "python -B -W error -m pytest -q -p no:cacheprovider",
+    "python -B -W error run.py --input inputs.json --output fresh-output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-24/reverse-higher-ad/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "reverse-vjp-duality"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-24/reverse-higher-ad/results/reverse-vjp-duality-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-24/reverse-higher-ad/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "reverse-vjp-duality",
+      "url": "/numerical-methods-atlas/validation/reverse-vjp-duality/",
+      "name": {
+        "ja": "独自逆モードVJPとJVP/VJP双対性",
+        "en": "Original reverse-mode VJP and JVP/VJP duality"
+      }
+    }
+  ]
+}

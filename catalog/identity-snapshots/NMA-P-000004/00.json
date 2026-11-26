@@ -1,0 +1,67 @@
+{
+  "id": "absorbing-slab",
+  "group": "transport",
+  "name": {
+    "ja": "純吸収平板の離散座標輻射輸送",
+    "en": "Discrete-ordinate radiation transport through an absorbing slab"
+  },
+  "chapter": "validation-particles",
+  "reading_section": "radiation-transport",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-22/particles/",
+  "verification": "/code/validated-examples/2026-11-22/particles/verification.json",
+  "commands": [
+    "python -m pytest -q",
+    "python run.py --input inputs.json --output output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-22/particles/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "radiation-transport"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/particles/results/radiation-transport.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/particles/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/particle-transport/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "radiation-convergence"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/particle-transport/results/radiation-convergence.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/particle-transport/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "radiation-transport",
+      "url": "/numerical-methods-atlas/validation/radiation-transport/",
+      "name": {
+        "ja": "純吸収平板の離散座標輻射輸送",
+        "en": "Discrete-ordinate radiation transport through an absorbing slab"
+      }
+    },
+    {
+      "id": "radiation-convergence",
+      "url": "/numerical-methods-atlas/validation/radiation-convergence/",
+      "name": {
+        "ja": "輻射輸送：空間・角度収束と光子統計",
+        "en": "Radiation transport: space/angle convergence and photon statistics"
+      }
+    }
+  ]
+}

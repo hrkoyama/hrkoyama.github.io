@@ -1,0 +1,41 @@
+{
+  "id": "brio-wu",
+  "group": "mhd",
+  "name": {
+    "ja": "Brio–Wu衝撃波管",
+    "en": "Brio–Wu shock tube"
+  },
+  "chapter": "mhd",
+  "evidence": [
+    {
+      "path": "numerical-methods-atlas/assets/mhd-tests/mhd-tests.json",
+      "json_pointer": "/brio_wu"
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/mhd/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "brio-independent"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/mhd/results/brio-independent.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/mhd/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "availability": "saved-output",
+  "supplemental_examples": [
+    {
+      "id": "brio-independent",
+      "url": "/numerical-methods-atlas/validation/brio-independent/",
+      "name": {
+        "ja": "Brio–Wu：別実装HLLDとの照合",
+        "en": "Brio–Wu against an independent HLLD implementation"
+      }
+    }
+  ]
+}

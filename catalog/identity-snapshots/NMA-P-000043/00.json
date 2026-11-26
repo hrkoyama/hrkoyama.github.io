@@ -1,0 +1,44 @@
+{
+  "id": "fisher-kpp-special-front",
+  "group": "biology",
+  "name": {
+    "ja": "Fisher–KPP：特殊波速の厳密前線",
+    "en": "Fisher–KPP: a special-speed exact front"
+  },
+  "chapter": "validation-biology-space-controls",
+  "reading_section": "fisher-kpp-special-front",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-25/biology-space-controls/",
+  "verification": "/code/validated-examples/2026-11-25/biology-space-controls/verification.json",
+  "commands": [
+    "python -B -W error -m pytest -q -p no:cacheprovider",
+    "python -B -W error run.py --input inputs.json --output fresh-output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-25/biology-space-controls/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "fisher-kpp-special-front"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-25/biology-space-controls/results/fisher-kpp-special-front.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-25/biology-space-controls/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "fisher-kpp-special-front",
+      "url": "/numerical-methods-atlas/validation/fisher-kpp-special-front/",
+      "name": {
+        "ja": "Fisher–KPP：特殊波速の厳密前線",
+        "en": "Fisher–KPP: a special-speed exact front"
+      }
+    }
+  ]
+}

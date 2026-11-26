@@ -1,0 +1,20 @@
+{
+  "id": "nonlinear-rational-ode",
+  "group": "time",
+  "name": {
+    "ja": "有理関数を厳密解に持つ非線形・非自律ODE",
+    "en": "Nonlinear nonautonomous ODE with rational exact solution"
+  },
+  "chapter": "stiff-integration",
+  "evidence": [
+    {
+      "path": "code/numerical-methods-atlas/2026-11-21/tests/test_new_models.py",
+      "python_symbol": "test_implicit_orders_on_nonautonomous_nonlinear_exact_solution"
+    },
+    {
+      "path": "numerical-methods-atlas/gallery/calculations.json",
+      "json_pointer": "/cases/nonlinear-rational-ode"
+    }
+  ],
+  "availability": "saved-output"
+}

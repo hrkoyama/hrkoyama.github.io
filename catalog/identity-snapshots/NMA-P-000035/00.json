@@ -1,0 +1,44 @@
+{
+  "id": "dsmc-couette",
+  "group": "kinetic",
+  "name": {
+    "ja": "硬球DSMCの有限Kn Couette流",
+    "en": "Hard-sphere DSMC finite-Kn Couette flow"
+  },
+  "chapter": "validation-dsmc-wall",
+  "reading_section": "dsmc-couette",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-23/dsmc-wall/",
+  "verification": "/code/validated-examples/2026-11-23/dsmc-wall/verification.json",
+  "commands": [
+    "python -W error -m pytest -q -p no:cacheprovider",
+    "python -W error run.py --input inputs.json --output output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-23/dsmc-wall/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "dsmc-couette"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/dsmc-wall/results/dsmc-couette-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/dsmc-wall/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "dsmc-couette",
+      "url": "/numerical-methods-atlas/validation/dsmc-couette/",
+      "name": {
+        "ja": "硬球DSMCの有限Kn Couette流",
+        "en": "Hard-sphere DSMC finite-Kn Couette flow"
+      }
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "id": "advected-magnetostatic-equilibrium",
+  "group": "mhd",
+  "name": {
+    "ja": "CT・GLM：移動する磁気静力学平衡の格子・時間収束",
+    "en": "CT and GLM: mesh/time convergence of a moving magnetostatic equilibrium"
+  },
+  "chapter": "validation-mhd-convergence",
+  "reading_section": "ct-glm-smooth-convergence",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-22/mhd-convergence/",
+  "verification": "/code/validated-examples/2026-11-22/mhd-convergence/verification.json",
+  "commands": [
+    "python -m pytest -q",
+    "python run.py --input inputs.json --output output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-22/mhd-convergence/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "ct-glm-smooth-convergence"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/mhd-convergence/results/ct-glm-smooth-convergence.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/mhd-convergence/inputs.json",
+      "json_pointer": "/smooth"
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/mhd-convergence/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "ct-glm-smooth-convergence",
+      "url": "/numerical-methods-atlas/validation/ct-glm-smooth-convergence/",
+      "name": {
+        "ja": "CT・GLM：移動する磁気静力学平衡の格子・時間収束",
+        "en": "CT and GLM: mesh/time convergence of a moving magnetostatic equilibrium"
+      }
+    }
+  ]
+}

@@ -10,6 +10,7 @@ import json
 import math
 from pathlib import Path, PurePosixPath
 import re
+import stat
 import zipfile
 
 
@@ -97,6 +98,93 @@ def safe_path(root, relative):
     return path
 
 
+def safe_member_name(name, directory=False):
+    """Require an exact canonical ZIP name without interpreting or extracting it."""
+    require(isinstance(name, str) and name, "ZIP member must be a nonempty string")
+    require("\\" not in name and not any(ord(char) < 32 or ord(char) == 127 for char in name),
+            f"unsafe ZIP member: {name!r}")
+    value = name[:-1] if directory and name.endswith("/") else name
+    require(value and not PurePosixPath(value).is_absolute() and not re.match(r"^[A-Za-z]:", value) and
+            all(part not in {"", ".", ".."} for part in value.split("/")),
+            f"unsafe ZIP member: {name!r}")
+    return name
+
+
+def binding_key(binding):
+    """An exact selector used by the independently checked metadata allowlist."""
+    return (binding["role"], binding["path"], binding.get("pointer"),
+            binding.get("member"), binding["sha256"])
+
+
+class _ArtifactCache:
+    """Stream members and share JSON, metadata and hashes for one validation."""
+
+    def __init__(self, root):
+        self.root = Path(root).resolve()
+        self.hashes = {}
+        self.jsons = {}
+        self.archives = {}
+        self.members = {}
+
+    def file_hash(self, relative):
+        if relative not in self.hashes:
+            self.hashes[relative] = file_sha256(safe_path(self.root, relative))
+        return self.hashes[relative]
+
+    def json(self, relative):
+        if relative not in self.jsons:
+            self.jsons[relative] = load_json(safe_path(self.root, relative))
+        return self.jsons[relative]
+
+    def archive(self, relative):
+        if relative not in self.archives:
+            path = safe_path(self.root, relative)
+            require(path.suffix == ".zip", f"member binding must use ZIP: {relative}")
+            try:
+                with zipfile.ZipFile(path) as archive:
+                    entries = archive.infolist()
+                    names, canonical = set(), set()
+                    result = {}
+                    for info in entries:
+                        require(info.orig_filename == info.filename,
+                                f"unsafe ZIP member: {info.orig_filename!r}")
+                        name = safe_member_name(info.filename, info.is_dir())
+                        require(name not in names and name.rstrip("/") not in canonical,
+                                f"duplicate ZIP members: {relative}")
+                        names.add(name); canonical.add(name.rstrip("/"))
+                        mode = stat.S_IFMT(info.external_attr >> 16)
+                        expected = {0, stat.S_IFDIR} if info.is_dir() else {0, stat.S_IFREG}
+                        require(mode in expected, f"nonregular ZIP member: {name}")
+                        result[name] = info.is_dir()
+                    self.archives[relative] = result
+            except (OSError, zipfile.BadZipFile, RuntimeError, EOFError) as exc:
+                raise IdentityError(f"cannot inspect ZIP {relative}: {exc}") from exc
+        return self.archives[relative]
+
+    def member_hash(self, relative, member):
+        safe_member_name(member)
+        entries = self.archive(relative)
+        require(member in entries and not entries[member],
+                f"missing or nonregular ZIP member: {relative} {member}")
+        key = (relative, member)
+        if key not in self.members:
+            try:
+                with zipfile.ZipFile(safe_path(self.root, relative)) as archive:
+                    digest = hashlib.sha256()
+                    with archive.open(member) as stream:
+                        for block in iter(lambda: stream.read(1024 * 1024), b""):
+                            digest.update(block)
+                    self.members[key] = digest.hexdigest()
+            except (OSError, zipfile.BadZipFile, RuntimeError, EOFError, NotImplementedError) as exc:
+                raise IdentityError(f"cannot inspect ZIP member {relative} {member}: {exc}") from exc
+        return self.members[key]
+
+    def value(self, binding):
+        require("member" not in binding, "JSON interpretation of ZIP members is unsupported")
+        value = self.json(binding["path"])
+        return resolve_pointer(value, binding["pointer"]) if "pointer" in binding else value
+
+
 def resolve_pointer(value, pointer):
     require(isinstance(pointer, str) and (pointer == "" or pointer.startswith("/")), f"invalid JSON pointer: {pointer!r}")
     if pointer == "":
@@ -151,6 +239,8 @@ def validate_baseline(current, baseline):
     """Require append-only history, IDs and allocation when old registry exists."""
     previous = {item["id"]: item for item in baseline["entities"]}
     present = {item["id"]: item for item in current["entities"]}
+    require(baseline["scope"] != "atlas-current" or current["scope"] == "atlas-current",
+            "coverage scope downgraded from atlas-current")
     for letter in "PCS":
         require(current["allocation"][letter] >= baseline["allocation"][letter], f"allocation decreased: {letter}")
     for identifier, old in previous.items():
@@ -163,7 +253,7 @@ def validate_baseline(current, baseline):
         require(serial >= baseline["allocation"][letter], f"reused reserved serial: {identifier}")
 
 
-def validate_artifact_relations(root, entities):
+def _validate_pilot_artifact_relations(root, entities):
     """Reject correctly hashed material attached to the wrong problem or case."""
     def bound_value(binding):
         value = load_json(safe_path(root, binding["path"]))
@@ -284,13 +374,226 @@ def validate_artifact_relations(root, entities):
                     require(matched, f"saved verification/source mismatch: {identifier}")
 
 
-def validate_registry(root, data, baseline=None, check_artifacts=True):
+def _manifest_files(value, identifier):
+    files = value.get("files") if isinstance(value, dict) else None
+    if isinstance(files, list):
+        require(all(isinstance(row, dict) and isinstance(row.get("path"), str) and
+                    isinstance(row.get("sha256"), str) for row in files),
+                f"invalid source manifest files: {identifier}")
+        require(len({row["path"] for row in files}) == len(files),
+                f"duplicate source manifest files: {identifier}")
+        files = {row["path"]: row["sha256"] for row in files}
+    require(isinstance(files, dict), f"invalid source manifest files: {identifier}")
+    for relative, digest in files.items():
+        safe_member_name(relative)
+        require(isinstance(digest, str) and SHA_PATTERN.fullmatch(digest),
+                f"invalid source manifest digest: {identifier} {relative}")
+    return files
+
+
+def _validate_expanded_artifact_relations(root, entities, coverage, cache):
+    """Check bytes using independently validated canonical source contracts."""
+    contracts = coverage["source_contracts"]
+    external = coverage["allowed_external_case_bindings"]
+    require(isinstance(contracts, dict) and isinstance(external, dict),
+            "invalid expanded artifact contracts")
+    source_refs = {f"{ident}@{rev['revision']}" for ident, item in entities.items()
+                   if item["kind"] == "source" for rev in item["revisions"]}
+    case_refs = {f"{ident}@{rev['revision']}" for ident, item in entities.items()
+                 if item["kind"] == "case" for rev in item["revisions"]}
+    require(set(contracts) == source_refs and set(external).issubset(case_refs),
+            "expanded artifact contract coverage differs")
+    sources = {}
+    for identifier, entity in entities.items():
+        if entity["kind"] != "source":
+            continue
+        for revision in entity["revisions"]:
+            ref = f"{identifier}@{revision['revision']}"
+            profile = contracts[ref]
+            require(isinstance(profile, dict) and
+                    {"root", "files", "archive_path", "archive_members", "kind"} <= profile.keys(),
+                    f"invalid source contract: {ref}")
+            require(profile["kind"] in {"flat", "archive-members", "standalone"} and
+                    isinstance(profile["root"], str), f"invalid source kind/root: {ref}")
+            parent = PurePosixPath(profile["root"])
+            require(not parent.is_absolute() and ".." not in parent.parts,
+                    f"unsafe source root: {ref}")
+            bindings = revision["bindings"]
+            manifests = [b for b in bindings if b["role"] == "source-manifest"]
+            archives = [b for b in bindings if b["role"] == "archive"]
+            require(len(manifests) == 1 and len(archives) <= 1,
+                    f"source needs one manifest and at most one archive: {ref}")
+            manifest = manifests[0]
+            require("pointer" not in manifest and "member" not in manifest,
+                    f"source manifest must bind full file: {ref}")
+            files = _manifest_files(cache.value(manifest), identifier)
+            require(files == profile["files"], f"source contract differs from manifest: {ref}")
+            members = profile["archive_members"]
+            require(isinstance(members, dict) and set(members).issubset(files),
+                    f"invalid source archive member map: {ref}")
+            for member in members.values():
+                safe_member_name(member)
+            require(len(set(members.values())) == len(members),
+                    f"ambiguous source archive member map: {ref}")
+            archive = archives[0] if archives else None
+            if profile["kind"] == "standalone":
+                require(archive is None and profile["archive_path"] is None and not members,
+                        f"standalone source has an archive: {ref}")
+            else:
+                require(archive is not None and archive["path"] == profile["archive_path"],
+                        f"source archive differs from contract: {ref}")
+                cache.archive(archive["path"])
+            if "manifest_path" in profile:
+                require(manifest["path"] == profile["manifest_path"],
+                        f"source manifest path differs from contract: {ref}")
+            if "manifest_sha256" in profile:
+                require(manifest["sha256"] == profile["manifest_sha256"],
+                        f"source manifest digest differs from contract: {ref}")
+            if archive is not None and "archive_sha256" in profile:
+                require(archive["sha256"] == profile["archive_sha256"],
+                        f"source archive digest differs from contract: {ref}")
+            reverse = {member: relative for relative, member in members.items()}
+            for binding in bindings:
+                if binding["role"] not in {"source", "dependency"}:
+                    continue
+                require("pointer" not in binding, f"source must bind full file: {ref}")
+                if "member" in binding:
+                    require(archive is not None and binding["path"] == archive["path"] and
+                            binding["member"] in reverse,
+                            f"source member outside referenced archive: {ref}")
+                    relative = reverse[binding["member"]]
+                else:
+                    try:
+                        relative = PurePosixPath(binding["path"]).relative_to(parent).as_posix()
+                    except ValueError as exc:
+                        raise IdentityError(f"source outside manifest directory: {ref}") from exc
+                require(files.get(relative) == binding["sha256"],
+                        f"source differs from manifest: {ref} {relative}")
+                if archive is not None:
+                    require(relative in members, f"source missing from archive map: {ref} {relative}")
+                    require(cache.member_hash(archive["path"], members[relative]) == binding["sha256"],
+                            f"archive source differs: {ref} {relative}")
+            sources[ref] = (manifest, archive, profile)
+
+    canonical_problems = {row["id"]: row for row in
+                          cache.json("catalog/atlas-test-problems.json")["problems"]}
+
+    def fingerprints(record):
+        result = set()
+        for ref in record["source_refs"]:
+            _, archive, profile = sources[ref]
+            result.add(archive["sha256"] if archive else
+                       "standalone:" + canonical_sha256(profile["files"]))
+        return result
+
+    for identifier, entity in entities.items():
+        for revision in entity["revisions"]:
+            ref = f"{identifier}@{revision['revision']}"
+            allowed = external.get(ref, set())
+            require(isinstance(allowed, (set, frozenset)) and
+                    all(isinstance(key, tuple) and len(key) == 5 for key in allowed) and
+                    allowed.issubset({binding_key(b) for b in revision["bindings"]}),
+                    f"invalid external case binding allowlist: {ref}")
+            if entity["kind"] == "case":
+                contract_roles = {"case-definition", "input", "acceptance", "reference"}
+                contract = {canonical_sha256(b) for b in revision["bindings"]
+                            if b["role"] in contract_roles}
+                for previous in entity["revisions"]:
+                    if previous is revision:
+                        break
+                    if fingerprints(previous) == fingerprints(revision):
+                        old = {canonical_sha256(b) for b in previous["bindings"]
+                               if b["role"] in contract_roles}
+                        require(contract == old,
+                                f"case contract changed with unchanged source release bytes: {identifier}")
+                for binding in revision["bindings"]:
+                    if binding_key(binding) in allowed or binding["role"] == "saved-verification":
+                        continue
+                    matched = False
+                    for source_ref in revision["source_refs"]:
+                        _, archive, profile = sources[source_ref]
+                        if "member" in binding:
+                            if archive is None or binding["path"] != archive["path"]:
+                                continue
+                            reverse = {v: k for k, v in profile["archive_members"].items()}
+                            relative = reverse.get(binding["member"])
+                            if relative is None:
+                                continue
+                            raw_sha = cache.member_hash(binding["path"], binding["member"])
+                        else:
+                            try:
+                                relative = PurePosixPath(binding["path"]).relative_to(
+                                    PurePosixPath(profile["root"])).as_posix()
+                            except ValueError:
+                                continue
+                            if relative not in profile["files"]:
+                                continue
+                            raw_sha = cache.file_hash(binding["path"])
+                        require(profile["files"].get(relative) == raw_sha,
+                                f"case artifact differs from source manifest: {identifier} {relative}")
+                        if archive is not None:
+                            member = profile["archive_members"].get(relative)
+                            require(member is not None and
+                                    cache.member_hash(archive["path"], member) == raw_sha,
+                                    f"case artifact differs from archive: {identifier} {relative}")
+                        matched = True
+                    require(matched, f"case artifact outside referenced source release: {identifier} {binding['path']}")
+            for binding in revision["bindings"]:
+                if binding_key(binding) in allowed:
+                    continue
+                if binding["role"] not in {"problem", "case-definition", "saved-result", "saved-verification"}:
+                    continue
+                value = cache.value(binding)
+                if binding["role"] in {"problem", "case-definition"}:
+                    require(isinstance(value, dict) and value.get("id") in entity["legacy_ids"],
+                            f"bound identity does not match: {identifier}")
+                if binding["role"] == "problem" and revision["revision"] == entity["current_revision"]:
+                    require(value == canonical_problems[value["id"]],
+                            f"current problem snapshot differs from canonical catalog: {identifier}")
+                if binding["role"] == "saved-result" and isinstance(value, dict) and "id" in value:
+                    require(value["id"] in entity["legacy_ids"],
+                            f"saved result belongs to another case: {identifier}")
+                    if "input_sha256" in value:
+                        hashes = set()
+                        for item in revision["bindings"]:
+                            if item["role"] != "input":
+                                continue
+                            if "member" not in item:
+                                hashes.add(hashlib.sha256(json.dumps(
+                                    cache.value(item), sort_keys=True).encode()).hexdigest())
+                            if "pointer" not in item:
+                                hashes.add(item["sha256"])
+                        require(value["input_sha256"] in hashes,
+                                f"saved result/input hash mismatch: {identifier}")
+                if binding["role"] == "saved-verification":
+                    require(isinstance(value, dict) and
+                            set(entity["legacy_ids"]).issubset(value.get("case_ids", [])),
+                            f"saved verification misses case: {identifier}")
+                    require(any(archive is not None and
+                                value.get("source_manifest_sha256") == manifest["sha256"] and
+                                value.get("archive_sha256") == archive["sha256"]
+                                for manifest, archive, _ in
+                                (sources[source_ref] for source_ref in revision["source_refs"])),
+                            f"saved verification/source mismatch: {identifier}")
+
+
+def validate_artifact_relations(root, entities, coverage=None, cache=None):
+    if coverage is None:
+        return _validate_pilot_artifact_relations(root, entities)
+    return _validate_expanded_artifact_relations(root, entities, coverage,
+                                               cache or _ArtifactCache(root))
+
+
+def validate_registry(root, data, baseline=None, check_artifacts=True, *, _historical=False):
     """Validate structure, canonical catalog membership, bindings and references."""
     root = Path(root).resolve()
     exact_keys(data, TOP_KEYS, "registry")
     require(data["$schema"] == "./schemas/atlas-identities.schema.json", "unexpected schema URL")
     require(type(data["schema_version"]) is int and data["schema_version"] == 1, "unsupported schema version")
-    require(data["namespace"] == "NMA" and data["scope"] == "pilot", "unsupported namespace or scope")
+    require(data["namespace"] == "NMA" and data["scope"] in {"pilot", "atlas-current"},
+            "unsupported namespace or scope")
+    if isinstance(baseline, dict) and baseline.get("scope") == "atlas-current":
+        require(data["scope"] == "atlas-current", "coverage scope downgraded from atlas-current")
     require(data["revision_policy"] == "hex-min2-no-wrap-v1", "unsupported revision policy")
     exact_keys(data["allocation"], set("PCS"), "allocation")
     for letter, serial in data["allocation"].items():
@@ -298,7 +601,7 @@ def validate_registry(root, data, baseline=None, check_artifacts=True):
     require(isinstance(data["entities"], list) and data["entities"], "entities must be nonempty list")
     entities, snapshots, aliases = {}, {}, {kind: set() for kind in KINDS}
     binding_count, archive_count = 0, 0
-    json_cache, hash_cache = {}, {}
+    cache = _ArtifactCache(root)
     for item in data["entities"]:
         exact_keys(item, ENTITY_KEYS, "entity")
         identifier = item["id"]
@@ -327,40 +630,59 @@ def validate_registry(root, data, baseline=None, check_artifacts=True):
             if item["kind"] == "problem":
                 require(not revision["problem_refs"] and not revision["source_refs"], f"problem has implementation references: {identifier}")
             elif item["kind"] == "source":
-                require(revision["problem_refs"] and not revision["source_refs"], f"source references invalid: {identifier}")
+                require(not revision["source_refs"] and
+                        (data["scope"] == "atlas-current" or revision["problem_refs"]),
+                        f"source references invalid: {identifier}")
             else:
-                require(revision["problem_refs"] and revision["source_refs"], f"case missing problem/source reference: {identifier}")
+                require(revision["source_refs"] and
+                        (data["scope"] == "atlas-current" or revision["problem_refs"]),
+                        f"case missing problem/source reference: {identifier}")
             require(isinstance(revision["bindings"], list) and revision["bindings"], f"empty bindings: {identifier}")
             roles, seen = set(), set()
             for binding in revision["bindings"]:
                 require(isinstance(binding, dict), f"binding must be object: {identifier}")
-                require(set(binding) in ({"role", "path", "sha256"}, {"role", "path", "sha256", "pointer"}), f"binding keys invalid: {identifier}")
+                require({"role", "path", "sha256"} <= set(binding) <=
+                        {"role", "path", "sha256", "pointer", "member"},
+                        f"binding keys invalid: {identifier}")
+                require(not ("pointer" in binding and "member" in binding),
+                        f"pointer and member are mutually exclusive: {identifier}")
                 require(isinstance(binding["role"], str) and binding["role"] in ROLES, f"unknown binding role: {identifier}")
                 require(isinstance(binding["sha256"], str) and SHA_PATTERN.fullmatch(binding["sha256"]), f"invalid SHA-256: {identifier}")
                 pointer = binding.get("pointer")
                 require("pointer" not in binding or isinstance(pointer, str), f"invalid pointer type: {identifier}")
+                member = binding.get("member")
+                require("member" not in binding or isinstance(member, str), f"invalid member type: {identifier}")
                 require(isinstance(binding["path"], str), f"invalid path type: {identifier}")
-                identity = (binding["role"], binding["path"], pointer)
+                identity = (binding["role"], binding["path"], pointer, member)
                 require(identity not in seen, f"duplicate binding: {identifier}")
                 seen.add(identity); roles.add(binding["role"])
                 # Safety applies to structural-only validation as well.
                 path = safe_path(root, binding["path"])
-                if pointer is not None:
-                    if binding["path"] not in json_cache:
-                        json_cache[binding["path"]] = load_json(path)
-                    fragment = resolve_pointer(json_cache[binding["path"]], pointer)
+                if member is not None:
+                    safe_member_name(member)
+                    entries = cache.archive(binding["path"])
+                    require(member in entries and not entries[member],
+                            f"missing or nonregular ZIP member: {binding['path']} {member}")
+                    if check_artifacts:
+                        actual = cache.member_hash(binding["path"], member)
+                elif pointer is not None:
+                    fragment = resolve_pointer(cache.json(binding["path"]), pointer)
                     actual = canonical_sha256(fragment)
                 elif check_artifacts:
-                    if binding["path"] not in hash_cache:
-                        hash_cache[binding["path"]] = file_sha256(path)
-                    actual = hash_cache[binding["path"]]
+                    actual = cache.file_hash(binding["path"])
                 if check_artifacts:
                     require(actual == binding["sha256"], f"binding SHA-256 mismatch: {identifier} {binding['path']} {pointer or ''}")
                 if binding["role"] == "archive":
-                    require(pointer is None and path.suffix == ".zip", f"archive must bind complete ZIP: {identifier}")
+                    require(pointer is None and member is None and path.suffix == ".zip", f"archive must bind complete ZIP: {identifier}")
+                    cache.archive(binding["path"])
                     archive_count += 1
                 binding_count += 1
-            require(REQUIRED_ROLES[item["kind"]].issubset(roles), f"missing required binding roles: {identifier}")
+            required = REQUIRED_ROLES[item["kind"]]
+            if data["scope"] == "atlas-current" and item["kind"] == "source":
+                # Exact canonical coverage, below, controls real dependency/archive
+                # omissions for the reviewed standalone and standard-library units.
+                required = {"source", "source-manifest"}
+            require(required.issubset(roles), f"missing required binding roles: {identifier}")
             snapshots[f"{identifier}@{revision['revision']}"] = revision
         require(item["current_revision"] == revisions[-1]["revision"], f"current revision not latest: {identifier}")
     problems = load_json(safe_path(root, "catalog/atlas-test-problems.json"))["problems"]
@@ -372,7 +694,7 @@ def validate_registry(root, data, baseline=None, check_artifacts=True):
         for revision in item["revisions"]:
             for ref in revision["problem_refs"] + revision["source_refs"]:
                 require(ref in snapshots, f"missing exact revision reference: {identifier} -> {ref}")
-            if item["kind"] != "case":
+            if item["kind"] != "case" or data["scope"] == "atlas-current":
                 continue
             referenced_legacy = {alias for ref in revision["problem_refs"] for alias in entities[ref.split("@")[0]]["legacy_ids"]}
             for alias in item["legacy_ids"]:
@@ -384,16 +706,38 @@ def validate_registry(root, data, baseline=None, check_artifacts=True):
                 source_problems = set(snapshots[source_ref]["problem_refs"])
                 require(source_problems.intersection(revision["problem_refs"]), f"case/source problem mismatch: {identifier} -> {source_ref}")
     if baseline is not None:
-        validate_registry(root, baseline, check_artifacts=False)
+        validate_registry(root, baseline, check_artifacts=False, _historical=True)
         validate_baseline(data, baseline)
+    coverage = None
+    if data["scope"] == "atlas-current" and not _historical:
+        try:
+            from atlas_identity_coverage import validate_current_coverage
+            coverage = validate_current_coverage(root, data, entities, snapshots)
+        except IdentityError:
+            raise
+        except (ImportError, OSError, ValueError, KeyError, TypeError) as exc:
+            raise IdentityError(f"expanded coverage validation failed: {exc}") from exc
+        require(isinstance(coverage, dict) and
+                {"source_contracts", "allowed_external_case_bindings", "report"} <= coverage.keys() and
+                isinstance(coverage["report"], dict), "invalid expanded coverage result")
     if check_artifacts:
-        validate_artifact_relations(root, entities)
-    return {
+        # Historical baseline validation never enters this branch in normal use;
+        # its shape/safety/immutability is checked without claiming current coverage.
+        if not _historical:
+            validate_artifact_relations(root, entities, coverage, cache)
+    report = {
         "passed": True, "validation_type": "saved-artifact-integrity-only", "numerical_execution": False,
-        "coverage": "pilot-only", "entities": len(entities),
+        "coverage": "atlas-current" if data["scope"] == "atlas-current" else "pilot-only",
+        "entities": len(entities),
         "problems": sum(x["kind"] == "problem" for x in entities.values()),
         "cases": sum(x["kind"] == "case" for x in entities.values()),
         "sources": sum(x["kind"] == "source" for x in entities.values()),
         "revisions": len(snapshots), "bindings_checked": binding_count,
         "archive_bindings_checked": archive_count, "baseline_checked": baseline is not None,
     }
+    if coverage is not None:
+        for key, value in coverage["report"].items():
+            require(key not in report or report[key] == value,
+                    f"expanded coverage report conflicts with validation: {key}")
+            report[key] = value
+    return report

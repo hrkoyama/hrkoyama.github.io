@@ -1,0 +1,20 @@
+{
+  "id": "channel-poiseuille",
+  "group": "viscous",
+  "name": {
+    "ja": "平行平板Poiseuille流",
+    "en": "Plane Poiseuille channel flow"
+  },
+  "chapter": "lattice-boltzmann",
+  "evidence": [
+    {
+      "path": "numerical-methods-atlas/assets/solver-foundations.json",
+      "json_pointer": "/lbm/channel_relative_l2"
+    },
+    {
+      "path": "code/numerical-methods-atlas/2026-11-21/tests/test_new_models.py",
+      "python_symbol": "test_lbm_channel_halfway_wall_refinement"
+    }
+  ],
+  "availability": "saved-output"
+}

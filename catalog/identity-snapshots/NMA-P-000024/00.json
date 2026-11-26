@@ -1,0 +1,75 @@
+{
+  "id": "cold-plasma-pic",
+  "group": "kinetic",
+  "name": {
+    "ja": "CIC静電PICの冷たいプラズマ振動",
+    "en": "Cold-plasma oscillation with electrostatic CIC PIC"
+  },
+  "chapter": "validation-particles",
+  "reading_section": "pic",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-22/particles/",
+  "verification": "/code/validated-examples/2026-11-22/particles/verification.json",
+  "commands": [
+    "python -m pytest -q",
+    "python run.py --input inputs.json --output output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-22/particles/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "pic"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/particles/results/pic.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/particles/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/particle-transport/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "pic-conservation"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/particle-transport/results/pic-conservation.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/particle-transport/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "pic",
+      "url": "/numerical-methods-atlas/validation/pic/",
+      "name": {
+        "ja": "CIC静電PICの冷たいプラズマ振動",
+        "en": "Cold-plasma oscillation with electrostatic CIC PIC"
+      }
+    },
+    {
+      "id": "pic-conservation",
+      "url": "/numerical-methods-atlas/validation/pic-conservation/",
+      "name": {
+        "ja": "PIC：格子・時間収束、保存量と粒子雑音",
+        "en": "PIC: mesh/time convergence, invariants and particle noise"
+      }
+    },
+    {
+      "id": "pic-independent-spatial",
+      "url": "/numerical-methods-atlas/validation/pic-independent-spatial/",
+      "name": {
+        "ja": "PIC空間演算の独立実装照合",
+        "en": "Independently coded PIC spatial pipeline"
+      }
+    }
+  ]
+}

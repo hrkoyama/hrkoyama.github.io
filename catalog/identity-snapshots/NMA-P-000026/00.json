@@ -1,0 +1,20 @@
+{
+  "id": "cubic-root",
+  "group": "approximation",
+  "name": {
+    "ja": "減衰Newton法による3次方程式の求根",
+    "en": "Damped Newton root of a cubic equation"
+  },
+  "chapter": "sparse-nonlinear",
+  "evidence": [
+    {
+      "path": "code/numerical-methods-atlas/2026-11-21/tests/test_sparse_fem.py",
+      "python_symbol": "test_damped_newton_backtracks_and_reports_failure"
+    },
+    {
+      "path": "numerical-methods-atlas/gallery/calculations.json",
+      "json_pointer": "/cases/cubic-root"
+    }
+  ],
+  "availability": "saved-output"
+}

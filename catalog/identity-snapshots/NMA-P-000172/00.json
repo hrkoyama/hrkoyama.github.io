@@ -1,0 +1,48 @@
+{
+  "id": "wall-manufactured",
+  "group": "viscous",
+  "name": {
+    "ja": "非周期壁面の製造非圧縮流",
+    "en": "Manufactured incompressible flow with nonperiodic walls"
+  },
+  "chapter": "validation-wall-flow",
+  "reading_section": "wall-manufactured",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-23-r2/wall-flow/",
+  "verification": "/code/validated-examples/2026-11-23-r2/wall-flow/verification.json",
+  "commands": [
+    "python -m pytest -q",
+    "python run.py --input inputs.json --output output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-23-r2/wall-flow/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "wall-manufactured"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-23-r2/wall-flow/results/wall-manufactured-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-23-r2/wall-flow/inputs.json",
+      "json_pointer": "/nodes"
+    },
+    {
+      "path": "code/validated-examples/2026-11-23-r2/wall-flow/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "wall-manufactured",
+      "url": "/numerical-methods-atlas/validation/wall-manufactured/",
+      "name": {
+        "ja": "非周期壁面の製造解：速度・剪断・圧力演算子",
+        "en": "Nonperiodic wall MMS: velocity, shear and pressure operator"
+      }
+    }
+  ]
+}

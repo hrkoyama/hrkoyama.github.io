@@ -1,0 +1,44 @@
+{
+  "id": "saltzman-ale-piston",
+  "group": "fluid",
+  "name": {
+    "ja": "Saltzman型の歪み格子ピストン：2次元EulerとALE",
+    "en": "Saltzman-type skew-grid piston: 2D Euler and ALE"
+  },
+  "chapter": "validation-continuum-particle-controls",
+  "reading_section": "saltzman-ale-piston",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-25/continuum-particle-controls/",
+  "verification": "/code/validated-examples/2026-11-25/continuum-particle-controls/verification.json",
+  "commands": [
+    "python -B -W error -m pytest -q -p no:cacheprovider test_components.py",
+    "python -B -W error run.py --input inputs.json --output fresh-output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-25/continuum-particle-controls/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "saltzman-ale-piston"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-25/continuum-particle-controls/results/saltzman-ale-piston.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-25/continuum-particle-controls/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "saltzman-ale-piston",
+      "url": "/numerical-methods-atlas/validation/saltzman-ale-piston/",
+      "name": {
+        "ja": "Saltzman型の歪み格子ピストン：2次元EulerとALE",
+        "en": "Saltzman-type skew-grid piston: 2D Euler and ALE"
+      }
+    }
+  ]
+}

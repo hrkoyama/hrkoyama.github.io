@@ -1,0 +1,44 @@
+{
+  "id": "haar-mallat-boundary-threshold",
+  "group": "approximation",
+  "name": {
+    "ja": "Haar多重解像度の境界・シフト・閾値",
+    "en": "Haar multiresolution: boundaries, shifts and thresholds"
+  },
+  "chapter": "validation-approximation-controls",
+  "reading_section": "haar-mallat-boundary-threshold",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-25/approximation-controls/",
+  "verification": "/code/validated-examples/2026-11-25/approximation-controls/verification.json",
+  "commands": [
+    "python -B -W error -m pytest -q -p no:cacheprovider",
+    "python -B -W error run.py --input inputs.json --output fresh-output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-25/approximation-controls/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "haar-mallat-boundary-threshold"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-25/approximation-controls/results/haar-mallat-boundary-threshold-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-25/approximation-controls/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "haar-mallat-boundary-threshold",
+      "url": "/numerical-methods-atlas/validation/haar-mallat-boundary-threshold/",
+      "name": {
+        "ja": "Haar多重解像度の境界・シフト・閾値",
+        "en": "Haar multiresolution: boundaries, shifts and thresholds"
+      }
+    }
+  ]
+}

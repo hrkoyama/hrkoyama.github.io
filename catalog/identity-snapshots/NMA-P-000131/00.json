@@ -1,0 +1,44 @@
+{
+  "id": "rk45-dense-events",
+  "group": "time",
+  "name": {
+    "ja": "RK45の埋込み推定・補間・イベント",
+    "en": "RK45: embedded errors, dense output and events"
+  },
+  "chapter": "validation-ode-adaptivity",
+  "reading_section": "rk45-dense-events",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-24-r2/ode-adaptivity/",
+  "verification": "/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+  "commands": [
+    "python -B -W error -m pytest -q -p no:cacheprovider",
+    "python -B -W error run.py --input inputs.json --output fresh-output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-24-r2/ode-adaptivity/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "rk45-dense-events"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-24-r2/ode-adaptivity/results/rk45-dense-events-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "rk45-dense-events",
+      "url": "/numerical-methods-atlas/validation/rk45-dense-events/",
+      "name": {
+        "ja": "RK45の埋込み推定・補間・イベント",
+        "en": "RK45: embedded errors, dense output and events"
+      }
+    }
+  ]
+}

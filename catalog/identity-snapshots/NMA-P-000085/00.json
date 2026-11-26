@@ -1,0 +1,67 @@
+{
+  "id": "logarithmic-particles",
+  "group": "gravity",
+  "name": {
+    "ja": "2次元対数核のM2M・M2L・L2Lを持つFMM",
+    "en": "2D logarithmic FMM with M2M, M2L and L2L"
+  },
+  "chapter": "validation-particles",
+  "reading_section": "fmm",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-22/particles/",
+  "verification": "/code/validated-examples/2026-11-22/particles/verification.json",
+  "commands": [
+    "python -m pytest -q",
+    "python run.py --input inputs.json --output output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-22/particles/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "fmm"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/particles/results/fmm.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/particles/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/particle-transport/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "fmm-convergence"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/particle-transport/results/fmm-convergence.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/particle-transport/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "fmm",
+      "url": "/numerical-methods-atlas/validation/fmm/",
+      "name": {
+        "ja": "2次元対数核のM2M・M2L・L2Lを持つFMM",
+        "en": "2D logarithmic FMM with M2M, M2L and L2L"
+      }
+    },
+    {
+      "id": "fmm-convergence",
+      "url": "/numerical-methods-atlas/validation/fmm-convergence/",
+      "name": {
+        "ja": "FMM：直接和・解析配置と展開次数・木の深さ",
+        "en": "FMM: direct and analytic references, order and tree depth"
+      }
+    }
+  ]
+}

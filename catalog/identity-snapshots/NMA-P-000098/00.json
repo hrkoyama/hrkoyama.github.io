@@ -1,0 +1,105 @@
+{
+  "id": "neutral-periodic-charges",
+  "group": "gravity",
+  "name": {
+    "ja": "中性周期点電荷：Ewald・smooth PME",
+    "en": "Neutral periodic charges: Ewald and smooth PME"
+  },
+  "chapter": "validation-particles",
+  "reading_section": "ewald",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-22/particles/",
+  "verification": "/code/validated-examples/2026-11-22/particles/verification.json",
+  "commands": [
+    "python -m pytest -q",
+    "python run.py --input inputs.json --output output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-22/particles/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "ewald"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/particles/results/ewald.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/particles/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "spme"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/particles/results/spme.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/particles/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/particle-transport/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "ewald-convergence"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/particle-transport/results/ewald-convergence.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/particle-transport/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "spme-convergence"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/particle-transport/results/spme-convergence.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/particle-transport/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "ewald",
+      "url": "/numerical-methods-atlas/validation/ewald/",
+      "name": {
+        "ja": "中性周期セルのEwald和と独立theta積分",
+        "en": "Neutral-cell Ewald sums and an independent theta integral"
+      }
+    },
+    {
+      "id": "spme",
+      "url": "/numerical-methods-atlas/validation/spme/",
+      "name": {
+        "ja": "Bスプラインsmooth PMEの格子・次数収束",
+        "en": "Mesh/order convergence of B-spline smooth PME"
+      }
+    },
+    {
+      "id": "ewald-convergence",
+      "url": "/numerical-methods-atlas/validation/ewald-convergence/",
+      "name": {
+        "ja": "Ewald：非対称周期セルのエネルギー・力と独立theta積分",
+        "en": "Ewald: asymmetric-cell energies and forces versus independent theta integration"
+      }
+    },
+    {
+      "id": "spme-convergence",
+      "url": "/numerical-methods-atlas/validation/spme-convergence/",
+      "name": {
+        "ja": "SPME：格子・補間次数・格子位相と保存則",
+        "en": "SPME: mesh, interpolation order, mesh phase and conservation"
+      }
+    }
+  ]
+}

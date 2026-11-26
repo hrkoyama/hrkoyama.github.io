@@ -1,0 +1,44 @@
+{
+  "id": "dsmc-planar-shock",
+  "group": "kinetic",
+  "name": {
+    "ja": "硬球DSMCのMach2平面衝撃波",
+    "en": "Hard-sphere DSMC Mach2 planar shock"
+  },
+  "chapter": "validation-dsmc-shock",
+  "reading_section": "dsmc-planar-shock",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-24/dsmc-shock/",
+  "verification": "/code/validated-examples/2026-11-24/dsmc-shock/verification.json",
+  "commands": [
+    "python -W error -m pytest -q -p no:cacheprovider",
+    "python -W error run.py --input inputs.json --output output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-24/dsmc-shock/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "dsmc-planar-shock"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-24/dsmc-shock/results/dsmc-planar-shock-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-24/dsmc-shock/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "dsmc-planar-shock",
+      "url": "/numerical-methods-atlas/validation/dsmc-planar-shock/",
+      "name": {
+        "ja": "硬球DSMCのMach2平面衝撃波",
+        "en": "Hard-sphere DSMC Mach2 planar shock"
+      }
+    }
+  ]
+}

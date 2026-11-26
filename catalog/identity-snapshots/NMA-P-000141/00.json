@@ -1,0 +1,51 @@
+{
+  "id": "shu-osher",
+  "group": "fluid",
+  "name": {
+    "ja": "Shu–Osher衝撃波・エントロピー波干渉",
+    "en": "Shu–Osher shock/entropy interaction"
+  },
+  "chapter": "reconstruction",
+  "evidence": [
+    {
+      "path": "numerical-methods-atlas/assets/reconstruction/reconstruction.json",
+      "json_pointer": "/problems",
+      "where": {
+        "id": "shu-osher"
+      }
+    },
+    {
+      "path": "numerical-methods-atlas/assets/shock-expansion/shock-expansion.json",
+      "json_pointer": "/problems",
+      "where": {
+        "id": "shu-osher"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/mhd/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "shu-independent"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/mhd/results/shu-independent.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/mhd/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "availability": "saved-output",
+  "supplemental_examples": [
+    {
+      "id": "shu-independent",
+      "url": "/numerical-methods-atlas/validation/shu-independent/",
+      "name": {
+        "ja": "Shu–Osher：独立参照と格子収束",
+        "en": "Shu–Osher: independent reference and mesh refinement"
+      }
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "id": "logistic-growth",
+  "group": "biology",
+  "name": {
+    "ja": "ロジスティック増殖：解析解と刻み幅の収束",
+    "en": "Logistic growth: analytic solution and time refinement"
+  },
+  "chapter": "biological-models",
+  "reading_section": "01-1838-logistic-population-growth",
+  "availability": "saved-output",
+  "code_base": "/code/model-benchmarks/2026-11-22/",
+  "verification": "/code/model-benchmarks/2026-11-22/verification.json",
+  "commands": [
+    "python -m pytest -q test_models.py",
+    "python run.py --input inputs/logistic-growth.json --output output"
+  ],
+  "evidence": [
+    {
+      "path": "code/model-benchmarks/2026-11-22/results/logistic-growth/result.json",
+      "json_pointer": "/metrics"
+    },
+    {
+      "path": "code/model-benchmarks/2026-11-22/test_models.py",
+      "python_symbol": "test_fixed_case"
+    }
+  ]
+}

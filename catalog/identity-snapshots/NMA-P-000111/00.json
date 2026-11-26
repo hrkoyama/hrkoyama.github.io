@@ -1,0 +1,44 @@
+{
+  "id": "pivoted-direct-refinement",
+  "group": "approximation",
+  "name": {
+    "ja": "部分ピボットLU・Choleskyと反復改良",
+    "en": "Pivoted LU, Cholesky and iterative refinement"
+  },
+  "chapter": "validation-linear-algebra-spectral",
+  "reading_section": "pivoted-direct-refinement",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/",
+  "verification": "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json",
+  "commands": [
+    "python -B -W error -m pytest -q -p no:cacheprovider",
+    "python -B -W error run.py --input inputs.json --output fresh-output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "pivoted-direct-refinement"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/pivoted-direct-refinement-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "pivoted-direct-refinement",
+      "url": "/numerical-methods-atlas/validation/pivoted-direct-refinement/",
+      "name": {
+        "ja": "部分ピボットLU・Choleskyと反復改良",
+        "en": "Pivoted LU, Cholesky and iterative refinement"
+      }
+    }
+  ]
+}

@@ -1,0 +1,211 @@
+{
+  "name": {
+    "ja": "1次元Poisson：Dirichlet正弦解と2次収束",
+    "en": "1D Poisson: Dirichlet sine solution and second-order refinement"
+  },
+  "scope": {
+    "ja": "既存Thomas解法で −u''=π²sin(πx) を15/31/63内部点で解き、解析解sin(πx)、独立な差分残差、格子幅半減の次数を別々に確認する。",
+    "en": "Use the existing Thomas kernel for −u''=π²sin(πx) with 15/31/63 interior nodes; separately check analytic sin(πx), a recomputed discrete residual and halving-grid refinement."
+  },
+  "assumptions": {
+    "ja": "定係数・一様格子の3点差分。入力で領域、境界、右辺、格子、解法を固定。ピボットなしThomasに適した正定値三重対角行列で、任意の三重対角行列を検証するものではない。",
+    "en": "Constant-coefficient three-point differences on a uniform mesh. Inputs fix domain, boundaries, forcing, grids and solver. The SPD tridiagonal system suits unpivoted Thomas; this does not validate arbitrary tridiagonal matrices."
+  },
+  "units": {
+    "ja": "無次元のx∈[0,1]とu。次元を戻すなら[f]=[u]/L²。離散相対残差は格子体積重みなしのEuclideanノルム比。",
+    "en": "Dimensionless x∈[0,1] and u; dimensionally [f]=[u]/L². The relative discrete residual is an unweighted Euclidean norm ratio."
+  },
+  "boundaries": {
+    "ja": "u(0)=u(1)=0。CSVには境界2点も含める。",
+    "en": "u(0)=u(1)=0; CSV includes both boundary nodes."
+  },
+  "method_ids": [
+    "thomas"
+  ],
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/elliptic/",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/elliptic/"
+  },
+  "references": [
+    {
+      "type": "analytic-solution",
+      "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/poisson-1d-dirichlet/result.json",
+      "description": {
+        "ja": "CSVは最細格子でx・数値解・解析解・誤差を整列。全3格子の誤差と残差、隣接格子間の次数はresult.jsonに保存。Thomasの原報告は既存台帳でも直接確認未済のため、未検証の一次文献を新たに掲げない。",
+        "en": "CSV aligns finest-grid x, numerical/analytic values and error. JSON retains all three errors/residuals and adjacent-level orders. The Thomas original report remains unverified in the existing catalog, so no newly verified primary-source claim is added."
+      }
+    },
+    {
+      "type": "analytic-solution",
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/elliptic/",
+      "description": {
+        "ja": "独立にsin(πx)と右辺を評価する。小残差と連続解誤差は分けて報告する。",
+        "en": "Evaluate sin(πx) and its forcing independently; report continuous-solution error separately from a small discrete residual."
+      }
+    }
+  ],
+  "failure_scope": {
+    "ja": "非零境界、別の右辺、異なる領域や不正格子を拒否。有限差分の滑らかな単一解の検査で、Robin/Neumann、可変係数、ピボットの一般的安全性を保証しない。",
+    "en": "Reject different forcing/domain, nonzero boundaries and invalid meshes. This smooth finite-difference case does not validate Robin/Neumann data, variable coefficients or general pivot safety."
+  },
+  "reference_notes": {
+    "ja": "CSVは最細格子でx・数値解・解析解・誤差を整列。全3格子の誤差と残差、隣接格子間の次数はresult.jsonに保存。Thomasの原報告は既存台帳でも直接確認未済のため、未検証の一次文献を新たに掲げない。",
+    "en": "CSV aligns finest-grid x, numerical/analytic values and error. JSON retains all three errors/residuals and adjacent-level orders. The Thomas original report remains unverified in the existing catalog, so no newly verified primary-source claim is added."
+  },
+  "id": "poisson-1d-dirichlet",
+  "problem_id": "poisson-1d-dirichlet",
+  "release": {
+    "family": "numerical-methods-atlas",
+    "version": "2026-11-22",
+    "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip",
+    "sha256": "15c8c9c26cebc37b1e0c2923f91db456f8c9d157a48618f154f4b9bb39010fd7",
+    "manifest": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/source-manifest.json",
+    "manifest_sha256": "386b12c0b88cfd27ac9921d7b00d34e72bee3c0ae43b11eb174b01528a6195f8",
+    "verification": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/verification.json",
+    "archive_directory": "atlas-code-2026-11-22"
+  },
+  "execution_group": "poisson-1d-dirichlet",
+  "shared_runner_cases": [
+    "poisson-1d-dirichlet"
+  ],
+  "terms": {
+    "code": "MIT",
+    "code_license": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/LICENSE",
+    "content_and_data": "https://hrkoyama.github.io/rights/",
+    "scope": {
+      "ja": "自作コードはMIT。入力・数値データ・図・本文はサイトの個別条件に従います。この台帳は利用許諾を拡大しません。",
+      "en": "Original code is MIT. Inputs, numerical data, figures and prose retain the site’s item-specific terms. This registry does not expand reuse permissions."
+    }
+  },
+  "inputs": {
+    "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/recipes/poisson-1d-dirichlet.json",
+    "sha256": "07ae06758f60f77ac198fdad6d056cc0026b32005e76ad7d0f2cc3727be24f51",
+    "path": "recipes/poisson-1d-dirichlet.json"
+  },
+  "dependencies": {
+    "core": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/requirements.txt",
+    "testing": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/requirements.txt",
+    "plotting": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/requirements.txt"
+  },
+  "commands": {
+    "install": "python -m pip install -r requirements.txt",
+    "run": "python run_recipe.py --input recipes/poisson-1d-dirichlet.json --output output-poisson-1d-dirichlet",
+    "tests": "python -m pytest -q tests/test_recipes.py",
+    "run_argv": [
+      "python",
+      "run_recipe.py",
+      "--input",
+      "recipes/poisson-1d-dirichlet.json",
+      "--output",
+      "{output}"
+    ],
+    "tests_argv": [
+      "python",
+      "-m",
+      "pytest",
+      "-q",
+      "tests/test_recipes.py"
+    ]
+  },
+  "outputs": [
+    {
+      "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/poisson-1d-dirichlet/result.json",
+      "sha256": "89cd06021224fd9a4e118db5b0c0bd7a1902f49b97af9853fc57863fe86baf00",
+      "path": "reference/poisson-1d-dirichlet/result.json",
+      "id": "results",
+      "format": "json",
+      "generated_path": "result.json"
+    },
+    {
+      "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/poisson-1d-dirichlet/solution.csv",
+      "sha256": "4d09e05092c6536f5511cfc410f0c4610837ca6e71651767e739ae4538d358bd",
+      "path": "reference/poisson-1d-dirichlet/solution.csv",
+      "id": "solution",
+      "format": "csv",
+      "generated_path": "solution.csv"
+    }
+  ],
+  "checks": [
+    {
+      "id": "continuous-error",
+      "comparison": "maximum",
+      "tolerance": 0.0003,
+      "description": {
+        "ja": "63内部点の連続解最大誤差。2次差分の主要誤差π²h²/12に余裕を持つ上限。",
+        "en": "Continuous-solution maximum error at 63 interior nodes; the bound allows margin above the leading π²h²/12 error."
+      },
+      "pointer": "/metrics/finest_linf_error"
+    },
+    {
+      "id": "second-order-refinement",
+      "comparison": "minimum",
+      "tolerance": 1.9,
+      "description": {
+        "ja": "格子幅を半減したときの最大誤差の次数が1.9以上。",
+        "en": "Maximum-error refinement order is at least 1.9 when spacing halves."
+      },
+      "pointer": "/metrics/minimum_observed_order"
+    },
+    {
+      "id": "discrete-residual",
+      "comparison": "maximum",
+      "tolerance": 1e-10,
+      "description": {
+        "ja": "独立な差分式で再計算した離散相対残差。離散化誤差とは別の確認。",
+        "en": "Discrete relative residual recomputed with a separate stencil; distinct from discretization error."
+      },
+      "pointer": "/metrics/maximum_true_relative_residual"
+    },
+    {
+      "id": "dirichlet-boundary",
+      "comparison": "maximum",
+      "tolerance": 1e-14,
+      "description": {
+        "ja": "両端の零Dirichlet条件。",
+        "en": "Zero Dirichlet values at both endpoints."
+      },
+      "pointer": "/metrics/boundary_maximum_absolute_value"
+    },
+    {
+      "id": "all-criteria",
+      "pointer": "/checks",
+      "comparison": "all_true",
+      "description": {
+        "ja": "全数値条件の判定",
+        "en": "All numerical acceptance flags"
+      }
+    },
+    {
+      "id": "input-provenance",
+      "pointer": "/input_sha256",
+      "comparison": "equals",
+      "expected": "07ae06758f60f77ac198fdad6d056cc0026b32005e76ad7d0f2cc3727be24f51",
+      "description": {
+        "ja": "実行した固定入力のSHA-256",
+        "en": "SHA-256 of the executed fixed input"
+      }
+    },
+    {
+      "id": "case-passed",
+      "pointer": "/passed",
+      "comparison": "equals",
+      "expected": true,
+      "description": {
+        "ja": "入力に記載した条件の合格",
+        "en": "Acceptance conditions in the input passed"
+      }
+    }
+  ],
+  "expected_failures": [],
+  "reference_type": "analytic-solution",
+  "citation": {
+    "creator": "Hiroshi Koyama",
+    "title": {
+      "ja": "1次元Poisson：Dirichlet正弦解と2次収束",
+      "en": "1D Poisson: Dirichlet sine solution and second-order refinement"
+    },
+    "version": "2026-11-22",
+    "url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#poisson-1d-dirichlet-en",
+    "method_publications": []
+  }
+}

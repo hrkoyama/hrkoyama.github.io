@@ -1,0 +1,20 @@
+{
+  "id": "poisson-2d-uniform",
+  "group": "elliptic",
+  "name": {
+    "ja": "2次元Poisson・一様ソース",
+    "en": "2D Poisson / uniform source"
+  },
+  "chapter": "elliptic",
+  "evidence": [
+    {
+      "path": "numerical-methods-atlas/assets/validation.json",
+      "json_pointer": "/metrics/multigrid"
+    },
+    {
+      "path": "code/numerical-methods-atlas/2026-11-21/tests/test_multigrid.py",
+      "python_symbol": "test_multigrid_against_cg_and_residual"
+    }
+  ],
+  "availability": "saved-output"
+}

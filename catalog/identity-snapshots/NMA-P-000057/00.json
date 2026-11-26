@@ -1,0 +1,23 @@
+{
+  "id": "harmonic-oscillator",
+  "group": "time",
+  "name": {
+    "ja": "調和振動子（複素ODE表示も統合）",
+    "en": "Harmonic oscillator, including complex-ODE form"
+  },
+  "chapter": "time-integration",
+  "evidence": [
+    {
+      "path": "numerical-methods-atlas/foundations.json",
+      "json_pointer": "/time"
+    },
+    {
+      "path": "numerical-methods-atlas/hamiltonian.json",
+      "json_pointer": "/cases",
+      "where": {
+        "system": "harmonic"
+      }
+    }
+  ],
+  "availability": "saved-output"
+}

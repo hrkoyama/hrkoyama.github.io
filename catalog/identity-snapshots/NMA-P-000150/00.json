@@ -1,0 +1,44 @@
+{
+  "id": "srhd-collision",
+  "group": "fluid",
+  "name": {
+    "ja": "SRHDの対称二衝撃波衝突",
+    "en": "SRHD symmetric two-shock collision"
+  },
+  "chapter": "validation-relativistic",
+  "reading_section": "srhd-collision",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-23/relativistic/",
+  "verification": "/code/validated-examples/2026-11-23/relativistic/verification.json",
+  "commands": [
+    "python -W error -m pytest -q",
+    "python -W error run.py --input inputs.json --output output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-23/relativistic/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "srhd-collision"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/relativistic/results/srhd-collision-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/relativistic/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "srhd-collision",
+      "url": "/numerical-methods-atlas/validation/srhd-collision/",
+      "name": {
+        "ja": "SRHDの対称二衝撃波衝突",
+        "en": "SRHD symmetric two-shock collision"
+      }
+    }
+  ]
+}

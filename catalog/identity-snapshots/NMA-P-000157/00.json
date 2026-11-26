@@ -1,0 +1,48 @@
+{
+  "id": "swashes-topography",
+  "group": "fluid",
+  "name": {
+    "ja": "SWASHES地形上の静止湖・定常浅水流",
+    "en": "SWASHES lakes and steady shallow flow over topography"
+  },
+  "chapter": "validation-shallow-water",
+  "reading_section": "swashes-topography",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-23/shallow-water/",
+  "verification": "/code/validated-examples/2026-11-23/shallow-water/verification.json",
+  "commands": [
+    "python -m pytest -q",
+    "python run.py --input inputs.json --output output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-23/shallow-water/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "swashes-topography"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/shallow-water/results/swashes-topography-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/shallow-water/inputs.json",
+      "json_pointer": "/topography"
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/shallow-water/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "swashes-topography",
+      "url": "/numerical-methods-atlas/validation/swashes-topography/",
+      "name": {
+        "ja": "SWASHES地形流：静水と非零流量の定常解",
+        "en": "SWASHES topographic flow: lakes and nonzero steady discharge"
+      }
+    }
+  ]
+}

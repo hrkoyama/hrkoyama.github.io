@@ -1,0 +1,44 @@
+{
+  "id": "reaction-diffusion-fourier",
+  "group": "biology",
+  "name": {
+    "ja": "反応拡散：空間2次と時間4次を分けて測る",
+    "en": "Reaction-diffusion: separate second-order space and fourth-order time"
+  },
+  "chapter": "validation-models",
+  "reading_section": "reaction-diffusion-fourier",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-22/models/",
+  "verification": "/code/validated-examples/2026-11-22/models/verification.json",
+  "commands": [
+    "python -m pytest -q",
+    "python run.py --input inputs.json --output output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-22/models/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "reaction-diffusion-fourier"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/models/results/reaction-diffusion-fourier.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/models/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "reaction-diffusion-fourier",
+      "url": "/numerical-methods-atlas/validation/reaction-diffusion-fourier/",
+      "name": {
+        "ja": "反応拡散：空間2次と時間4次を分けて測る",
+        "en": "Reaction-diffusion: separate second-order space and fourth-order time"
+      }
+    }
+  ]
+}

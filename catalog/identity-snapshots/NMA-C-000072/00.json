@@ -1,0 +1,274 @@
+{
+  "id": "helium-ground-state",
+  "name": {
+    "ja": "He：閉殻HF・交換のみLDA",
+    "en": "Helium: closed-shell HF and exchange-only LDA"
+  },
+  "problem_id": "helium-ground-state",
+  "method_ids": [
+    "hartree-fock",
+    "kohn-sham-dft",
+    "scf",
+    "hartree-poisson",
+    "xc-functionals"
+  ],
+  "scope": {
+    "ja": "Heの球対称1s²・閉殻HFとスピン非偏極Dirac交換のみLDAを比較します。電子相関・分子・周期系は含みません。",
+    "en": "Compare spherical 1s² closed-shell helium HF and spin-unpolarized Dirac exchange-only LDA. No electron correlation, molecules or periodic systems."
+  },
+  "assumptions": {
+    "ja": "非相対論・無限質量の点核、2電子が単一1s空間軌道を二重占有。2次中心差分と線形密度混合。HF交換の局所還元はこの2電子問題に限定。",
+    "en": "Nonrelativistic infinite-mass point nucleus, two electrons doubly occupying a single 1s spatial orbital. Second-order central differences and linear density mixing. Local HF exchange reduction is specific to this two-electron problem."
+  },
+  "units": {
+    "ja": "原子単位系：エネルギーhartree、距離bohr。",
+    "en": "Atomic units: energy in hartree, distance in bohr."
+  },
+  "boundaries": {
+    "ja": "球対称の孤立系、u(0)=u(r_max)=0。主計算r_max=16 bohr。格子幅と領域打切りを別々に検査。",
+    "en": "Spherical isolated system, u(0)=u(r_max)=0. Main domain r_max=16 bohr; mesh and box truncation are studied separately."
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quantum-atoms/#helium",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-atoms/#helium"
+  },
+  "release": {
+    "family": "quantum-atoms",
+    "version": "2026-11-21",
+    "download": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/quantum-atoms-2026-11-21.zip",
+    "sha256": "f81c61b854e68b9750d960a17a133ee9a00ae7bd0c3ee268263caee626cf44c9",
+    "manifest": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/source-manifest.json",
+    "manifest_sha256": "c6d22b507028150eb09699fc0103d958e04764d1af9f98692f18ae111357d546",
+    "verification": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/verification.json",
+    "archive_directory": "quantum-atoms-2026-11-21"
+  },
+  "citation": {
+    "creator": "Hiroshi Koyama",
+    "title": {
+      "ja": "He：閉殻HF・交換のみLDA",
+      "en": "Helium: closed-shell HF and exchange-only LDA"
+    },
+    "version": "2026-11-21",
+    "url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#helium-ground-state-en",
+    "method_publications": [
+      "https://doi.org/10.1103/RevModPhys.23.69",
+      "https://doi.org/10.1103/PhysRev.140.A1133",
+      "https://doi.org/10.1017/S0305004100016108"
+    ]
+  },
+  "terms": {
+    "code": "MIT",
+    "code_license": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/LICENSE",
+    "content_and_data": "https://hrkoyama.github.io/rights/",
+    "scope": {
+      "ja": "自作コードはMIT。入力・数値データ・図・本文はサイトの個別条件に従います。この台帳は利用許諾を拡大しません。",
+      "en": "Original code is MIT. Inputs, numerical data, figures and prose retain the site’s item-specific terms. This registry does not expand reuse permissions."
+    }
+  },
+  "execution_group": "quantum-atoms",
+  "shared_runner_cases": [
+    "hydrogenic-atoms",
+    "helium-ground-state"
+  ],
+  "inputs": {
+    "url": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/inputs.json",
+    "sha256": "8680ad9e5b04b5689b52849c71d849ddb98f9ecc9bea851a0f09d2ee2fcc6237",
+    "path": "inputs.json"
+  },
+  "dependencies": {
+    "core": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/requirements.txt",
+    "testing": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/requirements-dev.txt",
+    "plotting": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/requirements-dev.txt"
+  },
+  "commands": {
+    "install": "python -m pip install -r requirements-dev.txt",
+    "run": "python run.py --input inputs.json --reference reference-pyscf.json --output output --figures",
+    "tests": "python -m pytest -q",
+    "run_argv": [
+      "python",
+      "run.py",
+      "--input",
+      "inputs.json",
+      "--reference",
+      "reference-pyscf.json",
+      "--output",
+      "{output}",
+      "--figures"
+    ],
+    "tests_argv": [
+      "python",
+      "-m",
+      "pytest",
+      "-q"
+    ]
+  },
+  "outputs": [
+    {
+      "url": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/results.json",
+      "sha256": "953896b55df923dcbf13ced8fdb60b699918597cded8e986807b241f1192e739",
+      "path": "results/results.json",
+      "id": "results",
+      "format": "json",
+      "generated_path": "results.json"
+    },
+    {
+      "url": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/profiles/helium-hf.csv",
+      "sha256": "d06863e6b740b53cce7cd85ff05f915f68a2e8e42838e59538c5d63d3382d176",
+      "path": "results/profiles/helium-hf.csv",
+      "id": "helium-hf",
+      "format": "csv",
+      "generated_path": "profiles/helium-hf.csv"
+    },
+    {
+      "url": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/profiles/helium-lda_x.csv",
+      "sha256": "4d48d7640e370ef764d6bbf6548e49c17a476d1a41397e7991f2903077f4f4eb",
+      "path": "results/profiles/helium-lda_x.csv",
+      "id": "helium-lda_x",
+      "format": "csv",
+      "generated_path": "profiles/helium-lda_x.csv"
+    }
+  ],
+  "checks": [
+    {
+      "id": "scf-convergence",
+      "pointer": "/helium/refinement",
+      "comparison": "equals",
+      "description": {
+        "ja": "全格子のSCF収束",
+        "en": "SCF convergence on every mesh"
+      },
+      "field": "converged",
+      "expected": true
+    },
+    {
+      "id": "electron-count",
+      "pointer": "/helium/refinement",
+      "comparison": "abs_difference",
+      "description": {
+        "ja": "電子数",
+        "en": "Electron number"
+      },
+      "field": "electron_count",
+      "expected": 2,
+      "tolerance": 1e-12
+    },
+    {
+      "id": "density-residual",
+      "pointer": "/helium/refinement",
+      "comparison": "maximum",
+      "description": {
+        "ja": "入力出力密度のL1残差",
+        "en": "Input-output density L1 residual"
+      },
+      "field": "density_residual",
+      "tolerance": 1e-09
+    },
+    {
+      "id": "orbital-residual",
+      "pointer": "/helium/refinement",
+      "comparison": "maximum",
+      "description": {
+        "ja": "出力密度での軌道残差",
+        "en": "Output-density orbital residual"
+      },
+      "field": "orbital_residual",
+      "tolerance": 1e-07,
+      "units": "hartree"
+    },
+    {
+      "id": "energy-identity",
+      "pointer": "/helium/refinement",
+      "comparison": "maximum",
+      "description": {
+        "ja": "エネルギー恒等式の誤差",
+        "en": "Energy-accounting identity error"
+      },
+      "field": "energy_identity_error",
+      "tolerance": 1e-10,
+      "units": "hartree"
+    },
+    {
+      "id": "independent-energy",
+      "pointer": "/helium/independent_comparison",
+      "comparison": "absolute_maximum",
+      "description": {
+        "ja": "h²外挿と独立参照の差（誤差の保証ではない）",
+        "en": "h²-extrapolated difference from independent references, not a certified bound"
+      },
+      "field": "extrapolated_reference_difference",
+      "tolerance": 1e-08,
+      "units": "hartree"
+    },
+    {
+      "id": "independent-density",
+      "pointer": "/helium/independent_comparison",
+      "comparison": "maximum",
+      "description": {
+        "ja": "独立参照との密度L1差",
+        "en": "Density L1 difference from independent references"
+      },
+      "field": "radial_density_l1_difference",
+      "tolerance": 5e-05
+    }
+  ],
+  "expected_failures": [
+    {
+      "id": "iteration-limit-is-failure",
+      "pointer": "/helium/expected_nonconvergence",
+      "comparison": "equals",
+      "description": {
+        "ja": "最大1反復は未収束と判定",
+        "en": "One iteration is reported as unconverged"
+      },
+      "field": "converged",
+      "expected": false
+    },
+    {
+      "id": "failure-reason",
+      "pointer": "/helium/expected_nonconvergence",
+      "comparison": "equals",
+      "description": {
+        "ja": "終了理由を保存",
+        "en": "Save termination reason"
+      },
+      "field": "reason",
+      "expected": "max_iterations"
+    }
+  ],
+  "references": [
+    {
+      "url": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/reference-pyscf.json",
+      "sha256": "0fcf5800a54f5429e258e304d58c43214d20f22703625e76d703639ea79c36d9",
+      "path": "reference-pyscf.json",
+      "type": "independently-computed-finite-basis",
+      "description": {
+        "ja": "PySCF 2.11.0 / LibxcのGaussian基底参照。外挿値・有限格子値・参照を区別。参照scriptの再実行は今回の共通runnerの測定に含まない。",
+        "en": "PySCF 2.11.0 / Libxc finite-Gaussian references. Distinguish extrapolation, finite-grid values and references. Regenerating the independent reference is outside this measured runner."
+      }
+    },
+    {
+      "type": "primary-publication",
+      "url": "https://doi.org/10.1103/RevModPhys.23.69",
+      "description": {
+        "ja": "原法の文献：Roothaan, C. C. J. (1951), New Developments in Molecular Orbital Theory",
+        "en": "Original method publication: Roothaan, C. C. J. (1951), New Developments in Molecular Orbital Theory"
+      }
+    },
+    {
+      "type": "primary-publication",
+      "url": "https://doi.org/10.1103/PhysRev.140.A1133",
+      "description": {
+        "ja": "原法の文献：Kohn, W.; Sham, L. J. (1965), Self-Consistent Equations Including Exchange and Correlation Effects",
+        "en": "Original method publication: Kohn, W.; Sham, L. J. (1965), Self-Consistent Equations Including Exchange and Correlation Effects"
+      }
+    },
+    {
+      "type": "primary-publication",
+      "url": "https://doi.org/10.1017/S0305004100016108",
+      "description": {
+        "ja": "原法の文献：Dirac, P. A. M. (1930), Note on Exchange Phenomena in the Thomas Atom",
+        "en": "Original method publication: Dirac, P. A. M. (1930), Note on Exchange Phenomena in the Thomas Atom"
+      }
+    }
+  ]
+}

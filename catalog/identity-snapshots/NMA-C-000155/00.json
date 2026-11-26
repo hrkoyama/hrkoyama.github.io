@@ -1,0 +1,243 @@
+{
+  "name": {
+    "ja": "Sod衝撃波管：Godunov型更新と自己相似解",
+    "en": "Sod shock tube: Godunov-type update and self-similar reference"
+  },
+  "scope": {
+    "ja": "γ=1.4、左右(ρ,u,p)=(1,0,1)/(0.125,0,0.1)、初期不連続x=0.5、t=0.2の標準問題。80/160セルの区分一定Godunov型＋HLLC＋SSPRK3を自己相似Euler解と比較する。",
+    "en": "Standard γ=1.4 Sod tube with left/right (ρ,u,p)=(1,0,1)/(0.125,0,0.1), initial jump x=0.5 and t=0.2. Compare 80/160-cell piecewise-constant Godunov-type/HLLC/SSPRK3 updates with a self-similar Euler solution."
+  },
+  "assumptions": {
+    "ja": "理想気体、1次元一様格子、正の密度・圧力、CFL=0.3。名付き標準問題の物理定義はJSONに明示し、異なる定義は拒否する。参照の圧力は既存exact_eulerの区間二分法で評価する。Godunov原報の厳密Riemann一段更新そのものではない。",
+    "en": "Perfect gas, one-dimensional uniform grid, positive density/pressure and CFL=0.3. The named benchmark's physical definition is explicit in JSON; incompatible definitions are rejected. Reference pressure is evaluated by the existing exact_euler bracketed bisection. This is not the original exact-Riemann one-step Godunov algorithm."
+  },
+  "units": {
+    "ja": "密度・速度・圧力・長さ・時間は無次元。エネルギーはE=p/(γ−1)+ρu²/2。",
+    "en": "Density, velocity, pressure, length and time are nondimensional. Energy is E=p/(γ−1)+ρu²/2."
+  },
+  "boundaries": {
+    "ja": "両端は端値外挿。波が端へ達しないt≤0.2を対象に、総量変化からT(F_left−F_right)を引く。初速0でも圧力差により全運動量は変化する。",
+    "en": "Edge-extrapolated boundaries. For t≤0.2, before the wave fan reaches the ends, subtract T(F_left−F_right) from integral changes. Unequal pressures cause a nonzero total-momentum change despite zero initial velocity."
+  },
+  "method_ids": [
+    "godunov",
+    "hllc"
+  ],
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/benchmarks/",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/benchmarks/"
+  },
+  "references": [
+    {
+      "type": "analytic",
+      "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/sod/result.json",
+      "description": {
+        "ja": "細格子160セルの各中心でρ,u,pと同位置・同時刻の参照値を併記。初期値も点サンプルをセル値として与える既存solverを使う。解析的な波構造を使うが、圧力根の数値評価を含み、別コードベースとの独立照合ではない。",
+        "en": "Each of the 160 fine-grid centers carries ρ,u,p and reference values at the same time/location. The existing solver also initializes its cell values from point samples. Wave structure is analytic but reference pressure requires a numerical root; this is not a cross-check against an independent codebase."
+      }
+    },
+    {
+      "type": "primary-publication",
+      "url": "https://doi.org/10.1016/0021-9991(78)90023-2",
+      "description": {
+        "ja": "Sod衝撃波管の比較課題の出典。参照は本配布版の理想気体Riemann評価であり、原論文の数値表の転記ではない。",
+        "en": "Benchmark provenance for the Sod shock tube. The reference uses the edition's ideal-gas Riemann evaluator, not transcribed paper tables."
+      }
+    },
+    {
+      "type": "primary-publication",
+      "url": "https://doi.org/10.1007/BF01414629",
+      "description": {
+        "ja": "HLLCの接触波復元の原報。公開実装ではDavis型外側波速を用いる。",
+        "en": "Original HLLC contact-restoration paper; the released implementation uses Davis-type outer speeds."
+      }
+    }
+  ],
+  "failure_scope": {
+    "ja": "密度誤差0.035と誤差比0.85は既存Sodテストの80/160セル基準を引き継ぐ。CSVの参照はセル中心で評価した自己相似解との標本比較で、厳密セル平均との誤差ではない。全問題での正値性・エントロピー保証、真空、非理想気体や原報の全計算再現は含まない。",
+    "en": "Density-error 0.035 and error-ratio 0.85 thresholds follow the existing 80/160-cell Sod test. CSV comparisons use the self-similar reference sampled at cell centers, not exact cell-average errors. No all-problem positivity/entropy guarantee, vacuum/nonideal-gas support or reproduction of all original experiments is claimed."
+  },
+  "reference_notes": {
+    "ja": "細格子160セルの各中心でρ,u,pと同位置・同時刻の参照値を併記。初期値も点サンプルをセル値として与える既存solverを使う。解析的な波構造を使うが、圧力根の数値評価を含み、別コードベースとの独立照合ではない。",
+    "en": "Each of the 160 fine-grid centers carries ρ,u,p and reference values at the same time/location. The existing solver also initializes its cell values from point samples. Wave structure is analytic but reference pressure requires a numerical root; this is not a cross-check against an independent codebase."
+  },
+  "reference_type": "analytic",
+  "id": "sod",
+  "problem_id": "sod",
+  "release": {
+    "family": "numerical-methods-atlas",
+    "version": "2026-11-22",
+    "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip",
+    "sha256": "15c8c9c26cebc37b1e0c2923f91db456f8c9d157a48618f154f4b9bb39010fd7",
+    "manifest": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/source-manifest.json",
+    "manifest_sha256": "386b12c0b88cfd27ac9921d7b00d34e72bee3c0ae43b11eb174b01528a6195f8",
+    "verification": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/verification.json",
+    "archive_directory": "atlas-code-2026-11-22"
+  },
+  "execution_group": "sod",
+  "shared_runner_cases": [
+    "sod"
+  ],
+  "terms": {
+    "code": "MIT",
+    "code_license": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/LICENSE",
+    "content_and_data": "https://hrkoyama.github.io/rights/",
+    "scope": {
+      "ja": "自作コードはMIT。入力・数値データ・図・本文はサイトの個別条件に従います。この台帳は利用許諾を拡大しません。",
+      "en": "Original code is MIT. Inputs, numerical data, figures and prose retain the site’s item-specific terms. This registry does not expand reuse permissions."
+    }
+  },
+  "inputs": {
+    "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/recipes/sod.json",
+    "sha256": "45fe724864902d9314398b9a41c7300651a624570390dcbb505295c4cb46141f",
+    "path": "recipes/sod.json"
+  },
+  "dependencies": {
+    "core": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/requirements.txt",
+    "testing": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/requirements.txt",
+    "plotting": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/requirements.txt"
+  },
+  "commands": {
+    "install": "python -m pip install -r requirements.txt",
+    "run": "python run_recipe.py --input recipes/sod.json --output output-sod",
+    "tests": "python -m pytest -q tests/test_recipes.py",
+    "run_argv": [
+      "python",
+      "run_recipe.py",
+      "--input",
+      "recipes/sod.json",
+      "--output",
+      "{output}"
+    ],
+    "tests_argv": [
+      "python",
+      "-m",
+      "pytest",
+      "-q",
+      "tests/test_recipes.py"
+    ]
+  },
+  "outputs": [
+    {
+      "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/sod/result.json",
+      "sha256": "0ceb383f60bf2576964ff2df8be834ea46221a01d0e8f1472b4d6e0bc5ffa489",
+      "path": "reference/sod/result.json",
+      "id": "results",
+      "format": "json",
+      "generated_path": "result.json"
+    },
+    {
+      "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/sod/solution.csv",
+      "sha256": "2e8611df4ae935d37dba0d83fb9dd163a384d3b6b6c38b20ace3ac58ff9e648f",
+      "path": "reference/sod/solution.csv",
+      "id": "solution",
+      "format": "csv",
+      "generated_path": "solution.csv"
+    }
+  ],
+  "checks": [
+    {
+      "id": "riemann-error",
+      "comparison": "maximum",
+      "tolerance": 0.035,
+      "description": {
+        "ja": "自己相似Riemann解に対する密度L1標本誤差が0.035未満（既存Sod検査と同じ基準）。",
+        "en": "Density L1 sample error against the self-similar Riemann solution is at most 0.035, matching the existing Sod-test criterion."
+      },
+      "pointer": "/metrics/density_l1_error_fine"
+    },
+    {
+      "id": "refinement",
+      "comparison": "maximum",
+      "tolerance": 0.85,
+      "description": {
+        "ja": "80→160セルで密度誤差が15%以上減る（既存検査の基準）。",
+        "en": "Density error decreases by at least 15% from 80 to 160 cells, following the existing test criterion."
+      },
+      "pointer": "/metrics/fine_to_coarse_error_ratio"
+    },
+    {
+      "id": "positive-density",
+      "comparison": "minimum",
+      "tolerance": 1e-08,
+      "description": {
+        "ja": "最小密度が正である。",
+        "en": "Minimum density remains positive."
+      },
+      "pointer": "/metrics/minimum_density"
+    },
+    {
+      "id": "positive-pressure",
+      "comparison": "minimum",
+      "tolerance": 1e-08,
+      "description": {
+        "ja": "最小圧力が正である。",
+        "en": "Minimum gas pressure remains positive."
+      },
+      "pointer": "/metrics/minimum_pressure"
+    },
+    {
+      "id": "boundary-balance",
+      "comparison": "maximum",
+      "tolerance": 1e-10,
+      "description": {
+        "ja": "遠方の物理境界流束を差し引いた相対収支誤差。",
+        "en": "Relative integral balance defect after subtracting physical far-field boundary fluxes."
+      },
+      "pointer": "/metrics/physical_boundary_balance_relative_defect"
+    },
+    {
+      "id": "reached-time",
+      "comparison": "maximum",
+      "tolerance": 1e-14,
+      "description": {
+        "ja": "指定した終端時刻まで進んだ。",
+        "en": "The requested final time is reached."
+      },
+      "pointer": "/metrics/final_time_error"
+    },
+    {
+      "id": "all-criteria",
+      "pointer": "/checks",
+      "comparison": "all_true",
+      "description": {
+        "ja": "全数値条件の判定",
+        "en": "All numerical acceptance flags"
+      }
+    },
+    {
+      "id": "input-provenance",
+      "pointer": "/input_sha256",
+      "comparison": "equals",
+      "expected": "45fe724864902d9314398b9a41c7300651a624570390dcbb505295c4cb46141f",
+      "description": {
+        "ja": "実行した固定入力のSHA-256",
+        "en": "SHA-256 of the executed fixed input"
+      }
+    },
+    {
+      "id": "case-passed",
+      "pointer": "/passed",
+      "comparison": "equals",
+      "expected": true,
+      "description": {
+        "ja": "入力に記載した条件の合格",
+        "en": "Acceptance conditions in the input passed"
+      }
+    }
+  ],
+  "expected_failures": [],
+  "citation": {
+    "creator": "Hiroshi Koyama",
+    "title": {
+      "ja": "Sod衝撃波管：Godunov型更新と自己相似解",
+      "en": "Sod shock tube: Godunov-type update and self-similar reference"
+    },
+    "version": "2026-11-22",
+    "url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#sod-en",
+    "method_publications": [
+      "https://doi.org/10.1016/0021-9991(78)90023-2",
+      "https://doi.org/10.1007/BF01414629"
+    ]
+  }
+}

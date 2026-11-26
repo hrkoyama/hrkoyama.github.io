@@ -1,0 +1,52 @@
+{
+  "id": "robertson-stiff-kinetics",
+  "group": "time",
+  "name": {
+    "ja": "Robertson反応系：ODEと保存則DAE",
+    "en": "Robertson kinetics: ODE and conservation DAE"
+  },
+  "chapter": "validation-ode-adaptivity",
+  "reading_section": "robertson-stiff-kinetics",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-24-r2/ode-adaptivity/",
+  "verification": "/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+  "commands": [
+    "python -B -W error -m pytest -q -p no:cacheprovider",
+    "python -B -W error run.py --input inputs.json --output fresh-output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-24-r2/ode-adaptivity/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "robertson-stiff-kinetics"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-24-r2/ode-adaptivity/results/robertson-stiff-kinetics-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "robertson-stiff-kinetics",
+      "url": "/numerical-methods-atlas/validation/robertson-stiff-kinetics/",
+      "name": {
+        "ja": "Robertson反応系の初期剛性と実誤差",
+        "en": "Robertson kinetics: initial stiffness and actual error"
+      }
+    },
+    {
+      "id": "robertson-conservation-dae",
+      "url": "/numerical-methods-atlas/validation/robertson-conservation-dae/",
+      "name": {
+        "ja": "Robertson保存制約DAEと公式IDA保存値",
+        "en": "Robertson conservation DAE and stored official IDA values"
+      }
+    }
+  ]
+}

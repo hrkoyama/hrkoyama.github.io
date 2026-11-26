@@ -1,0 +1,23 @@
+{
+  "id": "nasa-wedge",
+  "group": "fluid",
+  "name": {
+    "ja": "15度楔の斜め衝撃波（Mach数の違いを統合）",
+    "en": "15-degree wedge shock (Mach variants merged)"
+  },
+  "chapter": "nasa-2d",
+  "evidence": [
+    {
+      "path": "numerical-methods-atlas/assets/shock-gallery.json",
+      "json_pointer": "/wedges"
+    },
+    {
+      "path": "numerical-methods-atlas/assets/comparisons/euler-comparison.json",
+      "json_pointer": "/cases",
+      "where": {
+        "kind": "wedge"
+      }
+    }
+  ],
+  "availability": "saved-output"
+}

@@ -1,0 +1,16 @@
+{
+  "id": "odd-even",
+  "group": "fluid",
+  "name": {
+    "ja": "定常平面衝撃波のodd–even診断",
+    "en": "Stationary-shock odd–even diagnostic"
+  },
+  "chapter": "carbuncle",
+  "evidence": [
+    {
+      "path": "numerical-methods-atlas/assets/shock-methods/robustness.json",
+      "json_pointer": "/runs"
+    }
+  ],
+  "availability": "saved-output"
+}

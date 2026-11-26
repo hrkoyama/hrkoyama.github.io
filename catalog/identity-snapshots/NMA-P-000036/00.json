@@ -1,0 +1,44 @@
+{
+  "id": "dsmc-fourier",
+  "group": "kinetic",
+  "name": {
+    "ja": "硬球DSMCの有限Kn Fourier熱伝導",
+    "en": "Hard-sphere DSMC finite-Kn Fourier heat conduction"
+  },
+  "chapter": "validation-dsmc-wall",
+  "reading_section": "dsmc-fourier",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-23/dsmc-wall/",
+  "verification": "/code/validated-examples/2026-11-23/dsmc-wall/verification.json",
+  "commands": [
+    "python -W error -m pytest -q -p no:cacheprovider",
+    "python -W error run.py --input inputs.json --output output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-23/dsmc-wall/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "dsmc-fourier"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/dsmc-wall/results/dsmc-fourier-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/dsmc-wall/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "dsmc-fourier",
+      "url": "/numerical-methods-atlas/validation/dsmc-fourier/",
+      "name": {
+        "ja": "硬球DSMCの有限Kn Fourier熱伝導",
+        "en": "Hard-sphere DSMC finite-Kn Fourier heat conduction"
+      }
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "id": "noh",
+  "group": "fluid",
+  "name": {
+    "ja": "Noh問題：冷たい収束流と外向き衝撃波",
+    "en": "Noh problem: cold converging flow and outward shock"
+  },
+  "chapter": "validation-noh-cartesian",
+  "reading_section": "noh-cartesian-2d",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-23-r2/noh-cartesian/",
+  "verification": "/code/validated-examples/2026-11-23-r2/noh-cartesian/verification.json",
+  "commands": [
+    "python -m pytest -q",
+    "python run.py --input inputs.json --output output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-23-r5/noh/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "noh-shock"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-23-r5/noh/results/noh-shock-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-23-r5/noh/inputs.json",
+      "json_pointer": "/cases/noh-shock"
+    },
+    {
+      "path": "code/validated-examples/2026-11-23-r5/noh/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    },
+    {
+      "path": "code/validated-examples/2026-11-23-r5/noh/exactpack-reference-receipt.json",
+      "json_pointer": "/passed"
+    },
+    {
+      "path": "code/validated-examples/2026-11-23-r2/noh-cartesian/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "noh-cartesian-2d"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-23-r2/noh-cartesian/results/noh-cartesian-2d-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-23-r2/noh-cartesian/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "noh-shock",
+      "url": "/numerical-methods-atlas/validation/noh-shock/",
+      "name": {
+        "ja": "Noh衝撃波：初期圧力ゼロの平面・円筒・球対称計算",
+        "en": "Noh shocks: zero-pressure planar, cylindrical and spherical flow"
+      }
+    },
+    {
+      "id": "noh-cartesian-2d",
+      "url": "/numerical-methods-atlas/validation/noh-cartesian-2d/",
+      "name": {
+        "ja": "Noh問題：実際の2次元Cartesian Euler計算",
+        "en": "Noh problem: an actual 2D Cartesian Euler calculation"
+      }
+    }
+  ]
+}

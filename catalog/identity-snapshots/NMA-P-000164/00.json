@@ -1,0 +1,19 @@
+{
+  "id": "traffic-fan",
+  "group": "transport",
+  "name": {
+    "ja": "交通流の希薄化波",
+    "en": "Traffic clearing fan"
+  },
+  "chapter": "equation-gallery",
+  "evidence": [
+    {
+      "path": "numerical-methods-atlas/equation-gallery.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "traffic-clearing-fan"
+      }
+    }
+  ],
+  "availability": "saved-output"
+}

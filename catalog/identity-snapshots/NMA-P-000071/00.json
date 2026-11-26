@@ -1,0 +1,44 @@
+{
+  "id": "isotropic-scattering-slab",
+  "group": "transport",
+  "name": {
+    "ja": "等方散乱平板の反射・透過・吸収",
+    "en": "Isotropic scattering in a finite slab"
+  },
+  "chapter": "validation-radiation-scattering",
+  "reading_section": "isotropic-scattering-slab",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-24/radiation-scattering/",
+  "verification": "/code/validated-examples/2026-11-24/radiation-scattering/verification.json",
+  "commands": [
+    "python -W error -m pytest -q -p no:cacheprovider",
+    "python -W error run.py --input inputs.json --output output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-24/radiation-scattering/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "isotropic-scattering-slab"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-24/radiation-scattering/results/isotropic-scattering-slab-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-24/radiation-scattering/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "isotropic-scattering-slab",
+      "url": "/numerical-methods-atlas/validation/isotropic-scattering-slab/",
+      "name": {
+        "ja": "等方散乱平板の反射・透過・吸収",
+        "en": "Isotropic scattering in a finite slab"
+      }
+    }
+  ]
+}

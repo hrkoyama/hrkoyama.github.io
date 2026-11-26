@@ -1,0 +1,44 @@
+{
+  "id": "williamson-sphere-transport",
+  "group": "fluid",
+  "name": {
+    "ja": "Williamson型の球面固体回転輸送：傾いた軸と極通過",
+    "en": "Williamson-type spherical rotation: tilted axes and pole crossing"
+  },
+  "chapter": "validation-continuum-particle-controls",
+  "reading_section": "williamson-sphere-transport",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-25/continuum-particle-controls/",
+  "verification": "/code/validated-examples/2026-11-25/continuum-particle-controls/verification.json",
+  "commands": [
+    "python -B -W error -m pytest -q -p no:cacheprovider test_components.py",
+    "python -B -W error run.py --input inputs.json --output fresh-output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-25/continuum-particle-controls/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "williamson-sphere-transport"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-25/continuum-particle-controls/results/williamson-sphere-transport.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-25/continuum-particle-controls/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "williamson-sphere-transport",
+      "url": "/numerical-methods-atlas/validation/williamson-sphere-transport/",
+      "name": {
+        "ja": "Williamson型の球面固体回転輸送：傾いた軸と極通過",
+        "en": "Williamson-type spherical rotation: tilted axes and pole crossing"
+      }
+    }
+  ]
+}

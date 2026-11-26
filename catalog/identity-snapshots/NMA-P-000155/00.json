@@ -1,0 +1,44 @@
+{
+  "id": "su-olson-diffusion1996",
+  "group": "transport",
+  "name": {
+    "ja": "Su–Olson1996非平衡拡散",
+    "en": "Su–Olson1996 non-equilibrium diffusion"
+  },
+  "chapter": "validation-radiation-matter",
+  "reading_section": "su-olson-diffusion1996",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-24-r2/radiation-matter/",
+  "verification": "/code/validated-examples/2026-11-24-r2/radiation-matter/verification.json",
+  "commands": [
+    "python -W error -m pytest -q -p no:cacheprovider",
+    "python -W error run.py --input inputs.json --output output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-24-r2/radiation-matter/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "su-olson-diffusion1996"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-24-r2/radiation-matter/results/su-olson-diffusion1996-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-24-r2/radiation-matter/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "su-olson-diffusion1996",
+      "url": "/numerical-methods-atlas/validation/su-olson-diffusion1996/",
+      "name": {
+        "ja": "Su–Olson1996非平衡拡散",
+        "en": "Su–Olson1996 non-equilibrium diffusion"
+      }
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "id": "thermal-landau-damping",
+  "group": "kinetic",
+  "name": {
+    "ja": "温かいPICの線形Landau減衰",
+    "en": "Warm PIC linear Landau damping"
+  },
+  "chapter": "validation-warm-pic",
+  "reading_section": "thermal-landau-damping",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-23/warm-pic/",
+  "verification": "/code/validated-examples/2026-11-23/warm-pic/verification.json",
+  "commands": [
+    "python -W error -m pytest -q -p no:cacheprovider",
+    "python -W error run.py --input inputs.json --output output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-23/warm-pic/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "thermal-landau-damping"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/warm-pic/results/thermal-landau-damping-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/warm-pic/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "thermal-landau-damping",
+      "url": "/numerical-methods-atlas/validation/thermal-landau-damping/",
+      "name": {
+        "ja": "温かいPICの線形Landau減衰",
+        "en": "Warm PIC linear Landau damping"
+      }
+    }
+  ]
+}

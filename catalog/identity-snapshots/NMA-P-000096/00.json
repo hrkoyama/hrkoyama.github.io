@@ -1,0 +1,44 @@
+{
+  "id": "multifrequency-resonance",
+  "group": "time",
+  "name": {
+    "ja": "結合した2周波数系と共鳴の有限窓",
+    "en": "Coupled frequencies and finite-window resonance"
+  },
+  "chapter": "validation-geometric-controls",
+  "reading_section": "multifrequency-resonance",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-24/geometric-controls/",
+  "verification": "/code/validated-examples/2026-11-24/geometric-controls/verification.json",
+  "commands": [
+    "python -B -W error -m pytest -q -p no:cacheprovider",
+    "python -B -W error run.py --input inputs.json --output fresh-output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-24/geometric-controls/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "multifrequency-resonance"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-24/geometric-controls/results/multifrequency-resonance-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-24/geometric-controls/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "multifrequency-resonance",
+      "url": "/numerical-methods-atlas/validation/multifrequency-resonance/",
+      "name": {
+        "ja": "結合した2周波数系と共鳴の有限窓",
+        "en": "Coupled frequencies and finite-window resonance"
+      }
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "id": "keller-segel-forced-flux",
+  "group": "biology",
+  "name": {
+    "ja": "Keller–Segel：連成流束の製造解",
+    "en": "Keller–Segel: a manufactured coupled-flux solution"
+  },
+  "chapter": "validation-biology-space-controls",
+  "reading_section": "keller-segel-forced-flux",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-25/biology-space-controls/",
+  "verification": "/code/validated-examples/2026-11-25/biology-space-controls/verification.json",
+  "commands": [
+    "python -B -W error -m pytest -q -p no:cacheprovider",
+    "python -B -W error run.py --input inputs.json --output fresh-output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-25/biology-space-controls/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "keller-segel-forced-flux"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-25/biology-space-controls/results/keller-segel-forced-flux.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-25/biology-space-controls/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "keller-segel-forced-flux",
+      "url": "/numerical-methods-atlas/validation/keller-segel-forced-flux/",
+      "name": {
+        "ja": "Keller–Segel：連成流束の製造解",
+        "en": "Keller–Segel: a manufactured coupled-flux solution"
+      }
+    }
+  ]
+}

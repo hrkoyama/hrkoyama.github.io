@@ -1,0 +1,44 @@
+{
+  "id": "h3plus-minimal",
+  "group": "quantum",
+  "name": {
+    "ja": "3中心H3+の小RHF/MP2/FCI模型",
+    "en": "A tiny three-center H3+ RHF / MP2 / FCI example"
+  },
+  "chapter": "validation-quantum-small",
+  "reading_section": "h3plus-mp2-fci",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-25/quantum-small/",
+  "verification": "/code/validated-examples/2026-11-25/quantum-small/verification.json",
+  "commands": [
+    "python -B -W error -m pytest -q -p no:cacheprovider test_quantum_small.py",
+    "python -B -W error run.py --input inputs.json --output fresh-output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-25/quantum-small/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "h3plus-mp2-fci"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-25/quantum-small/results/h3plus-mp2-fci.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-25/quantum-small/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "h3plus-mp2-fci",
+      "url": "/numerical-methods-atlas/validation/h3plus-mp2-fci/",
+      "name": {
+        "ja": "3中心H3+の小RHF/MP2/FCI模型",
+        "en": "A tiny three-center H3+ RHF / MP2 / FCI example"
+      }
+    }
+  ]
+}

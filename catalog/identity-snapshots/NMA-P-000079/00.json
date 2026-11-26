@@ -1,0 +1,24 @@
+{
+  "id": "lax",
+  "group": "fluid",
+  "name": {
+    "ja": "Lax衝撃波管",
+    "en": "Lax shock tube"
+  },
+  "chapter": "benchmarks",
+  "evidence": [
+    {
+      "path": "numerical-methods-atlas/assets/lax-entropy.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/numerical-methods-atlas/2026-11-21/tests/test_numerics.py",
+      "python_symbol": "test_benchmark_default_horizon_smoke"
+    },
+    {
+      "path": "code/numerical-methods-atlas/2026-11-21/tests/test_reference_solutions.py",
+      "python_symbol": "test_euler_matches_existing_independent_reference"
+    }
+  ],
+  "availability": "saved-output"
+}

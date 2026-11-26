@@ -1,0 +1,44 @@
+{
+  "id": "van-der-pol-stiff-transition",
+  "group": "time",
+  "name": {
+    "ja": "van der Polの短時間剛性遷移",
+    "en": "Van der Pol: an early stiffness transition"
+  },
+  "chapter": "validation-ode-adaptivity",
+  "reading_section": "van-der-pol-stiff-transition",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-24-r2/ode-adaptivity/",
+  "verification": "/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+  "commands": [
+    "python -B -W error -m pytest -q -p no:cacheprovider",
+    "python -B -W error run.py --input inputs.json --output fresh-output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-24-r2/ode-adaptivity/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "van-der-pol-stiff-transition"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-24-r2/ode-adaptivity/results/van-der-pol-stiff-transition-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "van-der-pol-stiff-transition",
+      "url": "/numerical-methods-atlas/validation/van-der-pol-stiff-transition/",
+      "name": {
+        "ja": "van der Polの短時間剛性遷移",
+        "en": "Van der Pol: an early stiffness transition"
+      }
+    }
+  ]
+}

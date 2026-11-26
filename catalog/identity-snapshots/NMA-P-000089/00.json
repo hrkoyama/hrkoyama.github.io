@@ -1,0 +1,44 @@
+{
+  "id": "lshape-fem",
+  "group": "elliptic",
+  "name": {
+    "ja": "L字領域P1特異解：graded格子と歪みの分離",
+    "en": "L-corner P1 FEM: grading and separate mesh distortion"
+  },
+  "chapter": "validation-mesh-boundary",
+  "reading_section": "lshape-fem",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-23/mesh-boundary/",
+  "verification": "/code/validated-examples/2026-11-23/mesh-boundary/verification.json",
+  "commands": [
+    "python -W error -m pytest -q",
+    "python -W error run.py --input inputs.json --output output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-23/mesh-boundary/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "lshape-fem"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/mesh-boundary/results/lshape-fem-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/mesh-boundary/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "lshape-fem",
+      "url": "/numerical-methods-atlas/validation/lshape-fem/",
+      "name": {
+        "ja": "L字領域P1特異解：graded格子と歪みの分離",
+        "en": "L-corner P1 FEM: grading and separate mesh distortion"
+      }
+    }
+  ]
+}

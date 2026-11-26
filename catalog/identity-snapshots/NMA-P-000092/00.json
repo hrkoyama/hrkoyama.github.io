@@ -1,0 +1,67 @@
+{
+  "id": "maxwell-collisions",
+  "group": "kinetic",
+  "name": {
+    "ja": "等質DSMC衝突成分の保存則・Maxwell分布",
+    "en": "Conservation and Maxwell relaxation in a homogeneous DSMC collision component"
+  },
+  "chapter": "validation-particles",
+  "reading_section": "dsmc",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-22/particles/",
+  "verification": "/code/validated-examples/2026-11-22/particles/verification.json",
+  "commands": [
+    "python -m pytest -q",
+    "python run.py --input inputs.json --output output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-22/particles/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "dsmc"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/particles/results/dsmc.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/particles/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/particle-transport/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "dsmc-statistics"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/particle-transport/results/dsmc-statistics.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/particle-transport/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "dsmc",
+      "url": "/numerical-methods-atlas/validation/dsmc/",
+      "name": {
+        "ja": "等質DSMC衝突成分の保存則・Maxwell分布",
+        "en": "Conservation and Maxwell relaxation in a homogeneous DSMC collision component"
+      }
+    },
+    {
+      "id": "dsmc-statistics",
+      "url": "/numerical-methods-atlas/validation/dsmc-statistics/",
+      "name": {
+        "ja": "DSMC衝突成分：有限N平衡・保存則・統計誤差",
+        "en": "DSMC collision component: finite-N equilibrium, invariants and statistical error"
+      }
+    }
+  ]
+}

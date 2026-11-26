@@ -1,0 +1,20 @@
+{
+  "id": "nonlinear-exp-ode",
+  "group": "time",
+  "name": {
+    "ja": "指数関数を厳密解に持つ非線形・非自律ODE",
+    "en": "Nonlinear nonautonomous ODE with exponential exact solution"
+  },
+  "chapter": "runge-kutta",
+  "evidence": [
+    {
+      "path": "code/numerical-methods-atlas/2026-11-21/tests/test_runge_kutta.py",
+      "python_symbol": "test_rk_order_conditions_and_manufactured_nonlinear_time_dependence"
+    },
+    {
+      "path": "numerical-methods-atlas/gallery/calculations.json",
+      "json_pointer": "/cases/nonlinear-exp-ode"
+    }
+  ],
+  "availability": "saved-output"
+}

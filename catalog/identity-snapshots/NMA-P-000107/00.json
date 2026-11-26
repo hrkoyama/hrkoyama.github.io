@@ -1,0 +1,87 @@
+{
+  "id": "orszag-tang",
+  "group": "mhd",
+  "name": {
+    "ja": "Orszag–Tang渦（CT・GLM・発散誤差摂動を統合）",
+    "en": "Orszag–Tang vortex (CT/GLM/error variants merged)"
+  },
+  "chapter": "mhd",
+  "evidence": [
+    {
+      "path": "numerical-methods-atlas/assets/validation.json",
+      "json_pointer": "/metrics/orszag_tang_ct"
+    },
+    {
+      "path": "numerical-methods-atlas/assets/validation.json",
+      "json_pointer": "/metrics/orszag_tang_glm"
+    },
+    {
+      "path": "numerical-methods-atlas/assets/movies/catalog.json",
+      "json_pointer": "/movies",
+      "where": {
+        "chapter": "mhd"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/mhd/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "ct-glm-independent"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/mhd/results/ct-glm-independent.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/mhd/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/mhd-convergence/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "ct-glm-ot-convergence"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/mhd-convergence/results/ct-glm-ot-convergence.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/mhd-convergence/inputs.json",
+      "json_pointer": "/ot"
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/mhd-convergence/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "availability": "saved-output",
+  "supplemental_examples": [
+    {
+      "id": "ct-glm-independent",
+      "url": "/numerical-methods-atlas/validation/ct-glm-independent/",
+      "name": {
+        "ja": "Orszag–Tang：CT・GLMと独立Athena++比較",
+        "en": "Orszag–Tang: CT, GLM and independent Athena++"
+      }
+    },
+    {
+      "id": "ct-glm-ot-convergence",
+      "url": "/numerical-methods-atlas/validation/ct-glm-ot-convergence/",
+      "name": {
+        "ja": "Orszag–Tang：条件を揃えたCT・GLMと独立参照の収束",
+        "en": "Orszag–Tang: matched CT/GLM and converged independent references"
+      }
+    },
+    {
+      "id": "postshock-orszag-tang",
+      "url": "/numerical-methods-atlas/validation/postshock-orszag-tang/",
+      "name": {
+        "ja": "後期Orszag–Tang：独立参照と圧縮構造",
+        "en": "Late Orszag-Tang: independent reference and compression structure"
+      }
+    }
+  ]
+}

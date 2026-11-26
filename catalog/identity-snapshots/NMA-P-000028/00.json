@@ -1,0 +1,44 @@
+{
+  "id": "cylinder-mie2d",
+  "group": "electromagnetics",
+  "name": {
+    "ja": "2D誘電体円柱のMie散乱幅",
+    "en": "Mie scattering width of a two-dimensional dielectric cylinder"
+  },
+  "chapter": "validation-maxwell-cylinder",
+  "reading_section": "cylinder-mie2d",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-24-r2/maxwell-cylinder/",
+  "verification": "/code/validated-examples/2026-11-24-r2/maxwell-cylinder/verification.json",
+  "commands": [
+    "python -B -W error -m pytest -q -p no:cacheprovider",
+    "python -B -W error run.py --input inputs.json --output fresh-output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-24-r2/maxwell-cylinder/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "cylinder-mie2d"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-24-r2/maxwell-cylinder/results/cylinder-mie2d-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-24-r2/maxwell-cylinder/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "cylinder-mie2d",
+      "url": "/numerical-methods-atlas/validation/cylinder-mie2d/",
+      "name": {
+        "ja": "2D誘電体円柱のMie散乱幅",
+        "en": "Mie scattering width of a two-dimensional dielectric cylinder"
+      }
+    }
+  ]
+}

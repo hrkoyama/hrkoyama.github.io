@@ -1,0 +1,16 @@
+{
+  "id": "isolated-particles",
+  "group": "gravity",
+  "name": {
+    "ja": "孤立粒子群の軟化重力（ツリー・直接和）",
+    "en": "Isolated softened particle gravity: tree versus direct sum"
+  },
+  "chapter": "particle-gravity",
+  "evidence": [
+    {
+      "path": "numerical-methods-atlas/assets/particle-gravity.json",
+      "json_pointer": "/isolated_tree"
+    }
+  ],
+  "availability": "saved-output"
+}

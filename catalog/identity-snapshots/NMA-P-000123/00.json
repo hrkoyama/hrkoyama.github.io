@@ -1,0 +1,44 @@
+{
+  "id": "poisson-robin",
+  "group": "elliptic",
+  "name": {
+    "ja": "2D混合Robinの製造解と境界流束",
+    "en": "2D mixed Robin MMS and boundary flux"
+  },
+  "chapter": "validation-mesh-boundary",
+  "reading_section": "poisson-robin",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-23/mesh-boundary/",
+  "verification": "/code/validated-examples/2026-11-23/mesh-boundary/verification.json",
+  "commands": [
+    "python -W error -m pytest -q",
+    "python -W error run.py --input inputs.json --output output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-23/mesh-boundary/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "poisson-robin"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/mesh-boundary/results/poisson-robin-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/mesh-boundary/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "poisson-robin",
+      "url": "/numerical-methods-atlas/validation/poisson-robin/",
+      "name": {
+        "ja": "2D混合Robinの製造解と境界流束",
+        "en": "2D mixed Robin MMS and boundary flux"
+      }
+    }
+  ]
+}

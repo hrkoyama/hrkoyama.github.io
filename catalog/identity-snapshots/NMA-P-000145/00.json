@@ -1,0 +1,47 @@
+{
+  "id": "sod",
+  "group": "fluid",
+  "name": {
+    "ja": "Sod衝撃波管",
+    "en": "Sod shock tube"
+  },
+  "chapter": "benchmarks",
+  "evidence": [
+    {
+      "path": "numerical-methods-atlas/equation-gallery.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "sod"
+      }
+    },
+    {
+      "path": "numerical-methods-atlas/sod.json",
+      "json_pointer": "/curves"
+    },
+    {
+      "path": "numerical-methods-atlas/assets/reconstruction/reconstruction.json",
+      "json_pointer": "/problems",
+      "where": {
+        "id": "sod"
+      }
+    },
+    {
+      "path": "numerical-methods-atlas/assets/shock-expansion/shock-expansion.json",
+      "json_pointer": "/problems",
+      "where": {
+        "id": "sod"
+      }
+    }
+  ],
+  "availability": "saved-output",
+  "supplemental_examples": [
+    {
+      "id": "gsph-sod",
+      "url": "/numerical-methods-atlas/validation/gsph-sod/",
+      "name": {
+        "ja": "Gaussian畳込みGSPHによるSod型粒子衝撃管",
+        "en": "Sod-type particle shock tube with Gaussian-convolution GSPH"
+      }
+    }
+  ]
+}

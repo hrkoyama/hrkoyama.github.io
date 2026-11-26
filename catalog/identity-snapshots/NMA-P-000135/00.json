@@ -1,0 +1,44 @@
+{
+  "id": "runge-barycentric-clenshaw",
+  "group": "approximation",
+  "name": {
+    "ja": "節点・表現・丸めを分けるRunge補間",
+    "en": "Runge interpolation: nodes, representation and rounding"
+  },
+  "chapter": "validation-approximation-controls",
+  "reading_section": "runge-barycentric-clenshaw",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-25/approximation-controls/",
+  "verification": "/code/validated-examples/2026-11-25/approximation-controls/verification.json",
+  "commands": [
+    "python -B -W error -m pytest -q -p no:cacheprovider",
+    "python -B -W error run.py --input inputs.json --output fresh-output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-25/approximation-controls/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "runge-barycentric-clenshaw"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-25/approximation-controls/results/runge-barycentric-clenshaw-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-25/approximation-controls/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "runge-barycentric-clenshaw",
+      "url": "/numerical-methods-atlas/validation/runge-barycentric-clenshaw/",
+      "name": {
+        "ja": "節点・表現・丸めを分けるRunge補間",
+        "en": "Runge interpolation: nodes, representation and rounding"
+      }
+    }
+  ]
+}

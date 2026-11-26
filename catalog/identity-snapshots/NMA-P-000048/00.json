@@ -1,0 +1,45 @@
+{
+  "id": "gbm-sde",
+  "group": "probability",
+  "name": {
+    "ja": "Itô SDE：共有Brown運動による強収束",
+    "en": "Itô SDE: strong convergence with coupled Brownian paths"
+  },
+  "chapter": "sde",
+  "reading_section": "publication-scope",
+  "availability": "saved-output",
+  "code_base": "/code/model-benchmarks/2026-11-22/",
+  "verification": "/code/model-benchmarks/2026-11-22/verification.json",
+  "commands": [
+    "python -m pytest -q test_models.py",
+    "python run.py --input inputs/gbm-sde.json --output output"
+  ],
+  "evidence": [
+    {
+      "path": "code/model-benchmarks/2026-11-22/results/gbm-sde/result.json",
+      "json_pointer": "/metrics"
+    },
+    {
+      "path": "code/model-benchmarks/2026-11-22/test_models.py",
+      "python_symbol": "test_fixed_case"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "gbm-weak-moments",
+      "url": "/numerical-methods-atlas/validation/gbm-weak-moments/",
+      "name": {
+        "ja": "GBMのweak誤差とMonte Carlo標準誤差",
+        "en": "GBM weak bias and Monte Carlo error"
+      }
+    },
+    {
+      "id": "gbm-milstein-strong",
+      "url": "/numerical-methods-atlas/validation/gbm-milstein-strong/",
+      "name": {
+        "ja": "同じBrownian経路のMilstein・EM strong比較",
+        "en": "Milstein and EM on identical Brownian paths"
+      }
+    }
+  ]
+}

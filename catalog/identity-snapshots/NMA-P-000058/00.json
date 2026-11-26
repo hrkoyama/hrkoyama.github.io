@@ -1,0 +1,20 @@
+{
+  "id": "heat-dirichlet",
+  "group": "transport",
+  "name": {
+    "ja": "Dirichlet境界の熱拡散",
+    "en": "Heat decay with Dirichlet boundaries"
+  },
+  "chapter": "elliptic",
+  "evidence": [
+    {
+      "path": "numerical-methods-atlas/assets/validation.json",
+      "json_pointer": "/metrics/diffusion_ftcs"
+    },
+    {
+      "path": "code/numerical-methods-atlas/2026-11-21/tests/test_linear.py",
+      "python_symbol": "test_diffusion_matches_exact_and_refines"
+    }
+  ],
+  "availability": "saved-output"
+}

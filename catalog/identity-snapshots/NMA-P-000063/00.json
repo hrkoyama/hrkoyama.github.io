@@ -1,0 +1,44 @@
+{
+  "id": "hodgkin-huxley-controls",
+  "group": "biology",
+  "name": {
+    "ja": "Hodgkin–Huxley：電位固定・静止平衡・発火",
+    "en": "Hodgkin–Huxley: clamps, rest and firing"
+  },
+  "chapter": "validation-biology-ode-controls",
+  "reading_section": "hodgkin-huxley-controls",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-25/biology-ode-controls/",
+  "verification": "/code/validated-examples/2026-11-25/biology-ode-controls/verification.json",
+  "commands": [
+    "python -B -W error -m pytest -q -p no:cacheprovider",
+    "python -B -W error run.py --input inputs.json --output fresh-output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-25/biology-ode-controls/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "hodgkin-huxley-controls"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-25/biology-ode-controls/results/hodgkin-huxley-controls.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-25/biology-ode-controls/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "hodgkin-huxley-controls",
+      "url": "/numerical-methods-atlas/validation/hodgkin-huxley-controls/",
+      "name": {
+        "ja": "Hodgkin–Huxley：電位固定・静止平衡・発火",
+        "en": "Hodgkin–Huxley: clamps, rest and firing"
+      }
+    }
+  ]
+}

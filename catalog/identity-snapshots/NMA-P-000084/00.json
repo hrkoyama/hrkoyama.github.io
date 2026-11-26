@@ -1,0 +1,56 @@
+{
+  "id": "lid-driven-cavity",
+  "group": "viscous",
+  "name": {
+    "ja": "Re100の蓋駆動キャビティ",
+    "en": "Re100 lid-driven cavity"
+  },
+  "chapter": "validation-wall-flow",
+  "reading_section": "cavity-ghia-re100",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-23-r2/wall-flow/",
+  "verification": "/code/validated-examples/2026-11-23-r2/wall-flow/verification.json",
+  "commands": [
+    "python -m pytest -q",
+    "python run.py --input inputs.json --output output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-23-r2/wall-flow/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "cavity-ghia-re100"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-23-r2/wall-flow/results/cavity-ghia-re100-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-23-r2/wall-flow/inputs.json",
+      "json_pointer": "/nodes"
+    },
+    {
+      "path": "code/validated-examples/2026-11-23-r2/wall-flow/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "cavity-ghia-re100",
+      "url": "/numerical-methods-atlas/validation/cavity-ghia-re100/",
+      "name": {
+        "ja": "Re=100蓋駆動キャビティ：Ghia中心線との比較",
+        "en": "Re100 lid-driven cavity: Ghia centerline comparison"
+      }
+    },
+    {
+      "id": "lbm-cavity-re100",
+      "url": "/numerical-methods-atlas/validation/lbm-cavity-re100/",
+      "name": {
+        "ja": "LBM Re100蓋駆動キャビティ：実2D場とGhia中心線",
+        "en": "LBM Re100 cavity: actual2D fields and Ghia centerlines"
+      }
+    }
+  ]
+}

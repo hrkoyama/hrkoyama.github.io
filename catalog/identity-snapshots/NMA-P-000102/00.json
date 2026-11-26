@@ -1,0 +1,20 @@
+{
+  "id": "nonlinear-rational-decay",
+  "group": "time",
+  "name": {
+    "ja": "有理減衰ODE（y′ = −y²）",
+    "en": "Rational-decay ODE (y′ = −y²)"
+  },
+  "chapter": "runge-kutta",
+  "evidence": [
+    {
+      "path": "numerical-methods-atlas/runge-kutta.json",
+      "json_pointer": "/nonlinear_problem"
+    },
+    {
+      "path": "numerical-methods-atlas/runge-kutta.json",
+      "json_pointer": "/cases"
+    }
+  ],
+  "availability": "saved-output"
+}

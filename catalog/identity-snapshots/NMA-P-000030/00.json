@@ -1,0 +1,44 @@
+{
+  "id": "diffusion-discrete-adjoint",
+  "group": "differentiation-inverse",
+  "name": {
+    "ja": "時間離散拡散の随伴とcheckpoint",
+    "en": "Discrete diffusion adjoint and checkpoint replay"
+  },
+  "chapter": "validation-adjoint",
+  "reading_section": "diffusion-discrete-adjoint",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-24/adjoint/",
+  "verification": "/code/validated-examples/2026-11-24/adjoint/verification.json",
+  "commands": [
+    "python -B -W error -m pytest -q -p no:cacheprovider",
+    "python -B -W error run.py --input inputs.json --output fresh-output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-24/adjoint/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "diffusion-discrete-adjoint"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-24/adjoint/results/diffusion-discrete-adjoint-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-24/adjoint/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "diffusion-discrete-adjoint",
+      "url": "/numerical-methods-atlas/validation/diffusion-discrete-adjoint/",
+      "name": {
+        "ja": "時間離散拡散の随伴とcheckpoint",
+        "en": "Discrete diffusion adjoint and checkpoint replay"
+      }
+    }
+  ]
+}

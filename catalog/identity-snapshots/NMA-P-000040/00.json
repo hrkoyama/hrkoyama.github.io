@@ -1,0 +1,44 @@
+{
+  "id": "enzyme-qssa",
+  "group": "biology",
+  "name": {
+    "ja": "酵素反応の保存と準定常近似",
+    "en": "Enzyme conservation and QSSA"
+  },
+  "chapter": "validation-small-models",
+  "reading_section": "enzyme-qssa",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-25/small-models/",
+  "verification": "/code/validated-examples/2026-11-25/small-models/verification.json",
+  "commands": [
+    "python -B -W error -m pytest -q -p no:cacheprovider",
+    "python -B -W error run.py --input inputs.json --output fresh-output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-25/small-models/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "enzyme-qssa"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-25/small-models/results/enzyme-qssa-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-25/small-models/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "enzyme-qssa",
+      "url": "/numerical-methods-atlas/validation/enzyme-qssa/",
+      "name": {
+        "ja": "酵素反応の保存と準定常近似",
+        "en": "Enzyme conservation and QSSA"
+      }
+    }
+  ]
+}

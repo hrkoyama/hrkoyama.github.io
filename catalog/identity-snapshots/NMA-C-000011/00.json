@@ -1,0 +1,241 @@
+{
+  "name": {
+    "ja": "1次元Bratu：小さい枝のNewton–GMRES",
+    "en": "1D Bratu: Newton–GMRES on the lower branch"
+  },
+  "scope": {
+    "ja": "−u''=λexp(u)、β=1・λ=2β²/cosh²(β/2)の小さい枝を零初期値から解く。31/63/127内部点で解析解、独立に再評価した非線形残差、2次格子収束を確認する。",
+    "en": "Solve the lower branch of −u''=λexp(u), with β=1 and λ=2β²/cosh²(β/2), starting at zero. Check the analytic solution, recomputed nonlinear residual and second-order refinement on 31/63/127 interior nodes."
+  },
+  "assumptions": {
+    "ja": "既存の残差十分減少による減衰NewtonとILU(0)付きGMRES。解析解u=2log[cosh(β/2)/cosh(β(x−1/2))]。βtanh(β/2)<2で小さい枝を選び、初期値は全点零。内部Newton制御は非線形許容値1e-10、最大30反復。",
+    "en": "Existing residual-decrease damped Newton and ILU(0)-GMRES. Analytic u=2log[cosh(β/2)/cosh(β(x−1/2))]. βtanh(β/2)<2 selects the lower branch and all initial unknowns are zero. Nonlinear tolerance is 1e-10 with at most 30 Newton iterations."
+  },
+  "units": {
+    "ja": "xとuは無次元。λは本規約で無次元化され、次元座標なら逆長さ²に対応する。残差は境界を除いた全内部点のEuclideanノルム。",
+    "en": "Dimensionless x and u; λ is nondimensional here and scales as inverse length squared for dimensional coordinates. Residuals use the Euclidean norm of interior equations."
+  },
+  "boundaries": {
+    "ja": "x∈[0,1]、u(0)=u(1)=0。CSVに両端も含める。",
+    "en": "x∈[0,1], u(0)=u(1)=0; CSV includes both endpoints."
+  },
+  "method_ids": [
+    "newton"
+  ],
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/sparse-nonlinear/",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/sparse-nonlinear/"
+  },
+  "references": [
+    {
+      "type": "analytic-solution",
+      "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/bratu/result.json",
+      "description": {
+        "ja": "CSVは最細格子の数値解・解析解・絶対誤差。JSONには各格子の真の非線形残差、Newton反復数と最小減衰長を記録する。",
+        "en": "CSV carries finest-grid numerical/analytic values and absolute error. JSON retains each mesh's nonlinear residual, Newton iteration count and minimum damping length."
+      }
+    },
+    {
+      "type": "analytic-solution",
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/sparse-nonlinear/",
+      "description": {
+        "ja": "λと解析解を同じβから独立に評価し、2β²の係数を落とさない。",
+        "en": "Evaluate λ and the analytic solution independently from β, retaining the factor 2β²."
+      }
+    },
+    {
+      "type": "primary-publication",
+      "url": "https://doi.org/10.2140/pjm.1966.16.1",
+      "description": {
+        "ja": "既存Newton項目の十分減少・半減の文献。本例に原論文の最小化定理を直接適用する主張ではない。",
+        "en": "Existing Newton-method source for sufficient decrease/halving, not direct application of the original minimization theorem."
+      }
+    },
+    {
+      "type": "primary-publication",
+      "url": "https://doi.org/10.1137/0719025",
+      "description": {
+        "ja": "既存Newton項目の近似内部線形解法の文献。本レシピ固有の収束定理の証明ではない。",
+        "en": "Existing source for inexact Newton inner solves, not a proof specific to this recipe."
+      }
+    }
+  ],
+  "failure_scope": {
+    "ja": "小さい枝・零初期値・固定境界の指定を要求する。大きい枝、臨界点近傍の追跡、分岐、任意初期値からの大域収束は保証しない。解の細格子値を解析解とは呼ばない。",
+    "en": "Require the lower-branch declaration, zero initial guess and fixed boundaries. No upper-branch continuation, critical-point tracking, bifurcation or global-convergence guarantee. Fine-grid solutions are not called analytic references."
+  },
+  "reference_notes": {
+    "ja": "CSVは最細格子の数値解・解析解・絶対誤差。JSONには各格子の真の非線形残差、Newton反復数と最小減衰長を記録する。",
+    "en": "CSV carries finest-grid numerical/analytic values and absolute error. JSON retains each mesh's nonlinear residual, Newton iteration count and minimum damping length."
+  },
+  "id": "bratu",
+  "problem_id": "bratu",
+  "release": {
+    "family": "numerical-methods-atlas",
+    "version": "2026-11-22",
+    "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip",
+    "sha256": "15c8c9c26cebc37b1e0c2923f91db456f8c9d157a48618f154f4b9bb39010fd7",
+    "manifest": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/source-manifest.json",
+    "manifest_sha256": "386b12c0b88cfd27ac9921d7b00d34e72bee3c0ae43b11eb174b01528a6195f8",
+    "verification": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/verification.json",
+    "archive_directory": "atlas-code-2026-11-22"
+  },
+  "execution_group": "bratu",
+  "shared_runner_cases": [
+    "bratu"
+  ],
+  "terms": {
+    "code": "MIT",
+    "code_license": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/LICENSE",
+    "content_and_data": "https://hrkoyama.github.io/rights/",
+    "scope": {
+      "ja": "自作コードはMIT。入力・数値データ・図・本文はサイトの個別条件に従います。この台帳は利用許諾を拡大しません。",
+      "en": "Original code is MIT. Inputs, numerical data, figures and prose retain the site’s item-specific terms. This registry does not expand reuse permissions."
+    }
+  },
+  "inputs": {
+    "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/recipes/bratu.json",
+    "sha256": "dc20c276f82f6dee68843ccc1cd7e225719bfea103cf2b8715a0a4091955eea9",
+    "path": "recipes/bratu.json"
+  },
+  "dependencies": {
+    "core": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/requirements.txt",
+    "testing": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/requirements.txt",
+    "plotting": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/requirements.txt"
+  },
+  "commands": {
+    "install": "python -m pip install -r requirements.txt",
+    "run": "python run_recipe.py --input recipes/bratu.json --output output-bratu",
+    "tests": "python -m pytest -q tests/test_recipes.py",
+    "run_argv": [
+      "python",
+      "run_recipe.py",
+      "--input",
+      "recipes/bratu.json",
+      "--output",
+      "{output}"
+    ],
+    "tests_argv": [
+      "python",
+      "-m",
+      "pytest",
+      "-q",
+      "tests/test_recipes.py"
+    ]
+  },
+  "outputs": [
+    {
+      "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/bratu/result.json",
+      "sha256": "ef66330cbc22cedbb9978d5a881cd40f4b8562396da67a2da44fb0dffe54745d",
+      "path": "reference/bratu/result.json",
+      "id": "results",
+      "format": "json",
+      "generated_path": "result.json"
+    },
+    {
+      "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/bratu/solution.csv",
+      "sha256": "bb499ef3d2ad1a7f422214432905510401bd4f514932156d0fb0c2e969228935",
+      "path": "reference/bratu/solution.csv",
+      "id": "solution",
+      "format": "csv",
+      "generated_path": "solution.csv"
+    }
+  ],
+  "checks": [
+    {
+      "id": "nonlinear-convergence",
+      "comparison": "equals",
+      "tolerance": 0,
+      "description": {
+        "ja": "全格子でNewton–GMRESが指定の非線形残差許容値に到達する。",
+        "en": "Newton–GMRES reaches its nonlinear residual tolerance on every grid."
+      },
+      "expected": true,
+      "pointer": "/metrics/all_converged"
+    },
+    {
+      "id": "lower-branch-continuous-error",
+      "comparison": "maximum",
+      "tolerance": 1e-05,
+      "description": {
+        "ja": "β=1の小さい枝の解析解と一致する。127内部点の2次離散誤差に余裕を持つ上限。",
+        "en": "Agreement with the analytic lower branch at β=1; margin above the second-order error at 127 interior nodes."
+      },
+      "pointer": "/metrics/finest_linf_error"
+    },
+    {
+      "id": "second-order-refinement",
+      "comparison": "minimum",
+      "tolerance": 1.8,
+      "description": {
+        "ja": "小さい枝で格子幅半減により連続解誤差が2次で減る。",
+        "en": "Second-order continuous-solution error reduction on the lower branch."
+      },
+      "pointer": "/metrics/minimum_observed_order"
+    },
+    {
+      "id": "independent-nonlinear-residual",
+      "comparison": "maximum",
+      "tolerance": 1e-08,
+      "description": {
+        "ja": "独立に再評価した非線形差分残差のEuclideanノルム。",
+        "en": "Euclidean norm of the independently recomputed nonlinear difference residual."
+      },
+      "pointer": "/metrics/maximum_independent_residual_l2"
+    },
+    {
+      "id": "dirichlet-boundary",
+      "comparison": "maximum",
+      "tolerance": 1e-14,
+      "description": {
+        "ja": "両端の零Dirichlet条件。",
+        "en": "Zero Dirichlet values at both endpoints."
+      },
+      "pointer": "/metrics/boundary_maximum_absolute_value"
+    },
+    {
+      "id": "all-criteria",
+      "pointer": "/checks",
+      "comparison": "all_true",
+      "description": {
+        "ja": "全数値条件の判定",
+        "en": "All numerical acceptance flags"
+      }
+    },
+    {
+      "id": "input-provenance",
+      "pointer": "/input_sha256",
+      "comparison": "equals",
+      "expected": "dc20c276f82f6dee68843ccc1cd7e225719bfea103cf2b8715a0a4091955eea9",
+      "description": {
+        "ja": "実行した固定入力のSHA-256",
+        "en": "SHA-256 of the executed fixed input"
+      }
+    },
+    {
+      "id": "case-passed",
+      "pointer": "/passed",
+      "comparison": "equals",
+      "expected": true,
+      "description": {
+        "ja": "入力に記載した条件の合格",
+        "en": "Acceptance conditions in the input passed"
+      }
+    }
+  ],
+  "expected_failures": [],
+  "reference_type": "analytic-solution",
+  "citation": {
+    "creator": "Hiroshi Koyama",
+    "title": {
+      "ja": "1次元Bratu：小さい枝のNewton–GMRES",
+      "en": "1D Bratu: Newton–GMRES on the lower branch"
+    },
+    "version": "2026-11-22",
+    "url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#bratu-en",
+    "method_publications": [
+      "https://doi.org/10.2140/pjm.1966.16.1",
+      "https://doi.org/10.1137/0719025"
+    ]
+  }
+}

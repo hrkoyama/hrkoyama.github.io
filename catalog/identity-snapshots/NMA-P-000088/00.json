@@ -1,0 +1,44 @@
+{
+  "id": "lotka-volterra",
+  "group": "biology",
+  "name": {
+    "ja": "Lotka–Volterra不変量と正値性",
+    "en": "Lotka–Volterra invariant and positivity"
+  },
+  "chapter": "validation-small-models",
+  "reading_section": "lotka-volterra",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-25/small-models/",
+  "verification": "/code/validated-examples/2026-11-25/small-models/verification.json",
+  "commands": [
+    "python -B -W error -m pytest -q -p no:cacheprovider",
+    "python -B -W error run.py --input inputs.json --output fresh-output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-25/small-models/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "lotka-volterra"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-25/small-models/results/lotka-volterra-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-25/small-models/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "lotka-volterra",
+      "url": "/numerical-methods-atlas/validation/lotka-volterra/",
+      "name": {
+        "ja": "Lotka–Volterra不変量と正値性",
+        "en": "Lotka–Volterra invariant and positivity"
+      }
+    }
+  ]
+}

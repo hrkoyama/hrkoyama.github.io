@@ -1,0 +1,44 @@
+{
+  "id": "fmm3d-inverse-r",
+  "group": "gravity",
+  "name": {
+    "ja": "真3D 1/r FMM：多段変換・力・適応所有権",
+    "en": "Actual3D1/r FMM: multilevel translations, force and ownership"
+  },
+  "chapter": "validation-fmm3d",
+  "reading_section": "fmm3d-inverse-r",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-23/fmm3d/",
+  "verification": "/code/validated-examples/2026-11-23/fmm3d/verification.json",
+  "commands": [
+    "python -W error -m pytest -q -p no:cacheprovider",
+    "python -W error run.py --input inputs.json --output output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-23/fmm3d/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "fmm3d-inverse-r"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/fmm3d/results/fmm3d-inverse-r-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/fmm3d/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "fmm3d-inverse-r",
+      "url": "/numerical-methods-atlas/validation/fmm3d-inverse-r/",
+      "name": {
+        "ja": "真3D 1/r FMM：多段変換・力・適応所有権",
+        "en": "Actual3D1/r FMM: multilevel translations, force and ownership"
+      }
+    }
+  ]
+}

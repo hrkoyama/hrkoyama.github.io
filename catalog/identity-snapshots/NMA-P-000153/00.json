@@ -1,0 +1,44 @@
+{
+  "id": "strang-boundary-order-reduction",
+  "group": "time",
+  "name": {
+    "ja": "Dirichlet境界でのStrang次数低下と補正",
+    "en": "Strang splitting: Dirichlet boundary order reduction and correction"
+  },
+  "chapter": "validation-ode-adaptivity",
+  "reading_section": "strang-boundary-order-reduction",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-24-r2/ode-adaptivity/",
+  "verification": "/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+  "commands": [
+    "python -B -W error -m pytest -q -p no:cacheprovider",
+    "python -B -W error run.py --input inputs.json --output fresh-output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-24-r2/ode-adaptivity/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "strang-boundary-order-reduction"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-24-r2/ode-adaptivity/results/strang-boundary-order-reduction-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "strang-boundary-order-reduction",
+      "url": "/numerical-methods-atlas/validation/strang-boundary-order-reduction/",
+      "name": {
+        "ja": "Dirichlet境界でのStrang次数低下と補正",
+        "en": "Strang splitting: Dirichlet boundary order reduction and correction"
+      }
+    }
+  ]
+}

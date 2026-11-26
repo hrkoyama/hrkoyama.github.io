@@ -1,0 +1,44 @@
+{
+  "id": "sphere-zonal-balance",
+  "group": "fluid",
+  "name": {
+    "ja": "球面浅水波の軸対称定常釣合いを時間積分",
+    "en": "Time evolution of axisymmetric spherical shallow-water balance"
+  },
+  "chapter": "validation-continuum-particle-controls",
+  "reading_section": "sphere-zonal-balance",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-25/continuum-particle-controls/",
+  "verification": "/code/validated-examples/2026-11-25/continuum-particle-controls/verification.json",
+  "commands": [
+    "python -B -W error -m pytest -q -p no:cacheprovider test_components.py",
+    "python -B -W error run.py --input inputs.json --output fresh-output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-25/continuum-particle-controls/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "sphere-zonal-balance"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-25/continuum-particle-controls/results/sphere-zonal-balance.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-25/continuum-particle-controls/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "sphere-zonal-balance",
+      "url": "/numerical-methods-atlas/validation/sphere-zonal-balance/",
+      "name": {
+        "ja": "球面浅水波の軸対称定常釣合いを時間積分",
+        "en": "Time evolution of axisymmetric spherical shallow-water balance"
+      }
+    }
+  ]
+}

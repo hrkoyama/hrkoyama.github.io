@@ -1,0 +1,26 @@
+{
+  "id": "moving-contact",
+  "group": "fluid",
+  "name": {
+    "ja": "移動接触不連続",
+    "en": "Moving contact discontinuity"
+  },
+  "chapter": "reconstruction",
+  "evidence": [
+    {
+      "path": "numerical-methods-atlas/assets/reconstruction/reconstruction.json",
+      "json_pointer": "/problems",
+      "where": {
+        "id": "moving-contact"
+      }
+    },
+    {
+      "path": "numerical-methods-atlas/assets/shock-expansion/shock-expansion.json",
+      "json_pointer": "/problems",
+      "where": {
+        "id": "moving-contact"
+      }
+    }
+  ],
+  "availability": "saved-output"
+}

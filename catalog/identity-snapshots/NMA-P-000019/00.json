@@ -1,0 +1,19 @@
+{
+  "id": "burgers-shock",
+  "group": "transport",
+  "name": {
+    "ja": "Burgers衝撃波",
+    "en": "Burgers shock"
+  },
+  "chapter": "equation-gallery",
+  "evidence": [
+    {
+      "path": "numerical-methods-atlas/equation-gallery.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "burgers-shock"
+      }
+    }
+  ],
+  "availability": "saved-output"
+}

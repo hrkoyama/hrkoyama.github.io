@@ -1,0 +1,44 @@
+{
+  "id": "immigration-death-ssa",
+  "group": "biology",
+  "name": {
+    "ja": "移入–死亡SSA：有限時刻の厳密分布",
+    "en": "Immigration–death SSA: exact transient laws"
+  },
+  "chapter": "validation-biology-ode-controls",
+  "reading_section": "immigration-death-ssa",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-25/biology-ode-controls/",
+  "verification": "/code/validated-examples/2026-11-25/biology-ode-controls/verification.json",
+  "commands": [
+    "python -B -W error -m pytest -q -p no:cacheprovider",
+    "python -B -W error run.py --input inputs.json --output fresh-output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-25/biology-ode-controls/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "immigration-death-ssa"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-25/biology-ode-controls/results/immigration-death-ssa.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-25/biology-ode-controls/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "immigration-death-ssa",
+      "url": "/numerical-methods-atlas/validation/immigration-death-ssa/",
+      "name": {
+        "ja": "移入–死亡SSA：有限時刻の厳密分布",
+        "en": "Immigration–death SSA: exact transient laws"
+      }
+    }
+  ]
+}

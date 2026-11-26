@@ -1,0 +1,60 @@
+{
+  "id": "langevin-harmonic",
+  "group": "time",
+  "name": {
+    "ja": "Langevin温度制御：正準分布・刻み偏り・時間相関",
+    "en": "Langevin thermostat: canonical distributions, timestep bias and correlation"
+  },
+  "chapter": "validation-models",
+  "reading_section": "langevin-harmonic",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-22/models/",
+  "verification": "/code/validated-examples/2026-11-22/models/verification.json",
+  "commands": [
+    "python -m pytest -q",
+    "python run.py --input inputs.json --output output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-22/models/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "langevin-harmonic"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/models/results/langevin-harmonic.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/models/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "langevin-harmonic",
+      "url": "/numerical-methods-atlas/validation/langevin-harmonic/",
+      "name": {
+        "ja": "Langevin温度制御：正準分布・刻み偏り・時間相関",
+        "en": "Langevin thermostat: canonical distributions, timestep bias and correlation"
+      }
+    },
+    {
+      "id": "csvr-langevin-harmonic",
+      "url": "/numerical-methods-atlas/validation/csvr-langevin-harmonic/",
+      "name": {
+        "ja": "CSVRとLangevin：調和2自由度の分布・揺らぎ・相関",
+        "en": "CSVR versus Langevin: distributions, fluctuations and correlations of two harmonic modes"
+      }
+    },
+    {
+      "id": "ou-weak-moments",
+      "url": "/numerical-methods-atlas/validation/ou-weak-moments/",
+      "name": {
+        "ja": "OUのweakモーメントと同時Brownian結合",
+        "en": "OU weak moments with joint Brownian coupling"
+      }
+    }
+  ]
+}

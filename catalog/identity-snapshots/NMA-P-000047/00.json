@@ -1,0 +1,44 @@
+{
+  "id": "gaussian-mcmc",
+  "group": "probability",
+  "name": {
+    "ja": "Gaussian標的のMCMC：分布・自己相関・ESS",
+    "en": "Gaussian-target MCMC: distribution, autocorrelation and ESS"
+  },
+  "chapter": "validation-models",
+  "reading_section": "gaussian-mcmc",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-22/models/",
+  "verification": "/code/validated-examples/2026-11-22/models/verification.json",
+  "commands": [
+    "python -m pytest -q",
+    "python run.py --input inputs.json --output output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-22/models/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "gaussian-mcmc"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/models/results/gaussian-mcmc.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/models/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "gaussian-mcmc",
+      "url": "/numerical-methods-atlas/validation/gaussian-mcmc/",
+      "name": {
+        "ja": "Gaussian標的のMCMC：分布・自己相関・ESS",
+        "en": "Gaussian-target MCMC: distribution, autocorrelation and ESS"
+      }
+    }
+  ]
+}

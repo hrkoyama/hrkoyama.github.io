@@ -1,0 +1,44 @@
+{
+  "id": "seir-linearization",
+  "group": "biology",
+  "name": {
+    "ja": "SEIR保存則と初期線形化",
+    "en": "SEIR conservation and initial linearization"
+  },
+  "chapter": "validation-small-models",
+  "reading_section": "seir-linearization",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-25/small-models/",
+  "verification": "/code/validated-examples/2026-11-25/small-models/verification.json",
+  "commands": [
+    "python -B -W error -m pytest -q -p no:cacheprovider",
+    "python -B -W error run.py --input inputs.json --output fresh-output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-25/small-models/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "seir-linearization"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-25/small-models/results/seir-linearization-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-25/small-models/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "seir-linearization",
+      "url": "/numerical-methods-atlas/validation/seir-linearization/",
+      "name": {
+        "ja": "SEIR保存則と初期線形化",
+        "en": "SEIR conservation and initial linearization"
+      }
+    }
+  ]
+}

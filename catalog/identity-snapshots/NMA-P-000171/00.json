@@ -1,0 +1,44 @@
+{
+  "id": "vet-fourier-source2d",
+  "group": "transport",
+  "name": {
+    "ja": "可変エディントンテンソル：周期2D非平行源の固定検証",
+    "en": "Variable Eddington tensor: a periodic 2D nonparallel-source control"
+  },
+  "chapter": "validation-variable-eddington-controls",
+  "reading_section": "vet-fourier-source2d",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-26/variable-eddington-controls/",
+  "verification": "/code/validated-examples/2026-11-26/variable-eddington-controls/verification.json",
+  "commands": [
+    "python -W error -m pytest -q -p no:cacheprovider",
+    "python -W error run.py --input inputs.json --output output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-26/variable-eddington-controls/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "vet-fourier-source2d"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-26/variable-eddington-controls/results/vet-fourier-source2d.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-26/variable-eddington-controls/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "vet-fourier-source2d",
+      "url": "/numerical-methods-atlas/validation/vet-fourier-source2d/",
+      "name": {
+        "ja": "可変エディントンテンソル：周期2D非平行源の固定検証",
+        "en": "Variable Eddington tensor: a periodic 2D nonparallel-source control"
+      }
+    }
+  ]
+}

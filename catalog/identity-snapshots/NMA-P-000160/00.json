@@ -1,0 +1,44 @@
+{
+  "id": "tensor-smolyak-dimensions",
+  "group": "approximation",
+  "name": {
+    "ja": "2〜4次元テンソル・Smolyak対照",
+    "en": "Tensor and Smolyak controls in two to four dimensions"
+  },
+  "chapter": "validation-quadrature-controls",
+  "reading_section": "tensor-smolyak-dimensions",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-25/quadrature-controls/",
+  "verification": "/code/validated-examples/2026-11-25/quadrature-controls/verification.json",
+  "commands": [
+    "python -B -W error -m pytest -q -p no:cacheprovider",
+    "python -B -W error run.py --input inputs.json --output fresh-output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-25/quadrature-controls/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "tensor-smolyak-dimensions"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-25/quadrature-controls/results/tensor-smolyak-dimensions-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-25/quadrature-controls/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "tensor-smolyak-dimensions",
+      "url": "/numerical-methods-atlas/validation/tensor-smolyak-dimensions/",
+      "name": {
+        "ja": "2〜4次元テンソル・Smolyak対照",
+        "en": "Tensor and Smolyak controls in two to four dimensions"
+      }
+    }
+  ]
+}

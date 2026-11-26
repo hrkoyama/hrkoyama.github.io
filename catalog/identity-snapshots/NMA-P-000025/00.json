@@ -1,0 +1,44 @@
+{
+  "id": "correlated-gaussian-mcmc",
+  "group": "probability",
+  "name": {
+    "ja": "相関2変量Gaussianのjoint標的とMCSE",
+    "en": "Joint target and MCSE for a correlated bivariate Gaussian"
+  },
+  "chapter": "validation-stochastic-estimation",
+  "reading_section": "correlated-gaussian-mcmc",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-24/stochastic-estimation/",
+  "verification": "/code/validated-examples/2026-11-24/stochastic-estimation/verification.json",
+  "commands": [
+    "python -W error -m pytest -q -p no:cacheprovider",
+    "python -W error run.py --input inputs.json --output output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-24/stochastic-estimation/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "correlated-gaussian-mcmc"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-24/stochastic-estimation/results/correlated-gaussian-mcmc-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-24/stochastic-estimation/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "correlated-gaussian-mcmc",
+      "url": "/numerical-methods-atlas/validation/correlated-gaussian-mcmc/",
+      "name": {
+        "ja": "相関2変量Gaussianのjoint標的とMCSE",
+        "en": "Joint target and MCSE for a correlated bivariate Gaussian"
+      }
+    }
+  ]
+}

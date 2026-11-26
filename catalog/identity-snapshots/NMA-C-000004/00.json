@@ -1,0 +1,223 @@
+{
+  "name": {
+    "ja": "周期正弦波の線形移流：風上法と解析解",
+    "en": "Periodic sine advection: upwind and analytic transport"
+  },
+  "scope": {
+    "ja": "長さ1の周期区間でq_t+a q_x=0を1周期進め、64/128点の1次風上法を平行移動した正弦波と比較する。計算値、解析値、誤差をCSVへ出す。",
+    "en": "Advance q_t+a q_x=0 for one period on a unit periodic interval. Compare first-order upwind on 64/128 points with an analytically translated sine, exporting computed, analytic and error values."
+  },
+  "assumptions": {
+    "ja": "一定速度a=1、平均1、振幅0.2、基本モード。既存difference_stepを前進Eulerで呼び、実際の|C|≤0.5になる等間隔時間刻みを使う。入力で速度・正弦波・区間・格子を指定できるが、非ゼロ速度、正振幅、十分なモード解像とCFL条件を検査する。",
+    "en": "Constant speed a=1, mean 1, amplitude 0.2 and the fundamental mode. Existing difference_step is called with forward Euler and equal time steps with actual |C|≤0.5. Inputs expose the speed, sine, interval and grids, with nonzero speed, positive amplitude, mode resolution and CFL checks."
+  },
+  "units": {
+    "ja": "x・時間・移流量qは無次元。速度は区間長/時間、Courant数は無次元。",
+    "en": "x, time and transported scalar q are nondimensional; speed is interval length/time and the Courant number is dimensionless."
+  },
+  "boundaries": {
+    "ja": "np.rollによる周期境界。平均値保存と初期標本の値域を超えないことを別々に検査する。",
+    "en": "Periodic boundaries via np.roll. Mean conservation and preservation of the initial sampled range are checked separately."
+  },
+  "method_ids": [
+    "upwind"
+  ],
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/stability/",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/stability/"
+  },
+  "references": [
+    {
+      "type": "analytic",
+      "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/advection-sine/result.json",
+      "description": {
+        "ja": "CSVは128点の格子中心に1行ずつ配置し、同じ時刻・位置で解析値を評価する。平均の保存と最大値原理には丸め誤差許容値10^-12を用いる。",
+        "en": "CSV contains one row per fine-grid center, with the analytic reference evaluated at exactly the same time and location. Periodic-mean and maximum-principle checks allow 10^-12 for roundoff."
+      }
+    },
+    {
+      "type": "primary-publication",
+      "url": "https://doi.org/10.1002/cpa.3160050303",
+      "description": {
+        "ja": "風上差分の歴史的な一次文献。解析参照はq(x,t)=q(x−at,0)を直接評価し、論文図や保存済み出力には依存しない。",
+        "en": "Historical primary source for upstream differencing. The reference directly evaluates q(x,t)=q(x−at,0), independent of paper figures or saved outputs."
+      }
+    }
+  ],
+  "failure_scope": {
+    "ja": "この滑らかな一定速度・周期問題だけの判定。0.02のL1基準は振幅0.2の10%であり、1次法の拡散を許容する。格子倍増の誤差比は実測指標で、一般の次数・非周期境界・非線形保存則の保証ではない。無効な入力や判定不合格は失敗として返す。",
+    "en": "Acceptance is limited to this smooth constant-speed periodic problem. The 0.02 L1 threshold is 10% of the 0.2 amplitude and permits first-order diffusion. The grid-doubling ratio is empirical, not a general order, nonperiodic-boundary or nonlinear-conservation-law guarantee. Invalid inputs and failed acceptance are reported as failures."
+  },
+  "reference_notes": {
+    "ja": "CSVは128点の格子中心に1行ずつ配置し、同じ時刻・位置で解析値を評価する。平均の保存と最大値原理には丸め誤差許容値10^-12を用いる。",
+    "en": "CSV contains one row per fine-grid center, with the analytic reference evaluated at exactly the same time and location. Periodic-mean and maximum-principle checks allow 10^-12 for roundoff."
+  },
+  "reference_type": "analytic",
+  "id": "advection-sine",
+  "problem_id": "advection-sine",
+  "release": {
+    "family": "numerical-methods-atlas",
+    "version": "2026-11-22",
+    "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip",
+    "sha256": "15c8c9c26cebc37b1e0c2923f91db456f8c9d157a48618f154f4b9bb39010fd7",
+    "manifest": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/source-manifest.json",
+    "manifest_sha256": "386b12c0b88cfd27ac9921d7b00d34e72bee3c0ae43b11eb174b01528a6195f8",
+    "verification": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/verification.json",
+    "archive_directory": "atlas-code-2026-11-22"
+  },
+  "execution_group": "advection-sine",
+  "shared_runner_cases": [
+    "advection-sine"
+  ],
+  "terms": {
+    "code": "MIT",
+    "code_license": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/LICENSE",
+    "content_and_data": "https://hrkoyama.github.io/rights/",
+    "scope": {
+      "ja": "自作コードはMIT。入力・数値データ・図・本文はサイトの個別条件に従います。この台帳は利用許諾を拡大しません。",
+      "en": "Original code is MIT. Inputs, numerical data, figures and prose retain the site’s item-specific terms. This registry does not expand reuse permissions."
+    }
+  },
+  "inputs": {
+    "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/recipes/advection-sine.json",
+    "sha256": "c2f31548c6df3db8cb6a5e3eb14e0b1130738e8144d6757a2a44c9cdaa356ccc",
+    "path": "recipes/advection-sine.json"
+  },
+  "dependencies": {
+    "core": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/requirements.txt",
+    "testing": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/requirements.txt",
+    "plotting": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/requirements.txt"
+  },
+  "commands": {
+    "install": "python -m pip install -r requirements.txt",
+    "run": "python run_recipe.py --input recipes/advection-sine.json --output output-advection-sine",
+    "tests": "python -m pytest -q tests/test_recipes.py",
+    "run_argv": [
+      "python",
+      "run_recipe.py",
+      "--input",
+      "recipes/advection-sine.json",
+      "--output",
+      "{output}"
+    ],
+    "tests_argv": [
+      "python",
+      "-m",
+      "pytest",
+      "-q",
+      "tests/test_recipes.py"
+    ]
+  },
+  "outputs": [
+    {
+      "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/advection-sine/result.json",
+      "sha256": "434e3c08ad585322cdda9d288bbbb4c76ae0f1eeb2a1551e2b31617f3d80bd7c",
+      "path": "reference/advection-sine/result.json",
+      "id": "results",
+      "format": "json",
+      "generated_path": "result.json"
+    },
+    {
+      "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/advection-sine/solution.csv",
+      "sha256": "e004acdd5b45128b653c78077bc19d7255a7a4dbc6aeab8bb29350ec392b71d7",
+      "path": "reference/advection-sine/solution.csv",
+      "id": "solution",
+      "format": "csv",
+      "generated_path": "solution.csv"
+    }
+  ],
+  "checks": [
+    {
+      "id": "analytic-error",
+      "comparison": "maximum",
+      "tolerance": 0.02,
+      "description": {
+        "ja": "解析移流解に対する平均絶対誤差が0.02以下（振幅0.2の10%）。",
+        "en": "Mean absolute error against analytic transport is at most 0.02 (10% of the 0.2 amplitude)."
+      },
+      "pointer": "/metrics/density_l1_error_fine"
+    },
+    {
+      "id": "refinement",
+      "comparison": "maximum",
+      "tolerance": 0.65,
+      "description": {
+        "ja": "格子倍増で解析解誤差が減る（1次風上法の実測比較、形式次数の証明ではない）。",
+        "en": "Doubling the grid reduces analytic-reference error (an observed comparison for first-order upwind, not a formal-order proof)."
+      },
+      "pointer": "/metrics/fine_to_coarse_error_ratio"
+    },
+    {
+      "id": "periodic-conservation",
+      "comparison": "maximum",
+      "tolerance": 1e-12,
+      "description": {
+        "ja": "周期境界の平均値を丸め誤差の範囲で保存する。",
+        "en": "The periodic mean is conserved to rounding accuracy."
+      },
+      "pointer": "/metrics/mean_conservation_error"
+    },
+    {
+      "id": "maximum-principle",
+      "comparison": "maximum",
+      "tolerance": 1e-12,
+      "description": {
+        "ja": "CFL制限内で初期標本の値域を超えない。",
+        "en": "The update remains inside the initial sampled range under the CFL restriction."
+      },
+      "pointer": "/metrics/maximum_principle_excess"
+    },
+    {
+      "id": "stable-courant",
+      "comparison": "maximum",
+      "tolerance": 1,
+      "description": {
+        "ja": "実際のCourant数の絶対値が1以下。",
+        "en": "The actual absolute Courant number is at most one."
+      },
+      "pointer": "/metrics/courant_abs"
+    },
+    {
+      "id": "all-criteria",
+      "pointer": "/checks",
+      "comparison": "all_true",
+      "description": {
+        "ja": "全数値条件の判定",
+        "en": "All numerical acceptance flags"
+      }
+    },
+    {
+      "id": "input-provenance",
+      "pointer": "/input_sha256",
+      "comparison": "equals",
+      "expected": "c2f31548c6df3db8cb6a5e3eb14e0b1130738e8144d6757a2a44c9cdaa356ccc",
+      "description": {
+        "ja": "実行した固定入力のSHA-256",
+        "en": "SHA-256 of the executed fixed input"
+      }
+    },
+    {
+      "id": "case-passed",
+      "pointer": "/passed",
+      "comparison": "equals",
+      "expected": true,
+      "description": {
+        "ja": "入力に記載した条件の合格",
+        "en": "Acceptance conditions in the input passed"
+      }
+    }
+  ],
+  "expected_failures": [],
+  "citation": {
+    "creator": "Hiroshi Koyama",
+    "title": {
+      "ja": "周期正弦波の線形移流：風上法と解析解",
+      "en": "Periodic sine advection: upwind and analytic transport"
+    },
+    "version": "2026-11-22",
+    "url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#advection-sine-en",
+    "method_publications": [
+      "https://doi.org/10.1002/cpa.3160050303"
+    ]
+  }
+}

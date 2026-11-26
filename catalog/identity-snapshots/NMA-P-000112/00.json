@@ -1,0 +1,30 @@
+{
+  "id": "poisson-1d-dirichlet",
+  "group": "elliptic",
+  "name": {
+    "ja": "1次元Poisson・Dirichlet製造解",
+    "en": "1D Poisson / smooth Dirichlet manufactured solutions"
+  },
+  "chapter": "elliptic",
+  "evidence": [
+    {
+      "path": "numerical-methods-atlas/assets/poisson-comparison/comparison.json",
+      "json_pointer": "/one_dimensional"
+    },
+    {
+      "path": "code/numerical-methods-atlas/2026-11-21/tests/test_linear.py",
+      "python_symbol": "test_poisson_second_order"
+    }
+  ],
+  "availability": "saved-output",
+  "supplemental_examples": [
+    {
+      "id": "pinn-poisson",
+      "url": "/numerical-methods-atlas/validation/pinn-poisson/",
+      "name": {
+        "ja": "1D Poisson PINNと独立格子誤差",
+        "en": "Poisson PINN: independent grid error"
+      }
+    }
+  ]
+}

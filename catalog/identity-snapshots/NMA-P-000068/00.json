@@ -1,0 +1,20 @@
+{
+  "id": "isolated-convolution",
+  "group": "gravity",
+  "name": {
+    "ja": "孤立FFTと非周期直接畳み込み",
+    "en": "Isolated FFT versus direct nonperiodic convolution"
+  },
+  "chapter": "gravity-boundaries",
+  "evidence": [
+    {
+      "path": "numerical-methods-atlas/assets/gravity-boundaries.json",
+      "json_pointer": "/isolated_boundary_point_max_error"
+    },
+    {
+      "path": "code/numerical-methods-atlas/2026-11-21/tests/test_gravity_boundaries.py",
+      "python_symbol": "test_isolated_doubling_equals_direct_nonperiodic_discrete_convolution"
+    }
+  ],
+  "availability": "saved-output"
+}

@@ -1,0 +1,19 @@
+{
+  "id": "smooth-function-projection",
+  "group": "approximation",
+  "name": {
+    "ja": "滑らかな関数の多項式補間・射影",
+    "en": "Polynomial interpolation and projection of a smooth function"
+  },
+  "chapter": "basis-functions",
+  "evidence": [
+    {
+      "path": "numerical-methods-atlas/basis.json",
+      "json_pointer": "/approximations",
+      "where": {
+        "profile": "smooth"
+      }
+    }
+  ],
+  "availability": "saved-output"
+}

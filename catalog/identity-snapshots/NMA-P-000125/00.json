@@ -1,0 +1,44 @@
+{
+  "id": "quadpack-domain-selection",
+  "group": "approximation",
+  "name": {
+    "ja": "領域別QUADPACKと有限Simpson対照",
+    "en": "QUADPACK dispatch and finite Simpson companions"
+  },
+  "chapter": "validation-quadrature-controls",
+  "reading_section": "quadpack-domain-selection",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-25/quadrature-controls/",
+  "verification": "/code/validated-examples/2026-11-25/quadrature-controls/verification.json",
+  "commands": [
+    "python -B -W error -m pytest -q -p no:cacheprovider",
+    "python -B -W error run.py --input inputs.json --output fresh-output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-25/quadrature-controls/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "quadpack-domain-selection"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-25/quadrature-controls/results/quadpack-domain-selection-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-25/quadrature-controls/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "quadpack-domain-selection",
+      "url": "/numerical-methods-atlas/validation/quadpack-domain-selection/",
+      "name": {
+        "ja": "領域別QUADPACKと有限Simpson対照",
+        "en": "QUADPACK dispatch and finite Simpson companions"
+      }
+    }
+  ]
+}

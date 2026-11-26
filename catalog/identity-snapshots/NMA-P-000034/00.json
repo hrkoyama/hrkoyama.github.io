@@ -1,0 +1,48 @@
+{
+  "id": "dry-bed-dam-break",
+  "group": "fluid",
+  "name": {
+    "ja": "乾燥床へのRitter破堤流",
+    "en": "Ritter dam break onto a dry bed"
+  },
+  "chapter": "validation-shallow-water",
+  "reading_section": "dry-bed-dam-break",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-23/shallow-water/",
+  "verification": "/code/validated-examples/2026-11-23/shallow-water/verification.json",
+  "commands": [
+    "python -m pytest -q",
+    "python run.py --input inputs.json --output output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-23/shallow-water/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "dry-bed-dam-break"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/shallow-water/results/dry-bed-dam-break-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/shallow-water/inputs.json",
+      "json_pointer": "/ritter"
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/shallow-water/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "dry-bed-dam-break",
+      "url": "/numerical-methods-atlas/validation/dry-bed-dam-break/",
+      "name": {
+        "ja": "乾いた河床のダム破壊：実際のwetting/drying",
+        "en": "Dry-bed dam break: actual wetting and dry states"
+      }
+    }
+  ]
+}

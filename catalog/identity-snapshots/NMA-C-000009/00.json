@@ -1,0 +1,184 @@
+{
+  "id": "barnes-hut",
+  "name": {
+    "ja": "Barnes–Hut：192粒子と直接和の比較",
+    "en": "Barnes–Hut: 192 particles against direct summation"
+  },
+  "problem_id": "isolated-particles",
+  "method_ids": [
+    "barnes-hut"
+  ],
+  "scope": {
+    "ja": "孤立・軟化重力の静的な力の比較。軌道計算・周期系・実行速度の比較ではありません。",
+    "en": "Static isolated softened-gravity force comparison, not orbital integration, periodic gravity or a timing benchmark."
+  },
+  "assumptions": {
+    "ja": "正の質量を持つ固定192粒子。Plummer軟化、traceを含む完全な二次モーメント項を使い、同じ核の直接和を参照。",
+    "en": "192 fixed particles with positive masses; Plummer softening and the complete second-moment term including its trace, compared with direct summation using the identical kernel."
+  },
+  "units": {
+    "ja": "無次元、G=1、軟化長0.03。入力の長さ・質量の規約を保持。",
+    "en": "Dimensionless, G=1, softening 0.03; preserve input length and mass conventions."
+  },
+  "boundaries": {
+    "ja": "3次元孤立境界。周期境界ではない。",
+    "en": "3D isolated boundaries, not periodic."
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/barnes-hut/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/barnes-hut/?lang=en"
+  },
+  "release": {
+    "family": "numerical-methods-atlas",
+    "version": "2026-11-21",
+    "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/atlas-code-2026-11-21.zip",
+    "sha256": "f17c0cfcf6956a2677dcdc874235806ae9c5453514be02e6d3274732bcdebe4f",
+    "manifest": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/source-manifest.json",
+    "manifest_sha256": "af57327b5aaec0a62c76fde23e1b8da750abd6d07abe5d4593a3f7ad45907c63",
+    "verification": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/verification.json",
+    "archive_directory": "atlas-code-2026-11-21"
+  },
+  "citation": {
+    "creator": "Hiroshi Koyama",
+    "title": {
+      "ja": "Barnes–Hut：192粒子と直接和の比較",
+      "en": "Barnes–Hut: 192 particles against direct summation"
+    },
+    "version": "2026-11-21",
+    "url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#barnes-hut-en",
+    "method_publications": [
+      "https://doi.org/10.1038/324446a0"
+    ]
+  },
+  "terms": {
+    "code": "MIT",
+    "code_license": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/LICENSE",
+    "content_and_data": "https://hrkoyama.github.io/rights/",
+    "scope": {
+      "ja": "自作コードはMIT。入力・数値データ・図・本文はサイトの個別条件に従います。この台帳は利用許諾を拡大しません。",
+      "en": "Original code is MIT. Inputs, numerical data, figures and prose retain the site’s item-specific terms. This registry does not expand reuse permissions."
+    }
+  },
+  "execution_group": "barnes-hut",
+  "shared_runner_cases": [
+    "barnes-hut"
+  ],
+  "inputs": {
+    "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/examples/barnes-hut/input.json",
+    "sha256": "28c1943856caba029f30fd344c5f790da8054b9028021ceddf935ed68c9e03f6",
+    "path": "examples/barnes-hut/input.json"
+  },
+  "dependencies": {
+    "core": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/requirements.txt",
+    "testing": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/requirements.txt",
+    "plotting": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/requirements.txt"
+  },
+  "commands": {
+    "install": "python -m pip install -r requirements.txt",
+    "run": "python examples/barnes-hut/run.py --input examples/barnes-hut/input.json --output output",
+    "tests": "python -m pytest -q tests/test_particle_gravity.py",
+    "run_argv": [
+      "python",
+      "examples/barnes-hut/run.py",
+      "--input",
+      "examples/barnes-hut/input.json",
+      "--output",
+      "{output}"
+    ],
+    "tests_argv": [
+      "python",
+      "-m",
+      "pytest",
+      "-q",
+      "tests/test_particle_gravity.py"
+    ]
+  },
+  "outputs": [
+    {
+      "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/examples/barnes-hut/reference/result.json",
+      "sha256": "336b48a0bbfc8b6ae9abd4be86c366917885875fbd85f1033864dadeeff257ab",
+      "path": "examples/barnes-hut/reference/result.json",
+      "id": "results",
+      "format": "json",
+      "generated_path": "result.json"
+    },
+    {
+      "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/examples/barnes-hut/reference/forces.csv",
+      "sha256": "f7d88b05718203b27b961d2c6247c7aef121ffbdaee1222ba9c2c33b93a2d2a2",
+      "path": "examples/barnes-hut/reference/forces.csv",
+      "id": "forces",
+      "format": "csv",
+      "generated_path": "forces.csv"
+    }
+  ],
+  "checks": [
+    {
+      "id": "particle-count",
+      "pointer": "/particles",
+      "comparison": "equals",
+      "description": {
+        "ja": "粒子数",
+        "en": "Particle count"
+      },
+      "expected": 192
+    },
+    {
+      "id": "relative-force-error",
+      "pointer": "/relative_rms_force_error",
+      "comparison": "maximum",
+      "description": {
+        "ja": "直接和に対する相対RMS力誤差",
+        "en": "Relative RMS force error against direct sum"
+      },
+      "tolerance": 0.05
+    },
+    {
+      "id": "fully-opened-error",
+      "pointer": "/fully_opened_max_absolute_error",
+      "comparison": "maximum",
+      "description": {
+        "ja": "完全に開いたツリーと直接和の最大差",
+        "en": "Maximum fully-opened tree/direct difference"
+      },
+      "tolerance": 2e-13
+    },
+    {
+      "id": "reported-checks",
+      "pointer": "/checks",
+      "comparison": "all_true",
+      "description": {
+        "ja": "runnerの検証結果",
+        "en": "Runner validation flags"
+      }
+    },
+    {
+      "id": "input-provenance",
+      "pointer": "/input_sha256",
+      "comparison": "equals",
+      "description": {
+        "ja": "実行に用いた入力ハッシュ",
+        "en": "Executed input hash"
+      },
+      "expected": "28c1943856caba029f30fd344c5f790da8054b9028021ceddf935ed68c9e03f6"
+    }
+  ],
+  "expected_failures": [],
+  "references": [
+    {
+      "type": "same-kernel-direct-sum",
+      "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/examples/barnes-hut/reference/result.json",
+      "description": {
+        "ja": "同じPlummer核の直接和。完全に開いたツリーとの一致と近似力の誤差を分ける。",
+        "en": "Same-Plummer-kernel direct sum, distinguishing fully opened tree agreement from approximation error."
+      }
+    },
+    {
+      "type": "primary-publication",
+      "url": "https://doi.org/10.1038/324446a0",
+      "description": {
+        "ja": "原法の文献：A hierarchical O(N log N) force-calculation algorithm (1986)",
+        "en": "Original method publication: A hierarchical O(N log N) force-calculation algorithm (1986)"
+      }
+    }
+  ]
+}

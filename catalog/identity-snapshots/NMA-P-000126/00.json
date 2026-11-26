@@ -1,0 +1,67 @@
+{
+  "id": "quadrature-moments",
+  "group": "approximation",
+  "name": {
+    "ja": "Gauss–Legendreと適応求積：厳密次数・推定誤差・予算切れ",
+    "en": "Gauss–Legendre and adaptive quadrature: exactness, error estimates and budgets"
+  },
+  "chapter": "validation-foundations",
+  "reading_section": "gauss-adaptive-quadrature",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-22/foundations/",
+  "verification": "/code/validated-examples/2026-11-22/foundations/verification.json",
+  "commands": [
+    "python -m pytest -q",
+    "python run.py --input inputs.json --output output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-22/foundations/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "gauss-adaptive-quadrature"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/foundations/results/gauss-adaptive-quadrature.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/foundations/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/foundations-conditioning/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "quadrature-conditioning"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/foundations-conditioning/results/quadrature-conditioning.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/foundations-conditioning/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "gauss-adaptive-quadrature",
+      "url": "/numerical-methods-atlas/validation/gauss-adaptive-quadrature/",
+      "name": {
+        "ja": "Gauss–Legendreと適応求積：厳密次数・推定誤差・予算切れ",
+        "en": "Gauss–Legendre and adaptive quadrature: exactness, error estimates and budgets"
+      }
+    },
+    {
+      "id": "quadrature-conditioning",
+      "url": "/numerical-methods-atlas/validation/quadrature-conditioning/",
+      "name": {
+        "ja": "求積：狭いピーク・相殺・端点・誤差推定の盲点",
+        "en": "Quadrature: narrow peaks, cancellation, endpoints and estimator blind spots"
+      }
+    }
+  ]
+}

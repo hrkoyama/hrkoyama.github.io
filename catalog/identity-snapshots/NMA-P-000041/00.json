@@ -1,0 +1,44 @@
+{
+  "id": "fem-mass-eigen",
+  "group": "elliptic",
+  "name": {
+    "ja": "整合質量FEM弦の一般化固有値",
+    "en": "Consistent-mass FEM string eigenpairs"
+  },
+  "chapter": "validation-linear-algebra-spectral",
+  "reading_section": "fem-mass-eigen",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/",
+  "verification": "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json",
+  "commands": [
+    "python -B -W error -m pytest -q -p no:cacheprovider",
+    "python -B -W error run.py --input inputs.json --output fresh-output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "fem-mass-eigen"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/fem-mass-eigen-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "fem-mass-eigen",
+      "url": "/numerical-methods-atlas/validation/fem-mass-eigen/",
+      "name": {
+        "ja": "整合質量FEM弦の一般化固有値",
+        "en": "Consistent-mass FEM string eigenpairs"
+      }
+    }
+  ]
+}

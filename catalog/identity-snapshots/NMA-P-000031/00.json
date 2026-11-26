@@ -1,0 +1,44 @@
+{
+  "id": "dispersive-grazing-pml",
+  "group": "electromagnetics",
+  "name": {
+    "ja": "分散媒質の浅い入射角と長時間PML",
+    "en": "Long-time grazing PML in a dispersive medium"
+  },
+  "chapter": "validation-maxwell-grazing",
+  "reading_section": "dispersive-grazing-pml",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-24-r2/maxwell-grazing/",
+  "verification": "/code/validated-examples/2026-11-24-r2/maxwell-grazing/verification.json",
+  "commands": [
+    "python -B -W error -m pytest -q -p no:cacheprovider",
+    "python -B -W error run.py --input inputs.json --output fresh-output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-24-r2/maxwell-grazing/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "dispersive-grazing-pml"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-24-r2/maxwell-grazing/results/dispersive-grazing-pml-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-24-r2/maxwell-grazing/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "dispersive-grazing-pml",
+      "url": "/numerical-methods-atlas/validation/dispersive-grazing-pml/",
+      "name": {
+        "ja": "分散媒質の浅い入射角と長時間PML",
+        "en": "Long-time grazing PML in a dispersive medium"
+      }
+    }
+  ]
+}

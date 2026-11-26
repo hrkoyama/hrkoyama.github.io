@@ -1,0 +1,19 @@
+{
+  "id": "poisson-2d-localized",
+  "group": "elliptic",
+  "name": {
+    "ja": "2次元Poisson・局在ソース",
+    "en": "2D Poisson / localized source"
+  },
+  "chapter": "elliptic",
+  "evidence": [
+    {
+      "path": "numerical-methods-atlas/assets/poisson-comparison/comparison.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "localized"
+      }
+    }
+  ],
+  "availability": "saved-output"
+}

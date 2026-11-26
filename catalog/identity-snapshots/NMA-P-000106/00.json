@@ -1,0 +1,44 @@
+{
+  "id": "opposing-beams2d",
+  "group": "transport",
+  "name": {
+    "ja": "2D反向beamとM1閉包の情報損失",
+    "en": "Opposing beams and information loss in the M1 closure"
+  },
+  "chapter": "validation-radiation-geometry",
+  "reading_section": "opposing-beams2d",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-24/radiation-geometry/",
+  "verification": "/code/validated-examples/2026-11-24/radiation-geometry/verification.json",
+  "commands": [
+    "python -W error -m pytest -q -p no:cacheprovider",
+    "python -W error run.py --input inputs.json --output output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-24/radiation-geometry/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "opposing-beams2d"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-24/radiation-geometry/results/opposing-beams2d-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-24/radiation-geometry/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "opposing-beams2d",
+      "url": "/numerical-methods-atlas/validation/opposing-beams2d/",
+      "name": {
+        "ja": "2D反向beamとM1閉包の情報損失",
+        "en": "Opposing beams and information loss in the M1 closure"
+      }
+    }
+  ]
+}

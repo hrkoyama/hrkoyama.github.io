@@ -1,0 +1,44 @@
+{
+  "id": "lbm-cylinder-re20",
+  "group": "viscous",
+  "name": {
+    "ja": "LBMの実円柱Re20：Schäfer–Turek形状と明示出口",
+    "en": "Actual LBM cylinderRe20: Schäfer–Turek geometry anddeclared outlet"
+  },
+  "chapter": "validation-lbm-curved-boundary",
+  "reading_section": "lbm-cylinder-re20",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-24/lbm-curved-boundary/",
+  "verification": "/code/validated-examples/2026-11-24/lbm-curved-boundary/verification.json",
+  "commands": [
+    "python -W error -m pytest -q -p no:cacheprovider",
+    "python -W error run.py --input inputs.json --output output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-24/lbm-curved-boundary/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "lbm-cylinder-re20"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-24/lbm-curved-boundary/results/lbm-cylinder-re20-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-24/lbm-curved-boundary/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "lbm-cylinder-re20",
+      "url": "/numerical-methods-atlas/validation/lbm-cylinder-re20/",
+      "name": {
+        "ja": "LBMの実円柱Re20：Schäfer–Turek形状と明示出口",
+        "en": "Actual LBM cylinderRe20: Schäfer–Turek geometry anddeclared outlet"
+      }
+    }
+  ]
+}

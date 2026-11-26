@@ -1,0 +1,44 @@
+{
+  "id": "spline-shape-controls",
+  "group": "approximation",
+  "name": {
+    "ja": "自然・端点微分指定スプラインとPCHIP",
+    "en": "Natural and clamped splines versus PCHIP"
+  },
+  "chapter": "validation-approximation-controls",
+  "reading_section": "spline-shape-controls",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-25/approximation-controls/",
+  "verification": "/code/validated-examples/2026-11-25/approximation-controls/verification.json",
+  "commands": [
+    "python -B -W error -m pytest -q -p no:cacheprovider",
+    "python -B -W error run.py --input inputs.json --output fresh-output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-25/approximation-controls/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "spline-shape-controls"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-25/approximation-controls/results/spline-shape-controls-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-25/approximation-controls/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "spline-shape-controls",
+      "url": "/numerical-methods-atlas/validation/spline-shape-controls/",
+      "name": {
+        "ja": "自然・端点微分指定スプラインとPCHIP",
+        "en": "Natural and clamped splines versus PCHIP"
+      }
+    }
+  ]
+}

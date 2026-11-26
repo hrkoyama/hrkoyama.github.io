@@ -1,0 +1,45 @@
+{
+  "id": "bratu-noise-regularization",
+  "group": "differentiation-inverse",
+  "name": {
+    "ja": "雑音・モデル差と有限γ経路の正則化",
+    "en": "Noise, model discrepancy and finite gamma paths"
+  },
+  "chapter": "validation-inverse-optimization",
+  "reading_section": "bratu-noise-regularization",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-24/inverse-optimization/",
+  "verification": "/code/validated-examples/2026-11-24/inverse-optimization/verification.json",
+  "commands": [
+    "python -B -W error -m pytest -q -p no:cacheprovider",
+    "python -B -W error run.py --input inputs.json --output fresh-output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-24/inverse-optimization/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "bratu-noise-regularization"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-24/inverse-optimization/results/bratu-noise-regularization-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-24/inverse-optimization/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "bratu-noise-regularization",
+      "url": "/numerical-methods-atlas/validation/bratu-noise-regularization/",
+      "name": {
+        "ja": "雑音・モデル差と有限γ経路の正則化",
+        "en": "Noise, model discrepancy and finite gamma paths"
+      }
+    }
+  ],
+  "parent_problem_id": "bratu"
+}

@@ -1,0 +1,44 @@
+{
+  "id": "thermal-two-stream",
+  "group": "kinetic",
+  "name": {
+    "ja": "温かいPICの二流初期成長",
+    "en": "Warm PIC two-stream initial growth"
+  },
+  "chapter": "validation-warm-pic",
+  "reading_section": "thermal-two-stream",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-23/warm-pic/",
+  "verification": "/code/validated-examples/2026-11-23/warm-pic/verification.json",
+  "commands": [
+    "python -W error -m pytest -q -p no:cacheprovider",
+    "python -W error run.py --input inputs.json --output output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-23/warm-pic/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "thermal-two-stream"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/warm-pic/results/thermal-two-stream-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/warm-pic/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "thermal-two-stream",
+      "url": "/numerical-methods-atlas/validation/thermal-two-stream/",
+      "name": {
+        "ja": "温かいPICの二流初期成長",
+        "en": "Warm PIC two-stream initial growth"
+      }
+    }
+  ]
+}

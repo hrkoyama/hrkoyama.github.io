@@ -1,0 +1,44 @@
+{
+  "id": "kh-initial-growth",
+  "group": "viscous",
+  "name": {
+    "ja": "KHの初期成長：滑らかな周期せん断層",
+    "en": "KH initial growth in a smooth periodic shear layer"
+  },
+  "chapter": "validation-instability-growth",
+  "reading_section": "kh-initial-growth",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-23-r2/instability-growth/",
+  "verification": "/code/validated-examples/2026-11-23-r2/instability-growth/verification.json",
+  "commands": [
+    "python -W error -m pytest -q",
+    "python -W error run.py --input inputs.json --output output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-23/instability-growth/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "kh-initial-growth"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/instability-growth/results/kh-initial-growth-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/instability-growth/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "kh-initial-growth",
+      "url": "/numerical-methods-atlas/validation/kh-initial-growth/",
+      "name": {
+        "ja": "KHの初期成長：滑らかな周期せん断層",
+        "en": "KH initial growth in a smooth periodic shear layer"
+      }
+    }
+  ]
+}

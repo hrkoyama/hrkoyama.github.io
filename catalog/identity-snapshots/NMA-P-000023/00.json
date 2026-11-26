@@ -1,0 +1,26 @@
+{
+  "id": "circular-alfven",
+  "group": "mhd",
+  "name": {
+    "ja": "円偏波Alfvén波",
+    "en": "Circularly polarized Alfvén wave"
+  },
+  "chapter": "mhd",
+  "evidence": [
+    {
+      "path": "numerical-methods-atlas/assets/mhd-tests/mhd-tests.json",
+      "json_pointer": "/alfven"
+    }
+  ],
+  "availability": "saved-output",
+  "supplemental_examples": [
+    {
+      "id": "circular-alfven-refinement",
+      "url": "/numerical-methods-atlas/validation/circular-alfven-refinement/",
+      "name": {
+        "ja": "円偏波Alfvén波：全成分の格子収束",
+        "en": "Circular Alfven wave: full-state refinement"
+      }
+    }
+  ]
+}

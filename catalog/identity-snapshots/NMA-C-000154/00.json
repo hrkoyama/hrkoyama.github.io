@@ -1,0 +1,252 @@
+{
+  "name": {
+    "ja": "滑らかな関数：Legendre射影とGLL補間",
+    "en": "Smooth function: Legendre projection and GLL interpolation"
+  },
+  "scope": {
+    "ja": "exp(x)を次数2/4/6/8でL2射影し、同じ次数のGLL節点補間と比較する。実装の32点Gaussとは別の64/96点求積と独立Legendre再帰式で係数・直交性・誤差を確認する。",
+    "en": "L2-project exp(x) at degrees 2/4/6/8 and compare GLL interpolation at the same degrees. Check coefficients, orthogonality and errors using separate 64/96-point rules and an independent Legendre recurrence, versus 32-point projection quadrature."
+  },
+  "assumptions": {
+    "ja": "参照区間[−1,1]、重み1のLegendre内積。GLLはp+1節点。高次求積の一致を参照精度の補助検査とし、一般関数の厳密積分とは主張しない。出力201点は誤差積分用の求積点とは別。",
+    "en": "Reference interval [−1,1] and unit-weight Legendre inner product; GLL has p+1 nodes. Agreement of higher-order rules supports reference accuracy but is not an exact-integration claim for arbitrary functions. The 201 output points are separate from error quadrature."
+  },
+  "units": {
+    "ja": "参照座標ξとexp(ξ)は無次元。L2誤差は重み1の区間積分から計算する。",
+    "en": "Dimensionless reference coordinate ξ and exp(ξ); L2 errors use unit-weight interval integration."
+  },
+  "boundaries": {
+    "ja": "補間・射影の問題で物理境界条件はない。GLLの端点節点はPDE境界の施行を意味しない。",
+    "en": "An interpolation/projection problem without physical boundary conditions; GLL endpoint nodes do not enforce a PDE boundary."
+  },
+  "method_ids": [
+    "legendre-basis",
+    "nodal-basis"
+  ],
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/basis-functions/",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/basis-functions/"
+  },
+  "references": [
+    {
+      "type": "analytic-function-and-quadrature",
+      "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/smooth-function-projection/result.json",
+      "description": {
+        "ja": "CSVは次数ごとに201点、各行で射影値・GLL補間値・exp(x)を整列。次数別L2誤差、係数差、直交性残差、64/96点求積の差はJSONに記録する。",
+        "en": "CSV provides 201 aligned projection/interpolation/exp(x) rows per degree. JSON records degree-wise L2 errors, coefficient differences, orthogonality and 64/96-point quadrature agreement."
+      }
+    },
+    {
+      "type": "analytic-function-and-quadrature",
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/basis-functions/",
+      "description": {
+        "ja": "exp(x)を直接評価し、異なる高次求積と独立の三項再帰でモード係数を求め直す。射影自身の求積値の再利用による自明な一致ではない。",
+        "en": "Direct exp(x) evaluation plus different high-order quadrature and a separate three-term recurrence recompute modal coefficients; the reference does not reuse the projection's own quadrature."
+      }
+    },
+    {
+      "type": "primary-publication",
+      "url": "https://doi.org/10.1016/j.jcp.2014.12.012",
+      "description": {
+        "ja": "既存基底項目のLegendreモード・GLL節点表現の文献。多項式基底の歴史的起源の主張には用いない。",
+        "en": "Existing basis-method reference for Legendre modal and GLL nodal formulations, without a historical-origin claim."
+      }
+    }
+  ],
+  "failure_scope": {
+    "ja": "exp(x)・GLL・次数増加・参照求積を固定し、非有限値や不適切な次数・参照求積数を拒否。不連続関数、高次数での安定性、曲線要素やPDE全体の検証ではない。解説本文は現在英語版。",
+    "en": "Fix exp(x), GLL, degree refinement and reference quadrature; reject nonfinite/invalid degrees or inadequate reference rules. Not validation for discontinuities, high-degree stability, curved elements or a full PDE. The current reading is English only."
+  },
+  "reference_notes": {
+    "ja": "CSVは次数ごとに201点、各行で射影値・GLL補間値・exp(x)を整列。次数別L2誤差、係数差、直交性残差、64/96点求積の差はJSONに記録する。",
+    "en": "CSV provides 201 aligned projection/interpolation/exp(x) rows per degree. JSON records degree-wise L2 errors, coefficient differences, orthogonality and 64/96-point quadrature agreement."
+  },
+  "id": "smooth-function-projection",
+  "problem_id": "smooth-function-projection",
+  "release": {
+    "family": "numerical-methods-atlas",
+    "version": "2026-11-22",
+    "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip",
+    "sha256": "15c8c9c26cebc37b1e0c2923f91db456f8c9d157a48618f154f4b9bb39010fd7",
+    "manifest": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/source-manifest.json",
+    "manifest_sha256": "386b12c0b88cfd27ac9921d7b00d34e72bee3c0ae43b11eb174b01528a6195f8",
+    "verification": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/verification.json",
+    "archive_directory": "atlas-code-2026-11-22"
+  },
+  "execution_group": "smooth-function-projection",
+  "shared_runner_cases": [
+    "smooth-function-projection"
+  ],
+  "terms": {
+    "code": "MIT",
+    "code_license": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/LICENSE",
+    "content_and_data": "https://hrkoyama.github.io/rights/",
+    "scope": {
+      "ja": "自作コードはMIT。入力・数値データ・図・本文はサイトの個別条件に従います。この台帳は利用許諾を拡大しません。",
+      "en": "Original code is MIT. Inputs, numerical data, figures and prose retain the site’s item-specific terms. This registry does not expand reuse permissions."
+    }
+  },
+  "inputs": {
+    "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/recipes/smooth-function-projection.json",
+    "sha256": "97e6d8f9819e62d2c16e99a7364e05526cbed382d0615f63d73596f512c2b7ea",
+    "path": "recipes/smooth-function-projection.json"
+  },
+  "dependencies": {
+    "core": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/requirements.txt",
+    "testing": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/requirements.txt",
+    "plotting": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/requirements.txt"
+  },
+  "commands": {
+    "install": "python -m pip install -r requirements.txt",
+    "run": "python run_recipe.py --input recipes/smooth-function-projection.json --output output-smooth-function-projection",
+    "tests": "python -m pytest -q tests/test_recipes.py",
+    "run_argv": [
+      "python",
+      "run_recipe.py",
+      "--input",
+      "recipes/smooth-function-projection.json",
+      "--output",
+      "{output}"
+    ],
+    "tests_argv": [
+      "python",
+      "-m",
+      "pytest",
+      "-q",
+      "tests/test_recipes.py"
+    ]
+  },
+  "outputs": [
+    {
+      "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/smooth-function-projection/result.json",
+      "sha256": "01bb01058f8560c7faed4f894a4dad0502063030f8d3dfcdfcfbdccd03b83b88",
+      "path": "reference/smooth-function-projection/result.json",
+      "id": "results",
+      "format": "json",
+      "generated_path": "result.json"
+    },
+    {
+      "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/smooth-function-projection/solution.csv",
+      "sha256": "daaafe581284177c87cfa7da6449f2aa697fdeb74c4aae28744a0e2e74305a08",
+      "path": "reference/smooth-function-projection/solution.csv",
+      "id": "solution",
+      "format": "csv",
+      "generated_path": "solution.csv"
+    }
+  ],
+  "checks": [
+    {
+      "id": "projection-l2-error",
+      "comparison": "maximum",
+      "tolerance": 2e-08,
+      "description": {
+        "ja": "exp(x)の8次L2射影の値誤差。高次モードの既知の急減に基づく保守的上限。",
+        "en": "Value error of degree-eight L2 projection of exp(x), with a conservative bound for rapidly decaying smooth-function modes."
+      },
+      "pointer": "/metrics/finest_projection_l2_error"
+    },
+    {
+      "id": "interpolation-l2-error",
+      "comparison": "maximum",
+      "tolerance": 5e-08,
+      "description": {
+        "ja": "同じ8次GLL節点補間を別の高次求積で評価する。",
+        "en": "Degree-eight GLL interpolation evaluated using separate higher-order quadrature."
+      },
+      "pointer": "/metrics/finest_gll_interpolation_l2_error"
+    },
+    {
+      "id": "projection-degree-refinement",
+      "comparison": "minimum",
+      "tolerance": 10,
+      "description": {
+        "ja": "次数を2ずつ上げたとき射影誤差が少なくとも10分の1になる。",
+        "en": "Projection error falls by at least a factor ten for each two-degree increase."
+      },
+      "pointer": "/metrics/minimum_projection_error_reduction"
+    },
+    {
+      "id": "interpolation-degree-refinement",
+      "comparison": "minimum",
+      "tolerance": 10,
+      "description": {
+        "ja": "次数を2ずつ上げたとき補間誤差が少なくとも10分の1になる。",
+        "en": "Interpolation error falls by at least a factor ten for each two-degree increase."
+      },
+      "pointer": "/metrics/minimum_interpolation_error_reduction"
+    },
+    {
+      "id": "independent-modal-coefficients",
+      "comparison": "maximum",
+      "tolerance": 1e-11,
+      "description": {
+        "ja": "独立のLegendre再帰式と96点求積による係数との一致。射影と同じ求積を繰り返さない。",
+        "en": "Agreement with coefficients from a separate Legendre recurrence and 96-point quadrature, not repeated projection quadrature."
+      },
+      "pointer": "/metrics/maximum_independent_coefficient_difference"
+    },
+    {
+      "id": "projection-orthogonality",
+      "comparison": "maximum",
+      "tolerance": 1e-12,
+      "description": {
+        "ja": "残差とP0からPpの内積を高次求積で評価し、L2射影の直交性を確認する。",
+        "en": "Higher-order quadrature checks residual orthogonality against P0 through Pp."
+      },
+      "pointer": "/metrics/maximum_projection_orthogonality_defect"
+    },
+    {
+      "id": "quadrature-reference-agreement",
+      "comparison": "maximum",
+      "tolerance": 1e-12,
+      "description": {
+        "ja": "64点と96点求積でL2誤差の評価が一致し、参照求積の不足を検知する。",
+        "en": "L2-error estimates agree between 64- and 96-point rules, detecting inadequate reference quadrature."
+      },
+      "pointer": "/metrics/maximum_reference_quadrature_disagreement"
+    },
+    {
+      "id": "all-criteria",
+      "pointer": "/checks",
+      "comparison": "all_true",
+      "description": {
+        "ja": "全数値条件の判定",
+        "en": "All numerical acceptance flags"
+      }
+    },
+    {
+      "id": "input-provenance",
+      "pointer": "/input_sha256",
+      "comparison": "equals",
+      "expected": "97e6d8f9819e62d2c16e99a7364e05526cbed382d0615f63d73596f512c2b7ea",
+      "description": {
+        "ja": "実行した固定入力のSHA-256",
+        "en": "SHA-256 of the executed fixed input"
+      }
+    },
+    {
+      "id": "case-passed",
+      "pointer": "/passed",
+      "comparison": "equals",
+      "expected": true,
+      "description": {
+        "ja": "入力に記載した条件の合格",
+        "en": "Acceptance conditions in the input passed"
+      }
+    }
+  ],
+  "expected_failures": [],
+  "reference_type": "analytic-function-and-quadrature",
+  "citation": {
+    "creator": "Hiroshi Koyama",
+    "title": {
+      "ja": "滑らかな関数：Legendre射影とGLL補間",
+      "en": "Smooth function: Legendre projection and GLL interpolation"
+    },
+    "version": "2026-11-22",
+    "url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#smooth-function-projection-en",
+    "method_publications": [
+      "https://doi.org/10.1016/j.jcp.2014.12.012"
+    ]
+  }
+}

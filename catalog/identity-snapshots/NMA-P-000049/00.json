@@ -1,0 +1,44 @@
+{
+  "id": "gk15-double-exponential",
+  "group": "approximation",
+  "name": {
+    "ja": "G7/K15と有限区間tanh-sinh",
+    "en": "G7/K15 and finite-interval tanh-sinh"
+  },
+  "chapter": "validation-quadrature-controls",
+  "reading_section": "gk15-double-exponential",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-25/quadrature-controls/",
+  "verification": "/code/validated-examples/2026-11-25/quadrature-controls/verification.json",
+  "commands": [
+    "python -B -W error -m pytest -q -p no:cacheprovider",
+    "python -B -W error run.py --input inputs.json --output fresh-output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-25/quadrature-controls/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "gk15-double-exponential"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-25/quadrature-controls/results/gk15-double-exponential-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-25/quadrature-controls/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "gk15-double-exponential",
+      "url": "/numerical-methods-atlas/validation/gk15-double-exponential/",
+      "name": {
+        "ja": "G7/K15と有限区間tanh-sinh",
+        "en": "G7/K15 and finite-interval tanh-sinh"
+      }
+    }
+  ]
+}

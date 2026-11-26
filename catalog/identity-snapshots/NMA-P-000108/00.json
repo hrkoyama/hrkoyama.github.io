@@ -1,0 +1,27 @@
+{
+  "id": "periodic-he-dft",
+  "group": "quantum",
+  "name": {
+    "ja": "周期HeのKS-LDA：Γ点・kメッシュ・基底・SCF",
+    "en": "Periodic-He KS-LDA: Gamma, k meshes, basis and SCF"
+  },
+  "chapter": "periodic-dft",
+  "reading_section": "measured-results",
+  "availability": "saved-output",
+  "code_base": "/code/periodic-dft/2026-11-22/",
+  "verification": "/code/periodic-dft/2026-11-22/verification.json",
+  "commands": [
+    "python -m pytest -q test_periodic_dft.py",
+    "python run.py --input inputs.json --output output"
+  ],
+  "evidence": [
+    {
+      "path": "code/periodic-dft/2026-11-22/results/result.json",
+      "json_pointer": "/metrics"
+    },
+    {
+      "path": "code/periodic-dft/2026-11-22/test_periodic_dft.py",
+      "python_symbol": "test_fixed_input_validation"
+    }
+  ]
+}

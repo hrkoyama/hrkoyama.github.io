@@ -1,0 +1,45 @@
+{
+  "id": "bratu-fold-continuation",
+  "group": "elliptic",
+  "name": {
+    "ja": "擬似弧長継続でBratuのfoldを越える",
+    "en": "Crossing the Bratu fold with pseudo-arclength continuation"
+  },
+  "chapter": "validation-bratu-continuation-jfnk",
+  "reading_section": "bratu-fold-continuation",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/",
+  "verification": "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/verification.json",
+  "commands": [
+    "python -B -W error -m pytest -q -p no:cacheprovider",
+    "python -B -W error run.py --input inputs.json --output fresh-output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "bratu-fold-continuation"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/results/bratu-fold-continuation-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "bratu-fold-continuation",
+      "url": "/numerical-methods-atlas/validation/bratu-fold-continuation/",
+      "name": {
+        "ja": "擬似弧長継続でBratuのfoldを越える",
+        "en": "Crossing the Bratu fold with pseudo-arclength continuation"
+      }
+    }
+  ],
+  "parent_problem_id": "bratu"
+}

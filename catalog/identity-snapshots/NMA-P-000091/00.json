@@ -1,0 +1,67 @@
+{
+  "id": "matrix-factorization",
+  "group": "approximation",
+  "name": {
+    "ja": "Householder QRと片側Jacobi SVD：直交性・階数・最小二乗",
+    "en": "Householder QR and one-sided Jacobi SVD: orthogonality, rank and least squares"
+  },
+  "chapter": "validation-foundations",
+  "reading_section": "qr-svd-factorization",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-22/foundations/",
+  "verification": "/code/validated-examples/2026-11-22/foundations/verification.json",
+  "commands": [
+    "python -m pytest -q",
+    "python run.py --input inputs.json --output output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-22/foundations/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "qr-svd-factorization"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/foundations/results/qr-svd-factorization.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/foundations/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/foundations-conditioning/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "qr-svd-conditioning"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/foundations-conditioning/results/qr-svd-conditioning.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/foundations-conditioning/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "qr-svd-factorization",
+      "url": "/numerical-methods-atlas/validation/qr-svd-factorization/",
+      "name": {
+        "ja": "Householder QRと片側Jacobi SVD：直交性・階数・最小二乗",
+        "en": "Householder QR and one-sided Jacobi SVD: orthogonality, rank and least squares"
+      }
+    },
+    {
+      "id": "qr-svd-conditioning",
+      "url": "/numerical-methods-atlas/validation/qr-svd-conditioning/",
+      "name": {
+        "ja": "QR/SVD：既定特異値・摂動増幅・数値階数",
+        "en": "QR/SVD: prescribed spectra, perturbation gain and numerical rank"
+      }
+    }
+  ]
+}

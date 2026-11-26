@@ -1,0 +1,30 @@
+{
+  "id": "double-rarefaction",
+  "group": "fluid",
+  "name": {
+    "ja": "Euler二重膨張波",
+    "en": "Euler double rarefaction"
+  },
+  "chapter": "benchmarks",
+  "evidence": [
+    {
+      "path": "code/numerical-methods-atlas/2026-11-21/tests/test_numerics.py",
+      "python_symbol": "test_benchmark_default_horizon_smoke"
+    },
+    {
+      "path": "numerical-methods-atlas/gallery/calculations.json",
+      "json_pointer": "/cases/double-rarefaction"
+    }
+  ],
+  "availability": "saved-output",
+  "supplemental_examples": [
+    {
+      "id": "euler-double-rarefaction-positivity",
+      "url": "/numerical-methods-atlas/validation/euler-double-rarefaction-positivity/",
+      "name": {
+        "ja": "Euler二重膨張波：段階ごとの正値性",
+        "en": "Euler double rarefaction: positivity at every stage"
+      }
+    }
+  ]
+}

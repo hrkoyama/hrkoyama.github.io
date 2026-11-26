@@ -1,0 +1,20 @@
+{
+  "id": "entropy-1d",
+  "group": "fluid",
+  "name": {
+    "ja": "1次元Eulerエントロピー波",
+    "en": "One-dimensional Euler entropy wave"
+  },
+  "chapter": "experiments",
+  "evidence": [
+    {
+      "path": "numerical-methods-atlas/experiments.json",
+      "json_pointer": "/entropy"
+    },
+    {
+      "path": "numerical-methods-atlas/assets/validation.json",
+      "json_pointer": "/metrics/entropy_weno5_density_L1"
+    }
+  ],
+  "availability": "saved-output"
+}

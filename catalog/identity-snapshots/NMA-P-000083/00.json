@@ -1,0 +1,66 @@
+{
+  "id": "level-set-circle",
+  "group": "transport",
+  "name": {
+    "ja": "レベルセットで表した円の移流",
+    "en": "Advection of a level-set circle"
+  },
+  "chapter": "level-set",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-23/level-set/",
+  "verification": "/code/validated-examples/2026-11-23/level-set/verification.json",
+  "commands": [
+    "python -m pytest -q",
+    "python run.py --input inputs.json --output output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-23/level-set/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "level-set-translation"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/level-set/inputs.json",
+      "json_pointer": "/cases/level-set-translation"
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/level-set/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "level-set-rotation"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/level-set/inputs.json",
+      "json_pointer": "/cases/level-set-rotation"
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/level-set/results/level-set-overview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/level-set/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "level-set-translation",
+      "url": "/numerical-methods-atlas/validation/level-set-translation/",
+      "name": {
+        "ja": "レベルセット円の2D平行移動：界面・面積・再初期化",
+        "en": "2D level-set circle translation: interface, area and redistancing"
+      }
+    },
+    {
+      "id": "level-set-rotation",
+      "url": "/numerical-methods-atlas/validation/level-set-rotation/",
+      "name": {
+        "ja": "偏心したレベルセット円の2D剛体回転",
+        "en": "2D rigid rotation of an off-center level-set circle"
+      }
+    }
+  ]
+}

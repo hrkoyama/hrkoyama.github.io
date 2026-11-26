@@ -1,0 +1,52 @@
+{
+  "id": "high-index-pendulum",
+  "group": "time",
+  "name": {
+    "ja": "拘束付き振り子",
+    "en": "Constrained planar pendulum"
+  },
+  "chapter": "validation-dae-controls",
+  "reading_section": "high-index-pendulum",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-24/dae-controls/",
+  "verification": "/code/validated-examples/2026-11-24/dae-controls/verification.json",
+  "commands": [
+    "python -B -W error -m pytest -q -p no:cacheprovider",
+    "python -B -W error run.py --input inputs.json --output fresh-output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-24/dae-controls/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "high-index-pendulum"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-24/dae-controls/results/high-index-pendulum-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-24/dae-controls/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "high-index-pendulum",
+      "url": "/numerical-methods-atlas/validation/high-index-pendulum/",
+      "name": {
+        "ja": "振り子の指数低減・拘束ドリフト・明示安定化",
+        "en": "Index reduction, constraint drift and explicit stabilization for a pendulum"
+      }
+    },
+    {
+      "id": "shake-rattle-pendulum",
+      "url": "/numerical-methods-atlas/validation/shake-rattle-pendulum/",
+      "name": {
+        "ja": "SHAKEとRATTLE：拘束と運動量の違い",
+        "en": "SHAKE and RATTLE: constraints and momentum ownership"
+      }
+    }
+  ]
+}

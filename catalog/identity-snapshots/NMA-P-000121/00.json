@@ -1,0 +1,20 @@
+{
+  "id": "poisson-3d-periodic",
+  "group": "elliptic",
+  "name": {
+    "ja": "3次元周期Poisson・Fourier製造解",
+    "en": "3D periodic Poisson / Fourier manufactured solution"
+  },
+  "chapter": "particle-gravity",
+  "evidence": [
+    {
+      "path": "numerical-methods-atlas/assets/multidimensional-fields.json",
+      "json_pointer": "/poisson3d"
+    },
+    {
+      "path": "numerical-methods-atlas/assets/particle-gravity.json",
+      "json_pointer": "/periodic_pm/manufactured_potential_max_error"
+    }
+  ],
+  "availability": "saved-output"
+}

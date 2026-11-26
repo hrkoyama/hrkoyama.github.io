@@ -1,0 +1,67 @@
+{
+  "id": "krylov-spectrum",
+  "group": "approximation",
+  "name": {
+    "ja": "Lanczos・Arnoldi：Ritz値と固有対残差の収束",
+    "en": "Lanczos and Arnoldi: convergence of Ritz values and eigenpair residuals"
+  },
+  "chapter": "validation-foundations",
+  "reading_section": "krylov-eigenvalues",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-22/foundations/",
+  "verification": "/code/validated-examples/2026-11-22/foundations/verification.json",
+  "commands": [
+    "python -m pytest -q",
+    "python run.py --input inputs.json --output output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-22/foundations/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "krylov-eigenvalues"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/foundations/results/krylov-eigenvalues.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/foundations/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/foundations-conditioning/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "krylov-eigen-conditioning"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/foundations-conditioning/results/krylov-eigen-conditioning.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/foundations-conditioning/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "krylov-eigenvalues",
+      "url": "/numerical-methods-atlas/validation/krylov-eigenvalues/",
+      "name": {
+        "ja": "Lanczos・Arnoldi：Ritz値と固有対残差の収束",
+        "en": "Lanczos and Arnoldi: convergence of Ritz values and eigenpair residuals"
+      }
+    },
+    {
+      "id": "krylov-eigen-conditioning",
+      "url": "/numerical-methods-atlas/validation/krylov-eigen-conditioning/",
+      "name": {
+        "ja": "Krylov固有値：クラスター部分空間と非正規感度",
+        "en": "Krylov eigenvalues: cluster subspaces and nonnormal sensitivity"
+      }
+    }
+  ]
+}

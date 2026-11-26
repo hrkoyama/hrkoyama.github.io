@@ -1,0 +1,44 @@
+{
+  "id": "shadow-absorber2d",
+  "group": "transport",
+  "name": {
+    "ja": "2D吸収影と保存的M1輸送",
+    "en": "Two-dimensional absorber shadow and M1 transport"
+  },
+  "chapter": "validation-radiation-geometry",
+  "reading_section": "shadow-absorber2d",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-24/radiation-geometry/",
+  "verification": "/code/validated-examples/2026-11-24/radiation-geometry/verification.json",
+  "commands": [
+    "python -W error -m pytest -q -p no:cacheprovider",
+    "python -W error run.py --input inputs.json --output output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-24/radiation-geometry/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "shadow-absorber2d"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-24/radiation-geometry/results/shadow-absorber2d-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-24/radiation-geometry/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "shadow-absorber2d",
+      "url": "/numerical-methods-atlas/validation/shadow-absorber2d/",
+      "name": {
+        "ja": "2D吸収影と保存的M1輸送",
+        "en": "Two-dimensional absorber shadow and M1 transport"
+      }
+    }
+  ]
+}

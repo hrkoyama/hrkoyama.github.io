@@ -1,0 +1,44 @@
+{
+  "id": "lorentz-oblique-sp",
+  "group": "electromagnetics",
+  "name": {
+    "ja": "Lorentz分散板へのs/p斜め入射",
+    "en": "Oblique s/p incidence on a Lorentz-dispersive slab"
+  },
+  "chapter": "validation-maxwell-lorentz",
+  "reading_section": "lorentz-oblique-sp",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-24-r2/maxwell-lorentz/",
+  "verification": "/code/validated-examples/2026-11-24-r2/maxwell-lorentz/verification.json",
+  "commands": [
+    "python -B -W error -m pytest -q -p no:cacheprovider",
+    "python -B -W error run.py --input inputs.json --output fresh-output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-24-r2/maxwell-lorentz/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "lorentz-oblique-sp"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-24-r2/maxwell-lorentz/results/lorentz-oblique-sp-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-24-r2/maxwell-lorentz/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "lorentz-oblique-sp",
+      "url": "/numerical-methods-atlas/validation/lorentz-oblique-sp/",
+      "name": {
+        "ja": "Lorentz分散板へのs/p斜め入射",
+        "en": "Oblique s/p incidence on a Lorentz-dispersive slab"
+      }
+    }
+  ]
+}

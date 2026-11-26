@@ -1,0 +1,19 @@
+{
+  "id": "quartic-oscillator",
+  "group": "time",
+  "name": {
+    "ja": "4次ポテンシャルの非線形振動子",
+    "en": "Nonlinear quartic-potential oscillator"
+  },
+  "chapter": "symplectic",
+  "evidence": [
+    {
+      "path": "numerical-methods-atlas/hamiltonian.json",
+      "json_pointer": "/cases",
+      "where": {
+        "system": "quartic"
+      }
+    }
+  ],
+  "availability": "saved-output"
+}

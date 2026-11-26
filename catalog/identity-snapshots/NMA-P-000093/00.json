@@ -1,0 +1,27 @@
+{
+  "id": "mc-integral",
+  "group": "probability",
+  "name": {
+    "ja": "Monte Carlo：256 seedの積分誤差と区間被覆",
+    "en": "Monte Carlo: integral errors and interval coverage across 256 seeds"
+  },
+  "chapter": "monte-carlo",
+  "reading_section": "publication-scope",
+  "availability": "saved-output",
+  "code_base": "/code/model-benchmarks/2026-11-22/",
+  "verification": "/code/model-benchmarks/2026-11-22/verification.json",
+  "commands": [
+    "python -m pytest -q test_models.py",
+    "python run.py --input inputs/mc-integral.json --output output"
+  ],
+  "evidence": [
+    {
+      "path": "code/model-benchmarks/2026-11-22/results/mc-integral/result.json",
+      "json_pointer": "/metrics"
+    },
+    {
+      "path": "code/model-benchmarks/2026-11-22/test_models.py",
+      "python_symbol": "test_fixed_case"
+    }
+  ]
+}

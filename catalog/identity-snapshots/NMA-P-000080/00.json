@@ -1,0 +1,44 @@
+{
+  "id": "lbm-annular-couette-control",
+  "group": "viscous",
+  "name": {
+    "ja": "曲面LBMの環状Couette制御：速度・圧力・torque",
+    "en": "Curved LBM annular Couette control: velocity,pressure andtorque"
+  },
+  "chapter": "validation-lbm-annulus",
+  "reading_section": "lbm-annular-couette-control",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-24/lbm-annulus/",
+  "verification": "/code/validated-examples/2026-11-24/lbm-annulus/verification.json",
+  "commands": [
+    "python -W error -m pytest -q -p no:cacheprovider",
+    "python -W error run.py --input inputs.json --output output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-24/lbm-annulus/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "lbm-annular-couette-control"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-24/lbm-annulus/results/lbm-annular-couette-control-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-24/lbm-annulus/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "lbm-annular-couette-control",
+      "url": "/numerical-methods-atlas/validation/lbm-annular-couette-control/",
+      "name": {
+        "ja": "曲面LBMの環状Couette制御：速度・圧力・torque",
+        "en": "Curved LBM annular Couette control: velocity,pressure andtorque"
+      }
+    }
+  ]
+}

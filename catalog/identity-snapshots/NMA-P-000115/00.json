@@ -1,0 +1,20 @@
+{
+  "id": "poisson-1d-periodic",
+  "group": "elliptic",
+  "name": {
+    "ja": "1次元周期Poisson・擬似時間による定常解",
+    "en": "1D periodic Poisson / pseudo-time steady solution"
+  },
+  "chapter": "hyperbolic-diffusion",
+  "evidence": [
+    {
+      "path": "numerical-methods-atlas/assets/solver-foundations.json",
+      "json_pointer": "/hyperbolic_diffusion"
+    },
+    {
+      "path": "code/numerical-methods-atlas/2026-11-21/tests/test_new_models.py",
+      "python_symbol": "test_hyperbolic_diffusion_steady_refinement_and_failure"
+    }
+  ],
+  "availability": "saved-output"
+}

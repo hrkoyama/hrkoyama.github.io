@@ -1,0 +1,52 @@
+{
+  "id": "gravity-kepler",
+  "group": "gravity",
+  "name": {
+    "ja": "無軟化Kepler二体の時間誤差",
+    "en": "Unsoftened Kepler two-body time error"
+  },
+  "chapter": "validation-gravity-dynamics",
+  "reading_section": "gravity-kepler",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-23/gravity-dynamics/",
+  "verification": "/code/validated-examples/2026-11-23/gravity-dynamics/verification.json",
+  "commands": [
+    "python -W error -m pytest -q -p no:cacheprovider",
+    "python -W error run.py --input inputs.json --output output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-23/gravity-dynamics/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "gravity-kepler"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/gravity-dynamics/results/gravity-kepler-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/gravity-dynamics/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "gravity-kepler",
+      "url": "/numerical-methods-atlas/validation/gravity-kepler/",
+      "name": {
+        "ja": "無軟化Kepler二体の時間誤差",
+        "en": "Unsoftened Kepler two-body time error"
+      }
+    },
+    {
+      "id": "kepler-eccentricity",
+      "url": "/numerical-methods-atlas/validation/kepler-eccentricity/",
+      "name": {
+        "ja": "離心率を変えたKepler軌道と時間刻み",
+        "en": "Kepler eccentricity and time-step controls"
+      }
+    }
+  ]
+}

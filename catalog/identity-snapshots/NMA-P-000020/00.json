@@ -1,0 +1,44 @@
+{
+  "id": "cgrid-rotating-wave",
+  "group": "fluid",
+  "name": {
+    "ja": "2D C-grid回転浅水波の実時間発展",
+    "en": "Actual2D C-grid rotating shallow-water time advance"
+  },
+  "chapter": "validation-moving-waves",
+  "reading_section": "cgrid-rotating-wave",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-23/moving-waves/",
+  "verification": "/code/validated-examples/2026-11-23/moving-waves/verification.json",
+  "commands": [
+    "python -W error -m pytest -q",
+    "python -W error run.py --input inputs.json --output output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-23/moving-waves/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "cgrid-rotating-wave"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/moving-waves/results/cgrid-rotating-wave-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/moving-waves/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "cgrid-rotating-wave",
+      "url": "/numerical-methods-atlas/validation/cgrid-rotating-wave/",
+      "name": {
+        "ja": "2D C-grid回転浅水波の実時間発展",
+        "en": "Actual2D C-grid rotating shallow-water time advance"
+      }
+    }
+  ]
+}

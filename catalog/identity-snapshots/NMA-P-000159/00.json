@@ -1,0 +1,30 @@
+{
+  "id": "taylor-green",
+  "group": "viscous",
+  "name": {
+    "ja": "周期Taylor–Green渦",
+    "en": "Periodic Taylor–Green vortex"
+  },
+  "chapter": "incompressible",
+  "evidence": [
+    {
+      "path": "numerical-methods-atlas/assets/solver-foundations.json",
+      "json_pointer": "/mac"
+    },
+    {
+      "path": "numerical-methods-atlas/assets/multidimensional-fields.json",
+      "json_pointer": "/mac"
+    }
+  ],
+  "availability": "saved-output",
+  "supplemental_examples": [
+    {
+      "id": "lbm-taylor-green",
+      "url": "/numerical-methods-atlas/validation/lbm-taylor-green/",
+      "name": {
+        "ja": "LBM Taylor–Green渦：格子・刻み・Machの結合感度",
+        "en": "LBM Taylor–Green vortex: coupled grid/time/Mach sensitivity"
+      }
+    }
+  ]
+}

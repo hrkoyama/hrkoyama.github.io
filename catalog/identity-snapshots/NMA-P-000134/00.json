@@ -1,0 +1,44 @@
+{
+  "id": "rt-initial-growth",
+  "group": "viscous",
+  "name": {
+    "ja": "RTの初期成長：滑らかなBoussinesq二層",
+    "en": "RT initial growth in smooth Boussinesq double layers"
+  },
+  "chapter": "validation-instability-growth",
+  "reading_section": "rt-initial-growth",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-23-r2/instability-growth/",
+  "verification": "/code/validated-examples/2026-11-23-r2/instability-growth/verification.json",
+  "commands": [
+    "python -W error -m pytest -q",
+    "python -W error run.py --input inputs.json --output output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-23/instability-growth/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "rt-initial-growth"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/instability-growth/results/rt-initial-growth-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/instability-growth/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "rt-initial-growth",
+      "url": "/numerical-methods-atlas/validation/rt-initial-growth/",
+      "name": {
+        "ja": "RTの初期成長：滑らかなBoussinesq二層",
+        "en": "RT initial growth in smooth Boussinesq double layers"
+      }
+    }
+  ]
+}

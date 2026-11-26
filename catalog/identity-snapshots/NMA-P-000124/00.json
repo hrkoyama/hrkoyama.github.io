@@ -1,0 +1,44 @@
+{
+  "id": "projected-canonical-dof",
+  "group": "time",
+  "name": {
+    "ja": "拘束・重心除去と正準統計",
+    "en": "Constraints,centre-of-mass removal and canonical statistics"
+  },
+  "chapter": "validation-thermostat-constraint-controls",
+  "reading_section": "projected-canonical-dof",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-25/thermostat-constraint-controls/",
+  "verification": "/code/validated-examples/2026-11-25/thermostat-constraint-controls/verification.json",
+  "commands": [
+    "python -B -W error -m pytest -q -p no:cacheprovider",
+    "python -B -W error run.py --input inputs.json --output fresh-output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-25/thermostat-constraint-controls/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "projected-canonical-dof"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-25/thermostat-constraint-controls/results/projected-canonical-dof.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-25/thermostat-constraint-controls/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "projected-canonical-dof",
+      "url": "/numerical-methods-atlas/validation/projected-canonical-dof/",
+      "name": {
+        "ja": "拘束・重心除去と正準統計",
+        "en": "Constraints,centre-of-mass removal and canonical statistics"
+      }
+    }
+  ]
+}

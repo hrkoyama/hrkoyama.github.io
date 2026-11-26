@@ -1,0 +1,44 @@
+{
+  "id": "sph-pressure-acoustics",
+  "group": "kinetic",
+  "name": {
+    "ja": "一様圧力と線形音波：SPH/GSPHの粒子配置依存",
+    "en": "Uniform pressure and acoustics: particle-layout effects in SPH/GSPH"
+  },
+  "chapter": "validation-continuum-particle-controls",
+  "reading_section": "sph-pressure-acoustics",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-25/continuum-particle-controls/",
+  "verification": "/code/validated-examples/2026-11-25/continuum-particle-controls/verification.json",
+  "commands": [
+    "python -B -W error -m pytest -q -p no:cacheprovider test_components.py",
+    "python -B -W error run.py --input inputs.json --output fresh-output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-25/continuum-particle-controls/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "sph-pressure-acoustics"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-25/continuum-particle-controls/results/sph-pressure-acoustics.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-25/continuum-particle-controls/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "sph-pressure-acoustics",
+      "url": "/numerical-methods-atlas/validation/sph-pressure-acoustics/",
+      "name": {
+        "ja": "一様圧力と線形音波：SPH/GSPHの粒子配置依存",
+        "en": "Uniform pressure and acoustics: particle-layout effects in SPH/GSPH"
+      }
+    }
+  ]
+}

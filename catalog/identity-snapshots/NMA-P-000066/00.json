@@ -1,0 +1,44 @@
+{
+  "id": "index1-dae-consistent-initialization",
+  "group": "time",
+  "name": {
+    "ja": "index-1 DAEの整合初期化と離散残差",
+    "en": "Consistent initialization and discrete residuals for an index-one DAE"
+  },
+  "chapter": "validation-dae-controls",
+  "reading_section": "index1-dae-consistent-initialization",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-24/dae-controls/",
+  "verification": "/code/validated-examples/2026-11-24/dae-controls/verification.json",
+  "commands": [
+    "python -B -W error -m pytest -q -p no:cacheprovider",
+    "python -B -W error run.py --input inputs.json --output fresh-output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-24/dae-controls/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "index1-dae-consistent-initialization"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-24/dae-controls/results/index1-dae-consistent-initialization-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-24/dae-controls/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "index1-dae-consistent-initialization",
+      "url": "/numerical-methods-atlas/validation/index1-dae-consistent-initialization/",
+      "name": {
+        "ja": "index-1 DAEの整合初期化と離散残差",
+        "en": "Consistent initialization and discrete residuals for an index-one DAE"
+      }
+    }
+  ]
+}

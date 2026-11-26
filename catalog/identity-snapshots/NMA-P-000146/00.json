@@ -1,0 +1,20 @@
+{
+  "id": "sparse-advection-diffusion",
+  "group": "elliptic",
+  "name": {
+    "ja": "非対称移流拡散離散系の製造解",
+    "en": "Nonsymmetric advection-diffusion discrete manufactured system"
+  },
+  "chapter": "sparse-nonlinear",
+  "evidence": [
+    {
+      "path": "numerical-methods-atlas/assets/solver-foundations.json",
+      "json_pointer": "/krylov"
+    },
+    {
+      "path": "code/numerical-methods-atlas/2026-11-21/tests/test_sparse_fem.py",
+      "python_symbol": "test_nonsymmetric_solve_true_residual_and_error"
+    }
+  ],
+  "availability": "saved-output"
+}

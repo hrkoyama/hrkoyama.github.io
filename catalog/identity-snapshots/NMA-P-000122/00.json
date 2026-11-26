@@ -1,0 +1,44 @@
+{
+  "id": "poisson-neumann",
+  "group": "elliptic",
+  "name": {
+    "ja": "純Neumannの互換条件と平均値ゲージ",
+    "en": "Pure Neumann compatibility and mean gauge"
+  },
+  "chapter": "validation-mesh-boundary",
+  "reading_section": "poisson-neumann",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-23/mesh-boundary/",
+  "verification": "/code/validated-examples/2026-11-23/mesh-boundary/verification.json",
+  "commands": [
+    "python -W error -m pytest -q",
+    "python -W error run.py --input inputs.json --output output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-23/mesh-boundary/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "poisson-neumann"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/mesh-boundary/results/poisson-neumann-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/mesh-boundary/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "poisson-neumann",
+      "url": "/numerical-methods-atlas/validation/poisson-neumann/",
+      "name": {
+        "ja": "純Neumannの互換条件と平均値ゲージ",
+        "en": "Pure Neumann compatibility and mean gauge"
+      }
+    }
+  ]
+}

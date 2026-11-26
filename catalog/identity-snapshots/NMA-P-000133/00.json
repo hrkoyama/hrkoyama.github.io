@@ -1,0 +1,44 @@
+{
+  "id": "rotated-anisotropic-diffusion",
+  "group": "elliptic",
+  "name": {
+    "ja": "回転異方性拡散：完全テンソルQ1とMG・AMG",
+    "en": "Rotated diffusion: full-tensor Q1, MG and AMG"
+  },
+  "chapter": "validation-coefficient-diffusion",
+  "reading_section": "rotated-anisotropic-diffusion",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-23/coefficient-diffusion/",
+  "verification": "/code/validated-examples/2026-11-23/coefficient-diffusion/verification.json",
+  "commands": [
+    "python -W error -m pytest -q -p no:cacheprovider",
+    "python -W error run.py --input inputs.json --output output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-23/coefficient-diffusion/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "rotated-anisotropic-diffusion"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/coefficient-diffusion/results/rotated-anisotropic-diffusion-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/coefficient-diffusion/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "rotated-anisotropic-diffusion",
+      "url": "/numerical-methods-atlas/validation/rotated-anisotropic-diffusion/",
+      "name": {
+        "ja": "回転異方性拡散：完全テンソルQ1とMG・AMG",
+        "en": "Rotated diffusion: full-tensor Q1, MG and AMG"
+      }
+    }
+  ]
+}

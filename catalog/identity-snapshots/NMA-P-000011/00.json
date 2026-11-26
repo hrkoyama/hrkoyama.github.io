@@ -1,0 +1,45 @@
+{
+  "id": "bratu-distributed-vjp",
+  "group": "differentiation-inverse",
+  "name": {
+    "ja": "分布係数Bratuの行列非形成VJP",
+    "en": "Matrix-free VJP for distributed Bratu coefficients"
+  },
+  "chapter": "validation-adjoint",
+  "reading_section": "bratu-distributed-vjp",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-24/adjoint/",
+  "verification": "/code/validated-examples/2026-11-24/adjoint/verification.json",
+  "commands": [
+    "python -B -W error -m pytest -q -p no:cacheprovider",
+    "python -B -W error run.py --input inputs.json --output fresh-output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-24/adjoint/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "bratu-distributed-vjp"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-24/adjoint/results/bratu-distributed-vjp-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-24/adjoint/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "bratu-distributed-vjp",
+      "url": "/numerical-methods-atlas/validation/bratu-distributed-vjp/",
+      "name": {
+        "ja": "分布係数Bratuの行列非形成VJP",
+        "en": "Matrix-free VJP for distributed Bratu coefficients"
+      }
+    }
+  ],
+  "parent_problem_id": "bratu"
+}

@@ -1,0 +1,19 @@
+{
+  "id": "poisson-2d-broad",
+  "group": "elliptic",
+  "name": {
+    "ja": "2次元Poisson・広帯域の滑らかな製造解",
+    "en": "2D Poisson / broad smooth manufactured forcing"
+  },
+  "chapter": "elliptic",
+  "evidence": [
+    {
+      "path": "numerical-methods-atlas/assets/poisson-comparison/comparison.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "manufactured"
+      }
+    }
+  ],
+  "availability": "saved-output"
+}

@@ -1,0 +1,44 @@
+{
+  "id": "globalization-difficult-starts",
+  "group": "differentiation-inverse",
+  "name": {
+    "ja": "同じ難しい初期値に対する線探索と信頼領域",
+    "en": "Line search and trust regions from the same difficult starts"
+  },
+  "chapter": "validation-globalization-controls",
+  "reading_section": "globalization-difficult-starts",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-24/globalization-controls/",
+  "verification": "/code/validated-examples/2026-11-24/globalization-controls/verification.json",
+  "commands": [
+    "python -B -W error -m pytest -q -p no:cacheprovider",
+    "python -B -W error run.py --input inputs.json --output fresh-output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-24/globalization-controls/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "globalization-difficult-starts"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-24/globalization-controls/results/globalization-difficult-starts-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-24/globalization-controls/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "globalization-difficult-starts",
+      "url": "/numerical-methods-atlas/validation/globalization-difficult-starts/",
+      "name": {
+        "ja": "同じ難しい初期値に対する線探索と信頼領域",
+        "en": "Line search and trust regions from the same difficult starts"
+      }
+    }
+  ]
+}

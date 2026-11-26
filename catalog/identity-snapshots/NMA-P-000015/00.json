@@ -1,0 +1,45 @@
+{
+  "id": "bratu-matrix-free-jfnk",
+  "group": "elliptic",
+  "name": {
+    "ja": "解析・中央差分・方向ADによるJacobian不要Newton–Krylov",
+    "en": "Jacobian-free Newton–Krylov with analytic, central-FD and directional-AD products"
+  },
+  "chapter": "validation-bratu-continuation-jfnk",
+  "reading_section": "bratu-matrix-free-jfnk",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/",
+  "verification": "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/verification.json",
+  "commands": [
+    "python -B -W error -m pytest -q -p no:cacheprovider",
+    "python -B -W error run.py --input inputs.json --output fresh-output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "bratu-matrix-free-jfnk"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/results/bratu-matrix-free-jfnk-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "bratu-matrix-free-jfnk",
+      "url": "/numerical-methods-atlas/validation/bratu-matrix-free-jfnk/",
+      "name": {
+        "ja": "解析・中央差分・方向ADによるJacobian不要Newton–Krylov",
+        "en": "Jacobian-free Newton–Krylov with analytic, central-FD and directional-AD products"
+      }
+    }
+  ],
+  "parent_problem_id": "bratu"
+}

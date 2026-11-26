@@ -1,0 +1,44 @@
+{
+  "id": "schnakenberg-2d-boundary-modes",
+  "group": "biology",
+  "name": {
+    "ja": "Schnakenberg：2D境界と初期モード",
+    "en": "Schnakenberg:2D boundaries and initial modes"
+  },
+  "chapter": "validation-biology-space-controls",
+  "reading_section": "schnakenberg-2d-boundary-modes",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-25/biology-space-controls/",
+  "verification": "/code/validated-examples/2026-11-25/biology-space-controls/verification.json",
+  "commands": [
+    "python -B -W error -m pytest -q -p no:cacheprovider",
+    "python -B -W error run.py --input inputs.json --output fresh-output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-25/biology-space-controls/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "schnakenberg-2d-boundary-modes"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-25/biology-space-controls/results/schnakenberg-2d-boundary-modes.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-25/biology-space-controls/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "schnakenberg-2d-boundary-modes",
+      "url": "/numerical-methods-atlas/validation/schnakenberg-2d-boundary-modes/",
+      "name": {
+        "ja": "Schnakenberg：2D境界と初期モード",
+        "en": "Schnakenberg:2D boundaries and initial modes"
+      }
+    }
+  ]
+}

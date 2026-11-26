@@ -1,0 +1,20 @@
+{
+  "id": "poisson-1d-neumann",
+  "group": "elliptic",
+  "name": {
+    "ja": "1次元Poisson・純Neumann境界",
+    "en": "1D Poisson / pure Neumann boundaries"
+  },
+  "chapter": "elliptic",
+  "evidence": [
+    {
+      "path": "code/numerical-methods-atlas/2026-11-21/tests/test_linear.py",
+      "python_symbol": "test_neumann_compatibility_and_mean_gauge"
+    },
+    {
+      "path": "numerical-methods-atlas/gallery/calculations.json",
+      "json_pointer": "/cases/poisson-1d-neumann"
+    }
+  ],
+  "availability": "saved-output"
+}

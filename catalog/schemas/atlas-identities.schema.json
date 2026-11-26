@@ -8,7 +8,7 @@
     "$schema": {"const": "./schemas/atlas-identities.schema.json"},
     "schema_version": {"const": 1},
     "namespace": {"const": "NMA"},
-    "scope": {"const": "pilot"},
+    "scope": {"enum": ["pilot", "atlas-current"]},
     "revision_policy": {"const": "hex-min2-no-wrap-v1"},
     "allocation": {
       "type": "object", "additionalProperties": false, "required": ["P", "C", "S"],
@@ -32,8 +32,10 @@
         "role": {"enum": ["problem", "case-definition", "input", "acceptance", "reference", "saved-result", "saved-verification", "source", "dependency", "source-manifest", "archive", "provenance"]},
         "path": {"type": "string", "minLength": 1, "description": "Canonical root-relative POSIX path; checker rejects traversal and symlink escapes."},
         "pointer": {"type": "string", "pattern": "^(?:/(?:[^~]|~[01])*)*$", "description": "RFC 6901 JSON pointer; absence hashes raw bytes, presence hashes canonical JSON fragment."},
+        "member": {"type": "string", "minLength": 1, "description": "Exact canonical regular ZIP entry, hashed without extraction. Mutually exclusive with pointer."},
         "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
-      }
+      },
+      "not": {"required": ["pointer", "member"]}
     },
     "snapshot": {
       "type": "object", "additionalProperties": false,

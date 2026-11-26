@@ -1,0 +1,20 @@
+{
+  "id": "periodic-particles",
+  "group": "gravity",
+  "name": {
+    "ja": "周期PM粒子群の質量・内力",
+    "en": "Periodic PM particle mass and internal force"
+  },
+  "chapter": "particle-gravity",
+  "evidence": [
+    {
+      "path": "numerical-methods-atlas/assets/particle-gravity.json",
+      "json_pointer": "/periodic_pm"
+    },
+    {
+      "path": "code/numerical-methods-atlas/2026-11-21/tests/test_particle_gravity.py",
+      "python_symbol": "test_pm_self_force_and_total_internal_force_with_matched_cic"
+    }
+  ],
+  "availability": "saved-output"
+}

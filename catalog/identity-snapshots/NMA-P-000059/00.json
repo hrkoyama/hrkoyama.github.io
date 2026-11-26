@@ -1,0 +1,33 @@
+{
+  "id": "heat-periodic",
+  "group": "transport",
+  "name": {
+    "ja": "周期Fourierモードの熱拡散",
+    "en": "Periodic Fourier-mode heat decay"
+  },
+  "chapter": "elliptic",
+  "evidence": [
+    {
+      "path": "numerical-methods-atlas/equation-gallery.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "heat"
+      }
+    },
+    {
+      "path": "code/numerical-methods-atlas/2026-11-21/tests/test_linear.py",
+      "python_symbol": "test_spectral_heat_exact_mode_decay"
+    }
+  ],
+  "availability": "saved-output",
+  "supplemental_examples": [
+    {
+      "id": "fno-periodic-heat",
+      "url": "/numerical-methods-atlas/validation/fno-periodic-heat/",
+      "name": {
+        "ja": "小型FNOの問題単位検証",
+        "en": "Tiny FNO on held-out heat problems"
+      }
+    }
+  ]
+}

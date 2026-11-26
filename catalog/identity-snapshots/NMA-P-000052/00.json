@@ -1,0 +1,44 @@
+{
+  "id": "gravity-plummer-short",
+  "group": "gravity",
+  "name": {
+    "ja": "冷たいPlummer密度由来32粒子の短時間力学",
+    "en": "Short-time32body dynamics from a cold Plummer-density sample"
+  },
+  "chapter": "validation-gravity-dynamics",
+  "reading_section": "gravity-plummer-short",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-23/gravity-dynamics/",
+  "verification": "/code/validated-examples/2026-11-23/gravity-dynamics/verification.json",
+  "commands": [
+    "python -W error -m pytest -q -p no:cacheprovider",
+    "python -W error run.py --input inputs.json --output output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-23/gravity-dynamics/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "gravity-plummer-short"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/gravity-dynamics/results/gravity-plummer-short-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/gravity-dynamics/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "gravity-plummer-short",
+      "url": "/numerical-methods-atlas/validation/gravity-plummer-short/",
+      "name": {
+        "ja": "冷たいPlummer密度由来32粒子の短時間力学",
+        "en": "Short-time32body dynamics from a cold Plummer-density sample"
+      }
+    }
+  ]
+}

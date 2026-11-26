@@ -1,0 +1,27 @@
+{
+  "id": "strong-shock",
+  "group": "fluid",
+  "name": {
+    "ja": "1次元の強い圧力ジャンプ",
+    "en": "One-dimensional strong pressure jump"
+  },
+  "chapter": "shock-expansion",
+  "evidence": [
+    {
+      "path": "numerical-methods-atlas/assets/shock-expansion/shock-expansion.json",
+      "json_pointer": "/problems",
+      "where": {
+        "id": "strong-shock"
+      }
+    },
+    {
+      "path": "numerical-methods-atlas/assets/shock-expansion/shock-expansion.json",
+      "json_pointer": "/ppm_cases",
+      "where": {
+        "problem": "strong-shock",
+        "status": "completed"
+      }
+    }
+  ],
+  "availability": "saved-output"
+}

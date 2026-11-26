@@ -1,0 +1,243 @@
+{
+  "id": "hydrogenic-atoms",
+  "name": {
+    "ja": "水素型原子：解析解と格子収束",
+    "en": "Hydrogenic atoms: analytic references and grid refinement"
+  },
+  "problem_id": "hydrogenic-atoms",
+  "method_ids": [
+    "schrodinger"
+  ],
+  "scope": {
+    "ja": "孤立した1電子のH・He⁺について、1s・2s・2p・3dのエネルギーと動径軌道を解析解と比較します。多電子原子や分子の直接解法ではありません。",
+    "en": "Isolated one-electron H and He⁺: compare 1s, 2s, 2p and 3d energies and radial orbitals against analytic solutions. Not a direct many-electron or molecular solver."
+  },
+  "assumptions": {
+    "ja": "非相対論・無限質量の点核。核電荷Z=1,2。縮約動径軌道を一様格子の2次中心差分で離散化。",
+    "en": "Nonrelativistic infinite-mass point nucleus, Z=1,2. Reduced radial orbitals use second-order central differences on a uniform mesh."
+  },
+  "units": {
+    "ja": "原子単位系：エネルギーhartree、距離bohr。",
+    "en": "Atomic units: energy in hartree, distance in bohr."
+  },
+  "boundaries": {
+    "ja": "孤立系、u(0)=u(r_max)=0。主計算r_max=60 bohr。H 1sの領域打切り依存は別に検査。",
+    "en": "Isolated boundaries, u(0)=u(r_max)=0. Main domain r_max=60 bohr; hydrogen 1s has a separate box-truncation study."
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quantum-atoms/#hydrogenic",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-atoms/#hydrogenic"
+  },
+  "release": {
+    "family": "quantum-atoms",
+    "version": "2026-11-21",
+    "download": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/quantum-atoms-2026-11-21.zip",
+    "sha256": "f81c61b854e68b9750d960a17a133ee9a00ae7bd0c3ee268263caee626cf44c9",
+    "manifest": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/source-manifest.json",
+    "manifest_sha256": "c6d22b507028150eb09699fc0103d958e04764d1af9f98692f18ae111357d546",
+    "verification": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/verification.json",
+    "archive_directory": "quantum-atoms-2026-11-21"
+  },
+  "citation": {
+    "creator": "Hiroshi Koyama",
+    "title": {
+      "ja": "水素型原子：解析解と格子収束",
+      "en": "Hydrogenic atoms: analytic references and grid refinement"
+    },
+    "version": "2026-11-21",
+    "url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#hydrogenic-atoms-en",
+    "method_publications": [
+      "https://doi.org/10.1002/andp.19263840404"
+    ]
+  },
+  "terms": {
+    "code": "MIT",
+    "code_license": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/LICENSE",
+    "content_and_data": "https://hrkoyama.github.io/rights/",
+    "scope": {
+      "ja": "自作コードはMIT。入力・数値データ・図・本文はサイトの個別条件に従います。この台帳は利用許諾を拡大しません。",
+      "en": "Original code is MIT. Inputs, numerical data, figures and prose retain the site’s item-specific terms. This registry does not expand reuse permissions."
+    }
+  },
+  "execution_group": "quantum-atoms",
+  "shared_runner_cases": [
+    "hydrogenic-atoms",
+    "helium-ground-state"
+  ],
+  "inputs": {
+    "url": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/inputs.json",
+    "sha256": "8680ad9e5b04b5689b52849c71d849ddb98f9ecc9bea851a0f09d2ee2fcc6237",
+    "path": "inputs.json"
+  },
+  "dependencies": {
+    "core": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/requirements.txt",
+    "testing": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/requirements-dev.txt",
+    "plotting": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/requirements-dev.txt"
+  },
+  "commands": {
+    "install": "python -m pip install -r requirements-dev.txt",
+    "run": "python run.py --input inputs.json --reference reference-pyscf.json --output output --figures",
+    "tests": "python -m pytest -q",
+    "run_argv": [
+      "python",
+      "run.py",
+      "--input",
+      "inputs.json",
+      "--reference",
+      "reference-pyscf.json",
+      "--output",
+      "{output}",
+      "--figures"
+    ],
+    "tests_argv": [
+      "python",
+      "-m",
+      "pytest",
+      "-q"
+    ]
+  },
+  "outputs": [
+    {
+      "url": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/results.json",
+      "sha256": "953896b55df923dcbf13ced8fdb60b699918597cded8e986807b241f1192e739",
+      "path": "results/results.json",
+      "id": "results",
+      "format": "json",
+      "generated_path": "results.json"
+    },
+    {
+      "url": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/profiles/hydrogenic-z1-n1-l0.csv",
+      "sha256": "b00c67ed623bbd98d3ea29feed6ac89446f54d17cfd6a2ef97d9be46eb2d4cff",
+      "path": "results/profiles/hydrogenic-z1-n1-l0.csv",
+      "id": "hydrogenic-z1-n1-l0",
+      "format": "csv",
+      "generated_path": "profiles/hydrogenic-z1-n1-l0.csv"
+    },
+    {
+      "url": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/profiles/hydrogenic-z1-n2-l0.csv",
+      "sha256": "ca41c51afb53299779ac47de455ce12238e57e59bb77a885776960a6b3f7429f",
+      "path": "results/profiles/hydrogenic-z1-n2-l0.csv",
+      "id": "hydrogenic-z1-n2-l0",
+      "format": "csv",
+      "generated_path": "profiles/hydrogenic-z1-n2-l0.csv"
+    },
+    {
+      "url": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/profiles/hydrogenic-z1-n2-l1.csv",
+      "sha256": "506ce166c04e8b752b39a4d213a5ba27225c611e632056c37b98e214ff13b4ef",
+      "path": "results/profiles/hydrogenic-z1-n2-l1.csv",
+      "id": "hydrogenic-z1-n2-l1",
+      "format": "csv",
+      "generated_path": "profiles/hydrogenic-z1-n2-l1.csv"
+    },
+    {
+      "url": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/profiles/hydrogenic-z1-n3-l2.csv",
+      "sha256": "834d641826f32f21dde2b7cee1985845c29489a5cee1c80d8f925fbabe8a9d77",
+      "path": "results/profiles/hydrogenic-z1-n3-l2.csv",
+      "id": "hydrogenic-z1-n3-l2",
+      "format": "csv",
+      "generated_path": "profiles/hydrogenic-z1-n3-l2.csv"
+    },
+    {
+      "url": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/profiles/hydrogenic-z2-n1-l0.csv",
+      "sha256": "7237ffefc37504bab5050a6c35f84b9b1284b2e1ecde9001e684319148a1e82c",
+      "path": "results/profiles/hydrogenic-z2-n1-l0.csv",
+      "id": "hydrogenic-z2-n1-l0",
+      "format": "csv",
+      "generated_path": "profiles/hydrogenic-z2-n1-l0.csv"
+    },
+    {
+      "url": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/profiles/hydrogenic-z2-n2-l0.csv",
+      "sha256": "325acf636fee554d4dca765d8d824f46df5291c016261efccd28f328b19734ce",
+      "path": "results/profiles/hydrogenic-z2-n2-l0.csv",
+      "id": "hydrogenic-z2-n2-l0",
+      "format": "csv",
+      "generated_path": "profiles/hydrogenic-z2-n2-l0.csv"
+    },
+    {
+      "url": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/profiles/hydrogenic-z2-n2-l1.csv",
+      "sha256": "c15d122c7dd9363296a77e61a987db71e823910705825ae7748ac325d1c4f066",
+      "path": "results/profiles/hydrogenic-z2-n2-l1.csv",
+      "id": "hydrogenic-z2-n2-l1",
+      "format": "csv",
+      "generated_path": "profiles/hydrogenic-z2-n2-l1.csv"
+    },
+    {
+      "url": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/profiles/hydrogenic-z2-n3-l2.csv",
+      "sha256": "0b3c44b4035123ba7c385a8137b98bffba50e45e62f8b646e393c027a80d0ab6",
+      "path": "results/profiles/hydrogenic-z2-n3-l2.csv",
+      "id": "hydrogenic-z2-n3-l2",
+      "format": "csv",
+      "generated_path": "profiles/hydrogenic-z2-n3-l2.csv"
+    }
+  ],
+  "checks": [
+    {
+      "id": "normalization",
+      "pointer": "/hydrogenic/refinement",
+      "comparison": "abs_difference",
+      "description": {
+        "ja": "動径軌道の規格化",
+        "en": "Reduced-orbital normalization"
+      },
+      "field": "norm",
+      "expected": 1,
+      "tolerance": 1e-12
+    },
+    {
+      "id": "eigen-residual",
+      "pointer": "/hydrogenic/refinement",
+      "comparison": "maximum",
+      "description": {
+        "ja": "全固有値問題の残差",
+        "en": "All eigenpair residuals"
+      },
+      "field": "eigen_residual",
+      "tolerance": 1e-07,
+      "units": "hartree"
+    },
+    {
+      "id": "analytic-energy-fine-grid",
+      "pointer": "/hydrogenic/refinement",
+      "comparison": "maximum",
+      "description": {
+        "ja": "最細格子の解析解との差",
+        "en": "Finest-grid analytic energy errors"
+      },
+      "field": "energy_error",
+      "where": {
+        "dr": 0.01
+      },
+      "tolerance": 0.00021,
+      "units": "hartree"
+    },
+    {
+      "id": "energy-refinement",
+      "pointer": "/checks/hydrogenic_exact_energy_errors_reduce",
+      "comparison": "equals",
+      "description": {
+        "ja": "格子細分による誤差低減",
+        "en": "Energy-error reduction under refinement"
+      },
+      "expected": true
+    }
+  ],
+  "expected_failures": [],
+  "references": [
+    {
+      "type": "analytic",
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-atoms/#hydrogenic",
+      "description": {
+        "ja": "E_n=−Z²/(2n²)とLaguerre動径解。有限格子の誤差と箱の誤差を分ける。",
+        "en": "E_n=−Z²/(2n²) and Laguerre radial solutions, separating finite-grid and finite-box error."
+      }
+    },
+    {
+      "type": "primary-publication",
+      "url": "https://doi.org/10.1002/andp.19263840404",
+      "description": {
+        "ja": "原法の文献：Schrödinger, E. (1926), Quantisierung als Eigenwertproblem",
+        "en": "Original method publication: Schrödinger, E. (1926), Quantisierung als Eigenwertproblem"
+      }
+    }
+  ]
+}

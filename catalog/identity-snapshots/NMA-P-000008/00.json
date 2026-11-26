@@ -1,0 +1,44 @@
+{
+  "id": "annular-viscous-mms",
+  "group": "elliptic",
+  "name": {
+    "ja": "環状領域の可変粘性・真2DベクトルMMS",
+    "en": "Annular variable-viscosity vector PDE MMS"
+  },
+  "chapter": "validation-mesh-boundary",
+  "reading_section": "annular-viscous-mms",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-23/mesh-boundary/",
+  "verification": "/code/validated-examples/2026-11-23/mesh-boundary/verification.json",
+  "commands": [
+    "python -W error -m pytest -q",
+    "python -W error run.py --input inputs.json --output output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-23/mesh-boundary/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "annular-viscous-mms"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/mesh-boundary/results/annular-viscous-mms-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/mesh-boundary/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "annular-viscous-mms",
+      "url": "/numerical-methods-atlas/validation/annular-viscous-mms/",
+      "name": {
+        "ja": "環状領域の可変粘性・真2DベクトルMMS",
+        "en": "Annular variable-viscosity vector PDE MMS"
+      }
+    }
+  ]
+}

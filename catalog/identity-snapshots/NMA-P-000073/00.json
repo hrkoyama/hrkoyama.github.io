@@ -1,0 +1,19 @@
+{
+  "id": "jump-function-projection",
+  "group": "approximation",
+  "name": {
+    "ja": "不連続関数の多項式補間・射影",
+    "en": "Polynomial interpolation and projection of a jump function"
+  },
+  "chapter": "basis-functions",
+  "evidence": [
+    {
+      "path": "numerical-methods-atlas/basis.json",
+      "json_pointer": "/approximations",
+      "where": {
+        "profile": "jump"
+      }
+    }
+  ],
+  "availability": "saved-output"
+}

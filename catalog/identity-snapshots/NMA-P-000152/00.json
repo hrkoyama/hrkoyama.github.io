@@ -1,0 +1,24 @@
+{
+  "id": "stiff-cosine",
+  "group": "time",
+  "name": {
+    "ja": "硬い余弦追従ODE",
+    "en": "Stiff cosine-tracking ODE"
+  },
+  "chapter": "stiff-integration",
+  "evidence": [
+    {
+      "path": "numerical-methods-atlas/assets/solver-foundations.json",
+      "json_pointer": "/stiff"
+    },
+    {
+      "path": "numerical-methods-atlas/assets/solver-foundations.json",
+      "json_pointer": "/adaptive"
+    },
+    {
+      "path": "code/numerical-methods-atlas/2026-11-21/tests/test_new_models.py",
+      "python_symbol": "test_stiff_decay_and_local_error_control"
+    }
+  ],
+  "availability": "saved-output"
+}

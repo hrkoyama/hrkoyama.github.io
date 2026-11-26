@@ -1,0 +1,44 @@
+{
+  "id": "finite-projector-fermi",
+  "group": "quantum",
+  "name": {
+    "ja": "3平面波の非局所projectorと有限温度占有",
+    "en": "A three-wave periodic projector and Fermi-occupation model"
+  },
+  "chapter": "validation-quantum-small",
+  "reading_section": "periodic-projector-occupations",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-25/quantum-small/",
+  "verification": "/code/validated-examples/2026-11-25/quantum-small/verification.json",
+  "commands": [
+    "python -B -W error -m pytest -q -p no:cacheprovider test_quantum_small.py",
+    "python -B -W error run.py --input inputs.json --output fresh-output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-25/quantum-small/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "periodic-projector-occupations"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-25/quantum-small/results/periodic-projector-occupations.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-25/quantum-small/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "periodic-projector-occupations",
+      "url": "/numerical-methods-atlas/validation/periodic-projector-occupations/",
+      "name": {
+        "ja": "3平面波の非局所projectorと有限温度占有",
+        "en": "A three-wave periodic projector and Fermi-occupation model"
+      }
+    }
+  ]
+}

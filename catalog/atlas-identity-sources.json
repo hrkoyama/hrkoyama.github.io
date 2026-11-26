@@ -1,0 +1,850 @@
+{
+  "schema_version": 1,
+  "scope": "current-atlas-scientific-sources-v1",
+  "family_revisions": {
+    "shared:numerical-methods-atlas": {
+      "2026-11-21": "00",
+      "2026-11-22": "01"
+    }
+  },
+  "extra_sources": [
+    {
+      "unit_key": "agent-kit:rkdg2d",
+      "edition": "2026-11-23-r2",
+      "kind": "archive-members",
+      "root": "",
+      "manifest": "catalog/identity-source-manifests/rkdg2d-2026-11-23-r2.json",
+      "archive": "code/rkdg2d/2026-11-23-r2/atlas-rkdg-agent-kit.zip",
+      "label": {
+        "ja": "2D RKDGエージェント用共有配布",
+        "en": "Shared 2D RKDG agent kit"
+      },
+      "authorities": [
+        {
+          "path": "catalog/atlas-agent-kits.json",
+          "pointer": ""
+        },
+        {
+          "path": "numerical-methods-atlas/agent-kits/rkdg2d/manifest.json",
+          "pointer": ""
+        }
+      ]
+    },
+    {
+      "unit_key": "course:numerical-foundations",
+      "edition": "2026-11-24",
+      "kind": "archive-members",
+      "root": "",
+      "manifest": "catalog/identity-source-manifests/numerical-foundations-lab-2026-11-24.json",
+      "archive": "code/numerical-foundations/2026-11-24/numerical-foundations-lab-2026-11-24.zip",
+      "label": {
+        "ja": "数値計算の基礎：小さな計算室",
+        "en": "Numerical foundations small laboratory"
+      },
+      "authorities": [
+        {
+          "path": "code/numerical-foundations/2026-11-24/release.json",
+          "pointer": ""
+        }
+      ]
+    },
+    {
+      "unit_key": "independent:autodiff",
+      "edition": "2026-11-22",
+      "kind": "flat",
+      "root": "code/autodiff/2026-11-22",
+      "manifest": "code/autodiff/2026-11-22/source-manifest.json",
+      "archive": "code/autodiff/2026-11-22/autodiff-2026-11-22.zip",
+      "label": {
+        "ja": "自動微分パッケージ",
+        "en": "Automatic differentiation package"
+      },
+      "authorities": [
+        {
+          "path": "catalog/atlas-methods.json",
+          "method_id": "automatic-differentiation",
+          "field": "autodiff_release"
+        }
+      ]
+    },
+    {
+      "unit_key": "independent:bratu-inverse",
+      "edition": "2026-11-22",
+      "kind": "flat",
+      "root": "code/bratu-inverse/2026-11-22",
+      "manifest": "code/bratu-inverse/2026-11-22/source-manifest.json",
+      "archive": "code/bratu-inverse/2026-11-22/bratu-inverse-2026-11-22.zip",
+      "label": {
+        "ja": "Bratu逆問題パッケージ",
+        "en": "Bratu inverse package"
+      },
+      "authorities": [
+        {
+          "path": "catalog/atlas-methods.json",
+          "method_id": "optimization",
+          "field": "inverse_release"
+        }
+      ]
+    },
+    {
+      "unit_key": "independent:bratu-multinverse",
+      "edition": "2026-11-22",
+      "kind": "flat",
+      "root": "code/bratu-multinverse/2026-11-22",
+      "manifest": "code/bratu-multinverse/2026-11-22/source-manifest.json",
+      "archive": "code/bratu-multinverse/2026-11-22/bratu-multinverse-2026-11-22.zip",
+      "label": {
+        "ja": "Bratu多解逆問題パッケージ",
+        "en": "Multiple-solution Bratu inverse package"
+      },
+      "authorities": [
+        {
+          "path": "catalog/atlas-methods.json",
+          "method_id": "optimization",
+          "field": "multi_inverse_release"
+        }
+      ]
+    },
+    {
+      "unit_key": "independent:bratu-sensitivity",
+      "edition": "2026-11-22",
+      "kind": "flat",
+      "root": "code/bratu-sensitivity/2026-11-22",
+      "manifest": "code/bratu-sensitivity/2026-11-22/source-manifest.json",
+      "archive": "code/bratu-sensitivity/2026-11-22/bratu-sensitivity-2026-11-22.zip",
+      "label": {
+        "ja": "Bratu感度パッケージ",
+        "en": "Bratu sensitivity package"
+      },
+      "authorities": [
+        {
+          "path": "catalog/atlas-methods.json",
+          "method_id": "adjoint",
+          "field": "sensitivity_release"
+        }
+      ]
+    },
+    {
+      "unit_key": "independent:fdtd",
+      "edition": "2026-11-22-r6",
+      "kind": "flat",
+      "root": "code/fdtd/2026-11-22-r6",
+      "manifest": "code/fdtd/2026-11-22-r6/source-manifest.json",
+      "archive": "code/fdtd/2026-11-22-r6/fdtd-2026-11-22-r6.zip",
+      "label": {
+        "ja": "Yee FDTD共有パッケージ",
+        "en": "Shared Yee FDTD package"
+      },
+      "authorities": [
+        {
+          "path": "catalog/atlas-methods.json",
+          "method_id": "fdtd",
+          "field": "fdtd_release"
+        }
+      ]
+    }
+  ],
+  "standalone_sources": [
+    {
+      "unit_key": "standalone:keep-linear-analysis",
+      "edition": "2026-11-22",
+      "root": "numerical-methods-atlas/assets/keep-analysis-2026-11-22",
+      "manifest": "numerical-methods-atlas/assets/keep-analysis-2026-11-22/manifest.json",
+      "label": {
+        "ja": "KEEP線形数値解析",
+        "en": "KEEP linear numerical analysis"
+      }
+    },
+    {
+      "unit_key": "standalone:wave-evolution",
+      "edition": "2026-11-22",
+      "root": "numerical-methods-atlas/assets/wave-evolution-2026-11-22",
+      "manifest": "numerical-methods-atlas/assets/wave-evolution-2026-11-22/manifest.json",
+      "label": {
+        "ja": "移流波形発展の固定数値解析",
+        "en": "Fixed advection waveform evolution analysis"
+      }
+    }
+  ],
+  "archive_partition": [
+    {
+      "path": "code/autodiff/2026-11-22/autodiff-2026-11-22.zip",
+      "sha256": "1f2097cd08dca2717f88a97065445d81c0b476bbd54bf607d5bd4f27c328d937",
+      "classification": "current",
+      "unit_key": "independent:autodiff",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/bratu-inverse/2026-11-22/bratu-inverse-2026-11-22.zip",
+      "sha256": "a32c45d2818abf135b63d2f496666166c2460d0600b04a314dee2944d7c53c33",
+      "classification": "current",
+      "unit_key": "independent:bratu-inverse",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/bratu-multinverse/2026-11-22/bratu-multinverse-2026-11-22.zip",
+      "sha256": "b98fdb5b3ba5c5f066201d9ae9d91439458b4a9a81546a2242c4ff9e4eb83f59",
+      "classification": "current",
+      "unit_key": "independent:bratu-multinverse",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/bratu-sensitivity/2026-11-22/bratu-sensitivity-2026-11-22.zip",
+      "sha256": "db223561a8f8a764a914aa2637d72883e5ed2e1bc0bdafc22fce8e46023e375d",
+      "classification": "current",
+      "unit_key": "independent:bratu-sensitivity",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/fdtd/2026-11-22-r2/fdtd-2026-11-22-r2.zip",
+      "sha256": "50f8dad211f0b5fa54c538c9f272ec2509bc8740063f6b4e4c3ec907d8f7adcc",
+      "classification": "retained-history",
+      "unit_key": "independent:fdtd",
+      "reason": "Preserved superseded release; no historical ID epoch is inferred."
+    },
+    {
+      "path": "code/fdtd/2026-11-22-r3/fdtd-2026-11-22-r3.zip",
+      "sha256": "367fa305bc35f89c85217cecb5f6c383c86ae8a6b14b8a1b040889b75d690199",
+      "classification": "retained-history",
+      "unit_key": "independent:fdtd",
+      "reason": "Preserved superseded release; no historical ID epoch is inferred."
+    },
+    {
+      "path": "code/fdtd/2026-11-22-r4/fdtd-2026-11-22-r4.zip",
+      "sha256": "d34e3cb1bdf1daef35b008ac1495e4980f86fcb2dc0e8398f0df0e30dd576de1",
+      "classification": "retained-history",
+      "unit_key": "independent:fdtd",
+      "reason": "Preserved superseded release; no historical ID epoch is inferred."
+    },
+    {
+      "path": "code/fdtd/2026-11-22-r5/fdtd-2026-11-22-r5.zip",
+      "sha256": "ca3115c64733340e7d2be8cd9204f75b955a0b001b7078530357b548b0f912de",
+      "classification": "retained-history",
+      "unit_key": "independent:fdtd",
+      "reason": "Preserved superseded release; no historical ID epoch is inferred."
+    },
+    {
+      "path": "code/fdtd/2026-11-22-r6/fdtd-2026-11-22-r6.zip",
+      "sha256": "c76781e2e0273e429160bce1b1050b0b1ff9fffdd7154bf156a659c7f27e1690",
+      "classification": "current",
+      "unit_key": "independent:fdtd",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/fdtd/2026-11-22/fdtd-2026-11-22.zip",
+      "sha256": "482404475f935e8df487580ed48b8f98ada580fd61a79dd705fef9d5cf620d4d",
+      "classification": "retained-history",
+      "unit_key": "independent:fdtd",
+      "reason": "Preserved superseded release; no historical ID epoch is inferred."
+    },
+    {
+      "path": "code/model-benchmarks/2026-11-22/model-benchmarks-2026-11-22.zip",
+      "sha256": "8c9c70c4577de3737d739dfd39e11beecd37006808ffd79c3dfcda7f3ced1db5",
+      "classification": "current",
+      "unit_key": "shared:model-benchmarks",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/molecular-hf/2026-11-22/molecular-hf-2026-11-22.zip",
+      "sha256": "293988ec209a867491cf8356f12ce5cb8484a51d5c1d444acd5f217062b5ba79",
+      "classification": "current",
+      "unit_key": "shared:molecular-hf",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/numerical-foundations/2026-11-24/numerical-foundations-lab-2026-11-24.zip",
+      "sha256": "88aad757f41507f70db3e1f4ff4cfd167c32d73577050b7feb589524d6f40a84",
+      "classification": "current",
+      "unit_key": "course:numerical-foundations",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/numerical-methods-atlas/2026-11-21/atlas-code-2026-11-21.zip",
+      "sha256": "f17c0cfcf6956a2677dcdc874235806ae9c5453514be02e6d3274732bcdebe4f",
+      "classification": "current",
+      "unit_key": "shared:numerical-methods-atlas",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip",
+      "sha256": "15c8c9c26cebc37b1e0c2923f91db456f8c9d157a48618f154f4b9bb39010fd7",
+      "classification": "current",
+      "unit_key": "shared:numerical-methods-atlas",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/periodic-dft/2026-11-22/periodic-dft-2026-11-22.zip",
+      "sha256": "f331515e3ad419b5435dbf851553c6b853b28b2432801fc13c84109faa362df8",
+      "classification": "current",
+      "unit_key": "shared:periodic-dft",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/periodic-forces/2026-11-22/periodic-forces-2026-11-22.zip",
+      "sha256": "137d7981769d503d231b0c4bcc60a2ca61746faaadd0ee39d544dcf4efa07b19",
+      "classification": "current",
+      "unit_key": "shared:periodic-forces",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/quantum-atoms/2026-11-21/quantum-atoms-2026-11-21.zip",
+      "sha256": "f81c61b854e68b9750d960a17a133ee9a00ae7bd0c3ee268263caee626cf44c9",
+      "classification": "current",
+      "unit_key": "shared:quantum-atoms",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/rkdg2d/2026-11-23-pilot1/atlas-rkdg-agent-pilot.zip",
+      "sha256": "2303e53e1af5c600810f50c779e202747498a3b1c80305befe6106ce8d745d0a",
+      "classification": "retained-experiment",
+      "unit_key": null,
+      "reason": "Preserved agent experiment and trial records, not the current source implementation."
+    },
+    {
+      "path": "code/rkdg2d/2026-11-23-r1/atlas-rkdg-agent-kit.zip",
+      "sha256": "dce2866531edd11b0b2b9efe50901f940aafb52228305e4193c27d4b01680f40",
+      "classification": "retained-history",
+      "unit_key": "agent-kit:rkdg2d",
+      "reason": "Preserved superseded release; no historical ID epoch is inferred."
+    },
+    {
+      "path": "code/rkdg2d/2026-11-23-r2/atlas-rkdg-agent-kit.zip",
+      "sha256": "6fa8d75c1f70281eb0a78363eb3323c5a9a1b006f01f49182c4827f4d5710a69",
+      "classification": "current",
+      "unit_key": "agent-kit:rkdg2d",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip",
+      "sha256": "d7608d121ad2c5a2b5fb8db8c87bc648f372bb666c3079e6b4835b276d3b5979",
+      "classification": "current",
+      "unit_key": "supplement:biology",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/foundations-conditioning/atlas-foundations-conditioning-2026-11-22.zip",
+      "sha256": "71d8f0d3b0bed4a6a97f976aabfd02cc0baf08a30c1655f6b1ea42ea16df3c9d",
+      "classification": "current",
+      "unit_key": "supplement:foundations-conditioning",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip",
+      "sha256": "1d130f886c31647aa5ba565fb10703a64d8af249c5715b4b2301401a3cfe22e2",
+      "classification": "current",
+      "unit_key": "supplement:foundations",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/mcmc/atlas-mcmc-2026-11-22.zip",
+      "sha256": "7fb1cde233b79e2b2d56edac89c6e1bdbe8239c1b7f5e166054f8e3e2cdaac11",
+      "classification": "current",
+      "unit_key": "supplement:mcmc",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/mhd-convergence/atlas-mhd-convergence-2026-11-22.zip",
+      "sha256": "5db2fc202014a576145e98c84e1802540df7d8e26353d469fbd55c8e393fd866",
+      "classification": "current",
+      "unit_key": "supplement:mhd-convergence",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/mhd/atlas-mhd-2026-11-22.zip",
+      "sha256": "2e7eeaaacaeb918671228cc56ab333d0c4ca5a9879241846f5772594552d0b16",
+      "classification": "current",
+      "unit_key": "supplement:mhd",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip",
+      "sha256": "18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c",
+      "classification": "current",
+      "unit_key": "supplement:models",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/particle-transport/atlas-particle-transport-2026-11-22.zip",
+      "sha256": "940c1b9c867d5fda395bf93d9dac6b38d992bb4d3de29065f1b42108d1d4c0c9",
+      "classification": "current",
+      "unit_key": "supplement:particle-transport",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip",
+      "sha256": "8d2c39d6166a6b8715329574ed699515b0aa5b1f4c08fbec46b97400c50025b6",
+      "classification": "current",
+      "unit_key": "supplement:particles",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/splitting/atlas-splitting-2026-11-22.zip",
+      "sha256": "2ae466a4ea62e204716a388b86033de3a6493a9ab0ef4ad9aec4ebb038d8a404",
+      "classification": "current",
+      "unit_key": "supplement:splitting",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/thermostats/atlas-thermostats-2026-11-22.zip",
+      "sha256": "38142da988bf0c790eab7e7f10f8d1e209d074c3627f73a207f5223a24e18d65",
+      "classification": "current",
+      "unit_key": "supplement:thermostats",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-23-r2/euler-positivity/atlas-euler-positivity-2026-11-23-r2.zip",
+      "sha256": "0f2c8a3bf94a612f89d8f6f695b94574dd05d70976aa97a497ef47ff4e0c1efe",
+      "classification": "current",
+      "unit_key": "supplement:euler-positivity",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-23-r2/guderley/atlas-guderley-2026-11-23-r2.zip",
+      "sha256": "ca6974a8e48f8d6a2ad81ad74bce173dcff3656e35a465d9e75fac3d6cbdbfb6",
+      "classification": "retained-history",
+      "unit_key": "supplement:guderley",
+      "reason": "Preserved superseded release; no historical ID epoch is inferred."
+    },
+    {
+      "path": "code/validated-examples/2026-11-23-r2/instability-growth/atlas-instability-growth-2026-11-23-r2.zip",
+      "sha256": "731bf5ce375327daba93014990053ffc52b38626f132f94303a6d061aca7a7e7",
+      "classification": "current",
+      "unit_key": "supplement:instability-growth",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-23-r2/noh-cartesian/atlas-noh-cartesian-2026-11-23-r2.zip",
+      "sha256": "2145beb161f993c1608fc5ac167af5278d58e10f92e74ed37e5fb9c35243b918",
+      "classification": "current",
+      "unit_key": "supplement:noh-cartesian",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-23-r2/sedov/atlas-sedov-2026-11-23-r2.zip",
+      "sha256": "abb7344023b91b090820de1ebec8d6c6a949b8c06fda73037204a5d6f62b4b73",
+      "classification": "current",
+      "unit_key": "supplement:sedov",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-23-r2/wall-flow/atlas-wall-flow-2026-11-23-r2.zip",
+      "sha256": "de499fde477a49b1eae10bd6bf04b0800b58105ca5d504ec6eff2ec3272690fd",
+      "classification": "current",
+      "unit_key": "supplement:wall-flow",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-23-r3/guderley/atlas-guderley-2026-11-23-r3.zip",
+      "sha256": "f00ff906861495bd73b2ae75f7c3895fab505ba45ad7a34a2612700405d8466f",
+      "classification": "current",
+      "unit_key": "supplement:guderley",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-23-r3/noh/atlas-noh-2026-11-23-r3.zip",
+      "sha256": "8c59623825c2eee95b6679a6697a0a91a729ba439545a880946d04764e384b36",
+      "classification": "retained-history",
+      "unit_key": "supplement:noh",
+      "reason": "Preserved superseded release; no historical ID epoch is inferred."
+    },
+    {
+      "path": "code/validated-examples/2026-11-23-r5/noh/atlas-noh-2026-11-23-r5.zip",
+      "sha256": "64de5483e9896a3773348b75e1ec2b4630f8a709d68194c1d94772396f531733",
+      "classification": "current",
+      "unit_key": "supplement:noh",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/coefficient-diffusion/atlas-coefficient-diffusion-2026-11-23.zip",
+      "sha256": "c53624aa03cf7f945297e7bd09d72030e111e035c3ce7174fd2da9e86756b666",
+      "classification": "current",
+      "unit_key": "supplement:coefficient-diffusion",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/double-mach/atlas-double-mach-2026-11-23.zip",
+      "sha256": "0a68d19746c508e0ac0cf9b5bebe9375c797a87ade1a9fbfbef87d6e5fa63347",
+      "classification": "current",
+      "unit_key": "supplement:double-mach",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/dsmc-shock/atlas-dsmc-shock-2026-11-23.zip",
+      "sha256": "a0781fe0b577cd65f60489e77672bbfdbc7d1f657c9514ad1c0c862125ba4eda",
+      "classification": "retained-history",
+      "unit_key": "supplement:dsmc-shock",
+      "reason": "Preserved superseded release; no historical ID epoch is inferred."
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/dsmc-wall/atlas-dsmc-wall-2026-11-23.zip",
+      "sha256": "7b6d5a11874a0042ce772df4c241c72ce42f861c43ed0d44164074ba662da0cb",
+      "classification": "current",
+      "unit_key": "supplement:dsmc-wall",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/fmm3d/atlas-fmm3d-2026-11-23.zip",
+      "sha256": "61861fb2a1d24437175710a09c4afdc934aab49c1c2f2e3e14b5a3c2d466b59c",
+      "classification": "current",
+      "unit_key": "supplement:fmm3d",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/forward-step/atlas-forward-step-2026-11-23.zip",
+      "sha256": "ae69647a4e63c75c0888a6daf15835d348e9d74de58b5e59926e359e9ffc52cd",
+      "classification": "current",
+      "unit_key": "supplement:forward-step",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/gravity-dynamics/atlas-gravity-dynamics-2026-11-23.zip",
+      "sha256": "47f1a4bdb8a6a5fdac82e66ffbe8b32c59242ffb7f9f05b418a37bd5913ffacd",
+      "classification": "current",
+      "unit_key": "supplement:gravity-dynamics",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/instability-growth/atlas-instability-growth-2026-11-23.zip",
+      "sha256": "e21a9dc82e0dbb07714e64d831df38506aa4a61c104fe82dfc7f6953fa76b307",
+      "classification": "retained-history",
+      "unit_key": "supplement:instability-growth",
+      "reason": "Preserved superseded release; no historical ID epoch is inferred."
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/level-set/atlas-level-set-2026-11-23.zip",
+      "sha256": "46c2c2fd0aea98eb4cc4facef8d30cc81ebd6b1b9e0d965f7ef79167a06c048b",
+      "classification": "current",
+      "unit_key": "supplement:level-set",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/low-mach/atlas-low-mach-2026-11-23.zip",
+      "sha256": "717b2ceed76d37cf4c1e570a7a022e1a17d66fce3048648a3edde4164a1513aa",
+      "classification": "current",
+      "unit_key": "supplement:low-mach",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/mesh-boundary/atlas-mesh-boundary-2026-11-23.zip",
+      "sha256": "51032054029345b8f187ebb12e1a0d8d4473b70312f29585a160fc3b0fdca315",
+      "classification": "current",
+      "unit_key": "supplement:mesh-boundary",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/mhd-transport/atlas-mhd-transport-2026-11-23.zip",
+      "sha256": "8b6d4d9d30c9ed12fd29b7b91a11c16dc183b9aea49234966a66c376713ebf90",
+      "classification": "retained-history",
+      "unit_key": "supplement:mhd-transport",
+      "reason": "Preserved superseded release; no historical ID epoch is inferred."
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/moving-waves/atlas-moving-waves-2026-11-23.zip",
+      "sha256": "d9f2f8bff3bf5d9fa7c1118c0968e9c0374fd5e9a6d3f7f99352abc0841e3b7d",
+      "classification": "current",
+      "unit_key": "supplement:moving-waves",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/pic-spatial/atlas-pic-spatial-2026-11-23.zip",
+      "sha256": "51da779a41f2109fbd22d1628463b8be3770ee93b61e49529b1b48a19f431bc3",
+      "classification": "current",
+      "unit_key": "supplement:pic-spatial",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/relativistic/atlas-relativistic-2026-11-23.zip",
+      "sha256": "c80b18e40f259d72aae6375d59faa0bd3c6c1b00b50da06538004bb6462a7185",
+      "classification": "current",
+      "unit_key": "supplement:relativistic",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/sedov/atlas-sedov-2026-11-23.zip",
+      "sha256": "63d584129e6260bf04618205b7ea57cc9a36e8bb4d3423b1bcdd8489ca43eebb",
+      "classification": "retained-history",
+      "unit_key": "supplement:sedov",
+      "reason": "Preserved superseded release; no historical ID epoch is inferred."
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/sem-fr/atlas-sem-fr-2026-11-23.zip",
+      "sha256": "f7e852c18571791492fa4b804cba1fdd744909e690a90d2708a422a4b5e99d66",
+      "classification": "current",
+      "unit_key": "supplement:sem-fr",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/shallow-water/atlas-shallow-water-2026-11-23.zip",
+      "sha256": "259244fc5c237542ba577df62308fd2a3191979dd43717d58df33d8abb902644",
+      "classification": "current",
+      "unit_key": "supplement:shallow-water",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/slab-ewald/atlas-slab-ewald-2026-11-23.zip",
+      "sha256": "168b250fd18b209534fe8a767afc689ea11b6b8ca95657a7c0ff0d8803f00414",
+      "classification": "current",
+      "unit_key": "supplement:slab-ewald",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/warm-pic/atlas-warm-pic-2026-11-23.zip",
+      "sha256": "10661b33b9d36f35721fa1ed55b12b94926fe6fab47b8dd1e5dea52a61415fdb",
+      "classification": "current",
+      "unit_key": "supplement:warm-pic",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/weno-critical/atlas-weno-critical-2026-11-23.zip",
+      "sha256": "9c119480261013ef8ed0c58716c45af5b9fb9d3e891aef56b95b66fbd8415491",
+      "classification": "current",
+      "unit_key": "supplement:weno-critical",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/zalesak/atlas-zalesak-2026-11-23.zip",
+      "sha256": "28e7d2bc93d3a5ba1cb015c874c489e9fd1a2e8a586a46d519800c799b0fb6f8",
+      "classification": "current",
+      "unit_key": "supplement:zalesak",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/atlas-bratu-continuation-jfnk-2026-11-24-r2.zip",
+      "sha256": "aeffa7e1b442f198ef2de55e453f82e5d6cbe30fc3d0bbd1112354a38a20a25d",
+      "classification": "current",
+      "unit_key": "supplement:bratu-continuation-jfnk",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-24-r2/maxwell-cylinder/atlas-maxwell-cylinder-2026-11-24-r2.zip",
+      "sha256": "bf2f69032cfe912d23e065582397202a695dde241350774a0c69997b70bd1a06",
+      "classification": "current",
+      "unit_key": "supplement:maxwell-cylinder",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-24-r2/maxwell-grazing/atlas-maxwell-grazing-2026-11-24-r2.zip",
+      "sha256": "a9d0c65eb27e26b05eafd3774b9f651b01baf28e617769bb2bbcb7efb0b90d3d",
+      "classification": "current",
+      "unit_key": "supplement:maxwell-grazing",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-24-r2/maxwell-lorentz/atlas-maxwell-lorentz-2026-11-24-r2.zip",
+      "sha256": "7af2a66b6defba64c5392f05292d2b49810140253455945d54112eb4594871a1",
+      "classification": "current",
+      "unit_key": "supplement:maxwell-lorentz",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-24-r2/ode-adaptivity/atlas-ode-adaptivity-2026-11-24-r2.zip",
+      "sha256": "19e6bed36d5a49a865881df12170edf9f79b4c5365e35ae91186eaf33bb5bc3a",
+      "classification": "current",
+      "unit_key": "supplement:ode-adaptivity",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-24-r2/radiation-matter/atlas-radiation-matter-2026-11-24-r2.zip",
+      "sha256": "fe1e3d790bd9792d8781243dc4d5ff40d3491a181a11c795569f3f4e542ed7e6",
+      "classification": "current",
+      "unit_key": "supplement:radiation-matter",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/atlas-linear-algebra-spectral-2026-11-24-r3.zip",
+      "sha256": "3d14112335ce8a55cce306ec689d430f172d02a49f4675ae5948a2fab7ca1452",
+      "classification": "current",
+      "unit_key": "supplement:linear-algebra-spectral",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-24/adjoint/atlas-adjoint-2026-11-24.zip",
+      "sha256": "6b78fd9d4320e9790bd6ebe2a0ef61a25c55c7fdc0a14dd37d0ca1a37b80a5ee",
+      "classification": "current",
+      "unit_key": "supplement:adjoint",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-24/dae-controls/atlas-dae-controls-2026-11-24.zip",
+      "sha256": "3f4d3ed14053a3a2a6f495c4445fb5c64093e59c07559b6632d2cdd9ea454fad",
+      "classification": "current",
+      "unit_key": "supplement:dae-controls",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-24/dsmc-shock/atlas-dsmc-shock-2026-11-24.zip",
+      "sha256": "92794cc568e7857346a24489eddaae113eb60754de7ba717254955ace9d8d961",
+      "classification": "current",
+      "unit_key": "supplement:dsmc-shock",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-24/geometric-controls/atlas-geometric-controls-2026-11-24.zip",
+      "sha256": "4e3ef28ab6c91ae62918b7effc6f37097ec0f5a4ed878d4d33fa06e1945329a2",
+      "classification": "current",
+      "unit_key": "supplement:geometric-controls",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-24/globalization-controls/atlas-globalization-controls-2026-11-24.zip",
+      "sha256": "a8d55166dedf528bbb143080998b5bdd0a95ad37d29d589206499e23dbc9fe4d",
+      "classification": "current",
+      "unit_key": "supplement:globalization-controls",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-24/inverse-optimization/atlas-inverse-optimization-2026-11-24.zip",
+      "sha256": "ffefd2d5876a3db10596d6e1f089f73be7a82288d63f348bcd960b9497412b44",
+      "classification": "current",
+      "unit_key": "supplement:inverse-optimization",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-24/lbm-annulus/atlas-lbm-annulus-2026-11-24.zip",
+      "sha256": "c38c290902c1e344b4905b3141d0212000525f45d97b0104ed35c3b8d4f6eb1b",
+      "classification": "current",
+      "unit_key": "supplement:lbm-annulus",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-24/lbm-cavity/atlas-lbm-cavity-2026-11-24.zip",
+      "sha256": "94781f84128fa97fb59fe1a00a469352db69fcca082ce170fa3b881919f5cdda",
+      "classification": "current",
+      "unit_key": "supplement:lbm-cavity",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-24/lbm-curved-boundary/atlas-lbm-curved-boundary-2026-11-24.zip",
+      "sha256": "69757fbf7ccab53450d7bdf6ce3023cd6f5ca3b42698d2e8c7a383421a1c640d",
+      "classification": "current",
+      "unit_key": "supplement:lbm-curved-boundary",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-24/lbm-taylor-green/atlas-lbm-taylor-green-2026-11-24.zip",
+      "sha256": "90d6999a33f47bbf03f359dc63c5a8d6ab729c0f905a8aad292bd58d1a070a22",
+      "classification": "current",
+      "unit_key": "supplement:lbm-taylor-green",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-24/mhd-transport/atlas-mhd-transport-2026-11-24.zip",
+      "sha256": "54e5f9376beacf41338b3b810657bb4671dabef937d748bc96834e1e3b35f233",
+      "classification": "current",
+      "unit_key": "supplement:mhd-transport",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-24/radiation-geometry/atlas-radiation-geometry-2026-11-24.zip",
+      "sha256": "20a166a35e5e87275be4c1bcf12a31742b267ddc9f9a424a293852da53c672e0",
+      "classification": "current",
+      "unit_key": "supplement:radiation-geometry",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-24/radiation-scattering/atlas-radiation-scattering-2026-11-24.zip",
+      "sha256": "52323265fbea51e79d109b45acc8c4c69d210ac70a8f49ecac6d4fa1f16c33d9",
+      "classification": "current",
+      "unit_key": "supplement:radiation-scattering",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-24/reverse-higher-ad/atlas-reverse-higher-ad-2026-11-24.zip",
+      "sha256": "9ba9d564393bf64d33ec79add1648082e72356335051da99f228e9b0ee5e850a",
+      "classification": "current",
+      "unit_key": "supplement:reverse-higher-ad",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-24/steady-rk/atlas-steady-rk-2026-11-24.zip",
+      "sha256": "a6524122fbc92701504894dff03837587170c0f4d39ce50657d4d5a23d36d3d9",
+      "classification": "current",
+      "unit_key": "supplement:steady-rk",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-24/stochastic-accuracy/atlas-stochastic-accuracy-2026-11-24.zip",
+      "sha256": "6a6ecc012df95853e20b2aa6db2fcceb8fce216872805a2b285c1f123a1e9801",
+      "classification": "current",
+      "unit_key": "supplement:stochastic-accuracy",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-24/stochastic-estimation/atlas-stochastic-estimation-2026-11-24.zip",
+      "sha256": "313b9cb048b46d4dedd13dc214b7eb25de4fb72af01e267fa69da7e460f81ec3",
+      "classification": "current",
+      "unit_key": "supplement:stochastic-estimation",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-25/approximation-controls/atlas-approximation-controls-2026-11-25.zip",
+      "sha256": "7dbadeb591e3329965c2ab5aa7f6025e5d8c18a438b7264460370ad64bdaf053",
+      "classification": "current",
+      "unit_key": "supplement:approximation-controls",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-25/biology-ode-controls/atlas-biology-ode-controls-2026-11-25.zip",
+      "sha256": "b67232232a461e8ef0e24d522a3e40c9af64b8d90cd55c9657c955a92772b042",
+      "classification": "current",
+      "unit_key": "supplement:biology-ode-controls",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-25/biology-space-controls/atlas-biology-space-controls-2026-11-25.zip",
+      "sha256": "8abffcd65c0fc14eb1a346dba17e70097e2dc8806b348e114fc449b4fe0e0419",
+      "classification": "current",
+      "unit_key": "supplement:biology-space-controls",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-25/continuum-particle-controls/atlas-continuum-particle-controls-2026-11-25.zip",
+      "sha256": "1d12a6ecd9d87ae95585a984e66411b2314eb7804b064f023aa57addc3142f49",
+      "classification": "current",
+      "unit_key": "supplement:continuum-particle-controls",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-25/quadrature-controls/atlas-quadrature-controls-2026-11-25.zip",
+      "sha256": "843f8394607db82a40af99a34785cce4f22e0f26f3b85d2375f121bcc9ebd6f4",
+      "classification": "current",
+      "unit_key": "supplement:quadrature-controls",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-25/quantum-small/atlas-quantum-small-2026-11-25.zip",
+      "sha256": "b332d168c00bd46862a4b5a98e42054e1749e0b734318e96af0049ab9d255cfc",
+      "classification": "current",
+      "unit_key": "supplement:quantum-small",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip",
+      "sha256": "d341b8a90e0b6ade7c70760a2c32a9f3825a6b4e162b221c7cc95b10f3cd40c1",
+      "classification": "current",
+      "unit_key": "supplement:small-models",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-25/thermostat-constraint-controls/atlas-thermostat-constraint-controls-2026-11-25.zip",
+      "sha256": "836113a7e8859d41b2697177f74cb2c8c8185a6fa4f4630773b914095ed10de1",
+      "classification": "current",
+      "unit_key": "supplement:thermostat-constraint-controls",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "code/validated-examples/2026-11-26/variable-eddington-controls/atlas-variable-eddington-controls-2026-11-26.zip",
+      "sha256": "00f72007e16701d4f41b587dc5b8bc3a158f2b6fac3f8b933aeacc3f7973f6bb",
+      "classification": "current",
+      "unit_key": "supplement:variable-eddington-controls",
+      "reason": "Selected by the current public scientific release, example, method or course authority."
+    },
+    {
+      "path": "numerical-methods-atlas/skills/0.1.0/nan-numerics-0.1.0.zip",
+      "sha256": "0be858df2e290a9df5c5b4fb49dc2a7e269db89f3587829eb15053deb8834139",
+      "classification": "instruction",
+      "unit_key": null,
+      "reason": "Agent instruction/skill distribution, not a numerical implementation."
+    }
+  ]
+}

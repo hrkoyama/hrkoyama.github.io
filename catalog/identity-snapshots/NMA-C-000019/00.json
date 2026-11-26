@@ -1,0 +1,263 @@
+{
+  "name": {
+    "ja": "Brio–Wu：HLLDと保存的に粗視化した数値参照",
+    "en": "Brio–Wu: HLLD and a conservatively restricted numerical reference"
+  },
+  "scope": {
+    "ja": "γ=2、Bx=0.75の1次元理想MHD衝撃波管をt=0.1まで計算。HLLD＋MC＋SSPRK2の64/128セルを512セルの数値参照と比較し、密度・圧力・縦磁場・保存収支・切替回数を記録する。",
+    "en": "Evolve the one-dimensional γ=2 ideal-MHD shock tube with Bx=0.75 to t=0.1. Compare 64/128-cell HLLD/MC/SSPRK2 with a 512-cell numerical reference, recording density, pressure, longitudinal field, balances and fallback counts."
+  },
+  "assumptions": {
+    "ja": "μ0=1、左右(ρ,vx,vy,vz,p,Bx,By,Bz)=(1,0,0,0,1,0.75,1,0)/(0.125,0,0,0,0.1,0.75,−1,0)。初期不連続x=0.5をセル界面へ合わせる。既存solve_1dの固定定義とJSONの一致を検査し、変更した物理定義は拒否。CFL=0.35。",
+    "en": "μ0=1, with left/right (ρ,vx,vy,vz,p,Bx,By,Bz)=(1,0,0,0,1,0.75,1,0)/(0.125,0,0,0,0.1,0.75,−1,0). The initial jump x=0.5 is face-aligned. JSON must match the unchanged solve_1d benchmark definition; altered physical definitions are rejected. CFL=0.35."
+  },
+  "units": {
+    "ja": "すべて無次元。磁気エネルギーはB²/2（μ0=1）、熱エネルギーはp/(γ−1)。γ=5/3のOrszag–Tang例とは異なる。",
+    "en": "All quantities are nondimensional. Magnetic energy is B²/2 with μ0=1 and thermal energy is p/(γ−1). This differs from the γ=5/3 Orszag–Tang case."
+  },
+  "boundaries": {
+    "ja": "端値外挿。波が端へ達しないt≤0.1で、8保存量の変化からT(F_left−F_right)を差し引く。全運動量が不変とは仮定しない。1次元で共通のBxを保つ。",
+    "en": "Edge extrapolation. For t≤0.1, before waves reach the ends, subtract T(F_left−F_right) from all eight conserved-integral changes. Total momentum is not assumed constant; the common one-dimensional Bx is retained."
+  },
+  "method_ids": [
+    "hlld",
+    "muscl"
+  ],
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/mhd/",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/mhd/"
+  },
+  "references": [
+    {
+      "type": "numerical-refinement",
+      "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/brio-wu/result.json",
+      "description": {
+        "ja": "512セルの保存変数を64/128セルへ整数ブロック平均し、その後にprimitive変数へ変換する。CSVは128セルごとに計算値とそのセル平均に対応する参照値を配置。正値性、縦磁場10^-12、境界流束収支10^-10、経験的な誤差減少を別々に判定し、fallback回数を隠さない。",
+        "en": "Restrict the 512-cell conserved variables by integer block averaging to 64/128 cells before converting to primitives. CSV pairs each 128-cell result with its corresponding restricted reference. Positivity, longitudinal-field error 10^-12, boundary-flux balance 10^-10 and empirical error decrease are separate checks; fallback counts remain visible."
+      }
+    },
+    {
+      "type": "primary-publication",
+      "url": "https://doi.org/10.1016/0021-9991(88)90120-9",
+      "description": {
+        "ja": "Brio–Wu理想MHD衝撃波管の原報。原報の全計算や厳密Riemann解は再現しない。",
+        "en": "Original Brio–Wu ideal-MHD shock-tube paper; its full experiments and an exact Riemann solution are not reproduced."
+      }
+    },
+    {
+      "type": "primary-publication",
+      "url": "https://doi.org/10.1016/j.jcp.2005.02.017",
+      "description": {
+        "ja": "HLLD流束の原報。公開実装では無効な中間状態に対するHLLE切替を数える。",
+        "en": "Original HLLD flux paper. The released implementation counts HLLE fallbacks for invalid intermediate states."
+      }
+    }
+  ],
+  "failure_scope": {
+    "ja": "512セル参照も同一solverで、厳密解・独立コード・MHD弱解の一意性の証明ではない。密度差0.03は左密度1に対する3%の平均絶対差を許す教材基準。正値性再試行とHLLE切替は数えるが、再構成の正値スケーリングの作動数は既存APIにない。正値出力だけから一般の保証やゼロ修正を主張しない。",
+    "en": "The 512-cell reference uses the same solver and is neither exact nor independent, nor a proof of uniqueness of MHD weak solutions. Density difference 0.03 allows a mean absolute discrepancy of 3% of left density 1 for this educational test. Positivity retries and HLLE fallbacks are counted; reconstruction positivity-scaling activations are not exposed by the existing API. Positive output alone certifies neither general positivity nor absence of reconstruction changes."
+  },
+  "reference_notes": {
+    "ja": "512セルの保存変数を64/128セルへ整数ブロック平均し、その後にprimitive変数へ変換する。CSVは128セルごとに計算値とそのセル平均に対応する参照値を配置。正値性、縦磁場10^-12、境界流束収支10^-10、経験的な誤差減少を別々に判定し、fallback回数を隠さない。",
+    "en": "Restrict the 512-cell conserved variables by integer block averaging to 64/128 cells before converting to primitives. CSV pairs each 128-cell result with its corresponding restricted reference. Positivity, longitudinal-field error 10^-12, boundary-flux balance 10^-10 and empirical error decrease are separate checks; fallback counts remain visible."
+  },
+  "reference_type": "numerical-refinement",
+  "id": "brio-wu",
+  "problem_id": "brio-wu",
+  "release": {
+    "family": "numerical-methods-atlas",
+    "version": "2026-11-22",
+    "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip",
+    "sha256": "15c8c9c26cebc37b1e0c2923f91db456f8c9d157a48618f154f4b9bb39010fd7",
+    "manifest": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/source-manifest.json",
+    "manifest_sha256": "386b12c0b88cfd27ac9921d7b00d34e72bee3c0ae43b11eb174b01528a6195f8",
+    "verification": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/verification.json",
+    "archive_directory": "atlas-code-2026-11-22"
+  },
+  "execution_group": "brio-wu",
+  "shared_runner_cases": [
+    "brio-wu"
+  ],
+  "terms": {
+    "code": "MIT",
+    "code_license": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/LICENSE",
+    "content_and_data": "https://hrkoyama.github.io/rights/",
+    "scope": {
+      "ja": "自作コードはMIT。入力・数値データ・図・本文はサイトの個別条件に従います。この台帳は利用許諾を拡大しません。",
+      "en": "Original code is MIT. Inputs, numerical data, figures and prose retain the site’s item-specific terms. This registry does not expand reuse permissions."
+    }
+  },
+  "inputs": {
+    "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/recipes/brio-wu.json",
+    "sha256": "faf47e55ad28b23f154021809d351ac853c4145790b6f54692031c081c9c7f4b",
+    "path": "recipes/brio-wu.json"
+  },
+  "dependencies": {
+    "core": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/requirements.txt",
+    "testing": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/requirements.txt",
+    "plotting": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/requirements.txt"
+  },
+  "commands": {
+    "install": "python -m pip install -r requirements.txt",
+    "run": "python run_recipe.py --input recipes/brio-wu.json --output output-brio-wu",
+    "tests": "python -m pytest -q tests/test_recipes.py",
+    "run_argv": [
+      "python",
+      "run_recipe.py",
+      "--input",
+      "recipes/brio-wu.json",
+      "--output",
+      "{output}"
+    ],
+    "tests_argv": [
+      "python",
+      "-m",
+      "pytest",
+      "-q",
+      "tests/test_recipes.py"
+    ]
+  },
+  "outputs": [
+    {
+      "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/brio-wu/result.json",
+      "sha256": "da9e413ed5bb80d31fa54a9078d4e780ca1cdeb36c3aace0707ecca6591202b2",
+      "path": "reference/brio-wu/result.json",
+      "id": "results",
+      "format": "json",
+      "generated_path": "result.json"
+    },
+    {
+      "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/brio-wu/solution.csv",
+      "sha256": "6434dfae27f011359b8f3df46079f00d6f39e4f0f91faa48f17336b483297a49",
+      "path": "reference/brio-wu/solution.csv",
+      "id": "solution",
+      "format": "csv",
+      "generated_path": "solution.csv"
+    }
+  ],
+  "checks": [
+    {
+      "id": "numerical-reference-error",
+      "comparison": "maximum",
+      "tolerance": 0.03,
+      "description": {
+        "ja": "512セル参照を保存変数でブロック平均した密度との差が平均0.03以下。厳密解ではない。",
+        "en": "Mean density discrepancy from the conservatively restricted 512-cell reference is at most 0.03; the reference is not exact."
+      },
+      "pointer": "/metrics/density_l1_error_fine"
+    },
+    {
+      "id": "empirical-refinement",
+      "comparison": "maximum",
+      "tolerance": 0.95,
+      "description": {
+        "ja": "64→128セルで高解像度参照との差が減る。形式次数は主張しない。",
+        "en": "The discrepancy with the higher-resolution reference decreases from 64 to 128 cells; no formal order is claimed."
+      },
+      "pointer": "/metrics/fine_to_coarse_error_ratio"
+    },
+    {
+      "id": "longitudinal-field",
+      "comparison": "maximum",
+      "tolerance": 1e-12,
+      "description": {
+        "ja": "1次元で一定の縦磁場Bx=0.75を保存する。",
+        "en": "The constant one-dimensional longitudinal field Bx=0.75 is retained."
+      },
+      "pointer": "/metrics/longitudinal_field_max_error"
+    },
+    {
+      "id": "no-positivity-retry",
+      "comparison": "maximum",
+      "tolerance": 0,
+      "description": {
+        "ja": "この標準入力では正値性失敗による再試行がない。HLLE流束への切替回数は別途記録する。",
+        "en": "This standard input needs no positivity-failure time-step retry; HLLE flux fallbacks are separately reported."
+      },
+      "pointer": "/metrics/retried_steps"
+    },
+    {
+      "id": "positive-density",
+      "comparison": "minimum",
+      "tolerance": 1e-08,
+      "description": {
+        "ja": "最小密度が正である。",
+        "en": "Minimum density remains positive."
+      },
+      "pointer": "/metrics/minimum_density"
+    },
+    {
+      "id": "positive-pressure",
+      "comparison": "minimum",
+      "tolerance": 1e-08,
+      "description": {
+        "ja": "最小圧力が正である。",
+        "en": "Minimum gas pressure remains positive."
+      },
+      "pointer": "/metrics/minimum_pressure"
+    },
+    {
+      "id": "boundary-balance",
+      "comparison": "maximum",
+      "tolerance": 1e-10,
+      "description": {
+        "ja": "遠方の物理境界流束を差し引いた相対収支誤差。",
+        "en": "Relative integral balance defect after subtracting physical far-field boundary fluxes."
+      },
+      "pointer": "/metrics/physical_boundary_balance_relative_defect"
+    },
+    {
+      "id": "reached-time",
+      "comparison": "maximum",
+      "tolerance": 1e-14,
+      "description": {
+        "ja": "指定した終端時刻まで進んだ。",
+        "en": "The requested final time is reached."
+      },
+      "pointer": "/metrics/final_time_error"
+    },
+    {
+      "id": "all-criteria",
+      "pointer": "/checks",
+      "comparison": "all_true",
+      "description": {
+        "ja": "全数値条件の判定",
+        "en": "All numerical acceptance flags"
+      }
+    },
+    {
+      "id": "input-provenance",
+      "pointer": "/input_sha256",
+      "comparison": "equals",
+      "expected": "faf47e55ad28b23f154021809d351ac853c4145790b6f54692031c081c9c7f4b",
+      "description": {
+        "ja": "実行した固定入力のSHA-256",
+        "en": "SHA-256 of the executed fixed input"
+      }
+    },
+    {
+      "id": "case-passed",
+      "pointer": "/passed",
+      "comparison": "equals",
+      "expected": true,
+      "description": {
+        "ja": "入力に記載した条件の合格",
+        "en": "Acceptance conditions in the input passed"
+      }
+    }
+  ],
+  "expected_failures": [],
+  "citation": {
+    "creator": "Hiroshi Koyama",
+    "title": {
+      "ja": "Brio–Wu：HLLDと保存的に粗視化した数値参照",
+      "en": "Brio–Wu: HLLD and a conservatively restricted numerical reference"
+    },
+    "version": "2026-11-22",
+    "url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#brio-wu-en",
+    "method_publications": [
+      "https://doi.org/10.1016/0021-9991(88)90120-9",
+      "https://doi.org/10.1016/j.jcp.2005.02.017"
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "id": "mcmc-bimodal-mixture",
+  "group": "probability",
+  "name": {
+    "ja": "多峰性MCMC：峰への閉じ込め・偽の安心・大域提案",
+    "en": "Multimodal MCMC: trapping, false reassurance and a global proposal"
+  },
+  "chapter": "validation-mcmc",
+  "reading_section": "mcmc-multimodal-mixing",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-22/mcmc/",
+  "verification": "/code/validated-examples/2026-11-22/mcmc/verification.json",
+  "commands": [
+    "python -m pytest -q",
+    "python run.py --input inputs.json --output output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-22/mcmc/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "mcmc-multimodal-mixing"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/mcmc/results/mcmc-multimodal-mixing.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/mcmc/inputs.json",
+      "json_pointer": "/cases/mcmc-multimodal-mixing"
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/mcmc/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "mcmc-multimodal-mixing",
+      "url": "/numerical-methods-atlas/validation/mcmc-multimodal-mixing/",
+      "name": {
+        "ja": "多峰性MCMC：峰への閉じ込め・偽の安心・大域提案",
+        "en": "Multimodal MCMC: trapping, false reassurance and a global proposal"
+      }
+    }
+  ]
+}

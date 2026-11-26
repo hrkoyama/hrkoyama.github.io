@@ -1,0 +1,44 @@
+{
+  "id": "srmhd-alfven",
+  "group": "mhd",
+  "name": {
+    "ja": "SRMHDの有限振幅円偏極Alfvén波",
+    "en": "SRMHD finite-amplitude circularly polarized Alfvén wave"
+  },
+  "chapter": "validation-relativistic",
+  "reading_section": "srmhd-alfven",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-23/relativistic/",
+  "verification": "/code/validated-examples/2026-11-23/relativistic/verification.json",
+  "commands": [
+    "python -W error -m pytest -q",
+    "python -W error run.py --input inputs.json --output output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-23/relativistic/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "srmhd-alfven"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/relativistic/results/srmhd-alfven-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/relativistic/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "srmhd-alfven",
+      "url": "/numerical-methods-atlas/validation/srmhd-alfven/",
+      "name": {
+        "ja": "SRMHDの有限振幅円偏極Alfvén波",
+        "en": "SRMHD finite-amplitude circularly polarized Alfvén wave"
+      }
+    }
+  ]
+}

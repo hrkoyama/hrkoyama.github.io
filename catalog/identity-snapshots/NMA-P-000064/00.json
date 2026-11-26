@@ -1,0 +1,27 @@
+{
+  "id": "hydrogenic-atoms",
+  "group": "quantum",
+  "name": {
+    "ja": "水素型原子の動径固有値問題",
+    "en": "Hydrogenic radial eigenproblems"
+  },
+  "chapter": "quantum-atoms",
+  "reading_section": "hydrogenic",
+  "availability": "saved-output",
+  "code_base": "/code/quantum-atoms/2026-11-21/",
+  "verification": "/code/quantum-atoms/2026-11-21/verification.json",
+  "commands": [
+    "python -m pytest -q",
+    "python run.py --input inputs.json --output output --figures"
+  ],
+  "evidence": [
+    {
+      "path": "code/quantum-atoms/2026-11-21/results/results.json",
+      "json_pointer": "/hydrogenic/refinement"
+    },
+    {
+      "path": "code/quantum-atoms/2026-11-21/test_atomic_radial.py",
+      "python_symbol": "test_hydrogenic_refinement_and_normalization"
+    }
+  ]
+}

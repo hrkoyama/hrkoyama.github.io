@@ -1,0 +1,20 @@
+{
+  "id": "poisson-2d-random",
+  "group": "elliptic",
+  "name": {
+    "ja": "2次元Poisson・乱数ソースの離散残差",
+    "en": "2D Poisson / random-source discrete residual"
+  },
+  "chapter": "elliptic",
+  "evidence": [
+    {
+      "path": "code/numerical-methods-atlas/2026-11-21/tests/test_linear.py",
+      "python_symbol": "test_poisson_cg_for_general_forcing_satisfies_discrete_residual"
+    },
+    {
+      "path": "numerical-methods-atlas/gallery/calculations.json",
+      "json_pointer": "/cases/poisson-2d-random"
+    }
+  ],
+  "availability": "saved-output"
+}

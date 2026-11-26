@@ -1,0 +1,37 @@
+{
+  "id": "h2-rhf",
+  "group": "quantum",
+  "name": {
+    "ja": "H₂分子RHF：独立参照・SCF・s型基底拡大",
+    "en": "H₂ molecular RHF: independent reference, SCF and s-basis refinement"
+  },
+  "chapter": "h2-hf",
+  "reading_section": "measured-results",
+  "availability": "saved-output",
+  "code_base": "/code/molecular-hf/2026-11-22/",
+  "verification": "/code/molecular-hf/2026-11-22/verification.json",
+  "commands": [
+    "python -m pytest -q test_molecular_hf.py",
+    "python run.py --input inputs.json --output output"
+  ],
+  "evidence": [
+    {
+      "path": "code/molecular-hf/2026-11-22/results/result.json",
+      "json_pointer": "/metrics"
+    },
+    {
+      "path": "code/molecular-hf/2026-11-22/test_molecular_hf.py",
+      "python_symbol": "test_fixed_input_validation"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "h2-rhf-uhf-fci",
+      "url": "/numerical-methods-atlas/validation/h2-rhf-uhf-fci/",
+      "name": {
+        "ja": "最小基底H2のRHF/UHF/FCI・2固定幾何",
+        "en": "Minimal-basis H2: RHF, broken-spin UHF and finite-basis FCI"
+      }
+    }
+  ]
+}

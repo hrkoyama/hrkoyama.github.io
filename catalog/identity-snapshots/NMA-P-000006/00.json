@@ -1,0 +1,26 @@
+{
+  "id": "advection-square",
+  "group": "transport",
+  "name": {
+    "ja": "周期矩形波の線形移流",
+    "en": "Periodic square-wave advection"
+  },
+  "chapter": "limiters",
+  "evidence": [
+    {
+      "path": "numerical-methods-atlas/limiters.json",
+      "json_pointer": "/cases",
+      "where": {
+        "profile": "square"
+      }
+    },
+    {
+      "path": "numerical-methods-atlas/cip.json",
+      "json_pointer": "/cases",
+      "where": {
+        "profile": "square"
+      }
+    }
+  ],
+  "availability": "saved-output"
+}

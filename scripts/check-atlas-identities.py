@@ -7,7 +7,8 @@ import re
 import subprocess
 import sys
 
-from atlas_identities import IdentityError, load_json, safe_path, validate_registry
+from atlas_identities import (IdentityError, file_sha256, load_json, parse_json,
+                              safe_path, validate_baseline, validate_registry)
 
 
 def main():
@@ -20,12 +21,27 @@ def main():
     args = parser.parse_args()
     try:
         data = load_json(safe_path(args.root, args.registry))
-        frozen = load_json(safe_path(args.root, "catalog/atlas-identity-history.json"))
-        report = validate_registry(args.root, data, frozen)
+        pilot_path = safe_path(args.root, "catalog/atlas-identity-history.json")
+        baselines = [load_json(pilot_path)]
+        expanded_path = args.root / "catalog/atlas-identity-expansion-history.json"
+        expanded_namespace = (data["scope"] == "atlas-current" or expanded_path.exists()
+                              or (args.root / "catalog/atlas-identity-sources.json").exists())
+        if expanded_namespace:
+            from atlas_identity_coverage import (EXPANSION_CHECKPOINT_SHA256,
+                                                  PILOT_CHECKPOINT_SHA256)
+            if data["scope"] != "atlas-current":
+                raise IdentityError("cannot downgrade expanded identity scope")
+            if file_sha256(pilot_path) != PILOT_CHECKPOINT_SHA256:
+                raise IdentityError("frozen pilot checkpoint bytes changed")
+            expanded_path = safe_path(args.root, "catalog/atlas-identity-expansion-history.json")
+            if file_sha256(expanded_path) != EXPANSION_CHECKPOINT_SHA256:
+                raise IdentityError("frozen expansion checkpoint bytes changed")
+            baselines.append(load_json(expanded_path))
+        frozen_count = len(baselines)
         if args.baseline:
-            report = validate_registry(args.root, data, load_json(args.baseline))
-        report["additional_baseline_checked"] = args.baseline is not None
-        report["git_baseline_checked"] = False
+            baselines.append(load_json(args.baseline))
+        git_checked = False
+        previous_found = False
         if args.baseline_ref:
             if not re.fullmatch(r"[0-9a-fA-F]{40}", args.baseline_ref):
                 raise IdentityError("baseline-ref must be an exact 40-digit Git commit SHA")
@@ -42,10 +58,20 @@ def main():
                 if previous.returncode:
                     raise IdentityError("cannot read baseline-ref registry")
                 # Same strict duplicate-key and finite-number parser as files.
-                from atlas_identities import parse_json
-                validate_registry(args.root, data, parse_json(previous.stdout))
-                report["git_baseline_checked"] = True
-            report["previous_registry_found"] = bool(listed.stdout.strip())
+                baselines.append(parse_json(previous.stdout))
+                git_checked = True
+            previous_found = bool(listed.stdout.strip())
+        # One artifact pass, with structural/append-only checks for every frozen
+        # baseline. Historical checkpoints never need today's complete inventory.
+        report = validate_registry(args.root, data, baselines[0])
+        for baseline in baselines[1:]:
+            validate_registry(args.root, baseline, check_artifacts=False, _historical=True)
+            validate_baseline(data, baseline)
+        report["frozen_checkpoints_checked"] = frozen_count
+        report["additional_baseline_checked"] = args.baseline is not None
+        report["git_baseline_checked"] = git_checked
+        if args.baseline_ref:
+            report["previous_registry_found"] = previous_found
     except (IdentityError, OSError, KeyError, TypeError) as exc:
         report = {"passed": False, "validation_type": "saved-artifact-integrity-only", "numerical_execution": False, "errors": [str(exc)]}
     rendered = json.dumps(report, ensure_ascii=False, indent=2) + "\n"

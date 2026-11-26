@@ -1,0 +1,262 @@
+{
+  "name": {
+    "ja": "周期PM粒子群：質量・内力・格子場",
+    "en": "Periodic PM particles: mass, internal force and mesh field"
+  },
+  "scope": {
+    "ja": "入力JSONに保存した19粒子の周期CIC–FFT–CIC計算。質量、内力和、単粒子自己力、整数箱長移動を確認し、別の正弦密度の解析的周期Poisson場と照合。",
+    "en": "Periodic CIC–FFT–CIC calculation for 19 particles stored explicitly in input JSON. Check mass, net internal force, single-particle self-force and integer-box translation; separately compare a sinusoidal density with analytic periodic Poisson fields."
+  },
+  "assumptions": {
+    "ja": "3次元立方周期箱L=1、G=1、24³格子、正の質量で総和1。座標・質量は全値を入力に保存し、実行時の乱数生成はない。連続k²のFFT逆演算と同じCIC配置・補間を用いる。",
+    "en": "Three-dimensional periodic cube L=1, G=1, 24³ mesh and positive masses summing to one. All positions/masses are stored explicitly; no runtime random generation. Continuum-k² FFT inversion with matched CIC assignment/interpolation."
+  },
+  "units": {
+    "ja": "基準長L=1、総質量M=1、G=1。密度はM/L³、ポテンシャルはGM/L、加速度はGM/L²、力はGM²/L²。",
+    "en": "Reference length L=1, mass M=1 and G=1. Density: M/L³; potential: GM/L; acceleration: GM/L²; force: GM²/L²."
+  },
+  "boundaries": {
+    "ja": "3方向周期。∇²φ=4πG(ρ−〈ρ〉)、φ̂(0)=0。偶数格子の各微分軸のNyquist成分を0にする既存実装。孤立境界の直接和とは異なる。",
+    "en": "Periodic in all three axes: Laplacian(phi)=4*pi*G*(rho-mean(rho)), phi_hat(0)=0. Existing implementation zeros the unpaired Nyquist derivative mode along each even-grid axis. This differs from isolated direct-sum boundaries."
+  },
+  "method_ids": [
+    "cic",
+    "pm"
+  ],
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/particle-gravity/",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/particle-gravity/"
+  },
+  "references": [
+    {
+      "type": "analytic-mesh-solution",
+      "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/periodic-particles/result.json",
+      "description": {
+        "ja": "CSVは粒子ごとの座標・質量・加速度・力。正弦密度の独立解析場検査はJSONの集計値に保存。PM格子細分化を粒子力の解析誤差として誤表示しない。",
+        "en": "CSV stores each particle's coordinates, mass, acceleration and force. Independent sinusoidal-field diagnostics are JSON metrics. No mesh refinement is misrepresented as analytic particle-force error."
+      }
+    },
+    {
+      "type": "analytic-mesh-solution",
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/particle-gravity/",
+      "description": {
+        "ja": "別入力密度ρ=ρ₀+A cos(kx)に対するφ=−4πGA cos(kx)/k²、a_x=−4πGA sin(kx)/k。粒子群の厳密な周期力参照ではない。",
+        "en": "For separate rho=rho0+A*cos(k*x), phi=-4*pi*G*A*cos(k*x)/k² and ax=-4*pi*G*A*sin(k*x)/k. Not an exact periodic particle-force reference."
+      }
+    },
+    {
+      "type": "primary-publication",
+      "url": "https://doi.org/10.1016/0021-9991(74)90044-8",
+      "description": {
+        "ja": "既存PM項目の文献。今回のCIC–FFT方式・境界・検査範囲は入力と実装に明示。",
+        "en": "Existing PM-method reference; this recipe explicitly fixes its CIC–FFT formulation, boundaries and check scope."
+      }
+    }
+  ],
+  "failure_scope": {
+    "ja": "非正質量、非有限入力、G≠1、不適切な格子・正弦モード、非整数箱長移動を拒否。質量・内力和・自己力の一致だけでは個々の粒子力の精度を保証しない。周期直接和、短距離補正、Ewald・P3M・PME・SPME、粒子時間発展は実装しない。",
+    "en": "Reject nonpositive masses, nonfinite inputs, G!=1, invalid grids/sinusoidal modes and noninteger box shifts. Mass/net-force/self-force consistency alone does not establish individual particle-force accuracy. No periodic pair-sum reference, short-range correction, Ewald/P3M/PME/SPME or particle evolution."
+  },
+  "reference_notes": {
+    "ja": "CSVは粒子ごとの座標・質量・加速度・力。正弦密度の独立解析場検査はJSONの集計値に保存。PM格子細分化を粒子力の解析誤差として誤表示しない。",
+    "en": "CSV stores each particle's coordinates, mass, acceleration and force. Independent sinusoidal-field diagnostics are JSON metrics. No mesh refinement is misrepresented as analytic particle-force error."
+  },
+  "id": "periodic-particles",
+  "problem_id": "periodic-particles",
+  "release": {
+    "family": "numerical-methods-atlas",
+    "version": "2026-11-22",
+    "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip",
+    "sha256": "15c8c9c26cebc37b1e0c2923f91db456f8c9d157a48618f154f4b9bb39010fd7",
+    "manifest": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/source-manifest.json",
+    "manifest_sha256": "386b12c0b88cfd27ac9921d7b00d34e72bee3c0ae43b11eb174b01528a6195f8",
+    "verification": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/verification.json",
+    "archive_directory": "atlas-code-2026-11-22"
+  },
+  "execution_group": "periodic-particles",
+  "shared_runner_cases": [
+    "periodic-particles"
+  ],
+  "terms": {
+    "code": "MIT",
+    "code_license": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/LICENSE",
+    "content_and_data": "https://hrkoyama.github.io/rights/",
+    "scope": {
+      "ja": "自作コードはMIT。入力・数値データ・図・本文はサイトの個別条件に従います。この台帳は利用許諾を拡大しません。",
+      "en": "Original code is MIT. Inputs, numerical data, figures and prose retain the site’s item-specific terms. This registry does not expand reuse permissions."
+    }
+  },
+  "inputs": {
+    "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/recipes/periodic-particles.json",
+    "sha256": "9b44288285eb833f8132411dc681ebee4272ff1f6ee041c2a5a35004645c8b9b",
+    "path": "recipes/periodic-particles.json"
+  },
+  "dependencies": {
+    "core": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/requirements.txt",
+    "testing": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/requirements.txt",
+    "plotting": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/requirements.txt"
+  },
+  "commands": {
+    "install": "python -m pip install -r requirements.txt",
+    "run": "python run_recipe.py --input recipes/periodic-particles.json --output output-periodic-particles",
+    "tests": "python -m pytest -q tests/test_recipes.py",
+    "run_argv": [
+      "python",
+      "run_recipe.py",
+      "--input",
+      "recipes/periodic-particles.json",
+      "--output",
+      "{output}"
+    ],
+    "tests_argv": [
+      "python",
+      "-m",
+      "pytest",
+      "-q",
+      "tests/test_recipes.py"
+    ]
+  },
+  "outputs": [
+    {
+      "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/periodic-particles/result.json",
+      "sha256": "e15a8f7febd524587d0904449f91f5b573c0fe3d59a027728ed3bcfac943a4d9",
+      "path": "reference/periodic-particles/result.json",
+      "id": "results",
+      "format": "json",
+      "generated_path": "result.json"
+    },
+    {
+      "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/periodic-particles/solution.csv",
+      "sha256": "ebb449ec0854f8227004b5c8bf3d2ebcdcbb21b86eb8a833312b35f3226d13a1",
+      "path": "reference/periodic-particles/solution.csv",
+      "id": "solution",
+      "format": "csv",
+      "generated_path": "solution.csv"
+    }
+  ],
+  "checks": [
+    {
+      "id": "mass",
+      "comparison": "maximum",
+      "tolerance": 1e-13,
+      "description": {
+        "ja": "CIC格子へ沈着した総質量。",
+        "en": "Total mass deposited onto the CIC mesh."
+      },
+      "pointer": "/metrics/mass_relative_error"
+    },
+    {
+      "id": "internal-force",
+      "comparison": "maximum",
+      "tolerance": 1e-12,
+      "description": {
+        "ja": "質量重み付き内力和を力の大きさの総和で規格化。粒子力の精度とは別。",
+        "en": "Normalize net internal force by the sum of force magnitudes; separate from particle-force accuracy."
+      },
+      "pointer": "/metrics/internal_net_force_relative"
+    },
+    {
+      "id": "self-force",
+      "comparison": "maximum",
+      "tolerance": 1e-12,
+      "description": {
+        "ja": "同じCIC配置・補間を使う単粒子の自己加速度。",
+        "en": "Single-particle self-acceleration with matched CIC assignment/interpolation."
+      },
+      "pointer": "/metrics/single_particle_self_acceleration"
+    },
+    {
+      "id": "periodic-wrap-force",
+      "comparison": "maximum",
+      "tolerance": 1e-11,
+      "description": {
+        "ja": "整数箱長の移動で粒子加速度が不変。",
+        "en": "Acceleration is invariant under integer-box translations."
+      },
+      "pointer": "/metrics/periodic_shift_acceleration_max_error"
+    },
+    {
+      "id": "periodic-wrap-density",
+      "comparison": "maximum",
+      "tolerance": 1e-12,
+      "description": {
+        "ja": "整数箱長移動による沈着密度の相対差。",
+        "en": "Relative deposited-density difference under integer-box translations."
+      },
+      "pointer": "/metrics/periodic_shift_density_relative_error"
+    },
+    {
+      "id": "gauge",
+      "comparison": "maximum",
+      "tolerance": 1e-12,
+      "description": {
+        "ja": "周期ポテンシャルの平均0の規約。",
+        "en": "Zero-mean periodic potential gauge."
+      },
+      "pointer": "/metrics/potential_mean_absolute"
+    },
+    {
+      "id": "analytic-mesh-potential",
+      "comparison": "maximum",
+      "tolerance": 1e-12,
+      "description": {
+        "ja": "別に与えた正弦密度の解析的格子ポテンシャルと比較。",
+        "en": "Compare a separate sinusoidal density with its analytic mesh potential."
+      },
+      "pointer": "/metrics/manufactured_potential_max_error"
+    },
+    {
+      "id": "analytic-mesh-force",
+      "comparison": "maximum",
+      "tolerance": 1e-12,
+      "description": {
+        "ja": "同じ正弦密度の解析的格子加速度と比較。",
+        "en": "Compare the same sinusoidal density with its analytic mesh acceleration."
+      },
+      "pointer": "/metrics/manufactured_acceleration_max_error"
+    },
+    {
+      "id": "all-criteria",
+      "pointer": "/checks",
+      "comparison": "all_true",
+      "description": {
+        "ja": "全数値条件の判定",
+        "en": "All numerical acceptance flags"
+      }
+    },
+    {
+      "id": "input-provenance",
+      "pointer": "/input_sha256",
+      "comparison": "equals",
+      "expected": "9b44288285eb833f8132411dc681ebee4272ff1f6ee041c2a5a35004645c8b9b",
+      "description": {
+        "ja": "実行した固定入力のSHA-256",
+        "en": "SHA-256 of the executed fixed input"
+      }
+    },
+    {
+      "id": "case-passed",
+      "pointer": "/passed",
+      "comparison": "equals",
+      "expected": true,
+      "description": {
+        "ja": "入力に記載した条件の合格",
+        "en": "Acceptance conditions in the input passed"
+      }
+    }
+  ],
+  "expected_failures": [],
+  "reference_type": "analytic-mesh-solution",
+  "citation": {
+    "creator": "Hiroshi Koyama",
+    "title": {
+      "ja": "周期PM粒子群：質量・内力・格子場",
+      "en": "Periodic PM particles: mass, internal force and mesh field"
+    },
+    "version": "2026-11-22",
+    "url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#periodic-particles-en",
+    "method_publications": [
+      "https://doi.org/10.1016/0021-9991(74)90044-8"
+    ]
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "id": "jameson-steady-linear-modes",
+  "group": "time",
+  "name": {
+    "ja": "定常多段RKの実空間モード減衰",
+    "en": "Real-space mode damping with steady multistage RK"
+  },
+  "chapter": "validation-steady-rk",
+  "reading_section": "jameson-steady-linear-modes",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-24/steady-rk/",
+  "verification": "/code/validated-examples/2026-11-24/steady-rk/verification.json",
+  "commands": [
+    "python -B -W error -m pytest -q -p no:cacheprovider",
+    "python -B -W error run.py --input inputs.json --output fresh-output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-24/steady-rk/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "jameson-steady-linear-modes"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-24/steady-rk/results/jameson-steady-linear-modes-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-24/steady-rk/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "jameson-steady-linear-modes",
+      "url": "/numerical-methods-atlas/validation/jameson-steady-linear-modes/",
+      "name": {
+        "ja": "定常多段RKの実空間モード減衰",
+        "en": "Real-space mode damping with steady multistage RK"
+      }
+    }
+  ]
+}

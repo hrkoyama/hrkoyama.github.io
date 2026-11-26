@@ -53,12 +53,14 @@ PY
 
 ## 編集元と生成物の境界
 
-### 問題・固定ケース・ソースの恒久ID（代表例）
+### 問題・固定ケース・ソースの恒久ID
 
-初回対応は `catalog/atlas-identities.json`、変更禁止の初回履歴は `catalog/atlas-identity-history.json`。
-命名・改訂・対象3問題/3ケース/2共有実装と公開前の確認手順は [ID保守ガイド](docs/atlas-identities.md) を参照。
+現行の外部対応は `catalog/atlas-identities.json`。初回8 IDの履歴 `catalog/atlas-identity-history.json` と、全体展開の `catalog/atlas-identity-expansion-history.json` は変更禁止。
+2026-11-27の対象は174問題・181ケース登録単位・84実装単位（85版）。配布元は `catalog/atlas-identity-sources.json` で全97 ZIPを区分する。命名・改訂・正確な検証範囲は [ID保守ガイド](docs/atlas-identities.md) を参照。
 `python3 -B scripts/check-atlas-identities.py` でID/参照/ハッシュ/保存物を照合する。
 これは数値計算の再実行ではない。新改訂は追記し、旧版・公差・ZIPを上書きしない。
+ZIP内しかないソースは外部manifestと正確なmember binding、単独解析は実在するmanifest・依存ファイルへ結び、配布物を後から編集しない。
+`python3 -B scripts/build-atlas-identities.py --check` で新規採番・snapshotの不足を検出する。`--write` はレビュー前の候補作成用であり、既存改訂・チェックポイントを上書きしない。
 次回以降の変更では `--baseline` に変更前の承認済み台帳を指定し、初回以後の既存改訂も保持する。
 
 ### 既存の編集元

@@ -1,0 +1,32 @@
+{
+  "id": "bratu",
+  "group": "elliptic",
+  "name": {
+    "ja": "1次元Bratu非線形境界値問題",
+    "en": "One-dimensional Bratu boundary-value problem"
+  },
+  "chapter": "sparse-nonlinear",
+  "evidence": [
+    {
+      "path": "code/numerical-methods-atlas/2026-11-21/tests/test_sparse_fem.py",
+      "python_symbol": "test_bratu_newton_krylov_refines_to_continuous_reference"
+    },
+    {
+      "path": "numerical-methods-atlas/gallery/calculations.json",
+      "json_pointer": "/cases/bratu"
+    },
+    {
+      "path": "code/bratu-sensitivity/2026-11-22/docs/figures/bratu-sensitivity.json",
+      "json_pointer": "/grid_runs"
+    },
+    {
+      "path": "code/bratu-inverse/2026-11-22/docs/figures/bratu-inverse.json",
+      "json_pointer": "/grid_runs"
+    },
+    {
+      "path": "code/bratu-multinverse/2026-11-22/docs/figures/bratu-multinverse.json",
+      "json_pointer": "/grid_runs"
+    }
+  ],
+  "availability": "saved-output"
+}

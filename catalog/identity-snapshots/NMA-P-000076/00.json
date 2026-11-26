@@ -1,0 +1,44 @@
+{
+  "id": "kink-branch-derivatives",
+  "group": "differentiation-inverse",
+  "name": {
+    "ja": "非滑らか点・分岐・停止条件の微分範囲",
+    "en": "Derivative scope at kinks, branches and stopping decisions"
+  },
+  "chapter": "validation-reverse-higher-ad",
+  "reading_section": "kink-branch-derivatives",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-24/reverse-higher-ad/",
+  "verification": "/code/validated-examples/2026-11-24/reverse-higher-ad/verification.json",
+  "commands": [
+    "python -B -W error -m pytest -q -p no:cacheprovider",
+    "python -B -W error run.py --input inputs.json --output fresh-output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-24/reverse-higher-ad/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "kink-branch-derivatives"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-24/reverse-higher-ad/results/kink-branch-derivatives-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-24/reverse-higher-ad/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "kink-branch-derivatives",
+      "url": "/numerical-methods-atlas/validation/kink-branch-derivatives/",
+      "name": {
+        "ja": "非滑らか点・分岐・停止条件の微分範囲",
+        "en": "Derivative scope at kinks, branches and stopping decisions"
+      }
+    }
+  ]
+}

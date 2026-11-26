@@ -1,0 +1,26 @@
+{
+  "id": "magnetic-loop",
+  "group": "mhd",
+  "name": {
+    "ja": "磁場ループの移流",
+    "en": "Magnetic field-loop advection"
+  },
+  "chapter": "mhd",
+  "evidence": [
+    {
+      "path": "numerical-methods-atlas/assets/mhd-tests/mhd-tests.json",
+      "json_pointer": "/field_loop"
+    }
+  ],
+  "availability": "saved-output",
+  "supplemental_examples": [
+    {
+      "id": "magnetic-loop-independent",
+      "url": "/numerical-methods-atlas/validation/magnetic-loop-independent/",
+      "name": {
+        "ja": "磁場ループ：独立2次元参照と細分化",
+        "en": "Magnetic loop: independent 2D reference and refinement"
+      }
+    }
+  ]
+}

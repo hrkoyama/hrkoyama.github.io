@@ -1,0 +1,44 @@
+{
+  "id": "symmetric-saddle-minres",
+  "group": "approximation",
+  "name": {
+    "ja": "対称不定値鞍点系とSchur前処理",
+    "en": "Symmetric saddle systems and Schur preconditioning"
+  },
+  "chapter": "validation-linear-algebra-spectral",
+  "reading_section": "symmetric-saddle-minres",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/",
+  "verification": "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json",
+  "commands": [
+    "python -B -W error -m pytest -q -p no:cacheprovider",
+    "python -B -W error run.py --input inputs.json --output fresh-output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "symmetric-saddle-minres"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/symmetric-saddle-minres-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "symmetric-saddle-minres",
+      "url": "/numerical-methods-atlas/validation/symmetric-saddle-minres/",
+      "name": {
+        "ja": "対称不定値鞍点系とSchur前処理",
+        "en": "Symmetric saddle systems and Schur preconditioning"
+      }
+    }
+  ]
+}

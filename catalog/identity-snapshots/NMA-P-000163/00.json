@@ -1,0 +1,56 @@
+{
+  "id": "thermostatted-quartic",
+  "group": "time",
+  "name": {
+    "ja": "非調和CSVRとLangevin：Boltzmann求積との分布比較",
+    "en": "Anharmonic CSVR versus Langevin: distribution checks against Boltzmann quadrature"
+  },
+  "chapter": "validation-thermostats",
+  "reading_section": "csvr-langevin-quartic",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-22/thermostats/",
+  "verification": "/code/validated-examples/2026-11-22/thermostats/verification.json",
+  "commands": [
+    "python -m pytest -q",
+    "python run.py --input inputs.json --output output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-22/thermostats/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "csvr-langevin-quartic"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/thermostats/results/csvr-langevin-quartic.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/thermostats/inputs.json",
+      "json_pointer": "/cases/csvr-langevin-quartic"
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/thermostats/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "csvr-langevin-quartic",
+      "url": "/numerical-methods-atlas/validation/csvr-langevin-quartic/",
+      "name": {
+        "ja": "非調和CSVRとLangevin：Boltzmann求積との分布比較",
+        "en": "Anharmonic CSVR versus Langevin: distribution checks against Boltzmann quadrature"
+      }
+    },
+    {
+      "id": "deterministic-thermostat-contrasts",
+      "url": "/numerical-methods-atlas/validation/deterministic-thermostat-contrasts/",
+      "name": {
+        "ja": "NH・chain・弱結合・速度固定の比較",
+        "en": "NH,chains,weak coupling and fixed-speed contrasts"
+      }
+    }
+  ]
+}
