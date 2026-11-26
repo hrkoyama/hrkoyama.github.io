@@ -218,6 +218,34 @@ test('the application resolves every physical legacy reading route including the
   }
 });
 
+test('explicit chapter openings keep the typed front door after the original lead and outside the article',()=>{
+ const result=execFileSync(python,['-B','-c',String.raw`
+import ast,json,pathlib,re
+from html.parser import HTMLParser
+path=pathlib.Path('scripts/build-atlas-chapter-resources.py')
+node=next(node for node in ast.parse(path.read_text()).body if isinstance(node,ast.ClassDef) and node.name=='ReadingPage')
+ns={'HTMLParser':HTMLParser,'re':re}
+exec(compile(ast.Module(body=[node],type_ignores=[]),str(path),'exec'),ns)
+article='<article class="prose"><h2 id="kept-anchor">Body heading</h2><p>Conserved value 1.2345.</p></article>'
+marker='<!-- chapter-resource-position -->'
+opening='<div class="reading-opening" data-chapter-opening><h1>Existing title</h1><p>Existing lead.</p></div>'
+html='<html><head><title>Existing title</title></head><body><main>'+opening+marker+'<nav>Existing auxiliary links</nav>'+article+'</main></body></html>'
+page=ns['ReadingPage'](html)
+assert page.jump==html.index(marker)+len(marker)
+inserted=html[:page.jump]+'<nav data-chapter-resource-jump="fixture">Five typed links</nav>'+html[page.jump:]
+assert inserted.index('Existing lead.')<inserted.index('data-chapter-resource-jump')<inserted.index('Existing auxiliary links')<inserted.index(article)
+assert article in inserted and inserted.replace('<nav data-chapter-resource-jump="fixture">Five typed links</nav>','')==html
+legacy=html.replace(opening+marker,'').replace(article,'<article><h1>Legacy title</h1>'+article+'</article>')
+assert ns['ReadingPage'](legacy).jump==legacy.index('<article>'),'Legacy article boundary stays intact'
+for invalid in [html.replace(marker,marker+marker),html.replace(marker,'').replace('<h2',marker+'<h2',1)]:
+ try:ns['ReadingPage'](invalid)
+ except ValueError:pass
+ else:raise AssertionError('Ambiguous or inside-article positions must fail')
+print(json.dumps({'opening_after_lead':True,'original_article_unchanged':True,'legacy_boundary_preserved':True}))
+`],{cwd:root,encoding:'utf8'});
+ assert.deepEqual(JSON.parse(result),{opening_after_lead:true,original_article_unchanged:true,legacy_boundary_preserved:true});
+});
+
 test('small chapter fixtures preserve original bodies and downloads, replace poisoned output and follow source and edition changes idempotently',()=>{
   const output=execFileSync(python,['-B','-c',bootstrap+String.raw`
 import copy,hashlib,re,shutil,tempfile

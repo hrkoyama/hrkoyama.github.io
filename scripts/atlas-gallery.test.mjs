@@ -96,7 +96,7 @@ test('six particle/transport checks retain all five historical images and add on
  assert.equal(gallery.counts.runnable_problems,runnableProblemCount);
 });
 
-test('optional domain buttons and image policies start collapsed while names, reset and current count remain visible', () => {
+test('optional navigation, domain buttons and image policies start collapsed while problem names and primary actions precede supplements', () => {
   const protectedFiles = ['preview-manifest.json','calculations.json','verification.json'].map(name => 'numerical-methods-atlas/gallery/'+name).concat('catalog/atlas-gallery.json');
   const before = protectedFiles.map(digest);
   // Execute only the HTML/index builder with filesystem writes intercepted.
@@ -126,17 +126,28 @@ print(json.dumps({'html': writes['numerical-methods-atlas/gallery/index.html'], 
   for (const [index,match] of sections.entries()) {
     const section = match[1], ja = index === 0;
     const disclosures = [...section.matchAll(/<details\b([^>]*)>([\s\S]*?)<\/details>/g)];
-    assert.equal(disclosures.length,2);
-    assert.ok(disclosures.every(row => !/\bopen(?:\s|=|$)/.test(row[1])),'both native disclosures are closed by default');
-    assert.ok(disclosures[0][1].includes('gallery-domain-filter'));
-    assert.ok(disclosures[0][2].includes('<summary>'+(ja?'分野で絞り込む':'Filter by domain')+'</summary>'));
-    assert.equal((disclosures[0][2].match(/data-gallery-group=/g)||[]).length,inventory.groups.length+1);
-    assert.ok(disclosures[1][1].includes('gallery-policy'));
-    assert.ok(disclosures[1][2].includes('<summary>'+(ja?'図の条件・検証範囲・数え方':'Image conditions, validation scope and counting rules')+'</summary>'));
-    assert.equal((disclosures[1][2].match(/class="gallery-note"/g)||[]).length,3);
+    assert.equal(disclosures.length,3);
+    assert.ok(disclosures.every(row => !/\bopen(?:\s|=|$)/.test(row[1])),'all native disclosures are closed by default');
+    assert.ok(section.includes('<nav class="resource-nav gallery-navigation"'));
+    assert.ok(disclosures[0][2].includes('<summary>'+(ja?'関連する一覧と資料':'Related indexes and resources')+'</summary>'));
+    assert.equal((disclosures[0][2].match(/<a href=/g)||[]).length,5,'all existing related destinations remain available');
+    assert.ok(disclosures[1][1].includes('gallery-domain-filter'));
+    assert.ok(disclosures[1][2].includes('<summary>'+(ja?'分野で絞り込む':'Filter by domain')+'</summary>'));
+    assert.equal((disclosures[1][2].match(/data-gallery-group=/g)||[]).length,inventory.groups.length+1);
+    assert.ok(disclosures[2][1].includes('gallery-policy'));
+    assert.ok(disclosures[2][2].includes('<summary>'+(ja?'図の条件・検証範囲・数え方':'Image conditions, validation scope and counting rules')+'</summary>'));
+    assert.equal((disclosures[2][2].match(/class="gallery-note"/g)||[]).length,3);
+    assert.equal((disclosures[2][2].match(/class="gallery-availability-note"/g)||[]).length,1,'the existing runnable-count explanation is retained in the help disclosure');
+    assert.ok(disclosures[2][2].includes(String(runnableProblemCount)));
     const visible = section.replace(/<details\b[^>]*>[\s\S]*?<\/details>/g,'');
     for (const selector of ['type="search"','data-gallery-reset','data-gallery-runnable','data-gallery-count','class="gallery-grid"']) assert.ok(visible.includes(selector),selector+' is visible without expanding optional controls');
     assert.ok(!visible.includes('data-gallery-group='));
+    for (const tile of section.match(/<li class="gallery-tile"[\s\S]*?<\/li>/g)||[]) {
+      const supplement=tile.indexOf('data-supplemental-execution=');
+      if(supplement<0)continue;
+      assert.ok(tile.indexOf('<h2>')<supplement,'the problem title precedes supplementary runs');
+      assert.ok(tile.indexOf('class="gallery-card-links"')<supplement,'read, conditions and full-size links precede supplementary runs');
+    }
   }
   assert.deepEqual(protectedFiles.map(digest),before,'no preview receipts or image mapping files need regeneration');
 });

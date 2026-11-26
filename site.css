@@ -195,3 +195,377 @@ html body:has(> .site-top) .reference-layout .reference-item .reference-note {
 }
 
 }
+
+/* Shared layout and navigation: reading, indexes and archive workbenches keep
+   distinct widths. Existing typography, palette and scientific media are kept. */
+@media screen {
+  :root {
+    --site-layout-gutter: 1.5rem;
+    --site-layout-frame: 70rem;
+    --site-layout-wide: 80rem;
+    --site-layout-prose: 48rem;
+    --site-layout-opening: 54rem;
+    --site-layout-gap: 1.5rem;
+    --site-layout-section: 3rem;
+    --site-layout-card-padding: 1.25rem;
+  }
+  .site-chrome .site-inner {
+    max-width: var(--site-layout-frame);
+    padding-inline: var(--site-layout-gutter);
+  }
+  /* Standalone archive headers and headers already inside a padded wrap have
+     the same content edge. Atlas's height-dependent SPA menu stays separate. */
+  html body:has(> .site-top) > header:not(.site-chrome):not(.site-header) {
+    box-sizing: border-box;
+    max-width: var(--site-layout-frame);
+    height: auto;
+    min-height: 4.5rem;
+    margin-inline: auto;
+    padding: 1rem var(--site-layout-gutter);
+    gap: 1rem 1.5rem;
+    flex-wrap: wrap;
+  }
+  html body:has(> .site-top) > .wrap > header {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: calc(var(--site-layout-frame) - 2 * var(--site-layout-gutter));
+    height: auto;
+    min-height: 4.5rem;
+    margin-inline: auto;
+    padding: 1rem 0;
+    gap: 1rem 1.5rem;
+    flex-wrap: wrap;
+  }
+  html body:has(> .site-top) main.profile-main:not(.atlas-resource-main):not(.atlas-gallery-main):not(.home-main) {
+    box-sizing: border-box;
+    max-width: calc(var(--site-layout-prose) + 2 * var(--site-layout-gutter));
+    margin: 2.5rem auto var(--site-layout-section);
+    padding-inline: var(--site-layout-gutter);
+  }
+  .home-page .home-main,
+  html body:has(> .site-top) main.profile-main.atlas-resource-main {
+    box-sizing: border-box;
+    max-width: var(--site-layout-frame);
+    margin: 2.5rem auto var(--site-layout-section);
+    padding-inline: var(--site-layout-gutter);
+  }
+  html body:has(> .site-top) main.profile-main.atlas-gallery-main {
+    box-sizing: border-box;
+    max-width: var(--site-layout-wide);
+    margin: 2.5rem auto var(--site-layout-section);
+    padding-inline: var(--site-layout-gutter);
+  }
+  .home-overview .page-width {
+    box-sizing: border-box;
+    max-width: var(--site-layout-frame);
+    padding-inline: var(--site-layout-gutter);
+  }
+  .reading-index {
+    box-sizing: border-box;
+    max-width: var(--site-layout-frame);
+    padding: 2rem var(--site-layout-gutter) var(--site-layout-section);
+  }
+  /* Only the generated opening and ordinary direct prose get a text measure.
+     Figure, math, pre/code, graph and original-image containers are untouched. */
+  .detailed-reading > .reading-breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem 1rem;
+    margin: 0 0 1rem;
+  }
+  .detailed-reading > .reading-opening.prose {
+    max-width: var(--site-layout-opening);
+    margin: 0 0 1.25rem;
+  }
+  .detailed-reading > .reading-opening > h1 { margin: 0 0 1rem; }
+  .detailed-reading > .reading-opening > p {
+    max-width: var(--site-layout-prose);
+    margin: 0;
+  }
+  .detailed-reading > article.prose > :is(p, ul, ol, dl, blockquote):not(:has(svg, canvas, math, .katex, .MathJax, mjx-container)) {
+    max-width: var(--site-layout-prose);
+  }
+  .detailed-reading > .chapter-resource-jump {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .25rem 1rem;
+    margin: 1.25rem 0;
+    padding: .75rem 1rem;
+  }
+  .detailed-reading > .chapter-resource-jump > p { margin: 0; }
+  .detailed-reading > .chapter-resource-jump > ul {
+    display: flex;
+    flex: 1 1 30rem;
+    flex-wrap: wrap;
+    gap: 0 1rem;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .detailed-reading > .chapter-resource-jump > ul > li { min-width: 0; margin: 0; padding: 0; }
+  .detailed-reading > .reading-toc { display: block; margin: 1rem 0 2rem; }
+  .reading-toc-details,
+  .atlas-gallery-main .gallery-navigation > details { min-width: 0; }
+  .detailed-reading .reading-toc-details > summary,
+  .atlas-gallery-main .gallery-navigation > details > summary {
+    display: list-item;
+    min-height: 2.75rem;
+    padding-block: .625rem;
+    cursor: pointer;
+  }
+  .detailed-reading .reading-toc-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 1.25rem;
+    min-width: 0;
+  }
+  .detailed-reading .reading-toc-details .reading-toc-links > a {
+    display: inline-flex;
+    align-items: center;
+    max-width: 100%;
+    min-height: 2.75rem;
+    padding-block: .25rem;
+    overflow-wrap: anywhere;
+  }
+  .detailed-reading .reading-resource-links,
+  .atlas-gallery-main .gallery-navigation-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0 1.25rem;
+    min-width: 0;
+    margin-top: .5rem;
+    padding-block: .5rem;
+  }
+  .detailed-reading .reading-resource-links > a,
+  .atlas-gallery-main .gallery-navigation-links > a {
+    display: inline-flex;
+    align-items: center;
+    max-width: 100%;
+    min-height: 2.75rem;
+    overflow-wrap: anywhere;
+  }
+  .atlas-gallery-main .gallery-navigation { display: block; margin: 1rem 0; }
+  /* Retain the established sidebar/body model instead of giving every page
+     the same grid. Original plots and lab widgets keep their own sizing. */
+  .lesson-layout {
+    box-sizing: border-box;
+    max-width: var(--site-layout-frame);
+    margin-top: 2.5rem;
+    padding-inline: var(--site-layout-gutter);
+    grid-template-columns: 14rem minmax(0, 1fr);
+    gap: 2.5rem;
+  }
+  .lesson { max-width: var(--site-layout-prose); }
+  .lesson-head { padding-bottom: 1.5rem; margin-bottom: 2rem; }
+  .lesson section { margin-block: 2.5rem; }
+  .reading-shell { max-width: var(--site-layout-wide); padding-inline: var(--site-layout-gutter); gap: 2rem; }
+  .reading-shell > .prose { max-width: var(--site-layout-prose); }
+  .exhibit > .hero { padding-top: 2.5rem; }
+  .exhibit > section { padding-block: 2rem; }
+  /* A shared card rhythm, without styling lineage nodes, timeline events,
+     scientific panels or Gordon Bell's year/text/action rows as tiles. */
+  .home-page :is(.home-features, .home-records, .home-tools > div),
+  .home-entry-grid, .volume-grid, .library-grid,
+  .profile-main .gallery-grid { gap: var(--site-layout-gap); }
+  .home-entry,
+  .volume-card,
+  .notebook-card .card-copy,
+  .gallery-card-body { padding: var(--site-layout-card-padding); }
+  .gallery-card-links { gap: .5rem 1rem; margin-block: .75rem; }
+  .guide-layout .result-card { padding-block: 1.5rem; }
+  .guide-hero { padding-block: 2.5rem 2rem; gap: 2rem; }
+  .library-hero { padding-block: 2.5rem 2rem; }
+  @media (max-width: 62.5rem) {
+    .lesson-layout { grid-template-columns: 11rem minmax(0, 1fr); gap: 1.5rem; }
+  }
+  @media (max-width: 48rem) {
+    :root {
+      --site-layout-gutter: 1.25rem;
+      --site-layout-gap: 1.25rem;
+      --site-layout-section: 2rem;
+      --site-layout-card-padding: 1rem;
+    }
+    .home-page .home-main,
+    html body:has(> .site-top) main.profile-main { margin-block: 1.75rem var(--site-layout-section); }
+    .reading-shell { gap: 1.5rem; }
+    .exhibit > .hero { padding-top: 2rem; }
+    .guide-hero, .library-hero { padding-block: 2rem 1.5rem; }
+  }
+  /* Keep the authored 700px Astro navigation transition: do not hide a
+     chapter navigation at additional tablet widths as gutters change. */
+  @media (max-width: 43.75rem) {
+    .lesson-layout { display: block; margin-top: 1.75rem; }
+    .lesson-layout > .sidebar { position: static; max-height: none; margin: 0 0 1.5rem; padding: 0; }
+    .lesson-layout > .sidebar :is(.side-title, .side-links) { display: none; }
+    .lesson-layout > .sidebar .back { margin: 0; padding: 0; }
+  }
+}
+
+/* Validation wrappers follow the same title-first reading order. The validity
+   notice remains ordinary visible content before the computational material. */
+@media screen {
+  .validation-main .validation-breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem 1rem;
+    margin: 0 0 1rem;
+  }
+  .validation-main .validation-breadcrumb > a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+  }
+  .validation-main .validation-opening {
+    max-width: var(--site-layout-opening);
+    margin: 0 0 1.25rem;
+  }
+  .validation-main .validation-opening > h1 { margin: 0 0 1rem; }
+  .validation-main .validation-opening > p {
+    max-width: var(--site-layout-prose);
+    margin: 0;
+  }
+  .validation-main .validation-page-tools { display: block; margin: .75rem 0; }
+  .validation-main .validation-page-tools > details { min-width: 0; }
+  .validation-main .validation-page-tools > details > summary {
+    display: list-item;
+    min-height: 2.75rem;
+    padding-block: .625rem;
+    cursor: pointer;
+  }
+  .validation-main .validation-page-tools > details > div {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0 1.25rem;
+    min-width: 0;
+    padding-block: .5rem;
+  }
+  .validation-main .validation-page-tools > details > div > a,
+  .validation-main .validation-actions > a:not([hidden]) {
+    display: inline-flex;
+    align-items: center;
+    max-width: 100%;
+    min-height: 2.75rem;
+    overflow-wrap: anywhere;
+  }
+  .validation-main .validation-actions { gap: .5rem 1rem; margin-block: 1rem; }
+  .validation-main .validation-scope { margin-block: 1rem 1.5rem; }
+  .validation-main .chapter-resource-jump {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .25rem 1rem;
+    margin: 1.25rem 0;
+    padding: .75rem 1rem;
+  }
+  .validation-main .chapter-resource-jump > p { margin: 0; }
+  .validation-main .chapter-resource-jump > ul {
+    display: flex;
+    flex: 1 1 30rem;
+    flex-wrap: wrap;
+    gap: 0 1rem;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .validation-main .chapter-resource-jump > ul > li { min-width: 0; margin: 0; padding: 0; }
+}
+
+/* Bind moved neutral links to their established role; keep existing semantic
+   state colors elsewhere. Disclosure/tap sizes include their own padding. */
+@media screen {
+  .validation-main .validation-breadcrumb > a,
+  .validation-main .validation-page-tools > details > div > a {
+    color: var(--site-visual-link);
+  }
+  .detailed-reading .reading-toc-details > summary,
+  .detailed-reading .reading-toc-details .reading-toc-links > a,
+  .detailed-reading .reading-resource-links > a,
+  .atlas-gallery-main .gallery-navigation > details > summary,
+  .atlas-gallery-main .gallery-navigation-links > a,
+  .validation-main .validation-breadcrumb > a,
+  .validation-main .validation-page-tools > details > summary,
+  .validation-main .validation-page-tools > details > div > a,
+  .validation-main .validation-actions > a:not([hidden]) {
+    box-sizing: border-box;
+  }
+  .atlas-gallery-main [data-gallery] > .eyebrow { letter-spacing: .06em; }
+  .atlas-gallery-main .gallery-policy .gallery-availability-note {
+    max-width: var(--site-layout-prose);
+    margin-block: .5rem 0;
+  }
+  @media (max-width: 48rem) {
+    html body:has(> .site-top) main.profile-main.atlas-gallery-main { margin-top: 1rem; }
+    .profile-main.atlas-gallery-main [data-gallery] > .eyebrow { margin-block: 0 .75rem; }
+    .profile-main.atlas-gallery-main .gallery-navigation { margin-block: .5rem .75rem; }
+    .profile-main.atlas-gallery-main .gallery-tools { margin: .75rem 0 .5rem; padding: .75rem; }
+    .profile-main.atlas-gallery-main .gallery-search-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: stretch;
+      gap: .5rem;
+      margin-block: .5rem;
+    }
+    .profile-main.atlas-gallery-main .gallery-search-row > input {
+      box-sizing: border-box;
+      flex-basis: auto;
+      width: 100%;
+      min-width: 0;
+      max-width: 100%;
+      min-height: 2.75rem;
+      padding: .5rem .75rem;
+    }
+    .profile-main.atlas-gallery-main .gallery-search-row > button {
+      box-sizing: border-box;
+      min-height: 2.75rem;
+      padding: .5rem .75rem;
+      white-space: nowrap;
+    }
+    .profile-main.atlas-gallery-main .gallery-domain-filter > summary,
+    .profile-main.atlas-gallery-main .gallery-policy > summary { box-sizing: border-box; }
+    .profile-main.atlas-gallery-main .gallery-execution-filter {
+      gap: .25rem .75rem;
+      margin-top: .5rem;
+      padding-top: .5rem;
+    }
+    .profile-main.atlas-gallery-main .gallery-count { margin: .5rem 0 0; }
+    .profile-main.atlas-gallery-main .gallery-policy { margin-bottom: .75rem; }
+    .profile-main.atlas-gallery-main .gallery-grid { margin-top: .75rem; }
+  }
+}
+
+/* The Compass keeps its parent-directory link as local navigation; the common
+   header already supplies the author identity, languages and global search. */
+@media screen {
+  html body:has(.guide-start) > .wrap {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: var(--site-layout-frame);
+    margin-inline: auto;
+    padding-inline: var(--site-layout-gutter);
+  }
+  html body:has(.guide-start) > .wrap > header {
+    min-height: 2.75rem;
+    padding-block: .5rem;
+    justify-content: flex-start;
+  }
+  html body:has(.guide-start) > .wrap > header .identity { display: none; }
+}
+
+/* The Guide's parent-directory link remains visible at the authored mobile
+   breakpoint after the duplicate local identity is suppressed. */
+@media screen {
+  html body > .wrap:has(.guide-start) > header {
+    min-height: 2.75rem;
+    padding-block: 0;
+  }
+  html body > .wrap:has(.guide-start) > header .header-actions > .header-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+  }
+}

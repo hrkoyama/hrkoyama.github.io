@@ -37,6 +37,7 @@ class ReadingPage(HTMLParser):
         self.title_parts = []
         self.title = ''
         self.jump = None
+        self.explicit_jump = None
         self.main_end = None
         self.head_end = None
         self.feed(text)
@@ -71,6 +72,13 @@ class ReadingPage(HTMLParser):
     def handle_data(self, value):
         if self.heading:
             self.title_parts.append(value)
+
+    def handle_comment(self, value):
+        if value.strip() == 'chapter-resource-position':
+            if self.explicit_jump is not None or self.articles:
+                raise ValueError('Expected one chapter resource position outside the article')
+            self.explicit_jump = self.absolute_position()+len('<!--'+value+'-->')
+            self.jump = self.explicit_jump
 
 
 def directories():

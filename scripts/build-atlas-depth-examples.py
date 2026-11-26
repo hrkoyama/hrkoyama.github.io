@@ -137,6 +137,33 @@ def case_route(identifier, language=None):
     return INDEX+identifier+'/'+('?lang='+language if language else '')
 
 
+def validation_tools(links, language):
+    label = '解説・資料形式' if language == 'ja' else 'Reading and data formats'
+    return ('<nav class="validation-page-tools" aria-label="'+label+'"><details><summary>'+
+            label+'</summary><div>'+links+'</div></details></nav>')
+
+
+def validation_case_layout(case_html, parent, tools, scope, language):
+    """Present the existing case title and lead before auxiliary navigation."""
+    opening = re.match(r'(<article\b[^>]*>)(<h1>.*?</h1><p>.*?</p>)', case_html, re.S)
+    if opening is None:
+        raise ValueError('Standalone validation needs an existing H1 and lead')
+    return ('<nav class="validation-breadcrumb">'+parent+'</nav>'+opening[1]+
+            '<div class="validation-opening" data-chapter-opening>'+opening[2]+'</div>'+
+            validation_tools(tools, language)+scope+case_html[opening.end():])
+
+
+def validation_chapter_layout(body, parent, tools, language):
+    """Keep the downloadable chapter body unchanged; arrange its HTML page."""
+    opening = re.match(r'<h1>.*?</h1><p>.*?</p>', body, re.S)
+    if opening is None:
+        raise ValueError('Validation chapter needs an existing H1 and lead')
+    return ('<nav class="validation-breadcrumb">'+parent+'</nav><div class="validation-prose">'+
+            '<div class="validation-opening" data-chapter-opening>'+opening[0]+'</div>'+
+            '<!-- chapter-resource-position -->'+validation_tools(tools, language)+
+            body[opening.end():]+'</div>')
+
+
 def document(url, title, description, body, language=None, alternates=None):
     active = language or 'ja'
     if isinstance(title, dict):
@@ -429,8 +456,11 @@ def build():
             public_cases.append(public_case)
             sections, markdown = [], ''
             for language in LANGUAGES:
-                nav = '<nav class="validation-actions">'+link(INDEX+'?lang='+language, '追加検証の一覧' if language == 'ja' else 'Additional validation index')+link(chapter_route(group_id, language)+'#'+ident, '詳しい解説' if language == 'ja' else 'Detailed reading')+link('index.json', 'JSON')+link('index.md', 'Markdown')+'</nav>'
-                sections.append('<section data-site-language="'+language+'" lang="'+language+'">'+nav+'<aside class="validation-scope">'+paragraph(scope_text(language, common_count))+'</aside>'+render_case(case, measured[ident], current, language, rendered, 1, True, editorial_note, routes[ident], study_outcomes=projected_studies.get(ident))+terms(language)+'</section>')
+                parent = link(INDEX+'?lang='+language, '追加検証の一覧' if language == 'ja' else 'Additional validation index')
+                tools = link(chapter_route(group_id, language)+'#'+ident, '詳しい解説' if language == 'ja' else 'Detailed reading')+link('index.json', 'JSON')+link('index.md', 'Markdown')
+                scope = '<aside class="validation-scope">'+paragraph(scope_text(language, common_count))+'</aside>'
+                case_html = render_case(case, measured[ident], current, language, rendered, 1, True, editorial_note, routes[ident], study_outcomes=projected_studies.get(ident))
+                sections.append('<section data-site-language="'+language+'" lang="'+language+'">'+validation_case_layout(case_html, parent, tools, scope, language)+terms(language)+'</section>')
                 markdown += markdown_case(case, measured[ident], current, language, editorial_note=editorial_note, navigation=routes[ident], study_outcomes=projected_studies.get(ident))+'\n'
             destination = ROOT/case_route(ident).lstrip('/'); destination.mkdir(parents=True, exist_ok=True)
             (destination/'index.html').write_text(document(case_route(ident), page_title, case['summary'], ''.join(sections)))
@@ -463,8 +493,9 @@ def build():
                 entry['translation_status'] = 'draft'
             documents[language][chapter_id] = entry; chapter_entries[group_id][language] = entry
             destination = ROOT/chapter_route(group_id, language).lstrip('/'); destination.mkdir(parents=True, exist_ok=True)
-            nav = '<nav class="validation-actions">'+link('/numerical-methods-atlas/'+language+'/read/', '解説章の目次' if ja else 'Reading contents')+link('index.json', 'JSON')+link('index.md', 'Markdown')+'</nav>'
-            (destination/'index.html').write_text(document(chapter_route(group_id, language), title+' | Numerical Methods Atlas', intro, nav+'<div class="validation-prose">'+body+'</div>', language, {lang: chapter_route(group_id, lang) for lang in LANGUAGES}))
+            parent = link('/numerical-methods-atlas/'+language+'/read/', '解説章の目次' if ja else 'Reading contents')
+            tools = link('index.json', 'JSON')+link('index.md', 'Markdown')
+            (destination/'index.html').write_text(document(chapter_route(group_id, language), title+' | Numerical Methods Atlas', intro, validation_chapter_layout(body, parent, tools, language), language, {lang: chapter_route(group_id, lang) for lang in LANGUAGES}))
             dump(destination/'index.json', {**entry, 'url': ORIGIN+chapter_route(group_id, language), 'group': group_id,
                  'case_ids': [case['id'] for case in current['metadata']], 'measurements': current['results']['cases'],
                  'source_sha256': source_hashes, **({'study_outcomes': {case['id']: projected_studies[case['id']] for case in current['metadata'] if case['id'] in projected_studies}} if any(case['id'] in projected_studies for case in current['metadata']) else {})}); (destination/'index.md').write_text(markdown.rstrip()+'\n')

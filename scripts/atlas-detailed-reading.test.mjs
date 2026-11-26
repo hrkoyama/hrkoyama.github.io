@@ -2,11 +2,52 @@ import {methodCount,methodStatusCounts} from './fixtures/atlas-inventory.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import {execFileSync} from 'node:child_process';
 const root=new URL('../',import.meta.url);
 const read=path=>JSON.parse(fs.readFileSync(new URL(path,root),'utf8'));
 const source=read('catalog/atlas-detailed-reading.json');
 const methods=read('catalog/atlas-methods.json').methods;
 const originalPlanned=['ewald','pme','spme','slab-ewald','fdtd','pic','amg','qr-svd','eigensolvers','splines','quadrature','chebyshev','wavelets','optimization','monte-carlo','mcmc','sde','adjoint','radiation-transport','dsmc','dae','automatic-differentiation','pinn-operators'];
+test('detailed reading presents its original title and lead before collapsed auxiliary navigation',()=>{
+ const result=execFileSync(process.env.PYTHON||'python3',['-B','-c',String.raw`
+import ast,json,pathlib,re
+from html import escape
+path=pathlib.Path('scripts/build-atlas-detailed-reading.py')
+tree=ast.parse(path.read_text())
+names={'link','url','reading_navigation','reading_layout'}
+functions=[node for node in tree.body if isinstance(node,ast.FunctionDef) and node.name in names]
+assert len(functions)==len(names)
+source=next(ast.literal_eval(node.value) for node in tree.body if isinstance(node,ast.Assign) and any(isinstance(target,ast.Name) and target.id=='SOURCE' for target in node.targets))
+ns={'re':re,'escape':escape,'SOURCE':source}
+exec(compile(ast.Module(body=functions,type_ignores=[]),str(path),'exec'),ns)
+catalog=json.loads(pathlib.Path(source.lstrip('/')).read_text());checked=0
+for chapter in catalog['chapters']:
+ for lang in ['ja','en']:
+  static=chapter['html'][lang] if 'html' in chapter else '<h1>'+escape(chapter['title'][lang])+'</h1><p>'+escape(chapter['intro'][lang])+'</p><h2 id="kept-anchor">Kept section</h2><p>Original measurement 1.2345.</p>'
+  headings=[{'id':'kept-anchor','title':'Kept section'}]
+  breadcrumb,toc=ns['reading_navigation'](chapter['id'],lang,headings)
+  html=ns['reading_layout'](static,breadcrumb,toc,lang)
+  start='<div class="reading-opening prose" data-chapter-opening lang="'+lang+'">'
+  opening,tail=html[len(breadcrumb)+len(start):].split('</div><!-- chapter-resource-position -->',1)
+  article='<article class="prose" lang="'+lang+'">'
+  assert html.startswith(breadcrumb+start) and tail.startswith(toc+article) and tail.endswith('</article>')
+  body=tail[len(toc+article):-len('</article>')]
+  assert opening+body==static,'Original title, prose, IDs, formulas and source HTML bytes must reconstruct exactly'
+  assert '<h1' in opening and '<p' in opening
+  assert html.index('<h1')<html.index('<details')<html.index(article)
+  assert '<details class="reading-toc-details">' in toc and not re.search(r'<details\b[^>]*\bopen(?:\s|=|>)',toc)
+  expected=[f'/numerical-methods-atlas/{lang}/read/','/numerical-methods-atlas/methods/?lang='+lang,source,f'/numerical-methods-atlas/{lang}/read/{chapter["id"]}/index.md',f'/numerical-methods-atlas/{lang}/read/{chapter["id"]}/index.json']
+  actual=re.findall(r'href="([^"]+)"',breadcrumb+toc)
+  assert actual==[expected[0],'#kept-anchor',*expected[1:]],'Every existing parent/resource URL is retained once'
+  if chapter['id']=='fdtd':assert '<!-- fdtd-r6-intro -->' in opening and '<!-- /fdtd-r6-intro -->' in opening
+  checked+=1
+try:ns['reading_layout']('<h1>Missing lead</h1>','','','en')
+except ValueError:pass
+else:raise AssertionError('Missing original lead must fail rather than inventing prose')
+print(json.dumps({'checked_editions':checked,'original_bytes_reconstructed':True}))
+`],{cwd:root,encoding:'utf8'});
+ assert.deepEqual(JSON.parse(result),{checked_editions:70,original_bytes_reconstructed:true});
+});
 test('all 23 formerly unlinked methods have substantive bilingual reading while implementation states remain honest',()=>{
  assert.equal(source.chapters.length,35);
  assert.deepEqual(source.chapters.find(c=>c.id==='wall-heating').methods,['rusanov','heun','muscl','minmod']);

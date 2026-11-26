@@ -95,25 +95,67 @@ source_labels = {
 groups = {x['id']: x for x in inventory['groups']}
 def link(url, label):
     return '<a href="' + esc(url) + '">' + esc(label) + '</a>'
-sections = []
-for lang in ['ja', 'en']:
+
+
+def gallery_navigation(lang):
+    """Keep supplementary destinations available after the visual introduction."""
     ja = lang == 'ja'
-    body = '<section data-site-language="' + lang + '" data-gallery lang="' + lang + '">'
-    body += '<p class="eyebrow">NUMERICAL METHODS ATLAS · VISUAL INDEX</p><h1>' + ('絵から探す：全' + str(len(ids)) + 'のテスト計算' if ja else 'Browse by picture: all ' + str(len(ids)) + ' test problems') + '</h1>'
-    body += '<p class="intro gallery-intro">' + (f'図を選ぶと、その問題の方程式・厳密解や参照解・計算法・公開コードをまとめて確認できます。実行・検証例がある{len(runnable_problem_ids)}問題には、固定入力・コード・結果の確かめ方も案内します。' if ja else f'Select a picture to explore the problem’s equations, exact or reference solutions, methods and published code. For {len(runnable_problem_ids)} runnable problems, find fixed inputs and validation as well.') + '</p>'
-    body += '<nav class="resource-nav">' + ''.join(link(url, label) for url, label in [
+    label = '関連する一覧と資料' if ja else 'Related indexes and resources'
+    destinations = [
         ('/numerical-methods-atlas/?lang=' + lang, 'アトラス冒頭' if ja else 'Atlas home'),
         ('/numerical-methods-atlas/equations/?lang=' + lang, '数式から探す' if ja else 'Browse by equation'),
         ('/numerical-methods-atlas/test-cases/?lang=' + lang, '問題台帳と数え方' if ja else 'Inventory and counting rules'),
         ('/numerical-methods-atlas/backlog/?lang=' + lang, '未実装・拡充候補' if ja else 'Implementation and verification backlog'),
         ('/numerical-methods-atlas/?lang=' + lang + '#/figures', '図版・比較ツール' if ja else 'Figures and comparison tools'),
-    ]) + '</nav>'
+    ]
+    return ('<nav class="resource-nav gallery-navigation" aria-label="' + label + '">'
+            '<details><summary>' + label + '</summary><div class="gallery-navigation-links">' +
+            ''.join(link(url, text) for url, text in destinations) + '</div></details></nav>')
+
+
+def gallery_card_intro(item, lang):
+    """Show the problem name and primary destinations before extra previews."""
+    ja = lang == 'ja'
+    reading = item['reading'][lang]
+    fallback = ja and '/en/read/' in reading
+    return ('<h2>' + link(item['problem_page'][lang], item['name'][lang]) + '</h2><p>' +
+            esc(item['caption'][lang]) + '</p><p class="gallery-meta">' +
+            source_labels[item['source_kind']][lang] +
+            (' · 英語の解説（日本語版未公開）' if fallback else '') +
+            '</p><nav class="gallery-card-links">' +
+            link(reading, '解説へ →' if ja else 'Read →') +
+            link('/numerical-methods-atlas/test-cases/?lang=' + lang + '#' + item['id'] +
+                 ('' if ja else '-en'), '条件・根拠' if ja else 'Conditions and evidence') +
+            link(item['image'], '画像を拡大' if ja else 'Full-size image') + '</nav>')
+
+
+def gallery_introduction(lang, runnable_count):
+    """Keep the existing purpose visible and place the longer count note in help."""
+    if lang == 'ja':
+        purpose = '図を選ぶと、その問題の方程式・厳密解や参照解・計算法・公開コードをまとめて確認できます。'
+        availability = f'実行・検証例がある{runnable_count}問題には、固定入力・コード・結果の確かめ方も案内します。'
+    else:
+        purpose = 'Select a picture to explore the problem’s equations, exact or reference solutions, methods and published code.'
+        availability = f'For {runnable_count} runnable problems, find fixed inputs and validation as well.'
+    return ('<p class="intro gallery-intro">'+purpose+'</p>',
+            '<p class="gallery-availability-note">'+availability+'</p>')
+
+
+sections = []
+for lang in ['ja', 'en']:
+    ja = lang == 'ja'
+    body = '<section data-site-language="' + lang + '" data-gallery lang="' + lang + '">'
+    body += '<p class="eyebrow">NUMERICAL METHODS ATLAS · VISUAL INDEX</p><h1>' + ('絵から探す：全' + str(len(ids)) + 'のテスト計算' if ja else 'Browse by picture: all ' + str(len(ids)) + ' test problems') + '</h1>'
+    introduction, availability_note = gallery_introduction(lang, len(runnable_problem_ids))
+    body += introduction
+    body += gallery_navigation(lang)
     body += '<div class="gallery-tools"><label for="gallery-query-' + lang + '">' + ('問題名・現象で絞り込む（日英対応）' if ja else 'Filter by problem or phenomenon (Japanese / English)') + '</label><div class="gallery-search-row"><input id="gallery-query-' + lang + '" type="search" placeholder="' + ('例：Poisson、渦、衝撃波' if ja else 'e.g. Poisson, vortex, shock') + '"><button type="button" data-gallery-reset>' + ('絞り込みを解除' if ja else 'Reset filters') + '</button></div><details class="gallery-domain-filter"><summary>' + ('分野で絞り込む' if ja else 'Filter by domain') + '</summary><div class="gallery-groups" role="group" aria-label="' + ('分野' if ja else 'Domain') + '">'
     body += '<button type="button" data-gallery-group="all" aria-pressed="true">' + ('すべて' if ja else 'All') + ' (' + str(len(ids)) + ')</button>'
     for g in inventory['groups']:
         body += '<button type="button" data-gallery-group="' + g['id'] + '" aria-pressed="false">' + esc(g[lang]) + ' (' + str(counts[g['id']]) + ')</button>'
     body += '</div></details><div class="gallery-execution-filter"><button type="button" data-gallery-runnable aria-pressed="false" aria-describedby="gallery-illustration-note-' + lang + '">' + (f'実行・検証例あり {len(runnable_problem_ids)}' if ja else f'Runnable and validated: {len(runnable_problem_ids)}') + '</button><span>' + ('分野・検索語と組み合わせて絞り込めます' if ja else 'Combine with a domain and search terms') + '</span></div><p class="gallery-count" data-gallery-count role="status" aria-live="polite">' + (f'{len(ids)} / {len(ids)} 問題を表示' if ja else f'Showing {len(ids)} of {len(ids)} problems') + '</p></div>'
     body += '<details class="gallery-policy"><summary>' + ('図の条件・検証範囲・数え方' if ja else 'Image conditions, validation scope and counting rules') + '</summary>'
+    body += availability_note
     body += '<p class="gallery-note" id="gallery-illustration-note-' + lang + '">' + ('画像は保存済みの図版・数値データ・プレビュー計算です。「実行・検証例あり」は、固定入力からJSON/CSVを作り結果を判定する経路がある印です。画像の計算条件は「条件・根拠」、再実行する条件は実行例の入力で確認してください。画像と固定入力の条件は一致するとは限りません。' if ja else 'Images are saved figures, numerical data or preview calculations. A runnable badge identifies a fixed-input path that produces JSON/CSV with acceptance checks. See “Conditions and evidence” for image settings and the execution input for rerun settings; these need not match.') + '</p>'
     body += '<p class="gallery-note">' + (f'{len(ids)}は手法・格子・刻み違いを統合した問題数です。解に加え、誤差・残差・収束の図も含み、共有図は説明に明記しています。図示用の9問題の計算記録と、代表{len(runnable)}問題の実行・検証記録は別に確認できます。' if ja else f'The {len(ids)} problems merge method, grid and time-step variants. Visuals include solutions, errors, residuals and convergence; captions identify shared figures. Records for nine preview calculations and the {len(runnable)} representative execution examples remain separate.') + '</p>'
     body += '<p class="gallery-note">' + (f'共通{len(runnable)}実行例の台帳と、別配布の補助{len(supplements)}例は区別しています。このギャラリーでは補助{len(supplemental_case_ids)}例が{len(supplemental_problem_ids)}問題に接続し、同じ問題への手法追加は重複加算しません。' if ja else f'The common {len(runnable)}-example registry remains separate from the {len(supplements)} supplementary cases. This gallery links {len(supplemental_case_ids)} supplements to {len(supplemental_problem_ids)} problems; additional methods do not duplicate a problem count.') + '</p></details><ul class="gallery-grid">'
@@ -127,11 +169,11 @@ for lang in ['ja', 'en']:
         reading = x['reading'][lang]
         destination = entry_url(example['id'], lang) if example else (extras[0]['url'][lang] if extras else reading)
         hub = x['problem_page'][lang]
-        fallback = ja and '/en/read/' in reading
         body += '<li class="gallery-tile" id="' + x['id'] + '-' + lang + '" data-problem-id="' + x['id'] + '" data-group="' + x['group'] + '" data-runnable="' + str(x['runnable']).lower() + '" data-search="' + esc(search) + '">'
         image_label = 'の方程式・参照解・手法・コードへ' if ja else ': open equations, references, methods and code'
         body += '<a class="gallery-image-link" href="' + esc(hub) + '" aria-label="' + esc(x['name'][lang] + image_label) + '"><img src="' + esc(x['image']) + '" alt="' + esc(x['name'][lang] + ' — ' + x['caption'][lang]) + '" width="' + str(x['width']) + '" height="' + str(x['height']) + '" loading="lazy" decoding="async"></a>'
         body += '<div class="gallery-card-body"><p class="gallery-meta">' + esc(groups[x['group']][lang]) + '</p>'
+        body += gallery_card_intro(x, lang)
         if example:
             body += '<p class="gallery-execution-badge">' + link(destination, '実行・検証例あり →' if ja else 'Run and validate →') + '</p>'
         for extra in extras:
@@ -142,8 +184,7 @@ for lang in ['ja', 'en']:
             if preview and not shared_preview:
                 body += '<figure class="gallery-supplement-preview" data-supplemental-preview="' + esc(extra['id']) + '"><a href="' + esc(extra['url'][lang]) + '"><img src="' + esc(preview['url']) + '" alt="' + esc(preview['caption'][lang]) + '" width="' + str(preview['width']) + '" height="' + str(preview['height']) + '" loading="lazy" decoding="async"></a><figcaption>' + esc(preview['caption'][lang]) + '</figcaption></figure>'
 
-        body += '<h2>' + link(hub, x['name'][lang]) + '</h2><p>' + esc(x['caption'][lang]) + '</p><p class="gallery-meta">' + source_labels[x['source_kind']][lang] + (' · 英語の解説（日本語版未公開）' if fallback else '') + '</p><nav class="gallery-card-links">'
-        body += link(reading, '解説へ →' if ja else 'Read →') + link('/numerical-methods-atlas/test-cases/?lang=' + lang + '#' + x['id'] + ('' if ja else '-en'), '条件・根拠' if ja else 'Conditions and evidence') + link(x['image'], '画像を拡大' if ja else 'Full-size image') + '</nav></div></li>'
+        body += '</div></li>'
     body += '</ul><p class="gallery-empty" data-gallery-empty hidden>' + ('該当する問題がありません。検索語や分野を変えてください。' if ja else 'No matching problems. Try another query or domain.') + '</p><p>'
     body += link('index.json', '画像・解説・出典の全件JSON' if ja else 'All images, readings and sources / JSON') + ' · ' + link('calculations.json', '図示用9計算の入力・値・数値検査' if ja else 'Inputs, values and checks for nine preview calculations') + ' · ' + link('verification.json', 'プレビューの実行確認' if ja else 'Preview verification') + ' · ' + link('/scripts/render-atlas-gallery.py', '図の再生成スクリプト' if ja else 'Preview reproduction script')
     body += '</p><p>' + link('/using/?lang=' + lang, '利用・引用' if ja else 'Reuse and citation') + '</p></section>'

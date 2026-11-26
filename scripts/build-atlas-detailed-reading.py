@@ -28,6 +28,36 @@ def link(url,label):return '<a href="'+escape(url,quote=True)+'">'+escape(label)
 def heading(ident,title):return '<h2 id="'+ident+'">'+escape(title)+'</h2>'
 def paragraph(text):return '<p>'+escape(text)+'</p>'
 def url(chapter,lang):return f'/numerical-methods-atlas/{lang}/read/{chapter}/'
+
+def reading_navigation(chapter, lang, headings):
+    """Keep one parent link visible and disclose the existing auxiliary links."""
+    ja=lang=='ja'
+    label='この章の目次' if ja else 'On this page'
+    breadcrumb='<nav class="reading-breadcrumb" aria-label="'+('現在地' if ja else 'Breadcrumb')+'">'+link(f'/numerical-methods-atlas/{lang}/read/','解説章の目次' if ja else 'Reading contents')+'</nav>'
+    resources=' · '.join([link('/numerical-methods-atlas/methods/?lang='+lang,'手法一覧' if ja else 'Method map'),link(SOURCE,'編集用正本 / Source JSON' if ja else 'Editable source / JSON'),link(url(chapter,lang)+'index.md','Markdown'),link(url(chapter,lang)+'index.json','JSON')])
+    toc='<nav class="reading-toc" aria-label="'+label+'"><details class="reading-toc-details"><summary>'+label+'</summary><div class="reading-toc-links">'+''.join(link('#'+h['id'],h['title']) for h in headings)+'</div><div class="reading-resource-links">'+resources+'</div></details></nav>'
+    return breadcrumb,toc
+
+def reading_layout(static, breadcrumb, toc, lang):
+    """Move the existing title and first lead before auxiliary navigation.
+
+    This template owns a known H1/paragraph prefix. Keep its original HTML,
+    including authored comments, without changing the downloadable body.
+    """
+    opening=re.match(r'\s*<h1\b[^>]*>.*?</h1>(?:\s|<!--.*?-->)*<p\b[^>]*>.*?</p>',static,re.S)
+    if not opening:
+        raise ValueError('Detailed reading needs an existing H1 followed by its lead')
+    end=opening.end()
+    # The FDTD lead has an authored, paired intro marker around its quick links.
+    # Keep such an existing block together rather than spanning new UI markup.
+    for marker in re.findall(r'<!--\s*([a-z][a-z0-9-]+)\s*-->',static[:end]):
+        closing=re.search(r'<!--\s*/'+re.escape(marker)+r'\s*-->',static[end:])
+        if closing:
+            end+=closing.end()
+    return (breadcrumb+'<div class="reading-opening prose" data-chapter-opening lang="'+lang+'">'+
+            static[:end]+'</div><!-- chapter-resource-position -->'+toc+
+            '<article class="prose" lang="'+lang+'">'+static[end:]+'</article>')
+
 def section_links(section,lang):
     """Optional current-reading links; keep labels bilingual and routes local."""
     rows=section.get('links',[])
@@ -162,9 +192,8 @@ for chapter in data['chapters']:
         directory=ROOT/url(ident,lang).lstrip('/');directory.mkdir(parents=True,exist_ok=True)
         static=body.replace('href="#/',f'href="/numerical-methods-atlas/?lang={lang}#/')
         static=re.sub(r'(src|href)="assets/',r'\1="/numerical-methods-atlas/assets/',static)
-        toc='<nav aria-label="'+('この章の目次' if ja else 'On this page')+'">'+''.join(link('#'+h['id'],h['title']) for h in headings)+'</nav>'
-        navigation='<nav class="resource-nav">'+link(f'/numerical-methods-atlas/{lang}/read/','解説章の目次' if ja else 'Reading contents')+' · '+link('/numerical-methods-atlas/methods/?lang='+lang,'手法一覧' if ja else 'Method map')+' · '+link(SOURCE,'編集用正本 / Source JSON' if ja else 'Editable source / JSON')+' · '+link(url(ident,lang)+'index.md','Markdown')+' · '+link(url(ident,lang)+'index.json','JSON')+'</nav>'
-        doc='<!doctype html><html lang="'+lang+'"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+escape(title)+' | Numerical Methods Atlas</title><meta name="description" content="'+escape(title+'：'+('代表式・計算手順・条件・検証案・一次文献' if ja else 'equations, algorithm, assumptions, proposed checks and primary sources'),quote=True)+'"><link rel="canonical" href="https://hrkoyama.github.io'+url(ident,lang)+'">'+''.join('<link rel="alternate" hreflang="'+l+'" href="https://hrkoyama.github.io'+url(ident,l)+'">' for l in ['ja','en'])+'<link rel="stylesheet" href="/numerical-methods-atlas/vendor/katex.min.css"><link rel="stylesheet" href="/numerical-methods-atlas/style.css"><link rel="stylesheet" href="/styles/atlas-resources.css"><style>.detailed-reading{max-width:1000px;margin:auto;padding:1.2rem}.detailed-reading .prose{max-width:78ch}.detailed-reading .math-block{max-width:100%;overflow-x:auto}.detailed-reading .resource-nav,.detailed-reading>nav{display:flex;flex-wrap:wrap;gap:.6rem}.detailed-reading>nav a{padding:.35rem}.reading-sources li{margin-bottom:1rem}.reading-sources p{font-size:.95rem;overflow-wrap:anywhere}h2{scroll-margin-top:1rem}</style></head><body class="profile-page" data-content-language="'+lang+'"><main id="main" class="detailed-reading">'+navigation+toc+'<article class="prose" lang="'+lang+'">'+static+'</article><p>'+link('/using/','引用と利用条件' if ja else 'Citation and reuse')+'</p></main></body></html>\n'
+        navigation,toc=reading_navigation(ident,lang,headings)
+        doc='<!doctype html><html lang="'+lang+'"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+escape(title)+' | Numerical Methods Atlas</title><meta name="description" content="'+escape(title+'：'+('代表式・計算手順・条件・検証案・一次文献' if ja else 'equations, algorithm, assumptions, proposed checks and primary sources'),quote=True)+'"><link rel="canonical" href="https://hrkoyama.github.io'+url(ident,lang)+'">'+''.join('<link rel="alternate" hreflang="'+l+'" href="https://hrkoyama.github.io'+url(ident,l)+'">' for l in ['ja','en'])+'<link rel="stylesheet" href="/numerical-methods-atlas/vendor/katex.min.css"><link rel="stylesheet" href="/numerical-methods-atlas/style.css"><link rel="stylesheet" href="/styles/atlas-resources.css"><style>.detailed-reading{max-width:1000px;margin:auto;padding:1.2rem}.detailed-reading .prose{max-width:78ch}.detailed-reading .math-block{max-width:100%;overflow-x:auto}.detailed-reading .resource-nav,.detailed-reading>nav{display:flex;flex-wrap:wrap;gap:.6rem}.detailed-reading>nav a{padding:.35rem}.reading-sources li{margin-bottom:1rem}.reading-sources p{font-size:.95rem;overflow-wrap:anywhere}h2{scroll-margin-top:1rem}</style></head><body class="profile-page" data-content-language="'+lang+'"><main id="main" class="detailed-reading">'+reading_layout(static,navigation,toc,lang)+'<p>'+link('/using/','引用と利用条件' if ja else 'Citation and reuse')+'</p></main></body></html>\n'
         (directory/'index.html').write_text(doc)
         write(directory/'index.json',{**entry,'url':'https://hrkoyama.github.io'+url(ident,lang),'methods':chapter['methods'],'implementation_status':{i:methods[i]['status'] for i in chapter['methods']},'references':[refs[i] for i in chapter['references']],'source_sha256':source_hash,**scoped_fields})
         # A simple readable extraction retains LaTeX source and citations.

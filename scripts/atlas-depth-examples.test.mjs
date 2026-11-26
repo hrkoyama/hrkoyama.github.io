@@ -27,6 +27,49 @@ const metadata = group => {
 const measured = group => json(base(group) + 'results/result.json');
 const actualCases = groupIds.flatMap(group => metadata(group).map(item => ({group, item})));
 
+test('validation page wrappers put the existing title and lead before optional resources without changing scientific fragments', () => {
+  const program=String.raw`
+import ast,re
+from pathlib import Path
+source=Path('scripts/build-atlas-depth-examples.py')
+names={'validation_tools','validation_case_layout','validation_chapter_layout'}
+functions=[node for node in ast.parse(source.read_text()).body if isinstance(node,ast.FunctionDef) and node.name in names]
+assert len(functions)==len(names)
+namespace={'re':re}
+exec(compile(ast.Module(body=functions,type_ignores=[]),str(source),'exec'),namespace)
+parent='<a href="/numerical-methods-atlas/validation/">Index</a>'
+tools='<a href="index.json">JSON</a><a href="index.md">Markdown</a>'
+opening='<h1>Noh / Bratu</h1><p>Existing assumptions and verification goal.</p>'
+scope='<aside class="validation-scope"><p>Existing limits remain visible.</p></aside>'
+scientific='<nav class="validation-actions"><a href="fixed.zip">Code / ZIP</a></nav><h2 id="reference">Reference</h2><pre><code>x &lt; tolerance</code></pre><div class="validation-math"><math><mi>u</mi></math></div>'
+article='<article class="validation-case" data-validation-case="fixed" id="fixed-ja">'
+for language in ('ja','en'):
+ case=namespace['validation_case_layout'](article+opening+scientific+'</article>',parent,tools,scope,language)
+ chapter=namespace['validation_chapter_layout'](opening+scope+scientific,parent,tools,language)
+ for rendered in (case,chapter):
+  assert rendered.index(parent)<rendered.index(opening)<rendered.index(tools)<rendered.index(scope)<rendered.index(scientific)
+  for fragment in (parent,tools,opening,scope,scientific):assert rendered.count(fragment)==1
+  assert '<details>' in rendered and '<details open' not in rendered
+  assert rendered.index('</p>')<rendered.index('<summary>')
+ assert article in case and '<!-- chapter-resource-position -->' in chapter
+for function,bad in [('validation_case_layout','<article><h2>No H1</h2></article>'),('validation_chapter_layout','<h1>Missing lead</h1>')]:
+ try:namespace[function](bad,parent,tools,*([scope,'ja'] if function.endswith('case_layout') else ['ja']))
+ except ValueError:pass
+ else:raise AssertionError('An unknown opening must not be silently rewritten')
+`;
+  execFileSync(process.env.ATLAS_INDEX_PYTHON||'python3',['-B','-c',program],{cwd:root,encoding:'utf8'});
+  for(const {item} of actualCases){
+    const html=text(entry(item.id)+'index.html');
+    for(const language of ['ja','en']){
+      const section=html.match(new RegExp(`<section data-site-language="${language}"[^>]*>([\\s\\S]*?)</section>`))?.[1];
+      assert.ok(section,item.id+'/'+language);
+      assert.ok(section.indexOf('<h1>')<section.indexOf('class="validation-page-tools"'),item.id+': title before optional tools');
+      assert.ok(section.indexOf('<h1>')<section.indexOf('class="validation-scope"'),item.id+': title before the scope notice');
+      assert.equal((section.match(/data-chapter-opening/g)||[]).length,1);
+    }
+  }
+});
+
 test('optional figures require real manifest-bound PNGs and visible bilingual captions without affecting absent metadata', () => {
   const program = String.raw`
 import base64,copy,hashlib,html,importlib.util,json,tempfile,sys
