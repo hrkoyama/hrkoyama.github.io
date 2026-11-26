@@ -17,8 +17,54 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  public-supplements:
+  classify-changes:
     if: >-
+      github.repository == 'hrkoyama/hrkoyama.github.io' &&
+      (github.event_name != 'workflow_run' ||
+       (github.event.workflow_run.conclusion == 'success' &&
+        github.event.workflow_run.head_repository.full_name == github.repository))
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      actions: read
+    outputs:
+      run_full: ${{ steps.plan.outputs.run_full }}
+      mode: ${{ steps.plan.outputs.mode }}
+      target_sha: ${{ steps.plan.outputs.target_sha }}
+    steps:
+      - name: Read only the exact scope planner source
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /scripts/atlas_depth_scope.py
+            /scripts/plan-atlas-depth-ci.py
+      - name: Prepare Python for the standard-library scope check
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7
+        with:
+          python-version: '3.12'
+          check-latest: false
+      - name: Plan full execution or reuse of a previous full success
+        id: plan
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          SCOPE_REPORT: ${{ runner.temp }}/atlas-depth-scope-plan.json
+        run: python3 -B scripts/plan-atlas-depth-ci.py --output "$SCOPE_REPORT"
+      - name: Retain the small scope decision on success or failure
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: atlas-depth-scope-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/atlas-depth-scope-plan.json
+          if-no-files-found: error
+          retention-days: 90
+  public-supplements:
+    needs: classify-changes
+    if: >-
+      needs.classify-changes.outputs.run_full != 'false' &&
       github.repository == 'hrkoyama/hrkoyama.github.io' &&
       (github.event_name != 'workflow_run' ||
        (github.event.workflow_run.conclusion == 'success' &&

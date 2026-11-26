@@ -12,6 +12,8 @@ const text = path => readFileSync(join(root, path), 'utf8');
 const json = path => JSON.parse(text(path));
 const sha = path => createHash('sha256').update(readFileSync(join(root, path))).digest('hex');
 const workflow = text('.github/workflows/atlas-depth-linux.yml');
+assert.ok(workflow.includes('\n  public-supplements:'), 'the public scientific job must remain explicit');
+const scienceWorkflow = workflow.slice(workflow.indexOf('\n  public-supplements:'));
 const registryPath = 'numerical-methods-atlas/validation/releases.json';
 const prelude = String.raw`
 import copy, hashlib, importlib.util, io, json, os, shutil, stat, sys, tempfile, warnings, zipfile
@@ -50,7 +52,7 @@ function python(source, timeout = 30_000) {
   });
 }
 function shellBlocks() {
-  const lines = workflow.split('\n'), blocks = [];
+  const lines = scienceWorkflow.split('\n'), blocks = [];
   for (let i = 0; i < lines.length; i++) {
     if (lines[i] !== '        run: |') continue;
     const body = [];
@@ -97,12 +99,13 @@ test('registry preserves eleven frozen releases and adds the separately dated No
 });
 
 test('workflow uses a fresh guarded public-only Linux environment, exact wheels and retained failure evidence', () => {
-  assert.doesNotMatch(workflow, /actions\/checkout|persist-credentials|secrets\.|write-all|contents: write|pip cache|cache: ['"]?pip/i);
+  assert.doesNotMatch(scienceWorkflow, /actions\/checkout|persist-credentials|secrets\.|write-all|contents: write|pip cache|cache: ['"]?pip/i);
+  assert.doesNotMatch(workflow, /secrets\.|write-all|contents: write/i);
   assert.match(workflow, /github\.repository == 'hrkoyama\/hrkoyama\.github\.io'/);
   assert.match(workflow, /head_repository\.full_name == github\.repository/);
-  const jobEnvironment=workflow.match(/^    env:\n([\s\S]*?)^    steps:/m)?.[1];
+  const jobEnvironment=scienceWorkflow.match(/^    env:\n([\s\S]*?)^    steps:/m)?.[1];
   assert.ok(jobEnvironment);assert.doesNotMatch(jobEnvironment, /runner\./, 'runner context is only available to the steps');
-  assert.equal((workflow.match(/^          REPORT_DIR: \$\{\{ runner\.temp \}\}/gm)||[]).length,4);
+  assert.equal((scienceWorkflow.match(/^          REPORT_DIR: \$\{\{ runner\.temp \}\}/gm)||[]).length,4);
   assert.match(workflow, /workflow_dispatch:/);
   assert.match(workflow, /schedule:/);
   assert.match(workflow, /workflows: \['Public site checks'\]/);
@@ -113,7 +116,7 @@ test('workflow uses a fresh guarded public-only Linux environment, exact wheels 
   assert.match(workflow, /--only-binary=:all: --no-cache-dir/);
   assert.match(workflow, /numpy==2\.0\.2 scipy==1\.14\.1 pytest==8\.3\.5/);
   assert.doesNotMatch(workflow, /pyscf|matplotlib|quantum-periodic|examples\.json/i);
-  assert.equal((workflow.match(/if: always\(\)/g) || []).length, 2);
+  assert.equal((scienceWorkflow.match(/if: always\(\)/g) || []).length, 2);
   assert.match(workflow, /retention-days: 90/);
   assert.match(workflow, /publication-attempts\.json/);
   assert.match(workflow, /pip-install\.json/);

@@ -115,7 +115,7 @@ pre-commitは既定で全索引生成をskipする。`ATLAS_REFRESH_INDEXES_ON_C
 2. 公開直前に最新の `origin/main` と私用キューの実公開中状態を再確認し、他作業の公開に重ねない。差があれば今回の変更だけを統合し、影響する検査を再実行する。実際のpush URLが `hrkoyama/hrkoyama.github.io`、Pages設定が `main` のルート・`https://hrkoyama.github.io/` であることを再確認する。
 3. 固定候補を **`git push origin HEAD:refs/heads/main`** で公開する。隔離ブランチから古いローカル `main` を誤って送らない。force pushはしない。
 4. 公開した同じSHAで **Pages build and deployment** と **Public site checks** の成功を確認する。匿名HTTPで変更したページ・文書・図・ダウンロードのURL、内容、版・ハッシュを照合する。保存物の照合と、新たな数値実行を区別して記録する。
-5. mainのPublic site checks成功後に自動起動する **Atlas lightweight public Linux verification**（`.github/workflows/atlas-depth-linux.yml`）を待つ。同SHA、公開registryのSHA、ソースcheckoutなし、全登録群・全固定case、pytestの失敗・error・skipなしをreportと全JUnitで確認する。公開したZIPだけからの計算であり、旧版の詳細収束試験をすべて再生成したとは記さない。自動runと重なる手動dispatchを追加しない。再試行が必要なら失敗ログ・理由を保持する。
+5. mainのPublic site checks成功後に自動起動する **Atlas lightweight public Linux verification**（`.github/workflows/atlas-depth-linux.yml`）のscope判定を確認する。[Linux追試の実行条件](docs/atlas-depth-ci-scope.md)に従い、科学コード・入力・参照値・公差・ZIP・検証器等の変更や判定不能時は、従来どおり同SHA/公開registryのSHA/ソースcheckoutなし/全登録群・全固定case/pytest失敗・error・skipなしをreportと全JUnitで確認する。ID台帳・文言等だけなら、最後に実行成功した全追試との差分と元run/SHA/日時を小さい再利用レシートで確認し、今回の新規数値実行とは区別する。手動・週次は全追試を維持。自動runと重なる手動dispatchを追加しない。再試行は失敗ログ・理由を保持する。
 6. 実行・配信・CIの実レシート、実際の日時と対象SHA/treeをローカル専用の進捗へ保存して完了を記録する。未確認の日付や成功を補わない。公開確認後のpublishedラベル・公開記録・索引だけの変更は、最新の日次集約指示に従って根拠付きの私用提案へ残し、次の許可済み集約でHEAD/blobを再照合する。自動反映・二回目の索引更新/公開は行わない。
 
 軽量Linuxの自動起動と週次設定は既存workflowにある。共通22例を対象とする手動の **Atlas public Linux verification**（`atlas-public-linux.yml`）やRKDG専用検査は対象が異なる。全体を同じ件数・同じ実行として記録しない。今回の変更に必要な検証範囲を確認し、重い科学実行を追加しない。
