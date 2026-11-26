@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "scope": "Test-only inverse for the original radiation-transport chapter fingerprint; current display assertions retain current wording.",
+  "chapter_id": "radiation-transport",
+  "hash_algorithm": "sha256 of JSON.stringify complete chapter record, preserving object order",
+  "before": {
+    "commit": "f973b3e4a940bc4b557aafecc0f0bc2e43a69cd9",
+    "source_path": "catalog/atlas-detailed-reading.json",
+    "source_sha256": "7106bf86f5fe603d39bb4097ea5d88aa13589b6daf29d31e42a867ae781b8c03",
+    "chapter_sha256": "75a3c7b08b3a1981f9a7575a4d35ea3d06b8ca0c25fef93dfaf64ed96d2a27d6"
+  },
+  "after": {
+    "source_sha256": "5679d8af17b67600816080ca5dafdeeec4ecee81f109cae1b1d3dbc92195cdce",
+    "chapter_sha256": "1ef8685a177812051333f823b193f4b1996ad0af214fc16ee7247893286ec1ce"
+  },
+  "operations": [
+    {
+      "parts": [
+        "title",
+        "ja"
+      ],
+      "before": "放射輸送・モーメント法",
+      "after": "輻射輸送・モーメント法"
+    },
+    {
+      "parts": [
+        "intro",
+        "ja"
+      ],
+      "before": "放射輸送では位置・方向・周波数に依存する強度を解きます。角度を積分したモーメント法は未知数を減らしますが、失われた角度情報を閉包で補う必要があります。",
+      "after": "輻射輸送では位置・方向・周波数に依存する強度を解きます。角度を積分したモーメント法は未知数を減らしますが、失われた角度情報を閉包で補う必要があります。"
+    },
+    {
+      "parts": [
+        "sections",
+        0,
+        "paragraphs",
+        "ja",
+        0
+      ],
+      "before": "ここでは静止媒質・周波数積分済みの灰色強度Iを考え、等方な放射源ηと吸収係数κを使い、散乱は省略します。κは長さの逆数です。E=(1/c)∫I dΩ、F=∫nI dΩ、P=(1/c)∫nnI dΩを定義すると、EとFの方程式はPを含みます。",
+      "after": "ここでは静止媒質・周波数積分済みの灰色強度Iを考え、等方な輻射源ηと吸収係数κを使い、散乱は省略します。κは長さの逆数です。E=(1/c)∫I dΩ、F=∫nI dΩ、P=(1/c)∫nnI dΩを定義すると、EとFの方程式はPを含みます。"
+    },
+    {
+      "parts": [
+        "sections",
+        2,
+        "paragraphs",
+        "ja",
+        1
+      ],
+      "before": "追加版も1次元定常・純吸収・指定流入の平板で、μ∂xI=−κIを解きます。一般の放射モーメント閉包、散乱、時間依存、多周波数や流体との結合は検証しません。",
+      "after": "追加版も1次元定常・純吸収・指定流入の平板で、μ∂xI=−κIを解きます。一般の輻射モーメント閉包、散乱、時間依存、多周波数や流体との結合は検証しません。"
+    },
+    {
+      "parts": [
+        "sections",
+        3,
+        "paragraphs",
+        "ja",
+        0
+      ],
+      "before": "吸収だけの指数減衰、等方拡散、自由流と影、交差ビームを分けて調べます。E≥0、|F|≤cEという実現可能性、放射と物質の総エネルギー、角度/空間/時間収束を確認します。閉包誤差と離散化誤差を混同しません。",
+      "after": "吸収だけの指数減衰、等方拡散、自由流と影、交差ビームを分けて調べます。E≥0、|F|≤cEという実現可能性、輻射と物質の総エネルギー、角度/空間/時間収束を確認します。閉包誤差と離散化誤差を混同しません。"
+    }
+  ]
+}

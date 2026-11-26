@@ -53,11 +53,61 @@ function local(href,{fragment=true}={}){
 }
 const entryPath=route=>route.kind==='common'?`numerical-methods-atlas/code-and-data/examples/${route.id}/`:`numerical-methods-atlas/validation/${route.id}/`;
 
+function expectedSupplementDisplays(){
+  // Current display is a strict ten-leaf copy; immutable source metadata remains the oracle.
+  const mappingPath='catalog/atlas-terminology.json',helperPath='scripts/atlas_terminology.py',mapping=json(mappingPath);
+  const fields={
+    'radiation-transport':['title','summary','assumptions','limits'],
+    'radiation-convergence':['title','assumptions','limits'],
+    'su-olson-diffusion1996':['summary','algorithm'],
+    'kepler-eccentricity':['algorithm']
+  };
+  assert.equal(mapping.schema_version,1);assert.equal(mapping.language,'ja');
+  assert.deepEqual(sorted(Object.keys(mapping.cases)),sorted(Object.keys(fields)));
+  const original=Object.fromEntries(Object.keys(fields).map(id=>[id,structuredClone(supplementById.get(id).item)]));
+  const projected=JSON.parse(execFileSync(python,['-B','-c',String.raw`
+import json,pathlib,sys
+root=pathlib.Path(sys.argv[1]).resolve();sys.path.insert(0,str(root/'scripts'))
+from atlas_terminology import project_cases
+print(json.dumps(project_cases(root,json.load(sys.stdin)),ensure_ascii=False))
+`,fileURLToPath(root)],{input:JSON.stringify(Object.values(original)),encoding:'utf8',maxBuffer:1024*1024}));
+  const current=byId(projected),expectedDisplay=new Map();assert.equal(current.size,4);let changedLeaves=0;
+  const canonical=value=>Array.isArray(value)?value.map(canonical):value&&typeof value==='object'?Object.fromEntries(Object.keys(value).sort().map(key=>[key,canonical(value[key])])):value;
+  const hashText=value=>createHash('sha256').update(value).digest('hex');
+  for(const [id,allowed]of Object.entries(fields)){
+    const raw=original[id],plan=mapping.cases[id],source=supplementById.get(id),display=structuredClone(raw);
+    assert.deepEqual(sorted(Object.keys(plan.fields)),sorted(allowed),id+' exact reviewed Japanese fields');
+    assert.equal(plan.source.path,source.base+'cases.json');assert.equal(plan.source.sha256,sha(plan.source.path));
+    assert.equal(navigation.source_sha256[plan.source.path],plan.source.sha256,'Original packet SHA is retained');
+    const document=json(plan.source.path),rows=Array.isArray(document)?document:document.cases,index=rows.findIndex(row=>row.id===id);
+    assert.ok(index>=0);assert.deepEqual(rows[index],raw);
+    for(const field of allowed){
+      const replacement=plan.fields[field];assert.deepEqual(sorted(Object.keys(replacement)),['after','before']);
+      assert.equal(typeof replacement.before,'string');assert.equal(typeof replacement.after,'string');
+      assert.equal(raw[field].ja,replacement.before);
+      assert.equal(replacement.after,id==='kepler-eccentricity'?replacement.before.replace('正の放射速度交差','正の動径速度での交差'):replacement.before.replaceAll('放射','輻射'));
+      assert.notEqual(replacement.before,replacement.after);display[field].ja=replacement.after;changedLeaves++;
+    }
+    display.editorial_terminology={kind:'Japanese-display-terminology',schema_version:1,
+      raw_source:{...plan.source,case_pointer:(Array.isArray(document)?'/':'/cases/')+index},
+      raw_case_canonical_sha256:hashText(JSON.stringify(canonical(raw))),
+      editorial_source_sha256:{[mappingPath]:sha(mappingPath),[helperPath]:sha(helperPath)},
+      fields:Object.fromEntries(allowed.map(field=>[field,{raw_ja_sha256:hashText(plan.fields[field].before),display_ja_sha256:hashText(plan.fields[field].after)}]))};
+    assert.deepEqual(current.get(id),display,id+' only reviewed JA leaves and provenance may differ');
+    for(const path of [mappingPath,helperPath])assert.equal(navigation.source_sha256[path],sha(path));
+    expectedDisplay.set(id,display);
+  }
+  assert.equal(changedLeaves,10);
+  for(const [id,raw]of Object.entries(original))assert.deepEqual(supplementById.get(id).item,raw,'Frozen metadata not mutated');
+  return expectedDisplay;
+}
+
 test('execution routes cover only the explicit common and supplemental source cases, with exact methods and scoped formulas',()=>{
+  const expectedDisplay=expectedSupplementDisplays();
   assert.deepEqual(sorted(Object.keys(navigation.executions)),sorted([...common.examples.map(row=>row.id),...Object.keys(expansion.case_problem_ids)]));
   assert.deepEqual(sorted(supplements.map(row=>row.item.id)),sorted(Object.keys(expansion.case_problem_ids)));
   for(const route of Object.values(navigation.executions)){
-    const source=route.kind==='common'?commonById.get(route.id):supplementById.get(route.id).item;
+    const source=route.kind==='common'?commonById.get(route.id):(expectedDisplay.get(route.id)||supplementById.get(route.id).item);
     assert.ok(source,route.id);assert.deepEqual(route.name,source.name||source.title);
     assert.deepEqual(route.methods.map(row=>row.id),source.method_ids,route.id+' does not borrow related problem methods');
     for(const method of route.methods){
@@ -128,6 +178,7 @@ test('representative problem pictures and each supplement’s own validation fig
 });
 
 test('new entry and chooser metadata preserves original scientific records and shares exactly the source navigation graph',()=>{
+  const expectedDisplay=expectedSupplementDisplays();
   const chooser=json('numerical-methods-atlas/code-and-data/examples/index.json'),depth=json('numerical-methods-atlas/validation/index.json');
   assert.equal(sha('numerical-methods-atlas/code-and-data/examples.json'),'3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7');
   assert.deepEqual(chooser.navigation_source_sha256,navigation.source_sha256);assert.deepEqual(depth.navigation_source_sha256,navigation.source_sha256);
@@ -142,7 +193,7 @@ test('new entry and chooser metadata preserves original scientific records and s
       assert.equal(record.public_rerun.passed,true);
     }else{
       const {item,base}=supplementById.get(route.id);
-      for(const [key,value]of Object.entries(item))assert.deepEqual(record[key],value,route.id+'/'+key);
+      for(const [key,value]of Object.entries(expectedDisplay.get(route.id)||item))assert.deepEqual(record[key],value,route.id+'/'+key);
       assert.deepEqual(record.measured,json(base+'results/result.json').cases.find(row=>row.id===route.id));
       assert.deepEqual(depth.cases.find(row=>row.id===route.id).execution_navigation,route);
     }

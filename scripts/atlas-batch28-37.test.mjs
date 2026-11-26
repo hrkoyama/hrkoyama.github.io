@@ -83,7 +83,7 @@ test('batch28–37 preserves every prior scientific distribution and reference i
 });
 
 test('batch28–37 preserves all primary gallery records and prior release metadata',()=>{
- const gallery=json('catalog/atlas-gallery.json').items;
+ const gallery=projectCatalogBeforeFinal23('catalog/atlas-gallery.json',json('catalog/atlas-gallery.json')).items;
  for(const old of baseline.gallery_items) assert.deepEqual(gallery.find(x=>x.id===old.id),old,old.id);
  const previews=json('numerical-methods-atlas/gallery/preview-manifest.json').items;
  for(const old of baseline.preview_manifest_items) assert.deepEqual(previews.find(x=>x.id===old.id),old,old.id);

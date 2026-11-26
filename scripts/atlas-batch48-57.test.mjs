@@ -1,3 +1,4 @@
+import {projectCatalogBeforeFinal23} from './fixtures/atlas-final23-projection.mjs';
 import {projectMethodBeforeBatch68} from './fixtures/atlas-inventory.mjs';
 // DRAFT: install in scripts/ only after canonical packages/catalogs are ready.
 // Data/hash checks only: no solver, renderer, network call or ZIP extraction.
@@ -73,7 +74,7 @@ test('batch48–57 preserves all 47 earlier immutable editions and every existin
   const active=registry.releases.find(row=>row.group===before.release.group);assert.ok(active);
   if(active.group!==baseline.current_edition_exception.group)assert.deepEqual(active,before.release);
  }
- const gallery=json('catalog/atlas-gallery.json').items,previews=json('numerical-methods-atlas/gallery/preview-manifest.json').items;
+ const gallery=projectCatalogBeforeFinal23('catalog/atlas-gallery.json',json('catalog/atlas-gallery.json')).items,previews=json('numerical-methods-atlas/gallery/preview-manifest.json').items;
  for(const [id,hash] of Object.entries(baseline.gallery_records_sha256))assert.equal(fingerprint(gallery.find(row=>row.id===id)),hash,id+'/old-gallery-record');
  for(const [id,hash] of Object.entries(baseline.preview_records_sha256))assert.equal(fingerprint(previews.find(row=>row.id===id)),hash,id+'/old-preview-record');
  for(const [path,hash] of Object.entries(baseline.preview_images_sha256))assert.equal(await streamSHA(path),hash,path+'/old-image');

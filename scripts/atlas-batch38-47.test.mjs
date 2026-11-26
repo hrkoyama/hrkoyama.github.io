@@ -82,7 +82,7 @@ test('batch38–47 preserves existing scientific files, search details, equation
  }
  const equations=projectCatalogBeforeFinal23('catalog/atlas-equations.json',json('catalog/atlas-equations.json')).equations.map(projectEquationBeforeBatch78);
  for(const [id,formula] of Object.entries(baseline.equation_formulas))assert.deepEqual(equations.find(x=>x.id===id)?.formula,formula,id);
- for(const [oldRows,currentRows] of [[baseline.problem_records,json('catalog/atlas-test-problems.json').problems],[baseline.equation_records,equations]])for(const old of oldRows){
+ for(const [oldRows,currentRows] of [[baseline.problem_records,projectCatalogBeforeFinal23('catalog/atlas-test-problems.json',json('catalog/atlas-test-problems.json')).problems],[baseline.equation_records,equations]])for(const old of oldRows){
   const current=currentRows.find(x=>x.id===old.id);
   const fixed=row=>Object.fromEntries(Object.entries(row).filter(([k])=>k!=='supplemental_examples'));
   assert.deepEqual(fixed(current),fixed(old),old.id+'/preserved-model-or-problem');
@@ -95,7 +95,7 @@ test('batch38–47 preserves existing scientific files, search details, equation
 });
 
 test('batch38–47 retains all primary gallery records and old release metadata',()=>{
- const gallery=json('catalog/atlas-gallery.json').items;
+ const gallery=projectCatalogBeforeFinal23('catalog/atlas-gallery.json',json('catalog/atlas-gallery.json')).items;
  for(const old of baseline.gallery_items)assert.deepEqual(gallery.find(x=>x.id===old.id),old,old.id);
  assert.equal(gallery.filter(row=>!problemsAddedAfterBatch47.includes(row.id)).length,baseline.gallery_items.length+9);
  const previews=json('numerical-methods-atlas/gallery/preview-manifest.json').items;

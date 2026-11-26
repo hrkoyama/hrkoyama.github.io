@@ -1,3 +1,4 @@
+import {projectCatalogBeforeFinal23} from './fixtures/atlas-final23-projection.mjs';
 import {groupsAddedAfterBatch37,problemCount,examplesAddedAfterBatch37,supplementCaseCount,supplementGroupCount} from './fixtures/atlas-inventory.mjs';
 import {methodCount,methodStatusCounts} from './fixtures/atlas-inventory.mjs';
 import test from 'node:test';
@@ -69,7 +70,7 @@ test('Euler stage positivity reuses one problem and preserves eighteen older rel
  assert.equal(pictures.length,86);assert.equal(objectHash(pictures),'c64fafd78d6ae0a39941161c2932799ffca4f8eb0e3885ce2998de58f4a1f429');
  const problems=json('catalog/atlas-test-problems.json').problems;
  assert.equal(problems.length,problemCount);
- const before=problems.filter(p=>!['zalesak','swashes-topography','dry-bed-dam-break','lid-driven-cavity','wall-manufactured','level-set-circle', 'kh-initial-growth', 'rt-initial-growth', 'lshape-fem', 'annular-viscous-mms', 'poisson-neumann', 'poisson-robin', 'ale-nonuniform-transport', 'cgrid-rotating-wave', 'srhd-collision', 'srmhd-alfven','checkerboard-diffusion','rotated-anisotropic-diffusion','neutral-slab-yb','fmm3d-inverse-r','gravity-kepler','gravity-plummer-short','thermal-landau-damping','thermal-two-stream','dsmc-couette','dsmc-fourier','dsmc-planar-shock',...examplesAddedAfterBatch37].includes(p.id)).map(historicalProblem).map(p=>{if(p.id!=='double-rarefaction')return p;const copy={...p};delete copy.supplemental_examples;return copy;});
+ const before=projectCatalogBeforeFinal23('catalog/atlas-test-problems.json',json('catalog/atlas-test-problems.json')).problems.filter(p=>!['zalesak','swashes-topography','dry-bed-dam-break','lid-driven-cavity','wall-manufactured','level-set-circle', 'kh-initial-growth', 'rt-initial-growth', 'lshape-fem', 'annular-viscous-mms', 'poisson-neumann', 'poisson-robin', 'ale-nonuniform-transport', 'cgrid-rotating-wave', 'srhd-collision', 'srmhd-alfven','checkerboard-diffusion','rotated-anisotropic-diffusion','neutral-slab-yb','fmm3d-inverse-r','gravity-kepler','gravity-plummer-short','thermal-landau-damping','thermal-two-stream','dsmc-couette','dsmc-fourier','dsmc-planar-shock',...examplesAddedAfterBatch37].includes(p.id)).map(historicalProblem).map(p=>{if(p.id!=='double-rarefaction')return p;const copy={...p};delete copy.supplemental_examples;return copy;});
  assert.equal(objectHash(before),'cb3e36911d193201104862c1d0038e1b1b08c551946f7508a0ce7f4eb1fafd67');
  assert.equal(json('catalog/atlas-methods.json').methods.length,methodCount);
  assert.equal(hash('numerical-methods-atlas/code-and-data/examples.json'),'3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7');

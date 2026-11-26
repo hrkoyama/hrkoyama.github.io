@@ -16,10 +16,29 @@ const originals={ewald:'1d2155b9826e46f4034b346ae2bb0edbc49f59d9359ed0c0615e3315
 const added=['ewald-convergence','spme-convergence','fmm-convergence','pic-conservation','dsmc-statistics','radiation-convergence'];
 const physical={'ewald-convergence':'neutral-periodic-charges','spme-convergence':'neutral-periodic-charges','fmm-convergence':'logarithmic-particles','pic-conservation':'cold-plasma-pic','dsmc-statistics':'maxwell-collisions','radiation-convergence':'absorbing-slab'};
 
+// This one dated fingerprint predates the reviewed five-leaf wording update.
+// Keep the original golden and all current chapter/display checks separate.
+const radiationTerminologyBytes=read('scripts/fixtures/atlas-radiation-reading-terminology.json');
+assert.equal(sha(radiationTerminologyBytes),'0c0e6b09f9d9a3ac079062a8e2e8eea381da08b58afe05b2cbb20f3853ef371a','reviewed radiation chapter inverse');
+const radiationTerminology=JSON.parse(radiationTerminologyBytes);
+function radiationChapterBeforeTerminology(chapter){
+ assert.equal(chapter.id,radiationTerminology.chapter_id);
+ const actual=hash(chapter);
+ if(actual===radiationTerminology.before.chapter_sha256)return structuredClone(chapter);
+ assert.equal(actual,radiationTerminology.after.chapter_sha256,'exact reviewed current radiation chapter');
+ const copy=structuredClone(chapter);
+ for(const operation of radiationTerminology.operations){
+  let object=copy;for(const key of operation.parts.slice(0,-1))object=object[key];
+  const key=operation.parts.at(-1);assert.equal(object[key],operation.after);object[key]=operation.before;
+ }
+ assert.equal(hash(copy),radiationTerminology.before.chapter_sha256,'exact historical chapter restored');
+ return copy;
+}
+
 test('six detailed particle/transport chapters retain all historical paragraphs, equations and source IDs before adding separate releases',()=>{
  const data=json('catalog/atlas-detailed-reading.json');
  for(const [id,supplements] of Object.entries(cases)){
-  const chapter=data.chapters.find(x=>x.id===id),old=structuredClone(chapter);
+  const chapter=data.chapters.find(x=>x.id===id),old=id==='radiation-transport'?radiationChapterBeforeTerminology(chapter):structuredClone(chapter);
   delete old.scoped_supplements;delete old.publication_scope;
   if(id==='dsmc')old.references=old.references.slice(0,-1);
   for(const section of old.sections)for(const language of ['ja','en'])section.paragraphs[language]=section.paragraphs[language].slice(0,1);
@@ -135,4 +154,14 @@ test('all 80 historical gallery illustrations, image checksums and captions surv
  assert.equal(hash(items.map(({id,image,image_sha256,caption})=>({id,image,image_sha256,caption}))),'25c25a4cb7ad5c54e5788b984d949c44994d3f1706ed36c4ef30a3ce36fa6c2b');
  const gallery=json('numerical-methods-atlas/gallery/index.json');
  assert.equal(gallery.items.length,problemCount);assert.equal(gallery.items.filter(x=>x.runnable).length,runnableProblemCount);
+});
+
+// Metadata-only negative controls; no solver, renderer or source packet is run.
+test('dated radiation chapter wording inverse rejects every unrelated edit',()=>{
+ const current=json('catalog/atlas-detailed-reading.json').chapters.find(row=>row.id==='radiation-transport');
+ const before=structuredClone(current),old=radiationChapterBeforeTerminology(current);
+ assert.deepEqual(current,before);assert.equal(hash(old),radiationTerminology.before.chapter_sha256);
+ assert.deepEqual(radiationChapterBeforeTerminology(old),old);
+ const mutations=[row=>row.title.ja+=' extra',row=>row.title.en+=' extra',row=>row.sections[0].formulas[0]+='-changed',row=>row.sections.reverse(),row=>row.references.push('unreviewed-reference'),row=>row.numeric_extra=1,row=>{delete row.id;},row=>row.id='other'];
+ for(const mutate of mutations){const row=structuredClone(current);mutate(row);assert.throws(()=>radiationChapterBeforeTerminology(row));}
 });
