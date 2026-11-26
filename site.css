@@ -94,8 +94,8 @@ html body:has(> .site-top) :is(main, .home-main, .profile-main) :is(pre, code):n
 html body:has(> .site-top) :is(main, .home-main, .profile-main) pre code:not(:where(svg *, math *, .katex *, .MathJax *, mjx-container *, [role="img"] *)):not(:has(svg, canvas, math, .katex, .MathJax, mjx-container)) { font-size: var(--site-visual-code-size); }
 
 /* Explanatory metadata uses one readable scale; no status/alert colors reset. */
-html body:has(> .site-top) :is(main, .home-main, .profile-main) :is(.note, .scope-note, .source-note, .meta, .metadata, .content-language, .image-note, .breadcrumbs, .breadcrumb, .eyebrow, .kicker),
-html body:has(> .site-top) :is(main, .home-main, .profile-main) :is(.note, .scope-note, .source-note, .meta, .metadata, .content-language, .image-note) > p {
+html body:has(> .site-top) :is(main, .home-main, .profile-main) :is(.note, .scope-note, .source-note, .meta, .metadata, .content-language, .image-note, .breadcrumbs, .breadcrumb, .eyebrow, .kicker):not(:where(svg *, math *, .katex *, .MathJax *, mjx-container *, [role="img"] *)):not(:has(svg, canvas, math, .katex, .MathJax, mjx-container)),
+html body:has(> .site-top) :is(main, .home-main, .profile-main) :is(.note, .scope-note, .source-note, .meta, .metadata, .content-language, .image-note) > p:not(:where(svg *, math *, .katex *, .MathJax *, mjx-container *, [role="img"] *)):not(:has(svg, canvas, math, .katex, .MathJax, mjx-container)) {
   font-family: var(--site-visual-font-body);
   font-size: var(--site-visual-note-size);
   line-height: 1.7;
@@ -105,6 +105,43 @@ html body:has(> .site-top) :is(main, .home-main, .profile-main) :is(.note, .scop
 html body:has(> .site-top) :is(main, .home-main, .profile-main) :is(.intro, .section-intro, .panel-intro, .detail-description):not(:where(.hero-film *, [role="alert"], [role="alert"] *, [data-status], [data-status] *, .error, .error *, .warning, .warning *, .success, .success *, .pass, .pass *, .fail, .fail *)):not(:has(svg, canvas, math, .katex, .MathJax, mjx-container)) {
   color: var(--site-visual-ink);
 }
-html body:has(> .site-top) :is(main, .home-main, .profile-main) :is(.content-language, .image-note):not(:where([role="alert"], [role="alert"] *, [data-status], [data-status] *, .error, .error *, .warning, .warning *, .success, .success *)) { color: var(--site-visual-muted); }
+html body:has(> .site-top) :is(main, .home-main, .profile-main) :is(.content-language, .image-note):not(:where(svg *, math *, .katex *, .MathJax *, mjx-container *, [role="img"] *)):not(:has(svg, canvas, math, .katex, .MathJax, mjx-container)):not(:where([role="alert"], [role="alert"] *, [data-status], [data-status] *, .error, .error *, .warning, .warning *, .success, .success *)) { color: var(--site-visual-muted); }
 /* Ordinary prose links share a color; button/status/figure links keep semantics. */
 html body:has(> .site-top) :is(main, .home-main, .profile-main) :is(p, li, dd, dt) > a:not(:where(.button, .btn, .primary, [role="button"], .error, .warning, .success, .pass, .fail, [data-status], .hero-film *, [role="alert"] *, [data-status] *, .error *, .warning *, .success *, .pass *, .fail *, svg *, math *, .katex *, .MathJax *, mjx-container *, [role="img"] *)):not(:has(svg, canvas, img)) { color: var(--site-visual-link); }
+
+
+/* Rendered-review fixes: local navigation and known explanatory muted roles.
+   No inherited palette token, plot/status color, geometry or content changes. */
+html body:has(> .site-top) :is(header, main, .reading-nav, .chapter-toc) nav a:not(:where(svg *, math *, .katex *, .MathJax *, mjx-container *, [role="img"] *)):not(:has(svg, canvas, math, .katex, .MathJax, mjx-container)),
+html body:has(> .site-top) :is(.breadcrumbs a, .breadcrumb a, .directory-jump):not(:where(svg *, math *, .katex *, .MathJax *, mjx-container *, [role="img"] *)):not(:has(svg, canvas, math, .katex, .MathJax, mjx-container)) {
+  font-family: var(--site-visual-font-body);
+  font-size: var(--site-visual-note-size);
+  line-height: 1.65;
+}
+html body:has(> .site-top) :is(.reading-nav, .chapter-toc) nav a:not([aria-current]):not(:where(svg *, math *, .katex *, .MathJax *, mjx-container *, [role="img"] *)):not(:has(svg, canvas, math, .katex, .MathJax, mjx-container)) {
+  color: var(--site-visual-muted);
+}
+/* Existing source rules assign --muted to these explanatory prose roles.
+   Astrophysics gas-status is a neutral explanatory note, not a pass/fail flag. */
+html body:has(> .site-top) :is(
+  .hero-kicker, .hero-footnote, .graph-toolbar > p, .privacy-note p,
+  .flow-note > p, .source-row p, .method-note > p,
+  .library-hero .eyebrow, .library-hero .hero-note,
+  .volume-card > p, .appendix-link > p, .feature > p,
+  .lesson-head .dek, .lesson .lab-note, .lab .lab-note,
+  .path-note > p, .advanced-method > p,
+  .advanced-head > p:not(.advanced-subtitle), .section-heading > p,
+  .principle > p:last-child, .columns p, .releases p, .archive-teaser p,
+  .exhibit .notice, .movie-copy .quality, .movie-copy details
+):not(:where(svg *, math *, .katex *, .MathJax *, mjx-container *, [role="img"] *, .hero-film *, [role="alert"], [role="alert"] *, [data-status], [data-status] *, .error, .error *, .warning, .warning *, .success, .success *, .pass, .pass *, .fail, .fail *)):not(:has(svg, canvas, math, .katex, .MathJax, mjx-container)) {
+  color: var(--site-visual-muted);
+}
+html body:has(> .site-top) #reset-roots:not(:disabled) { color: var(--site-visual-muted); }
+html body:has(> .site-top) :is(.period .period-label, .period .dates, .evidence-panel > .label, .evidence-panel > .item-context, .timeline-event:not(.turning-point) .event-kind):not(:where(svg *, math *, .katex *, .MathJax *, mjx-container *, [role="img"] *, [role="alert"], [role="alert"] *, [data-status], [data-status] *, .error, .error *, .warning, .warning *, .success, .success *, .pass, .pass *, .fail, .fail *)):not(:has(svg, canvas, math, .katex, .MathJax, mjx-container)) {
+  color: var(--site-visual-accent);
+}
+
+/* Neutral catalogue counts; this does not select arbitrary role=status UI. */
+html body:has(> .site-top) :is(.library-count, #catalogue-count):not(:where(svg *, math *, .katex *, .MathJax *, mjx-container *, [role="img"] *, [role="alert"], [role="alert"] *, [data-status], [data-status] *, .error, .error *, .warning, .warning *, .success, .success *, .pass, .pass *, .fail, .fail *)):not(:has(svg, canvas, math, .katex, .MathJax, mjx-container)) {
+  color: var(--site-visual-muted);
+}
