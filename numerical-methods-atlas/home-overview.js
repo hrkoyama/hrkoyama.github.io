@@ -1,4 +1,4 @@
-import {homeLandingCopy,homeCollectionInventory} from './atlas-home-data.js?v=3f480411718e';
+import {homeLandingCopy,homeCollectionInventory} from './atlas-home-data.js?v=7c9de3cbd661';
 import {homeSearchPage,wireHomeSearch} from './home-search.js?v=2ae87f12ec51';
 import {t,currentLanguage} from './i18n.js';
 import {homeAreas,homeCopy,homePaths,homeReadingLanguages} from './home-overview-data.js?v=cc83ac6257e7';
