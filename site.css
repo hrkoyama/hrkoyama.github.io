@@ -18,3 +18,93 @@ body>.site-top~.site-header .language-switch{display:none!important}
 .site-chrome .site-search button{display:block;box-sizing:border-box;flex:none;margin:0;padding:8px 12px;border:1px solid #1c4168;border-radius:0 5px 5px 0;background:#1c4168;color:#fff9ed;font:inherit;line-height:1.4;cursor:pointer;white-space:nowrap}
 .site-chrome .site-search input:focus-visible,.site-chrome .site-search button:focus-visible{outline:2px solid #b8893f;outline-offset:2px}
 @media(max-width:600px){.site-chrome .site-search{order:4;flex:1 1 100%;min-width:0}.site-content-note{order:5}}
+
+
+/* Shared visual system: loaded last, after archive-specific styles.
+   Only HTML reading/UI roles are normalized. Legacy palette tokens, body/main
+   font inheritance, scientific SVG/canvas and math typography remain intact. */
+:root {
+  --site-visual-font-body: system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
+  --site-visual-font-heading: "Iowan Old Style", Georgia, "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+  --site-visual-font-code: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --site-visual-paper: #f6f4ed;
+  --site-visual-surface: #fffdf7;
+  --site-visual-ink: #25382f;
+  --site-visual-muted: #59665e;
+  --site-visual-link: #1c4168;
+  --site-visual-accent: #386552;
+  --site-visual-rule: #d2d3c8;
+  --site-visual-body-size: 1rem;
+  --site-visual-note-size: .875rem;
+  --site-visual-code-size: .875rem;
+  --site-visual-reading-leading: 1.8;
+}
+html:lang(en) { --site-visual-reading-leading: 1.7; }
+body:has(> .site-top) { background-color: var(--site-visual-paper); }
+
+/* Archive nav/nav-a selectors must not shrink the common navigation. */
+.site-chrome,
+.site-chrome :is(.site-brand, .site-nav, .site-nav a, .site-languages, .site-languages a, .site-links, .site-links a, .site-legal p, .site-content-note) {
+  font-family: var(--site-visual-font-body);
+  font-size: var(--site-visual-note-size);
+  line-height: 1.65;
+  color: var(--site-visual-ink);
+  background-color: transparent;
+}
+.site-chrome { background-color: var(--site-visual-paper); }
+.site-chrome.site-top, .site-chrome.site-bottom { border-color: var(--site-visual-rule); }
+.site-chrome .site-credit { font-size: var(--site-visual-note-size) !important; color: var(--site-visual-muted); }
+.site-chrome .site-content-note { color: var(--site-visual-muted); }
+.site-chrome .site-search :is(input, button) { font-family: var(--site-visual-font-body); font-size: 1rem; line-height: 1.4; }
+.site-chrome .site-search input { color: var(--site-visual-ink); background-color: var(--site-visual-surface); border-color: var(--site-visual-rule); }
+.site-chrome .site-search button { color: #fff; background-color: var(--site-visual-link); border-color: var(--site-visual-link); }
+.site-chrome :is(a, input, button):focus-visible { outline-color: var(--site-visual-accent); }
+
+/* Scope ordinary HTML text, not the inherited font/color of its figure host.
+   The :where() guard contributes no specificity. Never target SVG/MathML or
+   children of a math renderer, even when it uses HTML spans or tables. */
+html body:has(> .site-top) :is(main, .home-main, .profile-main) :is(p, li, dt, dd, blockquote, label, summary):not(:where(svg *, math *, .katex *, .MathJax *, mjx-container *, [role="img"] *)):not(:has(svg, canvas, math, .katex, .MathJax, mjx-container)) {
+  font-family: var(--site-visual-font-body);
+  font-size: var(--site-visual-body-size);
+  line-height: var(--site-visual-reading-leading);
+}
+html body:has(> .site-top) :is(main, .home-main, .profile-main) :is(h1, h2, h3, h4, h5, h6):not(:where(svg *, math *, .katex *, .MathJax *, mjx-container *, [role="img"] *)):not(:has(svg, canvas, math, .katex, .MathJax, mjx-container)) {
+  font-family: var(--site-visual-font-heading);
+  line-height: 1.45;
+}
+html body:has(> .site-top) :is(main, .home-main, .profile-main) h1:not(:where(svg *, math *, .katex *, .MathJax *, mjx-container *, [role="img"] *)):not(:has(svg, canvas, math, .katex, .MathJax, mjx-container)) { font-size: clamp(1.875rem, 3.7vw, 2.5rem); }
+html body:has(> .site-top) :is(main, .home-main, .profile-main) h2:not(:where(svg *, math *, .katex *, .MathJax *, mjx-container *, [role="img"] *)):not(:has(svg, canvas, math, .katex, .MathJax, mjx-container)) { font-size: clamp(1.5rem, 2.5vw, 1.75rem); }
+html body:has(> .site-top) :is(main, .home-main, .profile-main) h3:not(:where(svg *, math *, .katex *, .MathJax *, mjx-container *, [role="img"] *)):not(:has(svg, canvas, math, .katex, .MathJax, mjx-container)) { font-size: clamp(1.25rem, 2vw, 1.375rem); }
+html body:has(> .site-top) :is(main, .home-main, .profile-main) :is(input, select, textarea, button):not(:where(svg *, math *, .katex *, .MathJax *, mjx-container *)) {
+  font-family: var(--site-visual-font-body);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+html body:has(> .site-top) :is(main, .home-main, .profile-main) :is(th, td):not(:where(svg *, math *, .katex *, .MathJax *, mjx-container *, [role="img"] *)):not(:has(svg, canvas, math, .katex, .MathJax, mjx-container)) {
+  font-family: var(--site-visual-font-body);
+  font-size: var(--site-visual-note-size);
+  line-height: 1.65;
+}
+html body:has(> .site-top) :is(main, .home-main, .profile-main) :is(pre, code):not(:where(svg *, math *, .katex *, .MathJax *, mjx-container *)) {
+  font-family: var(--site-visual-font-code);
+  font-size: var(--site-visual-code-size);
+  line-height: 1.65;
+}
+/* A separate pre/code rule prevents the former 12px × .9em = 10.8px exhibit. */
+html body:has(> .site-top) :is(main, .home-main, .profile-main) pre code:not(:where(svg *, math *, .katex *, .MathJax *, mjx-container *, [role="img"] *)):not(:has(svg, canvas, math, .katex, .MathJax, mjx-container)) { font-size: var(--site-visual-code-size); }
+
+/* Explanatory metadata uses one readable scale; no status/alert colors reset. */
+html body:has(> .site-top) :is(main, .home-main, .profile-main) :is(.note, .scope-note, .source-note, .meta, .metadata, .content-language, .image-note, .breadcrumbs, .breadcrumb, .eyebrow, .kicker),
+html body:has(> .site-top) :is(main, .home-main, .profile-main) :is(.note, .scope-note, .source-note, .meta, .metadata, .content-language, .image-note) > p {
+  font-family: var(--site-visual-font-body);
+  font-size: var(--site-visual-note-size);
+  line-height: 1.7;
+}
+/* Known prose-only roles: do not recolor arbitrary p/li/td, status messages,
+   validation results, badges, selected controls, plots, or inverse heroes. */
+html body:has(> .site-top) :is(main, .home-main, .profile-main) :is(.intro, .section-intro, .panel-intro, .detail-description):not(:where(.hero-film *, [role="alert"], [role="alert"] *, [data-status], [data-status] *, .error, .error *, .warning, .warning *, .success, .success *, .pass, .pass *, .fail, .fail *)):not(:has(svg, canvas, math, .katex, .MathJax, mjx-container)) {
+  color: var(--site-visual-ink);
+}
+html body:has(> .site-top) :is(main, .home-main, .profile-main) :is(.content-language, .image-note):not(:where([role="alert"], [role="alert"] *, [data-status], [data-status] *, .error, .error *, .warning, .warning *, .success, .success *)) { color: var(--site-visual-muted); }
+/* Ordinary prose links share a color; button/status/figure links keep semantics. */
+html body:has(> .site-top) :is(main, .home-main, .profile-main) :is(p, li, dd, dt) > a:not(:where(.button, .btn, .primary, [role="button"], .error, .warning, .success, .pass, .fail, [data-status], .hero-film *, [role="alert"] *, [data-status] *, .error *, .warning *, .success *, .pass *, .fail *, svg *, math *, .katex *, .MathJax *, mjx-container *, [role="img"] *)):not(:has(svg, canvas, img)) { color: var(--site-visual-link); }
