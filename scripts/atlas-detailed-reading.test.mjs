@@ -52,6 +52,10 @@ test('all 23 formerly unlinked methods have substantive bilingual reading while 
      }
      sections=chapter.sections.slice(0,4);
     }
+    if(id==='radiation-transport'){
+     assert.deepEqual(sections.map(s=>s.id),['model','grey-approximation','radiation-diffusion-approximation','algorithm','conditions','verification']);
+     sections=sections.filter(s=>!['grey-approximation','radiation-diffusion-approximation'].includes(s.id));
+    }
     assert.equal(sections.length,4);assert.ok(chapter.intro[lang].length>40);for(const section of sections)assert.ok(section.paragraphs[lang].join(' ').length>65,id+' '+lang+' '+section.id);
    }
    assert.equal(m.reading[lang],`/numerical-methods-atlas/${lang}/read/${id==='optimization'?'bratu-multi-inverse':id}/`);
@@ -246,4 +250,29 @@ test('new Japanese queries reach the actual detailed reading through the public 
  for(const [query,chapter] of [['ダンピングルンゲクッタ','steady-runge-kutta'],['前処理行列','low-mach-preconditioning'],['直交多項式','basis-functions']]){
   assert.ok(search(query,'ja','atlas').some(x=>x.url===`/numerical-methods-atlas/ja/read/${chapter}/`),query);
  }
+});
+
+test('grey and radiation diffusion have named bilingual discovery sections without new method or solver status',()=>{
+ const chapter=source.chapters.find(c=>c.id==='radiation-transport');
+ const grey=chapter.sections.find(s=>s.id==='grey-approximation');
+ const diffusion=chapter.sections.find(s=>s.id==='radiation-diffusion-approximation');
+ assert.deepEqual(grey.title,{ja:'グレー（灰色）近似',en:'Grey (gray) approximation'});
+ assert.deepEqual(diffusion.title,{ja:'輻射拡散近似',en:'Radiation diffusion approximation'});
+ assert.deepEqual(grey.links.map(x=>x.url),['/numerical-methods-atlas/validation/su-olson-transport1997/','/numerical-methods-atlas/validation/shadow-absorber2d/']);
+ assert.deepEqual(diffusion.links.map(x=>x.url),['/numerical-methods-atlas/validation/su-olson-diffusion1996/','/numerical-methods-atlas/validation/su-olson-transport1997/']);
+ for(const section of [grey,diffusion])for(const lang of ['ja','en']){
+  assert.ok(section.paragraphs[lang].join(' ').length>65);
+  for(const entry of section.links){
+   assert.ok(entry.label[lang].trim());
+   const saved=read(entry.url.slice(1)+'index.json');
+   assert.equal(saved.id,entry.url.split('/').at(-2));
+  }
+ }
+ assert.match(diffusion.paragraphs.ja.at(-1),/専用の非線形FLDソルバーの実装・検証例はまだありません/);
+ assert.match(diffusion.paragraphs.en.at(-1),/does not yet provide a dedicated nonlinear FLD solver/);
+ const method=methods.find(m=>m.id==='radiation-transport');
+ for(const alias of ['グレー近似','灰色近似','grey approximation','gray approximation','輻射拡散近似','放射拡散近似','radiation diffusion approximation'])assert.ok(method.aliases.includes(alias));
+ assert.equal(method.status,'educational-example');
+ assert.deepEqual(chapter.methods,['radiation-transport']);
+ assert.deepEqual(chapter.scoped_supplements,['radiation-transport','radiation-convergence']);
 });

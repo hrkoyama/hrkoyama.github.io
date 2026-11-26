@@ -28,6 +28,20 @@ def link(url,label):return '<a href="'+escape(url,quote=True)+'">'+escape(label)
 def heading(ident,title):return '<h2 id="'+ident+'">'+escape(title)+'</h2>'
 def paragraph(text):return '<p>'+escape(text)+'</p>'
 def url(chapter,lang):return f'/numerical-methods-atlas/{lang}/read/{chapter}/'
+def section_links(section,lang):
+    """Optional current-reading links; keep labels bilingual and routes local."""
+    rows=section.get('links',[])
+    assert isinstance(rows,list)
+    targets=[]
+    for row in rows:
+        assert isinstance(row,dict) and set(row)=={'url','label'}
+        assert isinstance(row['url'],str) and re.fullmatch(r'/numerical-methods-atlas/validation/[a-z0-9]+(?:-[a-z0-9]+)*/',row['url'])
+        assert isinstance(row['label'],dict) and set(row['label'])=={'ja','en'}
+        assert all(isinstance(v,str) and v.strip() for v in row['label'].values())
+        assert row['url'] not in [target.split('?')[0] for target,label in targets]
+        targets.append((row['url']+'?lang='+lang,row['label'][lang]))
+    return targets
+
 def markdown_table(match):
     """Retain row/column boundaries in opted-in HTML reading chapters."""
     table=match[0]
@@ -108,6 +122,7 @@ for chapter in data['chapters']:
                 assert section['paragraphs'][lang] and all(p.strip() for p in section['paragraphs'][lang])
                 for p in section['paragraphs'][lang]:body+=paragraph(p)
                 body+=''.join('<math-placeholder id="'+f+'"></math-placeholder>' for f in section.get('formulas',[]))
+                if section_links(section,lang):body+='<p>'+' · '.join(link(target,label) for target,label in section_links(section,lang))+'</p>'
         body+=scoped_supplement_html(scoped,lang)
         body+=heading('publication-scope','公開範囲と関連項目' if ja else 'Publication scope and related entries')
         if all(methods[i]['status']=='planned' for i in chapter['methods']):
@@ -140,6 +155,7 @@ for chapter in data['chapters']:
             for section in chapter['sections']:
                 markdown+='## '+section['title'][lang]+'\n\n'+'\n\n'.join(section['paragraphs'][lang])+'\n\n'
                 markdown+=''.join('$$\n'+data['formulas'][f]+'\n$$\n\n' for f in section.get('formulas',[]))
+                if section_links(section,lang):markdown+=' · '.join('['+label+']('+target+')' for target,label in section_links(section,lang))+'\n\n'
         else:
             plain=chapter['html'][lang]
             if chapter.get('tables_in_markdown'):

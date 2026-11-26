@@ -16,10 +16,10 @@ const originals={ewald:'1d2155b9826e46f4034b346ae2bb0edbc49f59d9359ed0c0615e3315
 const added=['ewald-convergence','spme-convergence','fmm-convergence','pic-conservation','dsmc-statistics','radiation-convergence'];
 const physical={'ewald-convergence':'neutral-periodic-charges','spme-convergence':'neutral-periodic-charges','fmm-convergence':'logarithmic-particles','pic-conservation':'cold-plasma-pic','dsmc-statistics':'maxwell-collisions','radiation-convergence':'absorbing-slab'};
 
-// This one dated fingerprint predates the reviewed five-leaf wording update.
+// This dated fingerprint predates the reviewed wording and two discovery sections.
 // Keep the original golden and all current chapter/display checks separate.
 const radiationTerminologyBytes=read('scripts/fixtures/atlas-radiation-reading-terminology.json');
-assert.equal(sha(radiationTerminologyBytes),'0c0e6b09f9d9a3ac079062a8e2e8eea381da08b58afe05b2cbb20f3853ef371a','reviewed radiation chapter inverse');
+assert.equal(sha(radiationTerminologyBytes),'93ed7342ec7dc85536f30e2c2bdbb02961ace495d453386c4cb58e99af082c74','reviewed radiation chapter inverse');
 const radiationTerminology=JSON.parse(radiationTerminologyBytes);
 function radiationChapterBeforeTerminology(chapter){
  assert.equal(chapter.id,radiationTerminology.chapter_id);
@@ -27,6 +27,14 @@ function radiationChapterBeforeTerminology(chapter){
  if(actual===radiationTerminology.before.chapter_sha256)return structuredClone(chapter);
  assert.equal(actual,radiationTerminology.after.chapter_sha256,'exact reviewed current radiation chapter');
  const copy=structuredClone(chapter);
+ const discovery=radiationTerminology.discovery;
+ assert.deepEqual(copy.sections.slice(discovery.section_insert_index,discovery.section_insert_index+discovery.sections.length),discovery.sections,'exact reviewed discovery sections');
+ copy.sections.splice(discovery.section_insert_index,discovery.sections.length);
+ const scope=copy.sections.find(section=>section.id===discovery.scope_section_id).paragraphs;
+ for(const language of ['ja','en']){
+  assert.equal(scope[language][discovery.scope_paragraph_index],discovery.scope_after[language]);
+  scope[language][discovery.scope_paragraph_index]=discovery.scope_before[language];
+ }
  for(const operation of radiationTerminology.operations){
   let object=copy;for(const key of operation.parts.slice(0,-1))object=object[key];
   const key=operation.parts.at(-1);assert.equal(object[key],operation.after);object[key]=operation.before;
@@ -43,7 +51,7 @@ test('six detailed particle/transport chapters retain all historical paragraphs,
   if(id==='dsmc')old.references=old.references.slice(0,-1);
   for(const section of old.sections)for(const language of ['ja','en'])section.paragraphs[language]=section.paragraphs[language].slice(0,1);
   assert.equal(hash(old),originals[id],id+' historical content preserved');
-  assert.deepEqual(chapter.sections.map(x=>x.id),['model','algorithm','conditions','verification']);
+  assert.deepEqual(chapter.sections.map(x=>x.id),id==='radiation-transport'?['model','grey-approximation','radiation-diffusion-approximation','algorithm','conditions','verification']:['model','algorithm','conditions','verification']);
   assert.deepEqual(chapter.sections.flatMap(x=>x.formulas||[]),[id+'-1']);
   assert.deepEqual(chapter.scoped_supplements,supplements);
   for(const language of ['ja','en']){

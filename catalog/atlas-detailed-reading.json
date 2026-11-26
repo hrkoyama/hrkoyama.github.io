@@ -1869,6 +1869,74 @@
           ]
         },
         {
+          "id": "grey-approximation",
+          "title": {
+            "ja": "グレー（灰色）近似",
+            "en": "Grey (gray) approximation"
+          },
+          "paragraphs": {
+            "ja": [
+              "周波数を積分した強度を扱い、周波数方向の分解能を持たないモデルです。角度をどう扱うかとは別の選択なので、灰色近似そのものを拡散近似やM1閉包と同一視しません。",
+              "既存の灰色輸送・M1の例は、静止媒質と固定入力に限定されています。下の角度輸送とM1の配布版は、それぞれの条件で比較してください。多周波数計算に対する灰色近似の一般的な精度を検証した例ではありません。"
+            ],
+            "en": [
+              "A grey (gray) model uses frequency-integrated intensity without resolving frequency. This is a separate choice from the treatment of angle: the grey approximation is not itself a diffusion approximation or an M1 closure.",
+              "The existing grey transport and M1 examples are limited to a static medium and fixed inputs. Compare the angular-transport and M1 releases below within their own conditions. They do not establish general accuracy of the grey approximation against frequency-resolved calculations."
+            ]
+          },
+          "links": [
+            {
+              "url": "/numerical-methods-atlas/validation/su-olson-transport1997/",
+              "label": {
+                "ja": "灰色角度輸送：Su–Olson1997の固定例",
+                "en": "Grey angular transport: the fixed Su–Olson1997 example"
+              }
+            },
+            {
+              "url": "/numerical-methods-atlas/validation/shadow-absorber2d/",
+              "label": {
+                "ja": "灰色角度輸送とM1：2D吸収影",
+                "en": "Grey angular transport and M1: the 2D absorber shadow"
+              }
+            }
+          ]
+        },
+        {
+          "id": "radiation-diffusion-approximation",
+          "title": {
+            "ja": "輻射拡散近似",
+            "en": "Radiation diffusion approximation"
+          },
+          "paragraphs": {
+            "ja": [
+              "輻射拡散近似は、光学的に厚く角度分布がほぼ等方的な場合に、輻射流束をエネルギー密度の勾配から表す近似です。周波数を積分する灰色近似とは役割が異なります。",
+              "既存のSu–Olson1996例は、非平衡の輻射・物質交換を含む拡散方程式を進めます。Su–Olson1997角度輸送の配布版には、別の周期設定で拡散極限へ近づく固定制御があります。両問題の座標規格化・境界・参照解は同一ではありません。固定格子でのAP性や、任意の条件での拡散近似の精度を示すものではありません。",
+              "FLD（flux-limited diffusion）は流束制限を含む別の閉包です。このアトラスには説明はありますが、専用の非線形FLDソルバーの実装・検証例はまだありません。上の拡散例やM1をFLDの実装として数えません。"
+            ],
+            "en": [
+              "The radiation diffusion approximation relates the radiation flux to the gradient of energy density in an optically thick, nearly isotropic regime. Its role differs from the grey approximation, which integrates over frequency.",
+              "The existing Su–Olson1996 example advances diffusion equations with non-equilibrium radiation–matter exchange. The Su–Olson1997 angular-transport release also contains fixed diffusion-limit controls in a separate periodic setting. The coordinate normalizations, boundaries and references of these problems are not identical. These examples do not establish fixed-grid asymptotic preservation (AP) or diffusion-approximation accuracy under arbitrary conditions.",
+              "Flux-limited diffusion (FLD) is a separate closure with a flux limiter. The atlas explains it but does not yet provide a dedicated nonlinear FLD solver and validation example. The diffusion and M1 examples above are not counted as FLD implementations."
+            ]
+          },
+          "links": [
+            {
+              "url": "/numerical-methods-atlas/validation/su-olson-diffusion1996/",
+              "label": {
+                "ja": "非平衡拡散：Su–Olson1996の固定例",
+                "en": "Non-equilibrium diffusion: the fixed Su–Olson1996 example"
+              }
+            },
+            {
+              "url": "/numerical-methods-atlas/validation/su-olson-transport1997/",
+              "label": {
+                "ja": "角度輸送と拡散極限の固定制御",
+                "en": "Angular transport and fixed diffusion-limit controls"
+              }
+            }
+          ]
+        },
+        {
           "id": "algorithm",
           "title": {
             "ja": "計算の流れ",
@@ -1892,11 +1960,11 @@
           "paragraphs": {
             "ja": [
               "M1は異なる方向の交差ビームを一般には独立に運べません。FLDは勾配方向に流束を結び付けるため影や強い異方性に制約があります。縮約光速は物理的な伝播/緩和時間を変えるので、支配的な時間尺度との関係を明示します。",
-              "追加版も1次元定常・純吸収・指定流入の平板で、μ∂xI=−κIを解きます。一般の輻射モーメント閉包、散乱、時間依存、多周波数や流体との結合は検証しません。"
+              "旧2配布（純吸収平板と空間・角度収束）の範囲は、1次元定常・純吸収・指定流入の平板で、μ∂xI=−κIを解くものです。この2配布では一般の輻射モーメント閉包、散乱、時間依存、多周波数や流体との結合を検証しません。後続の灰色輸送・拡散・M1の範囲は、上記の別配布ページで確認してください。"
             ],
             "en": [
               "M1 generally cannot propagate crossing beams independently. FLD ties flux to the energy gradient, limiting shadows and strongly anisotropic fields. A reduced light speed changes transport/relaxation scales and must be justified against the physical time scales of interest.",
-              "The companion retains a one-dimensional steady purely absorbing slab with specified inflow, solving μ∂xI=−κI. General radiation moment closures, scattering, time dependence, multiple frequencies and fluid coupling are unvalidated."
+              "The two historical companions (pure absorption and space/angle convergence) solve μ∂xI=−κI in a one-dimensional steady purely absorbing slab with specified inflow. Those two releases do not validate general radiation moment closures, scattering, time dependence, multiple frequencies or fluid coupling. Consult the separate releases above for the scope of later grey transport, diffusion and M1 examples."
             ]
           }
         },
