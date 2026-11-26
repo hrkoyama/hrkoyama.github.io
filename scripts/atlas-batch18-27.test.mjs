@@ -43,6 +43,23 @@ const incomingAudit={
 };
 
 test('the ten-item addition preserves 2755 baseline payload files, one audited incoming HTML replacement and all old primary/reference/model/method records',()=>{
+ // Only these two presentation wrappers can gain the reviewed common-footer link.
+ // The dated report scientific payload/body and every other original byte stay fixed.
+ const historicalPayloadSha=p=>{
+  const presentationHashes=new Map([[incomingAudit.path,incomingAudit.incoming_sha256],['numerical-methods-atlas/agent-kits/rkdg2d/results/2026-11-23-v1/index.html','f5a20e8c0fe182063c39ca8aad7d78f41e647782b88fe360449e4791c5e8ca03']]);
+  if(!presentationHashes.has(p))return sha(p);
+  const raw=bytes(p).toString('utf8');
+  const link='<a data-site-continuity-entry="footer" href="/rights/#site-continuity"><span data-ui-ja="保存・継承への協力" data-ui-en="Help preserve this site">保存・継承への協力 / Help preserve this site</span></a>';
+  assert.equal(raw.split(link).length,2,'one exact current continuity footer link');
+  assert.equal(raw.split('<!-- site-bottom -->').length,2);assert.equal(raw.split('<!-- /site-bottom -->').length,2);
+  const start=raw.indexOf('<!-- site-bottom -->'),end=raw.indexOf('<!-- /site-bottom -->');
+  assert.ok(start>=0&&end>start&&raw.indexOf(link)>start&&raw.indexOf(link)+link.length<=end,'allowance is confined to the common footer');
+  const footer=raw.slice(start,end).replace(link,'');
+  assert.deepEqual([...footer.matchAll(/<a\b[^>]*href="([^"]+)"/g)].map(match=>match[1]),['/search/','/rights/','/using/','/llms.txt','/sitemap.xml']);
+  const normalized=createHash('sha256').update(raw.replace(link,'')).digest('hex');
+  assert.equal(normalized,presentationHashes.get(p),'complete original presentation HTML bytes remain fixed');
+  return normalized;
+ };
  const proof=json('numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-preservation.json');
  assert.equal(proof.passed,true);
  assert.equal(proof.baseline_commit,'a51543e8b54129e70670e184290c9b50b5bc0645');
@@ -54,7 +71,7 @@ test('the ten-item addition preserves 2755 baseline payload files, one audited i
  assert.ok(typeof exception.reason==='string'&&exception.reason.trim());
  assert.notEqual(exception.baseline_sha256,exception.incoming_sha256);
  assert.equal(proof.protected_files[exception.path],exception.incoming_sha256);
- for(const[p,h]of Object.entries(proof.protected_files))assert.equal(sha(p),h,p);
+ for(const[p,h]of Object.entries(proof.protected_files))assert.equal(historicalPayloadSha(p),h,p);
  if(proof.unchanged_data_files!==undefined)assert.deepEqual(proof.unchanged_data_files,[]);
  assert.equal(proof.primary_figures.length,92);
  const gallery=json('numerical-methods-atlas/gallery/preview-manifest.json').items;
@@ -84,7 +101,7 @@ test('the ten-item addition preserves 2755 baseline payload files, one audited i
   'numerical-methods-atlas/agent-kits/rkdg2d/results/2026-11-23-v1/summary.json',
  ];
  for(const p of requiredIncoming)assert.match(concurrent.protected_files[p]??'',/^[0-9a-f]{64}$/,p);
- for(const[p,h]of Object.entries(concurrent.protected_files))assert.equal(sha(p),h,p);
+ for(const[p,h]of Object.entries(concurrent.protected_files))assert.equal(historicalPayloadSha(p),h,p);
  assert.equal(concurrent.release.group,'sem-fr');assert.equal(concurrent.release.tests,25);
  assert.deepEqual(sorted(concurrent.release.case_ids),['fr-periodic-advection','sem-poisson-2d']);
  assert.deepEqual(registry.releases.find(x=>x.group==='sem-fr'),concurrent.release);
