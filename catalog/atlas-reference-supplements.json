@@ -9339,6 +9339,223 @@
         "ja": "/numerical-methods-atlas/ja/read/validation-continuum-particle-controls/#sph-pressure-acoustics",
         "en": "/numerical-methods-atlas/en/read/validation-continuum-particle-controls/#sph-pressure-acoustics"
       }
+    },
+    {
+      "id": "vef-fourier-scattering1d",
+      "model": "static-grey-variable-eddington-moments",
+      "kind": "analytic",
+      "reference_class": "continuous-exact",
+      "title": "Authored continuum Fourier response for periodic 1D VEF",
+      "assumptions": "Static steady grey unit-periodic interval; dimensionless st=4, ss=3, sa=1 and c=1. q=1+0.3 cos(2pi x), sampled as point values at x_i=i/N. Angular averages use (1/2) integral I dmu. Positive prescribed isotropic source; physical angle space remains S2.",
+      "formula": "For k>0: R=atan(k/st)/k, A=b/(1-ss*R), B=(1-st*R)/k, C=st*(1-st*R)/k^2, T=(R-C)/2. E=E0+Re(sum A*R*exp(i*k.x)); H=Re(sum -i*A*B*khat*exp(i*k.x)); K=E0*I3/3+Re(sum A*(T*I3+(C-T)*khat*khat^T)*exp(i*k.x)); D=K/E; E0=qmean/(st-ss).",
+      "dimension": 1,
+      "bounds": [
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "components": [
+        "E",
+        "Hx",
+        "Hy",
+        "Hz",
+        "Kxx",
+        "Kxy",
+        "Kyy",
+        "Kzz"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "st": 4.0,
+        "ss": 3.0,
+        "c": 1.0,
+        "angular_measure": "dOmega/(4pi)",
+        "source": {
+          "mean": 1.0,
+          "modes": [
+            {
+              "wave_numbers": [
+                1
+              ],
+              "amplitude": {
+                "real": 0.3,
+                "imag": 0.0
+              }
+            }
+          ]
+        },
+        "fixed_rows": [
+          {
+            "id": "space-coarse",
+            "shape": [
+              33
+            ],
+            "mu_order": 32
+          },
+          {
+            "id": "space-fine",
+            "shape": [
+              65
+            ],
+            "mu_order": 32
+          },
+          {
+            "id": "angle-probe",
+            "shape": [
+              65
+            ],
+            "mu_order": 64
+          }
+        ],
+        "spatial_samples": "point values i/N, not exact cell averages"
+      },
+      "sources": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-26/variable-eddington-controls/PROTOCOL.md",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-26/variable-eddington-controls/analytic_reference.py"
+      ],
+      "citations": [
+        {
+          "role": "authored-independent-analytic-derivation",
+          "title": "Atlas periodic Fourier-response derivation",
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-26/variable-eddington-controls/PROTOCOL.md",
+          "note": "Derived for these prescribed sources; not a paper benchmark or an ExactPack table. Primary closure code does not import the analytic oracle."
+        },
+        {
+          "role": "method-context-not-reference-data",
+          "title": "High-Order Mixed Finite Element Variable Eddington Factor Methods",
+          "url": "https://arxiv.org/pdf/2301.04758",
+          "note": "Section2, PDFpp3–4: transport Eq1, moment equations Eq2, angular tensor and boundary factor Eq3, fixed-point steps. Introduction on independent spatial discretizations also read."
+        }
+      ],
+      "reference_scope": "Independent continuous angular integrals and scalar scattering feedback are evaluated analytically. A distinct fixed angular-integration component check qualifies the formulas. Finite-grid HO/LO solutions differ; their gap is retained. No general boundary, time-dependent, gas-coupled or AP claim.",
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/vef-fourier-scattering1d/?lang=ja#vef-fourier-scattering1d-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/vef-fourier-scattering1d/?lang=en#vef-fourier-scattering1d-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vef-fourier-scattering1d",
+        "en": "/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vef-fourier-scattering1d"
+      }
+    },
+    {
+      "id": "vet-fourier-source2d",
+      "model": "static-grey-variable-eddington-moments",
+      "kind": "analytic",
+      "reference_class": "continuous-exact",
+      "title": "Authored continuum Fourier response for periodic 2D VET",
+      "assumptions": "Static steady grey unit-periodic square; dimensionless st=4, ss=3, sa=1 and c=1, using point samples. q=1+0.3 cos(2pi x)+0.2 sin(2pi(x+y)). Space is2D, but directions cover full S2 and Dzz is retained. Positive prescribed isotropic source; physical angle space remains S2.",
+      "formula": "For k>0: R=atan(k/st)/k, A=b/(1-ss*R), B=(1-st*R)/k, C=st*(1-st*R)/k^2, T=(R-C)/2. E=E0+Re(sum A*R*exp(i*k.x)); H=Re(sum -i*A*B*khat*exp(i*k.x)); K=E0*I3/3+Re(sum A*(T*I3+(C-T)*khat*khat^T)*exp(i*k.x)); D=K/E; E0=qmean/(st-ss).",
+      "dimension": 2,
+      "bounds": [
+        [
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "components": [
+        "E",
+        "Hx",
+        "Hy",
+        "Hz",
+        "Kxx",
+        "Kxy",
+        "Kyy",
+        "Kzz"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "st": 4.0,
+        "ss": 3.0,
+        "c": 1.0,
+        "angular_measure": "dOmega/(4pi)",
+        "source": {
+          "mean": 1.0,
+          "modes": [
+            {
+              "wave_numbers": [
+                1,
+                0
+              ],
+              "amplitude": {
+                "real": 0.3,
+                "imag": 0.0
+              }
+            },
+            {
+              "wave_numbers": [
+                1,
+                1
+              ],
+              "amplitude": {
+                "real": 0.0,
+                "imag": -0.2
+              }
+            }
+          ]
+        },
+        "fixed_rows": [
+          {
+            "id": "space-coarse",
+            "shape": [
+              17,
+              17
+            ],
+            "mu_order": 12,
+            "phi_order": 48
+          },
+          {
+            "id": "space-fine",
+            "shape": [
+              33,
+              33
+            ],
+            "mu_order": 12,
+            "phi_order": 48
+          },
+          {
+            "id": "angle-probe",
+            "shape": [
+              33,
+              33
+            ],
+            "mu_order": 16,
+            "phi_order": 64
+          }
+        ],
+        "spatial_samples": "point values i/N, not exact cell averages"
+      },
+      "sources": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-26/variable-eddington-controls/PROTOCOL.md",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-26/variable-eddington-controls/analytic_reference.py"
+      ],
+      "citations": [
+        {
+          "role": "authored-independent-analytic-derivation",
+          "title": "Atlas periodic Fourier-response derivation",
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-26/variable-eddington-controls/PROTOCOL.md",
+          "note": "Derived for these prescribed sources; not a paper benchmark or an ExactPack table. Primary closure code does not import the analytic oracle."
+        },
+        {
+          "role": "method-context-not-reference-data",
+          "title": "High-Order Mixed Finite Element Variable Eddington Factor Methods",
+          "url": "https://arxiv.org/pdf/2301.04758",
+          "note": "Section2, PDFpp3–4: transport Eq1, moment equations Eq2, angular tensor and boundary factor Eq3, fixed-point steps. Introduction on independent spatial discretizations also read."
+        }
+      ],
+      "reference_scope": "Independent continuous angular integrals and scalar scattering feedback are evaluated analytically. A distinct fixed angular-integration component check qualifies the formulas. Finite-grid HO/LO solutions differ; their gap is retained. No general boundary, time-dependent, gas-coupled or AP claim.",
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/vet-fourier-source2d/?lang=ja#vet-fourier-source2d-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/vet-fourier-source2d/?lang=en#vet-fourier-source2d-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vet-fourier-source2d",
+        "en": "/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vet-fourier-source2d"
+      }
     }
   ]
 }

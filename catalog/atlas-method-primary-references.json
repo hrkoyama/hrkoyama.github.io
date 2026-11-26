@@ -1892,6 +1892,113 @@
       "source": "https://doi.org/10.1021/j100540a008",
       "type": "article",
       "note": "Selected original article pp2343–2345, section III A–C, equations8–21 and algorithm0–3. Full paper and earlier1976 derivation unread. Numerical evidence is restricted to the immigration–death case."
+    },
+    {
+      "id": "auer-mihalas1970",
+      "author": "L. H. Auer and Dimitri Mihalas",
+      "title": "On the Use of Variable Eddington Factors in Non-LTE Stellar Atmospheres Computations",
+      "year": 1970,
+      "type": "article",
+      "source": "https://academic.oup.com/mnras/article/149/1/65/2604466",
+      "source_role": "research-publication",
+      "note": "Publisher title/authors/date/DOI and abstract. Establishes historical variable-factor iteration and grey example. Unread limits: Original scannedPDF fetch failed; original equations, full tests and non-LTE calculations are unread and must not be claimed reproduced.",
+      "source_review": {
+        "level": "abstract-and-metadata",
+        "checked_on": "2026-11-26",
+        "url": "https://academic.oup.com/mnras/article/149/1/65/2604466",
+        "scope": "Publisher title/authors/date/DOI and abstract. Establishes historical variable-factor iteration and grey example. Unread limits: Original scannedPDF fetch failed; original equations, full tests and non-LTE calculations are unread and must not be claimed reproduced.",
+        "scope_ja": "出版社の抄録・書誌のみを確認しました。原論文PDFの式・数値試験は未閲読で、非LTE大気計算を再現した例ではありません。"
+      },
+      "doi": "10.1093/mnras/149.1.65",
+      "journal": "Monthly Notices of the Royal Astronomical Society149,65–74"
+    },
+    {
+      "id": "olivier-haut2023",
+      "author": "Samuel Olivier and Terry S. Haut",
+      "title": "High-Order Mixed Finite Element Variable Eddington Factor Methods",
+      "year": 2023,
+      "type": "article",
+      "source": "https://arxiv.org/pdf/2301.04758",
+      "source_role": "research-preprint",
+      "note": "Section2, PDFpp3–4: transport Eq1, moment equations Eq2, angular tensor and boundary factor Eq3, fixed-point steps. Introduction on independent spatial discretizations also read. Unread limits: No claim of full59page reading, high-order mixedFEM reproduction, curved-mesh, multigrid or scalability validation.",
+      "source_review": {
+        "level": "full-text",
+        "checked_on": "2026-11-26",
+        "url": "https://arxiv.org/pdf/2301.04758",
+        "scope": "Section2, PDFpp3–4: transport Eq1, moment equations Eq2, angular tensor and boundary factor Eq3, fixed-point steps. Introduction on independent spatial discretizations also read. Unread limits: No claim of full59page reading, high-order mixedFEM reproduction, curved-mesh, multigrid or scalability validation.",
+        "scope_ja": "原著§2の式(1)–(3)、固定点反復、独立した空間離散化の説明を選択閲読しました。全59頁・全試験・高次混合有限要素の実装再現は主張しません。"
+      }
+    },
+    {
+      "id": "jiang-stone-davis2012",
+      "author": "Yan-Fei Jiang and James M. Stone and Shane W. Davis",
+      "title": "A Godunov Method for Multidimensional Radiation Magnetohydrodynamics based on a variable Eddington tensor",
+      "year": 2012,
+      "type": "article",
+      "source": "https://arxiv.org/pdf/1201.2223",
+      "source_role": "research-publication",
+      "note": "Section3.1 algorithmStep1; Section3.4 PDFp8, equations22–23 and discussion; Section6.5 shadow-test scope description read. Unread limits: Not a reproduction of Athena, mixed-frameRHD, gas coupling, shocks or the paper shadow/cloud-ablation test.",
+      "source_review": {
+        "level": "full-text",
+        "checked_on": "2026-11-26",
+        "url": "https://arxiv.org/pdf/1201.2223",
+        "scope": "Section3.1 algorithmStep1; Section3.4 PDFp8, equations22–23 and discussion; Section6.5 shadow-test scope description read. Unread limits: Not a reproduction of Athena, mixed-frameRHD, gas coupling, shocks or the paper shadow/cloud-ablation test.",
+        "scope_ja": "§3.1の手順、§3.4の式(22)–(23)、§6.5の影テストの範囲を選択閲読しました。Athena・気体連成・原著の衝撃波や雲の試験は再現していません。"
+      },
+      "doi": "10.1088/0067-0049/199/1/14"
+    },
+    {
+      "id": "davis-stone-jiang2012",
+      "author": "Shane W. Davis and James M. Stone and Yan-Fei Jiang",
+      "title": "A Radiation Transfer Solver for Athena using Short Characteristics",
+      "year": 2012,
+      "type": "article",
+      "source": "https://arxiv.org/pdf/1201.2222",
+      "source_role": "research-preprint",
+      "note": "Equations8–16 source/opacity/moment conventions, Section3.2 angular quadrature Eq17–19 and two-stream warning; Section3.3 Eq20 formal solution and Section3.5 boundary scope read. Unread limits: Proposed Fourier formal solver is not their short-characteristics/interpolation algorithm. No multifrequency, ALI, stellar atmosphere or timing reproduction claim.",
+      "source_review": {
+        "level": "full-text",
+        "checked_on": "2026-11-26",
+        "url": "https://arxiv.org/pdf/1201.2222",
+        "scope": "Equations8–16 source/opacity/moment conventions, Section3.2 angular quadrature Eq17–19 and two-stream warning; Section3.3 Eq20 formal solution and Section3.5 boundary scope read. Unread limits: Proposed Fourier formal solver is not their short-characteristics/interpolation algorithm. No multifrequency, ALI, stellar atmosphere or timing reproduction claim.",
+        "scope_ja": "式(8)–(20)と§3.2–3.5の角度求積・形式解・境界の説明を選択閲読しました。本例のFourier形式解は原著のshort characteristicsの再現ではありません。"
+      }
+    },
+    {
+      "id": "olivier-pazner-haut-yee2023",
+      "author": "Samuel Olivier and Will Pazner and Terry S. Haut and Ben C. Yee",
+      "title": "A Family of Independent Variable Eddington Factor Methods with Efficient Preconditioned Iterative Solvers",
+      "year": 2023,
+      "type": "article",
+      "source": "https://arxiv.org/pdf/2111.12255",
+      "source_role": "research-publication",
+      "note": "Introduction PDFpp1–3 on independent HO/LO discretizations, finite-mesh moment differences and conservation; no numerical tables adopted. Unread limits: No claim of reproducing high-orderDG, preconditioner performance or large-mesh studies.",
+      "source_review": {
+        "level": "full-text",
+        "checked_on": "2026-11-26",
+        "url": "https://arxiv.org/pdf/2111.12255",
+        "scope": "Introduction PDFpp1–3 on independent HO/LO discretizations, finite-mesh moment differences and conservation; no numerical tables adopted. Unread limits: No claim of reproducing high-orderDG, preconditioner performance or large-mesh studies.",
+        "scope_ja": "導入部1–3頁から独立したHO/LO離散化と有限格子差の説明を参照しました。数値表・高次DG・大規模ソルバーの性能を採用したものではありません。"
+      },
+      "doi": "10.1016/j.jcp.2022.111747"
+    },
+    {
+      "id": "skinner-ostriker2013",
+      "author": "M. Aaron Skinner and Eve C. Ostriker",
+      "title": "A Two-moment Radiation Hydrodynamics Module in Athena Using a Time-explicit Godunov Method",
+      "year": 2013,
+      "type": "article",
+      "source": "https://arxiv.org/pdf/1306.0010",
+      "source_role": "research-publication",
+      "note": "Section2.3 PDFp5, equations11–17: localM1 tensor, trace/covariance constraints and chi(reducedflux). Introduction distinction from formalVET also read. Unread limits: No Hyperion/RHD solver or reduced-light-speed/timing validation. InstitutionalPDF endpoint returned401; arXiv original-author copy was read.",
+      "source_review": {
+        "level": "full-text",
+        "checked_on": "2026-11-26",
+        "url": "https://arxiv.org/pdf/1306.0010",
+        "scope": "Section2.3 PDFp5, equations11–17: localM1 tensor, trace/covariance constraints and chi(reducedflux). Introduction distinction from formalVET also read. Unread limits: No Hyperion/RHD solver or reduced-light-speed/timing validation. InstitutionalPDF endpoint returned401; arXiv original-author copy was read.",
+        "scope_ja": "§2.3の式(11)–(17)から局所M1テンソルと実現可能性を参照しました。M1は点ごとの閉包診断に限り、Hyperionや時間発展するM1ソルバーは実装していません。"
+      },
+      "doi": "10.1088/0067-0049/206/2/21"
     }
   ]
 }

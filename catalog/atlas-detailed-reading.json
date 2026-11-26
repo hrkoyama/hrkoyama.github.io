@@ -178,7 +178,15 @@
     "fr-radau": "g_L=\\frac{(-1)^p}{2}(P_p-P_{p+1}),\\qquad g_R=\\frac12(P_p+P_{p+1})",
     "fr-dg": "M\\dot{\\mathbf u}=\\frac{2}{h}\\left[aD^TM\\mathbf u-\\mathbf t_R f_R^*+\\mathbf t_L f_L^*\\right],\\qquad M=\\operatorname{diag}(w_i)",
     "fr-conservation": "I_h=\\sum_e\\frac{h}{2}\\sum_iw_iu_{e,i},\\quad \\frac{dI_h}{dt}=0,\\qquad \\frac{d}{dt}\\frac12\\|u_h\\|_{L^2}^2=-\\frac{|a|}{2}\\sum_{\\rm faces}[u_h]^2",
-    "fr-time": "\\dot U=A_hU,\\quad U_{\\exp}(T)=\\exp(TA_h)U(0),\\quad E_t=\\|U_{\\rm RK3}(T)-U_{\\exp}(T)\\|_M"
+    "fr-time": "\\dot U=A_hU,\\quad U_{\\exp}(T)=\\exp(TA_h)U(0),\\quad E_t=\\|U_{\\rm RK3}(T)-U_{\\exp}(T)\\|_M",
+    "vef-transport": "\\boldsymbol\\Omega\\cdot\\nabla I+\\sigma_tI=\\sigma_sE+q,\\quad E=\\langle I\\rangle,\\quad\\langle g\\rangle=\\frac{1}{4\\pi}\\int_{S^2}g\\,d\\Omega",
+    "vef-closure": "\\mathsf D=\\frac{\\langle\\boldsymbol\\Omega\\boldsymbol\\Omega^{\\mathsf T}I\\rangle}{E},\\quad\\mathsf K=\\mathsf DE,\\quad f= D_{xx}",
+    "vef-moments": "\\nabla\\cdot\\boldsymbol H+\\sigma_aE=q,\\quad\\sigma_t\\boldsymbol H+\\nabla\\cdot(\\mathsf DE)=0,\\quad\\sigma_a=\\sigma_t-\\sigma_s",
+    "vef-low-order": "\\sigma_t\\sigma_aE-\\sum_{i,j}\\partial_i\\partial_j(D_{ij}E)=\\sigma_tq",
+    "vef-fourier-reference": "R(k)=\\frac{\\tan^{-1}(k/\\sigma_t)}{k},\\quad A_m=\\frac{b_m}{1-\\sigma_sR(|\\boldsymbol k_m|)},\\quad E_{\\rm ref}=\\frac{q_0}{\\sigma_a}+\\operatorname{Re}\\sum_m A_mR(|\\boldsymbol k_m|)e^{i\\boldsymbol k_m\\cdot\\boldsymbol x}",
+    "wall-heating-noh-state": "\\gamma=5/3,\\quad \\rho_0=1,\\quad u_0=-1,\\quad p_0=0:\\quad r_s=t/3,\\quad(\\rho,p,u)_2=(4^d,4^d/3,0),\\quad e_2=1/2",
+    "wall-heating-local-diagnostics": "e(U)=\\frac{\\mathcal E}{\\rho}-\\frac{|\\boldsymbol m|^2}{2\\rho^2},\\qquad \\delta_e=\\frac{e(U)}{e_2}-1,\\quad\\delta_\\rho=\\frac{\\rho}{\\rho_2}-1",
+    "wall-heating-budget": "F_{\\mathcal E}=(\\mathcal E+p)u_n=0\\quad\\hbox{at a stationary impermeable reflecting wall}"
   },
   "chapters": [
     {
@@ -3046,6 +3054,340 @@
         "en": "Dedicated small code, fixed inputs, saved fields and decisions are published with25 tests rerun from an independently extracted ZIP. Related external software is introduced from official documentation, without claiming installation or execution."
       },
       "tables_in_markdown": true
+    },
+    {
+      "id": "variable-eddington",
+      "methods": [
+        "variable-eddington-factor",
+        "variable-eddington-tensor"
+      ],
+      "title": {
+        "ja": "可変Eddington因子・テンソル：角度輸送でモーメントを閉じる",
+        "en": "Variable Eddington factors and tensors: closing moments with angular transport"
+      },
+      "intro": {
+        "ja": "VEFは角度輸送からEddington閉包を求め、別のモーメント方程式と反復する方法です。1Dではスカラー因子f、多次元ではテンソルDを使います。VETはこのテンソル形を指し、VEFと無関係な別の物理モデルという意味ではありません。",
+        "en": "VEF obtains an Eddington closure from angular transport and iterates it with a separate moment system. It uses a scalar factor f in one dimension and a tensor D in multiple dimensions. VET denotes this tensor form, rather than an unrelated physical model."
+      },
+      "sections": [
+        {
+          "id": "model",
+          "title": {
+            "ja": "灰色近似・拡散・M1との違い",
+            "en": "Distinguishing grey models, diffusion and M1"
+          },
+          "paragraphs": {
+            "ja": [
+              "灰色近似は周波数を積分する選択です。一方、VEF/VETは角度分布から圧力閉包を求めます。灰色であることだけでは、拡散近似やM1、VEFのどれを使うかは決まりません。",
+              "ここでは静止媒質、一定の全減衰係数σtと等方散乱係数σs、正の等方輻射源qを扱います。角度平均をdΩ/(4π)、c=1とし、E・H・Kは規格化したエネルギー・流束・圧力モーメントです。通常の角度積分による物理量には共通の4π因子を戻します。"
+            ],
+            "en": [
+              "The grey approximation integrates over frequency. VEF/VET instead obtains the pressure closure from an angular distribution. Being grey does not select diffusion, M1 or VEF.",
+              "Use a static medium, constant total extinction sigma_t and isotropic scattering sigma_s, and a positive isotropic source q. With angular measure dOmega/(4pi) and c=1, E, H and K are normalized energy, flux and pressure moments. Restore the common 4pi factor for unnormalized angular integrals."
+            ]
+          },
+          "formulas": [
+            "vef-transport",
+            "vef-closure",
+            "vef-moments"
+          ]
+        },
+        {
+          "id": "algorithm",
+          "title": {
+            "ja": "角度輸送とモーメント解の反復",
+            "en": "Iterating angular transport and moments"
+          },
+          "paragraphs": {
+            "ja": [
+              "現在のモーメント解Eからq+σsEを作り、角度ごとの輸送方程式を解きます。その強度からDを計算し、別に離散化したモーメント方程式を解いてEを更新します。Dを図にするだけでなく、この更新を角度輸送へ戻します。",
+              "本例の形式解は周期Fourier表現です。低次系には共有面流束を持つ有限差分を使い、Dxyを含む交差微分も保持します。原典のshort characteristicsや高次混合有限要素をそのまま再現した実装ではありません。",
+              "内側の線形残差と、外側のE・Dの更新量を別々に確認します。角度輸送とモーメントは異なる空間離散化なので、固定格子で両者のEが完全一致することを停止条件にはしません。"
+            ],
+            "en": [
+              "Form q+sigma_s E from the current moment solution, solve directional transport, and calculate D from the resulting intensities. Solve a separately discretized moment system and feed the new E back to transport. Merely plotting D is not this coupled iteration.",
+              "The formal solver here uses a periodic Fourier representation. The low-order system uses finite differences with shared face fluxes, retaining the cross derivatives from Dxy. This is not a reproduction of the papers' short-characteristics or high-order mixed finite-element implementations.",
+              "Check the inner linear residual separately from the outer E and D updates. Because the spatial discretizations differ, exact agreement between the transport and moment E at a fixed mesh is not a stopping condition."
+            ]
+          },
+          "formulas": [
+            "vef-low-order"
+          ]
+        },
+        {
+          "id": "vef-1d",
+          "title": {
+            "ja": "1D VEF：周期散乱場",
+            "en": "1D VEF: a periodic scattering field"
+          },
+          "paragraphs": {
+            "ja": [
+              "単位周期でq=1+0.3cos(2πx)、σt=4、σs=3を固定します。角度分布I(x,μ)からf(x)=Kxx/Eを求め、独立したスカラー・モーメント解を解析参照と比較します。",
+              "図の縦軸μは方向余弦であり、第2の物理的な空間座標ではありません。f=1/3に固定した対照計算と区別し、空間格子の比較と角度点数の比較を別の行として保存します。"
+            ],
+            "en": [
+              "Fix q=1+0.3cos(2pi x), sigma_t=4 and sigma_s=3 on a unit-period domain. Obtain f(x)=Kxx/E from I(x,mu), then compare the separate scalar moment solution with an analytic reference.",
+              "The heatmap's mu coordinate is an angular cosine, not a second spatial dimension. Keep the fixed f=1/3 control distinct, and store spatial and angular comparisons as separate rows."
+            ]
+          },
+          "links": [
+            {
+              "url": "/numerical-methods-atlas/validation/vef-fourier-scattering1d/",
+              "label": {
+                "ja": "1D VEFの図・固定入力・解析参照・実行コード",
+                "en": "1D VEF: figure, fixed input, analytic reference and code"
+              }
+            }
+          ]
+        },
+        {
+          "id": "vet-2d",
+          "title": {
+            "ja": "2D VET：非平行な輻射源モード",
+            "en": "2D VET: nonparallel source modes"
+          },
+          "paragraphs": {
+            "ja": [
+              "単位周期正方形でq=1+0.3cos(2πx)+0.2sin(2π(x+y))を固定します。異なる方向の2モードによりDxyが非零となり、場所によってテンソルの主軸が変わります。",
+              "空間は2Dでも角度測度は球面S²です。Dzzを含む3×3テンソルを保持し、対称性・跡1・正値性・角度分布の実現可能性を確認します。局所的なEとHから作るM1テンソルは診断用の比較であり、この例でM1の時間発展ソルバーを実装したとは表示しません。"
+            ],
+            "en": [
+              "Fix q=1+0.3cos(2pi x)+0.2sin(2pi(x+y)) on a periodic unit square. Two nonparallel modes produce nonzero Dxy and spatially changing principal axes.",
+              "Although space is two-dimensional, the angular measure is the sphere S2. Retain the full 3x3 tensor, including Dzz, and check symmetry, trace one, positivity and angular realizability. An M1 tensor formed from local E and H is only a diagnostic comparison; no time-evolving M1 solver is implemented in this example."
+            ]
+          },
+          "links": [
+            {
+              "url": "/numerical-methods-atlas/validation/vet-fourier-source2d/",
+              "label": {
+                "ja": "2D VETの図・固定入力・解析参照・実行コード",
+                "en": "2D VET: figure, fixed input, analytic reference and code"
+              }
+            }
+          ]
+        },
+        {
+          "id": "reference",
+          "title": {
+            "ja": "独立な解析参照",
+            "en": "An independent analytic reference"
+          },
+          "paragraphs": {
+            "ja": [
+              "正の等方輻射源を先に指定し、各Fourierモードの連続角度積分から参照解を導きます。強度や閉包を先に選んで外力を逆算した製造解ではありません。一次コードは解析参照を読み込んでDを作りません。",
+              "kの方向を極軸に取り、1/(σt+ikμ)を積分するとR(k)=atan(k/σt)/kです。散乱の自己結合を解いた振幅AからE・H・Kを別モジュールで評価します。sinモードの複素位相も比較し、一定の背景値だけで誤差が小さく見えないようにします。"
+            ],
+            "en": [
+              "Specify the positive isotropic source first and derive the reference from the continuum angular integral of each Fourier mode. This is not a manufactured solution obtained by choosing an intensity or closure and reverse-engineering the forcing. The primary solver does not use the analytic reference to construct D.",
+              "Align the polar axis with the wave vector and integrate 1/(sigma_t+i k mu) to obtain R(k)=atan(k/sigma_t)/k. A separate module evaluates E, H and K using the scattering-coupled amplitude A. Compare the complex phase of sine modes too, so a constant background cannot conceal mode errors."
+            ]
+          },
+          "formulas": [
+            "vef-fourier-reference"
+          ]
+        },
+        {
+          "id": "conditions",
+          "title": {
+            "ja": "確認する範囲と限界",
+            "en": "Checked scope and limitations"
+          },
+          "paragraphs": {
+            "ja": [
+              "2つの固定問題は、静止・灰色・線形等方散乱・一定係数・周期境界に限定します。流入境界のVEF境界因子、真空境界、強い吸収体の影、交差ビーム、気体連成、時間発展、多周波数や相対論的輸送を検証するものではありません。",
+              "原典からは方程式・閉包・反復の該当箇所を参照します。原典の全実験やAthenaの再現、普遍的な収束次数・高速化率、固定格子での拡散極限のAP性を主張しません。"
+            ],
+            "en": [
+              "The two fixed problems are limited to static grey transfer, linear isotropic scattering, constant coefficients and periodic boundaries. They do not validate inflow boundary factors, vacuum boundaries, absorber shadows, crossing beams, gas coupling, time evolution, multiple frequencies or relativistic transport.",
+              "Selected passages of the original papers support the equations, closure and iteration. These examples do not reproduce Athena or all paper experiments, establish universal convergence or speedups, or certify fixed-grid asymptotic preservation in the diffusion limit."
+            ]
+          }
+        },
+        {
+          "id": "verification",
+          "title": {
+            "ja": "結果を確認する順序",
+            "en": "How to check the results"
+          },
+          "paragraphs": {
+            "ja": [
+              "まず強度とEの正値性、テンソルの跡・固有値、面流束の収支を確認します。次に線形残差と外側反復の収束を見て、解析参照との場・モード振幅・位相の誤差を比べます。",
+              "空間格子を変えた行と角度を変えた行を混ぜず、HO/LOの格子依存の差も保存します。定数解、交差微分の符号、散乱フィードバックの省略、固定1/3閉包の対照を使い、単に残差が小さいだけでは合格しないようにします。各版の実測値と判定は、下の実行入口と配布ZIPの記録で確認できます。"
+            ],
+            "en": [
+              "Check positive intensity and E, tensor trace and eigenvalues, and face-flux balance first. Then inspect the linear residual and outer iteration, and compare fields, source-mode amplitudes and phases with the analytic reference.",
+              "Keep spatial and angular rows separate, retaining the mesh-dependent HO/LO gap. Constant solutions, cross-derivative signs, omitted scattering feedback and a fixed one-third closure provide controls, so a small residual alone does not pass. Consult the execution entries and release ZIP records below for measured values and decisions."
+            ]
+          }
+        }
+      ],
+      "references": [
+        "auer-mihalas1970",
+        "olivier-haut2023",
+        "olivier-pazner-haut-yee2023",
+        "jiang-stone-davis2012",
+        "davis-stone-jiang2012",
+        "skinner-ostriker2013"
+      ],
+      "scoped_supplements": [
+        "vef-fourier-scattering1d",
+        "vet-fourier-source2d"
+      ],
+      "publication_scope": {
+        "ja": "1群・2つの軽量な固定検証例です。VEFとVETはスカラー形とテンソル形の関係を持ち、格子・角度・対照計算の行数を独立した物理問題数には数えません。",
+        "en": "One group contains two lightweight fixed verification cases. VEF and VET are related scalar/tensor forms; mesh, angle and control rows do not add independent physical problems."
+      }
+    },
+    {
+      "id": "wall-heating",
+      "methods": [
+        "rusanov",
+        "heun",
+        "muscl",
+        "minmod"
+      ],
+      "title": {
+        "ja": "Wall heating：Noh問題と反射壁の数値的な過熱",
+        "en": "Wall heating: numerical overheating in Noh flow and at reflecting walls"
+      },
+      "intro": {
+        "ja": "Wall heatingは、強い衝撃が反射壁や流れの収束中心から形成されるとき、数値解に局所的な比内部エネルギーの過大や密度のくぼみが残る現象です。ここでは外部から壁を加熱する物理過程と区別し、既存のNoh計算を使って誤差の見方を説明します。",
+        "en": "Wall heating is a localized numerical excess of specific internal energy, often accompanied by a density depression, when a strong shock forms at a reflecting wall or a convergence center. This is distinct from physical heating supplied through a wall. Existing Noh calculations illustrate how to inspect the error."
+      },
+      "sections": [
+        {
+          "id": "reference",
+          "title": {
+            "ja": "まず衝撃後の厳密状態を固定する",
+            "en": "Fix the exact post-shock state first"
+          },
+          "paragraphs": {
+            "ja": [
+              "初期圧力ゼロの理想気体Noh問題で、γ=5/3、初期密度1、内向き速度−1を使います。d=1は平面、d=2は円筒半径対称、d=3は球半径対称です。下式は衝撃の後ろの一定状態で、r<r_sに適用します。衝撃をまたぐセルでは、保存量の厳密セル平均を使い、点値と取り違えません。",
+              "比内部エネルギーeは単位質量当たり、𝓔は単位体積当たりの全エネルギー、mは運動量密度です。セル平均保存量Uから求めたe(U)と、eの厳密セル平均は一般に異なります。今回の既存図の量の定義を保ちます。"
+            ],
+            "en": [
+              "Use the cold ideal-gas Noh problem with gamma=5/3, initial density 1 and inward velocity −1. Here d=1 is planar, d=2 cylindrical-radial and d=3 spherical-radial. The formulas describe the uniform post-shock state r<r_s. Shock-cut cells require matching exact conserved cell means rather than point values.",
+              "Specific internal energy e is per unit mass; script E is total energy per unit volume and m is momentum density. The value e(U) formed from cell-mean conserved variables generally differs from the exact cell mean of e. Retain the quantity defined in each saved figure."
+            ]
+          },
+          "formulas": [
+            "wall-heating-noh-state",
+            "wall-heating-local-diagnostics"
+          ]
+        },
+        {
+          "id": "diagnostics",
+          "title": {
+            "ja": "局所誤差・誤差領域・全域誤差を分ける",
+            "en": "Separate local error, its spatial extent and whole-domain error"
+          },
+          "paragraphs": {
+            "ja": [
+              "中心を含む固定した物理領域で、比内部エネルギーの最大過剰、密度の最小値、密度の積分誤差を並べます。衝撃近傍の誤差は別に測り、中心だけを除いて全域精度がよいとは判定しません。",
+              "下の保存図は64/128/256/512格子の既存結果です。左列はr≤0.45r_sの比内部エネルギー、中央列は全域の符号付き密度誤差、右列は全域のL1/L2/L∞です。図を開くと拡大できます。球では体積重みr²が中心の小さな欠陥を弱く数えるため、局所最大誤差と積分ノルムを両方見ます。"
+            ],
+            "en": [
+              "In a fixed physical region including the center, inspect maximum specific-energy excess, minimum density and integrated density error together. Measure the shock layer separately; excluding the center does not establish whole-domain accuracy.",
+              "The saved figure uses the existing 64/128/256/512 grids. Left: specific internal energy within r<=0.45r_s. Center: signed density error on the whole domain. Right: whole-domain L1/L2/Linf. Open the image to zoom. Spherical volume weighting r² downweights a small central defect, so inspect local maxima as well as integral norms."
+            ]
+          },
+          "figures": [
+            {
+              "source": "/code/validated-examples/2026-11-23-r5/noh/results/noh-shock-errors.png",
+              "sha256": "83fa3afcce5ef76c14956ec0a707777ea84f2b16bb29d0a6c8278680043b56ab",
+              "width": 2048,
+              "height": 1904,
+              "caption": {
+                "ja": "既存Noh保存図：原点過熱、密度誤差、格子細分化。全域誤差には原点と衝撃を含みます。新しい計算や過熱を消す処理は行っていません。",
+                "en": "Existing saved Noh figure: origin heating, density errors and refinement. Whole-domain errors include the origin and shock. No new PDE run or overheating correction is presented."
+              }
+            }
+          ]
+        },
+        {
+          "id": "saved-results",
+          "title": {
+            "ja": "既存の測定で何がわかるか",
+            "en": "What the saved measurements establish"
+          },
+          "paragraphs": {
+            "ja": [
+              "既存の2026-11-23-r5版・N=512の中心最大比内部エネルギーの相対過剰は、平面2.58%、円筒半径対称8.16%、球半径対称20.59%です。別の2026-11-23-r2版・128² Cartesian計算では13.99%です。異なる再構築・幾何・格子の保存値であり、方式の優劣をそろえた比較ではありません。",
+              "第3試行は全幾何を含む105条件すべてに合格していますが、球の中心最大過熱は第2試行の15.52%から20.59%へ増えています。「合格」「全域誤差の改善」「wall heatingの解消」を同じ意味にはしません。元の受入基準・失敗試行・保存値を保持します。"
+            ],
+            "en": [
+              "Saved maximum center specific-internal-energy excesses at N=512 in edition 2026-11-23-r5 are 2.58% planar, 8.16% cylindrical-radial and 20.59% spherical-radial. The separate 128² Cartesian calculation in edition 2026-11-23-r2 gives 13.99%. These stored results use different reconstructions, geometries and grids; they are not a controlled ranking of methods.",
+              "The third attempt passed all 105 criteria across the geometries, yet maximum spherical center overheating increased from 15.52% in the second attempt to 20.59%. Passing the gates, improving a whole-domain norm and eliminating wall heating are different claims. Original criteria, failed attempts and saved values are retained."
+            ]
+          },
+          "links": [
+            {
+              "url": "/numerical-methods-atlas/validation/noh-shock/",
+              "label": {
+                "ja": "平面・円筒・球の図、固定入力、コード、検証記録",
+                "en": "Planar/cylindrical/spherical figures, inputs, code and verification"
+              }
+            },
+            {
+              "url": "/numerical-methods-atlas/validation/noh-cartesian-2d/",
+              "label": {
+                "ja": "実際の2D Cartesian Noh計算と原点過熱",
+                "en": "Actual 2D Cartesian Noh calculation and origin heating"
+              }
+            }
+          ]
+        },
+        {
+          "id": "conservation",
+          "title": {
+            "ja": "総量保存だけでは過熱を否定できない",
+            "en": "Global conservation does not rule out local overheating"
+          },
+          "paragraphs": {
+            "ja": [
+              "静止した不透過の反射壁では法線速度がゼロなので、Eulerの物理的な全エネルギー流束はゼロです。局所的な運動・内部エネルギーの配分誤差や数値的なエントロピー生成は、総量が保存されても残り得ます。Nohの外側境界からの流入は別に収支へ数えます。",
+              "人工粘性・数値流束・再構築・初期の停滞処理などが結果に影響します。熱伝導などの補正を比較するときは、密度と圧力、衝撃位置、正値性、保存収支も同じ条件で確認します。本章は補正法の新実装や一般的な除去保証を示しません。"
+            ],
+            "en": [
+              "At a stationary impermeable reflecting wall, zero normal velocity gives zero physical Euler total-energy flux. Errors in the local kinetic/internal-energy partition and numerical entropy production can remain even when total energy is conserved. Account separately for the outer inflow of the Noh problem.",
+              "Artificial viscosity, numerical flux, reconstruction and initial stagnation treatment can affect the error. A conduction-based correction needs comparison of density, pressure, shock position, positivity and budgets under the same conditions. This chapter introduces no new correction solver or general elimination guarantee."
+            ]
+          },
+          "formulas": [
+            "wall-heating-budget"
+          ]
+        },
+        {
+          "id": "scope",
+          "title": {
+            "ja": "出典と今回確認した範囲",
+            "en": "Sources and the scope checked here"
+          },
+          "paragraphs": {
+            "ja": [
+              "Noh（1987）は問題とwall-heating誤差の原著として引用します。出版社の書誌・抄録を確認した範囲で、原著全文や全図の再現を主張しません。固定したLANL ExactPackの解析評価器は独立な厳密状態の照合に使われたもので、独立のPDE計算コードではありません。",
+              "本章は公開済み配布の保存データを読み解く解説です。新しい数値計算、受入基準の変更、問題数・実行例数の追加はありません。"
+            ],
+            "en": [
+              "Noh (1987) is cited for the problem and wall-heating error. The publisher bibliography and abstract were checked; no full-text audit or reproduction of every original figure is claimed. The pinned LANL ExactPack analytic evaluator independently checks exact states; it is not an independent PDE solver.",
+              "This chapter interprets data in existing public releases. It adds no new PDE execution, acceptance change, physical test problem or execution example."
+            ]
+          }
+        }
+      ],
+      "references": [
+        "noh1987",
+        "thrussell2023exactpack"
+      ],
+      "scoped_supplements": [
+        "noh-shock",
+        "noh-cartesian-2d"
+      ],
+      "publication_scope": {
+        "ja": "既存のNoh配布版・図・入力・参照・検証履歴を保持した説明章です。Wall heatingを測定する例であり、解消した例ではありません。",
+        "en": "An explanatory chapter preserving the existing Noh releases, figures, inputs, references and verification history. These examples measure wall heating; they do not eliminate it."
+      }
     }
   ],
   "references": [
@@ -4550,6 +4892,158 @@
         "scope_ja": "arXiv v3（2021年）のHTMLから、§2の作用素学習、§3の式(2)、§4の式(4)–(5)のFFT・モード打切り・実数性、§5の設定と§5.1のBurgersを選択閲読しました。PDFは表題と版の確認のみで、論文全体や付録・全数値表の監査は行っていません。"
       },
       "source_role": "research-preprint"
+    },
+    {
+      "id": "auer-mihalas1970",
+      "author": "L. H. Auer and Dimitri Mihalas",
+      "title": "On the Use of Variable Eddington Factors in Non-LTE Stellar Atmospheres Computations",
+      "year": 1970,
+      "type": "article",
+      "source": "https://academic.oup.com/mnras/article/149/1/65/2604466",
+      "source_role": "research-publication",
+      "note": "Publisher title/authors/date/DOI and abstract. Establishes historical variable-factor iteration and grey example. Unread limits: Original scannedPDF fetch failed; original equations, full tests and non-LTE calculations are unread and must not be claimed reproduced.",
+      "source_review": {
+        "level": "abstract-and-metadata",
+        "checked_on": "2026-11-26",
+        "url": "https://academic.oup.com/mnras/article/149/1/65/2604466",
+        "scope": "Publisher title/authors/date/DOI and abstract. Establishes historical variable-factor iteration and grey example. Unread limits: Original scannedPDF fetch failed; original equations, full tests and non-LTE calculations are unread and must not be claimed reproduced.",
+        "scope_ja": "出版社の抄録・書誌のみを確認しました。原論文PDFの式・数値試験は未閲読で、非LTE大気計算を再現した例ではありません。"
+      },
+      "doi": "10.1093/mnras/149.1.65",
+      "journal": "Monthly Notices of the Royal Astronomical Society149,65–74"
+    },
+    {
+      "id": "olivier-haut2023",
+      "author": "Samuel Olivier and Terry S. Haut",
+      "title": "High-Order Mixed Finite Element Variable Eddington Factor Methods",
+      "year": 2023,
+      "type": "article",
+      "source": "https://arxiv.org/pdf/2301.04758",
+      "source_role": "research-preprint",
+      "note": "Section2, PDFpp3–4: transport Eq1, moment equations Eq2, angular tensor and boundary factor Eq3, fixed-point steps. Introduction on independent spatial discretizations also read. Unread limits: No claim of full59page reading, high-order mixedFEM reproduction, curved-mesh, multigrid or scalability validation.",
+      "source_review": {
+        "level": "full-text",
+        "checked_on": "2026-11-26",
+        "url": "https://arxiv.org/pdf/2301.04758",
+        "scope": "Section2, PDFpp3–4: transport Eq1, moment equations Eq2, angular tensor and boundary factor Eq3, fixed-point steps. Introduction on independent spatial discretizations also read. Unread limits: No claim of full59page reading, high-order mixedFEM reproduction, curved-mesh, multigrid or scalability validation.",
+        "scope_ja": "原著§2の式(1)–(3)、固定点反復、独立した空間離散化の説明を選択閲読しました。全59頁・全試験・高次混合有限要素の実装再現は主張しません。"
+      }
+    },
+    {
+      "id": "jiang-stone-davis2012",
+      "author": "Yan-Fei Jiang and James M. Stone and Shane W. Davis",
+      "title": "A Godunov Method for Multidimensional Radiation Magnetohydrodynamics based on a variable Eddington tensor",
+      "year": 2012,
+      "type": "article",
+      "source": "https://arxiv.org/pdf/1201.2223",
+      "source_role": "research-publication",
+      "note": "Section3.1 algorithmStep1; Section3.4 PDFp8, equations22–23 and discussion; Section6.5 shadow-test scope description read. Unread limits: Not a reproduction of Athena, mixed-frameRHD, gas coupling, shocks or the paper shadow/cloud-ablation test.",
+      "source_review": {
+        "level": "full-text",
+        "checked_on": "2026-11-26",
+        "url": "https://arxiv.org/pdf/1201.2223",
+        "scope": "Section3.1 algorithmStep1; Section3.4 PDFp8, equations22–23 and discussion; Section6.5 shadow-test scope description read. Unread limits: Not a reproduction of Athena, mixed-frameRHD, gas coupling, shocks or the paper shadow/cloud-ablation test.",
+        "scope_ja": "§3.1の手順、§3.4の式(22)–(23)、§6.5の影テストの範囲を選択閲読しました。Athena・気体連成・原著の衝撃波や雲の試験は再現していません。"
+      },
+      "doi": "10.1088/0067-0049/199/1/14"
+    },
+    {
+      "id": "davis-stone-jiang2012",
+      "author": "Shane W. Davis and James M. Stone and Yan-Fei Jiang",
+      "title": "A Radiation Transfer Solver for Athena using Short Characteristics",
+      "year": 2012,
+      "type": "article",
+      "source": "https://arxiv.org/pdf/1201.2222",
+      "source_role": "research-preprint",
+      "note": "Equations8–16 source/opacity/moment conventions, Section3.2 angular quadrature Eq17–19 and two-stream warning; Section3.3 Eq20 formal solution and Section3.5 boundary scope read. Unread limits: Proposed Fourier formal solver is not their short-characteristics/interpolation algorithm. No multifrequency, ALI, stellar atmosphere or timing reproduction claim.",
+      "source_review": {
+        "level": "full-text",
+        "checked_on": "2026-11-26",
+        "url": "https://arxiv.org/pdf/1201.2222",
+        "scope": "Equations8–16 source/opacity/moment conventions, Section3.2 angular quadrature Eq17–19 and two-stream warning; Section3.3 Eq20 formal solution and Section3.5 boundary scope read. Unread limits: Proposed Fourier formal solver is not their short-characteristics/interpolation algorithm. No multifrequency, ALI, stellar atmosphere or timing reproduction claim.",
+        "scope_ja": "式(8)–(20)と§3.2–3.5の角度求積・形式解・境界の説明を選択閲読しました。本例のFourier形式解は原著のshort characteristicsの再現ではありません。"
+      }
+    },
+    {
+      "id": "olivier-pazner-haut-yee2023",
+      "author": "Samuel Olivier and Will Pazner and Terry S. Haut and Ben C. Yee",
+      "title": "A Family of Independent Variable Eddington Factor Methods with Efficient Preconditioned Iterative Solvers",
+      "year": 2023,
+      "type": "article",
+      "source": "https://arxiv.org/pdf/2111.12255",
+      "source_role": "research-publication",
+      "note": "Introduction PDFpp1–3 on independent HO/LO discretizations, finite-mesh moment differences and conservation; no numerical tables adopted. Unread limits: No claim of reproducing high-orderDG, preconditioner performance or large-mesh studies.",
+      "source_review": {
+        "level": "full-text",
+        "checked_on": "2026-11-26",
+        "url": "https://arxiv.org/pdf/2111.12255",
+        "scope": "Introduction PDFpp1–3 on independent HO/LO discretizations, finite-mesh moment differences and conservation; no numerical tables adopted. Unread limits: No claim of reproducing high-orderDG, preconditioner performance or large-mesh studies.",
+        "scope_ja": "導入部1–3頁から独立したHO/LO離散化と有限格子差の説明を参照しました。数値表・高次DG・大規模ソルバーの性能を採用したものではありません。"
+      },
+      "doi": "10.1016/j.jcp.2022.111747"
+    },
+    {
+      "id": "skinner-ostriker2013",
+      "author": "M. Aaron Skinner and Eve C. Ostriker",
+      "title": "A Two-moment Radiation Hydrodynamics Module in Athena Using a Time-explicit Godunov Method",
+      "year": 2013,
+      "type": "article",
+      "source": "https://arxiv.org/pdf/1306.0010",
+      "source_role": "research-publication",
+      "note": "Section2.3 PDFp5, equations11–17: localM1 tensor, trace/covariance constraints and chi(reducedflux). Introduction distinction from formalVET also read. Unread limits: No Hyperion/RHD solver or reduced-light-speed/timing validation. InstitutionalPDF endpoint returned401; arXiv original-author copy was read.",
+      "source_review": {
+        "level": "full-text",
+        "checked_on": "2026-11-26",
+        "url": "https://arxiv.org/pdf/1306.0010",
+        "scope": "Section2.3 PDFp5, equations11–17: localM1 tensor, trace/covariance constraints and chi(reducedflux). Introduction distinction from formalVET also read. Unread limits: No Hyperion/RHD solver or reduced-light-speed/timing validation. InstitutionalPDF endpoint returned401; arXiv original-author copy was read.",
+        "scope_ja": "§2.3の式(11)–(17)から局所M1テンソルと実現可能性を参照しました。M1は点ごとの閉包診断に限り、Hyperionや時間発展するM1ソルバーは実装していません。"
+      },
+      "doi": "10.1088/0067-0049/206/2/21"
+    },
+    {
+      "id": "noh1987",
+      "author": "W. F. Noh",
+      "year": 1987,
+      "title": "Errors for calculations of strong shocks using an artificial viscosity and an artificial heat flux",
+      "journal": "Journal of Computational Physics",
+      "volume": "72",
+      "number": "1",
+      "pages": "78–120",
+      "doi": "10.1016/0021-9991(87)90074-X",
+      "url": "https://www.sciencedirect.com/science/article/pii/002199918790074X",
+      "type": "article",
+      "role": "original-problem-and-error-analysis",
+      "source_review": {
+        "level": "abstract-and-metadata",
+        "checked_on": "2026-11-26",
+        "url": "https://www.sciencedirect.com/science/article/pii/002199918790074X",
+        "scope": "Publisher bibliography and abstract; original full text was not accessed. Cited for the cold-inflow problem and excess wall-heating context, not as the source of this finite-volume implementation.",
+        "scope_ja": "出版社書誌・抄録を確認。原著全文は未閲読です。冷たい流入問題と過剰wall heatingの文脈として引用し、この有限体積実装そのものの出典とはしません。"
+      },
+      "source": "https://www.sciencedirect.com/science/article/pii/002199918790074X"
+    },
+    {
+      "id": "thrussell2023exactpack",
+      "author": "J. Thrussell and J. M. Ferguson",
+      "year": 2023,
+      "title": "ExactPack: A python library of exact analytic solutions",
+      "journal": "SoftwareX",
+      "volume": "24",
+      "article_number": "101560",
+      "doi": "10.1016/j.softx.2023.101560",
+      "url": "https://doi.org/10.1016/j.softx.2023.101560",
+      "type": "article",
+      "role": "independent-reference-software",
+      "software_commit": "9bacc477eb791e959c9621e771fc7a725db755fa",
+      "software_url": "https://github.com/lanl/ExactPack/tree/9bacc477eb791e959c9621e771fc7a725db755fa",
+      "source_review": {
+        "level": "full-text",
+        "checked_on": "2026-11-26",
+        "url": "https://github.com/lanl/ExactPack/blob/9bacc477eb791e959c9621e771fc7a725db755fa/exactpack/solvers/noh/noh1.py",
+        "scope": "Selected official pinned Noh evaluator code, especially gamma=5/3 shock position, density, pressure and specific energy. Reuses existing independent ExactPack checks; no new code execution or full-paper audit.",
+        "scope_ja": "固定commitの公式Noh評価器でγ=5/3の衝撃位置・密度・圧力・比内部エネルギーの式を選択確認。既存の独立照合を参照し、新しいExactPack実行や論文全体の監査は行いません。"
+      },
+      "source": "https://doi.org/10.1016/j.softx.2023.101560"
     }
   ],
   "reviewed_on": "2026-11-25"

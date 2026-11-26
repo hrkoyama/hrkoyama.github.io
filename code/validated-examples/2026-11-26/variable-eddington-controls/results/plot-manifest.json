@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "source_result_sha256": "09320fe40bfd9afea94bebd59b881d7a356bc8f4c9e07833e94fd1483974ba4a",
+  "source_npz": {
+    "vef-fourier-scattering1d--space-coarse.npz": "9c23db17104a9722773ccdfb7f55be9610a31b11b2e92751b29850fbe3030d8c",
+    "vef-fourier-scattering1d--space-fine.npz": "10715e05d85429ace7ab53321dcabc466f758b28ca978a44a1320e27d2efe2ae",
+    "vef-fourier-scattering1d--angle-probe.npz": "0bf9cc93ed7ae5d3cc9d8f506347fb3660a06a279f2becab0613db521644fa24",
+    "vef-fourier-scattering1d--constant-control.npz": "53095e23b3f43c61105ecd739003d5597a7f95493d34a9d6893c8503c017533b",
+    "vet-fourier-source2d--space-coarse.npz": "9ba9cff8ccd3eee7b18d6d71b08a2f06ce00842ac671889b2f7124144624890e",
+    "vet-fourier-source2d--space-fine.npz": "5f4aba6ca27cae803989879e247c23ffaf8187f51cff3ea271143b1e633a6470",
+    "vet-fourier-source2d--angle-probe.npz": "168315c2ee26eec283da3ce982feabe1795b7645166b693d785ad6f54e3957c2",
+    "vet-fourier-source2d--constant-control.npz": "8c9f018ce1df3beb0e21e2f7d501f32f5e18cc8ff63cbd853677f927c9638658"
+  },
+  "files": {
+    "vef-fourier-scattering1d.png": "bf8f354b57aad3bdd6ef72d861b12f04b5369c173b26995502a32d96a7e0d103",
+    "vef-fourier-scattering1d-diagnostics.png": "86e056f73590211da9071b8897b7d289b665c9f0c24b87369515089c53112e19",
+    "vet-fourier-source2d.png": "eb3792a2826a804fc272a86872f6ea33a45e455a4eff95ba0161bc526ac5a81a",
+    "vet-fourier-source2d-diagnostics.png": "0915993d0823b6eb086f32a2e79cfa7ed6147337904fdf1e049baf11df55ac6e"
+  },
+  "scope": "Saved fine-row fields and fixed-row diagnostics only; no numerical solver/reference call."
+}

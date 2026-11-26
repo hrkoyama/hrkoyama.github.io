@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "edition": "2026-11-22",
-  "case_count": 157,
+  "case_count": 159,
   "releases": [
     {
       "group": "foundations",
@@ -1043,6 +1043,21 @@
         "williamson-sphere-transport"
       ],
       "tests": 17
+    },
+    {
+      "group": "variable-eddington-controls",
+      "edition": "2026-11-26",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-26/variable-eddington-controls/",
+      "archive": "atlas-variable-eddington-controls-2026-11-26.zip",
+      "archive_sha256": "00f72007e16701d4f41b587dc5b8bc3a158f2b6fac3f8b933aeacc3f7973f6bb",
+      "manifest_sha256": "8e35c943abc9fe9e5106e4fe0e2170508dabdacceb18ae97595690295ed3ca54",
+      "verification_sha256": "03a659dbc41042cf40f75128550eb233b3ffc91146db65ff479121ba626512f3",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "vef-fourier-scattering1d",
+        "vet-fourier-source2d"
+      ],
+      "tests": 21
     }
   ]
 }

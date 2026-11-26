@@ -125,6 +125,7 @@
         "steady-runge-kutta",
         "nasa-2d",
         "validation-forward-step",
+        "wall-heating",
         "validation-noh",
         "validation-noh-cartesian",
         "validation-sedov",
@@ -186,6 +187,7 @@
         "particle-gravity",
         "gravity-boundaries",
         "radiation-transport",
+        "variable-eddington",
         "validation-particles",
         "validation-particle-transport",
         "validation-fmm3d",
@@ -200,7 +202,8 @@
         "validation-lbm-curved-boundary",
         "validation-radiation-scattering",
         "validation-radiation-matter",
-        "validation-radiation-geometry"
+        "validation-radiation-geometry",
+        "validation-variable-eddington-controls"
       ]
     },
     {

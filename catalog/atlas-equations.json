@@ -2685,6 +2685,29 @@
       "supplemental_examples": [
         "sphere-zonal-balance"
       ]
+    },
+    {
+      "id": "static-grey-variable-eddington-moments",
+      "name": {
+        "ja": "静止灰色輻射のVEF・VETモーメント閉包",
+        "en": "Static grey VEF/VET moment closure"
+      },
+      "formula": [
+        "\\boldsymbol\\Omega\\cdot\\nabla I+\\sigma_t I=\\sigma_s E+q,\\quad E=\\langle I\\rangle",
+        "\\nabla\\cdot\\boldsymbol H+\\sigma_aE=q,\\quad\\sigma_t\\boldsymbol H+\\nabla\\cdot(\\mathsf D E)=0",
+        "\\mathsf D=\\frac{\\langle\\boldsymbol\\Omega\\boldsymbol\\Omega^{\\mathsf T}I\\rangle}{\\langle I\\rangle},\\quad\\sigma_a=\\sigma_t-\\sigma_s"
+      ],
+      "chapter": "variable-eddington",
+      "note": {
+        "ja": "c=1、角度平均はdΩ/(4π)。1Dのスカラー因子と、2D空間・3D角度の全テンソルを同じモーメント系の変種として扱います。公開例は正の等方輻射源・一定係数・周期境界に限定します。",
+        "en": "c=1 with angular measure dOmega/(4pi). The scalar 1D factor and full tensor in 2D space/3D angle are variants of the same moment system. Released examples are limited to positive isotropic sources, constant coefficients and periodic boundaries."
+      },
+      "status": "local-example",
+      "group": "physical",
+      "supplemental_examples": [
+        "vef-fourier-scattering1d",
+        "vet-fourier-source2d"
+      ]
     }
   ]
 }

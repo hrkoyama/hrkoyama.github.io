@@ -1,3 +1,4 @@
+import {methodIdsAddedInVefVet} from './fixtures/atlas-vef-vet-projection.mjs';
 import {methodIdsAddedInFinal23,projectCatalogBeforeFinal23} from './fixtures/atlas-final23-projection.mjs';
 import {assertScopedMDMethod,assertChapterMDScope,mdCase,mdBase} from './fixtures/atlas-md-scope.mjs';
 import {methodIdsAddedInBatch78,methodIdsPromotedInBatch78,methodIdsAddedInBatch68,methodIdsAddedInBatch58,methodCount,methodIds} from './fixtures/atlas-inventory.mjs';
@@ -178,7 +179,7 @@ test('BOMD and CPMD distinguish chapter-local reading from the fixed two-state m
   const addedMethods = ['lu-partial-pivoting','cholesky','minres','lobpcg','pseudo-arclength-continuation','jacobian-free-newton-krylov'];
   assert.equal(Object.keys(baseline.methods).length,152);
   assert.deepEqual(baseline.expected_new_method_ids,addedMethods);
-  assert.deepEqual(methodIds.filter(id=>!Object.hasOwn(baseline.methods,id)&&!methodIdsAddedInBatch58.includes(id)&&!methodIdsAddedInBatch68.includes(id)&&!methodIdsAddedInBatch78.includes(id)&&!methodIdsAddedInFinal23.includes(id)),addedMethods);
+  assert.deepEqual(methodIds.filter(id=>!Object.hasOwn(baseline.methods,id)&&!methodIdsAddedInBatch58.includes(id)&&!methodIdsAddedInBatch68.includes(id)&&!methodIdsAddedInBatch78.includes(id)&&!methodIdsAddedInFinal23.includes(id)&&!methodIdsAddedInVefVet.includes(id)),addedMethods);
   assert.deepEqual(coveredMethods.filter(row=>addedMethods.includes(row.id)).map(row=>row.id),addedMethods);
   assert.deepEqual(coveredMethods.filter(row=>addedMethods.includes(row.id)).map(row=>row.chapter),[
     ...Array(4).fill('validation-linear-algebra-spectral'),...Array(2).fill('validation-bratu-continuation-jfnk'),
@@ -200,13 +201,15 @@ test('BOMD and CPMD distinguish chapter-local reading from the fixed two-state m
     ...addedThermostatCoverage.map(id=>[id,'validation-thermostat-constraint-controls','local-example']),
     ['gillespie-ssa','validation-biology-ode-controls','local-example'],['semi-lagrangian','validation-continuum-particle-controls','local-example'],
   ]);
+  const addedCoverageVefVet=new Set(methodIdsAddedInVefVet);
+  assert.deepEqual(coveredMethods.filter(row=>addedCoverageVefVet.has(row.id)).map(row=>[row.id,row.chapter,row.status]),methodIdsAddedInVefVet.map(id=>[id,'validation-variable-eddington-controls','local-example']));
   const sourceMethods=json('catalog/atlas-methods.json'),beforeFinalMethods=projectCatalogBeforeFinal23('catalog/atlas-methods.json',sourceMethods).methods;
   for(const id of addedThermostatCoverage){
     assert.equal(beforeFinalMethods.find(row=>row.id===id).status,'planned');
     const current=sourceMethods.methods.find(row=>row.id===id);assert.equal(current.status,'educational-example');
     assert.deepEqual(current.depth_release,{group:'thermostat-constraint-controls',edition:'2026-11-25',case_ids:['deterministic-thermostat-contrasts']});
   }
-  assert.equal(coveredMethods.filter(row => row.id !== 'slab-ewald'&&!addedMethods.includes(row.id)&&!methodIdsAddedInBatch58.includes(row.id)&&!addedCoverage68.has(row.id)&&!addedCoverage78.has(row.id)&&!addedCoverageFinal23.has(row.id)).length,136);
+  assert.equal(coveredMethods.filter(row => row.id !== 'slab-ewald'&&!addedMethods.includes(row.id)&&!methodIdsAddedInBatch58.includes(row.id)&&!addedCoverage68.has(row.id)&&!addedCoverage78.has(row.id)&&!addedCoverageFinal23.has(row.id)&&!addedCoverageVefVet.has(row.id)).length,136);
   const expectedCoverage68=[['dae','validation-dae-controls'],['rk45','validation-ode-adaptivity'],['jameson-steady-rk','validation-steady-rk'],['shake','validation-geometric-controls'],['rattle','validation-geometric-controls']];
   const byId=(a,b)=>a[0].localeCompare(b[0]);
   assert.deepEqual(coveredMethods.filter(row=>addedCoverage68.has(row.id)).map(row=>[row.id,row.chapter]).sort(byId),expectedCoverage68.sort(byId));

@@ -1015,6 +1015,21 @@
         "ja": "所与ALEの有限圧力ピストン、限定球面輸送と軸対称釣合い、実GSPHとSPH対照を固定入力で検証します。",
         "en": "Fixed prescribed-ALE piston, limited sphere transport and axisymmetric balance, plus actual GSPH and separate SPH controls."
       }
+    },
+    {
+      "id": "variable-eddington-controls",
+      "edition": "2026-11-26",
+      "title": {
+        "ja": "可変Eddington因子・テンソルの軽量検証",
+        "en": "Lightweight variable Eddington factor and tensor checks"
+      },
+      "fields": [
+        "transport"
+      ],
+      "intro": {
+        "ja": "正の等方輻射源を持つ周期問題で、角度輸送と独立したモーメント解を反復し、解析参照・収支・空間と角度の誤差を分けて確認します。",
+        "en": "Iterate angular transport and a separate moment solve for periodic problems with a positive isotropic source, separating analytic-reference errors, balance, and spatial and angular effects."
+      }
     }
   ],
   "case_problem_ids": {
@@ -1174,7 +1189,9 @@
     "williamson-sphere-transport": "williamson-sphere-transport",
     "sphere-zonal-balance": "sphere-zonal-balance",
     "gsph-sod": "sod",
-    "sph-pressure-acoustics": "sph-pressure-acoustics"
+    "sph-pressure-acoustics": "sph-pressure-acoustics",
+    "vef-fourier-scattering1d": "vef-fourier-scattering1d",
+    "vet-fourier-source2d": "vet-fourier-source2d"
   },
   "routine_policy": {
     "ja": "通常の補助例CIは、公開レジストリに登録した補助配布グループをNumPy・SciPy・pytestで実行します。保存済みの独立参照は版・入力・実行記録を照合し、新規の参照計算と区別します。量子収束を含む従来の共通22例は必要時の手動実行とし、既存の配布物・公差・履歴を保持します。",
@@ -1700,6 +1717,14 @@
     "sph-pressure-acoustics": {
       "ja": "GSPH、摂動した128粒子、t=0.2。初期カーネル再構成誤差は最大0.011834で、音波振幅0.001より大きく、左の密度分布にその影響が残ります。右は初期誤差です。判定は基本Fourierモードの位相・振幅と保存量などの固定条件であり、点ごとの高精度や一般的な優位性を示しません。",
       "en": "GSPH with 128 jittered particles at t=0.2. The initial kernel reconstruction error reaches 0.011834, exceeding the acoustic amplitude 0.001 and remaining visible in the left density profile; the right panel shows that initial error. Acceptance concerns the fundamental Fourier mode phase/amplitude and other fixed conservation controls, not pointwise high accuracy or general superiority."
+    },
+    "vef-fourier-scattering1d": {
+      "ja": "図の横軸xと角度余弦μは2つの空間次元ではありません。周期・一様係数の教育例で、流入境界、時間発展、物質・流体結合、非線形FLD、一般AP性や速度向上は検証しません。",
+      "en": "Position x and angular cosine mu are not two spatial dimensions. This periodic homogeneous educational control does not validate inflow boundaries, time evolution, material/fluid coupling, nonlinear FLD, general AP properties or speedup."
+    },
+    "vet-fourier-source2d": {
+      "ja": "局所M1との比較は閉包の点ごとの診断だけで、M1方程式は解きません。Athena・短い特性線法・影・交差ビーム・RHD・境界閉包の再現でもなく、固定格子でHO/LOの厳密一致や普遍的な収束率を主張しません。",
+      "en": "Pointwise M1 comparison is a closure diagnostic; no M1 PDE is solved. This is not a reproduction of Athena, short characteristics, shadows, crossing beams, RHD or boundary closures, and does not claim exact fixed-grid HO/LO agreement or universal convergence rates."
     }
   },
   "case_equations": {
@@ -2780,6 +2805,24 @@
       "note": {
         "ja": "GSPH、摂動した128粒子、t=0.2。初期カーネル再構成誤差は最大0.011834で、音波振幅0.001より大きく、左の密度分布にその影響が残ります。右は初期誤差です。判定は基本Fourierモードの位相・振幅と保存量などの固定条件であり、点ごとの高精度や一般的な優位性を示しません。",
         "en": "GSPH with 128 jittered particles at t=0.2. The initial kernel reconstruction error reaches 0.011834, exceeding the acoustic amplitude 0.001 and remaining visible in the left density profile; the right panel shows that initial error. Acceptance concerns the fundamental Fourier mode phase/amplitude and other fixed conservation controls, not pointwise high accuracy or general superiority."
+      }
+    },
+    "vef-fourier-scattering1d": {
+      "ids": [
+        "static-grey-variable-eddington-moments"
+      ],
+      "note": {
+        "ja": "静止・定常・灰色の単位周期区間。無次元でσt=4、σs=3、σa=1、c=1。q=1+0.3 cos(2πx)、x_i=i/Nの点値です。角度平均は(1/2)∫I dμで規格化します。",
+        "en": "Static steady grey unit-periodic interval; dimensionless st=4, ss=3, sa=1 and c=1. q=1+0.3 cos(2pi x), sampled as point values at x_i=i/N. Angular averages use (1/2) integral I dmu."
+      }
+    },
+    "vet-fourier-source2d": {
+      "ids": [
+        "static-grey-variable-eddington-moments"
+      ],
+      "note": {
+        "ja": "静止・定常・灰色の単位周期正方形。σt=4、σs=3、σa=1、c=1の無次元点値。q=1+0.3 cos(2πx)+0.2 sin(2π(x+y))。空間は2Dでも角度は全S²でDzzも保持します。",
+        "en": "Static steady grey unit-periodic square; dimensionless st=4, ss=3, sa=1 and c=1, using point samples. q=1+0.3 cos(2pi x)+0.2 sin(2pi(x+y)). Space is2D, but directions cover full S2 and Dzz is retained."
       }
     }
   },

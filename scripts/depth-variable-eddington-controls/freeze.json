@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "frozen_at_utc": "2026-11-26T06:32:12.495117+00:00",
+  "declared_before_first_scientific_execution": false,
+  "group": "variable-eddington-controls",
+  "case_ids": [
+    "vef-fourier-scattering1d",
+    "vet-fourier-source2d"
+  ],
+  "files": {
+    "LICENSE": "07cca125623617c85a41e9a21a2b114d693c61737bc353e3ca98587431e26ee6",
+    "PROTOCOL.md": "d3722604042ab208b32091341432c73150a294fba24367d8c2424775e751c103",
+    "README.md": "6152f711b78c7086134d78db2aee3bfee76e0d9d071558ba76b071ea20e78aee",
+    "acceptance.json": "c6099e0d4e44f8cb3603c94af369fbefefd5ae6e84f58997b3b637713ded85cd",
+    "analytic_reference.py": "ca39fb8949d128352402dd1bb3488765f1fd5f157844c9fd23dc12d4954a97c0",
+    "cases.json": "7492e8b233a3707cf64f7aed8b0e604bbde61665a97def6253073d9259fe02cf",
+    "inputs.json": "e8648074fbff9c266ba34ffe9cf1fd675e0db4d6e34733c10a3384926a4ec871",
+    "plot.py": "1f2544cf0b8209db130009554b426b1d424bd3492220d03e15c8cf3304265799",
+    "primary.py": "2e938ed07a2d7174d35acc70522728119ba95cb9593fe16e38c81527992b78a1",
+    "requirements-plotting.txt": "ede4bda3bad02e6f13ce3f9e552f22205fd538846cc2aa34d872e40d706bde43",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "run.py": "edc7c34130fb5bdf08a05d07eed369995e9c508fbe6de308fa1016303c335f4e",
+    "source-reading.json": "010e871f331c21b41fb6d12a7f3d9a291504af47a96024bca56007b16d165261",
+    "test_cases.py": "bc154a33cf8b25ddc5fb04cf0b14c4e68df5643a516813ff696470e02d389cd2"
+  },
+  "scope": "Two fixed periodic normalized-grey controls, six primary/probe rows and two constant component rows. No paper benchmark or general RHD/AP/speedup claim.",
+  "static_review_sha256": {
+    "primary-static-review": "2b9a58b85bfa95f0dd5dca73ac5279e9d86ed6e8e3797cd4ca0eadb1840ad98c",
+    "reference-tests-static-review": "71018642169f1055a632ec8b025b2a6d00b4e034374f60190b62e264ceaf88f4",
+    "display-source-independent-review": "cc5bc53a66c58862aa85e44c78e2b585810a132840d969bd73f52b5d4b19c4b1",
+    "vef-vet-design-independent-review": "c8f2f52979b8f4ce3bf64825b55663398af2f5a246de2cb07b4362de917e2a08"
+  },
+  "input_reference_acceptance_reviewed_before_execution": true,
+  "previous_scientific_freeze_sha256": "90d1df3aa63593a334dff5814a0b1bd37ee061b202056193d4f7f156133ef97a",
+  "display_only_revision": {
+    "reason": "Actual rendered diagnostics had a clipped multi-mode title and a misleading negative half-axis for positive RMS errors. Preserve first-run scientific results and original source; change plotting layout/positive-error axis only. Separate the VET black scale key from the panel title.",
+    "original_plot_sha256": "0cfa70e87127efc452bc79a3f6826bf23e92daaa634fe5e2507899507768f66e",
+    "scientific_solver_reference_input_acceptance_test_bytes_unchanged": true
+  }
+}

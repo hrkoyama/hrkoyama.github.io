@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "contract": "declared-criteria; all numbers fixed before any numerical execution",
+  "required_solver_checks": {
+    "outer_LOE_relative_update_max": 1e-10,
+    "outer_D_absolute_update_max": 1e-10,
+    "LO_true_relative_inf_residual_max": 1e-11,
+    "HO_formal_relative_residual_max": 5e-12,
+    "imaginary_ifft_residue_max": 1e-12,
+    "discrete_global_balance_max": 1e-10,
+    "minimum_I": "strictly_positive",
+    "minimum_LOE": "strictly_positive",
+    "flux_realizability_absolute_slack": 1e-10,
+    "tensor_symmetry_trace1_max": 5e-13,
+    "tensor_min_eigenvalue_allowed": -5e-13,
+    "HO_D_minus_hh_min_eigenvalue_allowed": -1e-12,
+    "VET_z_parity_max": 1e-12
+  },
+  "required_case_checks": {
+    "finest_LOE_relative_RMS_error_max": 0.005,
+    "finest_faceH_relative_RMS_error_max": 0.02,
+    "finest_complex_mode_relative_amplitude_error_max": 0.02,
+    "finest_tensor_component_absolute_error_max": 0.001,
+    "fine_to_coarse_E_error_ratio_max": 0.8,
+    "fine_to_coarse_faceH_error_ratio_max": 0.8,
+    "fine_to_coarse_HOLO_E_gap_ratio_max": 0.8,
+    "angle_probe_LOE_relative_difference_max": 0.0002,
+    "angle_probe_D_component_difference_max": 0.0002,
+    "VEF_nonconstant_f_span_min": 0.005,
+    "VET_max_abs_Dxy_min": 0.001
+  },
+  "constant_control_absolute_checks": {
+    "I_E_max_error": 5e-12,
+    "H_face_max_error": 5e-12,
+    "D_max_error": 5e-13
+  },
+  "norms": {
+    "E": "sqrt(mean((E_LO-E_ref)^2))/sqrt(mean(E_ref^2)); source-mode gates separately prevent a constant-background pass",
+    "H_faces": "joint RMS over actual axis-normal shared faces relative to analytic normal H at those exact face coordinates",
+    "complex_modes": "2*mean(E_LO exp(-2pi*i*k.x)) vs2*mean(E_ref exp(-2pi*i*k.x)); relative complex-coefficient error includes phase; magnitude and phase errors also reported",
+    "ratios": "space-fine/space-coarse at the SAME angular rule; angle-probe is separate",
+    "constants": "absolute errors; no division by zero reference flux or absent source modes",
+    "HOLO_gap": "RMS(E_HO-E_LO), not an exact fixed-grid equality gate"
+  },
+  "study_only": [
+    "M1 algebraic closure mismatch against reference (no M1 PDE solver)",
+    "work counts, elapsed time, error curves and individual mode phases; no performance or universal angular/spatial-order guarantee"
+  ],
+  "pre_execution_clarifications": [
+    "Root explicitly requested strict positivity of I and E, tighter than the research draft allowance of a tiny negative I roundoff value. No floor or clipping is used.",
+    "The complex source-mode amplitude criterion retains the proposed0.02 limit and detects wrong sine phase; it is not only a magnitude comparison.",
+    "Constant controls use absolute thresholds declared here before execution; zero reference H has no relative-error statistic."
+  ],
+  "component_qualification_checks": {
+    "adaptive_R_B_C_T_absolute_error_max": 2e-12,
+    "separate_S2_24x96_three_points_absolute_error_max": 2e-09,
+    "shared_face_nine_point_operator_absolute_error_max": 2e-12,
+    "constant_tensor_preconditioner_absolute_error_max": 2e-12,
+    "phase_fourier_coefficient_absolute_error_max": 2e-12
+  }
+}

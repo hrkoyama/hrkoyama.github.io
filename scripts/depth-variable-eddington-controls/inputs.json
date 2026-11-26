@@ -1,0 +1,164 @@
+{
+  "schema_version": 1,
+  "group": "variable-eddington-controls",
+  "contract": "fixed-input-contract; review/execution provenance is supplied by freeze.json and actual receipts",
+  "spatial_convention": "Periodic point values at i/N; normal face at (i+1/2)/N; no cell-average interpretation",
+  "angular_measure": "Normalized full-S2 measure; 1D azimuthal symmetry is integrated analytically",
+  "source_mode_convention": "q=qmean+Re(sum b exp(2pi*i*k.x)); sine amplitude a uses b=-i*a",
+  "settings": {
+    "st": 4.0,
+    "ss": 3.0,
+    "qmean": 1.0,
+    "outer_maximum": 40,
+    "inner_maximum": 200,
+    "angular_chunk": 64,
+    "outer_LOE_relative_update_max": 1e-10,
+    "outer_D_absolute_update_max": 1e-10,
+    "LO_true_relative_inf_residual_max": 1e-11,
+    "HO_formal_relative_residual_max": 5e-12,
+    "imaginary_ifft_residue_max": 1e-12
+  },
+  "budget": {
+    "runner_cooperative_seconds": 90,
+    "runner_owned_seconds": 120,
+    "pytest_owned_seconds": 120,
+    "plots_owned_seconds": 45,
+    "threads": 1
+  },
+  "cases": [
+    {
+      "id": "vef-fourier-scattering1d",
+      "dimension": 1,
+      "source": {
+        "mean": 1.0,
+        "modes": [
+          {
+            "wave_numbers": [
+              1
+            ],
+            "amplitude": {
+              "real": 0.3,
+              "imag": 0.0
+            }
+          }
+        ]
+      },
+      "rows": [
+        {
+          "id": "space-coarse",
+          "shape": [
+            33
+          ],
+          "mu_order": 32
+        },
+        {
+          "id": "space-fine",
+          "shape": [
+            65
+          ],
+          "mu_order": 32
+        },
+        {
+          "id": "angle-probe",
+          "shape": [
+            65
+          ],
+          "mu_order": 64
+        }
+      ]
+    },
+    {
+      "id": "vet-fourier-source2d",
+      "dimension": 2,
+      "source": {
+        "mean": 1.0,
+        "modes": [
+          {
+            "wave_numbers": [
+              1,
+              0
+            ],
+            "amplitude": {
+              "real": 0.3,
+              "imag": 0.0
+            }
+          },
+          {
+            "wave_numbers": [
+              1,
+              1
+            ],
+            "amplitude": {
+              "real": 0.0,
+              "imag": -0.2
+            }
+          }
+        ]
+      },
+      "rows": [
+        {
+          "id": "space-coarse",
+          "shape": [
+            17,
+            17
+          ],
+          "mu_order": 12,
+          "phi_order": 48
+        },
+        {
+          "id": "space-fine",
+          "shape": [
+            33,
+            33
+          ],
+          "mu_order": 12,
+          "phi_order": 48
+        },
+        {
+          "id": "angle-probe",
+          "shape": [
+            33,
+            33
+          ],
+          "mu_order": 16,
+          "phi_order": 64
+        }
+      ]
+    }
+  ],
+  "constant_controls": [
+    {
+      "case_id": "vef-fourier-scattering1d",
+      "source": {
+        "mean": 1.0,
+        "modes": []
+      },
+      "row": {
+        "id": "constant-control",
+        "shape": [
+          9
+        ],
+        "mu_order": 32
+      }
+    },
+    {
+      "case_id": "vet-fourier-source2d",
+      "source": {
+        "mean": 1.0,
+        "modes": []
+      },
+      "row": {
+        "id": "constant-control",
+        "shape": [
+          9,
+          9
+        ],
+        "mu_order": 12,
+        "phi_order": 48
+      }
+    }
+  ],
+  "expected_primary_rows": 6,
+  "expected_constant_rows": 2,
+  "no_reference_in_primary": true
+}

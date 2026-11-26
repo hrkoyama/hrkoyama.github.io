@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "purpose": "Selected primary-source reading and limits for the authored periodic controls. Execution status is recorded only in actual result/verification receipts.",
+  "accessed_on": "2026-11-26",
+  "full_paper_read_claimed": false,
+  "sources": [
+    {
+      "id": "auer-mihalas1970",
+      "authors": [
+        "L. H. Auer",
+        "Dimitri Mihalas"
+      ],
+      "year": 1970,
+      "title": "On the Use of Variable Eddington Factors in Non-LTE Stellar Atmospheres Computations",
+      "doi": "10.1093/mnras/149.1.65",
+      "url": "https://academic.oup.com/mnras/article/149/1/65/2604466",
+      "journal": "Monthly Notices of the Royal Astronomical Society149,65–74",
+      "kind": "original-method-paper",
+      "read_level": "primary-publisher-abstract-and-bibliography",
+      "read_scope": "Publisher title/authors/date/DOI and abstract. Establishes historical variable-factor iteration and grey example.",
+      "supports": "Historical attribution; not a transcription of its difference equations.",
+      "unread_limit": "Original scannedPDF fetch failed; original equations, full tests and non-LTE calculations are unread and must not be claimed reproduced."
+    },
+    {
+      "id": "olivier-haut2023",
+      "authors": [
+        "Samuel Olivier",
+        "Terry S. Haut"
+      ],
+      "year": 2023,
+      "title": "High-Order Mixed Finite Element Variable Eddington Factor Methods",
+      "url": "https://arxiv.org/pdf/2301.04758",
+      "version_read": "2301.04758v2",
+      "kind": "primary-author-paper",
+      "read_level": "selected-primary-equations",
+      "read_scope": "Section2, PDFpp3–4: transport Eq1, moment equations Eq2, angular tensor and boundary factor Eq3, fixed-point steps. Introduction on independent spatial discretizations also read.",
+      "supports": "A formal angular solve, closure extraction, and separate moment solve constitute the coupled algorithm. Boundary factor belongs to inflow problems.",
+      "unread_limit": "No claim of full59page reading, high-order mixedFEM reproduction, curved-mesh, multigrid or scalability validation."
+    },
+    {
+      "id": "jiang-stone-davis2012",
+      "authors": [
+        "Yan-Fei Jiang",
+        "James M. Stone",
+        "Shane W. Davis"
+      ],
+      "year": 2012,
+      "title": "A Godunov Method for Multidimensional Radiation Magnetohydrodynamics based on a variable Eddington tensor",
+      "doi": "10.1088/0067-0049/199/1/14",
+      "url": "https://arxiv.org/pdf/1201.2223",
+      "version_read": "1201.2223v1",
+      "kind": "primary-author-paper",
+      "read_level": "selected-primary-equations-and-test-description",
+      "read_scope": "Section3.1 algorithmStep1; Section3.4 PDFp8, equations22–23 and discussion; Section6.5 shadow-test scope description read.",
+      "supports": "Tensor is computed from a formal transfer solution; its quadrature moments need not equal the separately integrated moments.",
+      "unread_limit": "Not a reproduction of Athena, mixed-frameRHD, gas coupling, shocks or the paper shadow/cloud-ablation test."
+    },
+    {
+      "id": "davis-stone-jiang2012",
+      "authors": [
+        "Shane W. Davis",
+        "James M. Stone",
+        "Yan-Fei Jiang"
+      ],
+      "year": 2012,
+      "title": "A Radiation Transfer Solver for Athena using Short Characteristics",
+      "url": "https://arxiv.org/pdf/1201.2222",
+      "version_read": "1201.2222v1 as served",
+      "kind": "primary-author-paper",
+      "read_level": "selected-primary-equations",
+      "read_scope": "Equations8–16 source/opacity/moment conventions, Section3.2 angular quadrature Eq17–19 and two-stream warning; Section3.3 Eq20 formal solution and Section3.5 boundary scope read.",
+      "supports": "Positive angular quadratures over S2 and angularly resolved formal transport differ from a local prescribed closure.",
+      "unread_limit": "Proposed Fourier formal solver is not their short-characteristics/interpolation algorithm. No multifrequency, ALI, stellar atmosphere or timing reproduction claim."
+    },
+    {
+      "id": "olivier-pazner-haut-yee2023",
+      "authors": [
+        "Samuel Olivier",
+        "Will Pazner",
+        "Terry S. Haut",
+        "Ben C. Yee"
+      ],
+      "year": 2023,
+      "title": "A Family of Independent Variable Eddington Factor Methods with Efficient Preconditioned Iterative Solvers",
+      "doi": "10.1016/j.jcp.2022.111747",
+      "url": "https://arxiv.org/pdf/2111.12255",
+      "version_read": "2111.12255v2",
+      "kind": "primary-author-paper",
+      "read_level": "selected-primary-method-scope",
+      "read_scope": "Introduction PDFpp1–3 on independent HO/LO discretizations, finite-mesh moment differences and conservation; no numerical tables adopted.",
+      "supports": "Do not require HO and LO moments to be identical at a fixed mesh. Their discrepancy is a discretization quantity.",
+      "unread_limit": "No claim of reproducing high-orderDG, preconditioner performance or large-mesh studies."
+    },
+    {
+      "id": "skinner-ostriker2013",
+      "authors": [
+        "M. Aaron Skinner",
+        "Eve C. Ostriker"
+      ],
+      "year": 2013,
+      "title": "A Two-moment Radiation Hydrodynamics Module in Athena Using a Time-explicit Godunov Method",
+      "doi": "10.1088/0067-0049/206/2/21",
+      "url": "https://arxiv.org/pdf/1306.0010",
+      "version_read": "1306.0010v1 as served",
+      "kind": "primary-author-paper",
+      "read_level": "selected-primary-equations",
+      "read_scope": "Section2.3 PDFp5, equations11–17: localM1 tensor, trace/covariance constraints and chi(reducedflux). Introduction distinction from formalVET also read.",
+      "supports": "Use M1 only as a pointwise closure diagnostic here; M1 is a local algebraic model, not the formal-transfer tensor.",
+      "unread_limit": "No Hyperion/RHD solver or reduced-light-speed/timing validation. InstitutionalPDF endpoint returned401; arXiv original-author copy was read."
+    }
+  ],
+  "original_fixed_problem": "The positive periodic Fourier-source controls and their analytic response are independently derived Atlas examples, not numerical-table reproductions of the cited papers.",
+  "algorithm_scope": "A periodic FFT formal angular solve supplies closure to a separate conservative finite-difference moment solve; this is not an implementation of the cited FEM, short-characteristics or RHD schemes.",
+  "normalized_units": "The angular measure is normalized to1. E=<I>, H=<Omega I>, K=<Omega Omega I>, c=1. Physical energy/flux/pressure share the stated4pi normalization; no dimensional material calibration is asserted.",
+  "reference_independence": "primary.py does not import analytic reference code. Reference evaluation and distinct angular component controls assess saved primary fields.",
+  "unimplemented_scope": [
+    "Inflow/vacuum/Marshak boundary closure",
+    "Time-dependent radiation, material/gas evolution and RHD",
+    "Nonlinear FLD, multi-frequency opacities and moving media",
+    "Universal AP, speedup or large3D claims"
+  ],
+  "quoted_passages": []
+}

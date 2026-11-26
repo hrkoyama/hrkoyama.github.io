@@ -42,6 +42,22 @@ def section_links(section,lang):
         targets.append((row['url']+'?lang='+lang,row['label'][lang]))
     return targets
 
+def section_figures(section,lang):
+    """Only immutable, hash-bound PNGs already shipped in validated editions."""
+    figures=section.get('figures',[])
+    assert isinstance(figures,list)
+    for row in figures:
+        source=row['source']
+        assert re.fullmatch(r'/code/validated-examples/\d{4}-\d{2}-\d{2}(?:-r\d+)?/[a-z0-9-]+/results/[a-z0-9-]+[.]png',source)
+        path=ROOT/source.lstrip('/')
+        assert path.is_file() and not path.is_symlink() and path.resolve()==path
+        payload=path.read_bytes()
+        assert payload[:8]==b'\x89PNG\r\n\x1a\n' and payload[12:16]==b'IHDR'
+        assert hashlib.sha256(payload).hexdigest()==row['sha256']
+        assert tuple(int.from_bytes(payload[i:i+4],'big')for i in (16,20))==(row['width'],row['height'])
+        assert all(isinstance(row['caption'][key],str) and row['caption'][key].strip()for key in ['ja','en'])
+    return figures
+
 def markdown_table(match):
     """Retain row/column boundaries in opted-in HTML reading chapters."""
     table=match[0]
@@ -123,6 +139,9 @@ for chapter in data['chapters']:
                 for p in section['paragraphs'][lang]:body+=paragraph(p)
                 body+=''.join('<math-placeholder id="'+f+'"></math-placeholder>' for f in section.get('formulas',[]))
                 if section_links(section,lang):body+='<p>'+' · '.join(link(target,label) for target,label in section_links(section,lang))+'</p>'
+                for figure in section_figures(section,lang):
+                    caption=escape(figure['caption'][lang])
+                    body+='<figure class="reading-saved-figure"><a href="'+escape(figure['source'],quote=True)+'"><img src="'+escape(figure['source'],quote=True)+'" alt="'+caption+'" width="'+str(figure['width'])+'" height="'+str(figure['height'])+'" style="max-width:100%;height:auto" loading="lazy" decoding="async"></a><figcaption>'+caption+'</figcaption></figure>'
         body+=scoped_supplement_html(scoped,lang)
         body+=heading('publication-scope','公開範囲と関連項目' if ja else 'Publication scope and related entries')
         if all(methods[i]['status']=='planned' for i in chapter['methods']):
@@ -156,6 +175,7 @@ for chapter in data['chapters']:
                 markdown+='## '+section['title'][lang]+'\n\n'+'\n\n'.join(section['paragraphs'][lang])+'\n\n'
                 markdown+=''.join('$$\n'+data['formulas'][f]+'\n$$\n\n' for f in section.get('formulas',[]))
                 if section_links(section,lang):markdown+=' · '.join('['+label+']('+target+')' for target,label in section_links(section,lang))+'\n\n'
+                for figure in section_figures(section,lang):markdown+='!['+figure['caption'][lang]+']('+figure['source']+')\n\n'
         else:
             plain=chapter['html'][lang]
             if chapter.get('tables_in_markdown'):

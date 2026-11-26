@@ -1,6 +1,7 @@
 // Use only for dated historical tests. Current UI/registry tests retain the full
 // cohort. Exact source metadata is checked before its reviewed inverse is used;
 // no scientific packet, old fixture, result or tolerance is projected.
+import {projectCatalogBeforeVefVet,projectMethodBeforeVefVet,methodIdsAddedInVefVet} from './atlas-vef-vet-projection.mjs';
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import assert from 'node:assert/strict';
@@ -36,7 +37,11 @@ function inverse(value,delta,label){
  assert.equal(hash(result),delta.before,label+'/complete-exact-812-restoration');return result;
 }
 export function projectMethodBeforeFinal23(row){
- const record=frozen.methods[row?.id];assert.ok(record,row?.id+'/known-final23-or-baseline-method');
+ const record=frozen.methods[row?.id];
+ if(record&&hash(row)===record.before)return structuredClone(row);
+ row=projectMethodBeforeVefVet(row);
+ if(methodIdsAddedInVefVet.includes(row.id))return row;
+ assert.ok(record,row?.id+'/known-final23-or-baseline-method');
  const actual=hash(row);
  if(actual===record.before)return structuredClone(row);
  assert.equal(actual,record.after,row.id+'/exact-reviewed-current-method');
@@ -44,7 +49,10 @@ export function projectMethodBeforeFinal23(row){
 }
 export function projectCatalogBeforeFinal23(path,value){
  path=String(path).replace(/^https:\/\/hrkoyama\.github\.io\//,'').replace(/^\//,'');
- const record=frozen.catalogs[path];if(!record)return value;
+ const record=frozen.catalogs[path];
+ if(record&&hash(value)===record.before)return structuredClone(value);
+ value=projectCatalogBeforeVefVet(path,value);
+ if(!record)return value;
  const actual=hash(value);
  if(actual===record.before)return structuredClone(value);
  assert.equal(actual,record.after,path+'/exact-reviewed-current-catalog');

@@ -20046,6 +20046,162 @@
         "ja": "単位球の所与の剛体回転によるスカラー輸送だけです。原W92全文の式は未閲読で、Nairらの選択した著者資料との規約照合に限ります。両格子とも11回の非整合なremap。非保存の双線形補間で質量ずれを報告し、時間収束とは呼びません。",
         "en": "Only prescribed scalar solid-body rotation on a unit sphere. Original W92 equations remain unread; selected Nair author formulas cross-check conventions. Both grids use eleven noncommensurate remaps. Bilinear interpolation is nonconservative; report mass drift and do not claim temporal convergence or a nonlinear global SWE core."
       }
+    },
+    {
+      "id": "variable-eddington-factor",
+      "name": {
+        "ja": "可変Eddington因子（1D VEF）",
+        "en": "Variable Eddington factor (1D VEF)"
+      },
+      "group": {
+        "id": "coupling",
+        "ja": "連成・拘束・粒子法",
+        "en": "Coupling, constraints & particles"
+      },
+      "summary": {
+        "ja": "角度輸送から因子f=Kxx/Eを求め、別のモーメント方程式を閉じて反復します。周期散乱場の小さな固定例で確認します。",
+        "en": "Compute f=Kxx/E from angular transport and iterate a separate closed moment solve, checked on a small fixed periodic scattering problem."
+      },
+      "status": "educational-example",
+      "origin": "reviewed-scoped-extension",
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/variable-eddington/",
+        "en": "/numerical-methods-atlas/en/read/variable-eddington/"
+      },
+      "code_modules": [],
+      "test_files": [],
+      "code_mapping_scope": "Executable source and tests belong to the scoped depth release, not the shared numart module inventory.",
+      "references": [
+        {
+          "url": "https://academic.oup.com/mnras/article/149/1/65/2604466",
+          "label": "On the Use of Variable Eddington Factors in Non-LTE Stellar Atmospheres Computations",
+          "scope": "Publisher title/authors/date/DOI and abstract. Establishes historical variable-factor iteration and grey example. Limits: Original scannedPDF fetch failed; original equations, full tests and non-LTE calculations are unread and must not be claimed reproduced."
+        },
+        {
+          "url": "https://arxiv.org/pdf/2301.04758",
+          "label": "High-Order Mixed Finite Element Variable Eddington Factor Methods",
+          "scope": "Section2, PDFpp3–4: transport Eq1, moment equations Eq2, angular tensor and boundary factor Eq3, fixed-point steps. Introduction on independent spatial discretizations also read. Limits: No claim of full59page reading, high-order mixedFEM reproduction, curved-mesh, multigrid or scalability validation."
+        },
+        {
+          "url": "https://arxiv.org/pdf/2111.12255",
+          "label": "A Family of Independent Variable Eddington Factor Methods with Efficient Preconditioned Iterative Solvers",
+          "scope": "Introduction PDFpp1–3 on independent HO/LO discretizations, finite-mesh moment differences and conservation; no numerical tables adopted. Limits: No claim of reproducing high-orderDG, preconditioner performance or large-mesh studies."
+        }
+      ],
+      "assumptions": [
+        "Static steady grey unit-periodic interval; dimensionless st=4, ss=3, sa=1 and c=1. q=1+0.3 cos(2pi x), sampled as point values at x_i=i/N. Angular averages use (1/2) integral I dmu."
+      ],
+      "assumptions_ja": [
+        "静止・定常・灰色の単位周期区間。無次元でσt=4、σs=3、σa=1、c=1。q=1+0.3 cos(2πx)、x_i=i/Nの点値です。角度平均は(1/2)∫I dμで規格化します。"
+      ],
+      "units": "Dimensionless c=1; normalized angular measure dOmega/(4pi).",
+      "boundary_conditions": "Periodic unit domain; point nodes i/N and shared normal faces (i+1/2)/N.",
+      "limitations": {
+        "ja": "図の横軸xと角度余弦μは2つの空間次元ではありません。周期・一様係数の教育例で、流入境界、時間発展、物質・流体結合、非線形FLD、一般AP性や速度向上は検証しません。",
+        "en": "Position x and angular cosine mu are not two spatial dimensions. This periodic homogeneous educational control does not validate inflow boundaries, time evolution, material/fluid coupling, nonlinear FLD, general AP properties or speedup."
+      },
+      "metadata_review": {
+        "level": "selected-primary-equations-and-fixed-analytic-response-controls",
+        "on": "2026-11-26"
+      },
+      "aliases": [
+        "VEF",
+        "variable Eddington factor",
+        "可変エディントン因子",
+        "quasidiffusion",
+        "準拡散法"
+      ],
+      "depth_release": {
+        "group": "variable-eddington-controls",
+        "edition": "2026-11-26",
+        "case_ids": [
+          "vef-fourier-scattering1d"
+        ]
+      },
+      "depth_scope": {
+        "ja": "形式的な角度輸送と独立なモーメント方程式を反復結合し、位置で変わる因子fを閉形式参照と比較します。",
+        "en": "Iteratively couple formal angular transport to independent moment equations and compare the spatially varying factor f with a closed-form reference."
+      }
+    },
+    {
+      "id": "variable-eddington-tensor",
+      "name": {
+        "ja": "可変Eddingtonテンソル（VET）",
+        "en": "Variable Eddington tensor (VET)"
+      },
+      "group": {
+        "id": "coupling",
+        "ja": "連成・拘束・粒子法",
+        "en": "Coupling, constraints & particles"
+      },
+      "summary": {
+        "ja": "VEFの多次元でのテンソル閉包を用います。2D空間でも3D角度測度を保ち、非対角成分を含む圧力と流束を確認します。",
+        "en": "Use the tensor form of the VEF closure. Retain the full three-dimensional angular measure in two-dimensional space and check off-diagonal pressure and flux."
+      },
+      "status": "educational-example",
+      "origin": "reviewed-scoped-extension",
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/variable-eddington/",
+        "en": "/numerical-methods-atlas/en/read/variable-eddington/"
+      },
+      "code_modules": [],
+      "test_files": [],
+      "code_mapping_scope": "Executable source and tests belong to the scoped depth release, not the shared numart module inventory.",
+      "references": [
+        {
+          "url": "https://arxiv.org/pdf/1201.2223",
+          "label": "A Godunov Method for Multidimensional Radiation Magnetohydrodynamics based on a variable Eddington tensor",
+          "scope": "Section3.1 algorithmStep1; Section3.4 PDFp8, equations22–23 and discussion; Section6.5 shadow-test scope description read. Limits: Not a reproduction of Athena, mixed-frameRHD, gas coupling, shocks or the paper shadow/cloud-ablation test."
+        },
+        {
+          "url": "https://arxiv.org/pdf/1201.2222",
+          "label": "A Radiation Transfer Solver for Athena using Short Characteristics",
+          "scope": "Equations8–16 source/opacity/moment conventions, Section3.2 angular quadrature Eq17–19 and two-stream warning; Section3.3 Eq20 formal solution and Section3.5 boundary scope read. Limits: Proposed Fourier formal solver is not their short-characteristics/interpolation algorithm. No multifrequency, ALI, stellar atmosphere or timing reproduction claim."
+        },
+        {
+          "url": "https://arxiv.org/pdf/2301.04758",
+          "label": "High-Order Mixed Finite Element Variable Eddington Factor Methods",
+          "scope": "Section2, PDFpp3–4: transport Eq1, moment equations Eq2, angular tensor and boundary factor Eq3, fixed-point steps. Introduction on independent spatial discretizations also read. Limits: No claim of full59page reading, high-order mixedFEM reproduction, curved-mesh, multigrid or scalability validation."
+        },
+        {
+          "url": "https://arxiv.org/pdf/1306.0010",
+          "label": "A Two-moment Radiation Hydrodynamics Module in Athena Using a Time-explicit Godunov Method",
+          "scope": "Section2.3 PDFp5, equations11–17: localM1 tensor, trace/covariance constraints and chi(reducedflux). Introduction distinction from formalVET also read. Limits: No Hyperion/RHD solver or reduced-light-speed/timing validation. InstitutionalPDF endpoint returned401; arXiv original-author copy was read."
+        }
+      ],
+      "assumptions": [
+        "Static steady grey unit-periodic square; dimensionless st=4, ss=3, sa=1 and c=1, using point samples. q=1+0.3 cos(2pi x)+0.2 sin(2pi(x+y)). Space is2D, but directions cover full S2 and Dzz is retained."
+      ],
+      "assumptions_ja": [
+        "静止・定常・灰色の単位周期正方形。σt=4、σs=3、σa=1、c=1の無次元点値。q=1+0.3 cos(2πx)+0.2 sin(2π(x+y))。空間は2Dでも角度は全S²でDzzも保持します。"
+      ],
+      "units": "Dimensionless c=1; normalized angular measure dOmega/(4pi).",
+      "boundary_conditions": "Periodic unit domain; point nodes i/N and shared normal faces (i+1/2)/N.",
+      "limitations": {
+        "ja": "局所M1との比較は閉包の点ごとの診断だけで、M1方程式は解きません。Athena・短い特性線法・影・交差ビーム・RHD・境界閉包の再現でもなく、固定格子でHO/LOの厳密一致や普遍的な収束率を主張しません。",
+        "en": "Pointwise M1 comparison is a closure diagnostic; no M1 PDE is solved. This is not a reproduction of Athena, short characteristics, shadows, crossing beams, RHD or boundary closures, and does not claim exact fixed-grid HO/LO agreement or universal convergence rates."
+      },
+      "metadata_review": {
+        "level": "selected-primary-equations-and-fixed-analytic-response-controls",
+        "on": "2026-11-26"
+      },
+      "aliases": [
+        "VET",
+        "variable Eddington tensor",
+        "可変エディントンテンソル",
+        "transport-derived closure"
+      ],
+      "depth_release": {
+        "group": "variable-eddington-controls",
+        "edition": "2026-11-26",
+        "case_ids": [
+          "vet-fourier-source2d"
+        ]
+      },
+      "depth_scope": {
+        "ja": "非平行な2つの源モードから全S²角度分布と3×3テンソルを求め、Dxyを含む保存的モーメント式と閉形式参照を比較します。",
+        "en": "Use two nonparallel source modes to compute full-S2 angular moments and a3x3 tensor, then compare conservative moment equations including Dxy with a closed-form reference."
+      }
     }
   ],
   "editorial_policy": {

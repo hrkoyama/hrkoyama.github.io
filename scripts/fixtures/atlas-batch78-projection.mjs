@@ -1,3 +1,4 @@
+import {methodIdsAddedInVefVet} from './atlas-vef-vet-projection.mjs';
 // Exact inverse of the reviewed batch78 metadata changes for historical tests.
 // Current scientific values are checked before the named metadata is restored.
 import {projectCatalogBeforeFinal23,projectMethodBeforeFinal23,methodIdsAddedInFinal23} from './atlas-final23-projection.mjs';
@@ -46,7 +47,7 @@ function inverse(row,record,change,allowed){
 }
 export function projectMethodBeforeBatch78(row){
  row=projectMethodBeforeFinal23(row);
- if(methodIdsAddedInFinal23.includes(row.id))return row;
+ if(methodIdsAddedInFinal23.includes(row.id)||methodIdsAddedInVefVet.includes(row.id))return row;
  const record=baseline.method_records[row.id];
  if(!record){assert.ok(methodIdsAddedInBatch78.includes(row.id),row.id+'/known-new-method');assert.equal(hash(row),freeze.new_method_records_typed_sha256[row.id]);return row;}
  return inverse(row,record,freeze.method_transitions[row.id],methodIdsPromotedInBatch78.includes(row.id)?promotion:append);
