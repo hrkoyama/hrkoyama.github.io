@@ -1,0 +1,535 @@
+{
+  "$schema": "./schemas/atlas-identities.schema.json",
+  "schema_version": 1,
+  "namespace": "NMA",
+  "scope": "pilot",
+  "revision_policy": "hex-min2-no-wrap-v1",
+  "allocation": {
+    "P": 4,
+    "C": 4,
+    "S": 3
+  },
+  "entities": [
+    {
+      "id": "NMA-P-000001",
+      "kind": "problem",
+      "legacy_ids": [
+        "advection-sine"
+      ],
+      "current_revision": "00",
+      "revisions": [
+        {
+          "revision": "00",
+          "label": {
+            "ja": "周期正弦波の線形移流",
+            "en": "Periodic sine-wave advection"
+          },
+          "problem_refs": [],
+          "source_refs": [],
+          "bindings": [
+            {
+              "role": "problem",
+              "path": "catalog/identity-snapshots/NMA-P-000001/00.json",
+              "pointer": "",
+              "sha256": "7fb246abf7a161a642ff2aadea29429d2e0629ca54a5ac8fc54de60173a8deff"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NMA-P-000002",
+      "kind": "problem",
+      "legacy_ids": [
+        "poisson-2d-sine"
+      ],
+      "current_revision": "00",
+      "revisions": [
+        {
+          "revision": "00",
+          "label": {
+            "ja": "2次元Poisson・正弦単一モード（FEMを含む）",
+            "en": "2D Poisson / single sine mode, including FEM"
+          },
+          "problem_refs": [],
+          "source_refs": [],
+          "bindings": [
+            {
+              "role": "problem",
+              "path": "catalog/identity-snapshots/NMA-P-000002/00.json",
+              "pointer": "",
+              "sha256": "062d53d9f2f84a1007008df01e97b88553a73b3f0f62809f0732fa2eb1f9cd09"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NMA-P-000003",
+      "kind": "problem",
+      "legacy_ids": [
+        "quantum-box-ho"
+      ],
+      "current_revision": "00",
+      "revisions": [
+        {
+          "revision": "00",
+          "label": {
+            "ja": "1次元箱型井戸・量子調和振動子",
+            "en": "Small 1D box and quantum harmonic-oscillator eigenpairs"
+          },
+          "problem_refs": [],
+          "source_refs": [],
+          "bindings": [
+            {
+              "role": "problem",
+              "path": "catalog/identity-snapshots/NMA-P-000003/00.json",
+              "pointer": "",
+              "sha256": "90598efe987b1213fa0dc954740042ad07a3a2f0152ba1abe03f2ddd595c608e"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NMA-C-000001",
+      "kind": "case",
+      "legacy_ids": [
+        "fr-periodic-advection"
+      ],
+      "current_revision": "00",
+      "revisions": [
+        {
+          "revision": "00",
+          "label": {
+            "ja": "FR法の1D周期移流：Radau補正と既存DGの比較",
+            "en": "1D periodic FR advection: Radau correction and published DG comparison"
+          },
+          "problem_refs": [
+            "NMA-P-000001@00"
+          ],
+          "source_refs": [
+            "NMA-S-000001@00"
+          ],
+          "bindings": [
+            {
+              "role": "case-definition",
+              "path": "code/validated-examples/2026-11-23/sem-fr/cases.json",
+              "pointer": "/1",
+              "sha256": "798367a43c5dff3398fd92d46ecbf0ee40c8655f27a818de6f5c137bd59775e2"
+            },
+            {
+              "role": "input",
+              "path": "code/validated-examples/2026-11-23/sem-fr/inputs.json",
+              "pointer": "/cases/fr-periodic-advection",
+              "sha256": "8fd6d7fa0cc0005f2c81e663d703df7235488afb6f0f03f4de0323941e72085d"
+            },
+            {
+              "role": "acceptance",
+              "path": "code/validated-examples/2026-11-23/sem-fr/inputs.json",
+              "pointer": "/cases/fr-periodic-advection/acceptance",
+              "sha256": "8ae1682732e6d2aafbed2a0086db667d94af772a1a3151f16eedeb7d0452994b"
+            },
+            {
+              "role": "reference",
+              "path": "code/validated-examples/2026-11-23/sem-fr/cases.json",
+              "pointer": "/1/formulas",
+              "sha256": "47076aa0d38d0a5e25c0d8623204408cfdc8e3d13590140453689f644fddb7ee"
+            },
+            {
+              "role": "reference",
+              "path": "code/validated-examples/2026-11-23/sem-fr/cases.json",
+              "pointer": "/1/validation",
+              "sha256": "e9a910bdf036ebc5cf5e6e1176c72148d2a761089823a7e51e18250a713fee37"
+            },
+            {
+              "role": "saved-result",
+              "path": "code/validated-examples/2026-11-23/sem-fr/results/result.json",
+              "pointer": "/cases/1",
+              "sha256": "adcf2518edc1c1c9cbe4bb7a62b3c77bc6e6ed713e0011bdcc9b220dc1739c66"
+            },
+            {
+              "role": "saved-verification",
+              "path": "code/validated-examples/2026-11-23/sem-fr/verification.json",
+              "sha256": "63de17e91ba54215e7de815df931b8b2c6f04c65d5d43037b9c921c14ca75b54"
+            },
+            {
+              "role": "provenance",
+              "path": "code/validated-examples/2026-11-23/sem-fr/pre-run-contract.json",
+              "sha256": "64cccbb8409c9991d991d5644b06bf009c0983dab95c67d6b189790576695272"
+            },
+            {
+              "role": "provenance",
+              "path": "code/validated-examples/2026-11-23/sem-fr/baseline-provenance.json",
+              "sha256": "70001473d8ee048971fb9c348392ec86747f73478731eb6b323c01f1b08d4c9d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NMA-C-000002",
+      "kind": "case",
+      "legacy_ids": [
+        "sem-poisson-2d"
+      ],
+      "current_revision": "00",
+      "revisions": [
+        {
+          "revision": "00",
+          "label": {
+            "ja": "スペクトル要素法の2D Poisson：P1 FEMとh/p収束を比較",
+            "en": "2D spectral-element Poisson: P1 FEM comparison and h/p refinement"
+          },
+          "problem_refs": [
+            "NMA-P-000002@00"
+          ],
+          "source_refs": [
+            "NMA-S-000001@00"
+          ],
+          "bindings": [
+            {
+              "role": "case-definition",
+              "path": "code/validated-examples/2026-11-23/sem-fr/cases.json",
+              "pointer": "/0",
+              "sha256": "66f96071cb796ce06f792eaeeabcf9143ce821bb03a315d33a2982ed970b9070"
+            },
+            {
+              "role": "input",
+              "path": "code/validated-examples/2026-11-23/sem-fr/inputs.json",
+              "pointer": "/cases/sem-poisson-2d",
+              "sha256": "c5c7d9bf0db389fb9018bbc4d32aa3568d68c91849bda7904e4b55eb004c9208"
+            },
+            {
+              "role": "acceptance",
+              "path": "code/validated-examples/2026-11-23/sem-fr/inputs.json",
+              "pointer": "/cases/sem-poisson-2d/acceptance",
+              "sha256": "cfd513691f9267fe7e5e0c68655fd5be4f09d4838546fb8e9203aca56848a1e3"
+            },
+            {
+              "role": "reference",
+              "path": "code/validated-examples/2026-11-23/sem-fr/cases.json",
+              "pointer": "/0/formulas",
+              "sha256": "8191ba3fc9c3083c26c60048affc70f196a5e5fe2c079f8db76246afc6cf61c6"
+            },
+            {
+              "role": "reference",
+              "path": "code/validated-examples/2026-11-23/sem-fr/cases.json",
+              "pointer": "/0/validation",
+              "sha256": "e51ca7d551b6a1d3a87f309933cb6fc1e29a61c63c1c6b54f6dede73fc40517a"
+            },
+            {
+              "role": "saved-result",
+              "path": "code/validated-examples/2026-11-23/sem-fr/results/result.json",
+              "pointer": "/cases/0",
+              "sha256": "7dbf6eb90e9ba60f1e7b9e3d52284a13c288c8b0651eb19e6e52b8160f8a2870"
+            },
+            {
+              "role": "saved-verification",
+              "path": "code/validated-examples/2026-11-23/sem-fr/verification.json",
+              "sha256": "63de17e91ba54215e7de815df931b8b2c6f04c65d5d43037b9c921c14ca75b54"
+            },
+            {
+              "role": "provenance",
+              "path": "code/validated-examples/2026-11-23/sem-fr/pre-run-contract.json",
+              "sha256": "64cccbb8409c9991d991d5644b06bf009c0983dab95c67d6b189790576695272"
+            },
+            {
+              "role": "provenance",
+              "path": "code/validated-examples/2026-11-23/sem-fr/baseline-provenance.json",
+              "sha256": "70001473d8ee048971fb9c348392ec86747f73478731eb6b323c01f1b08d4c9d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NMA-C-000003",
+      "kind": "case",
+      "legacy_ids": [
+        "quantum-box-ho"
+      ],
+      "current_revision": "00",
+      "revisions": [
+        {
+          "revision": "00",
+          "label": {
+            "ja": "1次元箱型井戸・量子調和振動子",
+            "en": "Small 1D box and quantum harmonic-oscillator eigenpairs"
+          },
+          "problem_refs": [
+            "NMA-P-000003@00"
+          ],
+          "source_refs": [
+            "NMA-S-000002@00"
+          ],
+          "bindings": [
+            {
+              "role": "case-definition",
+              "path": "code/validated-examples/2026-11-25/quantum-small/cases.json",
+              "pointer": "/2",
+              "sha256": "45d0a610fbda30f4d91116319d25de1ebf1481d20615005a28d2b4f8dcd0d7f8"
+            },
+            {
+              "role": "input",
+              "path": "code/validated-examples/2026-11-25/quantum-small/inputs.json",
+              "pointer": "/eigen97",
+              "sha256": "6418881982f55fc84a33b869678ff0b47787fd2be6485f45229202647f2c0153"
+            },
+            {
+              "role": "acceptance",
+              "path": "code/validated-examples/2026-11-25/quantum-small/acceptance.json",
+              "pointer": "/97",
+              "sha256": "bd179446a6e0849f0a1c0920eeed71fc1b9a57b0ef34031a13bf4398786db2d9"
+            },
+            {
+              "role": "reference",
+              "path": "code/validated-examples/2026-11-25/quantum-small/cases.json",
+              "pointer": "/2/formulas",
+              "sha256": "30d89ed99b71530bea2b884ecd80f563dd7a1d777d5ca500d395a4445db5ef61"
+            },
+            {
+              "role": "reference",
+              "path": "code/validated-examples/2026-11-25/quantum-small/cases.json",
+              "pointer": "/2/validation",
+              "sha256": "773ec8ddf2625c9f7b899f978742f57197fa7abac2fd4f58e6d17a59904b0b25"
+            },
+            {
+              "role": "saved-result",
+              "path": "code/validated-examples/2026-11-25/quantum-small/results/result.json",
+              "pointer": "/cases/2",
+              "sha256": "4a24b054e0c8ce9eb37fb48a9f0d3d1a54b619f5114124be2c1fb770736c91e5"
+            },
+            {
+              "role": "saved-verification",
+              "path": "code/validated-examples/2026-11-25/quantum-small/verification.json",
+              "sha256": "f78f47618f7524ef69e2b96ed460f1d1e4636cf42775f1ae643e062dabf99dbe"
+            },
+            {
+              "role": "saved-result",
+              "path": "code/validated-examples/2026-11-25/quantum-small/results/97-result.json",
+              "sha256": "82ccdb178095657434724572f3c134eb2cc207d4d2e08162e08ee8c7aead260a"
+            },
+            {
+              "role": "provenance",
+              "path": "code/validated-examples/2026-11-25/quantum-small/freeze.json",
+              "sha256": "6299a7b6efcdf3826e284a374c29ce3ba8683d5ea08ccfa5cfda0dfcc50662b5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NMA-S-000001",
+      "kind": "source",
+      "legacy_ids": [
+        "sem-fr-2026-11-23"
+      ],
+      "current_revision": "00",
+      "revisions": [
+        {
+          "revision": "00",
+          "label": {
+            "ja": "SEM・FRの共有教育用パッケージ",
+            "en": "Shared educational SEM/FR package"
+          },
+          "problem_refs": [
+            "NMA-P-000001@00",
+            "NMA-P-000002@00"
+          ],
+          "source_refs": [],
+          "bindings": [
+            {
+              "role": "source",
+              "path": "code/validated-examples/2026-11-23/sem-fr/experiments.py",
+              "sha256": "3db26bbd169368d345bd7990684de8b5d8a79f7c032605a47bf0d53dd86189ac"
+            },
+            {
+              "role": "source",
+              "path": "code/validated-examples/2026-11-23/sem-fr/fr.py",
+              "sha256": "775ed8b7398ecfdfc8529f438294f768c265f48938b67fd07e516d0a8e98f3f4"
+            },
+            {
+              "role": "source",
+              "path": "code/validated-examples/2026-11-23/sem-fr/legacy/__init__.py",
+              "sha256": "dfada9f38d087f379b0231579d9a8ec231b2f9a9f16a252daef4f25772ae7881"
+            },
+            {
+              "role": "source",
+              "path": "code/validated-examples/2026-11-23/sem-fr/legacy/advection.py",
+              "sha256": "27128109c8a6f416eabce891d912436505cbc09fea460c30d71dcd44829504bd"
+            },
+            {
+              "role": "source",
+              "path": "code/validated-examples/2026-11-23/sem-fr/legacy/equations.py",
+              "sha256": "d1b589ad4b8a31d316c20926ef7104664609d789f31f6fb239c1d74bb310b619"
+            },
+            {
+              "role": "source",
+              "path": "code/validated-examples/2026-11-23/sem-fr/legacy/fem.py",
+              "sha256": "def8018fcf5b3c0c5ffa763b978a2cd47b62f54be240ec831e5f49613790f740"
+            },
+            {
+              "role": "source",
+              "path": "code/validated-examples/2026-11-23/sem-fr/legacy/krylov.py",
+              "sha256": "3241dc174c3e0cf496723152ec92f81e1b741cb4d826c02f88395621b965ae2d"
+            },
+            {
+              "role": "source",
+              "path": "code/validated-examples/2026-11-23/sem-fr/legacy/limiters.py",
+              "sha256": "f9e7fc43fcf4c77c030faf1495ec0d1573b272637284be70c2a4d62ba113f287"
+            },
+            {
+              "role": "source",
+              "path": "code/validated-examples/2026-11-23/sem-fr/legacy/riemann.py",
+              "sha256": "702ce9e08fbef67ed77363e8603e64f2da8a979d3b5abd6ffa62ab78344c95cf"
+            },
+            {
+              "role": "source",
+              "path": "code/validated-examples/2026-11-23/sem-fr/legacy/solvers.py",
+              "sha256": "7811862ea3384cef825a1d382c24c6e19a175fb688a024fa4117959eed4bf05d"
+            },
+            {
+              "role": "source",
+              "path": "code/validated-examples/2026-11-23/sem-fr/plot.py",
+              "sha256": "db9ca27eb84a8ae183926fb36edc73239a81c804d8455e902fadb3260cac5271"
+            },
+            {
+              "role": "source",
+              "path": "code/validated-examples/2026-11-23/sem-fr/polynomials.py",
+              "sha256": "0f2dfe354eae6ffbb77910337b888671d2d062af34a101b2ec90b08174c4e2f7"
+            },
+            {
+              "role": "dependency",
+              "path": "code/validated-examples/2026-11-23/sem-fr/requirements-plotting.txt",
+              "sha256": "86f7db4dea91de3b948d9c441bfe0a95bf497909529bbeeddc349c6cee9621bc"
+            },
+            {
+              "role": "dependency",
+              "path": "code/validated-examples/2026-11-23/sem-fr/requirements.txt",
+              "sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75"
+            },
+            {
+              "role": "source",
+              "path": "code/validated-examples/2026-11-23/sem-fr/run.py",
+              "sha256": "59b273fdc64ef145abe3fa1568357a69ce75b606185f17853336fe0b26b4f055"
+            },
+            {
+              "role": "source",
+              "path": "code/validated-examples/2026-11-23/sem-fr/sem.py",
+              "sha256": "ab93c3acc60631b54881fd4106e7a33793b028d842722a32e0ef87ab58e1ab43"
+            },
+            {
+              "role": "source",
+              "path": "code/validated-examples/2026-11-23/sem-fr/test_sem_fr.py",
+              "sha256": "5f801022e6dcbcf7c67b8deb8713111461b3790f1937dfdccb0ba5d3d022fa94"
+            },
+            {
+              "role": "source-manifest",
+              "path": "code/validated-examples/2026-11-23/sem-fr/source-manifest.json",
+              "sha256": "800461c1ae226cc1f4350d4fce65a0c24ef2bce851ad862ad55394b47fc321d1"
+            },
+            {
+              "role": "archive",
+              "path": "code/validated-examples/2026-11-23/sem-fr/atlas-sem-fr-2026-11-23.zip",
+              "sha256": "f7e852c18571791492fa4b804cba1fdd744909e690a90d2708a422a4b5e99d66"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NMA-S-000002",
+      "kind": "source",
+      "legacy_ids": [
+        "quantum-small-2026-11-25"
+      ],
+      "current_revision": "00",
+      "revisions": [
+        {
+          "revision": "00",
+          "label": {
+            "ja": "小規模量子模型パッケージ（今回の対応付けは箱・調和振動子）",
+            "en": "Small quantum-model package (pilot maps box/oscillator only)"
+          },
+          "problem_refs": [
+            "NMA-P-000003@00"
+          ],
+          "source_refs": [],
+          "bindings": [
+            {
+              "role": "source",
+              "path": "code/validated-examples/2026-11-25/quantum-small/coupled_md.py",
+              "sha256": "068b0d14ebce78b9f4aa85ff766a5ac15affa32d326079dd5c65d0ee86fd5232"
+            },
+            {
+              "role": "source",
+              "path": "code/validated-examples/2026-11-25/quantum-small/eigenpairs.py",
+              "sha256": "bc97077f6115b669fc69f9a7b1a80dba8dd3306798b321cff395dc3d5862f3b2"
+            },
+            {
+              "role": "source",
+              "path": "code/validated-examples/2026-11-25/quantum-small/io_utils.py",
+              "sha256": "ac9f973cd96b4ff911e1da37648e81ab7e501721b1baaa90cbe3ec20ae9bd784"
+            },
+            {
+              "role": "source",
+              "path": "code/validated-examples/2026-11-25/quantum-small/molecules.py",
+              "sha256": "1001f93a6d3f2b53dbe9a587f89232b80fe28265f5b21d94dbb50ace6752db54"
+            },
+            {
+              "role": "source",
+              "path": "code/validated-examples/2026-11-25/quantum-small/periodic_projector.py",
+              "sha256": "0fb62ecb5ae7a52c27058084de77394094f711fe860b934a162f7b6ab5329f67"
+            },
+            {
+              "role": "source",
+              "path": "code/validated-examples/2026-11-25/quantum-small/plot.py",
+              "sha256": "f17d87be7f323160242efa6137cfa958c1a864f15c875f75c871147ea06800ce"
+            },
+            {
+              "role": "source",
+              "path": "code/validated-examples/2026-11-25/quantum-small/plot_results.py",
+              "sha256": "32233bd7cf0d46e38168445bbe6f8e488119c8ab65b415e9ef0e7c0cebea25b7"
+            },
+            {
+              "role": "dependency",
+              "path": "code/validated-examples/2026-11-25/quantum-small/requirements-dev.txt",
+              "sha256": "a0e201ecda2bc871726ea3bb5db9cfe6b2109f60d8da88eecf910b790794b03d"
+            },
+            {
+              "role": "dependency",
+              "path": "code/validated-examples/2026-11-25/quantum-small/requirements-plotting.txt",
+              "sha256": "fd70c5b60168fd91d504345ec04061037fb9de084f7ec8fa53255486c9c94ab1"
+            },
+            {
+              "role": "dependency",
+              "path": "code/validated-examples/2026-11-25/quantum-small/requirements.txt",
+              "sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75"
+            },
+            {
+              "role": "source",
+              "path": "code/validated-examples/2026-11-25/quantum-small/run.py",
+              "sha256": "24dd3ab244a2171bf11de6613ce29601e5fa53e44ed76aea0b0ea509e4b28900"
+            },
+            {
+              "role": "source",
+              "path": "code/validated-examples/2026-11-25/quantum-small/test_quantum_small.py",
+              "sha256": "93e14859adcd480e4f398a77242347a80a9160bda827cead603f0eb9145e286e"
+            },
+            {
+              "role": "source-manifest",
+              "path": "code/validated-examples/2026-11-25/quantum-small/source-manifest.json",
+              "sha256": "b13b8873c5f74ec3b1b25207ed145cf7ece1ceec2e0e254a9b7f18e93f73350c"
+            },
+            {
+              "role": "archive",
+              "path": "code/validated-examples/2026-11-25/quantum-small/atlas-quantum-small-2026-11-25.zip",
+              "sha256": "b332d168c00bd46862a4b5a98e42054e1749e0b734318e96af0049ab9d255cfc"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

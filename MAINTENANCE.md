@@ -53,6 +53,16 @@ PY
 
 ## 編集元と生成物の境界
 
+### 問題・固定ケース・ソースの恒久ID（代表例）
+
+初回対応は `catalog/atlas-identities.json`、変更禁止の初回履歴は `catalog/atlas-identity-history.json`。
+命名・改訂・対象3問題/3ケース/2共有実装と公開前の確認手順は [ID保守ガイド](docs/atlas-identities.md) を参照。
+`python3 -B scripts/check-atlas-identities.py` でID/参照/ハッシュ/保存物を照合する。
+これは数値計算の再実行ではない。新改訂は追記し、旧版・公差・ZIPを上書きしない。
+次回以降の変更では `--baseline` に変更前の承認済み台帳を指定し、初回以後の既存改訂も保持する。
+
+### 既存の編集元
+
 - **登録と公開状態**：入口は `catalog/atlas-registration.json`、契約は `catalog/schemas/atlas-registration.schema.json`。手法は `catalog/atlas-methods.json`、補助群・現行editionは `catalog/atlas-depth-expansion.json` を編集する。`scripts/atlas_registration.py` と `scripts/fixtures/atlas-inventory.mjs` が共通のID・件数を読む。群ID・総数を各機能へ手で複製しない。手法一覧のHTML/JSON/Markdownは `scripts/build-atlas-resources.py` などの生成物。
 - **本文と導線**：目的別入口は `catalog/atlas-goals.json` と `catalog/atlas-purpose.json`、詳説章は `catalog/atlas-detailed-reading.json` など該当分野のcatalog。式は `catalog/atlas-equations.json`、問題は `catalog/atlas-test-problems.json`。実行例への関係は `scripts/atlas_execution_routes.py` が公開台帳・直接対応から解決する。一般モデルの説明と実装した範囲、文献を読んだ範囲と未確認事項を分けて記す。
 - **検索と共通画面**：編集用JSは `frontend/search/` と `frontend/atlas/app.js`。`scripts/search_assets.py` と `scripts/atlas_runtime_assets.py` が公開モジュールと資産manifestを生成する。可変文言は `atlas-runtime-data.mjs` へ生成される。生成済みJSや索引の直接編集、ビルダーによる意味的なJS文字列置換での補修を行わない。既存の手書き `numerical-methods-atlas/coverage.js` は編集元として扱う。

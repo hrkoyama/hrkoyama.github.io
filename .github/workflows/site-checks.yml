@@ -19,6 +19,19 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Check atlas problem, fixed-case and source identity bindings
+        env:
+          ATLAS_IDENTITY_BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before || '' }}
+        run: |
+          baseline_args=()
+          if [[ -n "$ATLAS_IDENTITY_BASE_SHA" && ! "$ATLAS_IDENTITY_BASE_SHA" =~ ^0{40}$ ]]; then
+            [[ "$ATLAS_IDENTITY_BASE_SHA" =~ ^[0-9a-f]{40}$ ]] || exit 1
+            if ! git cat-file -e "$ATLAS_IDENTITY_BASE_SHA^{commit}" 2>/dev/null; then
+              git fetch --no-tags --depth=1 origin "$ATLAS_IDENTITY_BASE_SHA"
+            fi
+            baseline_args+=(--baseline-ref "$ATLAS_IDENTITY_BASE_SHA")
+          fi
+          python3 scripts/check-atlas-identities.py "${baseline_args[@]}"
       - name: Regenerate every index and reject stale generated files
         run: python3 scripts/prepare-indexes.py --check
       - name: Check public links, data and generated indexes

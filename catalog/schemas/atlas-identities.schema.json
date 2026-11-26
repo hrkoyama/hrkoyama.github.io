@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Numerical Methods Atlas problem, fixed-case and source identities",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["$schema", "schema_version", "namespace", "scope", "revision_policy", "allocation", "entities"],
+  "properties": {
+    "$schema": {"const": "./schemas/atlas-identities.schema.json"},
+    "schema_version": {"const": 1},
+    "namespace": {"const": "NMA"},
+    "scope": {"const": "pilot"},
+    "revision_policy": {"const": "hex-min2-no-wrap-v1"},
+    "allocation": {
+      "type": "object", "additionalProperties": false, "required": ["P", "C", "S"],
+      "properties": {
+        "P": {"type": "integer", "minimum": 1},
+        "C": {"type": "integer", "minimum": 1},
+        "S": {"type": "integer", "minimum": 1}
+      }
+    },
+    "entities": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/entity"}}
+  },
+  "$defs": {
+    "revision": {"type": "string", "pattern": "^(?:[0-9A-F]{2}|[1-9A-F][0-9A-F]{2,})$"},
+    "label": {
+      "type": "object", "additionalProperties": false, "required": ["ja", "en"],
+      "properties": {"ja": {"type": "string", "minLength": 1}, "en": {"type": "string", "minLength": 1}}
+    },
+    "binding": {
+      "type": "object", "additionalProperties": false, "required": ["role", "path", "sha256"],
+      "properties": {
+        "role": {"enum": ["problem", "case-definition", "input", "acceptance", "reference", "saved-result", "saved-verification", "source", "dependency", "source-manifest", "archive", "provenance"]},
+        "path": {"type": "string", "minLength": 1, "description": "Canonical root-relative POSIX path; checker rejects traversal and symlink escapes."},
+        "pointer": {"type": "string", "pattern": "^(?:/(?:[^~]|~[01])*)*$", "description": "RFC 6901 JSON pointer; absence hashes raw bytes, presence hashes canonical JSON fragment."},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "snapshot": {
+      "type": "object", "additionalProperties": false,
+      "required": ["revision", "label", "problem_refs", "source_refs", "bindings"],
+      "properties": {
+        "revision": {"$ref": "#/$defs/revision"},
+        "label": {"$ref": "#/$defs/label"},
+        "problem_refs": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^NMA-P-[0-9]{6,}@[0-9A-F]{2,}$"}},
+        "source_refs": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^NMA-S-[0-9]{6,}@[0-9A-F]{2,}$"}},
+        "bindings": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/binding"}}
+      }
+    },
+    "entity": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "kind", "legacy_ids", "current_revision", "revisions"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^NMA-[PCS]-[0-9]{6,}$"},
+        "kind": {"enum": ["problem", "case", "source"]},
+        "legacy_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "current_revision": {"$ref": "#/$defs/revision"},
+        "revisions": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/snapshot"}}
+      },
+      "allOf": [
+        {"if": {"properties": {"kind": {"const": "problem"}}}, "then": {"properties": {"id": {"pattern": "^NMA-P-"}}}},
+        {"if": {"properties": {"kind": {"const": "case"}}}, "then": {"properties": {"id": {"pattern": "^NMA-C-"}}}},
+        {"if": {"properties": {"kind": {"const": "source"}}}, "then": {"properties": {"id": {"pattern": "^NMA-S-"}}}}
+      ]
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "id": "quantum-box-ho",
+  "group": "quantum",
+  "name": {
+    "ja": "1次元箱型井戸・量子調和振動子",
+    "en": "Small 1D box and quantum harmonic-oscillator eigenpairs"
+  },
+  "chapter": "validation-quantum-small",
+  "reading_section": "quantum-box-ho",
+  "availability": "saved-output",
+  "code_base": "/code/validated-examples/2026-11-25/quantum-small/",
+  "verification": "/code/validated-examples/2026-11-25/quantum-small/verification.json",
+  "commands": [
+    "python -B -W error -m pytest -q -p no:cacheprovider test_quantum_small.py",
+    "python -B -W error run.py --input inputs.json --output fresh-output"
+  ],
+  "evidence": [
+    {
+      "path": "code/validated-examples/2026-11-25/quantum-small/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "quantum-box-ho"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-25/quantum-small/results/quantum-box-ho.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-25/quantum-small/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    }
+  ],
+  "supplemental_examples": [
+    {
+      "id": "quantum-box-ho",
+      "url": "/numerical-methods-atlas/validation/quantum-box-ho/",
+      "name": {
+        "ja": "1次元箱型井戸・量子調和振動子",
+        "en": "Small 1D box and quantum harmonic-oscillator eigenpairs"
+      }
+    }
+  ]
+}

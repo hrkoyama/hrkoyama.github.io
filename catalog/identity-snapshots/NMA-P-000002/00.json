@@ -1,0 +1,79 @@
+{
+  "id": "poisson-2d-sine",
+  "group": "elliptic",
+  "name": {
+    "ja": "2次元Poisson・正弦単一モード（FEMを含む）",
+    "en": "2D Poisson / single sine mode, including FEM"
+  },
+  "chapter": "fem",
+  "evidence": [
+    {
+      "path": "numerical-methods-atlas/assets/poisson-comparison/comparison.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "single-mode"
+      }
+    },
+    {
+      "path": "numerical-methods-atlas/assets/multidimensional-fields.json",
+      "json_pointer": "/fem"
+    },
+    {
+      "path": "numerical-methods-atlas/assets/solver-foundations.json",
+      "json_pointer": "/fem"
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/foundations/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "sa-amg"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/foundations/results/sa-amg.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-22/foundations/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/sem-fr/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "sem-poisson-2d"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/sem-fr/inputs.json",
+      "json_pointer": "/cases/sem-poisson-2d"
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/sem-fr/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/sem-fr/results/sem-poisson-2d-preview.png",
+      "artifact": "image"
+    }
+  ],
+  "availability": "saved-output",
+  "supplemental_examples": [
+    {
+      "id": "sa-amg",
+      "url": "/numerical-methods-atlas/validation/sa-amg/",
+      "name": {
+        "ja": "行列から粗視化するAMG：残差と解誤差を分ける",
+        "en": "Matrix-based AMG: distinguish residual and solution error"
+      }
+    },
+    {
+      "id": "sem-poisson-2d",
+      "url": "/numerical-methods-atlas/validation/sem-poisson-2d/",
+      "name": {
+        "ja": "スペクトル要素法の2D Poisson：P1 FEMとh/p収束を比較",
+        "en": "2D spectral-element Poisson: P1 FEM comparison and h/p refinement"
+      }
+    }
+  ]
+}

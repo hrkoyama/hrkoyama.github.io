@@ -1,0 +1,93 @@
+{
+  "id": "advection-sine",
+  "group": "transport",
+  "name": {
+    "ja": "周期正弦波の線形移流",
+    "en": "Periodic sine-wave advection"
+  },
+  "chapter": "stability",
+  "evidence": [
+    {
+      "path": "numerical-methods-atlas/equation-gallery.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "advection"
+      }
+    },
+    {
+      "path": "numerical-methods-atlas/cip.json",
+      "json_pointer": "/cases",
+      "where": {
+        "profile": "sine"
+      }
+    },
+    {
+      "path": "numerical-methods-atlas/limiters.json",
+      "json_pointer": "/cases",
+      "where": {
+        "profile": "sine"
+      }
+    },
+    {
+      "path": "numerical-methods-atlas/experiments.json",
+      "json_pointer": "/dg"
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/weno-critical/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "weno-critical-epsilon"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/weno-critical/results/weno-critical-epsilon-preview.png",
+      "artifact": "image"
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/weno-critical/inputs.json",
+      "json_pointer": "/cases/weno-critical-epsilon"
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/weno-critical/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/sem-fr/results/result.json",
+      "json_pointer": "/cases",
+      "where": {
+        "id": "fr-periodic-advection"
+      }
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/sem-fr/inputs.json",
+      "json_pointer": "/cases/fr-periodic-advection"
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/sem-fr/verification.json",
+      "json_pointer": "/all_cases_rerun"
+    },
+    {
+      "path": "code/validated-examples/2026-11-23/sem-fr/results/fr-periodic-advection-preview.png",
+      "artifact": "image"
+    }
+  ],
+  "availability": "saved-output",
+  "supplemental_examples": [
+    {
+      "id": "weno-critical-epsilon",
+      "url": "/numerical-methods-atlas/validation/weno-critical-epsilon/",
+      "name": {
+        "ja": "WENO-JS／Z：臨界点とεの固定比較",
+        "en": "WENO-JS/Z: fixed critical-point and epsilon comparison"
+      }
+    },
+    {
+      "id": "fr-periodic-advection",
+      "url": "/numerical-methods-atlas/validation/fr-periodic-advection/",
+      "name": {
+        "ja": "FR法の1D周期移流：Radau補正と既存DGの比較",
+        "en": "1D periodic FR advection: Radau correction and published DG comparison"
+      }
+    }
+  ]
+}
