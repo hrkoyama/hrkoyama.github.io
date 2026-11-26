@@ -121,6 +121,22 @@ test('three new groups render their own figures, code and reference routes',asyn
   await expect(reference).toHaveCount(1);const referenceURL=new URL(await reference.getAttribute('href'),page.url());
   expect(referenceURL.pathname).toBe('/numerical-methods-atlas/solutions/');expect(referenceURL.searchParams.get('lang')).toBe(language);expect(referenceURL.hash).toBe(`#solution-${id}-${language}`);
   const readingURL=new URL(`/numerical-methods-atlas/${language}/read/validation-${release.group}/`,page.url());readingURL.searchParams.set('lang',language);readingURL.hash=id;
+  // Auxiliary reading/data links use the reviewed native closed disclosure.
+  const validationSection=page.locator(`section[data-site-language="${language}"]`);
+  const pageTools=validationSection.locator('.validation-page-tools > details');
+  await expect(pageTools).toHaveCount(1);
+  expect(await pageTools.evaluate(node=>node.open)).toBe(false);
+  const opening=validationSection.locator('.validation-opening[data-chapter-opening]');
+  await expect(opening.locator('h1')).toBeVisible();
+  await expect(opening.locator('p').first()).toBeVisible();
+  expect(await validationSection.evaluate(root=>{
+   const h1=root.querySelector('.validation-opening h1'),lead=root.querySelector('.validation-opening p'),tools=root.querySelector('.validation-page-tools');
+   return !!h1&&!!lead&&!!tools&&!!(h1.compareDocumentPosition(lead)&Node.DOCUMENT_POSITION_FOLLOWING)&&!!(lead.compareDocumentPosition(tools)&Node.DOCUMENT_POSITION_FOLLOWING);
+  })).toBe(true);
+  const pageToolsSummary=pageTools.locator(':scope > summary');
+  await expect(pageToolsSummary).toHaveCount(1);await expect(pageToolsSummary).toBeVisible();
+  await pageToolsSummary.focus();await expect(pageToolsSummary).toBeFocused();
+  await pageToolsSummary.press('Enter');await expect(pageTools).toHaveAttribute('open','');
   const reading=page.locator(`a[href="${readingURL.href}"]:visible`).first();await expect(reading).toBeVisible();
   const zip=page.locator('a[href$=".zip"]:visible').first();await expect(zip).toBeVisible();
   const zipURL=new URL(await zip.getAttribute('href'),page.url());expect(zipURL.pathname).toBe(new URL(release.archive,release.base).pathname);expect((await page.request.head(zipURL.pathname)).ok()).toBe(true);
