@@ -48,3 +48,20 @@
 .method-route-navigation pre{max-width:100%;overflow-x:auto;padding:12px 14px;background:#edf1e4;font-size:.8rem;line-height:1.8;white-space:pre}
 @media(max-width:650px){.method-route-links{grid-template-columns:repeat(2,minmax(0,1fr))}.method-route-navigation .method-route-section>h2{font-size:1.15rem}.method-route-problem-overview{gap:10px}.method-route-navigation .method-route-problem,.method-route-navigation .method-route-reference-context,.method-route-navigation .method-route-execution-list>li{padding:11px}}
 @media(max-width:400px){.method-route-problem-overview{grid-template-columns:minmax(0,1fr)}.method-route-navigation .method-route-picture{width:100%}}
+
+/* Supplementary scope prose follows the method's primary resource routes. */
+@media screen {
+  .atlas-resource-main .method-summary-examples{margin:1.5rem 0 2rem;border-top:1px solid var(--site-visual-rule,#c7d0bf)}
+  .atlas-resource-main .method-summary-examples>summary{box-sizing:border-box;display:list-item;min-height:2.75rem;padding:.625rem 0;cursor:pointer}
+  .atlas-resource-main .method-summary-examples>summary:focus-visible{outline:3px solid var(--site-visual-accent,#9b5b26);outline-offset:3px}
+  .atlas-resource-main .method-summary-examples>ul{max-width:var(--site-layout-prose,48rem);margin:.5rem 0 1rem;padding-left:1.4rem}
+  .atlas-resource-main .method-summary-examples>ul>li{margin:.75rem 0}
+}
+
+/* Only method-page prose/URL labels need emergency mobile breaks. Keep
+   scientific hosts and scrollable preformatted code outside this role. */
+@media screen and (max-width:650px) {
+  .atlas-resource-main>section[data-site-language]:has(>.method-route-navigation)>p:not(:has(svg,canvas,img,math,.katex,.MathJax,mjx-container,pre)),
+  .atlas-resource-main>section[data-site-language]:has(>.method-route-navigation)>.method-verification>p:not(:has(svg,canvas,img,math,.katex,.MathJax,mjx-container,pre)),
+  .atlas-resource-main>section[data-site-language]:has(>.method-route-navigation)>ul>li>a:not(:has(svg,canvas,img,math,.katex,.MathJax,mjx-container,pre)){overflow-wrap:anywhere}
+}

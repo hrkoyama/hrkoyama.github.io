@@ -236,6 +236,38 @@ def method_search_text(x):
             *x['summary'].values(),x['status'],*STATUS[x['status']].values(),status(x,'ja'),status(x,'en')]
     return ' '.join(values)
 
+
+def method_intro_parts(method):
+    """Separate only exact, bilingual, release-bound scope suffixes for HTML."""
+    profiles=method.get('supplemental_scope_profiles',[])
+    releases=([method['depth_release']] if method.get('depth_release') else [])+method.get('depth_additional_releases',[])
+    parts={};selected={}
+    for language in ('ja','en'):
+        summary=method['summary'][language]
+        selected[language]=[i for i,profile in enumerate(profiles) if profile['scope'][language] in summary]
+        matches=[profiles[i] for i in selected[language]]
+        scopes=[profile['scope'][language] for profile in matches]
+        if not scopes:
+            parts[language]=(summary,[])
+            continue
+        suffix=' '+' '.join(scopes)
+        if (any(profile['release'] not in releases for profile in matches)
+                or any(not scope or summary.count(scope)!=1 for scope in scopes)
+                or not summary.endswith(suffix) or len(summary)<=len(suffix)):
+            raise ValueError('Method summary needs an exact release-bound scope suffix: '+method['id'])
+        parts[language]=(summary[:-len(suffix)],scopes)
+    if selected['ja']!=selected['en']:
+        raise ValueError('Method summary scope suffixes disagree across languages: '+method['id'])
+    return parts
+
+
+def render_method_summary_examples(parts,lang):
+    """Keep the original supplementary prose available after the main routes."""
+    if not parts[1]:return ''
+    title='追加の固定入力例' if lang=='ja' else 'Additional fixed-input examples'
+    return '<details class="method-summary-examples"><summary>'+title+'</summary><ul>'+''.join('<li>'+esc(scope)+'</li>' for scope in parts[1])+'</ul></details>'
+
+
 def method_filter_controls(lang):
     ja=lang=='ja'
     labels={
@@ -303,13 +335,17 @@ if REVIEWED:
 
 for x in METHODS:
     record=public_record(x)
+    summary_parts=method_intro_parts(x)
     url='/numerical-methods-atlas/methods/'+x['id']+'/'
     sections=[]
     for lang in ['ja','en']:
-        ja=lang=='ja';body='<section data-site-language="'+lang+'" lang="'+lang+'"><p class="eyebrow">'+esc(x['group'][lang])+'</p><h1>'+esc(x['name'][lang])+'</h1><p class="resource-status">'+status(x,lang)+'</p><p class="intro">'+esc(x['summary'][lang])+'</p>'+nav(lang)
-        if x.get('aliases'):body+='<p>'+('別名・表記：' if ja else 'Other names: ')+esc(' / '.join(x['aliases']))+'</p>'
+        ja=lang=='ja';body='<section data-site-language="'+lang+'" lang="'+lang+'"><p class="eyebrow">'+esc(x['group'][lang])+'</p><h1>'+esc(x['name'][lang])+'</h1><p class="resource-status">'+status(x,lang)+'</p><p class="intro">'+esc(summary_parts[lang][0])+'</p>'+nav(lang)
+        aliases=('<p>'+('別名・表記：' if ja else 'Other names: ')+esc(' / '.join(x['aliases']))+'</p>') if x.get('aliases') else ''
+        if not summary_parts[lang][1]:body+=aliases
         body+=render_method_route_links(record['problem_navigation'],lang)
+        if summary_parts[lang][1]:body+=aliases
         body+=render_method_routes(record['problem_navigation'],lang,method_route_view_record(record))
+        body+=render_method_summary_examples(summary_parts[lang],lang)
         if x.get('method_review'):body+=review_intro(x,lang)
         if x['status']=='planned':
             body+='<h2>'+('次の成果物' if ja else 'Next deliverable')+'</h2><p>'+esc(x['next_deliverable'][lang])+'</p>'

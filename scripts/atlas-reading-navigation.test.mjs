@@ -157,8 +157,14 @@ test('navigation changes preserve textbooks and stability articles, anchors and 
     const content = json(`numerical-methods-atlas/content.${lang}.json`);
     for (const chapter of ['textbooks','stability']) {
       const html = read(`numerical-methods-atlas/${lang}/read/${chapter}/index.html`);
-      const article = html.match(/<article\b[^>]*>([\s\S]*?)<\/article>/)?.[1];
+      let article = html.match(/<article\b[^>]*>([\s\S]*?)<\/article>/)?.[1];
       assert.ok(article);
+      if (html.includes('data-reading-layout="opening-first"')) {
+        const opening = html.match(/<!-- legacy-reading-opening --><div class="prose legacy-reading-opening" data-chapter-opening data-legacy-reading-opening>([\s\S]*?)<\/div><!-- \/legacy-reading-opening -->/);
+        const notice = article.match(/<!-- legacy-reading-leading-notice -->([\s\S]*?)<!-- \/legacy-reading-leading-notice -->/);
+        assert.ok(opening && notice,'the exact reversible title/lead and leading-notice parts are present');
+        article = notice[1]+opening[1]+article.replace(notice[0],'');
+      }
       assert.equal(text(article), text(content[chapter].html), `${lang}/${chapter}: the source article remains intact`);
       assert.deepEqual(ids(article), ids(content[chapter].html), `${lang}/${chapter}: all existing article anchors survive`);
       const toc = html.match(/<aside\b[^>]*class="chapter-toc"[^>]*>([\s\S]*?)<\/aside>/)?.[1];
@@ -169,6 +175,81 @@ test('navigation changes preserve textbooks and stability articles, anchors and 
       assert.ok(ids(html).includes('main'), 'the skip-to-content target is retained');
     }
   }
+});
+
+test('legacy opening projection preserves all original bytes, desktop anchors and upstream article refreshes', () => {
+  const output = execFileSync('python3', ['-B','-c',String.raw`
+import collections,importlib.util,json,pathlib,re
+path=pathlib.Path('scripts/build-atlas-reading-navigation.py')
+spec=importlib.util.spec_from_file_location('reading_navigation',path);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
+root=pathlib.Path.cwd();resources=json.loads((root/'catalog/atlas-reading-index.json').read_text())['resource_chapters']
+scopes={};checked=0;with_lead=0;without_lead=0;leading_notices=0
+for language in ['ja','en']:
+ documents=json.loads((root/'numerical-methods-atlas'/('content.'+language+'.json')).read_text())
+ scope=[]
+ for page in (root/'numerical-methods-atlas'/language/'read').glob('*/index.html'):
+  current=page.read_text();chapter=page.parent.name
+  eligible=chapter in documents and chapter not in resources and 'class="reading-shell page-width"' in current and bool(m.SIDEBAR.search(current))
+  if not eligible:
+   assert 'data-reading-layout="opening-first"' not in current,'Non-legacy page opted in: '+str(page)
+   continue
+  scope.append(chapter);before=m.restore_legacy_article(current);after=m.legacy_reading_layout(before)
+  assert m.restore_legacy_article(after)==before,'Original page byte projection: '+str(page)
+  assert m.legacy_reading_layout(after)==after,'Idempotent opening: '+str(page)
+  opening=m.marked_part(after,'legacy-reading-opening')[1]
+  article=m.ARTICLE.search(after);old_article=m.ARTICLE.search(before)
+  assert len(re.findall(r'<h1\b',after))==1
+  assert '<h1' in opening and '<h1' not in article[2]
+  if '<p' in opening:with_lead+=1
+  else:without_lead+=1
+  notice=m.marked_part(article[2],'legacy-reading-leading-notice')[1]
+  if notice.strip():leading_notices+=1
+  desktop=re.search(r'<aside class="chapter-toc">(.*?)</aside>',before,re.S)[0]
+  assert desktop in after,'Desktop contents changed: '+str(page)
+  nav=re.search(r'<nav\b[^>]*>(.*?)</nav>',desktop,re.S)
+  mobile=m.marked_part(after,'legacy-reading-mobile-toc')
+  assert nav[1] in mobile[1],'Mobile contents links are not an exact copy: '+str(page)
+  assert mobile[1].startswith('<nav '),'Duplicate TOC must be semantic navigation, not exported prose'
+  assert not re.search(r'<details\b[^>]*\bopen(?:\s|=|>)',mobile[1]),'Mobile contents must start closed'
+  original_ids=re.findall(r'\bid="([^"]+)"',before)
+  assert re.findall(r'\bid="([^"]+)"',after)==original_ids,'IDs changed: '+str(page)
+  # The new mobile copy is the sole source of additional links. Remove that
+  # exact bounded block, then compare the full href multiset without skips.
+  without_mobile=after[:mobile.start()]+after[mobile.end():]
+  hrefs=lambda html:collections.Counter(re.findall(r'\bhref="([^"]*)"',html))
+  assert hrefs(without_mobile)==hrefs(before),'Existing URLs changed: '+str(page)
+  ids=set(original_ids)
+  assert all(anchor in ids for anchor in re.findall(r'href="#([^"]+)"',nav[0])),'Dangling mobile contents anchor'
+  assert after.index('</h1>')<after.index(m.POSITION)<after.index('legacy-reading-mobile-toc')<article.start()
+  # Existing upstream generators may replace the full article while leaving
+  # the previous extracted opening outside it. The new source wins exactly.
+  refreshed=old_article[2].replace('</h1>',' [refreshed]</h1>',1)
+  expected=before[:old_article.start(2)]+refreshed+before[old_article.end(2):]
+  upstream=after[:article.start(2)]+refreshed+after[article.end(2):]
+  assert m.legacy_reading_layout(upstream)==m.legacy_reading_layout(expected),'Upstream full article refresh: '+str(page)
+  # A bounded upstream notice may also be prepended without replacing H1.
+  extra='<aside id="new-notice"><p>Existing scientific scope stays visible.</p></aside>'
+  prepended=after[:article.start(2)]+extra+article[2]+after[article.end(2):]
+  expected=before[:old_article.start(2)]+extra+old_article[2]+before[old_article.end(2):]
+  assert m.restore_legacy_article(m.legacy_reading_layout(prepended))==expected
+  checked+=1
+ scopes[language]=set(scope)
+assert scopes['ja']==scopes['en'] and len(scopes['ja'])==44
+assert checked==88 and with_lead>0 and without_lead>0 and leading_notices==8
+# Malformed layout boundaries must fail, rather than silently dropping prose.
+sample=(root/'numerical-methods-atlas/en/read/elliptic/index.html').read_text();sample=m.restore_legacy_article(sample)
+for invalid in [sample.replace('</h1>','</h1><h1>Duplicate</h1>',1),sample.replace('class="chapter-toc"','class="not-a-toc"',1)]:
+ try:m.legacy_reading_layout(invalid)
+ except ValueError:pass
+ else:raise AssertionError('Ambiguous source accepted')
+print(json.dumps(dict(editions=checked,logical_chapters=len(scopes['ja']),with_existing_lead=with_lead,without_existing_lead=without_lead,leading_scientific_notices=leading_notices,byte_projection=True,href_multiset=True,upstream_refresh=True)))
+`],{cwd:fileURLToPath(root),encoding:'utf8'});
+  const result=JSON.parse(output);
+  assert.equal(result.editions,88);
+  assert.equal(result.logical_chapters,44);
+  assert.equal(result.byte_projection,true);
+  assert.equal(result.href_multiset,true);
+  assert.equal(result.upstream_refresh,true);
 });
 
 test('textbooks and references are labeled as learning resources in both editions', () => {
