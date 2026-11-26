@@ -11,6 +11,7 @@ import json
 import re
 
 from atlas_goal_availability import load_supplemental_examples
+from atlas_reading_presentation import original_reading_document, retain_reading_presentation
 
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG = 'catalog/atlas-mhd-supplements.json'
@@ -102,7 +103,9 @@ def build(root=ROOT):
             chapter['headings'].append({'level':2, 'id':config['section_id'], 'title':config['title'][language]})
             dump(path, data)
         page = root/'numerical-methods-atlas'/language/'read/mhd/index.html'
-        document = page.read_text()
+        # Remove the duplicate mobile TOC before globally checking the bounded
+        # historical overlay/TOC markers, then restore the same presentation.
+        document, opening_first = original_reading_document(page.read_text())
         article = re.compile(r'(<article class="prose" lang="'+language+r'">)(.*?)(</article>)', re.S)
         document, count = article.subn(lambda match:match[1]+updated_body(match[2], overlay, config, language, 'static_article')+match[3], document)
         assert count == 1
@@ -111,6 +114,7 @@ def build(root=ROOT):
         toc_link = TOC_START+link('#'+config['section_id'], config['title'][language])+TOC_END
         document, count = toc.subn(lambda match:match[1]+match[2]+toc_link+match[3], document)
         assert count == 1
+        document = retain_reading_presentation(document, opening_first)
         page.write_text(document)
         fields = ['id', 'group', 'title', 'summary', 'limits', 'url', 'reading', 'code_urls', 'test_urls', 'download', 'results', 'verification']
         dump(page.parent/'supplements.json', {'schema_version':1, 'locale':language, 'chapter':'mhd', 'title':config['title'][language],

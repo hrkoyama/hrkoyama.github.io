@@ -11,6 +11,7 @@ import json
 import re
 
 from atlas_goal_availability import load_supplemental_examples
+from atlas_reading_presentation import original_reading_document, retain_reading_presentation
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -107,7 +108,9 @@ def build(root=ROOT):
             chapter['headings'].append({'level':2, 'id':config['section_id'], 'title':config['title'][language]})
             planned.append((path, data, True))
         path = root/'numerical-methods-atlas'/language/'read'/config['chapter']/'index.html'
-        document = path.read_text()
+        # Original historical body hashes remain authoritative. The duplicate
+        # mobile TOC is removed before its bounded markers are processed.
+        document, opening_first = original_reading_document(path.read_text())
         article = re.compile(r'(<article class="prose" lang="'+language+r'">)(.*?)(</article>)', re.S)
         document, count = article.subn(lambda match:match[1]+historical_body(match[2], config, language, 'static_article')+overlay+match[3], document)
         assert count == 1
@@ -116,6 +119,7 @@ def build(root=ROOT):
         toc_link = TOC_START+link('#'+config['section_id'], config['title'][language])+TOC_END
         document, count = toc.subn(lambda match:match[1]+match[2]+toc_link+match[3], document)
         assert count == 1
+        document = retain_reading_presentation(document, opening_first)
         planned.append((path, document, False))
         fields = ['id', 'group', 'title', 'summary', 'limits', 'url', 'reading', 'code_urls', 'test_urls', 'download', 'results', 'verification']
         metadata = {'schema_version':1, 'locale':language, 'chapter':config['chapter'], 'title':config['title'][language],

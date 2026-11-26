@@ -85,7 +85,13 @@ test('the bounded FMM overlay retains every byte of both historical gravity arti
  for(const language of ['ja','en']){
   const content=json(`numerical-methods-atlas/content.${language}.json`)['particle-gravity'];
   const page=read(`numerical-methods-atlas/${language}/read/particle-gravity/index.html`);
-  const article=page.match(new RegExp(`<article class="prose" lang="${language}">([\\s\\S]*?)</article>`))[1];
+  let article=page.match(new RegExp(`<article class="prose" lang="${language}">([\\s\\S]*?)</article>`))[1];
+  if(page.includes('data-reading-layout="opening-first"')){
+   const opening=page.match(/<!-- legacy-reading-opening --><div class="prose legacy-reading-opening" data-chapter-opening data-legacy-reading-opening>([\s\S]*?)<\/div><!-- \/legacy-reading-opening -->/);
+   const notice=article.match(/<!-- legacy-reading-leading-notice -->([\s\S]*?)<!-- \/legacy-reading-leading-notice -->/);
+   assert.ok(opening&&notice,'exact reversible title/lead and notice boundaries');
+   article=notice[1]+opening[1]+article.replace(notice[0],'');
+  }
   assert.equal(sha(remove(content.html)),config.historical_sha256[language].content);
   assert.equal(sha(remove(article)),config.historical_sha256[language].static_article);
   assert.equal(content.headings.filter(x=>x.id===config.section_id).length,1);
@@ -102,7 +108,7 @@ test('the bounded FMM overlay retains every byte of both historical gravity arti
  assert.match(config.comparison_note.en,/No monotonic error with depth/);
  assert.ok(JSON.parse(read('catalog/site-build-pipeline.json')).stages.some(stage=>stage.script==='scripts/build-atlas-particle-transport-supplements.py'));
 const python=String.raw`
-import importlib.util,sys
+import importlib.util,sys,pathlib
 sys.path.insert(0,'scripts')
 spec=importlib.util.spec_from_file_location('overlay','scripts/build-atlas-particle-transport-supplements.py');module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
 config={'historical_sha256':{'en':{'content':module.digest('original')}}}
@@ -112,6 +118,9 @@ for malformed in ['changed', 'original'+module.START, 'original'+module.START+mo
  try:module.historical_body(malformed,config,'en','content')
  except AssertionError:pass
  else:raise AssertionError('historical drift or malformed overlay accepted')
+sys.path.insert(0,'scripts/fixtures')
+from legacy_overlay_presentation import check_builder
+assert check_builder(module,pathlib.Path.cwd())['HTML_layout_and_Markdown_byte_noop']
 `;
  execFileSync('python3',['-B','-c',python],{cwd:root,encoding:'utf8',timeout:30000});
 });

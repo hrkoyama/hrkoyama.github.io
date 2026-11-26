@@ -15,12 +15,13 @@ test('the MHD overlay preserves the historical article and refuses malformed or 
  const source=String.raw`
 import importlib.util,json,pathlib,re,sys
 sys.path.insert(0,'scripts')
+from atlas_reading_presentation import original_reading_document
 spec=importlib.util.spec_from_file_location('mhd_supplements','scripts/build-atlas-mhd-supplements.py')
 m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
 config=json.loads(pathlib.Path('catalog/atlas-mhd-supplements.json').read_text())
 for lang in ['ja','en']:
  document=json.loads(pathlib.Path('numerical-methods-atlas/content.'+lang+'.json').read_text())['mhd']
- static=pathlib.Path('numerical-methods-atlas/'+lang+'/read/mhd/index.html').read_text()
+ static=original_reading_document(pathlib.Path('numerical-methods-atlas/'+lang+'/read/mhd/index.html').read_text())[0]
  article=re.findall('<article class="prose" lang="'+lang+'">(.*?)</article>',static,re.S)
  # Keep the historical outer article unambiguous.
  assert len(article)==1
@@ -34,6 +35,9 @@ for lang in ['ja','en']:
    try:m.historical_body(bad,config,lang,kind)
    except AssertionError:pass
    else:raise AssertionError('Changed article or malformed overlay was accepted')
+sys.path.insert(0,'scripts/fixtures')
+from legacy_overlay_presentation import check_builder
+assert check_builder(m,pathlib.Path.cwd())['HTML_layout_and_Markdown_byte_noop']
 print('historical MHD preservation and bounded-failure guards checked')
 `;
  assert.match(execFileSync('python3',['-B','-c',source],{cwd:root,encoding:'utf8'}),/preservation and bounded-failure/);

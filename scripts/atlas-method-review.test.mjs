@@ -67,6 +67,17 @@ function languageSection(html,lang){
   }
   assert.fail(`Unclosed ${lang} HTML section`);
 }
+function summaryFromHTML(section,where){
+  const intros=[...section.matchAll(/<p class="intro">([^<]*)<\/p>/g)];
+  assert.equal(intros.length,1,where+' one plain-text definition');
+  const supplements=[...section.matchAll(/<details class="method-summary-examples">([\s\S]*?)<\/details>/g)];
+  assert.ok(supplements.length<=1,where+' at most one supplementary list');
+  if(!supplements.length)return intros[0][1];
+  const list=/^<summary>[^<]+<\/summary><ul>((?:<li>[^<]+<\/li>)+)<\/ul>$/.exec(supplements[0][1]);
+  assert.ok(list,where+' native disclosure retains a plain-text supplementary list');
+  const examples=[...list[1].matchAll(/<li>([^<]+)<\/li>/g)].map(match=>match[1]);
+  return intros[0][1]+' '+examples.join(' ');
+}
 function markdownSection(markdown,lang){
   const title=lang==='ja'?'条件と確認範囲':'Conditions and review scope';
   const marker=`## ${title} (${lang})\n`;
@@ -179,7 +190,8 @@ test('each localized HTML and Markdown exposes its own conditions, reasons, evid
         method.limitations[lang],review.verification.summary[lang],...review.verification.not_checked[lang],
         ...fields.map(field=>review.fields[field].reason[lang])];
       for(const value of prose){
-        assert.ok(section.includes(escape(value)),`${method.id}/${lang} HTML: ${value.slice(0,65)}`);
+        if(value===method.summary[lang])assert.equal(summaryFromHTML(section,`${method.id}/${lang}`),escape(value),`${method.id}/${lang} complete original summary`);
+        else assert.ok(section.includes(escape(value)),`${method.id}/${lang} HTML: ${value.slice(0,65)}`);
         // The summary precedes the bilingual review block; all review details belong inside it.
         if(value!==method.summary[lang])assert.ok(md.includes(value),`${method.id}/${lang} Markdown: ${value.slice(0,65)}`);
       }
