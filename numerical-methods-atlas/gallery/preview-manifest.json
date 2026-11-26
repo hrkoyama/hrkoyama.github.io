@@ -2065,10 +2065,34 @@
         "ja": "規則・摂動粒子の一様圧力と小振幅音波について、初期カーネル誤差と時間発展誤差を区別する。 GSPH、摂動した128粒子、t=0.2。初期カーネル再構成誤差は最大0.011834で、音波振幅0.001より大きく、左の密度分布にその影響が残ります。右は初期誤差です。判定は基本Fourierモードの位相・振幅と保存量などの固定条件であり、点ごとの高精度や一般的な優位性を示しません。",
         "en": "Regular/deterministicallyjitteredperiodicparticles, fixedhSPHcontrol vs adaptivehGSPH. Separateinitialkernelerror and fluidupdate, finiteamplitudeO(A²)linearizedreference remainder. No universalGSPHsuperiorityclaim. GSPH with 128 jittered particles at t=0.2. The initial kernel reconstruction error reaches 0.011834, exceeding the acoustic amplitude 0.001 and remaining visible in the left density profile; the right panel shows that initial error. Acceptance concerns the fundamental Fourier mode phase/amplitude and other fixed conservation controls, not pointwise high accuracy or general superiority."
       }
+    },
+    {
+      "id": "vef-fourier-scattering1d",
+      "image": "/code/validated-examples/2026-11-26/variable-eddington-controls/results/vef-fourier-scattering1d.png",
+      "image_sha256": "bf8f354b57aad3bdd6ef72d861b12f04b5369c173b26995502a32d96a7e0d103",
+      "width": 1417,
+      "height": 985,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "形式的な角度輸送と独立なモーメント方程式を反復結合し、位置で変わる因子fを閉形式参照と比較します。 図の横軸xと角度余弦μは2つの空間次元ではありません。周期・一様係数の教育例で、流入境界、時間発展、物質・流体結合、非線形FLD、一般AP性や速度向上は検証しません。",
+        "en": "Iteratively couple formal angular transport to independent moment equations and compare the spatially varying factor f with a closed-form reference. Position x and angular cosine mu are not two spatial dimensions. This periodic homogeneous educational control does not validate inflow boundaries, time evolution, material/fluid coupling, nonlinear FLD, general AP properties or speedup."
+      }
+    },
+    {
+      "id": "vet-fourier-source2d",
+      "image": "/code/validated-examples/2026-11-26/variable-eddington-controls/results/vet-fourier-source2d.png",
+      "image_sha256": "eb3792a2826a804fc272a86872f6ea33a45e455a4eff95ba0161bc526ac5a81a",
+      "width": 1687,
+      "height": 756,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "非平行な2つの源モードから全S²角度分布と3×3テンソルを求め、Dxyを含む保存的モーメント式と閉形式参照を比較します。 局所M1との比較は閉包の点ごとの診断だけで、M1方程式は解きません。Athena・短い特性線法・影・交差ビーム・RHD・境界閉包の再現でもなく、固定格子でHO/LOの厳密一致や普遍的な収束率を主張しません。",
+        "en": "Use two nonparallel source modes to compute full-S2 angular moments and a3x3 tensor, then compare conservative moment equations including Dxy with a closed-form reference. Pointwise M1 comparison is a closure diagnostic; no M1 PDE is solved. This is not a reproduction of Athena, short characteristics, shadows, crossing beams, RHD or boundary closures, and does not claim exact fixed-grid HO/LO agreement or universal convergence rates."
+      }
     }
   ],
   "source_sha256": {
-    "catalog/atlas-gallery.json": "2c1c73c48ca1596c673120ff5ec5925b33e0ab4a667f292127b9af1a3e34b851",
+    "catalog/atlas-gallery.json": "ec026f8bb73f9214d30091c7c51d161edac662a34bdb67490294bfa6a2d9a064",
     "scripts/render-atlas-gallery.py": "62956b5a0ece0c5144ec079bb30f36e44b3ccf97e4b56b677d4de356cdbab04c",
     "code/numerical-methods-atlas/2026-11-21/numart/benchmarks.py": "dc8f83aafea473b5f0e1e7bf82630484dd60aa446859c1f602571adc3c59f019",
     "code/numerical-methods-atlas/2026-11-21/numart/solvers.py": "7811862ea3384cef825a1d382c24c6e19a175fb688a024fa4117959eed4bf05d",
@@ -2115,8 +2139,8 @@
     "code/periodic-dft/2026-11-22/verification.json": "5de4662728e0114aea5576dc7e93dee03fcc02e32d516e1d8da77e5b8f4511e5",
     "code/periodic-forces/2026-11-22/results/preview.png": "ea952ee104c44d0b229c56751d9c147629d58f661ebb95c2821e6b895b24e4fb",
     "code/periodic-forces/2026-11-22/verification.json": "e29d65bc89b7edac45a81d3cbae4048911f7fc8848cc47a35764f0041e296b7f",
-    "catalog/atlas-test-problems.json": "6f056c7aac9da887d8631fcaf66287d685ee32c1113d24e16c713fd947153d9b",
-    "catalog/atlas-depth-expansion.json": "49e2ef4c1f7865eedff70a866351b3e54393a59e8856fd1cc1ed946d1435796c",
+    "catalog/atlas-test-problems.json": "a9f6439cd3e8219d2e6181a63207fdd2de69721260f512f76aa6c0117cf7ac8c",
+    "catalog/atlas-depth-expansion.json": "95872774fa0a0cca0340226eca5f953996e634fcc7674197892e1eae7537ca96",
     "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
     "code/validated-examples/2026-11-22/foundations/inputs.json": "9b07ca782d9b9de4ef467189d6710f3fa346d23be154200358f005e4eceebff1",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
@@ -2810,7 +2834,17 @@
     "code/validated-examples/2026-11-25/continuum-particle-controls/atlas-continuum-particle-controls-2026-11-25.zip": "1d12a6ecd9d87ae95585a984e66411b2314eb7804b064f023aa57addc3142f49",
     "code/validated-examples/2026-11-25/continuum-particle-controls/results/williamson-sphere-transport.png": "be017ade9a054d91fc83cc743cedae9a5bbeee367c60892f0b731e5c17f36ca1",
     "code/validated-examples/2026-11-25/continuum-particle-controls/results/sphere-zonal-balance.png": "74876bf29005e8968fe5c5fe51157d0be99f57cc76c18da88e663ad85ae061c6",
-    "code/validated-examples/2026-11-25/continuum-particle-controls/results/sph-pressure-acoustics.png": "1eae2a6441afcc1fe5adbeb9d84b7b0cc0bc4ca117bf75f14be5a49cd617740e"
+    "code/validated-examples/2026-11-25/continuum-particle-controls/results/sph-pressure-acoustics.png": "1eae2a6441afcc1fe5adbeb9d84b7b0cc0bc4ca117bf75f14be5a49cd617740e",
+    "code/validated-examples/2026-11-26/variable-eddington-controls/cases.json": "7492e8b233a3707cf64f7aed8b0e604bbde61665a97def6253073d9259fe02cf",
+    "code/validated-examples/2026-11-26/variable-eddington-controls/inputs.json": "e8648074fbff9c266ba34ffe9cf1fd675e0db4d6e34733c10a3384926a4ec871",
+    "code/validated-examples/2026-11-26/variable-eddington-controls/acceptance.json": "c6099e0d4e44f8cb3603c94af369fbefefd5ae6e84f58997b3b637713ded85cd",
+    "code/validated-examples/2026-11-26/variable-eddington-controls/freeze.json": "b30003dbe9a5ef7d9ac9fe6f2d219cd400bc8ec871584bcdc798fb6875d5c908",
+    "code/validated-examples/2026-11-26/variable-eddington-controls/results/result.json": "09320fe40bfd9afea94bebd59b881d7a356bc8f4c9e07833e94fd1483974ba4a",
+    "code/validated-examples/2026-11-26/variable-eddington-controls/results/vef-fourier-scattering1d.png": "bf8f354b57aad3bdd6ef72d861b12f04b5369c173b26995502a32d96a7e0d103",
+    "code/validated-examples/2026-11-26/variable-eddington-controls/source-manifest.json": "8e35c943abc9fe9e5106e4fe0e2170508dabdacceb18ae97595690295ed3ca54",
+    "code/validated-examples/2026-11-26/variable-eddington-controls/verification.json": "03a659dbc41042cf40f75128550eb233b3ffc91146db65ff479121ba626512f3",
+    "code/validated-examples/2026-11-26/variable-eddington-controls/atlas-variable-eddington-controls-2026-11-26.zip": "00f72007e16701d4f41b587dc5b8bc3a158f2b6fac3f8b933aeacc3f7973f6bb",
+    "code/validated-examples/2026-11-26/variable-eddington-controls/results/vet-fourier-source2d.png": "eb3792a2826a804fc272a86872f6ea33a45e455a4eff95ba0161bc526ac5a81a"
   },
   "calculations_sha256": "d98cd75e1c58177bfc716e8b68d6bfba1358d5135ac8e2ee0989eb3df77942a6",
   "maintenance_updates": [
@@ -3370,6 +3404,38 @@
         "catalog/atlas-depth-expansion.json": {
           "before": "d559e4bbc6643cb6f149f97a7c3d9b27eed2d9f38ac3b5f1e9811f83c3db0936",
           "after": "49e2ef4c1f7865eedff70a866351b3e54393a59e8856fd1cc1ed946d1435796c"
+        }
+      },
+      "producer": {
+        "path": "scripts/prime-atlas-gallery-metadata.py",
+        "sha256": "a00a82bf2607067296ae6ea8a143f891a4fa3adaa74051440eb5964540cf3265"
+      },
+      "historical_primary_records_unchanged": true,
+      "scientific_preview_execution": false,
+      "historical_figures_rerendered": false
+    },
+    {
+      "on": "2026-11-25",
+      "date_role": "Source catalog reviewed_on; not execution time.",
+      "scope": "Register already qualified canonical PNG metadata before reverse routes; retain all prior picture records/images and original numerical-preview receipts.",
+      "primary_item_count_before": 172,
+      "primary_item_count_after": 174,
+      "added_primary_ids": [
+        "vef-fourier-scattering1d",
+        "vet-fourier-source2d"
+      ],
+      "changed_catalog_bindings": {
+        "catalog/atlas-gallery.json": {
+          "before": "2c1c73c48ca1596c673120ff5ec5925b33e0ab4a667f292127b9af1a3e34b851",
+          "after": "ec026f8bb73f9214d30091c7c51d161edac662a34bdb67490294bfa6a2d9a064"
+        },
+        "catalog/atlas-test-problems.json": {
+          "before": "6f056c7aac9da887d8631fcaf66287d685ee32c1113d24e16c713fd947153d9b",
+          "after": "a9f6439cd3e8219d2e6181a63207fdd2de69721260f512f76aa6c0117cf7ac8c"
+        },
+        "catalog/atlas-depth-expansion.json": {
+          "before": "49e2ef4c1f7865eedff70a866351b3e54393a59e8856fd1cc1ed946d1435796c",
+          "after": "95872774fa0a0cca0340226eca5f953996e634fcc7674197892e1eae7537ca96"
         }
       },
       "producer": {

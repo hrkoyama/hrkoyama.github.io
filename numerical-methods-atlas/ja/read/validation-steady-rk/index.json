@@ -268,10 +268,10 @@
     }
   ],
   "source_sha256": {
-    "catalog/atlas-depth-expansion.json": "49e2ef4c1f7865eedff70a866351b3e54393a59e8856fd1cc1ed946d1435796c",
+    "catalog/atlas-depth-expansion.json": "95872774fa0a0cca0340226eca5f953996e634fcc7674197892e1eae7537ca96",
     "code/validated-examples/2026-11-25/continuum-particle-controls/ale_piston.py": "a0afb8cfc9372a8865ec1d73fef62cb5516eedc5bb5396f4f281ff5f671d2cae",
     "code/validated-examples/2026-11-25/continuum-particle-controls/inputs.json": "5f49881f37b07c47f674979a4886e6da0421be06ddb6bb213ab7dfea6bf6e0f5",
-    "catalog/atlas-equations.json": "bb5abaa0a907e299c4584b903827edf26963298168207ae6b4a931424f88f57a",
+    "catalog/atlas-equations.json": "ecf174410cb43ef1f584f0c3cb50dd790ecc5a41db7bc0040e63b14ba91716a8",
     "code/validated-examples/2026-11-25/continuum-particle-controls/sphere.py": "b352773dd6418e04e3f44892cb3e89873f9d650153a0da0f7a04ada90d39b56b",
     "code/validated-examples/2026-11-25/continuum-particle-controls/gsph.py": "aa9d35837e97a772a46e9aa358f56f1ca9bc7b69e98e34d8626fc3e742bbf5e2",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
@@ -615,6 +615,11 @@
     "code/validated-examples/2026-11-25/continuum-particle-controls/verification.json": "0ce44ce14104c4cdd7e6876b8118d9e6c5635ae40af0f631623418c05264600e",
     "code/validated-examples/2026-11-25/continuum-particle-controls/cases.json": "8b4b8db859d0bb29a4c156beb7d02c5270776c460bed9e1796a409f3b1beb712",
     "code/validated-examples/2026-11-25/continuum-particle-controls/results/result.json": "cab002c93e01d997562f3c145e1aaddd6a2a8ce59a087d44e8bddc4679081bbf",
-    "code/validated-examples/2026-11-25/continuum-particle-controls/atlas-continuum-particle-controls-2026-11-25.zip": "1d12a6ecd9d87ae95585a984e66411b2314eb7804b064f023aa57addc3142f49"
+    "code/validated-examples/2026-11-25/continuum-particle-controls/atlas-continuum-particle-controls-2026-11-25.zip": "1d12a6ecd9d87ae95585a984e66411b2314eb7804b064f023aa57addc3142f49",
+    "code/validated-examples/2026-11-26/variable-eddington-controls/source-manifest.json": "8e35c943abc9fe9e5106e4fe0e2170508dabdacceb18ae97595690295ed3ca54",
+    "code/validated-examples/2026-11-26/variable-eddington-controls/verification.json": "03a659dbc41042cf40f75128550eb233b3ffc91146db65ff479121ba626512f3",
+    "code/validated-examples/2026-11-26/variable-eddington-controls/cases.json": "7492e8b233a3707cf64f7aed8b0e604bbde61665a97def6253073d9259fe02cf",
+    "code/validated-examples/2026-11-26/variable-eddington-controls/results/result.json": "09320fe40bfd9afea94bebd59b881d7a356bc8f4c9e07833e94fd1483974ba4a",
+    "code/validated-examples/2026-11-26/variable-eddington-controls/atlas-variable-eddington-controls-2026-11-26.zip": "00f72007e16701d4f41b587dc5b8bc3a158f2b6fac3f8b933aeacc3f7973f6bb"
   }
 }

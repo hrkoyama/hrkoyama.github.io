@@ -4538,6 +4538,52 @@ a=g=1, Ω=2, u0=.5, h0=10 の軸対称な無次元部分問題。運動量中心
 
 
 
+### 静止灰色輻射のVEF・VETモーメント閉包
+
+ID: `static-grey-variable-eddington-moments` · local-example
+
+$$
+\boldsymbol\Omega\cdot\nabla I+\sigma_t I=\sigma_s E+q,\quad E=\langle I\rangle
+$$
+
+$$
+\nabla\cdot\boldsymbol H+\sigma_aE=q,\quad\sigma_t\boldsymbol H+\nabla\cdot(\mathsf D E)=0
+$$
+
+$$
+\mathsf D=\frac{\langle\boldsymbol\Omega\boldsymbol\Omega^{\mathsf T}I\rangle}{\langle I\rangle},\quad\sigma_a=\sigma_t-\sigma_s
+$$
+
+c=1、角度平均はdΩ/(4π)。1Dのスカラー因子と、2D空間・3D角度の全テンソルを同じモーメント系の変種として扱います。公開例は正の等方輻射源・一定係数・周期境界に限定します。
+
+[解説](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/variable-eddington/)
+
+#### 関連するテスト問題の図とコード
+
+##### [可変エディントン因子：周期1D散乱源の固定検証](https://hrkoyama.github.io/numerical-methods-atlas/problems/vef-fourier-scattering1d/?lang=ja) (`vef-fourier-scattering1d`)
+
+![形式的な角度輸送と独立なモーメント方程式を反復結合し、位置で変わる因子fを閉形式参照と比較します。 図の横軸xと角度余弦μは2つの空間次元ではありません。周期・一様係数の教育例で、流入境界、時間発展、物質・流体結合、非線形FLD、一般AP性や速度向上は検証しません。](https://hrkoyama.github.io/code/validated-examples/2026-11-26/variable-eddington-controls/results/vef-fourier-scattering1d.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/vef-fourier-scattering1d/?lang=ja#code-ja)
+
+- [実行・検証：可変エディントン因子：周期1D散乱源の固定検証](https://hrkoyama.github.io/numerical-methods-atlas/validation/vef-fourier-scattering1d/?lang=ja) (`vef-fourier-scattering1d`) · [コードZIP：可変エディントン因子：周期1D散乱源の固定検証](https://hrkoyama.github.io/code/validated-examples/2026-11-26/variable-eddington-controls/atlas-variable-eddington-controls-2026-11-26.zip)
+
+この実行例の範囲：形式的な角度輸送と独立なモーメント方程式を反復結合し、位置で変わる因子fを閉形式参照と比較します。
+
+
+##### [可変エディントンテンソル：周期2D非平行源の固定検証](https://hrkoyama.github.io/numerical-methods-atlas/problems/vet-fourier-source2d/?lang=ja) (`vet-fourier-source2d`)
+
+![非平行な2つの源モードから全S²角度分布と3×3テンソルを求め、Dxyを含む保存的モーメント式と閉形式参照を比較します。 局所M1との比較は閉包の点ごとの診断だけで、M1方程式は解きません。Athena・短い特性線法・影・交差ビーム・RHD・境界閉包の再現でもなく、固定格子でHO/LOの厳密一致や普遍的な収束率を主張しません。](https://hrkoyama.github.io/code/validated-examples/2026-11-26/variable-eddington-controls/results/vet-fourier-source2d.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/vet-fourier-source2d/?lang=ja#code-ja)
+
+- [実行・検証：可変エディントンテンソル：周期2D非平行源の固定検証](https://hrkoyama.github.io/numerical-methods-atlas/validation/vet-fourier-source2d/?lang=ja) (`vet-fourier-source2d`) · [コードZIP：可変エディントンテンソル：周期2D非平行源の固定検証](https://hrkoyama.github.io/code/validated-examples/2026-11-26/variable-eddington-controls/atlas-variable-eddington-controls-2026-11-26.zip)
+
+この実行例の範囲：非平行な2つの源モードから全S²角度分布と3×3テンソルを求め、Dxyを含む保存的モーメント式と閉形式参照を比較します。
+
+
+
+
 ## English
 
 ### Linear advection
@@ -9070,3 +9116,49 @@ Axisymmetric nondimensional subproblem with a=g=1, Omega=2, u0=.5 and h0=10. Act
 - [Run and validate: Time evolution of axisymmetric spherical shallow-water balance](https://hrkoyama.github.io/numerical-methods-atlas/validation/sphere-zonal-balance/?lang=en) (`sphere-zonal-balance`) · [Code ZIP: Time evolution of axisymmetric spherical shallow-water balance](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/atlas-continuum-particle-controls-2026-11-25.zip)
 
 Scope of this execution example: NondimensionalWilliamson2-type axisymmetricsubproblem. Analyticstaticstatevsactualtimeintegration; not fullglobaldynamicalcore/PVclaim.
+
+
+
+
+### Static grey VEF/VET moment closure
+
+ID: `static-grey-variable-eddington-moments` · local-example
+
+$$
+\boldsymbol\Omega\cdot\nabla I+\sigma_t I=\sigma_s E+q,\quad E=\langle I\rangle
+$$
+
+$$
+\nabla\cdot\boldsymbol H+\sigma_aE=q,\quad\sigma_t\boldsymbol H+\nabla\cdot(\mathsf D E)=0
+$$
+
+$$
+\mathsf D=\frac{\langle\boldsymbol\Omega\boldsymbol\Omega^{\mathsf T}I\rangle}{\langle I\rangle},\quad\sigma_a=\sigma_t-\sigma_s
+$$
+
+c=1 with angular measure dOmega/(4pi). The scalar 1D factor and full tensor in 2D space/3D angle are variants of the same moment system. Released examples are limited to positive isotropic sources, constant coefficients and periodic boundaries.
+
+[Reading](https://hrkoyama.github.io/numerical-methods-atlas/en/read/variable-eddington/)
+
+#### Related test problem figures and code
+
+##### [Variable Eddington factor: a periodic 1D scattering-source control](https://hrkoyama.github.io/numerical-methods-atlas/problems/vef-fourier-scattering1d/?lang=en) (`vef-fourier-scattering1d`)
+
+![Iteratively couple formal angular transport to independent moment equations and compare the spatially varying factor f with a closed-form reference. Position x and angular cosine mu are not two spatial dimensions. This periodic homogeneous educational control does not validate inflow boundaries, time evolution, material/fluid coupling, nonlinear FLD, general AP properties or speedup.](https://hrkoyama.github.io/code/validated-examples/2026-11-26/variable-eddington-controls/results/vef-fourier-scattering1d.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/vef-fourier-scattering1d/?lang=en#code-en)
+
+- [Run and validate: Variable Eddington factor: a periodic 1D scattering-source control](https://hrkoyama.github.io/numerical-methods-atlas/validation/vef-fourier-scattering1d/?lang=en) (`vef-fourier-scattering1d`) · [Code ZIP: Variable Eddington factor: a periodic 1D scattering-source control](https://hrkoyama.github.io/code/validated-examples/2026-11-26/variable-eddington-controls/atlas-variable-eddington-controls-2026-11-26.zip)
+
+Scope of this execution example: Iteratively couple formal angular transport to independent moment equations and compare the spatially varying factor f with a closed-form reference.
+
+
+##### [Variable Eddington tensor: a periodic 2D nonparallel-source control](https://hrkoyama.github.io/numerical-methods-atlas/problems/vet-fourier-source2d/?lang=en) (`vet-fourier-source2d`)
+
+![Use two nonparallel source modes to compute full-S2 angular moments and a3x3 tensor, then compare conservative moment equations including Dxy with a closed-form reference. Pointwise M1 comparison is a closure diagnostic; no M1 PDE is solved. This is not a reproduction of Athena, short characteristics, shadows, crossing beams, RHD or boundary closures, and does not claim exact fixed-grid HO/LO agreement or universal convergence rates.](https://hrkoyama.github.io/code/validated-examples/2026-11-26/variable-eddington-controls/results/vet-fourier-source2d.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/vet-fourier-source2d/?lang=en#code-en)
+
+- [Run and validate: Variable Eddington tensor: a periodic 2D nonparallel-source control](https://hrkoyama.github.io/numerical-methods-atlas/validation/vet-fourier-source2d/?lang=en) (`vet-fourier-source2d`) · [Code ZIP: Variable Eddington tensor: a periodic 2D nonparallel-source control](https://hrkoyama.github.io/code/validated-examples/2026-11-26/variable-eddington-controls/atlas-variable-eddington-controls-2026-11-26.zip)
+
+Scope of this execution example: Use two nonparallel source modes to compute full-S2 angular moments and a3x3 tensor, then compare conservative moment equations including Dxy with a closed-form reference.

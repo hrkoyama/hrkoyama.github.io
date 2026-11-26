@@ -10,6 +10,24 @@ $$
 \frac1c\partial_t I+\mathbf n\cdot\nabla I=\eta-\kappa I,\qquad\partial_t E+\nabla\cdot\mathbf F=4\pi\eta-c\kappa E,\qquad c^{-2}\partial_t\mathbf F+\nabla\cdot\mathbf P=-\kappa\mathbf F/c.
 $$
 
+## Grey (gray) approximation
+
+A grey (gray) model uses frequency-integrated intensity without resolving frequency. This is a separate choice from the treatment of angle: the grey approximation is not itself a diffusion approximation or an M1 closure.
+
+The existing grey transport and M1 examples are limited to a static medium and fixed inputs. Compare the angular-transport and M1 releases below within their own conditions. They do not establish general accuracy of the grey approximation against frequency-resolved calculations.
+
+[Grey angular transport: the fixed Su–Olson1997 example](/numerical-methods-atlas/validation/su-olson-transport1997/?lang=en) · [Grey angular transport and M1: the 2D absorber shadow](/numerical-methods-atlas/validation/shadow-absorber2d/?lang=en)
+
+## Radiation diffusion approximation
+
+The radiation diffusion approximation relates the radiation flux to the gradient of energy density in an optically thick, nearly isotropic regime. Its role differs from the grey approximation, which integrates over frequency.
+
+The existing Su–Olson1996 example advances diffusion equations with non-equilibrium radiation–matter exchange. The Su–Olson1997 angular-transport release also contains fixed diffusion-limit controls in a separate periodic setting. The coordinate normalizations, boundaries and references of these problems are not identical. These examples do not establish fixed-grid asymptotic preservation (AP) or diffusion-approximation accuracy under arbitrary conditions.
+
+Flux-limited diffusion (FLD) is a separate closure with a flux limiter. The atlas explains it but does not yet provide a dedicated nonlinear FLD solver and validation example. The diffusion and M1 examples above are not counted as FLD implementations.
+
+[Non-equilibrium diffusion: the fixed Su–Olson1996 example](/numerical-methods-atlas/validation/su-olson-diffusion1996/?lang=en) · [Angular transport and fixed diffusion-limit controls](/numerical-methods-atlas/validation/su-olson-transport1997/?lang=en)
+
 ## Algorithm
 
 Discrete ordinates discretizes angle directly; moment methods close P=D E. M1 obtains D locally from E and F, while flux-limited diffusion instead approximates F from the gradient of E. Check optically thick and free-streaming limits and couple matter exchange through a consistent energy balance.
@@ -18,7 +36,7 @@ Discrete ordinates discretizes angle directly; moment methods close P=D E. M1 ob
 
 M1 generally cannot propagate crossing beams independently. FLD ties flux to the energy gradient, limiting shadows and strongly anisotropic fields. A reduced light speed changes transport/relaxation scales and must be justified against the physical time scales of interest.
 
-The companion retains a one-dimensional steady purely absorbing slab with specified inflow, solving μ∂xI=−κI. General radiation moment closures, scattering, time dependence, multiple frequencies and fluid coupling are unvalidated.
+The two historical companions (pure absorption and space/angle convergence) solve μ∂xI=−κI in a one-dimensional steady purely absorbing slab with specified inflow. Those two releases do not validate general radiation moment closures, scattering, time dependence, multiple frequencies or fluid coupling. Consult the separate releases above for the scope of later grey transport, diffusion and M1 examples.
 
 ## What to check
 

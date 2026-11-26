@@ -71160,6 +71160,541 @@
         }
       }
     },
+    "validation-variable-eddington-controls": {
+      "id": "validation-variable-eddington-controls",
+      "title": {
+        "ja": "可変Eddington因子・テンソルの軽量検証",
+        "en": "Lightweight variable Eddington factor and tensor checks"
+      },
+      "routes": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/"
+      },
+      "association_status": "registered",
+      "resource_navigation": {
+        "kind": "chapter",
+        "id": "validation-variable-eddington-controls",
+        "note": {
+          "ja": "この章に登録された手法・問題・実行例の関連資料です。",
+          "en": "Resources explicitly registered to the methods, problems and executions of this chapter."
+        },
+        "groups": {
+          "methods": [
+            {
+              "id": "variable-eddington-factor",
+              "name": {
+                "ja": "可変Eddington因子（1D VEF）",
+                "en": "Variable Eddington factor (1D VEF)"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/variable-eddington-factor/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/variable-eddington-factor/?lang=en"
+              },
+              "status": "educational-example",
+              "role": "execution",
+              "note": {
+                "ja": "形式的な角度輸送と独立なモーメント方程式を反復結合し、位置で変わる因子fを閉形式参照と比較します。 図の横軸xと角度余弦μは2つの空間次元ではありません。周期・一様係数の教育例で、流入境界、時間発展、物質・流体結合、非線形FLD、一般AP性や速度向上は検証しません。",
+                "en": "Iteratively couple formal angular transport to independent moment equations and compare the spatially varying factor f with a closed-form reference. Position x and angular cosine mu are not two spatial dimensions. This periodic homogeneous educational control does not validate inflow boundaries, time evolution, material/fluid coupling, nonlinear FLD, general AP properties or speedup."
+              },
+              "context_problem_id": "vef-fourier-scattering1d"
+            },
+            {
+              "id": "variable-eddington-tensor",
+              "name": {
+                "ja": "可変Eddingtonテンソル（VET）",
+                "en": "Variable Eddington tensor (VET)"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/variable-eddington-tensor/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/variable-eddington-tensor/?lang=en"
+              },
+              "status": "educational-example",
+              "role": "execution",
+              "note": {
+                "ja": "非平行な2つの源モードから全S²角度分布と3×3テンソルを求め、Dxyを含む保存的モーメント式と閉形式参照を比較します。 局所M1との比較は閉包の点ごとの診断だけで、M1方程式は解きません。Athena・短い特性線法・影・交差ビーム・RHD・境界閉包の再現でもなく、固定格子でHO/LOの厳密一致や普遍的な収束率を主張しません。",
+                "en": "Use two nonparallel source modes to compute full-S2 angular moments and a3x3 tensor, then compare conservative moment equations including Dxy with a closed-form reference. Pointwise M1 comparison is a closure diagnostic; no M1 PDE is solved. This is not a reproduction of Athena, short characteristics, shadows, crossing beams, RHD or boundary closures, and does not claim exact fixed-grid HO/LO agreement or universal convergence rates."
+              },
+              "context_problem_id": "vet-fourier-source2d"
+            },
+            {
+              "id": "variable-eddington-factor",
+              "name": {
+                "ja": "可変Eddington因子（1D VEF）",
+                "en": "Variable Eddington factor (1D VEF)"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/variable-eddington-factor/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/variable-eddington-factor/?lang=en"
+              },
+              "status": "educational-example",
+              "role": "execution"
+            },
+            {
+              "id": "variable-eddington-tensor",
+              "name": {
+                "ja": "可変Eddingtonテンソル（VET）",
+                "en": "Variable Eddington tensor (VET)"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/variable-eddington-tensor/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/variable-eddington-tensor/?lang=en"
+              },
+              "status": "educational-example",
+              "role": "execution"
+            }
+          ],
+          "equations": [
+            {
+              "id": "static-grey-variable-eddington-moments",
+              "name": {
+                "ja": "静止灰色輻射のVEF・VETモーメント閉包",
+                "en": "Static grey VEF/VET moment closure"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#static-grey-variable-eddington-moments-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#static-grey-variable-eddington-moments-en"
+              },
+              "note": {
+                "ja": "c=1、角度平均はdΩ/(4π)。1Dのスカラー因子と、2D空間・3D角度の全テンソルを同じモーメント系の変種として扱います。公開例は正の等方輻射源・一定係数・周期境界に限定します。 この問題に関連する代表式です。初期条件・境界条件・パラメータは「図と問題の条件・根拠」と各実行例で確認できます。",
+                "en": "c=1 with angular measure dOmega/(4pi). The scalar 1D factor and full tensor in 2D space/3D angle are variants of the same moment system. Released examples are limited to positive isotropic sources, constant coefficients and periodic boundaries. Representative equations related to this problem. See the image/problem conditions and each execution example for initial conditions, boundary conditions and parameters."
+              },
+              "context_problem_id": "vef-fourier-scattering1d"
+            },
+            {
+              "id": "static-grey-variable-eddington-moments",
+              "name": {
+                "ja": "静止灰色輻射のVEF・VETモーメント閉包",
+                "en": "Static grey VEF/VET moment closure"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#static-grey-variable-eddington-moments-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#static-grey-variable-eddington-moments-en"
+              },
+              "note": {
+                "ja": "c=1、角度平均はdΩ/(4π)。1Dのスカラー因子と、2D空間・3D角度の全テンソルを同じモーメント系の変種として扱います。公開例は正の等方輻射源・一定係数・周期境界に限定します。 この問題に関連する代表式です。初期条件・境界条件・パラメータは「図と問題の条件・根拠」と各実行例で確認できます。",
+                "en": "c=1 with angular measure dOmega/(4pi). The scalar 1D factor and full tensor in 2D space/3D angle are variants of the same moment system. Released examples are limited to positive isotropic sources, constant coefficients and periodic boundaries. Representative equations related to this problem. See the image/problem conditions and each execution example for initial conditions, boundary conditions and parameters."
+              },
+              "context_problem_id": "vet-fourier-source2d"
+            },
+            {
+              "id": "formulation-vef-fourier-scattering1d",
+              "name": {
+                "ja": "この実行例の式と条件",
+                "en": "This execution’s formulation and conditions"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/vef-fourier-scattering1d/?lang=ja#vef-fourier-scattering1d-ja-algorithm",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/vef-fourier-scattering1d/?lang=en#vef-fourier-scattering1d-en-algorithm"
+              },
+              "note": {
+                "ja": "各反復でq+σs E_LOをFourier形式解へ入れ、f=Kxx/E_HOを抽出し、保存的な面流束を使う有限差分モーメント式を解きます。参照解は主計算の閉包へ渡しません。",
+                "en": "At each iteration solve formal Fourier transport with q+ss E_LO, extract f=Kxx/E_HO, and solve finite-difference moment equations using shared conservative faces. The primary closure never receives the analytic reference."
+              },
+              "role": "example-definition"
+            },
+            {
+              "id": "static-grey-variable-eddington-moments",
+              "name": {
+                "ja": "静止灰色輻射のVEF・VETモーメント閉包",
+                "en": "Static grey VEF/VET moment closure"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#static-grey-variable-eddington-moments-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#static-grey-variable-eddington-moments-en"
+              },
+              "note": {
+                "ja": "c=1、角度平均はdΩ/(4π)。1Dのスカラー因子と、2D空間・3D角度の全テンソルを同じモーメント系の変種として扱います。公開例は正の等方輻射源・一定係数・周期境界に限定します。",
+                "en": "c=1 with angular measure dOmega/(4pi). The scalar 1D factor and full tensor in 2D space/3D angle are variants of the same moment system. Released examples are limited to positive isotropic sources, constant coefficients and periodic boundaries."
+              }
+            },
+            {
+              "id": "formulation-vet-fourier-source2d",
+              "name": {
+                "ja": "この実行例の式と条件",
+                "en": "This execution’s formulation and conditions"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/vet-fourier-source2d/?lang=ja#vet-fourier-source2d-ja-algorithm",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/vet-fourier-source2d/?lang=en#vet-fourier-source2d-en-algorithm"
+              },
+              "note": {
+                "ja": "形式的なFourier角度輸送→D=K_HO/E_HO→独立な有限差分モーメント式を反復します。Dxyの両交差微分を共有面流束へ含め、局所・大域の離散収支を確認します。",
+                "en": "Iterate formal Fourier angular transport, D=K_HO/E_HO, and an independent finite-difference moment solve. Include both Dxy cross derivatives in shared face fluxes and check local/global discrete budgets."
+              },
+              "role": "example-definition"
+            }
+          ],
+          "figures": [
+            {
+              "id": "vef-fourier-scattering1d",
+              "name": {
+                "ja": "可変エディントン因子：周期1D散乱源の固定検証",
+                "en": "Variable Eddington factor: a periodic 1D scattering-source control"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/vef-fourier-scattering1d/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/vef-fourier-scattering1d/?lang=en"
+              },
+              "image": {
+                "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-26/variable-eddington-controls/results/vef-fourier-scattering1d.png",
+                "sha256": "bf8f354b57aad3bdd6ef72d861b12f04b5369c173b26995502a32d96a7e0d103",
+                "width": 1417,
+                "height": 985,
+                "caption": {
+                  "ja": "形式的な角度輸送と独立なモーメント方程式を反復結合し、位置で変わる因子fを閉形式参照と比較します。 図の横軸xと角度余弦μは2つの空間次元ではありません。周期・一様係数の教育例で、流入境界、時間発展、物質・流体結合、非線形FLD、一般AP性や速度向上は検証しません。",
+                  "en": "Iteratively couple formal angular transport to independent moment equations and compare the spatially varying factor f with a closed-form reference. Position x and angular cosine mu are not two spatial dimensions. This periodic homogeneous educational control does not validate inflow boundaries, time evolution, material/fluid coupling, nonlinear FLD, general AP properties or speedup."
+                },
+                "source_kind": "existing-figure"
+              },
+              "note": {
+                "ja": "テスト問題の代表図。条件と出典は問題別ページで確認できます。",
+                "en": "Representative test-problem figure; the problem page records conditions and provenance."
+              }
+            },
+            {
+              "id": "vet-fourier-source2d",
+              "name": {
+                "ja": "可変エディントンテンソル：周期2D非平行源の固定検証",
+                "en": "Variable Eddington tensor: a periodic 2D nonparallel-source control"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/vet-fourier-source2d/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/vet-fourier-source2d/?lang=en"
+              },
+              "image": {
+                "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-26/variable-eddington-controls/results/vet-fourier-source2d.png",
+                "sha256": "eb3792a2826a804fc272a86872f6ea33a45e455a4eff95ba0161bc526ac5a81a",
+                "width": 1687,
+                "height": 756,
+                "caption": {
+                  "ja": "非平行な2つの源モードから全S²角度分布と3×3テンソルを求め、Dxyを含む保存的モーメント式と閉形式参照を比較します。 局所M1との比較は閉包の点ごとの診断だけで、M1方程式は解きません。Athena・短い特性線法・影・交差ビーム・RHD・境界閉包の再現でもなく、固定格子でHO/LOの厳密一致や普遍的な収束率を主張しません。",
+                  "en": "Use two nonparallel source modes to compute full-S2 angular moments and a3x3 tensor, then compare conservative moment equations including Dxy with a closed-form reference. Pointwise M1 comparison is a closure diagnostic; no M1 PDE is solved. This is not a reproduction of Athena, short characteristics, shadows, crossing beams, RHD or boundary closures, and does not claim exact fixed-grid HO/LO agreement or universal convergence rates."
+                },
+                "source_kind": "existing-figure"
+              },
+              "note": {
+                "ja": "テスト問題の代表図。条件と出典は問題別ページで確認できます。",
+                "en": "Representative test-problem figure; the problem page records conditions and provenance."
+              }
+            },
+            {
+              "id": "vef-fourier-scattering1d",
+              "name": {
+                "ja": "可変エディントン因子：周期1D散乱源の固定検証",
+                "en": "Variable Eddington factor: a periodic 1D scattering-source control"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/code/validated-examples/2026-11-26/variable-eddington-controls/results/vef-fourier-scattering1d.png",
+                "en": "https://hrkoyama.github.io/code/validated-examples/2026-11-26/variable-eddington-controls/results/vef-fourier-scattering1d.png"
+              },
+              "image": {
+                "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-26/variable-eddington-controls/results/vef-fourier-scattering1d.png",
+                "sha256": "bf8f354b57aad3bdd6ef72d861b12f04b5369c173b26995502a32d96a7e0d103",
+                "width": 1417,
+                "height": 985,
+                "kind": "case-validation",
+                "caption": {
+                  "ja": "可変エディントン因子：周期1D散乱源の固定検証：この実行例の保存済み検証図。",
+                  "en": "Variable Eddington factor: a periodic 1D scattering-source control: saved validation figure for this execution."
+                }
+              },
+              "note": {
+                "ja": "この実行例自身の保存済み検証図です。",
+                "en": "The saved validation figure for this execution itself."
+              },
+              "problem_id": "vef-fourier-scattering1d"
+            },
+            {
+              "id": "vet-fourier-source2d",
+              "name": {
+                "ja": "可変エディントンテンソル：周期2D非平行源の固定検証",
+                "en": "Variable Eddington tensor: a periodic 2D nonparallel-source control"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/code/validated-examples/2026-11-26/variable-eddington-controls/results/vet-fourier-source2d.png",
+                "en": "https://hrkoyama.github.io/code/validated-examples/2026-11-26/variable-eddington-controls/results/vet-fourier-source2d.png"
+              },
+              "image": {
+                "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-26/variable-eddington-controls/results/vet-fourier-source2d.png",
+                "sha256": "eb3792a2826a804fc272a86872f6ea33a45e455a4eff95ba0161bc526ac5a81a",
+                "width": 1687,
+                "height": 756,
+                "kind": "case-validation",
+                "caption": {
+                  "ja": "可変エディントンテンソル：周期2D非平行源の固定検証：この実行例の保存済み検証図。",
+                  "en": "Variable Eddington tensor: a periodic 2D nonparallel-source control: saved validation figure for this execution."
+                }
+              },
+              "note": {
+                "ja": "この実行例自身の保存済み検証図です。",
+                "en": "The saved validation figure for this execution itself."
+              },
+              "problem_id": "vet-fourier-source2d"
+            }
+          ],
+          "references": [
+            {
+              "id": "problem-vef-fourier-scattering1d",
+              "name": {
+                "ja": "可変エディントン因子：周期1D散乱源の固定検証：参照・比較条件",
+                "en": "Variable Eddington factor: a periodic 1D scattering-source control — references and comparison conditions"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/vef-fourier-scattering1d/?lang=ja#references-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/vef-fourier-scattering1d/?lang=en#references-en"
+              },
+              "note": {
+                "ja": "正の指定等方輻射源に対する連続角度Fourier応答が、同じ固定問題の解析参照です。点値・面位置・複素位相を区別し、異なるHO/LO離散化の差は保存します。 図の横軸xと角度余弦μは2つの空間次元ではありません。周期・一様係数の教育例で、流入境界、時間発展、物質・流体結合、非線形FLD、一般AP性や速度向上は検証しません。",
+                "en": "The continuum-angle Fourier response to the prescribed positive isotropic source is an analytic reference for this same fixed problem. Keep point/face locations and complex phase distinct, retaining the independent HO/LO discretization gap. Position x and angular cosine mu are not two spatial dimensions. This periodic homogeneous educational control does not validate inflow boundaries, time evolution, material/fluid coupling, nonlinear FLD, general AP properties or speedup."
+              }
+            },
+            {
+              "id": "vef-fourier-scattering1d",
+              "name": {
+                "ja": "本例のために導出した周期1D VEFの連続Fourier応答",
+                "en": "Authored continuum Fourier response for periodic 1D VEF"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-vef-fourier-scattering1d-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-vef-fourier-scattering1d-en"
+              },
+              "reference_kind": "analytic",
+              "note": {
+                "ja": "解析解 静止・定常・灰色の単位周期区間。無次元でσt=4、σs=3、σa=1、c=1。q=1+0.3 cos(2πx)、x_i=i/Nの点値です。角度平均は(1/2)∫I dμで規格化します。 正の指定等方輻射源を使い、角度空間は球面S²を保ちます。 正の指定等方輻射源に対する連続角度Fourier応答が、同じ固定問題の解析参照です。点値・面位置・複素位相を区別し、異なるHO/LO離散化の差は保存します。 図の横軸xと角度余弦μは2つの空間次元ではありません。周期・一様係数の教育例で、流入境界、時間発展、物質・流体結合、非線形FLD、一般AP性や速度向上は検証しません。",
+                "en": "Analytic reference Static steady grey unit-periodic interval; dimensionless st=4, ss=3, sa=1 and c=1. q=1+0.3 cos(2pi x), sampled as point values at x_i=i/N. Angular averages use (1/2) integral I dmu. Positive prescribed isotropic source; physical angle space remains S2. The continuum-angle Fourier response to the prescribed positive isotropic source is an analytic reference for this same fixed problem. Keep point/face locations and complex phase distinct, retaining the independent HO/LO discretization gap. Position x and angular cosine mu are not two spatial dimensions. This periodic homogeneous educational control does not validate inflow boundaries, time evolution, material/fluid coupling, nonlinear FLD, general AP properties or speedup."
+              },
+              "relation": "same-problem",
+              "context_problem_id": "vef-fourier-scattering1d"
+            },
+            {
+              "id": "problem-vet-fourier-source2d",
+              "name": {
+                "ja": "可変エディントンテンソル：周期2D非平行源の固定検証：参照・比較条件",
+                "en": "Variable Eddington tensor: a periodic 2D nonparallel-source control — references and comparison conditions"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/vet-fourier-source2d/?lang=ja#references-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/vet-fourier-source2d/?lang=en#references-en"
+              },
+              "note": {
+                "ja": "正の指定等方輻射源に対する連続角度Fourier応答が、同じ固定問題の解析参照です。点値・面位置・複素位相を区別し、異なるHO/LO離散化の差は保存します。 局所M1との比較は閉包の点ごとの診断だけで、M1方程式は解きません。Athena・短い特性線法・影・交差ビーム・RHD・境界閉包の再現でもなく、固定格子でHO/LOの厳密一致や普遍的な収束率を主張しません。",
+                "en": "The continuum-angle Fourier response to the prescribed positive isotropic source is an analytic reference for this same fixed problem. Keep point/face locations and complex phase distinct, retaining the independent HO/LO discretization gap. Pointwise M1 comparison is a closure diagnostic; no M1 PDE is solved. This is not a reproduction of Athena, short characteristics, shadows, crossing beams, RHD or boundary closures, and does not claim exact fixed-grid HO/LO agreement or universal convergence rates."
+              }
+            },
+            {
+              "id": "vet-fourier-source2d",
+              "name": {
+                "ja": "本例のために導出した周期2D VETの連続Fourier応答",
+                "en": "Authored continuum Fourier response for periodic 2D VET"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-vet-fourier-source2d-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-vet-fourier-source2d-en"
+              },
+              "reference_kind": "analytic",
+              "note": {
+                "ja": "解析解 静止・定常・灰色の単位周期正方形。σt=4、σs=3、σa=1、c=1の無次元点値。q=1+0.3 cos(2πx)+0.2 sin(2π(x+y))。空間は2Dでも角度は全S²でDzzも保持します。 正の指定等方輻射源を使い、角度空間は球面S²を保ちます。 正の指定等方輻射源に対する連続角度Fourier応答が、同じ固定問題の解析参照です。点値・面位置・複素位相を区別し、異なるHO/LO離散化の差は保存します。 局所M1との比較は閉包の点ごとの診断だけで、M1方程式は解きません。Athena・短い特性線法・影・交差ビーム・RHD・境界閉包の再現でもなく、固定格子でHO/LOの厳密一致や普遍的な収束率を主張しません。",
+                "en": "Analytic reference Static steady grey unit-periodic square; dimensionless st=4, ss=3, sa=1 and c=1, using point samples. q=1+0.3 cos(2pi x)+0.2 sin(2pi(x+y)). Space is2D, but directions cover full S2 and Dzz is retained. Positive prescribed isotropic source; physical angle space remains S2. The continuum-angle Fourier response to the prescribed positive isotropic source is an analytic reference for this same fixed problem. Keep point/face locations and complex phase distinct, retaining the independent HO/LO discretization gap. Pointwise M1 comparison is a closure diagnostic; no M1 PDE is solved. This is not a reproduction of Athena, short characteristics, shadows, crossing beams, RHD or boundary closures, and does not claim exact fixed-grid HO/LO agreement or universal convergence rates."
+              },
+              "relation": "same-problem",
+              "context_problem_id": "vet-fourier-source2d"
+            },
+            {
+              "id": "vef-fourier-scattering1d",
+              "name": {
+                "ja": "本例のために導出した周期1D VEFの連続Fourier応答",
+                "en": "Authored continuum Fourier response for periodic 1D VEF"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-vef-fourier-scattering1d-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-vef-fourier-scattering1d-en"
+              },
+              "reference_kind": "analytic",
+              "note": {
+                "ja": "解析解 静止・定常・灰色の単位周期区間。無次元でσt=4、σs=3、σa=1、c=1。q=1+0.3 cos(2πx)、x_i=i/Nの点値です。角度平均は(1/2)∫I dμで規格化します。 正の指定等方輻射源を使い、角度空間は球面S²を保ちます。",
+                "en": "Analytic reference Static steady grey unit-periodic interval; dimensionless st=4, ss=3, sa=1 and c=1. q=1+0.3 cos(2pi x), sampled as point values at x_i=i/N. Angular averages use (1/2) integral I dmu. Positive prescribed isotropic source; physical angle space remains S2."
+              }
+            },
+            {
+              "id": "vet-fourier-source2d",
+              "name": {
+                "ja": "本例のために導出した周期2D VETの連続Fourier応答",
+                "en": "Authored continuum Fourier response for periodic 2D VET"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-vet-fourier-source2d-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-vet-fourier-source2d-en"
+              },
+              "reference_kind": "analytic",
+              "note": {
+                "ja": "解析解 静止・定常・灰色の単位周期正方形。σt=4、σs=3、σa=1、c=1の無次元点値。q=1+0.3 cos(2πx)+0.2 sin(2π(x+y))。空間は2Dでも角度は全S²でDzzも保持します。 正の指定等方輻射源を使い、角度空間は球面S²を保ちます。",
+                "en": "Analytic reference Static steady grey unit-periodic square; dimensionless st=4, ss=3, sa=1 and c=1, using point samples. q=1+0.3 cos(2pi x)+0.2 sin(2pi(x+y)). Space is2D, but directions cover full S2 and Dzz is retained. Positive prescribed isotropic source; physical angle space remains S2."
+              }
+            },
+            {
+              "id": "validation-vef-fourier-scattering1d",
+              "name": {
+                "ja": "可変エディントン因子：周期1D散乱源の固定検証：参照・検証",
+                "en": "Variable Eddington factor: a periodic 1D scattering-source control — references and checks"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/vef-fourier-scattering1d/?lang=ja#vef-fourier-scattering1d-ja-validation",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/vef-fourier-scattering1d/?lang=en#vef-fourier-scattering1d-en-validation"
+              },
+              "note": {
+                "ja": "N=33/65と固定32点角度則、N=65の64点角度プローブを分けます。解析場・複素モード・保存・実現可能性・反復残差・誤符号等の負制御、別のN=9一定源行を照合します。",
+                "en": "Separate N=33/65 refinement at32 angular points from a64-point probe at N=65. Check analytic fields and complex modes, conservation, realizability, iteration residuals, negative controls and a separate N=9 constant-source row."
+              },
+              "role": "execution"
+            },
+            {
+              "id": "vef-fourier-scattering1d",
+              "name": {
+                "ja": "本例のために導出した周期1D VEFの連続Fourier応答",
+                "en": "Authored continuum Fourier response for periodic 1D VEF"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-vef-fourier-scattering1d-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-vef-fourier-scattering1d-en"
+              },
+              "reference_kind": "analytic",
+              "note": {
+                "ja": "解析解 静止・定常・灰色の単位周期区間。無次元でσt=4、σs=3、σa=1、c=1。q=1+0.3 cos(2πx)、x_i=i/Nの点値です。角度平均は(1/2)∫I dμで規格化します。 正の指定等方輻射源を使い、角度空間は球面S²を保ちます。 正の指定等方輻射源に対する連続角度Fourier応答が、同じ固定問題の解析参照です。点値・面位置・複素位相を区別し、異なるHO/LO離散化の差は保存します。 図の横軸xと角度余弦μは2つの空間次元ではありません。周期・一様係数の教育例で、流入境界、時間発展、物質・流体結合、非線形FLD、一般AP性や速度向上は検証しません。",
+                "en": "Analytic reference Static steady grey unit-periodic interval; dimensionless st=4, ss=3, sa=1 and c=1. q=1+0.3 cos(2pi x), sampled as point values at x_i=i/N. Angular averages use (1/2) integral I dmu. Positive prescribed isotropic source; physical angle space remains S2. The continuum-angle Fourier response to the prescribed positive isotropic source is an analytic reference for this same fixed problem. Keep point/face locations and complex phase distinct, retaining the independent HO/LO discretization gap. Position x and angular cosine mu are not two spatial dimensions. This periodic homogeneous educational control does not validate inflow boundaries, time evolution, material/fluid coupling, nonlinear FLD, general AP properties or speedup."
+              },
+              "relation": "same-problem",
+              "context_execution_id": "vef-fourier-scattering1d"
+            },
+            {
+              "id": "validation-vet-fourier-source2d",
+              "name": {
+                "ja": "可変エディントンテンソル：周期2D非平行源の固定検証：参照・検証",
+                "en": "Variable Eddington tensor: a periodic 2D nonparallel-source control — references and checks"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/vet-fourier-source2d/?lang=ja#vet-fourier-source2d-ja-validation",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/vet-fourier-source2d/?lang=en#vet-fourier-source2d-en-validation"
+              },
+              "note": {
+                "ja": "17²/33²と12×48角度則、33²の16×64角度プローブを区別します。解析E/H/K/D、位相を含む複素モード、独立角度積分、テンソル制約、混合項の負制御、N=9²一定源を照合します。",
+                "en": "Separate17x17/33x33 refinement at12x48 angles from the16x64 angular probe on33x33. Check analytic E/H/K/D, complex modes including phase, independent angular integration, tensor constraints, cross-term negative controls and a9x9 constant source."
+              },
+              "role": "execution"
+            },
+            {
+              "id": "vet-fourier-source2d",
+              "name": {
+                "ja": "本例のために導出した周期2D VETの連続Fourier応答",
+                "en": "Authored continuum Fourier response for periodic 2D VET"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-vet-fourier-source2d-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-vet-fourier-source2d-en"
+              },
+              "reference_kind": "analytic",
+              "note": {
+                "ja": "解析解 静止・定常・灰色の単位周期正方形。σt=4、σs=3、σa=1、c=1の無次元点値。q=1+0.3 cos(2πx)+0.2 sin(2π(x+y))。空間は2Dでも角度は全S²でDzzも保持します。 正の指定等方輻射源を使い、角度空間は球面S²を保ちます。 正の指定等方輻射源に対する連続角度Fourier応答が、同じ固定問題の解析参照です。点値・面位置・複素位相を区別し、異なるHO/LO離散化の差は保存します。 局所M1との比較は閉包の点ごとの診断だけで、M1方程式は解きません。Athena・短い特性線法・影・交差ビーム・RHD・境界閉包の再現でもなく、固定格子でHO/LOの厳密一致や普遍的な収束率を主張しません。",
+                "en": "Analytic reference Static steady grey unit-periodic square; dimensionless st=4, ss=3, sa=1 and c=1, using point samples. q=1+0.3 cos(2pi x)+0.2 sin(2pi(x+y)). Space is2D, but directions cover full S2 and Dzz is retained. Positive prescribed isotropic source; physical angle space remains S2. The continuum-angle Fourier response to the prescribed positive isotropic source is an analytic reference for this same fixed problem. Keep point/face locations and complex phase distinct, retaining the independent HO/LO discretization gap. Pointwise M1 comparison is a closure diagnostic; no M1 PDE is solved. This is not a reproduction of Athena, short characteristics, shadows, crossing beams, RHD or boundary closures, and does not claim exact fixed-grid HO/LO agreement or universal convergence rates."
+              },
+              "relation": "same-problem",
+              "context_execution_id": "vet-fourier-source2d"
+            }
+          ],
+          "code": [
+            {
+              "id": "vef-fourier-scattering1d",
+              "name": {
+                "ja": "可変エディントン因子：周期1D散乱源の固定検証",
+                "en": "Variable Eddington factor: a periodic 1D scattering-source control"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/vef-fourier-scattering1d/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/vef-fourier-scattering1d/?lang=en"
+              },
+              "availability": "run",
+              "method_ids": [
+                "variable-eddington-factor"
+              ],
+              "note": {
+                "ja": "形式的な角度輸送と独立なモーメント方程式を反復結合し、位置で変わる因子fを閉形式参照と比較します。",
+                "en": "Iteratively couple formal angular transport to independent moment equations and compare the spatially varying factor f with a closed-form reference."
+              }
+            },
+            {
+              "id": "vet-fourier-source2d",
+              "name": {
+                "ja": "可変エディントンテンソル：周期2D非平行源の固定検証",
+                "en": "Variable Eddington tensor: a periodic 2D nonparallel-source control"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/vet-fourier-source2d/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/vet-fourier-source2d/?lang=en"
+              },
+              "availability": "run",
+              "method_ids": [
+                "variable-eddington-tensor"
+              ],
+              "note": {
+                "ja": "非平行な2つの源モードから全S²角度分布と3×3テンソルを求め、Dxyを含む保存的モーメント式と閉形式参照を比較します。",
+                "en": "Use two nonparallel source modes to compute full-S2 angular moments and a3x3 tensor, then compare conservative moment equations including Dxy with a closed-form reference."
+              }
+            }
+          ]
+        }
+      },
+      "directories": {
+        "methods": {
+          "name": {
+            "ja": "手法・コードの対応表",
+            "en": "Methods and code reference"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/?lang=en"
+          }
+        },
+        "equations": {
+          "name": {
+            "ja": "方程式",
+            "en": "Equations"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en"
+          }
+        },
+        "figures": {
+          "name": {
+            "ja": "テスト問題の名前と図",
+            "en": "Test problems by name and figure"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/?lang=en"
+          }
+        },
+        "references": {
+          "name": {
+            "ja": "厳密解・参照解",
+            "en": "Exact and reference solutions"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en"
+          }
+        },
+        "code": {
+          "name": {
+            "ja": "コード・入力・検証",
+            "en": "Code, inputs and validation"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en"
+          }
+        }
+      }
+    },
     "validation-wall-flow": {
       "id": "validation-wall-flow",
       "title": {
@@ -73162,6 +73697,930 @@
         }
       }
     },
+    "variable-eddington": {
+      "id": "variable-eddington",
+      "title": {
+        "ja": "可変Eddington因子・テンソル：角度輸送でモーメントを閉じる",
+        "en": "Variable Eddington factors and tensors: closing moments with angular transport"
+      },
+      "routes": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/variable-eddington/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/variable-eddington/"
+      },
+      "association_status": "registered",
+      "resource_navigation": {
+        "kind": "chapter",
+        "id": "variable-eddington",
+        "note": {
+          "ja": "この章に登録された手法・問題・実行例の関連資料です。",
+          "en": "Resources explicitly registered to the methods, problems and executions of this chapter."
+        },
+        "groups": {
+          "methods": [
+            {
+              "id": "variable-eddington-factor",
+              "name": {
+                "ja": "可変Eddington因子（1D VEF）",
+                "en": "Variable Eddington factor (1D VEF)"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/variable-eddington-factor/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/variable-eddington-factor/?lang=en"
+              },
+              "status": "educational-example"
+            },
+            {
+              "id": "variable-eddington-tensor",
+              "name": {
+                "ja": "可変Eddingtonテンソル（VET）",
+                "en": "Variable Eddington tensor (VET)"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/variable-eddington-tensor/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/variable-eddington-tensor/?lang=en"
+              },
+              "status": "educational-example"
+            }
+          ],
+          "equations": [
+            {
+              "id": "static-grey-variable-eddington-moments",
+              "name": {
+                "ja": "静止灰色輻射のVEF・VETモーメント閉包",
+                "en": "Static grey VEF/VET moment closure"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#static-grey-variable-eddington-moments-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#static-grey-variable-eddington-moments-en"
+              },
+              "note": {
+                "ja": "c=1、角度平均はdΩ/(4π)。1Dのスカラー因子と、2D空間・3D角度の全テンソルを同じモーメント系の変種として扱います。公開例は正の等方輻射源・一定係数・周期境界に限定します。",
+                "en": "c=1 with angular measure dOmega/(4pi). The scalar 1D factor and full tensor in 2D space/3D angle are variants of the same moment system. Released examples are limited to positive isotropic sources, constant coefficients and periodic boundaries."
+              }
+            }
+          ],
+          "figures": [],
+          "references": [],
+          "code": [
+            {
+              "id": "vef-fourier-scattering1d",
+              "name": {
+                "ja": "可変エディントン因子：周期1D散乱源の固定検証",
+                "en": "Variable Eddington factor: a periodic 1D scattering-source control"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/vef-fourier-scattering1d/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/vef-fourier-scattering1d/?lang=en"
+              },
+              "availability": "run",
+              "method_ids": [
+                "variable-eddington-factor"
+              ],
+              "note": {
+                "ja": "形式的な角度輸送と独立なモーメント方程式を反復結合し、位置で変わる因子fを閉形式参照と比較します。",
+                "en": "Iteratively couple formal angular transport to independent moment equations and compare the spatially varying factor f with a closed-form reference."
+              }
+            },
+            {
+              "id": "method-variable-eddington-factor",
+              "name": {
+                "ja": "可変Eddington因子（1D VEF）：コード・検証",
+                "en": "Variable Eddington factor (1D VEF) — code and checks"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/variable-eddington-factor/?lang=ja#method-execution-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/variable-eddington-factor/?lang=en#method-execution-en"
+              },
+              "availability": "source",
+              "method_ids": [
+                "variable-eddington-factor"
+              ],
+              "note": {
+                "ja": "手法固有の配布版と関連ソースを案内します。固定入力例は別の項目で区別します。",
+                "en": "Method-specific editions and related sources; fixed-input runs are listed separately."
+              }
+            },
+            {
+              "id": "vet-fourier-source2d",
+              "name": {
+                "ja": "可変エディントンテンソル：周期2D非平行源の固定検証",
+                "en": "Variable Eddington tensor: a periodic 2D nonparallel-source control"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/vet-fourier-source2d/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/vet-fourier-source2d/?lang=en"
+              },
+              "availability": "run",
+              "method_ids": [
+                "variable-eddington-tensor"
+              ],
+              "note": {
+                "ja": "非平行な2つの源モードから全S²角度分布と3×3テンソルを求め、Dxyを含む保存的モーメント式と閉形式参照を比較します。",
+                "en": "Use two nonparallel source modes to compute full-S2 angular moments and a3x3 tensor, then compare conservative moment equations including Dxy with a closed-form reference."
+              }
+            },
+            {
+              "id": "method-variable-eddington-tensor",
+              "name": {
+                "ja": "可変Eddingtonテンソル（VET）：コード・検証",
+                "en": "Variable Eddington tensor (VET) — code and checks"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/variable-eddington-tensor/?lang=ja#method-execution-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/variable-eddington-tensor/?lang=en#method-execution-en"
+              },
+              "availability": "source",
+              "method_ids": [
+                "variable-eddington-tensor"
+              ],
+              "note": {
+                "ja": "手法固有の配布版と関連ソースを案内します。固定入力例は別の項目で区別します。",
+                "en": "Method-specific editions and related sources; fixed-input runs are listed separately."
+              }
+            }
+          ]
+        }
+      },
+      "directories": {
+        "methods": {
+          "name": {
+            "ja": "手法・コードの対応表",
+            "en": "Methods and code reference"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/?lang=en"
+          }
+        },
+        "equations": {
+          "name": {
+            "ja": "方程式",
+            "en": "Equations"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en"
+          }
+        },
+        "figures": {
+          "name": {
+            "ja": "テスト問題の名前と図",
+            "en": "Test problems by name and figure"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/?lang=en"
+          }
+        },
+        "references": {
+          "name": {
+            "ja": "厳密解・参照解",
+            "en": "Exact and reference solutions"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en"
+          }
+        },
+        "code": {
+          "name": {
+            "ja": "コード・入力・検証",
+            "en": "Code, inputs and validation"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en"
+          }
+        }
+      }
+    },
+    "wall-heating": {
+      "id": "wall-heating",
+      "title": {
+        "ja": "Wall heating：Noh問題と反射壁の数値的な過熱",
+        "en": "Wall heating: numerical overheating in Noh flow and at reflecting walls"
+      },
+      "routes": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/wall-heating/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/wall-heating/"
+      },
+      "association_status": "registered",
+      "resource_navigation": {
+        "kind": "chapter",
+        "id": "wall-heating",
+        "note": {
+          "ja": "この章に登録された手法・問題・実行例の関連資料です。",
+          "en": "Resources explicitly registered to the methods, problems and executions of this chapter."
+        },
+        "groups": {
+          "methods": [
+            {
+              "id": "rusanov",
+              "name": {
+                "ja": "Rusanov／局所Lax–Friedrichs流束",
+                "en": "Rusanov / local Lax–Friedrichs flux"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rusanov/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rusanov/?lang=en"
+              },
+              "status": "educational-example"
+            },
+            {
+              "id": "heun",
+              "name": {
+                "ja": "Heun法／SSPRK(2,2)",
+                "en": "Heun / SSPRK(2,2)"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/heun/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/heun/?lang=en"
+              },
+              "status": "educational-example"
+            },
+            {
+              "id": "muscl",
+              "name": {
+                "ja": "MUSCL再構成",
+                "en": "MUSCL reconstruction"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=en"
+              },
+              "status": "educational-example"
+            },
+            {
+              "id": "minmod",
+              "name": {
+                "ja": "Minmod",
+                "en": "Minmod"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/minmod/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/minmod/?lang=en"
+              },
+              "status": "educational-example"
+            }
+          ],
+          "equations": [],
+          "figures": [],
+          "references": [],
+          "code": [
+            {
+              "id": "noh-shock",
+              "name": {
+                "ja": "Noh衝撃波：初期圧力ゼロの平面・円筒・球対称計算",
+                "en": "Noh shocks: zero-pressure planar, cylindrical and spherical flow"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-shock/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-shock/?lang=en"
+              },
+              "availability": "run",
+              "method_ids": [
+                "rusanov",
+                "heun",
+                "muscl",
+                "minmod"
+              ],
+              "note": {
+                "ja": "初期圧力ゼロのNoh問題を、独自の小型1D有限体積コードで平面・円筒・球対称に計算します。64/128/256/512格子の全域誤差、原点過熱、衝撃位置、保存収支を測り、球で現れる境界流入の時間積分誤差を解析式と照合します。",
+                "en": "An original small 1D finite-volume code solves zero-pressure Noh flow in planar, cylindrical and spherical symmetry. Grids 64/128/256/512 measure full-domain error, origin heating, shock location and budgets, and compare spherical boundary-inflow time-quadrature error with its analytic identity."
+              }
+            },
+            {
+              "id": "noh-cartesian-2d",
+              "name": {
+                "ja": "Noh問題：実際の2次元Cartesian Euler計算",
+                "en": "Noh problem: an actual 2D Cartesian Euler calculation"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-cartesian-2d/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-cartesian-2d/?lang=en"
+              },
+              "availability": "run",
+              "method_ids": [
+                "rusanov",
+                "heun"
+              ],
+              "note": {
+                "ja": "正方形の全域で密度・2成分運動量・全エネルギーを更新する、小型の2次元Euler有限体積計算です。32²・64²・128²の3格子で厳密Noh状態からの誤差・保存収支・格子方向の影響を測ります。図は実際の2次元保存配列で、1D半径解の回転表示ではありません。",
+                "en": "A small 2D Euler finite-volume calculation evolves density, both momenta and total energy over the full square. Three grids,32²/64²/128², measure Noh-reference errors, budgets and grid orientation effects. The picture shows the actual evolved 2D array."
+              }
+            },
+            {
+              "id": "sedov-blast",
+              "name": {
+                "ja": "Sedov–Taylor点爆発：球対称の軽量検証",
+                "en": "Sedov–Taylor point blast: lightweight spherical-radial validation"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sedov-blast/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sedov-blast/?lang=en"
+              },
+              "availability": "run",
+              "method_ids": [
+                "rusanov",
+                "heun"
+              ],
+              "note": {
+                "ja": "球対称Euler方程式を半径方向の有限体積法で解く軽量例です。固定した半径0.03の領域に総エネルギー1を与え、128・256・512セルで点爆発の相似参照からの差と保存収支を測ります。図は1次元球対称データの断面表示で、2次元Cartesian計算ではありません。",
+                "en": "A lightweight spherical-radial Euler finite-volume example deposits unit energy inside fixed radius0.03. Three grids of128/256/512 radial cells measure differences from a point-blast similarity reference and conservation budgets. The picture is a section display of1D spherical data, not a2D Cartesian calculation."
+              }
+            },
+            {
+              "id": "shadow-absorber2d",
+              "name": {
+                "ja": "2D吸収影と保存的M1輸送",
+                "en": "Two-dimensional absorber shadow and M1 transport"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/shadow-absorber2d/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/shadow-absorber2d/?lang=en"
+              },
+              "availability": "run",
+              "method_ids": [
+                "radiation-transport",
+                "upwind",
+                "heun",
+                "rusanov"
+              ],
+              "note": {
+                "ja": "実際の円形吸収体の影を、特性線の円弦減衰・角度輸送・M1で比較します。",
+                "en": "Compare the actual evolved circular-absorber shadow with characteristic chord attenuation, signed-angle transport and nonlinear M1."
+              }
+            },
+            {
+              "id": "opposing-beams2d",
+              "name": {
+                "ja": "2D反向beamとM1閉包の情報損失",
+                "en": "Opposing beams and information loss in the M1 closure"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/opposing-beams2d/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/opposing-beams2d/?lang=en"
+              },
+              "availability": "run",
+              "method_ids": [
+                "radiation-transport",
+                "upwind",
+                "heun",
+                "rusanov"
+              ],
+              "note": {
+                "ja": "保存した反向packetの実進行からM1の限界を示し、別の閉M1MMSで数値実装を検証します。",
+                "en": "Show the M1 limitation in actual opposing-packet evolution; validate the same closed M1 solver independently with a manufactured solution."
+              }
+            },
+            {
+              "id": "saltzman-ale-piston",
+              "name": {
+                "ja": "Saltzman型の歪み格子ピストン：2次元EulerとALE",
+                "en": "Saltzman-type skew-grid piston: 2D Euler and ALE"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/saltzman-ale-piston/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/saltzman-ale-piston/?lang=en"
+              },
+              "availability": "run",
+              "method_ids": [
+                "ale",
+                "rusanov"
+              ],
+              "note": {
+                "ja": "2023年版の歪み格子と有限初期圧力を明示した、所与の格子移動による2次元Eulerピストン計算。",
+                "en": "Tan–Lv–Zhu2023 Example8 e0=1e-4 initialvariant. PrescribedaffineALEmesh, not theirWENO/materialLagrangian/remap scheme. Finitepressure RH cellaverages."
+              }
+            },
+            {
+              "id": "method-rusanov",
+              "name": {
+                "ja": "Rusanov／局所Lax–Friedrichs流束：コード・検証",
+                "en": "Rusanov / local Lax–Friedrichs flux — code and checks"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rusanov/?lang=ja#method-execution-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rusanov/?lang=en#method-execution-en"
+              },
+              "availability": "source",
+              "method_ids": [
+                "rusanov"
+              ],
+              "note": {
+                "ja": "手法固有の配布版と関連ソースを案内します。固定入力例は別の項目で区別します。",
+                "en": "Method-specific editions and related sources; fixed-input runs are listed separately."
+              }
+            },
+            {
+              "id": "double-mach-reflection",
+              "name": {
+                "ja": "Double Mach反射：多格子の軽量検証",
+                "en": "Double Mach reflection: lightweight grid verification"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/double-mach-reflection/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/double-mach-reflection/?lang=en"
+              },
+              "availability": "run",
+              "method_ids": [
+                "hll",
+                "heun"
+              ],
+              "note": {
+                "ja": "既存のDouble Mach反射と同じ初期値・境界を使い、64×16・128×32・256×64の実2D Euler有限体積計算をT=.2まで実行します。別実装の有限格子参照との差、実際の境界流束収支、上部の入射衝撃位置と壁近傍を比較します。",
+                "en": "Full 2D Euler finite volumes evolve the existing Double Mach initial/boundary data to T=.2 on64x16,128x32 and256x64 cells. Compare a separately written finite-grid reference, actual boundary-flux budgets, an upper incident-front position and a fixed near-wall region."
+              }
+            },
+            {
+              "id": "forward-step-m3",
+              "name": {
+                "ja": "Mach 3前向きステップ：壁面収支と多格子検証",
+                "en": "Mach3 forward step: wall budgets and grid verification"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/forward-step-m3/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/forward-step-m3/?lang=en"
+              },
+              "availability": "run",
+              "method_ids": [
+                "hll",
+                "heun"
+              ],
+              "note": {
+                "ja": "実際の2次元Euler有限体積計算を60×20・120×40・240×80でT=4まで行い、別実装のMUSCL有限格子参照と比較します。段差の垂直面・上面を含む実際の数値流束から4保存量の収支を評価し、角のエントロピー補正を加えない変種として図とコードを公開します。",
+                "en": "Actual2D Euler finite volumes evolve60x20,120x40 and240x80 meshes toT4, comparing separately implemented MUSCL finite-grid references. Actual numerical wall fluxes, including the vertical and horizontal step faces, close all four conserved budgets. Figures and code explicitly use the variant without corner entropy correction."
+              }
+            },
+            {
+              "id": "postshock-orszag-tang",
+              "name": {
+                "ja": "後期Orszag–Tang：独立参照と圧縮構造",
+                "en": "Late Orszag-Tang: independent reference and compression structure"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/postshock-orszag-tang/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/postshock-orszag-tang/?lang=en"
+              },
+              "availability": "run",
+              "method_ids": [
+                "hlld",
+                "muscl",
+                "heun",
+                "ct"
+              ],
+              "note": {
+                "ja": "圧縮性理想MHDのOrszag–TangをT=.2まで進め、相互作用する圧縮・衝撃波構造の密度と圧力を独立有限格子参照で検査します。",
+                "en": "Evolve compressible ideal-MHD Orszag-Tang to T.2 and check density/pressure in interacting compression/shock structure against an independent finite-grid reference."
+              }
+            },
+            {
+              "id": "circular-alfven-refinement",
+              "name": {
+                "ja": "円偏波Alfvén波：全成分の格子収束",
+                "en": "Circular Alfven wave: full-state refinement"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/circular-alfven-refinement/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/circular-alfven-refinement/?lang=en"
+              },
+              "availability": "run",
+              "method_ids": [
+                "hlld",
+                "muscl",
+                "heun"
+              ],
+              "note": {
+                "ja": "全8保存変数を進め、非零のBz・vzを含む円偏波を解析セル平均と比較します。",
+                "en": "Evolve all eight conserved variables and compare circular polarization, including nonzero Bz/vz, against analytic cell means."
+              }
+            },
+            {
+              "id": "magnetic-loop-independent",
+              "name": {
+                "ja": "磁場ループ：独立2次元参照と細分化",
+                "en": "Magnetic loop: independent 2D reference and refinement"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/magnetic-loop-independent/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/magnetic-loop-independent/?lang=en"
+              },
+              "availability": "run",
+              "method_ids": [
+                "hlld",
+                "muscl",
+                "heun",
+                "ct"
+              ],
+              "note": {
+                "ja": "実際の2次元磁場ループ輸送を、別実装Athena++の空間・時間感度を検査した終端保存場と比較します。",
+                "en": "Compare genuine 2D magnetic-loop transport with final conserved fields from independent Athena++, qualified in space and time."
+              }
+            },
+            {
+              "id": "guderley-implosion",
+              "name": {
+                "ja": "Guderley収束衝撃波：球対称の軽量検証",
+                "en": "Guderley converging shock: lightweight spherical-radial verification"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/guderley-implosion/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/guderley-implosion/?lang=en"
+              },
+              "availability": "run",
+              "method_ids": [
+                "hll",
+                "heun"
+              ],
+              "note": {
+                "ja": "冷たい静止気体へ内向きに進む球対称Guderley衝撃波を、128/256/512個の球殻でt=−1から−.85まで計算します。HLL流束とHeun法を、相似指数の固有値・半解析場・衝撃位置・保存収支と照合する軽量例です。",
+                "en": "An inward spherical Guderley shock in cold stationary gas is evolved from t=-1 to -0.85 on 128/256/512 radial shells. HLL fluxes and Heun steps are checked against a similarity eigenvalue/field, shock trajectory and discrete conservation budgets."
+              }
+            },
+            {
+              "id": "cavity-ghia-re100",
+              "name": {
+                "ja": "Re=100蓋駆動キャビティ：Ghia中心線との比較",
+                "en": "Re100 lid-driven cavity: Ghia centerline comparison"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/cavity-ghia-re100/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/cavity-ghia-re100/?lang=en"
+              },
+              "availability": "run",
+              "method_ids": [
+                "centered-difference",
+                "heun"
+              ],
+              "note": {
+                "ja": "非周期・粘性非圧縮の実際の2D計算を17/33/65点格子で定常化し、Ghia原著の速度中心線と比較します。流線・渦中心・真の残差と発散を同時に保存します。",
+                "en": "March a real nonperiodic 2D viscous incompressible solver to steady state on 17/33/65 node grids and compare against original Ghia centerlines. Retain streamlines, grid vortex center, true PDE residual and discrete divergence."
+              }
+            },
+            {
+              "id": "wall-manufactured",
+              "name": {
+                "ja": "非周期壁面の製造解：速度・剪断・圧力演算子",
+                "en": "Nonperiodic wall MMS: velocity, shear and pressure operator"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/wall-manufactured/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/wall-manufactured/?lang=en"
+              },
+              "availability": "run",
+              "method_ids": [
+                "centered-difference",
+                "heun"
+              ],
+              "note": {
+                "ja": "キャビティと同じ壁条件付き2Dソルバーに解析外力を与え、速度と流れ関数の格子収束、壁渦度・壁剪断の誤差を測ります。別の非零Dirichlet圧力製造解でPoisson・勾配の境界演算子も検査します。",
+                "en": "Apply analytic forcing to the same wall-bounded2D solver, measuring grid convergence of velocity/streamfunction and actual wall-vorticity/shear errors. A separate nonzero-Dirichlet manufactured pressure verifies Poisson and boundary-gradient operators."
+              }
+            },
+            {
+              "id": "kh-initial-growth",
+              "name": {
+                "ja": "KHの初期成長：滑らかな周期せん断層",
+                "en": "KH initial growth in a smooth periodic shear layer"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/kh-initial-growth/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/kh-initial-growth/?lang=en"
+              },
+              "availability": "run",
+              "method_ids": [
+                "centered-difference",
+                "heun"
+              ],
+              "note": {
+                "ja": "実際の非線形2D渦度方程式を解き、独立Fourier–Galerkin線形初期値問題と有限時間の成長・格子誤差を比較します。",
+                "en": "Evolve the actual nonlinear2D vorticity PDE and compare finite-time growth and spatial errors with an independent continuous Fourier–Galerkin linear IVP."
+              }
+            },
+            {
+              "id": "rt-initial-growth",
+              "name": {
+                "ja": "RTの初期成長：滑らかなBoussinesq二層",
+                "en": "RT initial growth in smooth Boussinesq double layers"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/rt-initial-growth/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/rt-initial-growth/?lang=en"
+              },
+              "availability": "run",
+              "method_ids": [
+                "centered-difference",
+                "heun"
+              ],
+              "note": {
+                "ja": "密度差を浮力だけに残す2D Boussinesq系を時間発展し、不安定な滑らかな層の初期成長を独立線形参照で調べます。",
+                "en": "Advance the actual2D Boussinesq vorticity/active-buoyancy system and compare smooth unstable-layer growth with a separately derived linear IVP."
+              }
+            },
+            {
+              "id": "ale-nonuniform-transport",
+              "name": {
+                "ja": "非一様移動格子で実際に運ぶALEスカラー",
+                "en": "ALE scalar transport on genuinely nonuniform moving cells"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ale-nonuniform-transport/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ale-nonuniform-transport/?lang=en"
+              },
+              "availability": "run",
+              "method_ids": [
+                "ale",
+                "upwind",
+                "heun"
+              ],
+              "note": {
+                "ja": "質量と格子面位置を同じHeun段で更新し、一様GCLだけでなく非一様な解析波を運びます。",
+                "en": "Advance cell integrals and face positions with identical Heun stages, transporting a nonuniform analytic wave beyond a uniform GCL check."
+              }
+            },
+            {
+              "id": "su-olson-transport1997",
+              "name": {
+                "ja": "Su–Olson1997角度輸送の独立公開表比較",
+                "en": "Su–Olson transport with an independently published analytical table"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/su-olson-transport1997/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/su-olson-transport1997/?lang=en"
+              },
+              "availability": "run",
+              "method_ids": [
+                "radiation-transport",
+                "upwind",
+                "heun"
+              ],
+              "note": {
+                "ja": "物質交換を含む実際の正負角度輸送を進め、2023原著者公開の解析benchmark表と比較します。",
+                "en": "Evolve actual signed-angle transport/material exchange and compare with pinned analytical benchmark tables provided by the2023primary author."
+              }
+            },
+            {
+              "id": "method-heun",
+              "name": {
+                "ja": "Heun法／SSPRK(2,2)：コード・検証",
+                "en": "Heun / SSPRK(2,2) — code and checks"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/heun/?lang=ja#method-execution-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/heun/?lang=en#method-execution-en"
+              },
+              "availability": "source",
+              "method_ids": [
+                "heun"
+              ],
+              "note": {
+                "ja": "手法固有の配布版と関連ソースを案内します。固定入力例は別の項目で区別します。",
+                "en": "Method-specific editions and related sources; fixed-input runs are listed separately."
+              }
+            },
+            {
+              "id": "shu-independent",
+              "name": {
+                "ja": "Shu–Osher：独立参照と格子収束",
+                "en": "Shu–Osher: independent reference and mesh refinement"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/shu-independent/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/shu-independent/?lang=en"
+              },
+              "availability": "run",
+              "method_ids": [
+                "muscl"
+              ],
+              "note": {
+                "ja": "衝撃波と密度正弦波の相互作用を、同じPython実装の細格子ではなく、別に実行したAthena++の参照と照合します。",
+                "en": "Compare shock–density-wave interaction against separately executed Athena++ reference data rather than a finer grid of the same Python code."
+              }
+            },
+            {
+              "id": "euler-double-rarefaction-positivity",
+              "name": {
+                "ja": "Euler二重膨張波：段階ごとの正値性",
+                "en": "Euler double rarefaction: positivity at every stage"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/euler-double-rarefaction-positivity/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/euler-double-rarefaction-positivity/?lang=en"
+              },
+              "availability": "run",
+              "method_ids": [
+                "lax-friedrichs",
+                "muscl",
+                "positive-scaling",
+                "ssprk33"
+              ],
+              "note": {
+                "ja": "既存の強い二重希薄波を128/256/512セルで計算し、平均保存型の正値性スケーリングをMUSCL・大域LF流束・SSPRK(3,3)へ接続します。各前進Euler段と各SSP凸結合の密度・圧力・境界保存収支を記録します。",
+                "en": "Evolve the existing strong double rarefaction on 128/256/512 cells, connecting mean-preserving positivity scaling to MUSCL, global LF fluxes and SSPRK(3,3). Log density, pressure and boundary budgets for every FE substep and SSP convex combination."
+              }
+            },
+            {
+              "id": "low-mach-vortex",
+              "name": {
+                "ja": "低Mach等エントロピー渦：前処理Roe流束の軽量検証",
+                "en": "Low-Mach isentropic vortex: preconditioned Roe flux verification"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/low-mach-vortex/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/low-mach-vortex/?lang=en"
+              },
+              "availability": "run",
+              "method_ids": [
+                "roe",
+                "low-mach-preconditioning",
+                "muscl",
+                "ssprk33"
+              ],
+              "note": {
+                "ja": "同じ非線形2次元Euler渦をN=16/32/64、背景Mach数.1/.01でT=.1まで進め、通常RoeとMiczek型の空間流束前処理を比較します。全12計算で、速度・動圧スケールの圧力誤差、保存収支、音響刻み、実段状態を調べます。",
+                "en": "The same nonlinear 2D Euler vortex is evolved to T=0.1 on N=16/32/64 at background Mach 0.1/0.01, comparing ordinary Roe with Miczek spatial flux preconditioning. Twelve fixed runs retain velocity and dynamically scaled pressure errors, conserved budgets, acoustic steps and actual stage states."
+              }
+            },
+            {
+              "id": "brio-wu",
+              "name": {
+                "ja": "Brio–Wu：HLLDと保存的に粗視化した数値参照",
+                "en": "Brio–Wu: HLLD and a conservatively restricted numerical reference"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/brio-wu/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/brio-wu/?lang=en"
+              },
+              "availability": "run",
+              "method_ids": [
+                "hlld",
+                "muscl"
+              ],
+              "note": {
+                "ja": "γ=2、Bx=0.75の1次元理想MHD衝撃波管をt=0.1まで計算。HLLD＋MC＋SSPRK2の64/128セルを512セルの数値参照と比較し、密度・圧力・縦磁場・保存収支・切替回数を記録する。",
+                "en": "Evolve the one-dimensional γ=2 ideal-MHD shock tube with Bx=0.75 to t=0.1. Compare 64/128-cell HLLD/MC/SSPRK2 with a 512-cell numerical reference, recording density, pressure, longitudinal field, balances and fallback counts."
+              }
+            },
+            {
+              "id": "zalesak-rotation",
+              "name": {
+                "ja": "Zalesak型2D回転輸送：保存・有界性・形状誤差",
+                "en": "Zalesak-type 2D rotation: conservation, bounds and shape error"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/zalesak-rotation/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/zalesak-rotation/?lang=en"
+              },
+              "availability": "run",
+              "method_ids": [
+                "upwind",
+                "muscl",
+                "minmod",
+                "ssprk33"
+              ],
+              "note": {
+                "ja": "スロット付き円盤を実際の2次元有限体積法で一回転させ、donor-cellとminmod MUSCLを比較します。3格子と、半セルの中心ずらし・45度の初期向きを含む8計算で、保存・各SSP段の有界性・形状誤差とスロットの埋まりを測ります。",
+                "en": "Rotate a slotted disk through one full turn with an actual 2D finite-volume solver, comparing donor-cell and minmod MUSCL. Eight runs combine three grids with half-cell-center and 45-degree-start probes; measure conservation, bounds at every SSP stage, shape error and slot filling."
+              }
+            },
+            {
+              "id": "srhd-collision",
+              "name": {
+                "ja": "SRHDの対称二衝撃波衝突",
+                "en": "SRHD symmetric two-shock collision"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/srhd-collision/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/srhd-collision/?lang=en"
+              },
+              "availability": "run",
+              "method_ids": [
+                "hll",
+                "muscl",
+                "minmod",
+                "ssprk33"
+              ],
+              "note": {
+                "ja": "相対論的な対称衝突を、独立なTaub関係から得る厳密な保存量セル平均と比較し、実際の1D時空間場を保存します。",
+                "en": "Compare a relativistic symmetric collision with independent exact Taub-based conserved cell means; save actual1D x–t fields."
+              }
+            },
+            {
+              "id": "srmhd-alfven",
+              "name": {
+                "ja": "SRMHDの有限振幅円偏極Alfvén波",
+                "en": "SRMHD finite-amplitude circularly polarized Alfvén wave"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/srmhd-alfven/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/srmhd-alfven/?lang=en"
+              },
+              "availability": "run",
+              "method_ids": [
+                "hll",
+                "muscl",
+                "minmod",
+                "ssprk33"
+              ],
+              "note": {
+                "ja": "完全な磁気応力と誘導を含むSRMHDで非線形有限振幅波を1周期進め、厳密セル平均、位相、振幅と細分化を検査します。",
+                "en": "Evolve a nonlinear finite-amplitude wave for one period with full SRMHD magnetic stress and induction; check exact cell means,phase,amplitude and refinement."
+              }
+            },
+            {
+              "id": "method-muscl",
+              "name": {
+                "ja": "MUSCL再構成：コード・検証",
+                "en": "MUSCL reconstruction — code and checks"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=ja#method-execution-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=en#method-execution-en"
+              },
+              "availability": "source",
+              "method_ids": [
+                "muscl"
+              ],
+              "note": {
+                "ja": "手法固有の配布版と関連ソースを案内します。固定入力例は別の項目で区別します。",
+                "en": "Method-specific editions and related sources; fixed-input runs are listed separately."
+              }
+            },
+            {
+              "id": "method-minmod",
+              "name": {
+                "ja": "Minmod：コード・検証",
+                "en": "Minmod — code and checks"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/minmod/?lang=ja#method-execution-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/minmod/?lang=en#method-execution-en"
+              },
+              "availability": "source",
+              "method_ids": [
+                "minmod"
+              ],
+              "note": {
+                "ja": "手法固有の配布版と関連ソースを案内します。固定入力例は別の項目で区別します。",
+                "en": "Method-specific editions and related sources; fixed-input runs are listed separately."
+              }
+            }
+          ]
+        }
+      },
+      "directories": {
+        "methods": {
+          "name": {
+            "ja": "手法・コードの対応表",
+            "en": "Methods and code reference"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/?lang=en"
+          }
+        },
+        "equations": {
+          "name": {
+            "ja": "方程式",
+            "en": "Equations"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en"
+          }
+        },
+        "figures": {
+          "name": {
+            "ja": "テスト問題の名前と図",
+            "en": "Test problems by name and figure"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/?lang=en"
+          }
+        },
+        "references": {
+          "name": {
+            "ja": "厳密解・参照解",
+            "en": "Exact and reference solutions"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en"
+          }
+        },
+        "code": {
+          "name": {
+            "ja": "コード・入力・検証",
+            "en": "Code, inputs and validation"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en"
+          }
+        }
+      }
+    },
     "wavelets": {
       "id": "wavelets",
       "title": {
@@ -73296,18 +74755,18 @@
   },
   "source_sha256": {
     "catalog/atlas-chapter-links.json": "25052f683597a0f4ad507eaed60c1e3d076628bdbd6501968998b1cbb7a194fe",
-    "catalog/atlas-depth-expansion.json": "49e2ef4c1f7865eedff70a866351b3e54393a59e8856fd1cc1ed946d1435796c",
-    "catalog/atlas-detailed-reading.json": "5679d8af17b67600816080ca5dafdeeec4ecee81f109cae1b1d3dbc92195cdce",
-    "catalog/atlas-equations.json": "bb5abaa0a907e299c4584b903827edf26963298168207ae6b4a931424f88f57a",
+    "catalog/atlas-depth-expansion.json": "95872774fa0a0cca0340226eca5f953996e634fcc7674197892e1eae7537ca96",
+    "catalog/atlas-detailed-reading.json": "4007e15667be0a365768c9e6b178b15c98af79e6129bace990df563114c5b545",
+    "catalog/atlas-equations.json": "ecf174410cb43ef1f584f0c3cb50dd790ecc5a41db7bc0040e63b14ba91716a8",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
     "catalog/atlas-execution-examples.json": "b67c3635f42660eaa208073af8addf82777b26337e1b7f2792987f4116fb37c2",
     "catalog/atlas-goals.json": "c91c79682df6d474d166520060d7890cc8b6384a2626ede9c28085fd39b580c5",
-    "catalog/atlas-methods.json": "a1fe46c99d579bbbb9cef07e87897c3865326966eb27962ad9a65ae89f7d7b32",
-    "catalog/atlas-problem-links.json": "3e5d0e34f7e248933adc844f56c853af725e0ce260b64adfebe69827b198bf1f",
+    "catalog/atlas-methods.json": "3095535ca89db064b599679b06ca59d7d4bf093677c99af0ebd5a1896e834ec5",
+    "catalog/atlas-problem-links.json": "aa740ae9edb3fa0f5038cfb8be9acc0c7c1b57f8b8f0b5ff11592b993ed02d7c",
     "catalog/atlas-reference-metadata.json": "67e404b2c1aef9aa5f1cccb16a3ce5c7a35335fc7a5195a63c03e77e2bf3064c",
-    "catalog/atlas-reference-supplements.json": "87172f941063ed425b1ab96e4ef4dbbc1b68bc01ee375e87124f09106a29dd56",
+    "catalog/atlas-reference-supplements.json": "4cf39043693c70e4134cea6de19b89b5c371c910ea5d85a90dcd3e1b2fbb4fef",
     "catalog/atlas-terminology.json": "b861b1b1d4323c71bae2594065fd58649cb47e088dae858c4105e6340c4122b9",
-    "catalog/atlas-test-problems.json": "6f056c7aac9da887d8631fcaf66287d685ee32c1113d24e16c713fd947153d9b",
+    "catalog/atlas-test-problems.json": "a9f6439cd3e8219d2e6181a63207fdd2de69721260f512f76aa6c0117cf7ac8c",
     "code/numerical-methods-atlas/2026-11-21/atlas-code-2026-11-21.zip": "f17c0cfcf6956a2677dcdc874235806ae9c5453514be02e6d3274732bcdebe4f",
     "code/numerical-methods-atlas/2026-11-21/numart/coordinates.py": "c05903b96e57667c9a492aabc5c9ab1375ad37f774108ce189d4f43a3225d862",
     "code/numerical-methods-atlas/2026-11-21/numart/geometry.py": "ce62b61ff5989643e87fbdbda8507179b1c0c94af094c91c09d142c1a2a23a84",
@@ -73810,16 +75269,23 @@
     "code/validated-examples/2026-11-25/thermostat-constraint-controls/results/result.json": "45e4101f6676b2b971b144f5df45c1b28d3bff564d3896eeb309ee6c667d9351",
     "code/validated-examples/2026-11-25/thermostat-constraint-controls/source-manifest.json": "6e64499f6bda68ad17ccc7402e49a7296b82d500174ce0eb238e0acd076cc45e",
     "code/validated-examples/2026-11-25/thermostat-constraint-controls/verification.json": "c3273335cc6619c07d956252d65b00abf58ff3497d0a35776b3fc376ae70134e",
+    "code/validated-examples/2026-11-26/variable-eddington-controls/atlas-variable-eddington-controls-2026-11-26.zip": "00f72007e16701d4f41b587dc5b8bc3a158f2b6fac3f8b933aeacc3f7973f6bb",
+    "code/validated-examples/2026-11-26/variable-eddington-controls/cases.json": "7492e8b233a3707cf64f7aed8b0e604bbde61665a97def6253073d9259fe02cf",
+    "code/validated-examples/2026-11-26/variable-eddington-controls/results/result.json": "09320fe40bfd9afea94bebd59b881d7a356bc8f4c9e07833e94fd1483974ba4a",
+    "code/validated-examples/2026-11-26/variable-eddington-controls/results/vef-fourier-scattering1d.png": "bf8f354b57aad3bdd6ef72d861b12f04b5369c173b26995502a32d96a7e0d103",
+    "code/validated-examples/2026-11-26/variable-eddington-controls/results/vet-fourier-source2d.png": "eb3792a2826a804fc272a86872f6ea33a45e455a4eff95ba0161bc526ac5a81a",
+    "code/validated-examples/2026-11-26/variable-eddington-controls/source-manifest.json": "8e35c943abc9fe9e5106e4fe0e2170508dabdacceb18ae97595690295ed3ca54",
+    "code/validated-examples/2026-11-26/variable-eddington-controls/verification.json": "03a659dbc41042cf40f75128550eb233b3ffc91146db65ff479121ba626512f3",
     "numerical-methods-atlas/assets/reference-solutions.json": "c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "numerical-methods-atlas/equations/index.json": "8e8d3990a748b939cac24c2dfc0dffe55ee6b06df1f2a0b95899c750b2cbcc47",
-    "numerical-methods-atlas/gallery/preview-manifest.json": "10811a962736e0481fba13931deb6667ea9137c1525fed54a49a3f84d2da61e9",
-    "numerical-methods-atlas/locales/messages.json": "3a5053933857964a616b1707614318df1f9f3fbd9797c485afbe9f233322ccfe",
-    "numerical-methods-atlas/methods/index.json": "8e740e4a390a75b622928f5a01c38c9fd474e0f06625028a80e54360aa0249d2",
-    "numerical-methods-atlas/problems/index.json": "3a0c1dc655b13e477d9b982ec7f4e7de89a9c16c6b2425917c71405b9381c2cc",
-    "numerical-methods-atlas/solutions/index.json": "cda547a22c374d0eaaacb4d66b32de8aae3c26f2f331bc56c72607ceec0def84",
-    "numerical-methods-atlas/validation/index.json": "661e17dd4c31db1b94d3f40b6cc9b8e5b6920462ba7796a0e20d9979ed1b97d7",
+    "numerical-methods-atlas/equations/index.json": "b32e5cec8db943f05daea3f5b6be9aa064b50e756c4bf7d3c56e9f48fa6ec9ca",
+    "numerical-methods-atlas/gallery/preview-manifest.json": "6909b78d8e82a326d7e415d89c1d424be0112b715e55ac751f651117fd9e9e28",
+    "numerical-methods-atlas/locales/messages.json": "5afdb797b5d4cd4464220baa7112e0c0a68fbb1e344c35182c58bd9111b91253",
+    "numerical-methods-atlas/methods/index.json": "3ab5df8a7ed8c8c469916698c6c4e8a1fa82384418e3253b69ccc45ca9f14451",
+    "numerical-methods-atlas/problems/index.json": "2a275f9d553750ec40f78f4997e847bbe528c265f02885a214248a20c6cc49b8",
+    "numerical-methods-atlas/solutions/index.json": "50fefb9ac7dedce481cf9ff7b508da4b1efb314da0d6ab42252886e7802471c9",
+    "numerical-methods-atlas/validation/index.json": "8de3dc258ba4b8a90b1fcfef37279f3977b7200f3dd38f5c4b050f0f021bb53d",
     "scripts/atlas_terminology.py": "3abe65776c82d3f0c3fd01396ad9efb799ebba3515b50fe7844db0f01778779c"
   }
 }

@@ -8991,6 +8991,116 @@
         "python -B -W error -m pytest -q -p no:cacheprovider test_components.py",
         "python -B -W error run.py --input inputs.json --output fresh-output"
       ]
+    },
+    {
+      "id": "vef-fourier-scattering1d",
+      "group": "transport",
+      "name": {
+        "ja": "可変エディントン因子：周期1D散乱源の固定検証",
+        "en": "Variable Eddington factor: a periodic 1D scattering-source control"
+      },
+      "chapter": "validation-variable-eddington-controls",
+      "reading_section": "vef-fourier-scattering1d",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-26/variable-eddington-controls/",
+      "verification": "/code/validated-examples/2026-11-26/variable-eddington-controls/verification.json",
+      "commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-26/variable-eddington-controls/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "vef-fourier-scattering1d"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-26/variable-eddington-controls/results/vef-fourier-scattering1d.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-26/variable-eddington-controls/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "vef-fourier-scattering1d",
+          "url": "/numerical-methods-atlas/validation/vef-fourier-scattering1d/",
+          "name": {
+            "ja": "可変エディントン因子：周期1D散乱源の固定検証",
+            "en": "Variable Eddington factor: a periodic 1D scattering-source control"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vef-fourier-scattering1d",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vef-fourier-scattering1d"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-26/variable-eddington-controls/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#vef-fourier-scattering1d",
+      "run_commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ]
+    },
+    {
+      "id": "vet-fourier-source2d",
+      "group": "transport",
+      "name": {
+        "ja": "可変エディントンテンソル：周期2D非平行源の固定検証",
+        "en": "Variable Eddington tensor: a periodic 2D nonparallel-source control"
+      },
+      "chapter": "validation-variable-eddington-controls",
+      "reading_section": "vet-fourier-source2d",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-26/variable-eddington-controls/",
+      "verification": "/code/validated-examples/2026-11-26/variable-eddington-controls/verification.json",
+      "commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-26/variable-eddington-controls/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "vet-fourier-source2d"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-26/variable-eddington-controls/results/vet-fourier-source2d.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-26/variable-eddington-controls/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "vet-fourier-source2d",
+          "url": "/numerical-methods-atlas/validation/vet-fourier-source2d/",
+          "name": {
+            "ja": "可変エディントンテンソル：周期2D非平行源の固定検証",
+            "en": "Variable Eddington tensor: a periodic 2D nonparallel-source control"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vet-fourier-source2d",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vet-fourier-source2d"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-26/variable-eddington-controls/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#vet-fourier-source2d",
+      "run_commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ]
     }
   ],
   "excluded_examples": {
@@ -9019,11 +9129,11 @@
   },
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/",
   "counts": {
-    "test_problems": 172,
-    "saved_test_problems": 172,
+    "test_problems": 174,
+    "saved_test_problems": 174,
     "code_test_problems": 0,
     "groups": {
-      "transport": 17,
+      "transport": 19,
       "fluid": 26,
       "mhd": 6,
       "viscous": 9,
@@ -9040,7 +9150,7 @@
     }
   },
   "source_sha256": {
-    "catalog/atlas-test-problems.json": "6f056c7aac9da887d8631fcaf66287d685ee32c1113d24e16c713fd947153d9b",
+    "catalog/atlas-test-problems.json": "a9f6439cd3e8219d2e6181a63207fdd2de69721260f512f76aa6c0117cf7ac8c",
     "numerical-methods-atlas/equation-gallery.json": "e99af38238a50232f92875817c4556ab6c730289db13014efdd41913096c902e",
     "numerical-methods-atlas/cip.json": "3aa33fbffad6b9ad76310e9b713629a1a35b4e30e419db0c531180cf769e6b6f",
     "numerical-methods-atlas/limiters.json": "3242180ba171420220fd349cac93dff552466070f886f3d00a70927939255312",
@@ -9364,7 +9474,11 @@
     "code/validated-examples/2026-11-25/continuum-particle-controls/verification.json": "0ce44ce14104c4cdd7e6876b8118d9e6c5635ae40af0f631623418c05264600e",
     "code/validated-examples/2026-11-25/continuum-particle-controls/results/williamson-sphere-transport.png": "be017ade9a054d91fc83cc743cedae9a5bbeee367c60892f0b731e5c17f36ca1",
     "code/validated-examples/2026-11-25/continuum-particle-controls/results/sphere-zonal-balance.png": "74876bf29005e8968fe5c5fe51157d0be99f57cc76c18da88e663ad85ae061c6",
-    "code/validated-examples/2026-11-25/continuum-particle-controls/results/sph-pressure-acoustics.png": "1eae2a6441afcc1fe5adbeb9d84b7b0cc0bc4ca117bf75f14be5a49cd617740e"
+    "code/validated-examples/2026-11-25/continuum-particle-controls/results/sph-pressure-acoustics.png": "1eae2a6441afcc1fe5adbeb9d84b7b0cc0bc4ca117bf75f14be5a49cd617740e",
+    "code/validated-examples/2026-11-26/variable-eddington-controls/results/result.json": "09320fe40bfd9afea94bebd59b881d7a356bc8f4c9e07833e94fd1483974ba4a",
+    "code/validated-examples/2026-11-26/variable-eddington-controls/results/vef-fourier-scattering1d.png": "bf8f354b57aad3bdd6ef72d861b12f04b5369c173b26995502a32d96a7e0d103",
+    "code/validated-examples/2026-11-26/variable-eddington-controls/verification.json": "03a659dbc41042cf40f75128550eb233b3ffc91146db65ff479121ba626512f3",
+    "code/validated-examples/2026-11-26/variable-eddington-controls/results/vet-fourier-source2d.png": "eb3792a2826a804fc272a86872f6ea33a45e455a4eff95ba0161bc526ac5a81a"
   },
   "code_edition": "2026-11-21",
   "code_verification": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/verification.json"

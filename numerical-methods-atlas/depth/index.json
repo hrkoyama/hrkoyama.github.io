@@ -538,7 +538,9 @@
         "shadow-absorber2d",
         "opposing-beams2d",
         "williamson-sphere-transport",
-        "sph-pressure-acoustics"
+        "sph-pressure-acoustics",
+        "vef-fourier-scattering1d",
+        "vet-fourier-source2d"
       ],
       "scope": {
         "ja": "従来の1次元純吸収平板を保持します。追加の固定例では、等方散乱平板、規格化を分けた非平衡拡散と輸送・物質交換、2Dの影・ビームと静止M1を扱います。拡散極限の比較は平均自由行程を解像したFourierモードに限定し、固定格子APや一般の輻射流体連成へは広げません。",
@@ -642,11 +644,11 @@
   "registry": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
   "verification_receipt": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json",
   "source_sha256": {
-    "catalog/atlas-depth.json": "2e1f2d3ced4117feebfe44d997b54de61aecdcc57882fa4c10e4ee4f7e784c47",
+    "catalog/atlas-depth.json": "d0fa66fd7385addfffbc746fb488f3516034f75d4b0280c255894cec37a7defa",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "catalog/atlas-depth-expansion.json": "49e2ef4c1f7865eedff70a866351b3e54393a59e8856fd1cc1ed946d1435796c",
-    "catalog/atlas-equations.json": "bb5abaa0a907e299c4584b903827edf26963298168207ae6b4a931424f88f57a",
+    "catalog/atlas-depth-expansion.json": "95872774fa0a0cca0340226eca5f953996e634fcc7674197892e1eae7537ca96",
+    "catalog/atlas-equations.json": "ecf174410cb43ef1f584f0c3cb50dd790ecc5a41db7bc0040e63b14ba91716a8",
     "code/validated-examples/2026-11-22/mhd/source-manifest.json": "49c66703b1b7891c41437abaf871fc69d9b3a2067731f9a1f7b0a2d4e5ff4061",
     "code/validated-examples/2026-11-22/mhd/verification.json": "272fdb476f16cd8f97e5cf3b8f9c7aab921ff56ed2448a0714a6473fa0c72597",
     "code/validated-examples/2026-11-22/mhd/cases.json": "4d7633246bc3652d7ff75d1e2195824e8c883b0336c7d60962ff220b20fbd31c",
@@ -954,6 +956,11 @@
     "code/validated-examples/2026-11-24/radiation-geometry/cases.json": "297e1e3fd8ebf0bdd504faf9005f7ef58de0564ecbec7cb6405d2c3cca48f3a4",
     "code/validated-examples/2026-11-24/radiation-geometry/results/result.json": "4453e68f6a856f65097bbfe36a154b74f4437e99a217300e4c010176a3ee7aec",
     "code/validated-examples/2026-11-24/radiation-geometry/atlas-radiation-geometry-2026-11-24.zip": "20a166a35e5e87275be4c1bcf12a31742b267ddc9f9a424a293852da53c672e0",
+    "code/validated-examples/2026-11-26/variable-eddington-controls/source-manifest.json": "8e35c943abc9fe9e5106e4fe0e2170508dabdacceb18ae97595690295ed3ca54",
+    "code/validated-examples/2026-11-26/variable-eddington-controls/verification.json": "03a659dbc41042cf40f75128550eb233b3ffc91146db65ff479121ba626512f3",
+    "code/validated-examples/2026-11-26/variable-eddington-controls/cases.json": "7492e8b233a3707cf64f7aed8b0e604bbde61665a97def6253073d9259fe02cf",
+    "code/validated-examples/2026-11-26/variable-eddington-controls/results/result.json": "09320fe40bfd9afea94bebd59b881d7a356bc8f4c9e07833e94fd1483974ba4a",
+    "code/validated-examples/2026-11-26/variable-eddington-controls/atlas-variable-eddington-controls-2026-11-26.zip": "00f72007e16701d4f41b587dc5b8bc3a158f2b6fac3f8b933aeacc3f7973f6bb",
     "code/validated-examples/2026-11-24-r2/maxwell-cylinder/source-manifest.json": "bd55f11428730f3ad2a4048b74efd4dc4eae9997e55c8bc151d5ed4c0adf2dd6",
     "code/validated-examples/2026-11-24-r2/maxwell-cylinder/verification.json": "85cfc10421948d42deda85916ac2a6d4a41b7ad7af91db890fd91b5c745bf51a",
     "code/validated-examples/2026-11-24-r2/maxwell-cylinder/cases.json": "68902102c6f2dbf82608ef802b1dbc502aeb95f2c08590e762d4028d2950f2b8",

@@ -4,14 +4,14 @@
   "reviewed_on": "2026-11-25",
   "scope": "One explicitly mapped visual per atlas test problem. Existing shared figures are identified. Derived plots use stored numerical values; computed previews record fixed inputs and numerical checks.",
   "counts": {
-    "test_problems": 172,
-    "runnable_problems": 135,
+    "test_problems": 174,
+    "runnable_problems": 137,
     "common_runnable_problems": 22,
-    "supplemental_runnable_problems": 124,
-    "supplemental_case_count": 152,
-    "supplemental_release_case_count": 157,
+    "supplemental_runnable_problems": 126,
+    "supplemental_case_count": 154,
+    "supplemental_release_case_count": 159,
     "groups": {
-      "transport": 17,
+      "transport": 19,
       "fluid": 26,
       "mhd": 6,
       "viscous": 9,
@@ -28,7 +28,7 @@
     },
     "visual_sources": {
       "stored-data-plot": 27,
-      "existing-figure": 136,
+      "existing-figure": 138,
       "computed-preview": 9
     }
   },
@@ -19107,10 +19107,220 @@
           "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/verification.json"
         }
       ]
+    },
+    {
+      "id": "vef-fourier-scattering1d",
+      "group": "transport",
+      "name": {
+        "ja": "可変エディントン因子：周期1D散乱源の固定検証",
+        "en": "Variable Eddington factor: a periodic 1D scattering-source control"
+      },
+      "chapter": "validation-variable-eddington-controls",
+      "reading_section": "vef-fourier-scattering1d",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-26/variable-eddington-controls/",
+      "verification": "/code/validated-examples/2026-11-26/variable-eddington-controls/verification.json",
+      "commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-26/variable-eddington-controls/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "vef-fourier-scattering1d"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-26/variable-eddington-controls/results/vef-fourier-scattering1d.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-26/variable-eddington-controls/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "vef-fourier-scattering1d",
+          "url": "/numerical-methods-atlas/validation/vef-fourier-scattering1d/",
+          "name": {
+            "ja": "可変エディントン因子：周期1D散乱源の固定検証",
+            "en": "Variable Eddington factor: a periodic 1D scattering-source control"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vef-fourier-scattering1d",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vef-fourier-scattering1d"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-26/variable-eddington-controls/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#vef-fourier-scattering1d",
+      "run_commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "image": "/code/validated-examples/2026-11-26/variable-eddington-controls/results/vef-fourier-scattering1d.png",
+      "image_sha256": "bf8f354b57aad3bdd6ef72d861b12f04b5369c173b26995502a32d96a7e0d103",
+      "width": 1417,
+      "height": 985,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "形式的な角度輸送と独立なモーメント方程式を反復結合し、位置で変わる因子fを閉形式参照と比較します。 図の横軸xと角度余弦μは2つの空間次元ではありません。周期・一様係数の教育例で、流入境界、時間発展、物質・流体結合、非線形FLD、一般AP性や速度向上は検証しません。",
+        "en": "Iteratively couple formal angular transport to independent moment equations and compare the spatially varying factor f with a closed-form reference. Position x and angular cosine mu are not two spatial dimensions. This periodic homogeneous educational control does not validate inflow boundaries, time evolution, material/fluid coupling, nonlinear FLD, general AP properties or speedup."
+      },
+      "visual_input": {
+        "id": "vef-fourier-scattering1d",
+        "kind": "image",
+        "source": "/code/validated-examples/2026-11-26/variable-eddington-controls/results/vef-fourier-scattering1d.png",
+        "caption": {
+          "ja": "形式的な角度輸送と独立なモーメント方程式を反復結合し、位置で変わる因子fを閉形式参照と比較します。 図の横軸xと角度余弦μは2つの空間次元ではありません。周期・一様係数の教育例で、流入境界、時間発展、物質・流体結合、非線形FLD、一般AP性や速度向上は検証しません。",
+          "en": "Iteratively couple formal angular transport to independent moment equations and compare the spatially varying factor f with a closed-form reference. Position x and angular cosine mu are not two spatial dimensions. This periodic homogeneous educational control does not validate inflow boundaries, time evolution, material/fluid coupling, nonlinear FLD, general AP properties or speedup."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#vef-fourier-scattering1d-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/vef-fourier-scattering1d/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/vef-fourier-scattering1d/?lang=en"
+      },
+      "runnable": true,
+      "execution_entry": null,
+      "supplemental_execution_entries": [
+        {
+          "id": "vef-fourier-scattering1d",
+          "title": {
+            "ja": "可変エディントン因子：周期1D散乱源の固定検証",
+            "en": "Variable Eddington factor: a periodic 1D scattering-source control"
+          },
+          "group": "variable-eddington-controls",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/vef-fourier-scattering1d/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/vef-fourier-scattering1d/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-26/variable-eddington-controls/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-26/variable-eddington-controls/primary.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-26/variable-eddington-controls/analytic_reference.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-26/variable-eddington-controls/test_cases.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-26/variable-eddington-controls/atlas-variable-eddington-controls-2026-11-26.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-26/variable-eddington-controls/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-26/variable-eddington-controls/verification.json"
+        }
+      ]
+    },
+    {
+      "id": "vet-fourier-source2d",
+      "group": "transport",
+      "name": {
+        "ja": "可変エディントンテンソル：周期2D非平行源の固定検証",
+        "en": "Variable Eddington tensor: a periodic 2D nonparallel-source control"
+      },
+      "chapter": "validation-variable-eddington-controls",
+      "reading_section": "vet-fourier-source2d",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-26/variable-eddington-controls/",
+      "verification": "/code/validated-examples/2026-11-26/variable-eddington-controls/verification.json",
+      "commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-26/variable-eddington-controls/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "vet-fourier-source2d"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-26/variable-eddington-controls/results/vet-fourier-source2d.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-26/variable-eddington-controls/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "vet-fourier-source2d",
+          "url": "/numerical-methods-atlas/validation/vet-fourier-source2d/",
+          "name": {
+            "ja": "可変エディントンテンソル：周期2D非平行源の固定検証",
+            "en": "Variable Eddington tensor: a periodic 2D nonparallel-source control"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vet-fourier-source2d",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vet-fourier-source2d"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-26/variable-eddington-controls/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#vet-fourier-source2d",
+      "run_commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "image": "/code/validated-examples/2026-11-26/variable-eddington-controls/results/vet-fourier-source2d.png",
+      "image_sha256": "eb3792a2826a804fc272a86872f6ea33a45e455a4eff95ba0161bc526ac5a81a",
+      "width": 1687,
+      "height": 756,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "非平行な2つの源モードから全S²角度分布と3×3テンソルを求め、Dxyを含む保存的モーメント式と閉形式参照を比較します。 局所M1との比較は閉包の点ごとの診断だけで、M1方程式は解きません。Athena・短い特性線法・影・交差ビーム・RHD・境界閉包の再現でもなく、固定格子でHO/LOの厳密一致や普遍的な収束率を主張しません。",
+        "en": "Use two nonparallel source modes to compute full-S2 angular moments and a3x3 tensor, then compare conservative moment equations including Dxy with a closed-form reference. Pointwise M1 comparison is a closure diagnostic; no M1 PDE is solved. This is not a reproduction of Athena, short characteristics, shadows, crossing beams, RHD or boundary closures, and does not claim exact fixed-grid HO/LO agreement or universal convergence rates."
+      },
+      "visual_input": {
+        "id": "vet-fourier-source2d",
+        "kind": "image",
+        "source": "/code/validated-examples/2026-11-26/variable-eddington-controls/results/vet-fourier-source2d.png",
+        "caption": {
+          "ja": "非平行な2つの源モードから全S²角度分布と3×3テンソルを求め、Dxyを含む保存的モーメント式と閉形式参照を比較します。 局所M1との比較は閉包の点ごとの診断だけで、M1方程式は解きません。Athena・短い特性線法・影・交差ビーム・RHD・境界閉包の再現でもなく、固定格子でHO/LOの厳密一致や普遍的な収束率を主張しません。",
+          "en": "Use two nonparallel source modes to compute full-S2 angular moments and a3x3 tensor, then compare conservative moment equations including Dxy with a closed-form reference. Pointwise M1 comparison is a closure diagnostic; no M1 PDE is solved. This is not a reproduction of Athena, short characteristics, shadows, crossing beams, RHD or boundary closures, and does not claim exact fixed-grid HO/LO agreement or universal convergence rates."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#vet-fourier-source2d-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/vet-fourier-source2d/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/vet-fourier-source2d/?lang=en"
+      },
+      "runnable": true,
+      "execution_entry": null,
+      "supplemental_execution_entries": [
+        {
+          "id": "vet-fourier-source2d",
+          "title": {
+            "ja": "可変エディントンテンソル：周期2D非平行源の固定検証",
+            "en": "Variable Eddington tensor: a periodic 2D nonparallel-source control"
+          },
+          "group": "variable-eddington-controls",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/vet-fourier-source2d/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/vet-fourier-source2d/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-26/variable-eddington-controls/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-26/variable-eddington-controls/primary.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-26/variable-eddington-controls/analytic_reference.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-26/variable-eddington-controls/test_cases.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-26/variable-eddington-controls/atlas-variable-eddington-controls-2026-11-26.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-26/variable-eddington-controls/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-26/variable-eddington-controls/verification.json"
+        }
+      ]
     }
   ],
   "source_sha256": {
-    "catalog/atlas-gallery.json": "2c1c73c48ca1596c673120ff5ec5925b33e0ab4a667f292127b9af1a3e34b851",
+    "catalog/atlas-gallery.json": "ec026f8bb73f9214d30091c7c51d161edac662a34bdb67490294bfa6a2d9a064",
     "scripts/render-atlas-gallery.py": "62956b5a0ece0c5144ec079bb30f36e44b3ccf97e4b56b677d4de356cdbab04c",
     "code/numerical-methods-atlas/2026-11-21/numart/benchmarks.py": "dc8f83aafea473b5f0e1e7bf82630484dd60aa446859c1f602571adc3c59f019",
     "code/numerical-methods-atlas/2026-11-21/numart/solvers.py": "7811862ea3384cef825a1d382c24c6e19a175fb688a024fa4117959eed4bf05d",
@@ -19157,8 +19367,8 @@
     "code/periodic-dft/2026-11-22/verification.json": "5de4662728e0114aea5576dc7e93dee03fcc02e32d516e1d8da77e5b8f4511e5",
     "code/periodic-forces/2026-11-22/results/preview.png": "ea952ee104c44d0b229c56751d9c147629d58f661ebb95c2821e6b895b24e4fb",
     "code/periodic-forces/2026-11-22/verification.json": "e29d65bc89b7edac45a81d3cbae4048911f7fc8848cc47a35764f0041e296b7f",
-    "catalog/atlas-test-problems.json": "6f056c7aac9da887d8631fcaf66287d685ee32c1113d24e16c713fd947153d9b",
-    "catalog/atlas-depth-expansion.json": "49e2ef4c1f7865eedff70a866351b3e54393a59e8856fd1cc1ed946d1435796c",
+    "catalog/atlas-test-problems.json": "a9f6439cd3e8219d2e6181a63207fdd2de69721260f512f76aa6c0117cf7ac8c",
+    "catalog/atlas-depth-expansion.json": "95872774fa0a0cca0340226eca5f953996e634fcc7674197892e1eae7537ca96",
     "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
     "code/validated-examples/2026-11-22/foundations/inputs.json": "9b07ca782d9b9de4ef467189d6710f3fa346d23be154200358f005e4eceebff1",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
@@ -19853,15 +20063,25 @@
     "code/validated-examples/2026-11-25/continuum-particle-controls/results/williamson-sphere-transport.png": "be017ade9a054d91fc83cc743cedae9a5bbeee367c60892f0b731e5c17f36ca1",
     "code/validated-examples/2026-11-25/continuum-particle-controls/results/sphere-zonal-balance.png": "74876bf29005e8968fe5c5fe51157d0be99f57cc76c18da88e663ad85ae061c6",
     "code/validated-examples/2026-11-25/continuum-particle-controls/results/sph-pressure-acoustics.png": "1eae2a6441afcc1fe5adbeb9d84b7b0cc0bc4ca117bf75f14be5a49cd617740e",
+    "code/validated-examples/2026-11-26/variable-eddington-controls/cases.json": "7492e8b233a3707cf64f7aed8b0e604bbde61665a97def6253073d9259fe02cf",
+    "code/validated-examples/2026-11-26/variable-eddington-controls/inputs.json": "e8648074fbff9c266ba34ffe9cf1fd675e0db4d6e34733c10a3384926a4ec871",
+    "code/validated-examples/2026-11-26/variable-eddington-controls/acceptance.json": "c6099e0d4e44f8cb3603c94af369fbefefd5ae6e84f58997b3b637713ded85cd",
+    "code/validated-examples/2026-11-26/variable-eddington-controls/freeze.json": "b30003dbe9a5ef7d9ac9fe6f2d219cd400bc8ec871584bcdc798fb6875d5c908",
+    "code/validated-examples/2026-11-26/variable-eddington-controls/results/result.json": "09320fe40bfd9afea94bebd59b881d7a356bc8f4c9e07833e94fd1483974ba4a",
+    "code/validated-examples/2026-11-26/variable-eddington-controls/results/vef-fourier-scattering1d.png": "bf8f354b57aad3bdd6ef72d861b12f04b5369c173b26995502a32d96a7e0d103",
+    "code/validated-examples/2026-11-26/variable-eddington-controls/source-manifest.json": "8e35c943abc9fe9e5106e4fe0e2170508dabdacceb18ae97595690295ed3ca54",
+    "code/validated-examples/2026-11-26/variable-eddington-controls/verification.json": "03a659dbc41042cf40f75128550eb233b3ffc91146db65ff479121ba626512f3",
+    "code/validated-examples/2026-11-26/variable-eddington-controls/atlas-variable-eddington-controls-2026-11-26.zip": "00f72007e16701d4f41b587dc5b8bc3a158f2b6fac3f8b933aeacc3f7973f6bb",
+    "code/validated-examples/2026-11-26/variable-eddington-controls/results/vet-fourier-source2d.png": "eb3792a2826a804fc272a86872f6ea33a45e455a4eff95ba0161bc526ac5a81a",
     "code/numerical-methods-atlas/2026-11-21/tests/test_numerics.py": "4ad61ac54dfa59d7d61959c5699f290e2386c23bf5b4b930a5d98576feaa54d1",
     "code/numerical-methods-atlas/2026-11-21/tests/test_linear.py": "5e7323f2734fb7328c35706ccd90fc25076bd46d01d32cd9c78c8cd25dd0421f",
     "code/numerical-methods-atlas/2026-11-21/tests/test_sparse_fem.py": "4076e514e0b9b5fd94dead4af33fe7e7548fba6a7b48b3e21a406034f7170afb",
     "code/numerical-methods-atlas/2026-11-21/tests/test_runge_kutta.py": "920a5eb560afe7f560cae8d22f879f125851f4ee0451b24720d0eca0082c31ce",
     "code/numerical-methods-atlas/2026-11-21/tests/test_new_models.py": "2937daf8fa8ad86882ac06e47835a6309ca1df3d0283c7dfb7b9606dc3906b1f",
-    "numerical-methods-atlas/gallery/preview-manifest.json": "10811a962736e0481fba13931deb6667ea9137c1525fed54a49a3f84d2da61e9",
+    "numerical-methods-atlas/gallery/preview-manifest.json": "6909b78d8e82a326d7e415d89c1d424be0112b715e55ac751f651117fd9e9e28",
     "numerical-methods-atlas/gallery/calculations.json": "d98cd75e1c58177bfc716e8b68d6bfba1358d5135ac8e2ee0989eb3df77942a6",
     "numerical-methods-atlas/gallery/verification.json": "46c39543afa9d943dfef896fadbc8f84d847f1a145d9b1427a2336de7a3a50f9",
-    "numerical-methods-atlas/test-cases/index.json": "3f71f8d860a7ade3b07bfe8d757cb551e325a4e0e77afda5778d4ad3fe444f69",
+    "numerical-methods-atlas/test-cases/index.json": "b36b77c8c25bbaedeab48a56bf459a1514867584e8badbd44b772fe537a1fab2",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
     "scripts/atlas_execution_discovery.py": "3431dae95fb0adc68e1deca07b406b70bd99480f9ad6023a31765cb07ccf84be",
     "scripts/atlas_depth_release.py": "cdf3955313805d931ad9706f26af67e70f8500f883ac86544babd2c09a03afb9",

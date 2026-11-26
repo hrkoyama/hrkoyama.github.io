@@ -388,10 +388,10 @@
     "passed_tests": 12
   },
   "source_sha256": {
-    "catalog/atlas-depth-expansion.json": "49e2ef4c1f7865eedff70a866351b3e54393a59e8856fd1cc1ed946d1435796c",
+    "catalog/atlas-depth-expansion.json": "95872774fa0a0cca0340226eca5f953996e634fcc7674197892e1eae7537ca96",
     "code/validated-examples/2026-11-25/continuum-particle-controls/ale_piston.py": "a0afb8cfc9372a8865ec1d73fef62cb5516eedc5bb5396f4f281ff5f671d2cae",
     "code/validated-examples/2026-11-25/continuum-particle-controls/inputs.json": "5f49881f37b07c47f674979a4886e6da0421be06ddb6bb213ab7dfea6bf6e0f5",
-    "catalog/atlas-equations.json": "bb5abaa0a907e299c4584b903827edf26963298168207ae6b4a931424f88f57a",
+    "catalog/atlas-equations.json": "ecf174410cb43ef1f584f0c3cb50dd790ecc5a41db7bc0040e63b14ba91716a8",
     "code/validated-examples/2026-11-25/continuum-particle-controls/sphere.py": "b352773dd6418e04e3f44892cb3e89873f9d650153a0da0f7a04ada90d39b56b",
     "code/validated-examples/2026-11-25/continuum-particle-controls/gsph.py": "aa9d35837e97a772a46e9aa358f56f1ca9bc7b69e98e34d8626fc3e742bbf5e2",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
@@ -735,7 +735,12 @@
     "code/validated-examples/2026-11-25/continuum-particle-controls/verification.json": "0ce44ce14104c4cdd7e6876b8118d9e6c5635ae40af0f631623418c05264600e",
     "code/validated-examples/2026-11-25/continuum-particle-controls/cases.json": "8b4b8db859d0bb29a4c156beb7d02c5270776c460bed9e1796a409f3b1beb712",
     "code/validated-examples/2026-11-25/continuum-particle-controls/results/result.json": "cab002c93e01d997562f3c145e1aaddd6a2a8ce59a087d44e8bddc4679081bbf",
-    "code/validated-examples/2026-11-25/continuum-particle-controls/atlas-continuum-particle-controls-2026-11-25.zip": "1d12a6ecd9d87ae95585a984e66411b2314eb7804b064f023aa57addc3142f49"
+    "code/validated-examples/2026-11-25/continuum-particle-controls/atlas-continuum-particle-controls-2026-11-25.zip": "1d12a6ecd9d87ae95585a984e66411b2314eb7804b064f023aa57addc3142f49",
+    "code/validated-examples/2026-11-26/variable-eddington-controls/source-manifest.json": "8e35c943abc9fe9e5106e4fe0e2170508dabdacceb18ae97595690295ed3ca54",
+    "code/validated-examples/2026-11-26/variable-eddington-controls/verification.json": "03a659dbc41042cf40f75128550eb233b3ffc91146db65ff479121ba626512f3",
+    "code/validated-examples/2026-11-26/variable-eddington-controls/cases.json": "7492e8b233a3707cf64f7aed8b0e604bbde61665a97def6253073d9259fe02cf",
+    "code/validated-examples/2026-11-26/variable-eddington-controls/results/result.json": "09320fe40bfd9afea94bebd59b881d7a356bc8f4c9e07833e94fd1483974ba4a",
+    "code/validated-examples/2026-11-26/variable-eddington-controls/atlas-variable-eddington-controls-2026-11-26.zip": "00f72007e16701d4f41b587dc5b8bc3a158f2b6fac3f8b933aeacc3f7973f6bb"
   },
   "scope": {
     "ja": "共通22実行例の台帳とは別に管理する追加検証集です。配布ZIPを独立展開し、各グループの全固定入力と検査を実行した記録を示します。設定・手法・刻み幅の違いを独立した物理問題の数には加算しません。",
@@ -912,15 +917,15 @@
     }
   },
   "navigation_source_sha256": {
-    "catalog/atlas-depth-expansion.json": "49e2ef4c1f7865eedff70a866351b3e54393a59e8856fd1cc1ed946d1435796c",
-    "catalog/atlas-equations.json": "bb5abaa0a907e299c4584b903827edf26963298168207ae6b4a931424f88f57a",
+    "catalog/atlas-depth-expansion.json": "95872774fa0a0cca0340226eca5f953996e634fcc7674197892e1eae7537ca96",
+    "catalog/atlas-equations.json": "ecf174410cb43ef1f584f0c3cb50dd790ecc5a41db7bc0040e63b14ba91716a8",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
-    "catalog/atlas-methods.json": "a1fe46c99d579bbbb9cef07e87897c3865326966eb27962ad9a65ae89f7d7b32",
-    "catalog/atlas-problem-links.json": "3e5d0e34f7e248933adc844f56c853af725e0ce260b64adfebe69827b198bf1f",
+    "catalog/atlas-methods.json": "3095535ca89db064b599679b06ca59d7d4bf093677c99af0ebd5a1896e834ec5",
+    "catalog/atlas-problem-links.json": "aa740ae9edb3fa0f5038cfb8be9acc0c7c1b57f8b8f0b5ff11592b993ed02d7c",
     "catalog/atlas-reference-metadata.json": "67e404b2c1aef9aa5f1cccb16a3ce5c7a35335fc7a5195a63c03e77e2bf3064c",
-    "catalog/atlas-reference-supplements.json": "87172f941063ed425b1ab96e4ef4dbbc1b68bc01ee375e87124f09106a29dd56",
+    "catalog/atlas-reference-supplements.json": "4cf39043693c70e4134cea6de19b89b5c371c910ea5d85a90dcd3e1b2fbb4fef",
     "catalog/atlas-terminology.json": "b861b1b1d4323c71bae2594065fd58649cb47e088dae858c4105e6340c4122b9",
-    "catalog/atlas-test-problems.json": "6f056c7aac9da887d8631fcaf66287d685ee32c1113d24e16c713fd947153d9b",
+    "catalog/atlas-test-problems.json": "a9f6439cd3e8219d2e6181a63207fdd2de69721260f512f76aa6c0117cf7ac8c",
     "code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip": "d7608d121ad2c5a2b5fb8db8c87bc648f372bb666c3079e6b4835b276d3b5979",
     "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",
     "code/validated-examples/2026-11-22/biology/results/result.json": "1eff310ad4bdfc4fcf161686b05e959270c3fe2b8d0546e8a8449ad9d73e824f",
@@ -1418,11 +1423,18 @@
     "code/validated-examples/2026-11-25/thermostat-constraint-controls/results/result.json": "45e4101f6676b2b971b144f5df45c1b28d3bff564d3896eeb309ee6c667d9351",
     "code/validated-examples/2026-11-25/thermostat-constraint-controls/source-manifest.json": "6e64499f6bda68ad17ccc7402e49a7296b82d500174ce0eb238e0acd076cc45e",
     "code/validated-examples/2026-11-25/thermostat-constraint-controls/verification.json": "c3273335cc6619c07d956252d65b00abf58ff3497d0a35776b3fc376ae70134e",
+    "code/validated-examples/2026-11-26/variable-eddington-controls/atlas-variable-eddington-controls-2026-11-26.zip": "00f72007e16701d4f41b587dc5b8bc3a158f2b6fac3f8b933aeacc3f7973f6bb",
+    "code/validated-examples/2026-11-26/variable-eddington-controls/cases.json": "7492e8b233a3707cf64f7aed8b0e604bbde61665a97def6253073d9259fe02cf",
+    "code/validated-examples/2026-11-26/variable-eddington-controls/results/result.json": "09320fe40bfd9afea94bebd59b881d7a356bc8f4c9e07833e94fd1483974ba4a",
+    "code/validated-examples/2026-11-26/variable-eddington-controls/results/vef-fourier-scattering1d.png": "bf8f354b57aad3bdd6ef72d861b12f04b5369c173b26995502a32d96a7e0d103",
+    "code/validated-examples/2026-11-26/variable-eddington-controls/results/vet-fourier-source2d.png": "eb3792a2826a804fc272a86872f6ea33a45e455a4eff95ba0161bc526ac5a81a",
+    "code/validated-examples/2026-11-26/variable-eddington-controls/source-manifest.json": "8e35c943abc9fe9e5106e4fe0e2170508dabdacceb18ae97595690295ed3ca54",
+    "code/validated-examples/2026-11-26/variable-eddington-controls/verification.json": "03a659dbc41042cf40f75128550eb233b3ffc91146db65ff479121ba626512f3",
     "numerical-methods-atlas/assets/reference-solutions.json": "c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "numerical-methods-atlas/gallery/preview-manifest.json": "10811a962736e0481fba13931deb6667ea9137c1525fed54a49a3f84d2da61e9",
-    "numerical-methods-atlas/locales/messages.json": "3a5053933857964a616b1707614318df1f9f3fbd9797c485afbe9f233322ccfe",
+    "numerical-methods-atlas/gallery/preview-manifest.json": "6909b78d8e82a326d7e415d89c1d424be0112b715e55ac751f651117fd9e9e28",
+    "numerical-methods-atlas/locales/messages.json": "5afdb797b5d4cd4464220baa7112e0c0a68fbb1e344c35182c58bd9111b91253",
     "scripts/atlas_terminology.py": "3abe65776c82d3f0c3fd01396ad9efb799ebba3515b50fe7844db0f01778779c"
   }
 }

@@ -7571,6 +7571,103 @@ GSPH、摂動した128粒子、t=0.2。初期カーネル再構成誤差は最�
 
 固定入力の式・参照・図と実行コードを対応付けます。 GSPH、摂動した128粒子、t=0.2。初期カーネル再構成誤差は最大0.011834で、音波振幅0.001より大きく、左の密度分布にその影響が残ります。右は初期誤差です。判定は基本Fourierモードの位相・振幅と保存量などの固定条件であり、点ごとの高精度や一般的な優位性を示しません。
 
+## 可変Eddington因子・テンソルの軽量検証
+
+- [可変エディントン因子：周期1D散乱源の固定検証](https://hrkoyama.github.io/numerical-methods-atlas/validation/vef-fourier-scattering1d/?lang=ja): 形式的な角度輸送と独立なモーメント方程式を反復結合し、位置で変わる因子fを閉形式参照と比較します。
+**使用手法**
+
+- [可変Eddington因子（1D VEF）](https://hrkoyama.github.io/numerical-methods-atlas/methods/variable-eddington-factor/?lang=ja) (`variable-eddington-factor`)
+
+**方程式**
+
+[この実行例の式と条件](https://hrkoyama.github.io/numerical-methods-atlas/validation/vef-fourier-scattering1d/?lang=ja#vef-fourier-scattering1d-ja-algorithm)
+
+各反復でq+σs E_LOをFourier形式解へ入れ、f=Kxx/E_HOを抽出し、保存的な面流束を使う有限差分モーメント式を解きます。参照解は主計算の閉包へ渡しません。
+
+$$
+\mu\partial_xI+\sigma_tI=\sigma_sE+q,\quad E=\langle I\rangle,\quad f=\langle\mu^2I\rangle/E
+$$
+
+$$
+\partial_xH+\sigma_aE=q,\quad \partial_x(fE)+\sigma_tH=0
+$$
+
+$$
+R=\frac{\arctan(k/\sigma_t)}{k},\quad A=\frac{b}{1-\sigma_sR},\quad E_{\rm ref}=1+\Re(ARe^{ikx})
+$$
+
+- [静止灰色輻射のVEF・VETモーメント閉包](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#static-grey-variable-eddington-moments-ja) (`static-grey-variable-eddington-moments`)
+
+静止・定常・灰色の単位周期区間。無次元でσt=4、σs=3、σa=1、c=1。q=1+0.3 cos(2πx)、x_i=i/Nの点値です。角度平均は(1/2)∫I dμで規格化します。
+
+
+**問題の図**
+
+![可変エディントン因子：周期1D散乱源の固定検証：この実行例の保存済み検証図。](https://hrkoyama.github.io/code/validated-examples/2026-11-26/variable-eddington-controls/results/vef-fourier-scattering1d.png)
+
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+
+[可変エディントン因子：周期1D散乱源の固定検証](https://hrkoyama.github.io/numerical-methods-atlas/problems/vef-fourier-scattering1d/?lang=ja) (`vef-fourier-scattering1d`)
+
+[この問題のコード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/vef-fourier-scattering1d/?lang=ja#code-ja)
+
+**厳密解・参照解**
+
+[この実行例の参照・検証](https://hrkoyama.github.io/numerical-methods-atlas/validation/vef-fourier-scattering1d/?lang=ja#vef-fourier-scattering1d-ja-validation)
+
+N=33/65と固定32点角度則、N=65の64点角度プローブを分けます。解析場・複素モード・保存・実現可能性・反復残差・誤符号等の負制御、別のN=9一定源行を照合します。
+
+- [本例のために導出した周期1D VEFの連続Fourier応答](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-vef-fourier-scattering1d-ja) (`vef-fourier-scattering1d`; 同じ問題の参照 · 解析参照)
+
+正の指定等方輻射源に対する連続角度Fourier応答が、同じ固定問題の解析参照です。点値・面位置・複素位相を区別し、異なるHO/LO離散化の差は保存します。 図の横軸xと角度余弦μは2つの空間次元ではありません。周期・一様係数の教育例で、流入境界、時間発展、物質・流体結合、非線形FLD、一般AP性や速度向上は検証しません。
+- [可変エディントンテンソル：周期2D非平行源の固定検証](https://hrkoyama.github.io/numerical-methods-atlas/validation/vet-fourier-source2d/?lang=ja): 非平行な2つの源モードから全S²角度分布と3×3テンソルを求め、Dxyを含む保存的モーメント式と閉形式参照を比較します。
+**使用手法**
+
+- [可変Eddingtonテンソル（VET）](https://hrkoyama.github.io/numerical-methods-atlas/methods/variable-eddington-tensor/?lang=ja) (`variable-eddington-tensor`)
+
+**方程式**
+
+[この実行例の式と条件](https://hrkoyama.github.io/numerical-methods-atlas/validation/vet-fourier-source2d/?lang=ja#vet-fourier-source2d-ja-algorithm)
+
+形式的なFourier角度輸送→D=K_HO/E_HO→独立な有限差分モーメント式を反復します。Dxyの両交差微分を共有面流束へ含め、局所・大域の離散収支を確認します。
+
+$$
+\boldsymbol\Omega\cdot\nabla I+\sigma_tI=\sigma_sE+q,\quad D=\frac{\langle\boldsymbol\Omega\boldsymbol\Omega^TI\rangle}{\langle I\rangle}
+$$
+
+$$
+\sigma_t\sigma_aE-\partial_{xx}(D_{xx}E)-2\partial_{xy}(D_{xy}E)-\partial_{yy}(D_{yy}E)=\sigma_tq
+$$
+
+$$
+K_k=A\left[T\mathbb I+(C-T)\hat k\hat k^T\right],\quad C=\frac{\sigma_t(1-\sigma_tR)}{k^2},\quad T=\frac{R-C}{2}
+$$
+
+- [静止灰色輻射のVEF・VETモーメント閉包](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#static-grey-variable-eddington-moments-ja) (`static-grey-variable-eddington-moments`)
+
+静止・定常・灰色の単位周期正方形。σt=4、σs=3、σa=1、c=1の無次元点値。q=1+0.3 cos(2πx)+0.2 sin(2π(x+y))。空間は2Dでも角度は全S²でDzzも保持します。
+
+
+**問題の図**
+
+![可変エディントンテンソル：周期2D非平行源の固定検証：この実行例の保存済み検証図。](https://hrkoyama.github.io/code/validated-examples/2026-11-26/variable-eddington-controls/results/vet-fourier-source2d.png)
+
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+
+[可変エディントンテンソル：周期2D非平行源の固定検証](https://hrkoyama.github.io/numerical-methods-atlas/problems/vet-fourier-source2d/?lang=ja) (`vet-fourier-source2d`)
+
+[この問題のコード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/vet-fourier-source2d/?lang=ja#code-ja)
+
+**厳密解・参照解**
+
+[この実行例の参照・検証](https://hrkoyama.github.io/numerical-methods-atlas/validation/vet-fourier-source2d/?lang=ja#vet-fourier-source2d-ja-validation)
+
+17²/33²と12×48角度則、33²の16×64角度プローブを区別します。解析E/H/K/D、位相を含む複素モード、独立角度積分、テンソル制約、混合項の負制御、N=9²一定源を照合します。
+
+- [本例のために導出した周期2D VETの連続Fourier応答](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-vet-fourier-source2d-ja) (`vet-fourier-source2d`; 同じ問題の参照 · 解析参照)
+
+正の指定等方輻射源に対する連続角度Fourier応答が、同じ固定問題の解析参照です。点値・面位置・複素位相を区別し、異なるHO/LO離散化の差は保存します。 局所M1との比較は閉包の点ごとの診断だけで、M1方程式は解きません。Athena・短い特性線法・影・交差ビーム・RHD・境界閉包の再現でもなく、固定格子でHO/LOの厳密一致や普遍的な収束率を主張しません。
+
 # Explore small implemented validations by field
 
 These additional validation supplements are managed separately from the common 22-example registry. Receipts cover independent ZIP extraction, tests and every fixed input within each group. Changes of settings, methods or step sizes do not add independent physical problems.
@@ -15143,6 +15240,103 @@ Separate analytic/reference errors, conservation, refinement, independent compon
 - [Uniform pressure and acoustics: particle-layout effects in SPH/GSPH](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-sph-pressure-acoustics-en) (`sph-pressure-acoustics`; Same-problem reference · Analytic reference)
 
 Bind the fixed-input formula, reference, figure and executable code. GSPH with 128 jittered particles at t=0.2. The initial kernel reconstruction error reaches 0.011834, exceeding the acoustic amplitude 0.001 and remaining visible in the left density profile; the right panel shows that initial error. Acceptance concerns the fundamental Fourier mode phase/amplitude and other fixed conservation controls, not pointwise high accuracy or general superiority.
+
+## Lightweight variable Eddington factor and tensor checks
+
+- [Variable Eddington factor: a periodic 1D scattering-source control](https://hrkoyama.github.io/numerical-methods-atlas/validation/vef-fourier-scattering1d/?lang=en): Iteratively couple formal angular transport to independent moment equations and compare the spatially varying factor f with a closed-form reference.
+**Methods used**
+
+- [Variable Eddington factor (1D VEF)](https://hrkoyama.github.io/numerical-methods-atlas/methods/variable-eddington-factor/?lang=en) (`variable-eddington-factor`)
+
+**Equations**
+
+[This example’s formulation and conditions](https://hrkoyama.github.io/numerical-methods-atlas/validation/vef-fourier-scattering1d/?lang=en#vef-fourier-scattering1d-en-algorithm)
+
+At each iteration solve formal Fourier transport with q+ss E_LO, extract f=Kxx/E_HO, and solve finite-difference moment equations using shared conservative faces. The primary closure never receives the analytic reference.
+
+$$
+\mu\partial_xI+\sigma_tI=\sigma_sE+q,\quad E=\langle I\rangle,\quad f=\langle\mu^2I\rangle/E
+$$
+
+$$
+\partial_xH+\sigma_aE=q,\quad \partial_x(fE)+\sigma_tH=0
+$$
+
+$$
+R=\frac{\arctan(k/\sigma_t)}{k},\quad A=\frac{b}{1-\sigma_sR},\quad E_{\rm ref}=1+\Re(ARe^{ikx})
+$$
+
+- [Static grey VEF/VET moment closure](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#static-grey-variable-eddington-moments-en) (`static-grey-variable-eddington-moments`)
+
+Static steady grey unit-periodic interval; dimensionless st=4, ss=3, sa=1 and c=1. q=1+0.3 cos(2pi x), sampled as point values at x_i=i/N. Angular averages use (1/2) integral I dmu.
+
+
+**Problem figure**
+
+![Variable Eddington factor: a periodic 1D scattering-source control: saved validation figure for this execution.](https://hrkoyama.github.io/code/validated-examples/2026-11-26/variable-eddington-controls/results/vef-fourier-scattering1d.png)
+
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+
+[Variable Eddington factor: a periodic 1D scattering-source control](https://hrkoyama.github.io/numerical-methods-atlas/problems/vef-fourier-scattering1d/?lang=en) (`vef-fourier-scattering1d`)
+
+[This problem’s code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/vef-fourier-scattering1d/?lang=en#code-en)
+
+**Exact / reference solutions**
+
+[References and checks for this execution](https://hrkoyama.github.io/numerical-methods-atlas/validation/vef-fourier-scattering1d/?lang=en#vef-fourier-scattering1d-en-validation)
+
+Separate N=33/65 refinement at32 angular points from a64-point probe at N=65. Check analytic fields and complex modes, conservation, realizability, iteration residuals, negative controls and a separate N=9 constant-source row.
+
+- [Authored continuum Fourier response for periodic 1D VEF](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-vef-fourier-scattering1d-en) (`vef-fourier-scattering1d`; Same-problem reference · Analytic reference)
+
+The continuum-angle Fourier response to the prescribed positive isotropic source is an analytic reference for this same fixed problem. Keep point/face locations and complex phase distinct, retaining the independent HO/LO discretization gap. Position x and angular cosine mu are not two spatial dimensions. This periodic homogeneous educational control does not validate inflow boundaries, time evolution, material/fluid coupling, nonlinear FLD, general AP properties or speedup.
+- [Variable Eddington tensor: a periodic 2D nonparallel-source control](https://hrkoyama.github.io/numerical-methods-atlas/validation/vet-fourier-source2d/?lang=en): Use two nonparallel source modes to compute full-S2 angular moments and a3x3 tensor, then compare conservative moment equations including Dxy with a closed-form reference.
+**Methods used**
+
+- [Variable Eddington tensor (VET)](https://hrkoyama.github.io/numerical-methods-atlas/methods/variable-eddington-tensor/?lang=en) (`variable-eddington-tensor`)
+
+**Equations**
+
+[This example’s formulation and conditions](https://hrkoyama.github.io/numerical-methods-atlas/validation/vet-fourier-source2d/?lang=en#vet-fourier-source2d-en-algorithm)
+
+Iterate formal Fourier angular transport, D=K_HO/E_HO, and an independent finite-difference moment solve. Include both Dxy cross derivatives in shared face fluxes and check local/global discrete budgets.
+
+$$
+\boldsymbol\Omega\cdot\nabla I+\sigma_tI=\sigma_sE+q,\quad D=\frac{\langle\boldsymbol\Omega\boldsymbol\Omega^TI\rangle}{\langle I\rangle}
+$$
+
+$$
+\sigma_t\sigma_aE-\partial_{xx}(D_{xx}E)-2\partial_{xy}(D_{xy}E)-\partial_{yy}(D_{yy}E)=\sigma_tq
+$$
+
+$$
+K_k=A\left[T\mathbb I+(C-T)\hat k\hat k^T\right],\quad C=\frac{\sigma_t(1-\sigma_tR)}{k^2},\quad T=\frac{R-C}{2}
+$$
+
+- [Static grey VEF/VET moment closure](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#static-grey-variable-eddington-moments-en) (`static-grey-variable-eddington-moments`)
+
+Static steady grey unit-periodic square; dimensionless st=4, ss=3, sa=1 and c=1, using point samples. q=1+0.3 cos(2pi x)+0.2 sin(2pi(x+y)). Space is2D, but directions cover full S2 and Dzz is retained.
+
+
+**Problem figure**
+
+![Variable Eddington tensor: a periodic 2D nonparallel-source control: saved validation figure for this execution.](https://hrkoyama.github.io/code/validated-examples/2026-11-26/variable-eddington-controls/results/vet-fourier-source2d.png)
+
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+
+[Variable Eddington tensor: a periodic 2D nonparallel-source control](https://hrkoyama.github.io/numerical-methods-atlas/problems/vet-fourier-source2d/?lang=en) (`vet-fourier-source2d`)
+
+[This problem’s code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/vet-fourier-source2d/?lang=en#code-en)
+
+**Exact / reference solutions**
+
+[References and checks for this execution](https://hrkoyama.github.io/numerical-methods-atlas/validation/vet-fourier-source2d/?lang=en#vet-fourier-source2d-en-validation)
+
+Separate17x17/33x33 refinement at12x48 angles from the16x64 angular probe on33x33. Check analytic E/H/K/D, complex modes including phase, independent angular integration, tensor constraints, cross-term negative controls and a9x9 constant source.
+
+- [Authored continuum Fourier response for periodic 2D VET](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-vet-fourier-source2d-en) (`vet-fourier-source2d`; Same-problem reference · Analytic reference)
+
+The continuum-angle Fourier response to the prescribed positive isotropic source is an analytic reference for this same fixed problem. Keep point/face locations and complex phase distinct, retaining the independent HO/LO discretization gap. Pointwise M1 comparison is a closure diagnostic; no M1 PDE is solved. This is not a reproduction of Athena, short characteristics, shadows, crossing beams, RHD or boundary closures, and does not claim exact fixed-grid HO/LO agreement or universal convergence rates.
 
 
 Original code: MIT. Other materials: https://hrkoyama.github.io/LICENSING.md and https://hrkoyama.github.io/rights/.

@@ -4,8 +4,8 @@
   "title": "分野別の全章目次",
   "description": "理論・導出・計算例の全章と学習資料を、分野別に引く目次です。おすすめの学ぶ順番は、学習ガイドで案内します。",
   "source": "/catalog/atlas-reading-index.json",
-  "source_sha256": "095966008ff7e883b2b57df86f4b832cdfe26f61fa5c1945ca033f44ef420e9f",
-  "chapter_count": 153,
+  "source_sha256": "21d425f19ca530a7fa66c8c5a63d52be1d680bd935c94a914a03496b6ffbd4b3",
+  "chapter_count": 156,
   "groups": [
     {
       "id": "foundations-time",
@@ -766,6 +766,18 @@
           "search_text": "validation-forward-step Mach 3前向きステップ：軽量な2次元検証 Mach-3 forward-facing step: lightweight 2D verification 流体・衝撃波・定常解法 Fluids, shocks and steady solvers"
         },
         {
+          "id": "wall-heating",
+          "title": "Wall heating：Noh問題と反射壁の数値的な過熱",
+          "url": "/numerical-methods-atlas/ja/read/wall-heating/",
+          "kind": "chapter",
+          "language": "ja",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "wall-heating Wall heating：Noh問題と反射壁の数値的な過熱 Wall heating: numerical overheating in Noh flow and at reflecting walls 流体・衝撃波・定常解法 Fluids, shocks and steady solvers"
+        },
+        {
           "id": "validation-noh",
           "title": "Noh衝撃波：厳密解・過熱誤差・格子収束",
           "url": "/numerical-methods-atlas/ja/read/validation-noh/",
@@ -1200,6 +1212,18 @@
           "search_text": "radiation-transport 輻射輸送・モーメント法 Radiation transport and moment methods 粒子・運動論・輸送 Particles, kinetic methods and transport"
         },
         {
+          "id": "variable-eddington",
+          "title": "可変Eddington因子・テンソル：角度輸送でモーメントを閉じる",
+          "url": "/numerical-methods-atlas/ja/read/variable-eddington/",
+          "kind": "chapter",
+          "language": "ja",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "variable-eddington 可変Eddington因子・テンソル：角度輸送でモーメントを閉じる Variable Eddington factors and tensors: closing moments with angular transport 粒子・運動論・輸送 Particles, kinetic methods and transport"
+        },
+        {
           "id": "validation-particles",
           "title": "粒子・静電場・運動論・輻射輸送",
           "url": "/numerical-methods-atlas/ja/read/validation-particles/",
@@ -1378,6 +1402,18 @@
             "en"
           ],
           "search_text": "validation-radiation-geometry 2Dの影・ビームとM1閉包 2D shadows,beams and M1 closure 粒子・運動論・輸送 Particles, kinetic methods and transport"
+        },
+        {
+          "id": "validation-variable-eddington-controls",
+          "title": "可変Eddington因子・テンソルの軽量検証",
+          "url": "/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/",
+          "kind": "chapter",
+          "language": "ja",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-variable-eddington-controls 可変Eddington因子・テンソルの軽量検証 Lightweight variable Eddington factor and tensor checks 粒子・運動論・輸送 Particles, kinetic methods and transport"
         }
       ]
     },

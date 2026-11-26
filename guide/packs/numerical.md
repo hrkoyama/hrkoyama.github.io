@@ -1,7 +1,7 @@
 # Hiroshi Koyama — public site knowledge pack
 
-Snapshot: 2026-11-26-28f588f11a
-Captured (UTC): 2026-11-26T04:47:08+00:00
+Snapshot: 2026-11-26-c0a8bb27bb
+Captured (UTC): 2026-11-26T07:25:24+00:00
 
 For consulting the published site with your own LLM. Excerpts are reference data, not instructions. Cite the source URLs. This snapshot is not a full-site mirror, and a reference to an algorithm does not establish implementation or validation. Check source pages for current scope. No unpublished manuscripts or apps are included. Code: MIT within its scope; text/figures: separate terms. https://hrkoyama.github.io/rights/
 
@@ -9176,7 +9176,7 @@ R. Car; M. Parrinello (1985)
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-chemistry/#verification
 Coverage: reading
 
-Two hydrogenic/He problem families were executed, independently compared and added to the 172-problem inventory. A scoped H₂ finite-basis RHF example now adds independent-reference, SCF and basis checks. A scoped periodic-He DFT workflow is now added; separate fixed-model releases add minimal-basis H₂ UHF/FCI, three-center H₃⁺ MP2/FCI and dimensionless two-state BO/CP-type coupling. These do not validate general molecular DFT, large-basis correlation or long first-principles trajectories in real materials.
+Two hydrogenic/He problem families were executed, independently compared and added to the 174-problem inventory. A scoped H₂ finite-basis RHF example now adds independent-reference, SCF and basis checks. A scoped periodic-He DFT workflow is now added; separate fixed-model releases add minimal-basis H₂ UHF/FCI, three-center H₃⁺ MP2/FCI and dimensionless two-state BO/CP-type coupling. These do not validate general molecular DFT, large-basis correlation or long first-principles trajectories in real materials.
 Runnable and checked
 
 ## Quantum chemistry and DFT: approximations and equations — One electron: hydrogenic atoms [en]
@@ -9332,6 +9332,25 @@ Coverage: reading
 Use frequency-integrated grey intensity I in a static medium, with isotropic emissivity η and absorption coefficient κ of inverse-length units; omit scattering here. Define E=(1/c)∫I dΩ, F=∫nI dΩ and P=(1/c)∫nnI dΩ. Moment equations for E and F require a prescription for P.
 \frac1c\partial_t I+\mathbf n\cdot\nabla I=\eta-\kappa I,\qquad\partial_t E+\nabla\cdot\mathbf F=4\pi\eta-c\kappa E,\qquad c^{-2}\partial_t\mathbf F+\nabla\cdot\mathbf P=-\kappa\mathbf F/c.
 
+## Radiation transport and moment methods — Grey (gray) approximation [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/radiation-transport/#grey-approximation
+Coverage: reading
+
+A grey (gray) model uses frequency-integrated intensity without resolving frequency. This is a separate choice from the treatment of angle: the grey approximation is not itself a diffusion approximation or an M1 closure.
+The existing grey transport and M1 examples are limited to a static medium and fixed inputs. Compare the angular-transport and M1 releases below within their own conditions. They do not establish general accuracy of the grey approximation against frequency-resolved calculations.
+Grey angular transport: the fixed Su–Olson1997 example · Grey angular transport and M1: the 2D absorber shadow
+
+## Radiation transport and moment methods — Radiation diffusion approximation [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/radiation-transport/#radiation-diffusion-approximation
+Coverage: reading
+
+The radiation diffusion approximation relates the radiation flux to the gradient of energy density in an optically thick, nearly isotropic regime. Its role differs from the grey approximation, which integrates over frequency.
+The existing Su–Olson1996 example advances diffusion equations with non-equilibrium radiation–matter exchange. The Su–Olson1997 angular-transport release also contains fixed diffusion-limit controls in a separate periodic setting. The coordinate normalizations, boundaries and references of these problems are not identical. These examples do not establish fixed-grid asymptotic preservation (AP) or diffusion-approximation accuracy under arbitrary conditions.
+Flux-limited diffusion (FLD) is a separate closure with a flux limiter. The atlas explains it but does not yet provide a dedicated nonlinear FLD solver and validation example. The diffusion and M1 examples above are not counted as FLD implementations.
+Non-equilibrium diffusion: the fixed Su–Olson1996 example · Angular transport and fixed diffusion-limit controls
+
 ## Radiation transport and moment methods — Algorithm [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/radiation-transport/#algorithm
@@ -9345,7 +9364,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/radiation-tra
 Coverage: reading
 
 M1 generally cannot propagate crossing beams independently. FLD ties flux to the energy gradient, limiting shadows and strongly anisotropic fields. A reduced light speed changes transport/relaxation scales and must be justified against the physical time scales of interest.
-The companion retains a one-dimensional steady purely absorbing slab with specified inflow, solving μ∂xI=−κI. General radiation moment closures, scattering, time dependence, multiple frequencies and fluid coupling are unvalidated.
+The two historical companions (pure absorption and space/angle convergence) solve μ∂xI=−κI in a one-dimensional steady purely absorbing slab with specified inflow. Those two releases do not validate general radiation moment closures, scattering, time dependence, multiple frequencies or fluid coupling. Consult the separate releases above for the scope of later grey transport, diffusion and M1 examples.
 
 ## Radiation transport and moment methods — What to check [en]
 
@@ -11420,6 +11439,12 @@ Coverage: reading
 H. T. Huynh (2007). A Flux Reconstruction Approach to High-Order Schemes Including Discontinuous Galerkin Methods. 10.2514/6.2007-4079
 H. T. Huynh (2014). On Formulations of Discontinuous Galerkin and Related Methods for Conservation Laws. Original source
 PyFR development team (2026). PyFR: Flux Reconstruction and supported implementation platforms (accessed 2026-11-23). Original source
+L. H. Auer and Dimitri Mihalas (1970). On the Use of Variable Eddington Factors in Non-LTE Stellar Atmospheres Computations. 10.1093/mnras/149.1.65
+Samuel Olivier and Terry S. Haut (2023). High-Order Mixed Finite Element Variable Eddington Factor Methods. Original source
+Yan-Fei Jiang and James M. Stone and Shane W. Davis (2012). A Godunov Method for Multidimensional Radiation Magnetohydrodynamics based on a variable Eddington tensor. 10.1088/0067-0049/199/1/14
+Shane W. Davis and James M. Stone and Yan-Fei Jiang (2012). A Radiation Transfer Solver for Athena using Short Characteristics. Original source
+Samuel Olivier and Will Pazner and Terry S. Haut and Ben C. Yee (2023). A Family of Independent Variable Eddington Factor Methods with Efficient Preconditioned Iterative Solvers. 10.1016/j.jcp.2022.111747
+M. Aaron Skinner and Eve C. Ostriker (2013). A Two-moment Radiation Hydrodynamics Module in Athena Using a Time-explicit Godunov Method. 10.1088/0067-0049/206/2/21
 
 ## References by original publication year — Added quantum-chemistry primary publications [en]
 
@@ -12897,8 +12922,8 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/site-coverage
 Coverage: reading
 
 Published web edition, counted 2026-11-24. These are counts of catalog entries and documented examples, not a claim that every entry is a verified end-to-end solver.
-94 equation/model entries · 163 methods and building blocks · 249 journal/conference papers · 310 total sources.
-There are 9 saved-profile equation-gallery cases across 7 equation families, and 153 reading chapters including this inventory.
+95 equation/model entries · 165 methods and building blocks · 255 journal/conference papers · 316 total sources.
+There are 9 saved-profile equation-gallery cases across 7 equation families, and 156 reading chapters including this inventory.
 
 ## Site coverage and counting rules — Equations and models# [en]
 
@@ -12906,7 +12931,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/site-coverage
 Coverage: reading
 
 Named equation/model entries, not scalar component equations or mathematically disjoint families. Includes frameworks and auxiliary formulations; variants share one entry except the three separately explained SR/GR fluid systems. Biological entries are imported once from their own catalog.
-78 entries have scoped local examples; 16 are reading-only, including all 22 biological survey entries. A coupled system is one entry; its individual component equations do not increase the count. Poisson/Laplace and dimensional variants share entries. Named frameworks and specialized kinetic laws can both appear, so this is not a count of mathematically disjoint families.
+79 entries have scoped local examples; 16 are reading-only, including all 22 biological survey entries. A coupled system is one entry; its individual component equations do not increase the count. Poisson/Laplace and dimensional variants share entries. Named frameworks and specialized kinetic laws can both appear, so this is not a count of mathematically disjoint families.
 
 ## Site coverage and counting rules — Physics & mathematical models# [en]
 
@@ -12992,7 +13017,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/site-coverage
 Coverage: reading
 
 Named numerical methods and building blocks with a reading chapter. Aliases count once; RK stages, dimensions, parameter combinations, mesh layouts and theoretical conditions do not add methods. A family and a separately explained algorithm may both appear. Not a count of mutually exclusive end-to-end solvers.
-153 entries have scoped local examples; 10 are reading-only. Reconstruction limiters, preconditioners and coupling operators are building blocks, not complete PDE solvers. Mesh layouts, CFL conditions and theorems are not counted as numerical methods.
+155 entries have scoped local examples; 10 are reading-only. Reconstruction limiters, preconditioners and coupling operators are building blocks, not complete PDE solvers. Mesh layouts, CFL conditions and theorems are not counted as numerical methods.
 
 ## Site coverage and counting rules — Spatial discretization# [en]
 
@@ -13145,7 +13170,7 @@ Coverage: reading
 
 Unique bibliographic publications classified as journal articles or conference papers, deduplicated by DOI or author/title/year. Includes reviews, translations and explicitly labeled accepted papers; not a claim that every full text was inspected. Books, chapters, reports, preprints and documentation are separate.
 Unique cataloged works across all publication types. An original publication and a later translation are separate works; duplicate DOI records are not. NASA case links in prose are not catalog records.
-242 journal-article records, including reviews, translations and explicitly labeled accepted papers.
+248 journal-article records, including reviews, translations and explicitly labeled accepted papers.
 3 conference papers.
 22 books.
 2 book chapters.
@@ -59475,6 +59500,632 @@ Coverage: reading
 
 Checked the author’s official note identifying a typo in the 2007 paper’s gamma-based generation of Gaussian-square sums. Year is access year. This is an original implementation, not a reproduction of the downloadable code.
 
+## Lightweight variable Eddington factor and tensor checks — Lightweight variable Eddington factor and tensor checks [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/
+Coverage: reading
+
+Iterate angular transport and a separate moment solve for periodic problems with a positive isotropic source, separating analytic-reference errors, balance, and spatial and angular effects.
+
+## Lightweight variable Eddington factor and tensor checks — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#run-all
+Coverage: reading
+
+Run inside atlas-variable-eddington-controls-2026-11-26 from the ZIP. This command executes all 2 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## Lightweight variable Eddington factor and tensor checks — Variable Eddington factor: a periodic 1D scattering-source control [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/
+Coverage: reading
+
+Iteratively couple formal angular transport to independent moment equations and compare the spatially varying factor f with a closed-form reference.
+Methods, equations, figures and references
+Methods used
+Variable Eddington factor (1D VEF)
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+At each iteration solve formal Fourier transport with q+ss E_LO, extract f=Kxx/E_HO, and solve finite-difference moment equations using shared conservative faces. The primary closure never receives the analytic reference.
+Static grey VEF/VET moment closure
+Static steady grey unit-periodic interval; dimensionless st=4, ss=3, sa=1 and c=1. q=1+0.3 cos(2pi x), sampled as point values at x_i=i/N. Angular averages use (1/2) integral I dmu.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Variable Eddington factor: a periodic 1D scattering-source control
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Separate N=33/65 refinement at32 angular points from a64-point probe at N=65. Check analytic fields and complex modes, conservation, realizability, iteration residuals, negative controls and a separate N=9 constant-source row.
+
+## Lightweight variable Eddington factor and tensor checks — Variable Eddington factor: a periodic 1D scattering-source control [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/
+Coverage: reading
+
+Same-problem reference · Analytic reference
+Authored continuum Fourier response for periodic 1D VEF
+The continuum-angle Fourier response to the prescribed positive isotropic source is an analytic reference for this same fixed problem. Keep point/face locations and complex phase distinct, retaining the independent HO/LO discretization gap. Position x and angular cosine mu are not two spatial dimensions. This periodic homogeneous educational control does not validate inflow boundaries, time evolution, material/fluid coupling, nonlinear FLD, general AP properties or speedup.
+
+## Lightweight variable Eddington factor and tensor checks — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-assumptions
+Coverage: reading
+
+Static steady grey unit-periodic interval; dimensionless st=4, ss=3, sa=1 and c=1. q=1+0.3 cos(2pi x), sampled as point values at x_i=i/N. Angular averages use (1/2) integral I dmu.
+
+## Lightweight variable Eddington factor and tensor checks — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-algorithm
+Coverage: reading
+
+At each iteration solve formal Fourier transport with q+ss E_LO, extract f=Kxx/E_HO, and solve finite-difference moment equations using shared conservative faces. The primary closure never receives the analytic reference.
+\mu\partial_xI+\sigma_tI=\sigma_sE+q,\quad E=\langle I\rangle,\quad f=\langle\mu^2I\rangle/E\partial_xH+\sigma_aE=q,\quad \partial_x(fE)+\sigma_tH=0R=\frac{\arctan(k/\sigma_t)}{k},\quad A=\frac{b}{1-\sigma_sR},\quad E_{\rm ref}=1+\Re(ARe^{ikx})
+
+## Lightweight variable Eddington factor and tensor checks — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-validation
+Coverage: reading
+
+Separate N=33/65 refinement at32 angular points from a64-point probe at N=65. Check analytic fields and complex modes, conservation, realizability, iteration residuals, negative controls and a separate N=9 constant-source row.
+
+## Lightweight variable Eddington factor and tensor checks — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-limits
+Coverage: reading
+
+Position x and angular cosine mu are not two spatial dimensions. This periodic homogeneous educational control does not validate inflow boundaries, time evolution, material/fluid coupling, nonlinear FLD, general AP properties or speedup.
+
+## Lightweight variable Eddington factor and tensor checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+finest_E_relative_rms_error3.00843628987e-05
+finest_face_H_relative_rms_error0.000184333620887
+finest_mode_complex_relative_error0.000463132069472
+finest_D_component_max_abs_error2.56266321935e-06
+E_error_refinement_ratio0.257557236384
+face_H_error_refinement_ratio0.25786212296
+HO_LO_gap_refinement_ratio0.25755723788
+angle_probe_E_relative_rms_difference7.90363996074e-15
+angle_probe_D_max_abs_difference7.21644966006e-15
+finest_nonconstant_f_span0.0193879024469
+finest_max_abs_Dxy0
+main_rows3
+constant_control_rows1
+outer_iterations_by_row{"space-coarse":13,"space-fine":13,"angle-probe":13,"constant-control":1}
+判定 / checkPassed
+all_row_solver_checkstrue
+finest_E_accuracytrue
+finest_face_H_accuracytrue
+complex_source_modes_include_phasetrue
+tensor_reference_accuracytrue
+E_refinestrue
+face_H_refinestrue
+HO_LO_gap_refines_not_zerotrue
+angle_probe_Etrue
+angle_probe_Dtrue
+variable_closuretrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Saved point/face errors, spatial refinement, a separate angular probe and iteration history. The constant source is a separate control.Read every stored record
+row_idroleinputsourcearraysarrays_sha256metricscheckspassedhistory
+
+## Lightweight variable Eddington factor and tensor checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-measurements
+Coverage: reading
+
+space-coarsecoarse{"id":"space-coarse","shape":[33],"mu_order":32}{"mean":1.0,"modes":[{"wave_numbers":[1],"amplitude":{"real":0.3,"imag":0.0}}]}vef-fourier-scattering1d--space-coarse.npz9c23db17104a9722773ccdfb7f55be9610a31b11b2e92751b29850fbe3030d8c{"outer":13,"LOE_relative_update":1.6762770110785017e-12,"D_max_update":1.1574075031717257e-13,"true_LO_relative_residual":2.4576921694355963e-12,"formal_transport_residual":1.5418243648783696e-17,"HOE_minus_LOE_rms":6.0949249332227494e-05,"minimum_I":0.8562750831507078,"minimum_LOE":0.9081970243211669,"tensor_min_eigenvalue":0.3245205593841743,"tensor_max_eigenvalue":0.34388184107419884,"HO_covariance_min_eigenvalue":0.3245205593841743,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":1.682156097916904e-17,"inner_iterations":1,"imaginary_residue":1.0714883943182227e-16,"E_relative_rms_error":0.00011680651384986585,"E_absolute_max_error":0.00016685978430719395,"face_H_relative_rms_error":0.0007148534215482108,"face_H_absolute_rms_error":1.6728909506090988e-05,"face_H_absolute_max_error":2.363901985750344e-05,"D_component_max_abs_error":9.911245539284685e-06,"M1_closure_reference_max_abs_difference":0.010532599339812099,"tensor_symmetry_error":0.0,"LO_flux_realizability_excess":-0.9022263801341889,"HO_flux_realizability_excess":-0.9022647949288914,"VET_z_parity":0.0,"nonconstant_f_span":0.019361281690024545,"max_a
+
+## Lightweight variable Eddington factor and tensor checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-measurements
+Coverage: reading
+
+bs_Dxy":0.0,"source_modes":[{"wave_numbers":[1],"computed_real":0.09222196221721737,"computed_imag":6.560408781875925e-17,"reference_real":0.0920564289735461,"reference_imag":4.5418214643756407e-17,"complex_relative_error":0.0017981714641444732,"magnitude_relative_error":0.0017981714641444732,"phase_error_radians":2.1799800128005413e-16}],"maximum_source_mode_complex_relative_error":0.0017981714641444732,"work":{"outer_iterations":13,"inner_iterations":52,"formal_solves":14,"directional_solves":448}}{"outer_E_converged":true,"outer_D_converged":true,"true_LO_residual":true,"formal_HO_residual":true,"imaginary_roundoff":true,"global_balance":true,"positive_intensity":true,"positive_LO_energy":true,"LO_realizability":true,"HO_realizability":true,"tensor_symmetry":true,"tensor_trace":true,"tensor_PSD":true,"HO_covariance_PSD":true,"z_parity":true}true[{"outer":1,"LOE_relative_update":0.07563559773480992,"D_max_update":0.004660966124269861,"true_LO_relative_residual":0.033904355954740624,"formal_transport_residual":1.9149979844068615e-17,"HOE_minus_LOE_rms":0.0038540177111461935,"minimum_I":0.8643984880021485,"minimum_LOE":0.9190111256713395,"tensor_min_eigenvalue":0.3249577066990358,"tensor_max_eigenvalue":0.343228437217853,"HO_covariance_min_eigenvalue":0.3249577066990358,"tensor_trace_error":1.1102230246251565e-16,"discrete_global_balance":1.0092936587501423e-17,"inner_iteration
+
+## Lightweight variable Eddington factor and tensor checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-measurements
+Coverage: reading
+
+s":6,"imaginary_residue":1.785620823294182e-16},{"outer":2,"LOE_relative_update":0.008711610257146995,"D_max_update":0.0005737361333036373,"true_LO_relative_residual":0.00450308213240094,"formal_transport_residual":1.5088430197048796e-17,"HOE_minus_LOE_rms":0.0003937199486713064,"minimum_I":0.8572586442220971,"minimum_LOE":0.9095060856036407,"tensor_min_eigenvalue":0.3245681850670708,"tensor_max_eigenvalue":0.34380217335115665,"HO_covariance_min_eigenvalue":0.3245681850670708,"tensor_trace_error":1.1102230246251565e-16,"discrete_global_balance":3.3643121958338078e-18,"inner_iterations":7,"imaginary_residue":2.429025158708388e-16},{"outer":3,"LOE_relative_update":0.001051289397900603,"D_max_update":6.98404472136982e-05,"true_LO_relative_residual":0.0006150197030845978,"formal_transport_residual":1.6112347575747245e-17,"HOE_minus_LOE_rms":1.3258465820688726e-05,"minimum_I":0.8563960448728112,"minimum_LOE":0.9083579730385485,"tensor_min_eigenvalue":0.3245256453015061,"tensor_max_eigenvalue":0.3438720137983703,"HO_covariance_min_eigenvalue":0.3245256453015061,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":6.7286243916676156e-18,"inner_iterations":6,"imaginary_residue":1.4778560741326002e-16},{"outer":4,"LOE_relative_update":0.00012894718806533327,"D_max_update":8.595494157270789e-06,"true_LO_relative_residual":8.594679819908289e-05,"formal_transport_residual":
+
+## Lightweight variable Eddington factor and tensor checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-measurements
+Coverage: reading
+
+1.447299379225233e-17,"HOE_minus_LOE_rms":5.493725841372887e-05,"minimum_I":0.856290202795714,"minimum_LOE":0.908217135594432,"tensor_min_eigenvalue":0.3245210840508579,"tensor_max_eigenvalue":0.3438806092925275,"HO_covariance_min_eigenvalue":0.3245210840508579,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":2.3550185370836655e-17,"inner_iterations":6,"imaginary_residue":2.2604170698550483e-16},{"outer":5,"LOE_relative_update":1.6070157274367832e-05,"D_max_update":1.0745214694130034e-06,"true_LO_relative_residual":1.2259053766048812e-05,"formal_transport_residual":1.5844294324279676e-17,"HOE_minus_LOE_rms":6.025039480323049e-05,"minimum_I":0.8562770077936146,"minimum_LOE":0.9081995834153944,"tensor_min_eigenvalue":0.3245206104396107,"tensor_max_eigenvalue":0.34388168381399686,"HO_covariance_min_eigenvalue":0.3245206104396107,"tensor_trace_error":1.1102230246251565e-16,"discrete_global_balance":2.6914497566670462e-17,"inner_iterations":5,"imaginary_residue":2.0062650483567025e-16},{"outer":6,"LOE_relative_update":2.0388679868813024e-06,"D_max_update":1.3677558718949712e-07,"true_LO_relative_residual":1.779934199432385e-06,"formal_transport_residual":1.5973771494786836e-17,"HOE_minus_LOE_rms":6.086817214987136e-05,"minimum_I":0.8562753330904511,"minimum_LOE":0.9081973565165433,"tensor_min_eigenvalue":0.32452056382741534,"tensor_max_eigenvalue":0.3438818205895
+
+## Lightweight variable Eddington factor and tensor checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-measurements
+Coverage: reading
+
+8405,"HO_covariance_min_eigenvalue":0.32452056382741534,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":1.682156097916904e-17,"inner_iterations":5,"imaginary_residue":1.9148254365102004e-16},{"outer":7,"LOE_relative_update":2.638253281094362e-07,"D_max_update":1.7759540005268803e-08,"true_LO_relative_residual":2.62311413701255e-07,"formal_transport_residual":1.5618032713827375e-17,"HOE_minus_LOE_rms":6.09398367690778e-05,"minimum_I":0.8562751162995771,"minimum_LOE":0.9081970683603783,"tensor_min_eigenvalue":0.3245205596757044,"tensor_max_eigenvalue":0.34388183834912395,"HO_covariance_min_eigenvalue":0.3245205596757044,"tensor_trace_error":1.1102230246251565e-16,"discrete_global_balance":6.7286243916676156e-18,"inner_iterations":4,"imaginary_residue":2.391228821239734e-16},{"outer":8,"LOE_relative_update":3.486053645506713e-08,"D_max_update":2.3548225036584824e-09,"true_LO_relative_residual":3.912533502309783e-08,"formal_transport_residual":1.481174562966177e-17,"HOE_minus_LOE_rms":6.0948154778984436e-05,"minimum_I":0.8562750876416337,"minimum_LOE":0.9081970302848889,"tensor_min_eigenvalue":0.3245205593840197,"tensor_max_eigenvalue":0.34388184070394645,"HO_covariance_min_eigenvalue":0.3245205593840197,"tensor_trace_error":1.1102230246251565e-16,"discrete_global_balance":2.0185873175002847e-17,"inner_iterations":4,"imaginary_residue":1.8164975444242458e-16},{
+
+## Lightweight variable Eddington factor and tensor checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-measurements
+Coverage: reading
+
+"outer":9,"LOE_relative_update":4.705592151250992e-09,"D_max_update":3.1892888330276037e-10,"true_LO_relative_residual":5.8895762625828985e-09,"formal_transport_residual":1.574965534656577e-17,"HOE_minus_LOE_rms":6.0949121763209875e-05,"minimum_I":0.856275083771599,"minimum_LOE":0.9081970251453315,"tensor_min_eigenvalue":0.3245205593789966,"tensor_max_eigenvalue":0.34388184102287533,"HO_covariance_min_eigenvalue":0.3245205593789966,"tensor_trace_error":1.1102230246251565e-16,"discrete_global_balance":1.0092936587501423e-17,"inner_iterations":3,"imaginary_residue":1.7252818043097894e-16},{"outer":10,"LOE_relative_update":6.480934582442954e-10,"D_max_update":4.4064030202406457e-11,"true_LO_relative_residual":9.001501253782005e-10,"formal_transport_residual":1.9703541849709072e-17,"HOE_minus_LOE_rms":6.0949234404168136e-05,"minimum_I":0.8562750832383614,"minimum_LOE":0.9081970244374687,"tensor_min_eigenvalue":0.3245205593827925,"tensor_max_eigenvalue":0.34388184106693936,"HO_covariance_min_eigenvalue":0.3245205593827925,"tensor_trace_error":1.1102230246251565e-16,"discrete_global_balance":3.027880976250427e-17,"inner_iterations":2,"imaginary_residue":1.9039076166350194e-16},{"outer":11,"LOE_relative_update":9.137717258148403e-11,"D_max_update":6.228018101239741e-12,"true_LO_relative_residual":1.381815175103786e-10,"formal_transport_residual":1.4305653491054995e-17,"HOE_minus_LOE_r
+
+## Lightweight variable Eddington factor and tensor checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-measurements
+Coverage: reading
+
+ms":6.094924758879749e-05,"minimum_I":0.8562750831631463,"minimum_LOE":0.9081970243376645,"tensor_min_eigenvalue":0.32452055938390234,"tensor_max_eigenvalue":0.3438818410731674,"HO_covariance_min_eigenvalue":0.32452055938390234,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":3.3643121958338078e-18,"inner_iterations":2,"imaginary_residue":1.3068272472010755e-16},{"outer":12,"LOE_relative_update":1.3428716022884974e-11,"D_max_update":9.158784841645229e-13,"true_LO_relative_residual":1.6772737045410116e-11,"formal_transport_residual":1.408192740590467e-17,"HOE_minus_LOE_rms":6.094924917941338e-05,"minimum_I":0.8562750831520879,"minimum_LOE":0.9081970243229973,"tensor_min_eigenvalue":0.32452055938412777,"tensor_max_eigenvalue":0.3438818410740831,"HO_covariance_min_eigenvalue":0.32452055938412777,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":2.0185873175002847e-17,"inner_iterations":1,"imaginary_residue":1.0276643548721613e-16},{"outer":13,"LOE_relative_update":1.6762770110785017e-12,"D_max_update":1.1574075031717257e-13,"true_LO_relative_residual":2.4576921694355963e-12,"formal_transport_residual":1.5418243648783696e-17,"HOE_minus_LOE_rms":6.0949249332227494e-05,"minimum_I":0.8562750831507078,"minimum_LOE":0.9081970243211669,"tensor_min_eigenvalue":0.3245205593841743,"tensor_max_eigenvalue":0.34388184107419884,"HO_covariance_min_eigenvalu
+
+## Lightweight variable Eddington factor and tensor checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-measurements
+Coverage: reading
+
+e":0.3245205593841743,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":1.682156097916904e-17,"inner_iterations":1,"imaginary_residue":1.0714883943182227e-16}]
+
+## Lightweight variable Eddington factor and tensor checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-measurements
+Coverage: reading
+
+space-finefine{"id":"space-fine","shape":[65],"mu_order":32}{"mean":1.0,"modes":[{"wave_numbers":[1],"amplitude":{"real":0.3,"imag":0.0}}]}vef-fourier-scattering1d--space-fine.npz10715e05d85429ace7ab53321dcabc466f758b28ca978a44a1320e27d2efe2ae{"outer":13,"LOE_relative_update":1.7061517420129273e-12,"D_max_update":1.1790568521519162e-13,"true_LO_relative_residual":2.7137266792683825e-12,"formal_transport_residual":1.50217183199147e-17,"HOE_minus_LOE_rms":1.5697920308880423e-05,"minimum_I":0.8563929222126526,"minimum_LOE":0.9080088528913614,"tensor_min_eigenvalue":0.32452576622509455,"tensor_max_eigenvalue":0.34391366867204115,"HO_covariance_min_eigenvalue":0.32452576622509455,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":8.540177112501205e-18,"inner_iterations":1,"imaginary_residue":9.949405939387779e-17,"E_relative_rms_error":3.008436289883424e-05,"E_absolute_max_error":4.2975989158700045e-05,"face_H_relative_rms_error":0.00018433362088593307,"face_H_absolute_rms_error":4.313752120053172e-06,"face_H_absolute_max_error":6.099407850533589e-06,"D_component_max_abs_error":2.562663224070505e-06,"M1_closure_reference_max_abs_difference":0.010576222375295208,"tensor_symmetry_error":0.0,"LO_flux_realizability_excess":-0.9021483628573613,"HO_flux_realizability_excess":-0.9021559127337978,"VET_z_parity":0.0,"nonconstant_f_span":0.019387902446946603,"max_abs_Dxy":0.
+
+## Lightweight variable Eddington factor and tensor checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-measurements
+Coverage: reading
+
+0,"source_modes":[{"wave_numbers":[1],"computed_real":0.09209906325800502,"computed_imag":0.0,"reference_real":0.09205642897354609,"reference_imag":0.0,"complex_relative_error":0.00046313206947425713,"magnitude_relative_error":0.00046313206947425713,"phase_error_radians":0.0}],"maximum_source_mode_complex_relative_error":0.00046313206947425713,"work":{"outer_iterations":13,"inner_iterations":54,"formal_solves":14,"directional_solves":448}}{"outer_E_converged":true,"outer_D_converged":true,"true_LO_residual":true,"formal_HO_residual":true,"imaginary_roundoff":true,"global_balance":true,"positive_intensity":true,"positive_LO_energy":true,"LO_realizability":true,"HO_realizability":true,"tensor_symmetry":true,"tensor_trace":true,"tensor_PSD":true,"HO_covariance_PSD":true,"z_parity":true}true[{"outer":1,"LOE_relative_update":0.07553732956277977,"D_max_update":0.004672015028590826,"true_LO_relative_residual":0.0341113403014811,"formal_transport_residual":1.5733659524812928e-17,"HOE_minus_LOE_rms":0.003896093262298592,"minimum_I":0.8645086377168657,"minimum_LOE":0.9188537941724144,"tensor_min_eigenvalue":0.32496258262837485,"tensor_max_eigenvalue":0.34325804284247224,"HO_covariance_min_eigenvalue":0.32496258262837485,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":3.416070845000482e-18,"inner_iterations":7,"imaginary_residue":2.089163137060407e-16},{"outer":2,"LOE
+
+## Lightweight variable Eddington factor and tensor checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-measurements
+Coverage: reading
+
+_relative_update":0.00873619447124191,"D_max_update":0.0005756019827760084,"true_LO_relative_residual":0.004544083992559148,"formal_transport_residual":1.682850525516756e-17,"HOE_minus_LOE_rms":0.00043855913652752506,"minimum_I":0.8573760781608292,"minimum_LOE":0.9093230094745415,"tensor_min_eigenvalue":0.3245733792627476,"tensor_max_eigenvalue":0.34383364482524814,"HO_covariance_min_eigenvalue":0.3245733792627476,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":1.3664283380001927e-17,"inner_iterations":7,"imaginary_residue":2.9156465457386473e-16},{"outer":3,"LOE_relative_update":0.001055326616296715,"D_max_update":7.014086146583942e-05,"true_LO_relative_residual":0.0006225818200161343,"formal_transport_residual":1.4117851268416476e-17,"HOE_minus_LOE_rms":3.789855009023477e-05,"minimum_I":0.8565138995970457,"minimum_LOE":0.9081706186178151,"tensor_min_eigenvalue":0.3245308531517643,"tensor_max_eigenvalue":0.343903785686714,"HO_covariance_min_eigenvalue":0.3245308531517643,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":1.5372318802502168e-17,"inner_iterations":7,"imaginary_residue":2.0656364890206966e-16},{"outer":4,"LOE_relative_update":0.00012959218315963315,"D_max_update":8.642586836304922e-06,"true_LO_relative_residual":8.727728362809208e-05,"formal_transport_residual":1.554793235019426e-17,"HOE_minus_LOE_rms":9.827488415160511e-06,
+
+## Lightweight variable Eddington factor and tensor checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-measurements
+Coverage: reading
+
+"minimum_I":0.8564080521928821,"minimum_LOE":0.9080290927587183,"tensor_min_eigenvalue":0.32452629121405,"tensor_max_eigenvalue":0.3439124282735503,"HO_covariance_min_eigenvalue":0.32452629121405,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":1.0248212535001446e-17,"inner_iterations":6,"imaginary_residue":1.891338822620737e-16},{"outer":5,"LOE_relative_update":1.6171364204717425e-05,"D_max_update":1.0818109454358016e-06,"true_LO_relative_residual":1.2486337786114904e-05,"formal_transport_residual":1.5553598963654364e-17,"HOE_minus_LOE_rms":1.500077060780987e-05,"minimum_I":0.8563948492682114,"minimum_LOE":0.9080114320426358,"tensor_min_eigenvalue":0.3245258173279432,"tensor_max_eigenvalue":0.3439135100844955,"HO_covariance_min_eigenvalue":0.3245258173279432,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":1.3664283380001927e-17,"inner_iterations":5,"imaginary_residue":2.4655945055275504e-16},{"outer":6,"LOE_relative_update":2.0546098427778915e-06,"D_max_update":1.378984625377555e-07,"true_LO_relative_residual":1.8180142472653453e-06,"formal_transport_residual":1.4794307461116088e-17,"HOE_minus_LOE_rms":1.5616763373822316e-05,"minimum_I":0.8563931726127162,"minimum_LOE":0.9080091882046984,"tensor_min_eigenvalue":0.3245257706726944,"tensor_max_eigenvalue":0.3439136479829578,"HO_covariance_min_eigenvalue":0.3245257706726944,"tensor_trace_e
+
+## Lightweight variable Eddington factor and tensor checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-measurements
+Coverage: reading
+
+rror":2.220446049250313e-16,"discrete_global_balance":5.124106267500723e-18,"inner_iterations":5,"imaginary_residue":1.469302433590791e-16},{"outer":7,"LOE_relative_update":2.662664525367989e-07,"D_max_update":1.7932439699830383e-08,"true_LO_relative_residual":2.686063853392266e-07,"formal_transport_residual":1.6136824951591372e-17,"HOE_minus_LOE_rms":1.5688487192898857e-05,"minimum_I":0.856392955442704,"minimum_LOE":0.9080088974152671,"tensor_min_eigenvalue":0.32452576651661447,"tensor_max_eigenvalue":0.34391366591539746,"HO_covariance_min_eigenvalue":0.32452576651661447,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":1.708035422500241e-18,"inner_iterations":4,"imaginary_residue":1.672770183296533e-16},{"outer":8,"LOE_relative_update":3.5239200888097495e-08,"D_max_update":2.381501218451376e-09,"true_LO_relative_residual":4.015574676193759e-08,"formal_transport_residual":1.5040827761434577e-17,"HOE_minus_LOE_rms":1.5696822605147086e-05,"minimum_I":0.8563929267173868,"minimum_LOE":0.9080088589305569,"tensor_min_eigenvalue":0.32452576622481555,"tensor_max_eigenvalue":0.3439136682968986,"HO_covariance_min_eigenvalue":0.32452576622481555,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":3.416070845000482e-18,"inner_iterations":4,"imaginary_residue":2.3234339804323543e-16},{"outer":9,"LOE_relative_update":4.764452578462807e-09,"D_max_update":3
+
+## Lightweight variable Eddington factor and tensor checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-measurements
+Coverage: reading
+
+.230591349989709e-10,"true_LO_relative_residual":6.057129157218592e-09,"formal_transport_residual":1.472220314465026e-17,"HOE_minus_LOE_rms":1.5697792298214594e-05,"minimum_I":0.8563929228358512,"minimum_LOE":0.9080088537273011,"tensor_min_eigenvalue":0.32452576621987766,"tensor_max_eigenvalue":0.34391366861995776,"HO_covariance_min_eigenvalue":0.32452576621987766,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":1.708035422500241e-18,"inner_iterations":3,"imaginary_residue":1.7287623391287608e-16},{"outer":10,"LOE_relative_update":6.572542185434582e-10,"D_max_update":4.470496195452256e-11,"true_LO_relative_residual":9.277267842833226e-10,"formal_transport_residual":1.5119885623940377e-17,"HOE_minus_LOE_rms":1.5697905320700533e-05,"minimum_I":0.8563929223006885,"minimum_LOE":0.9080088530095142,"tensor_min_eigenvalue":0.3245257662237036,"tensor_max_eigenvalue":0.3439136686646626,"HO_covariance_min_eigenvalue":0.3245257662237036,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":6.832141690000964e-18,"inner_iterations":2,"imaginary_residue":1.0682564239162598e-16},{"outer":11,"LOE_relative_update":9.281880247353814e-11,"D_max_update":6.3285487961195486e-12,"true_LO_relative_residual":1.427653721737425e-10,"formal_transport_residual":1.591730043141687e-17,"HOE_minus_LOE_rms":1.5697918557490493e-05,"minimum_I":0.8563929222251537,"minimum_LOE":0.
+
+## Lightweight variable Eddington factor and tensor checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-measurements
+Coverage: reading
+
+908008852908147,"tensor_min_eigenvalue":0.32452576622482077,"tensor_max_eigenvalue":0.34391366867099116,"HO_covariance_min_eigenvalue":0.32452576622482077,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":8.540177112501205e-18,"inner_iterations":2,"imaginary_residue":1.2511154331128173e-16},{"outer":12,"LOE_relative_update":1.3664259545209372e-11,"D_max_update":9.321432514752814e-13,"true_LO_relative_residual":1.7356885159905196e-11,"formal_transport_residual":1.6122230093050097e-17,"HOE_minus_LOE_rms":1.5697920155198736e-05,"minimum_I":0.8563929222140404,"minimum_LOE":0.9080088528932243,"tensor_min_eigenvalue":0.32452576622504775,"tensor_max_eigenvalue":0.34391366867192324,"HO_covariance_min_eigenvalue":0.32452576622504775,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":1.3664283380001927e-17,"inner_iterations":1,"imaginary_residue":1.32487136516397e-16},{"outer":13,"LOE_relative_update":1.7061517420129273e-12,"D_max_update":1.1790568521519162e-13,"true_LO_relative_residual":2.7137266792683825e-12,"formal_transport_residual":1.50217183199147e-17,"HOE_minus_LOE_rms":1.5697920308880423e-05,"minimum_I":0.8563929222126526,"minimum_LOE":0.9080088528913614,"tensor_min_eigenvalue":0.32452576622509455,"tensor_max_eigenvalue":0.34391366867204115,"HO_covariance_min_eigenvalue":0.32452576622509455,"tensor_trace_error":2.220446049250313e-16,"discret
+
+## Lightweight variable Eddington factor and tensor checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-measurements
+Coverage: reading
+
+e_global_balance":8.540177112501205e-18,"inner_iterations":1,"imaginary_residue":9.949405939387779e-17}]
+
+## Lightweight variable Eddington factor and tensor checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-measurements
+Coverage: reading
+
+angle-probeangle-probe{"id":"angle-probe","shape":[65],"mu_order":64}{"mean":1.0,"modes":[{"wave_numbers":[1],"amplitude":{"real":0.3,"imag":0.0}}]}vef-fourier-scattering1d--angle-probe.npz0bf9cc93ed7ae5d3cc9d8f506347fb3660a06a279f2becab0613db521644fa24{"outer":13,"LOE_relative_update":1.7062534015339958e-12,"D_max_update":1.1801670751765414e-13,"true_LO_relative_residual":2.7649677419433897e-12,"formal_transport_residual":1.762470370339104e-17,"HOE_minus_LOE_rms":1.5697920308892725e-05,"minimum_I":0.8560385980051892,"minimum_LOE":0.9080088528913787,"tensor_min_eigenvalue":0.32452576622509743,"tensor_max_eigenvalue":0.34391366867203643,"HO_covariance_min_eigenvalue":0.32452576622509743,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":8.540177112501205e-18,"inner_iterations":1,"imaginary_residue":1.4873939921590592e-16,"E_relative_rms_error":3.0084362898696935e-05,"E_absolute_max_error":4.297598915559142e-05,"face_H_relative_rms_error":0.0001843336208869165,"face_H_absolute_rms_error":4.313752120076186e-06,"face_H_absolute_max_error":6.099407848729477e-06,"D_component_max_abs_error":2.562663219352057e-06,"M1_closure_reference_max_abs_difference":0.010576222375295208,"tensor_symmetry_error":0.0,"LO_flux_realizability_excess":-0.9021483628573662,"HO_flux_realizability_excess":-0.902155912733804,"VET_z_parity":0.0,"nonconstant_f_span":0.019387902446938998,"max_a
+
+## Lightweight variable Eddington factor and tensor checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-measurements
+Coverage: reading
+
+bs_Dxy":0.0,"source_modes":[{"wave_numbers":[1],"computed_real":0.09209906325800479,"computed_imag":0.0,"reference_real":0.09205642897354609,"reference_imag":0.0,"complex_relative_error":0.00046313206947184505,"magnitude_relative_error":0.00046313206947184505,"phase_error_radians":0.0}],"maximum_source_mode_complex_relative_error":0.00046313206947184505,"work":{"outer_iterations":13,"inner_iterations":54,"formal_solves":14,"directional_solves":896}}{"outer_E_converged":true,"outer_D_converged":true,"true_LO_residual":true,"formal_HO_residual":true,"imaginary_roundoff":true,"global_balance":true,"positive_intensity":true,"positive_LO_energy":true,"LO_realizability":true,"HO_realizability":true,"tensor_symmetry":true,"tensor_trace":true,"tensor_PSD":true,"HO_covariance_PSD":true,"z_parity":true}true[{"outer":1,"LOE_relative_update":0.07553732956277957,"D_max_update":0.004672015027095133,"true_LO_relative_residual":0.03411134019111459,"formal_transport_residual":1.7491084003841564e-17,"HOE_minus_LOE_rms":0.0038960932622922714,"minimum_I":0.8641756625134035,"minimum_LOE":0.9188537941724144,"tensor_min_eigenvalue":0.3249625826288171,"tensor_max_eigenvalue":0.34325804284097844,"HO_covariance_min_eigenvalue":0.3249625826288171,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":6.832141690000964e-18,"inner_iterations":7,"imaginary_residue":2.1716616920332933e-16},{"ou
+
+## Lightweight variable Eddington factor and tensor checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-measurements
+Coverage: reading
+
+ter":2,"LOE_relative_update":0.008736194467734592,"D_max_update":0.0005756019829871173,"true_LO_relative_residual":0.0045440839977219415,"formal_transport_residual":1.4803924781698433e-17,"HOE_minus_LOE_rms":0.0004385591365362131,"minimum_I":0.8570246770778189,"minimum_LOE":0.9093230094783804,"tensor_min_eigenvalue":0.3245733792630239,"tensor_max_eigenvalue":0.34383364482396545,"HO_covariance_min_eigenvalue":0.3245733792630239,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":1.708035422500241e-17,"inner_iterations":7,"imaginary_residue":3.2911464992858214e-16},{"outer":3,"LOE_relative_update":0.00105532661679393,"D_max_update":7.014086224532701e-05,"true_LO_relative_residual":0.0006225818817271125,"formal_transport_residual":1.631894680749146e-17,"HOE_minus_LOE_rms":3.7898550114936475e-05,"minimum_I":0.8561599876670918,"minimum_LOE":0.908170618621112,"tensor_min_eigenvalue":0.32453085315186153,"tensor_max_eigenvalue":0.3439037856862108,"HO_covariance_min_eigenvalue":0.32453085315186153,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":1.708035422500241e-18,"inner_iterations":7,"imaginary_residue":2.024357478284002e-16},{"outer":4,"LOE_relative_update":0.00012959218499088444,"D_max_update":8.642587191631801e-06,"true_LO_relative_residual":8.727731295036319e-05,"formal_transport_residual":1.7027549261236782e-17,"HOE_minus_LOE_rms":9.82748842
+
+## Lightweight variable Eddington factor and tensor checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-measurements
+Coverage: reading
+
+2988788e-06,"minimum_I":0.8560537873536201,"minimum_LOE":0.9080290927600153,"tensor_min_eigenvalue":0.3245262912140787,"tensor_max_eigenvalue":0.3439124282734024,"HO_covariance_min_eigenvalue":0.3245262912140787,"tensor_trace_error":1.1102230246251565e-16,"discrete_global_balance":1.5372318802502168e-17,"inner_iterations":6,"imaginary_residue":1.9077284106088189e-16},{"outer":5,"LOE_relative_update":1.6171365039852673e-05,"D_max_update":1.081811053516013e-06,"true_LO_relative_residual":1.2486346651501961e-05,"formal_transport_residual":1.921576704375602e-17,"HOE_minus_LOE_rms":1.5000770608145946e-05,"minimum_I":0.8560405337572623,"minimum_LOE":0.9080114320430207,"tensor_min_eigenvalue":0.32452581732795216,"tensor_max_eigenvalue":0.34391351008445586,"HO_covariance_min_eigenvalue":0.32452581732795216,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":3.416070845000482e-18,"inner_iterations":5,"imaginary_residue":1.215362874382352e-16},{"outer":6,"LOE_relative_update":2.054610097130085e-06,"D_max_update":1.37898489516175e-07,"true_LO_relative_residual":1.8180162683836605e-06,"formal_transport_residual":1.5451143185688423e-17,"HOE_minus_LOE_rms":1.5616763373843844e-05,"minimum_I":0.8560388496970707,"minimum_LOE":0.9080091882048053,"tensor_min_eigenvalue":0.3245257706726988,"tensor_max_eigenvalue":0.3439136479829453,"HO_covariance_min_eigenvalue":0.3245257706726988
+
+## Lightweight variable Eddington factor and tensor checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-measurements
+Coverage: reading
+
+,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":3.416070845000482e-18,"inner_iterations":5,"imaginary_residue":1.6587702938821193e-16},{"outer":7,"LOE_relative_update":2.6626651587068314e-07,"D_max_update":1.7932446083612774e-08,"true_LO_relative_residual":2.686070906724543e-07,"formal_transport_residual":1.5766811766128224e-17,"HOE_minus_LOE_rms":1.568848719289701e-05,"minimum_I":0.8560386314292705,"minimum_LOE":0.9080088974153043,"tensor_min_eigenvalue":0.3245257665166176,"tensor_max_eigenvalue":0.34391366591539124,"HO_covariance_min_eigenvalue":0.3245257665166176,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":1.708035422500241e-17,"inner_iterations":4,"imaginary_residue":1.6098558171187075e-16},{"outer":8,"LOE_relative_update":3.523921603536629e-08,"D_max_update":2.381502328674401e-09,"true_LO_relative_residual":4.0155943356814724e-08,"formal_transport_residual":1.543526735391007e-17,"HOE_minus_LOE_rms":1.5696822605141438e-05,"minimum_I":0.8560386025393147,"minimum_LOE":0.9080088589305779,"tensor_min_eigenvalue":0.32452576622481843,"tensor_max_eigenvalue":0.34391366829689357,"HO_covariance_min_eigenvalue":0.32452576622481843,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":1.5372318802502168e-17,"inner_iterations":4,"imaginary_residue":1.2871929259721417e-16},{"outer":9,"LOE_relative_update":4.764455424929412e-0
+
+## Lightweight variable Eddington factor and tensor checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-measurements
+Coverage: reading
+
+9,"D_max_update":3.2305930153242457e-10,"true_LO_relative_residual":6.056782084420739e-09,"formal_transport_residual":1.7338964294375867e-17,"HOE_minus_LOE_rms":1.569779229817957e-05,"minimum_I":0.8560385986328657,"minimum_LOE":0.908008853727319,"tensor_min_eigenvalue":0.32452576621988055,"tensor_max_eigenvalue":0.3439136686199529,"HO_covariance_min_eigenvalue":0.32452576621988055,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":1.878838964750265e-17,"inner_iterations":3,"imaginary_residue":1.9290152137919876e-16},{"outer":10,"LOE_relative_update":6.572545235220237e-10,"D_max_update":4.470501746567379e-11,"true_LO_relative_residual":9.280559227092383e-10,"formal_transport_residual":2.734764405619935e-17,"HOE_minus_LOE_rms":1.569790532071974e-05,"minimum_I":0.8560385980939157,"minimum_LOE":0.9080088530095318,"tensor_min_eigenvalue":0.32452576622370644,"tensor_max_eigenvalue":0.3439136686646579,"HO_covariance_min_eigenvalue":0.32452576622370644,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":1.708035422500241e-17,"inner_iterations":2,"imaginary_residue":1.0792393171564929e-16},{"outer":11,"LOE_relative_update":9.281900579258059e-11,"D_max_update":6.32860430727078e-12,"true_LO_relative_residual":1.4282404319050537e-10,"formal_transport_residual":1.6597982910813997e-17,"HOE_minus_LOE_rms":1.569791855752484e-05,"minimum_I":0.8560385980177955,
+
+## Lightweight variable Eddington factor and tensor checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-measurements
+Coverage: reading
+
+"minimum_LOE":0.9080088529081642,"tensor_min_eigenvalue":0.32452576622482365,"tensor_max_eigenvalue":0.3439136686709864,"HO_covariance_min_eigenvalue":0.32452576622482365,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":1.3664283380001927e-17,"inner_iterations":2,"imaginary_residue":1.3753888692636484e-16},{"outer":12,"LOE_relative_update":1.3664157885688354e-11,"D_max_update":9.321987626265127e-13,"true_LO_relative_residual":1.741538537312583e-11,"formal_transport_residual":1.8350752726544932e-17,"HOE_minus_LOE_rms":1.5697920155135665e-05,"minimum_I":0.8560385980065884,"minimum_LOE":0.9080088528932417,"tensor_min_eigenvalue":0.3245257662250504,"tensor_max_eigenvalue":0.34391366867191847,"HO_covariance_min_eigenvalue":0.3245257662250504,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":1.1956247957501686e-17,"inner_iterations":1,"imaginary_residue":1.5803001897589872e-16},{"outer":13,"LOE_relative_update":1.7062534015339958e-12,"D_max_update":1.1801670751765414e-13,"true_LO_relative_residual":2.7649677419433897e-12,"formal_transport_residual":1.762470370339104e-17,"HOE_minus_LOE_rms":1.5697920308892725e-05,"minimum_I":0.8560385980051892,"minimum_LOE":0.9080088528913787,"tensor_min_eigenvalue":0.32452576622509743,"tensor_max_eigenvalue":0.34391366867203643,"HO_covariance_min_eigenvalue":0.32452576622509743,"tensor_trace_error":2.22044604925
+
+## Lightweight variable Eddington factor and tensor checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-measurements
+Coverage: reading
+
+0313e-16,"discrete_global_balance":8.540177112501205e-18,"inner_iterations":1,"imaginary_residue":1.4873939921590592e-16}]
+
+## Lightweight variable Eddington factor and tensor checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-measurements
+Coverage: reading
+
+constant-controlconstant{"id":"constant-control","shape":[9],"mu_order":32}{"mean":1.0,"modes":[]}vef-fourier-scattering1d--constant-control.npz53095e23b3f43c61105ecd739003d5597a7f95493d34a9d6893c8503c017533b{"outer":1,"LOE_relative_update":0.0,"D_max_update":0.0,"true_LO_relative_residual":0.0,"formal_transport_residual":0.0,"HOE_minus_LOE_rms":3.3306690738754696e-16,"minimum_I":1.0,"minimum_LOE":1.0,"tensor_min_eigenvalue":0.3333333333333333,"tensor_max_eigenvalue":0.33333333333333337,"HO_covariance_min_eigenvalue":0.3333333333333333,"tensor_trace_error":0.0,"discrete_global_balance":0.0,"inner_iterations":0,"imaginary_residue":0.0,"E_relative_rms_error":0.0,"E_absolute_max_error":0.0,"face_H_relative_rms_error":null,"face_H_absolute_rms_error":0.0,"face_H_absolute_max_error":0.0,"D_component_max_abs_error":5.551115123125783e-17,"M1_closure_reference_max_abs_difference":5.551115123125783e-17,"tensor_symmetry_error":0.0,"LO_flux_realizability_excess":-1.0,"HO_flux_realizability_excess":-0.9999999999999997,"VET_z_parity":0.0,"nonconstant_f_span":0.0,"max_abs_Dxy":0.0,"source_modes":[],"maximum_source_mode_complex_relative_error":null,"work":{"outer_iterations":1,"inner_iterations":0,"formal_solves":2,"directional_solves":64}}{"outer_E_converged":true,"outer_D_converged":true,"true_LO_residual":true,"formal_HO_residual":true,"imaginary_roundoff":true,"global_balance":true,"posit
+
+## Lightweight variable Eddington factor and tensor checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-measurements
+Coverage: reading
+
+ive_intensity":true,"positive_LO_energy":true,"LO_realizability":true,"HO_realizability":true,"tensor_symmetry":true,"tensor_trace":true,"tensor_PSD":true,"HO_covariance_PSD":true,"z_parity":true,"constant_I":true,"constant_E":true,"constant_H":true,"constant_D":true}true[{"outer":1,"LOE_relative_update":0.0,"D_max_update":0.0,"true_LO_relative_residual":0.0,"formal_transport_residual":0.0,"HOE_minus_LOE_rms":3.3306690738754696e-16,"minimum_I":1.0,"minimum_LOE":1.0,"tensor_min_eigenvalue":0.3333333333333333,"tensor_max_eigenvalue":0.33333333333333337,"HO_covariance_min_eigenvalue":0.3333333333333333,"tensor_trace_error":0.0,"discrete_global_balance":0.0,"inner_iterations":0,"imaginary_residue":0.0}]
+Measurements and complete records / JSON
+
+## Lightweight variable Eddington factor and tensor checks — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+On the Use of Variable Eddington Factors in Non-LTE Stellar Atmospheres Computations [accessed 2026-11-26] · DOI: 10.1093/mnras/149.1.65
+Review scope / review_level: primary-publisher-abstract-and-bibliography
+Publisher title/authors/date/DOI and abstract. Establishes historical variable-factor iteration and grey example. Unread limit: Original scannedPDF fetch failed; original equations, full tests and non-LTE calculations are unread and must not be claimed reproduced.
+High-Order Mixed Finite Element Variable Eddington Factor Methods [accessed 2026-11-26]
+Review scope / review_level: selected-primary-equations
+Section2, PDFpp3–4: transport Eq1, moment equations Eq2, angular tensor and boundary factor Eq3, fixed-point steps. Introduction on independent spatial discretizations also read. Unread limit: No claim of full59page reading, high-order mixedFEM reproduction, curved-mesh, multigrid or scalability validation.
+A Family of Independent Variable Eddington Factor Methods with Efficient Preconditioned Iterative Solvers [accessed 2026-11-26] · DOI: 10.1016/j.jcp.2022.111747
+Review scope / review_level: selected-primary-method-scope
+
+## Lightweight variable Eddington factor and tensor checks — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-references
+Coverage: reading
+
+Introduction PDFpp1–3 on independent HO/LO discretizations, finite-mesh moment differences and conservation; no numerical tables adopted. Unread limit: No claim of reproducing high-orderDG, preconditioner performance or large-mesh studies.
+
+## Lightweight variable Eddington factor and tensor checks — Variable Eddington tensor: a periodic 2D nonparallel-source control [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/
+Coverage: reading
+
+Use two nonparallel source modes to compute full-S2 angular moments and a3x3 tensor, then compare conservative moment equations including Dxy with a closed-form reference.
+Methods, equations, figures and references
+Methods used
+Variable Eddington tensor (VET)
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Iterate formal Fourier angular transport, D=K_HO/E_HO, and an independent finite-difference moment solve. Include both Dxy cross derivatives in shared face fluxes and check local/global discrete budgets.
+Static grey VEF/VET moment closure
+Static steady grey unit-periodic square; dimensionless st=4, ss=3, sa=1 and c=1, using point samples. q=1+0.3 cos(2pi x)+0.2 sin(2pi(x+y)). Space is2D, but directions cover full S2 and Dzz is retained.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Variable Eddington tensor: a periodic 2D nonparallel-source control
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+
+## Lightweight variable Eddington factor and tensor checks — Variable Eddington tensor: a periodic 2D nonparallel-source control [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/
+Coverage: reading
+
+Separate17x17/33x33 refinement at12x48 angles from the16x64 angular probe on33x33. Check analytic E/H/K/D, complex modes including phase, independent angular integration, tensor constraints, cross-term negative controls and a9x9 constant source.
+Same-problem reference · Analytic reference
+Authored continuum Fourier response for periodic 2D VET
+The continuum-angle Fourier response to the prescribed positive isotropic source is an analytic reference for this same fixed problem. Keep point/face locations and complex phase distinct, retaining the independent HO/LO discretization gap. Pointwise M1 comparison is a closure diagnostic; no M1 PDE is solved. This is not a reproduction of Athena, short characteristics, shadows, crossing beams, RHD or boundary closures, and does not claim exact fixed-grid HO/LO agreement or universal convergence rates.
+
+## Lightweight variable Eddington factor and tensor checks — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vet-fourier-source2d-assumptions
+Coverage: reading
+
+Static steady grey unit-periodic square; dimensionless st=4, ss=3, sa=1 and c=1, using point samples. q=1+0.3 cos(2pi x)+0.2 sin(2pi(x+y)). Space is2D, but directions cover full S2 and Dzz is retained.
+
+## Lightweight variable Eddington factor and tensor checks — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vet-fourier-source2d-algorithm
+Coverage: reading
+
+Iterate formal Fourier angular transport, D=K_HO/E_HO, and an independent finite-difference moment solve. Include both Dxy cross derivatives in shared face fluxes and check local/global discrete budgets.
+\boldsymbol\Omega\cdot\nabla I+\sigma_tI=\sigma_sE+q,\quad D=\frac{\langle\boldsymbol\Omega\boldsymbol\Omega^TI\rangle}{\langle I\rangle}\sigma_t\sigma_aE-\partial_{xx}(D_{xx}E)-2\partial_{xy}(D_{xy}E)-\partial_{yy}(D_{yy}E)=\sigma_tqK_k=A\left[T\mathbb I+(C-T)\hat k\hat k^T\right],\quad C=\frac{\sigma_t(1-\sigma_tR)}{k^2},\quad T=\frac{R-C}{2}
+
+## Lightweight variable Eddington factor and tensor checks — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vet-fourier-source2d-validation
+Coverage: reading
+
+Separate17x17/33x33 refinement at12x48 angles from the16x64 angular probe on33x33. Check analytic E/H/K/D, complex modes including phase, independent angular integration, tensor constraints, cross-term negative controls and a9x9 constant source.
+
+## Lightweight variable Eddington factor and tensor checks — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vet-fourier-source2d-limits
+Coverage: reading
+
+Pointwise M1 comparison is a closure diagnostic; no M1 PDE is solved. This is not a reproduction of Athena, short characteristics, shadows, crossing beams, RHD or boundary closures, and does not claim exact fixed-grid HO/LO agreement or universal convergence rates.
+
+## Lightweight variable Eddington factor and tensor checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vet-fourier-source2d-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+finest_E_relative_rms_error0.000122281311791
+finest_face_H_relative_rms_error0.00107383900267
+finest_mode_complex_relative_error0.00179834364133
+finest_D_component_max_abs_error1.02502758956e-05
+E_error_refinement_ratio0.265528972402
+face_H_error_refinement_ratio0.266134095783
+HO_LO_gap_refinement_ratio0.265702102438
+angle_probe_E_relative_rms_difference2.39002767981e-07
+angle_probe_D_max_abs_difference2.41977090532e-07
+finest_nonconstant_f_span0.0226293251227
+finest_max_abs_Dxy0.00524320039491
+main_rows3
+constant_control_rows1
+outer_iterations_by_row{"space-coarse":13,"space-fine":13,"angle-probe":13,"constant-control":1}
+判定 / checkPassed
+all_row_solver_checkstrue
+finest_E_accuracytrue
+finest_face_H_accuracytrue
+complex_source_modes_include_phasetrue
+tensor_reference_accuracytrue
+E_refinestrue
+face_H_refinestrue
+HO_LO_gap_refines_not_zerotrue
+angle_probe_Etrue
+angle_probe_Dtrue
+variable_closuretrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Saved face-flux errors, Dzz, spatial/angular comparisons and iteration residuals. The full3x3 tensor is retained.Read every stored record
+row_idroleinputsourcearraysarrays_sha256metricscheckspassedhistory
+
+## Lightweight variable Eddington factor and tensor checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vet-fourier-source2d-measurements
+Coverage: reading
+
+space-coarsecoarse{"id":"space-coarse","shape":[17,17],"mu_order":12,"phi_order":48}{"mean":1.0,"modes":[{"wave_numbers":[1,0],"amplitude":{"real":0.3,"imag":0.0}},{"wave_numbers":[1,1],"amplitude":{"real":0.0,"imag":-0.2}}]}vet-fourier-source2d--space-coarse.npz9ba9cff8ccd3eee7b18d6d71b08a2f06ce00842ac671889b2f7124144624890e{"outer":13,"LOE_relative_update":5.101731351403427e-12,"D_max_update":2.4946711363327267e-13,"true_LO_relative_residual":5.313885273632329e-12,"formal_transport_residual":1.5913533983368797e-17,"HOE_minus_LOE_rms":0.00024427150194170197,"minimum_I":0.7761916867529286,"minimum_LOE":0.8670892182852173,"tensor_min_eigenvalue":0.3223558490232486,"tensor_max_eigenvalue":0.3475221335224966,"HO_covariance_min_eigenvalue":0.32235425774448295,"tensor_trace_error":4.440892098500626e-16,"discrete_global_balance":4.225762377465994e-18,"inner_iterations":1,"imaginary_residue":0.0,"E_relative_rms_error":0.00046073802491052235,"E_absolute_max_error":0.0008141583533578522,"face_H_relative_rms_error":0.004038225559219557,"face_H_absolute_rms_error":7.58376396816036e-05,"face_H_absolute_max_error":0.00017555630667803052,"D_component_max_abs_error":3.817645877191023e-05,"M1_closure_reference_max_abs_difference":0.012621029137296957,"tensor_symmetry_error":0.0,"LO_flux_realizability_excess":-0.858515913312703,"HO_flux_realizability_excess":-0.8585690979895992,"VET_z_parity":2
+
+## Lightweight variable Eddington factor and tensor checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vet-fourier-source2d-measurements
+Coverage: reading
+
+.0122792321330962e-16,"nonconstant_f_span":0.022506374038401333,"max_abs_Dxy":0.005213409726228309,"source_modes":[{"wave_numbers":[1,0],"computed_real":0.09268197875073177,"computed_imag":9.834501533011768e-17,"reference_real":0.09205642897354595,"reference_imag":0.0,"complex_relative_error":0.006795286153947831,"magnitude_relative_error":0.006795286153947831,"phase_error_radians":1.061101809172813e-15},{"wave_numbers":[1,1],"computed_real":-3.0732817290661774e-18,"computed_imag":-0.0419927121649812,"reference_real":-1.229312691626471e-17,"reference_imag":-0.042180838136282046,"complex_relative_error":0.00445998656292778,"magnitude_relative_error":0.00445998656292778,"phase_error_radians":2.1825258559933098e-16}],"maximum_source_mode_complex_relative_error":0.006795286153947831,"work":{"outer_iterations":13,"inner_iterations":58,"formal_solves":14,"directional_solves":8064}}{"outer_E_converged":true,"outer_D_converged":true,"true_LO_residual":true,"formal_HO_residual":true,"imaginary_roundoff":true,"global_balance":true,"positive_intensity":true,"positive_LO_energy":true,"LO_realizability":true,"HO_realizability":true,"tensor_symmetry":true,"tensor_trace":true,"tensor_PSD":true,"HO_covariance_PSD":true,"z_parity":true}true[{"outer":1,"LOE_relative_update":0.10585711592055114,"D_max_update":0.005541452740691011,"true_LO_relative_residual":0.05856371353379248,"formal_transport_r
+
+## Lightweight variable Eddington factor and tensor checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vet-fourier-source2d-measurements
+Coverage: reading
+
+esidual":2.4872050108885745e-17,"HOE_minus_LOE_rms":0.004552807786503003,"minimum_I":0.7888868209506004,"minimum_LOE":0.8839581948297326,"tensor_min_eigenvalue":0.3228745462023796,"tensor_max_eigenvalue":0.3466005590360413,"HO_covariance_min_eigenvalue":0.32287309877508125,"tensor_trace_error":5.551115123125783e-16,"discrete_global_balance":4.609922593599266e-18,"inner_iterations":7,"imaginary_residue":0.0},{"outer":2,"LOE_relative_update":0.012940561108502979,"D_max_update":0.0007194390594179589,"true_LO_relative_residual":0.00863914690069561,"formal_transport_residual":2.4589824664571456e-17,"HOE_minus_LOE_rms":0.0005022204123582586,"minimum_I":0.7778614700592466,"minimum_LOE":0.869306018820293,"tensor_min_eigenvalue":0.322415454497814,"tensor_max_eigenvalue":0.34740063319123105,"HO_covariance_min_eigenvalue":0.3224138836202022,"tensor_trace_error":4.440892098500626e-16,"discrete_global_balance":4.609922593599266e-18,"inner_iterations":7,"imaginary_residue":0.0},{"outer":3,"LOE_relative_update":0.0016948598265604665,"D_max_update":9.189182200086687e-05,"true_LO_relative_residual":0.0012863361340280982,"formal_transport_residual":2.5285903608661284e-17,"HOE_minus_LOE_rms":0.00022266524957619707,"minimum_I":0.7764150925117222,"minimum_LOE":0.8673854984948347,"tensor_min_eigenvalue":0.3223626738006559,"tensor_max_eigenvalue":0.3475059205373659,"HO_covariance_min_eigenvalue":0.32
+
+## Lightweight variable Eddington factor and tensor checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vet-fourier-source2d-measurements
+Coverage: reading
+
+23610853665474,"tensor_trace_error":4.440892098500626e-16,"discrete_global_balance":5.37824302586581e-18,"inner_iterations":7,"imaginary_residue":0.0},{"outer":4,"LOE_relative_update":0.0002261773615425512,"D_max_update":1.1892782275702007e-05,"true_LO_relative_residual":0.00019210058501157654,"formal_transport_residual":2.519776086067835e-17,"HOE_minus_LOE_rms":0.00024119291612114698,"minimum_I":0.7762219981724899,"minimum_LOE":0.8671293712118716,"tensor_min_eigenvalue":0.322356622556684,"tensor_max_eigenvalue":0.3475199383934431,"HO_covariance_min_eigenvalue":0.3223550316729392,"tensor_trace_error":4.440892098500626e-16,"discrete_global_balance":3.841602161332722e-18,"inner_iterations":6,"imaginary_residue":0.0},{"outer":5,"LOE_relative_update":3.061681949398805e-05,"D_max_update":1.5659407365808953e-06,"true_LO_relative_residual":2.8729676365916564e-05,"formal_transport_residual":2.5975602863001894e-17,"HOE_minus_LOE_rms":0.00024396167163032845,"minimum_I":0.7761958520207527,"minimum_LOE":0.8670947293200084,"tensor_min_eigenvalue":0.32235593529076867,"tensor_max_eigenvalue":0.3475218321630338,"HO_covariance_min_eigenvalue":0.3223543440667391,"tensor_trace_error":4.440892098500626e-16,"discrete_global_balance":2.304961296799633e-18,"inner_iterations":6,"imaginary_residue":0.0},{"outer":6,"LOE_relative_update":4.198130527144563e-06,"D_max_update":2.098443095399638e-07,"true_LO
+
+## Lightweight variable Eddington factor and tensor checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vet-fourier-source2d-measurements
+Coverage: reading
+
+_relative_residual":4.299893434038309e-06,"formal_transport_residual":2.4777977120382392e-17,"HOE_minus_LOE_rms":0.0002442442206801496,"minimum_I":0.7761922657575838,"minimum_LOE":0.867089983424949,"tensor_min_eigenvalue":0.3223558584032786,"tensor_max_eigenvalue":0.347522091624644,"HO_covariance_min_eigenvalue":0.3223542671320842,"tensor_trace_error":4.440892098500626e-16,"discrete_global_balance":4.994082809732538e-18,"inner_iterations":5,"imaginary_residue":0.0},{"outer":7,"LOE_relative_update":5.823960411643949e-07,"D_max_update":2.860011227845405e-08,"true_LO_relative_residual":6.437638036948045e-07,"formal_transport_residual":2.4792141240925303e-17,"HOE_minus_LOE_rms":0.0002442695852607682,"minimum_I":0.7761917680676429,"minimum_LOE":0.8670893256090311,"tensor_min_eigenvalue":0.3223558500018049,"tensor_max_eigenvalue":0.34752212763196727,"HO_covariance_min_eigenvalue":0.3223542587240849,"tensor_trace_error":4.440892098500626e-16,"discrete_global_balance":3.841602161332722e-18,"inner_iterations":5,"imaginary_residue":0.0},{"outer":8,"LOE_relative_update":8.16395989129313e-08,"D_max_update":3.959757188809476e-09,"true_LO_relative_residual":9.638958829790717e-08,"formal_transport_residual":2.5607133712712613e-17,"HOE_minus_LOE_rms":0.00024427145487269247,"minimum_I":0.7761916982750502,"minimum_LOE":0.8670892334744443,"tensor_min_eigenvalue":0.3223558491181162,"tensor_max_eig
+
+## Lightweight variable Eddington factor and tensor checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vet-fourier-source2d-measurements
+Coverage: reading
+
+envalue":0.34752213268627724,"HO_covariance_min_eigenvalue":0.3223542578394947,"tensor_trace_error":4.440892098500626e-16,"discrete_global_balance":1.1524806483998164e-18,"inner_iterations":4,"imaginary_residue":0.0},{"outer":9,"LOE_relative_update":1.1549357235152868e-08,"D_max_update":5.560817362137982e-10,"true_LO_relative_residual":1.4424181362074704e-08,"formal_transport_residual":1.4159972990440572e-17,"HOE_minus_LOE_rms":0.0002442715210182841,"minimum_I":0.7761916883975799,"minimum_LOE":0.8670892204507886,"tensor_min_eigenvalue":0.32235584903114234,"tensor_max_eigenvalue":0.34752213340284377,"HO_covariance_min_eigenvalue":0.32235425775239657,"tensor_trace_error":4.440892098500626e-16,"discrete_global_balance":9.988165619465077e-18,"inner_iterations":3,"imaginary_residue":0.0},{"outer":10,"LOE_relative_update":1.6465523073250135e-09,"D_max_update":7.905781584938154e-11,"true_LO_relative_residual":2.158389201532565e-09,"formal_transport_residual":2.4753090926614228e-17,"HOE_minus_LOE_rms":0.0002442715075655958,"minimum_I":0.7761916869887786,"minimum_LOE":0.86708921859542,"tensor_min_eigenvalue":0.3223558490236554,"tensor_max_eigenvalue":0.34752213350528854,"HO_covariance_min_eigenvalue":0.3223542577448925,"tensor_trace_error":4.440892098500626e-16,"discrete_global_balance":4.609922593599266e-18,"inner_iterations":3,"imaginary_residue":0.0},{"outer":11,"LOE_relative_update"
+
+## Lightweight variable Eddington factor and tensor checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vet-fourier-source2d-measurements
+Coverage: reading
+
+:2.36172788866804e-10,"D_max_update":1.1351863893338532e-11,"true_LO_relative_residual":3.2672707317257767e-10,"formal_transport_residual":2.4732184969395766e-17,"HOE_minus_LOE_rms":0.00024427150304116786,"minimum_I":0.7761916867866203,"minimum_LOE":0.8670892183294676,"tensor_min_eigenvalue":0.32235584902321596,"tensor_max_eigenvalue":0.34752213352003103,"HO_covariance_min_eigenvalue":0.3223542577444507,"tensor_trace_error":4.440892098500626e-16,"discrete_global_balance":1.1524806483998164e-18,"inner_iterations":2,"imaginary_residue":0.0},{"outer":12,"LOE_relative_update":3.4234238906853335e-11,"D_max_update":1.6533996394230144e-12,"true_LO_relative_residual":4.932358471604581e-11,"formal_transport_residual":2.4589921567734025e-17,"HOE_minus_LOE_rms":0.0002442715021027399,"minimum_I":0.7761916867573013,"minimum_LOE":0.8670892182909492,"tensor_min_eigenvalue":0.32235584902323516,"tensor_max_eigenvalue":0.34752213352217515,"HO_covariance_min_eigenvalue":0.32235425774446946,"tensor_trace_error":4.440892098500626e-16,"discrete_global_balance":7.683204322665443e-19,"inner_iterations":2,"imaginary_residue":0.0},{"outer":13,"LOE_relative_update":5.101731351403427e-12,"D_max_update":2.4946711363327267e-13,"true_LO_relative_residual":5.313885273632329e-12,"formal_transport_residual":1.5913533983368797e-17,"HOE_minus_LOE_rms":0.00024427150194170197,"minimum_I":0.7761916867529286,"minimum
+
+## Lightweight variable Eddington factor and tensor checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vet-fourier-source2d-measurements
+Coverage: reading
+
+_LOE":0.8670892182852173,"tensor_min_eigenvalue":0.3223558490232486,"tensor_max_eigenvalue":0.3475221335224966,"HO_covariance_min_eigenvalue":0.32235425774448295,"tensor_trace_error":4.440892098500626e-16,"discrete_global_balance":4.225762377465994e-18,"inner_iterations":1,"imaginary_residue":0.0}]
+
+## Lightweight variable Eddington factor and tensor checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vet-fourier-source2d-measurements
+Coverage: reading
+
+space-finefine{"id":"space-fine","shape":[33,33],"mu_order":12,"phi_order":48}{"mean":1.0,"modes":[{"wave_numbers":[1,0],"amplitude":{"real":0.3,"imag":0.0}},{"wave_numbers":[1,1],"amplitude":{"real":0.0,"imag":-0.2}}]}vet-fourier-source2d--space-fine.npz5f4aba6ca27cae803989879e247c23ffaf8187f51cff3ea271143b1e633a6470{"outer":13,"LOE_relative_update":6.330876108554714e-12,"D_max_update":2.97761815204467e-13,"true_LO_relative_residual":7.097617465830339e-12,"formal_transport_residual":2.6454672133379055e-17,"HOE_minus_LOE_rms":6.49034516316857e-05,"minimum_I":0.7762768569657201,"minimum_LOE":0.8661161658200001,"tensor_min_eigenvalue":0.32235844962731436,"tensor_max_eigenvalue":0.3476602925411886,"HO_covariance_min_eigenvalue":0.3223580246493823,"tensor_trace_error":4.440892098500626e-16,"discrete_global_balance":3.058465632576189e-18,"inner_iterations":1,"imaginary_residue":1.346117423016807e-16,"E_relative_rms_error":0.00012233929430084488,"E_absolute_max_error":0.00021756117013516096,"face_H_relative_rms_error":0.0010747095077688305,"face_H_absolute_rms_error":2.018298166294549e-05,"face_H_absolute_max_error":4.677050789270859e-05,"D_component_max_abs_error":1.034672720839902e-05,"M1_closure_reference_max_abs_difference":0.012795425905021418,"tensor_symmetry_error":0.0,"LO_flux_realizability_excess":-0.8577055320547433,"HO_flux_realizability_excess":-0.8577043860208913,"VET_z_
+
+## Lightweight variable Eddington factor and tensor checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vet-fourier-source2d-measurements
+Coverage: reading
+
+parity":1.5959455978986625e-16,"nonconstant_f_span":0.022629107509727575,"max_abs_Dxy":0.0052431604336188676,"source_modes":[{"wave_numbers":[1,0],"computed_real":0.09222195863816343,"computed_imag":0.0,"reference_real":0.09205642897354609,"reference_imag":0.0,"complex_relative_error":0.0017981325852310923,"magnitude_relative_error":0.0017981325852310923,"phase_error_radians":0.0},{"wave_numbers":[1,1],"computed_real":-6.524726682829203e-18,"computed_imag":-0.042129021790968404,"reference_real":6.524726682829203e-18,"reference_imag":-0.04218083813628209,"complex_relative_error":0.0012284332792598883,"magnitude_relative_error":0.0012284332792598883,"phase_error_radians":3.095594822725972e-16}],"maximum_source_mode_complex_relative_error":0.0017981325852310923,"work":{"outer_iterations":13,"inner_iterations":61,"formal_solves":14,"directional_solves":8064}}{"outer_E_converged":true,"outer_D_converged":true,"true_LO_residual":true,"formal_HO_residual":true,"imaginary_roundoff":true,"global_balance":true,"positive_intensity":true,"positive_LO_energy":true,"LO_realizability":true,"HO_realizability":true,"tensor_symmetry":true,"tensor_trace":true,"tensor_PSD":true,"HO_covariance_PSD":true,"z_parity":true}true[{"outer":1,"LOE_relative_update":0.10560787371754067,"D_max_update":0.005589610151357727,"true_LO_relative_residual":0.06036682813021987,"formal_transport_residual":2.6587844051
+
+## Lightweight variable Eddington factor and tensor checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vet-fourier-source2d-measurements
+Coverage: reading
+
+57139e-17,"HOE_minus_LOE_rms":0.004682457373569068,"minimum_I":0.7890712360301828,"minimum_LOE":0.8832743945733562,"tensor_min_eigenvalue":0.32288016837283706,"tensor_max_eigenvalue":0.34672127838282274,"HO_covariance_min_eigenvalue":0.32287978282484675,"tensor_trace_error":4.440892098500626e-16,"discrete_global_balance":4.0779541767682516e-18,"inner_iterations":7,"imaginary_residue":2.799612159167236e-16},{"outer":2,"LOE_relative_update":0.013137362283950026,"D_max_update":0.000730173030808301,"true_LO_relative_residual":0.00908810258236048,"formal_transport_residual":2.6366062591601056e-17,"HOE_minus_LOE_rms":0.0005652547347247897,"minimum_I":0.7779785262030523,"minimum_LOE":0.8683992897815751,"tensor_min_eigenvalue":0.32241895379164526,"tensor_max_eigenvalue":0.34753503627568594,"HO_covariance_min_eigenvalue":0.32241853452318037,"tensor_trace_error":4.440892098500626e-16,"discrete_global_balance":1.6311816707073007e-18,"inner_iterations":8,"imaginary_residue":2.5780267226593317e-16},{"outer":3,"LOE_relative_update":0.0017405922783852161,"D_max_update":9.400528371517058e-05,"true_LO_relative_residual":0.0013836679390424624,"formal_transport_residual":2.7056798687631867e-17,"HOE_minus_LOE_rms":7.901282910367224e-05,"minimum_I":0.77650759055358,"minimum_LOE":0.866425865808783,"tensor_min_eigenvalue":0.32236545084245144,"tensor_max_eigenvalue":0.3476433431323011,"HO_covariance_m
+
+## Lightweight variable Eddington factor and tensor checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vet-fourier-source2d-measurements
+Coverage: reading
+
+in_eigenvalue":0.32236502667491196,"tensor_trace_error":4.440892098500626e-16,"discrete_global_balance":2.9565167781569825e-18,"inner_iterations":7,"imaginary_residue":2.6931557910978813e-16},{"outer":4,"LOE_relative_update":0.00023552221342058828,"D_max_update":1.2287119160070414e-05,"true_LO_relative_residual":0.00021153111343637611,"formal_transport_residual":1.3692468069758063e-17,"HOE_minus_LOE_rms":6.273228705319688e-05,"minimum_I":0.7763086475113704,"minimum_LOE":0.866158850659371,"tensor_min_eigenvalue":0.32235925286568823,"tensor_max_eigenvalue":0.3476579606761217,"HO_covariance_min_eigenvalue":0.32235882800202,"tensor_trace_error":5.551115123125783e-16,"discrete_global_balance":1.1214373986112693e-18,"inner_iterations":7,"imaginary_residue":2.0423315799837697e-16},{"outer":5,"LOE_relative_update":3.239337884704464e-05,"D_max_update":1.6371708101980964e-06,"true_LO_relative_residual":3.240376956539211e-05,"formal_transport_residual":1.511144263489997e-17,"HOE_minus_LOE_rms":6.465410282659863e-05,"minimum_I":0.7762813006299533,"minimum_LOE":0.8661221338195215,"tensor_min_eigenvalue":0.32235854048075985,"tensor_max_eigenvalue":0.34765996669901833,"HO_covariance_min_eigenvalue":0.3223581155188668,"tensor_trace_error":4.440892098500626e-16,"discrete_global_balance":2.0389770883841259e-19,"inner_iterations":6,"imaginary_residue":2.493296091973996e-16},{"outer":6,"LOE_relati
+
+## Lightweight variable Eddington factor and tensor checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vet-fourier-source2d-measurements
+Coverage: reading
+
+ve_update":4.520759457098289e-06,"D_max_update":2.2241252611854279e-07,"true_LO_relative_residual":4.968388894649424e-06,"formal_transport_residual":1.7280809191051275e-17,"HOE_minus_LOE_rms":6.488430296113965e-05,"minimum_I":0.7762774861103298,"minimum_LOE":0.8661170109357941,"tensor_min_eigenvalue":0.32235845967245974,"tensor_max_eigenvalue":0.3476602463735467,"HO_covariance_min_eigenvalue":0.3223580346967701,"tensor_trace_error":5.551115123125783e-16,"discrete_global_balance":2.446772506060951e-18,"inner_iterations":5,"imaginary_residue":2.1335338393068781e-16},{"outer":7,"LOE_relative_update":6.391566519844404e-07,"D_max_update":3.077733129464022e-08,"true_LO_relative_residual":7.619460043736058e-07,"formal_transport_residual":1.688270673885004e-17,"HOE_minus_LOE_rms":6.490280739845305e-05,"minimum_I":0.7762769470395006,"minimum_LOE":0.8661162868269529,"tensor_min_eigenvalue":0.3223584506971495,"tensor_max_eigenvalue":0.34766028592081866,"HO_covariance_min_eigenvalue":0.3223580257195297,"tensor_trace_error":4.440892098500626e-16,"discrete_global_balance":1.1214373986112693e-18,"inner_iterations":5,"imaginary_residue":2.000716259323482e-16},{"outer":8,"LOE_relative_update":9.139459277119356e-08,"D_max_update":4.331304648275136e-09,"true_LO_relative_residual":1.1682304709682927e-07,"formal_transport_residual":2.610442682230459e-17,"HOE_minus_LOE_rms":6.490360652249618e-05,"mi
+
+## Lightweight variable Eddington factor and tensor checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vet-fourier-source2d-measurements
+Coverage: reading
+
+nimum_I":0.7762768699839231,"minimum_LOE":0.8661161833096095,"tensor_min_eigenvalue":0.3223584497339872,"tensor_max_eigenvalue":0.34766029158218914,"HO_covariance_min_eigenvalue":0.3223580247560984,"tensor_trace_error":4.440892098500626e-16,"discrete_global_balance":3.2623633414146014e-18,"inner_iterations":4,"imaginary_residue":2.230431022798904e-16},{"outer":9,"LOE_relative_update":1.319567659881384e-08,"D_max_update":6.186844370148492e-10,"true_LO_relative_residual":1.7901102213368697e-08,"formal_transport_residual":1.4944227906315575e-17,"HOE_minus_LOE_rms":6.49035025852009e-05,"minimum_I":0.7762768588616326,"minimum_LOE":0.8661161683670602,"tensor_min_eigenvalue":0.32235844963662086,"tensor_max_eigenvalue":0.3476602924011405,"HO_covariance_min_eigenvalue":0.32235802465869473,"tensor_trace_error":4.440892098500626e-16,"discrete_global_balance":2.446772506060951e-18,"inner_iterations":4,"imaginary_residue":2.0993642087819328e-16},{"outer":10,"LOE_relative_update":1.920732334812554e-09,"D_max_update":8.950878926938799e-11,"true_LO_relative_residual":2.7394045947823487e-09,"formal_transport_residual":2.611499171658409e-17,"HOE_minus_LOE_rms":6.490346223953961e-05,"minimum_I":0.776276857243032,"minimum_LOE":0.8661161661925293,"tensor_min_eigenvalue":0.3223584496278705,"tensor_max_eigenvalue":0.3476602925206404,"HO_covariance_min_eigenvalue":0.3223580246499392,"tensor_trace_erro
+
+## Lightweight variable Eddington factor and tensor checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vet-fourier-source2d-measurements
+Coverage: reading
+
+r":4.440892098500626e-16,"discrete_global_balance":2.1409259428033322e-18,"inner_iterations":3,"imaginary_residue":1.8590865142932664e-16},{"outer":11,"LOE_relative_update":2.811915362895266e-10,"D_max_update":1.3075485139069087e-11,"true_LO_relative_residual":4.247746390784669e-10,"formal_transport_residual":2.6345089720332485e-17,"HOE_minus_LOE_rms":6.49034534922555e-05,"minimum_I":0.7762768570061054,"minimum_LOE":0.8661161658742428,"tensor_min_eigenvalue":0.3223584496272936,"tensor_max_eigenvalue":0.3476602925381862,"HO_covariance_min_eigenvalue":0.3223580246493616,"tensor_trace_error":4.440892098500626e-16,"discrete_global_balance":2.3448236516417447e-18,"inner_iterations":2,"imaginary_residue":1.6859507738406175e-16},{"outer":12,"LOE_relative_update":4.160464794442397e-11,"D_max_update":1.9373946891221294e-12,"true_LO_relative_residual":6.558855889731954e-11,"formal_transport_residual":1.5279055395630165e-17,"HOE_minus_LOE_rms":6.490345189497009e-05,"minimum_I":0.7762768569710535,"minimum_LOE":0.8661161658271612,"tensor_min_eigenvalue":0.3223584496273011,"tensor_max_eigenvalue":0.34766029254079006,"HO_covariance_min_eigenvalue":0.32235802464936897,"tensor_trace_error":5.551115123125783e-16,"discrete_global_balance":1.733130525126507e-18,"inner_iterations":2,"imaginary_residue":2.2401365131345977e-16},{"outer":13,"LOE_relative_update":6.330876108554714e-12,"D_max_update":2.
+
+## Lightweight variable Eddington factor and tensor checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vet-fourier-source2d-measurements
+Coverage: reading
+
+97761815204467e-13,"true_LO_relative_residual":7.097617465830339e-12,"formal_transport_residual":2.6454672133379055e-17,"HOE_minus_LOE_rms":6.49034516316857e-05,"minimum_I":0.7762768569657201,"minimum_LOE":0.8661161658200001,"tensor_min_eigenvalue":0.32235844962731436,"tensor_max_eigenvalue":0.3476602925411886,"HO_covariance_min_eigenvalue":0.3223580246493823,"tensor_trace_error":4.440892098500626e-16,"discrete_global_balance":3.058465632576189e-18,"inner_iterations":1,"imaginary_residue":1.346117423016807e-16}]
+
+## Lightweight variable Eddington factor and tensor checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vet-fourier-source2d-measurements
+Coverage: reading
+
+angle-probeangle-probe{"id":"angle-probe","shape":[33,33],"mu_order":16,"phi_order":64}{"mean":1.0,"modes":[{"wave_numbers":[1,0],"amplitude":{"real":0.3,"imag":0.0}},{"wave_numbers":[1,1],"amplitude":{"real":0.0,"imag":-0.2}}]}vet-fourier-source2d--angle-probe.npz168315c2ee26eec283da3ce982feabe1795b7645166b693d785ad6f54e3957c2{"outer":13,"LOE_relative_update":6.339976666289346e-12,"D_max_update":2.985389713217046e-13,"true_LO_relative_residual":7.201550036982048e-12,"formal_transport_residual":1.540982726328267e-17,"HOE_minus_LOE_rms":6.490360424077856e-05,"minimum_I":0.7754195766038112,"minimum_LOE":0.8661158085975432,"tensor_min_eigenvalue":0.32235834477202596,"tensor_max_eigenvalue":0.34766044030587134,"HO_covariance_min_eigenvalue":0.3223579197954746,"tensor_trace_error":5.551115123125783e-16,"discrete_global_balance":2.446772506060951e-18,"inner_iterations":1,"imaginary_residue":1.8295171964683262e-16,"E_relative_rms_error":0.00012228131179061114,"E_absolute_max_error":0.0002172426059123822,"face_H_relative_rms_error":0.0010738390026674726,"face_H_absolute_rms_error":2.016663362808472e-05,"face_H_absolute_max_error":4.674045115118236e-05,"D_component_max_abs_error":1.0250275895629102e-05,"M1_closure_reference_max_abs_difference":0.012795425905021418,"tensor_symmetry_error":0.0,"LO_flux_realizability_excess":-0.8577052055441845,"HO_flux_realizability_excess":-0.85770405900
+
+## Lightweight variable Eddington factor and tensor checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vet-fourier-source2d-measurements
+Coverage: reading
+
+04211,"VET_z_parity":8.673617379884035e-17,"nonconstant_f_span":0.022629325122685784,"max_abs_Dxy":0.0052432003949135775,"source_modes":[{"wave_numbers":[1,0],"computed_real":0.09222197806723434,"computed_imag":0.0,"reference_real":0.09205642897354609,"reference_imag":0.0,"complex_relative_error":0.0017983436413314031,"magnitude_relative_error":0.0017983436413314031,"phase_error_radians":0.0},{"wave_numbers":[1,1],"computed_real":1.6311816707073006e-17,"computed_imag":-0.04212936010200062,"reference_real":6.524726682829203e-18,"reference_imag":-0.04218083813628209,"complex_relative_error":0.0012204127882700384,"magnitude_relative_error":0.0012204127882700384,"phase_error_radians":2.324994460018478e-16}],"maximum_source_mode_complex_relative_error":0.0017983436413314031,"work":{"outer_iterations":13,"inner_iterations":61,"formal_solves":14,"directional_solves":14336}}{"outer_E_converged":true,"outer_D_converged":true,"true_LO_residual":true,"formal_HO_residual":true,"imaginary_roundoff":true,"global_balance":true,"positive_intensity":true,"positive_LO_energy":true,"LO_realizability":true,"HO_realizability":true,"tensor_symmetry":true,"tensor_trace":true,"tensor_PSD":true,"HO_covariance_PSD":true,"z_parity":true}true[{"outer":1,"LOE_relative_update":0.10560802784611781,"D_max_update":0.005589647975946965,"true_LO_relative_residual":0.06036718697100148,"formal_transport_residual":
+
+## Lightweight variable Eddington factor and tensor checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vet-fourier-source2d-measurements
+Coverage: reading
+
+2.7598253649862454e-17,"HOE_minus_LOE_rms":0.004682495206710739,"minimum_I":0.7882647527379687,"minimum_LOE":0.8832742159262791,"tensor_min_eigenvalue":0.3228800662549452,"tensor_max_eigenvalue":0.3467213976657903,"HO_covariance_min_eigenvalue":0.3228796807095509,"tensor_trace_error":6.661338147750939e-16,"discrete_global_balance":6.524726682829203e-18,"inner_iterations":7,"imaginary_residue":2.6416876841647625e-16},{"outer":2,"LOE_relative_update":0.0131374529922695,"D_max_update":0.0007301886614372588,"true_LO_relative_residual":0.009088485951675999,"formal_transport_residual":1.5232878442575694e-17,"HOE_minus_LOE_rms":0.0005652673829698861,"minimum_I":0.7771286177268287,"minimum_LOE":0.8683990038296894,"tensor_min_eigenvalue":0.32241884773176005,"tensor_max_eigenvalue":0.34753517485238006,"HO_covariance_min_eigenvalue":0.32241842846489027,"tensor_trace_error":6.661338147750939e-16,"discrete_global_balance":2.75261906931857e-18,"inner_iterations":8,"imaginary_residue":2.4039693512552146e-16},{"outer":3,"LOE_relative_update":0.0017406340084360362,"D_max_update":9.401089425209452e-05,"true_LO_relative_residual":0.0013838592868498359,"formal_transport_residual":1.7751155434933376e-17,"HOE_minus_LOE_rms":7.90169928122116e-05,"minimum_I":0.7756513992412467,"minimum_LOE":0.8664255319653125,"tensor_min_eigenvalue":0.3223653454418297,"tensor_max_eigenvalue":0.3476434884715031,"HO_cov
+
+## Lightweight variable Eddington factor and tensor checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vet-fourier-source2d-measurements
+Coverage: reading
+
+ariance_min_eigenvalue":0.32236492127567906,"tensor_trace_error":6.661338147750939e-16,"discrete_global_balance":7.13641980934444e-19,"inner_iterations":7,"imaginary_residue":2.1849640386494449e-16},{"outer":4,"LOE_relative_update":0.00023553728481571094,"D_max_update":1.2288667401216813e-05,"true_LO_relative_residual":0.00021159218447405396,"formal_transport_residual":1.4954346862801928e-17,"HOE_minus_LOE_rms":6.273282969182044e-05,"minimum_I":0.7754515298270935,"minimum_LOE":0.8661584996858844,"tensor_min_eigenvalue":0.32235914785958214,"tensor_max_eigenvalue":0.3476581078790354,"HO_covariance_min_eigenvalue":0.3223587229972886,"tensor_trace_error":8.881784197001252e-16,"discrete_global_balance":2.0389770883841258e-18,"inner_iterations":7,"imaginary_residue":2.1543782645688528e-16},{"outer":5,"LOE_relative_update":3.239760737247397e-05,"D_max_update":1.637537417331636e-06,"true_LO_relative_residual":3.2419426233293786e-05,"formal_transport_residual":2.6409565936527666e-17,"HOE_minus_LOE_rms":6.465430441006128e-05,"minimum_I":0.7754240447774174,"minimum_LOE":0.8661217780559786,"tensor_min_eigenvalue":0.3223584355907987,"tensor_max_eigenvalue":0.3476601143443726,"HO_covariance_min_eigenvalue":0.32235801063028396,"tensor_trace_error":6.661338147750939e-16,"discrete_global_balance":1.2233862530304756e-18,"inner_iterations":6,"imaginary_residue":2.869426638433234e-16},{"outer":6,"
+
+## Lightweight variable Eddington factor and tensor checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vet-fourier-source2d-measurements
+Coverage: reading
+
+LOE_relative_update":4.521773948154057e-06,"D_max_update":2.2249143860619824e-07,"true_LO_relative_residual":4.971926729242826e-06,"formal_transport_residual":1.5363210392944112e-17,"HOE_minus_LOE_rms":6.488446324081582e-05,"minimum_I":0.7754202094660921,"minimum_LOE":0.8661166540247711,"tensor_min_eigenvalue":0.32235835480995806,"tensor_max_eigenvalue":0.347660394114364,"HO_covariance_min_eigenvalue":0.3223579298356485,"tensor_trace_error":6.661338147750939e-16,"discrete_global_balance":1.8350793795457133e-18,"inner_iterations":5,"imaginary_residue":2.1949559109067004e-16},{"outer":7,"LOE_relative_update":6.393769401633435e-07,"D_max_update":3.07932587761961e-08,"true_LO_relative_residual":7.6268276963802e-07,"formal_transport_residual":2.628440102377245e-17,"HOE_minus_LOE_rms":6.490296125245377e-05,"minimum_I":0.7754196672444557,"minimum_LOE":0.8661159296669696,"tensor_min_eigenvalue":0.32235834584045187,"tensor_max_eigenvalue":0.3476604336809336,"HO_covariance_min_eigenvalue":0.32235792086421267,"tensor_trace_error":6.661338147750939e-16,"discrete_global_balance":5.0974427209603145e-19,"inner_iterations":5,"imaginary_residue":2.6340408413610245e-16},{"outer":8,"LOE_relative_update":9.143929567989875e-08,"D_max_update":4.3343746369828295e-09,"true_LO_relative_residual":1.169680401400865e-07,"formal_transport_residual":2.6403424595970655e-17,"HOE_minus_LOE_rms":6.4903759332595
+
+## Lightweight variable Eddington factor and tensor checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vet-fourier-source2d-measurements
+Coverage: reading
+
+99e-05,"minimum_I":0.7754195897087881,"minimum_LOE":0.8661158260991304,"tensor_min_eigenvalue":0.3223583448784349,"tensor_max_eigenvalue":0.3476604393460263,"HO_covariance_min_eigenvalue":0.3223579199019269,"tensor_trace_error":6.661338147750939e-16,"discrete_global_balance":8.155908353536503e-19,"inner_iterations":4,"imaginary_residue":2.162299243008572e-16},{"outer":9,"LOE_relative_update":1.3204318985171995e-08,"D_max_update":6.192563684059849e-10,"true_LO_relative_residual":1.7928710968166945e-08,"formal_transport_residual":2.6200656364288607e-17,"HOE_minus_LOE_rms":6.490365522637182e-05,"minimum_I":0.7754195785130416,"minimum_LOE":0.8661158111468219,"tensor_min_eigenvalue":0.3223583447812847,"tensor_max_eigenvalue":0.3476604401656708,"HO_covariance_min_eigenvalue":0.3223579198047394,"tensor_trace_error":6.661338147750939e-16,"discrete_global_balance":1.1214373986112693e-18,"inner_iterations":4,"imaginary_residue":1.8245372431742287e-16},{"outer":10,"LOE_relative_update":1.9223445453339954e-09,"D_max_update":8.961237307758552e-11,"true_LO_relative_residual":2.7442692165154213e-09,"formal_transport_residual":2.6289583011816683e-17,"HOE_minus_LOE_rms":6.490361485363715e-05,"minimum_I":0.7754195768831664,"minimum_LOE":0.8661158089704715,"tensor_min_eigenvalue":0.3223583447725736,"tensor_max_eigenvalue":0.34766044028529647,"HO_covariance_min_eigenvalue":0.322357919796023,"tenso
+
+## Lightweight variable Eddington factor and tensor checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vet-fourier-source2d-measurements
+Coverage: reading
+
+r_trace_error":4.440892098500626e-16,"discrete_global_balance":4.0779541767682517e-19,"inner_iterations":3,"imaginary_residue":2.0406353027342418e-16},{"outer":11,"LOE_relative_update":2.8148292512562004e-10,"D_max_update":1.3093859330126634e-11,"true_LO_relative_residual":4.2575355953495564e-10,"formal_transport_residual":2.7289597234136884e-17,"HOE_minus_LOE_rms":6.490360610208679e-05,"minimum_I":0.7754195766445081,"minimum_LOE":0.8661158086518553,"tensor_min_eigenvalue":0.3223583447720036,"tensor_max_eigenvalue":0.34766044030286447,"HO_covariance_min_eigenvalue":0.32235791979545236,"tensor_trace_error":5.551115123125783e-16,"discrete_global_balance":2.1409259428033322e-18,"inner_iterations":2,"imaginary_residue":1.9151928577151078e-16},{"outer":12,"LOE_relative_update":4.1656901104713856e-11,"D_max_update":1.9406143358935424e-12,"true_LO_relative_residual":6.569226939032776e-11,"formal_transport_residual":1.6306003373338207e-17,"HOE_minus_LOE_rms":6.490360450412313e-05,"minimum_I":0.7754195766091884,"minimum_LOE":0.8661158086047154,"tensor_min_eigenvalue":0.3223583447720123,"tensor_max_eigenvalue":0.3476604403054723,"HO_covariance_min_eigenvalue":0.32235791979546097,"tensor_trace_error":5.551115123125783e-16,"discrete_global_balance":4.995493866541108e-18,"inner_iterations":2,"imaginary_residue":1.7226293621384143e-16},{"outer":13,"LOE_relative_update":6.339976666289346e-12,
+
+## Lightweight variable Eddington factor and tensor checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vet-fourier-source2d-measurements
+Coverage: reading
+
+"D_max_update":2.985389713217046e-13,"true_LO_relative_residual":7.201550036982048e-12,"formal_transport_residual":1.540982726328267e-17,"HOE_minus_LOE_rms":6.490360424077856e-05,"minimum_I":0.7754195766038112,"minimum_LOE":0.8661158085975432,"tensor_min_eigenvalue":0.32235834477202596,"tensor_max_eigenvalue":0.34766044030587134,"HO_covariance_min_eigenvalue":0.3223579197954746,"tensor_trace_error":5.551115123125783e-16,"discrete_global_balance":2.446772506060951e-18,"inner_iterations":1,"imaginary_residue":1.8295171964683262e-16}]
+
+## Lightweight variable Eddington factor and tensor checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vet-fourier-source2d-measurements
+Coverage: reading
+
+constant-controlconstant{"id":"constant-control","shape":[9,9],"mu_order":12,"phi_order":48}{"mean":1.0,"modes":[]}vet-fourier-source2d--constant-control.npz8c9f018ce1df3beb0e21e2f7d501f32f5e18cc8ff63cbd853677f927c9638658{"outer":1,"LOE_relative_update":0.0,"D_max_update":0.0,"true_LO_relative_residual":0.0,"formal_transport_residual":0.0,"HOE_minus_LOE_rms":1.1102230246251565e-16,"minimum_I":1.0,"minimum_LOE":1.0,"tensor_min_eigenvalue":0.33333333333333315,"tensor_max_eigenvalue":0.33333333333333354,"HO_covariance_min_eigenvalue":0.33333333333333304,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":0.0,"inner_iterations":0,"imaginary_residue":0.0,"E_relative_rms_error":0.0,"E_absolute_max_error":0.0,"face_H_relative_rms_error":null,"face_H_absolute_rms_error":0.0,"face_H_absolute_max_error":0.0,"D_component_max_abs_error":2.7755575615628914e-16,"M1_closure_reference_max_abs_difference":5.551115123125783e-17,"tensor_symmetry_error":0.0,"LO_flux_realizability_excess":-1.0,"HO_flux_realizability_excess":-0.9999999999999997,"VET_z_parity":2.42861286636753e-16,"nonconstant_f_span":0.0,"max_abs_Dxy":7.589415207398532e-19,"source_modes":[],"maximum_source_mode_complex_relative_error":null,"work":{"outer_iterations":1,"inner_iterations":0,"formal_solves":2,"directional_solves":1152}}{"outer_E_converged":true,"outer_D_converged":true,"true_LO_residual":true,"formal_H
+
+## Lightweight variable Eddington factor and tensor checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vet-fourier-source2d-measurements
+Coverage: reading
+
+O_residual":true,"imaginary_roundoff":true,"global_balance":true,"positive_intensity":true,"positive_LO_energy":true,"LO_realizability":true,"HO_realizability":true,"tensor_symmetry":true,"tensor_trace":true,"tensor_PSD":true,"HO_covariance_PSD":true,"z_parity":true,"constant_I":true,"constant_E":true,"constant_H":true,"constant_D":true}true[{"outer":1,"LOE_relative_update":0.0,"D_max_update":0.0,"true_LO_relative_residual":0.0,"formal_transport_residual":0.0,"HOE_minus_LOE_rms":1.1102230246251565e-16,"minimum_I":1.0,"minimum_LOE":1.0,"tensor_min_eigenvalue":0.33333333333333315,"tensor_max_eigenvalue":0.33333333333333354,"HO_covariance_min_eigenvalue":0.33333333333333304,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":0.0,"inner_iterations":0,"imaginary_residue":0.0}]
+Measurements and complete records / JSON
+
+## Lightweight variable Eddington factor and tensor checks — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vet-fourier-source2d-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+A Godunov Method for Multidimensional Radiation Magnetohydrodynamics based on a variable Eddington tensor [accessed 2026-11-26] · DOI: 10.1088/0067-0049/199/1/14
+Review scope / review_level: selected-primary-equations-and-test-description
+Section3.1 algorithmStep1; Section3.4 PDFp8, equations22–23 and discussion; Section6.5 shadow-test scope description read. Unread limit: Not a reproduction of Athena, mixed-frameRHD, gas coupling, shocks or the paper shadow/cloud-ablation test.
+A Radiation Transfer Solver for Athena using Short Characteristics [accessed 2026-11-26]
+Review scope / review_level: selected-primary-equations
+Equations8–16 source/opacity/moment conventions, Section3.2 angular quadrature Eq17–19 and two-stream warning; Section3.3 Eq20 formal solution and Section3.5 boundary scope read. Unread limit: Proposed Fourier formal solver is not their short-characteristics/interpolation algorithm. No multifrequency, ALI, stellar atmosphere or timing reproduction claim.
+High-Order Mixed Finite Element Variable Eddington Factor Methods [accessed 2026-11-26]
+Review scope / review_level: selected-primary-equations
+
+## Lightweight variable Eddington factor and tensor checks — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/#vet-fourier-source2d-references
+Coverage: reading
+
+Section2, PDFpp3–4: transport Eq1, moment equations Eq2, angular tensor and boundary factor Eq3, fixed-point steps. Introduction on independent spatial discretizations also read. Unread limit: No claim of full59page reading, high-order mixedFEM reproduction, curved-mesh, multigrid or scalability validation.
+A Two-moment Radiation Hydrodynamics Module in Athena Using a Time-explicit Godunov Method [accessed 2026-11-26] · DOI: 10.1088/0067-0049/206/2/21
+Review scope / review_level: selected-primary-equations
+Section2.3 PDFp5, equations11–17: localM1 tensor, trace/covariance constraints and chi(reducedflux). Introduction distinction from formalVET also read. Unread limit: No Hyperion/RHD solver or reduced-light-speed/timing validation. InstitutionalPDF endpoint returned401; arXiv original-author copy was read.
+
 ## Nonperiodic walls: cavity and manufactured flow — Nonperiodic walls: cavity and manufactured flow [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-wall-flow/
@@ -61344,6 +61995,256 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-za
 Coverage: reading
 
 Versioned official API checked for QUADPACK, break points, tolerances and reported error. Independently integrated vertical sections are compared with circle/polygon areas; execution is established by saved receipts.
+
+## Variable Eddington factors and tensors: closing moments with angular transport — Variable Eddington factors and tensors: closing moments with angular transport [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/variable-eddington/
+Coverage: reading
+
+VEF obtains an Eddington closure from angular transport and iterates it with a separate moment system. It uses a scalar factor f in one dimension and a tensor D in multiple dimensions. VET denotes this tensor form, rather than an unrelated physical model.
+
+## Variable Eddington factors and tensors: closing moments with angular transport — Distinguishing grey models, diffusion and M1 [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/variable-eddington/#model
+Coverage: reading
+
+The grey approximation integrates over frequency. VEF/VET instead obtains the pressure closure from an angular distribution. Being grey does not select diffusion, M1 or VEF.
+Use a static medium, constant total extinction sigma_t and isotropic scattering sigma_s, and a positive isotropic source q. With angular measure dOmega/(4pi) and c=1, E, H and K are normalized energy, flux and pressure moments. Restore the common 4pi factor for unnormalized angular integrals.
+\boldsymbol\Omega\cdot\nabla I+\sigma_tI=\sigma_sE+q,\quad E=\langle I\rangle,\quad\langle g\rangle=\frac{1}{4\pi}\int_{S^2}g\,d\Omega\mathsf D=\frac{\langle\boldsymbol\Omega\boldsymbol\Omega^{\mathsf T}I\rangle}{E},\quad\mathsf K=\mathsf DE,\quad f= D_{xx}\nabla\cdot\boldsymbol H+\sigma_aE=q,\quad\sigma_t\boldsymbol H+\nabla\cdot(\mathsf DE)=0,\quad\sigma_a=\sigma_t-\sigma_s
+
+## Variable Eddington factors and tensors: closing moments with angular transport — Iterating angular transport and moments [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/variable-eddington/#algorithm
+Coverage: reading
+
+Form q+sigma_s E from the current moment solution, solve directional transport, and calculate D from the resulting intensities. Solve a separately discretized moment system and feed the new E back to transport. Merely plotting D is not this coupled iteration.
+The formal solver here uses a periodic Fourier representation. The low-order system uses finite differences with shared face fluxes, retaining the cross derivatives from Dxy. This is not a reproduction of the papers' short-characteristics or high-order mixed finite-element implementations.
+Check the inner linear residual separately from the outer E and D updates. Because the spatial discretizations differ, exact agreement between the transport and moment E at a fixed mesh is not a stopping condition.
+\sigma_t\sigma_aE-\sum_{i,j}\partial_i\partial_j(D_{ij}E)=\sigma_tq
+
+## Variable Eddington factors and tensors: closing moments with angular transport — 1D VEF: a periodic scattering field [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/variable-eddington/#vef-1d
+Coverage: reading
+
+Fix q=1+0.3cos(2pi x), sigma_t=4 and sigma_s=3 on a unit-period domain. Obtain f(x)=Kxx/E from I(x,mu), then compare the separate scalar moment solution with an analytic reference.
+The heatmap's mu coordinate is an angular cosine, not a second spatial dimension. Keep the fixed f=1/3 control distinct, and store spatial and angular comparisons as separate rows.
+1D VEF: figure, fixed input, analytic reference and code
+
+## Variable Eddington factors and tensors: closing moments with angular transport — 2D VET: nonparallel source modes [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/variable-eddington/#vet-2d
+Coverage: reading
+
+Fix q=1+0.3cos(2pi x)+0.2sin(2pi(x+y)) on a periodic unit square. Two nonparallel modes produce nonzero Dxy and spatially changing principal axes.
+Although space is two-dimensional, the angular measure is the sphere S2. Retain the full 3x3 tensor, including Dzz, and check symmetry, trace one, positivity and angular realizability. An M1 tensor formed from local E and H is only a diagnostic comparison; no time-evolving M1 solver is implemented in this example.
+2D VET: figure, fixed input, analytic reference and code
+
+## Variable Eddington factors and tensors: closing moments with angular transport — An independent analytic reference [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/variable-eddington/#reference
+Coverage: reading
+
+Specify the positive isotropic source first and derive the reference from the continuum angular integral of each Fourier mode. This is not a manufactured solution obtained by choosing an intensity or closure and reverse-engineering the forcing. The primary solver does not use the analytic reference to construct D.
+Align the polar axis with the wave vector and integrate 1/(sigma_t+i k mu) to obtain R(k)=atan(k/sigma_t)/k. A separate module evaluates E, H and K using the scattering-coupled amplitude A. Compare the complex phase of sine modes too, so a constant background cannot conceal mode errors.
+R(k)=\frac{\tan^{-1}(k/\sigma_t)}{k},\quad A_m=\frac{b_m}{1-\sigma_sR(|\boldsymbol k_m|)},\quad E_{\rm ref}=\frac{q_0}{\sigma_a}+\operatorname{Re}\sum_m A_mR(|\boldsymbol k_m|)e^{i\boldsymbol k_m\cdot\boldsymbol x}
+
+## Variable Eddington factors and tensors: closing moments with angular transport — Checked scope and limitations [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/variable-eddington/#conditions
+Coverage: reading
+
+The two fixed problems are limited to static grey transfer, linear isotropic scattering, constant coefficients and periodic boundaries. They do not validate inflow boundary factors, vacuum boundaries, absorber shadows, crossing beams, gas coupling, time evolution, multiple frequencies or relativistic transport.
+Selected passages of the original papers support the equations, closure and iteration. These examples do not reproduce Athena or all paper experiments, establish universal convergence or speedups, or certify fixed-grid asymptotic preservation in the diffusion limit.
+
+## Variable Eddington factors and tensors: closing moments with angular transport — How to check the results [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/variable-eddington/#verification
+Coverage: reading
+
+Check positive intensity and E, tensor trace and eigenvalues, and face-flux balance first. Then inspect the linear residual and outer iteration, and compare fields, source-mode amplitudes and phases with the analytic reference.
+Keep spatial and angular rows separate, retaining the mesh-dependent HO/LO gap. Constant solutions, cross-derivative signs, omitted scattering feedback and a fixed one-third closure provide controls, so a small residual alone does not pass. Consult the execution entries and release ZIP records below for measured values and decisions.
+
+## Variable Eddington factors and tensors: closing moments with angular transport — Check fixed inputs: separate scoped releases [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/variable-eddington/#scoped-examples
+Coverage: reading
+
+Check each example’s inputs, observables, diagnostic definitions and scope. What a passing check establishes depends on its acceptance criteria and differs from a general mathematical guarantee. Historical inputs, measurements and criteria are preserved.
+
+## Variable Eddington factors and tensors: closing moments with angular transport — Variable Eddington factor: a periodic 1D scattering-source control [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/variable-eddington/
+Coverage: reading
+
+Computation for a fixed target
+Iteratively couple formal angular transport to independent moment equations and compare the spatially varying factor f with a closed-form reference.
+Position x and angular cosine mu are not two spatial dimensions. This periodic homogeneous educational control does not validate inflow boundaries, time evolution, material/fluid coupling, nonlinear FLD, general AP properties or speedup.
+Input, results and acceptance · Method, equations and sources · Code: run.py · Code: primary.py · Code: analytic_reference.py · Tests: test_cases.py · Release ZIP · Saved results · Independent-extraction rerun receipt
+
+## Variable Eddington factors and tensors: closing moments with angular transport — Variable Eddington tensor: a periodic 2D nonparallel-source control [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/variable-eddington/
+Coverage: reading
+
+Computation for a fixed target
+Use two nonparallel source modes to compute full-S2 angular moments and a3x3 tensor, then compare conservative moment equations including Dxy with a closed-form reference.
+Pointwise M1 comparison is a closure diagnostic; no M1 PDE is solved. This is not a reproduction of Athena, short characteristics, shadows, crossing beams, RHD or boundary closures, and does not claim exact fixed-grid HO/LO agreement or universal convergence rates.
+Input, results and acceptance · Method, equations and sources · Code: run.py · Code: primary.py · Code: analytic_reference.py · Tests: test_cases.py · Release ZIP · Saved results · Independent-extraction rerun receipt
+
+## Variable Eddington factors and tensors: closing moments with angular transport — Publication scope and related entries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/variable-eddington/#publication-scope
+Coverage: reading
+
+One group contains two lightweight fixed verification cases. VEF and VET are related scalar/tensor forms; mesh, angle and control rows do not add independent physical problems.
+Variable Eddington factor (1D VEF)
+Variable Eddington tensor (VET)
+
+## Variable Eddington factors and tensors: closing moments with angular transport — Primary publications, supporting sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/variable-eddington/#sources
+Coverage: reading
+
+Distinguish original research, later variants, author monographs, pedagogical articles and official references. Bibliographic verification differs from consulting selected passages; neither implies a full-paper audit or numerical reproduction. Access-depth notes accompany each source.
+L. H. Auer and Dimitri Mihalas (1970). On the Use of Variable Eddington Factors in Non-LTE Stellar Atmospheres Computations. Monthly Notices of the Royal Astronomical Society149,65–74
+Research publication: proposal or related formulation · Abstract and bibliography checked · Consulted record
+Publisher title/authors/date/DOI and abstract. Establishes historical variable-factor iteration and grey example. Unread limits: Original scannedPDF fetch failed; original equations, full tests and non-LTE calculations are unread and must not be claimed reproduced.
+Samuel Olivier and Terry S. Haut (2023). High-Order Mixed Finite Element Variable Eddington Factor Methods.
+Research preprint, distinct from the journal edition · Selected source passages consulted · Consulted record
+Section2, PDFpp3–4: transport Eq1, moment equations Eq2, angular tensor and boundary factor Eq3, fixed-point steps. Introduction on independent spatial discretizations also read. Unread limits: No claim of full59page reading, high-order mixedFEM reproduction, curved-mesh, multigrid or scalability validation.
+
+## Variable Eddington factors and tensors: closing moments with angular transport — Primary publications, supporting sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/variable-eddington/#sources
+Coverage: reading
+
+Samuel Olivier and Will Pazner and Terry S. Haut and Ben C. Yee (2023). A Family of Independent Variable Eddington Factor Methods with Efficient Preconditioned Iterative Solvers.
+Research publication: proposal or related formulation · Selected source passages consulted · Consulted record
+Introduction PDFpp1–3 on independent HO/LO discretizations, finite-mesh moment differences and conservation; no numerical tables adopted. Unread limits: No claim of reproducing high-orderDG, preconditioner performance or large-mesh studies.
+Yan-Fei Jiang and James M. Stone and Shane W. Davis (2012). A Godunov Method for Multidimensional Radiation Magnetohydrodynamics based on a variable Eddington tensor.
+Research publication: proposal or related formulation · Selected source passages consulted · Consulted record
+Section3.1 algorithmStep1; Section3.4 PDFp8, equations22–23 and discussion; Section6.5 shadow-test scope description read. Unread limits: Not a reproduction of Athena, mixed-frameRHD, gas coupling, shocks or the paper shadow/cloud-ablation test.
+Shane W. Davis and James M. Stone and Yan-Fei Jiang (2012). A Radiation Transfer Solver for Athena using Short Characteristics.
+Research preprint, distinct from the journal edition · Selected source passages consulted · Consulted record
+
+## Variable Eddington factors and tensors: closing moments with angular transport — Primary publications, supporting sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/variable-eddington/#sources
+Coverage: reading
+
+Equations8–16 source/opacity/moment conventions, Section3.2 angular quadrature Eq17–19 and two-stream warning; Section3.3 Eq20 formal solution and Section3.5 boundary scope read. Unread limits: Proposed Fourier formal solver is not their short-characteristics/interpolation algorithm. No multifrequency, ALI, stellar atmosphere or timing reproduction claim.
+M. Aaron Skinner and Eve C. Ostriker (2013). A Two-moment Radiation Hydrodynamics Module in Athena Using a Time-explicit Godunov Method.
+Research publication: proposal or related formulation · Selected source passages consulted · Consulted record
+Section2.3 PDFp5, equations11–17: localM1 tensor, trace/covariance constraints and chi(reducedflux). Introduction distinction from formalVET also read. Unread limits: No Hyperion/RHD solver or reduced-light-speed/timing validation. InstitutionalPDF endpoint returned401; arXiv original-author copy was read.
+
+## Wall heating: numerical overheating in Noh flow and at reflecting walls — Wall heating: numerical overheating in Noh flow and at reflecting walls [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/wall-heating/
+Coverage: reading
+
+Wall heating is a localized numerical excess of specific internal energy, often accompanied by a density depression, when a strong shock forms at a reflecting wall or a convergence center. This is distinct from physical heating supplied through a wall. Existing Noh calculations illustrate how to inspect the error.
+
+## Wall heating: numerical overheating in Noh flow and at reflecting walls — Fix the exact post-shock state first [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/wall-heating/#reference
+Coverage: reading
+
+Use the cold ideal-gas Noh problem with gamma=5/3, initial density 1 and inward velocity −1. Here d=1 is planar, d=2 cylindrical-radial and d=3 spherical-radial. The formulas describe the uniform post-shock state r<r_s. Shock-cut cells require matching exact conserved cell means rather than point values.
+Specific internal energy e is per unit mass; script E is total energy per unit volume and m is momentum density. The value e(U) formed from cell-mean conserved variables generally differs from the exact cell mean of e. Retain the quantity defined in each saved figure.
+\gamma=5/3,\quad \rho_0=1,\quad u_0=-1,\quad p_0=0:\quad r_s=t/3,\quad(\rho,p,u)_2=(4^d,4^d/3,0),\quad e_2=1/2e(U)=\frac{\mathcal E}{\rho}-\frac{|\boldsymbol m|^2}{2\rho^2},\qquad \delta_e=\frac{e(U)}{e_2}-1,\quad\delta_\rho=\frac{\rho}{\rho_2}-1
+
+## Wall heating: numerical overheating in Noh flow and at reflecting walls — Separate local error, its spatial extent and whole-domain error [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/wall-heating/#diagnostics
+Coverage: reading
+
+In a fixed physical region including the center, inspect maximum specific-energy excess, minimum density and integrated density error together. Measure the shock layer separately; excluding the center does not establish whole-domain accuracy.
+The saved figure uses the existing 64/128/256/512 grids. Left: specific internal energy within r<=0.45r_s. Center: signed density error on the whole domain. Right: whole-domain L1/L2/Linf. Open the image to zoom. Spherical volume weighting r² downweights a small central defect, so inspect local maxima as well as integral norms.
+Existing saved Noh figure: origin heating, density errors and refinement. Whole-domain errors include the origin and shock. No new PDE run or overheating correction is presented.
+
+## Wall heating: numerical overheating in Noh flow and at reflecting walls — What the saved measurements establish [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/wall-heating/#saved-results
+Coverage: reading
+
+Saved maximum center specific-internal-energy excesses at N=512 in edition 2026-11-23-r5 are 2.58% planar, 8.16% cylindrical-radial and 20.59% spherical-radial. The separate 128² Cartesian calculation in edition 2026-11-23-r2 gives 13.99%. These stored results use different reconstructions, geometries and grids; they are not a controlled ranking of methods.
+The third attempt passed all 105 criteria across the geometries, yet maximum spherical center overheating increased from 15.52% in the second attempt to 20.59%. Passing the gates, improving a whole-domain norm and eliminating wall heating are different claims. Original criteria, failed attempts and saved values are retained.
+Planar/cylindrical/spherical figures, inputs, code and verification · Actual 2D Cartesian Noh calculation and origin heating
+
+## Wall heating: numerical overheating in Noh flow and at reflecting walls — Global conservation does not rule out local overheating [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/wall-heating/#conservation
+Coverage: reading
+
+At a stationary impermeable reflecting wall, zero normal velocity gives zero physical Euler total-energy flux. Errors in the local kinetic/internal-energy partition and numerical entropy production can remain even when total energy is conserved. Account separately for the outer inflow of the Noh problem.
+Artificial viscosity, numerical flux, reconstruction and initial stagnation treatment can affect the error. A conduction-based correction needs comparison of density, pressure, shock position, positivity and budgets under the same conditions. This chapter introduces no new correction solver or general elimination guarantee.
+F_{\mathcal E}=(\mathcal E+p)u_n=0\quad\hbox{at a stationary impermeable reflecting wall}
+
+## Wall heating: numerical overheating in Noh flow and at reflecting walls — Sources and the scope checked here [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/wall-heating/#scope
+Coverage: reading
+
+Noh (1987) is cited for the problem and wall-heating error. The publisher bibliography and abstract were checked; no full-text audit or reproduction of every original figure is claimed. The pinned LANL ExactPack analytic evaluator independently checks exact states; it is not an independent PDE solver.
+This chapter interprets data in existing public releases. It adds no new PDE execution, acceptance change, physical test problem or execution example.
+
+## Wall heating: numerical overheating in Noh flow and at reflecting walls — Check fixed inputs: separate scoped releases [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/wall-heating/#scoped-examples
+Coverage: reading
+
+Check each example’s inputs, observables, diagnostic definitions and scope. What a passing check establishes depends on its acceptance criteria and differs from a general mathematical guarantee. Historical inputs, measurements and criteria are preserved.
+
+## Wall heating: numerical overheating in Noh flow and at reflecting walls — Noh shocks: zero-pressure planar, cylindrical and spherical flow [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/wall-heating/
+Coverage: reading
+
+Computation for a fixed target
+An original small 1D finite-volume code solves zero-pressure Noh flow in planar, cylindrical and spherical symmetry. Grids 64/128/256/512 measure full-domain error, origin heating, shock location and budgets, and compare spherical boundary-inflow time-quadrature error with its analytic identity.
+An educational calculation: first-order space in planar/cylindrical flow and MUSCL-type limited linear reconstruction in spherical flow. Origin heating and finite-grid plateau errors remain; the center is never removed from whole-domain error. Because r^2 weighting can make central defects appear small, an origin-inclusive fixed-core norm and enlarged view are also shown. Vanishing Linf/center maximum error, high order for the complete method on smooth spherical problems, general stage positivity with the geometric source, Cartesian multidimensional flow and independent arbitrary-gamma validation are not established. Cylindrical Linf was not monotone in the old series; spherical L2/Linf and heating are retained as diagnostics. Roundoff-scale discrete mass/energy balance coexists with O(dt^2) spherical boundary-time-quadrature error against analytic totals. Radial momentum has a geometric source and is not a conserved Cartesian momentum component. ExactPack independently implements the analytic evaluator, not another numerical PDE engine.
+
+## Wall heating: numerical overheating in Noh flow and at reflecting walls — Noh shocks: zero-pressure planar, cylindrical and spherical flow [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/wall-heating/
+Coverage: reading
+
+Input, results and acceptance · Method, equations and sources · Code: run.py · Code: noh_solver.py · Code: noh_reference.py · Code: generate_exactpack_reference.py · Code: plot_noh.py · Tests: test_noh.py · Release ZIP · Saved results · Independent-extraction rerun receipt
+
+## Wall heating: numerical overheating in Noh flow and at reflecting walls — Noh problem: an actual 2D Cartesian Euler calculation [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/wall-heating/
+Coverage: reading
+
+Computation for a fixed target
+A small 2D Euler finite-volume calculation evolves density, both momenta and total energy over the full square. Three grids,32²/64²/128², measure Noh-reference errors, budgets and grid orientation effects. The picture shows the actual evolved 2D array.
+A first-order-space lightweight example retains origin heating and shock errors. Finest maximum center specific internal energy is still about 14% high. Axis/diagonal shock-radius difference is about .501dx and is not monotone over these grids. Roundoff-level D4 parity does not establish exact circular symmetry. General perturbation stability, displaced origins, rotated meshes, 3D Cartesian flow and high-order accuracy are unverified. Earlier planar/cylindrical/spherical 1D editions and gates remain unchanged.
+Input, results and acceptance · Method, equations and sources · Code: run.py · Code: cartesian_solver.py · Code: cartesian_reference.py · Tests: test_cartesian.py · Release ZIP · Saved results · Independent-extraction rerun receipt
+
+## Wall heating: numerical overheating in Noh flow and at reflecting walls — Publication scope and related entries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/wall-heating/#publication-scope
+Coverage: reading
+
+An explanatory chapter preserving the existing Noh releases, figures, inputs, references and verification history. These examples measure wall heating; they do not eliminate it.
+Rusanov / local Lax–Friedrichs flux
+Heun / SSPRK(2,2)
+MUSCL reconstruction
+Minmod
+
+## Wall heating: numerical overheating in Noh flow and at reflecting walls — Primary publications, supporting sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/wall-heating/#sources
+Coverage: reading
+
+Distinguish original research, later variants, author monographs, pedagogical articles and official references. Bibliographic verification differs from consulting selected passages; neither implies a full-paper audit or numerical reproduction. Access-depth notes accompany each source.
+W. F. Noh (1987). Errors for calculations of strong shocks using an artificial viscosity and an artificial heat flux. Journal of Computational Physics
+Research publication: proposal or related formulation · Abstract and bibliography checked · Consulted record
+Publisher bibliography and abstract; original full text was not accessed. Cited for the cold-inflow problem and excess wall-heating context, not as the source of this finite-volume implementation.
+J. Thrussell and J. M. Ferguson (2023). ExactPack: A python library of exact analytic solutions. SoftwareX
+Research publication: proposal or related formulation · Selected source passages consulted · Consulted record
+Selected official pinned Noh evaluator code, especially gamma=5/3 shock position, density, pressure and specific energy. Reuses existing independent ExactPack checks; no new code execution or full-paper audit.
 
 ## Wavelets — Wavelets [en]
 
@@ -68488,7 +69389,7 @@ R. Car; M. Parrinello (1985)
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quantum-chemistry/#verification
 Coverage: reading
 
-水素型原子・Heの2問題群を実行し、独立参照と比較して全172問題の台帳へ加えました。さらにH₂の有限基底RHFを独立参照・SCFと基底の収束で検証しました。周期Heセルの限定DFTも追加。別配布の固定模型には最小基底H₂のUHF/FCI、3中心H₃⁺のMP2/FCI、無次元2準位のBO/CP型連成があります。これらは一般の分子DFT・大基底相関計算・実材料の長時間第一原理MDの検証ではありません。
+水素型原子・Heの2問題群を実行し、独立参照と比較して全174問題の台帳へ加えました。さらにH₂の有限基底RHFを独立参照・SCFと基底の収束で検証しました。周期Heセルの限定DFTも追加。別配布の固定模型には最小基底H₂のUHF/FCI、3中心H₃⁺のMP2/FCI、無次元2準位のBO/CP型連成があります。これらは一般の分子DFT・大基底相関計算・実材料の長時間第一原理MDの検証ではありません。
 実行・検証例あり
 
 ## 量子化学・DFT：何を近似し、何を解くか — 1電子：水素型原子 [ja]
@@ -68637,6 +69538,25 @@ Coverage: reading
 ここでは静止媒質・周波数積分済みの灰色強度Iを考え、等方な輻射源ηと吸収係数κを使い、散乱は省略します。κは長さの逆数です。E=(1/c)∫I dΩ、F=∫nI dΩ、P=(1/c)∫nnI dΩを定義すると、EとFの方程式はPを含みます。
 \frac1c\partial_t I+\mathbf n\cdot\nabla I=\eta-\kappa I,\qquad\partial_t E+\nabla\cdot\mathbf F=4\pi\eta-c\kappa E,\qquad c^{-2}\partial_t\mathbf F+\nabla\cdot\mathbf P=-\kappa\mathbf F/c.
 
+## 輻射輸送・モーメント法 — グレー（灰色）近似 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/radiation-transport/#grey-approximation
+Coverage: reading
+
+周波数を積分した強度を扱い、周波数方向の分解能を持たないモデルです。角度をどう扱うかとは別の選択なので、灰色近似そのものを拡散近似やM1閉包と同一視しません。
+既存の灰色輸送・M1の例は、静止媒質と固定入力に限定されています。下の角度輸送とM1の配布版は、それぞれの条件で比較してください。多周波数計算に対する灰色近似の一般的な精度を検証した例ではありません。
+灰色角度輸送：Su–Olson1997の固定例 · 灰色角度輸送とM1：2D吸収影
+
+## 輻射輸送・モーメント法 — 輻射拡散近似 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/radiation-transport/#radiation-diffusion-approximation
+Coverage: reading
+
+輻射拡散近似は、光学的に厚く角度分布がほぼ等方的な場合に、輻射流束をエネルギー密度の勾配から表す近似です。周波数を積分する灰色近似とは役割が異なります。
+既存のSu–Olson1996例は、非平衡の輻射・物質交換を含む拡散方程式を進めます。Su–Olson1997角度輸送の配布版には、別の周期設定で拡散極限へ近づく固定制御があります。両問題の座標規格化・境界・参照解は同一ではありません。固定格子でのAP性や、任意の条件での拡散近似の精度を示すものではありません。
+FLD（flux-limited diffusion）は流束制限を含む別の閉包です。このアトラスには説明はありますが、専用の非線形FLDソルバーの実装・検証例はまだありません。上の拡散例やM1をFLDの実装として数えません。
+非平衡拡散：Su–Olson1996の固定例 · 角度輸送と拡散極限の固定制御
+
 ## 輻射輸送・モーメント法 — 計算の流れ [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/radiation-transport/#algorithm
@@ -68650,7 +69570,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/radiation-tra
 Coverage: reading
 
 M1は異なる方向の交差ビームを一般には独立に運べません。FLDは勾配方向に流束を結び付けるため影や強い異方性に制約があります。縮約光速は物理的な伝播/緩和時間を変えるので、支配的な時間尺度との関係を明示します。
-追加版も1次元定常・純吸収・指定流入の平板で、μ∂xI=−κIを解きます。一般の輻射モーメント閉包、散乱、時間依存、多周波数や流体との結合は検証しません。
+旧2配布（純吸収平板と空間・角度収束）の範囲は、1次元定常・純吸収・指定流入の平板で、μ∂xI=−κIを解くものです。この2配布では一般の輻射モーメント閉包、散乱、時間依存、多周波数や流体との結合を検証しません。後続の灰色輸送・拡散・M1の範囲は、上記の別配布ページで確認してください。
 
 ## 輻射輸送・モーメント法 — 検証するときに見る量 [ja]
 
@@ -70638,6 +71558,12 @@ Coverage: reading
 H. T. Huynh (2007). A Flux Reconstruction Approach to High-Order Schemes Including Discontinuous Galerkin Methods. 10.2514/6.2007-4079
 H. T. Huynh (2014). On Formulations of Discontinuous Galerkin and Related Methods for Conservation Laws. Original source
 PyFR development team (2026). PyFR: Flux Reconstruction and supported implementation platforms (accessed 2026-11-23). Original source
+L. H. Auer and Dimitri Mihalas (1970). On the Use of Variable Eddington Factors in Non-LTE Stellar Atmospheres Computations. 10.1093/mnras/149.1.65
+Samuel Olivier and Terry S. Haut (2023). High-Order Mixed Finite Element Variable Eddington Factor Methods. Original source
+Yan-Fei Jiang and James M. Stone and Shane W. Davis (2012). A Godunov Method for Multidimensional Radiation Magnetohydrodynamics based on a variable Eddington tensor. 10.1088/0067-0049/199/1/14
+Shane W. Davis and James M. Stone and Yan-Fei Jiang (2012). A Radiation Transfer Solver for Athena using Short Characteristics. Original source
+Samuel Olivier and Will Pazner and Terry S. Haut and Ben C. Yee (2023). A Family of Independent Variable Eddington Factor Methods with Efficient Preconditioned Iterative Solvers. 10.1016/j.jcp.2022.111747
+M. Aaron Skinner and Eve C. Ostriker (2013). A Two-moment Radiation Hydrodynamics Module in Athena Using a Time-explicit Godunov Method. 10.1088/0067-0049/206/2/21
 
 ## 原著の出版年順に並べた参考文献 — 量子化学の追加一次文献 [ja]
 
@@ -71641,8 +72567,8 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 公開Web版、集計日2026-11-24。数えるのはカタログ項目と記載した実験例です。すべての項目が検証済みの完全なソルバーであるという意味ではありません。
-方程式・モデル94項目・計算法と構成要素163項目・学術誌／会議論文249件・全参考資料310件。
-保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め153章です。
+方程式・モデル95項目・計算法と構成要素165項目・学術誌／会議論文255件・全参考資料316件。
+保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め156章です。
 
 ## 収録範囲と数え方 — 方程式とモデル# [ja]
 
@@ -71650,7 +72576,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 名前付きの方程式・モデルを数えます。スカラー成分や数学的に互いに独立な系統の数ではありません。枠組みや補助定式化を含み、通常は派生形を一つにまとめます。ただし個別に説明するSR／GRの流体系3種類は分けます。生物モデルは専用カタログから一度だけ取り込みます。
-ローカル実験のある項目は78、文献解説のみは16で、後者には生物調査22項目すべてを含みます。連成系は一項目とし、成分方程式では増やしません。Poisson／Laplaceや次元の違いもまとめます。枠組みと個別反応則が並ぶため、数学的に独立した系統数ではありません。
+ローカル実験のある項目は79、文献解説のみは16で、後者には生物調査22項目すべてを含みます。連成系は一項目とし、成分方程式では増やしません。Poisson／Laplaceや次元の違いもまとめます。枠組みと個別反応則が並ぶため、数学的に独立した系統数ではありません。
 一覧の詳細な範囲注記は原文（英語）を保持します。各章の日本語本文も併せて参照できます。
 
 ## 収録範囲と数え方 — 物理・数学モデル# [ja]
@@ -71737,7 +72663,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 名前付きの離散化法、積分法、線形・非線形解法、連成演算子を数えます。パラメータの違いでは増やしません。
-ローカル実験のある項目は153、文献解説のみは10です。再構成の制限関数、前処理、連成演算子は構成要素であり、完全なPDEソルバーではありません。格子配置、CFL条件、定理は計算法の数に含めません。
+ローカル実験のある項目は155、文献解説のみは10です。再構成の制限関数、前処理、連成演算子は構成要素であり、完全なPDEソルバーではありません。格子配置、CFL条件、定理は計算法の数に含めません。
 
 ## 収録範囲と数え方 — 空間離散化# [ja]
 
@@ -71889,7 +72815,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 論文数は学術誌論文と会議論文です。総説、翻訳、採録済みであることを明記した論文も含みます。全参考資料は、それに書籍、章、技術資料、文書、個別に識別したプレプリント等を加えた、重複を除く出版物の数です。
-242件：学術誌論文（総説・翻訳・採録済み論文を含む）
+248件：学術誌論文（総説・翻訳・採録済み論文を含む）
 3件：会議論文
 22件：書籍
 2件：書籍の章
@@ -116695,6 +117621,607 @@ Giovanni Bussi (2026). Research algorithms: stochastic velocity rescaling
 確認範囲 / review_level: author-official-algorithm-note
 著者の公式アルゴリズム頁にある2007年論文のGaussian二乗和をΓ分布で生成する記述のtypo注記を確認。年は確認年。配布コードの転載ではなく独自実装です。
 
+## 可変Eddington因子・テンソルの軽量検証 — 可変Eddington因子・テンソルの軽量検証 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/
+Coverage: reading
+
+正の等方輻射源を持つ周期問題で、角度輸送と独立したモーメント解を反復し、解析参照・収支・空間と角度の誤差を分けて確認します。
+
+## 可変Eddington因子・テンソルの軽量検証 — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#run-all
+Coverage: reading
+
+ZIPの atlas-variable-eddington-controls-2026-11-26 フォルダで実行します。このコマンドは配布版の全2例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## 可変Eddington因子・テンソルの軽量検証 — 可変エディントン因子：周期1D散乱源の固定検証 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/
+Coverage: reading
+
+形式的な角度輸送と独立なモーメント方程式を反復結合し、位置で変わる因子fを閉形式参照と比較します。
+手法・式・図・参照解
+使用手法
+可変Eddington因子（1D VEF）
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+各反復でq+σs E_LOをFourier形式解へ入れ、f=Kxx/E_HOを抽出し、保存的な面流束を使う有限差分モーメント式を解きます。参照解は主計算の閉包へ渡しません。
+静止灰色輻射のVEF・VETモーメント閉包
+静止・定常・灰色の単位周期区間。無次元でσt=4、σs=3、σa=1、c=1。q=1+0.3 cos(2πx)、x_i=i/Nの点値です。角度平均は(1/2)∫I dμで規格化します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+可変エディントン因子：周期1D散乱源の固定検証
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+N=33/65と固定32点角度則、N=65の64点角度プローブを分けます。解析場・複素モード・保存・実現可能性・反復残差・誤符号等の負制御、別のN=9一定源行を照合します。
+同じ問題の参照 · 解析参照
+本例のために導出した周期1D VEFの連続Fourier応答
+正の指定等方輻射源に対する連続角度Fourier応答が、同じ固定問題の解析参照です。点値・面位置・複素位相を区別し、異なるHO/LO離散化の差は保存します。 図の横軸xと角度余弦μは2つの空間次元ではありません。周期・一様係数の教育例で、流入境界、時間発展、物質・流体結合、非線形FLD、一般AP性や速度向上は検証しません。
+
+## 可変Eddington因子・テンソルの軽量検証 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-assumptions
+Coverage: reading
+
+静止・定常・灰色の単位周期区間。無次元でσt=4、σs=3、σa=1、c=1。q=1+0.3 cos(2πx)、x_i=i/Nの点値です。角度平均は(1/2)∫I dμで規格化します。
+
+## 可変Eddington因子・テンソルの軽量検証 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-algorithm
+Coverage: reading
+
+各反復でq+σs E_LOをFourier形式解へ入れ、f=Kxx/E_HOを抽出し、保存的な面流束を使う有限差分モーメント式を解きます。参照解は主計算の閉包へ渡しません。
+\mu\partial_xI+\sigma_tI=\sigma_sE+q,\quad E=\langle I\rangle,\quad f=\langle\mu^2I\rangle/E\partial_xH+\sigma_aE=q,\quad \partial_x(fE)+\sigma_tH=0R=\frac{\arctan(k/\sigma_t)}{k},\quad A=\frac{b}{1-\sigma_sR},\quad E_{\rm ref}=1+\Re(ARe^{ikx})
+
+## 可変Eddington因子・テンソルの軽量検証 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-validation
+Coverage: reading
+
+N=33/65と固定32点角度則、N=65の64点角度プローブを分けます。解析場・複素モード・保存・実現可能性・反復残差・誤符号等の負制御、別のN=9一定源行を照合します。
+
+## 可変Eddington因子・テンソルの軽量検証 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-limits
+Coverage: reading
+
+図の横軸xと角度余弦μは2つの空間次元ではありません。周期・一様係数の教育例で、流入境界、時間発展、物質・流体結合、非線形FLD、一般AP性や速度向上は検証しません。
+
+## 可変Eddington因子・テンソルの軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+finest_E_relative_rms_error3.00843628987e-05
+finest_face_H_relative_rms_error0.000184333620887
+finest_mode_complex_relative_error0.000463132069472
+finest_D_component_max_abs_error2.56266321935e-06
+E_error_refinement_ratio0.257557236384
+face_H_error_refinement_ratio0.25786212296
+HO_LO_gap_refinement_ratio0.25755723788
+angle_probe_E_relative_rms_difference7.90363996074e-15
+angle_probe_D_max_abs_difference7.21644966006e-15
+finest_nonconstant_f_span0.0193879024469
+finest_max_abs_Dxy0
+main_rows3
+constant_control_rows1
+outer_iterations_by_row{"space-coarse":13,"space-fine":13,"angle-probe":13,"constant-control":1}
+判定 / check合格
+all_row_solver_checkstrue
+finest_E_accuracytrue
+finest_face_H_accuracytrue
+complex_source_modes_include_phasetrue
+tensor_reference_accuracytrue
+E_refinestrue
+face_H_refinestrue
+HO_LO_gap_refines_not_zerotrue
+angle_probe_Etrue
+angle_probe_Dtrue
+variable_closuretrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。保存した点値・面流束の誤差、空間細分化、角度プローブと反復履歴。一定源は別制御です。全記録を表で読む
+row_idroleinputsourcearraysarrays_sha256metricscheckspassedhistory
+
+## 可変Eddington因子・テンソルの軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-measurements
+Coverage: reading
+
+space-coarsecoarse{"id":"space-coarse","shape":[33],"mu_order":32}{"mean":1.0,"modes":[{"wave_numbers":[1],"amplitude":{"real":0.3,"imag":0.0}}]}vef-fourier-scattering1d--space-coarse.npz9c23db17104a9722773ccdfb7f55be9610a31b11b2e92751b29850fbe3030d8c{"outer":13,"LOE_relative_update":1.6762770110785017e-12,"D_max_update":1.1574075031717257e-13,"true_LO_relative_residual":2.4576921694355963e-12,"formal_transport_residual":1.5418243648783696e-17,"HOE_minus_LOE_rms":6.0949249332227494e-05,"minimum_I":0.8562750831507078,"minimum_LOE":0.9081970243211669,"tensor_min_eigenvalue":0.3245205593841743,"tensor_max_eigenvalue":0.34388184107419884,"HO_covariance_min_eigenvalue":0.3245205593841743,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":1.682156097916904e-17,"inner_iterations":1,"imaginary_residue":1.0714883943182227e-16,"E_relative_rms_error":0.00011680651384986585,"E_absolute_max_error":0.00016685978430719395,"face_H_relative_rms_error":0.0007148534215482108,"face_H_absolute_rms_error":1.6728909506090988e-05,"face_H_absolute_max_error":2.363901985750344e-05,"D_component_max_abs_error":9.911245539284685e-06,"M1_closure_reference_max_abs_difference":0.010532599339812099,"tensor_symmetry_error":0.0,"LO_flux_realizability_excess":-0.9022263801341889,"HO_flux_realizability_excess":-0.9022647949288914,"VET_z_parity":0.0,"nonconstant_f_span":0.019361281690024545,"max_a
+
+## 可変Eddington因子・テンソルの軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-measurements
+Coverage: reading
+
+bs_Dxy":0.0,"source_modes":[{"wave_numbers":[1],"computed_real":0.09222196221721737,"computed_imag":6.560408781875925e-17,"reference_real":0.0920564289735461,"reference_imag":4.5418214643756407e-17,"complex_relative_error":0.0017981714641444732,"magnitude_relative_error":0.0017981714641444732,"phase_error_radians":2.1799800128005413e-16}],"maximum_source_mode_complex_relative_error":0.0017981714641444732,"work":{"outer_iterations":13,"inner_iterations":52,"formal_solves":14,"directional_solves":448}}{"outer_E_converged":true,"outer_D_converged":true,"true_LO_residual":true,"formal_HO_residual":true,"imaginary_roundoff":true,"global_balance":true,"positive_intensity":true,"positive_LO_energy":true,"LO_realizability":true,"HO_realizability":true,"tensor_symmetry":true,"tensor_trace":true,"tensor_PSD":true,"HO_covariance_PSD":true,"z_parity":true}true[{"outer":1,"LOE_relative_update":0.07563559773480992,"D_max_update":0.004660966124269861,"true_LO_relative_residual":0.033904355954740624,"formal_transport_residual":1.9149979844068615e-17,"HOE_minus_LOE_rms":0.0038540177111461935,"minimum_I":0.8643984880021485,"minimum_LOE":0.9190111256713395,"tensor_min_eigenvalue":0.3249577066990358,"tensor_max_eigenvalue":0.343228437217853,"HO_covariance_min_eigenvalue":0.3249577066990358,"tensor_trace_error":1.1102230246251565e-16,"discrete_global_balance":1.0092936587501423e-17,"inner_iteration
+
+## 可変Eddington因子・テンソルの軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-measurements
+Coverage: reading
+
+s":6,"imaginary_residue":1.785620823294182e-16},{"outer":2,"LOE_relative_update":0.008711610257146995,"D_max_update":0.0005737361333036373,"true_LO_relative_residual":0.00450308213240094,"formal_transport_residual":1.5088430197048796e-17,"HOE_minus_LOE_rms":0.0003937199486713064,"minimum_I":0.8572586442220971,"minimum_LOE":0.9095060856036407,"tensor_min_eigenvalue":0.3245681850670708,"tensor_max_eigenvalue":0.34380217335115665,"HO_covariance_min_eigenvalue":0.3245681850670708,"tensor_trace_error":1.1102230246251565e-16,"discrete_global_balance":3.3643121958338078e-18,"inner_iterations":7,"imaginary_residue":2.429025158708388e-16},{"outer":3,"LOE_relative_update":0.001051289397900603,"D_max_update":6.98404472136982e-05,"true_LO_relative_residual":0.0006150197030845978,"formal_transport_residual":1.6112347575747245e-17,"HOE_minus_LOE_rms":1.3258465820688726e-05,"minimum_I":0.8563960448728112,"minimum_LOE":0.9083579730385485,"tensor_min_eigenvalue":0.3245256453015061,"tensor_max_eigenvalue":0.3438720137983703,"HO_covariance_min_eigenvalue":0.3245256453015061,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":6.7286243916676156e-18,"inner_iterations":6,"imaginary_residue":1.4778560741326002e-16},{"outer":4,"LOE_relative_update":0.00012894718806533327,"D_max_update":8.595494157270789e-06,"true_LO_relative_residual":8.594679819908289e-05,"formal_transport_residual":
+
+## 可変Eddington因子・テンソルの軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-measurements
+Coverage: reading
+
+1.447299379225233e-17,"HOE_minus_LOE_rms":5.493725841372887e-05,"minimum_I":0.856290202795714,"minimum_LOE":0.908217135594432,"tensor_min_eigenvalue":0.3245210840508579,"tensor_max_eigenvalue":0.3438806092925275,"HO_covariance_min_eigenvalue":0.3245210840508579,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":2.3550185370836655e-17,"inner_iterations":6,"imaginary_residue":2.2604170698550483e-16},{"outer":5,"LOE_relative_update":1.6070157274367832e-05,"D_max_update":1.0745214694130034e-06,"true_LO_relative_residual":1.2259053766048812e-05,"formal_transport_residual":1.5844294324279676e-17,"HOE_minus_LOE_rms":6.025039480323049e-05,"minimum_I":0.8562770077936146,"minimum_LOE":0.9081995834153944,"tensor_min_eigenvalue":0.3245206104396107,"tensor_max_eigenvalue":0.34388168381399686,"HO_covariance_min_eigenvalue":0.3245206104396107,"tensor_trace_error":1.1102230246251565e-16,"discrete_global_balance":2.6914497566670462e-17,"inner_iterations":5,"imaginary_residue":2.0062650483567025e-16},{"outer":6,"LOE_relative_update":2.0388679868813024e-06,"D_max_update":1.3677558718949712e-07,"true_LO_relative_residual":1.779934199432385e-06,"formal_transport_residual":1.5973771494786836e-17,"HOE_minus_LOE_rms":6.086817214987136e-05,"minimum_I":0.8562753330904511,"minimum_LOE":0.9081973565165433,"tensor_min_eigenvalue":0.32452056382741534,"tensor_max_eigenvalue":0.3438818205895
+
+## 可変Eddington因子・テンソルの軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-measurements
+Coverage: reading
+
+8405,"HO_covariance_min_eigenvalue":0.32452056382741534,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":1.682156097916904e-17,"inner_iterations":5,"imaginary_residue":1.9148254365102004e-16},{"outer":7,"LOE_relative_update":2.638253281094362e-07,"D_max_update":1.7759540005268803e-08,"true_LO_relative_residual":2.62311413701255e-07,"formal_transport_residual":1.5618032713827375e-17,"HOE_minus_LOE_rms":6.09398367690778e-05,"minimum_I":0.8562751162995771,"minimum_LOE":0.9081970683603783,"tensor_min_eigenvalue":0.3245205596757044,"tensor_max_eigenvalue":0.34388183834912395,"HO_covariance_min_eigenvalue":0.3245205596757044,"tensor_trace_error":1.1102230246251565e-16,"discrete_global_balance":6.7286243916676156e-18,"inner_iterations":4,"imaginary_residue":2.391228821239734e-16},{"outer":8,"LOE_relative_update":3.486053645506713e-08,"D_max_update":2.3548225036584824e-09,"true_LO_relative_residual":3.912533502309783e-08,"formal_transport_residual":1.481174562966177e-17,"HOE_minus_LOE_rms":6.0948154778984436e-05,"minimum_I":0.8562750876416337,"minimum_LOE":0.9081970302848889,"tensor_min_eigenvalue":0.3245205593840197,"tensor_max_eigenvalue":0.34388184070394645,"HO_covariance_min_eigenvalue":0.3245205593840197,"tensor_trace_error":1.1102230246251565e-16,"discrete_global_balance":2.0185873175002847e-17,"inner_iterations":4,"imaginary_residue":1.8164975444242458e-16},{
+
+## 可変Eddington因子・テンソルの軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-measurements
+Coverage: reading
+
+"outer":9,"LOE_relative_update":4.705592151250992e-09,"D_max_update":3.1892888330276037e-10,"true_LO_relative_residual":5.8895762625828985e-09,"formal_transport_residual":1.574965534656577e-17,"HOE_minus_LOE_rms":6.0949121763209875e-05,"minimum_I":0.856275083771599,"minimum_LOE":0.9081970251453315,"tensor_min_eigenvalue":0.3245205593789966,"tensor_max_eigenvalue":0.34388184102287533,"HO_covariance_min_eigenvalue":0.3245205593789966,"tensor_trace_error":1.1102230246251565e-16,"discrete_global_balance":1.0092936587501423e-17,"inner_iterations":3,"imaginary_residue":1.7252818043097894e-16},{"outer":10,"LOE_relative_update":6.480934582442954e-10,"D_max_update":4.4064030202406457e-11,"true_LO_relative_residual":9.001501253782005e-10,"formal_transport_residual":1.9703541849709072e-17,"HOE_minus_LOE_rms":6.0949234404168136e-05,"minimum_I":0.8562750832383614,"minimum_LOE":0.9081970244374687,"tensor_min_eigenvalue":0.3245205593827925,"tensor_max_eigenvalue":0.34388184106693936,"HO_covariance_min_eigenvalue":0.3245205593827925,"tensor_trace_error":1.1102230246251565e-16,"discrete_global_balance":3.027880976250427e-17,"inner_iterations":2,"imaginary_residue":1.9039076166350194e-16},{"outer":11,"LOE_relative_update":9.137717258148403e-11,"D_max_update":6.228018101239741e-12,"true_LO_relative_residual":1.381815175103786e-10,"formal_transport_residual":1.4305653491054995e-17,"HOE_minus_LOE_r
+
+## 可変Eddington因子・テンソルの軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-measurements
+Coverage: reading
+
+ms":6.094924758879749e-05,"minimum_I":0.8562750831631463,"minimum_LOE":0.9081970243376645,"tensor_min_eigenvalue":0.32452055938390234,"tensor_max_eigenvalue":0.3438818410731674,"HO_covariance_min_eigenvalue":0.32452055938390234,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":3.3643121958338078e-18,"inner_iterations":2,"imaginary_residue":1.3068272472010755e-16},{"outer":12,"LOE_relative_update":1.3428716022884974e-11,"D_max_update":9.158784841645229e-13,"true_LO_relative_residual":1.6772737045410116e-11,"formal_transport_residual":1.408192740590467e-17,"HOE_minus_LOE_rms":6.094924917941338e-05,"minimum_I":0.8562750831520879,"minimum_LOE":0.9081970243229973,"tensor_min_eigenvalue":0.32452055938412777,"tensor_max_eigenvalue":0.3438818410740831,"HO_covariance_min_eigenvalue":0.32452055938412777,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":2.0185873175002847e-17,"inner_iterations":1,"imaginary_residue":1.0276643548721613e-16},{"outer":13,"LOE_relative_update":1.6762770110785017e-12,"D_max_update":1.1574075031717257e-13,"true_LO_relative_residual":2.4576921694355963e-12,"formal_transport_residual":1.5418243648783696e-17,"HOE_minus_LOE_rms":6.0949249332227494e-05,"minimum_I":0.8562750831507078,"minimum_LOE":0.9081970243211669,"tensor_min_eigenvalue":0.3245205593841743,"tensor_max_eigenvalue":0.34388184107419884,"HO_covariance_min_eigenvalu
+
+## 可変Eddington因子・テンソルの軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-measurements
+Coverage: reading
+
+e":0.3245205593841743,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":1.682156097916904e-17,"inner_iterations":1,"imaginary_residue":1.0714883943182227e-16}]
+
+## 可変Eddington因子・テンソルの軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-measurements
+Coverage: reading
+
+space-finefine{"id":"space-fine","shape":[65],"mu_order":32}{"mean":1.0,"modes":[{"wave_numbers":[1],"amplitude":{"real":0.3,"imag":0.0}}]}vef-fourier-scattering1d--space-fine.npz10715e05d85429ace7ab53321dcabc466f758b28ca978a44a1320e27d2efe2ae{"outer":13,"LOE_relative_update":1.7061517420129273e-12,"D_max_update":1.1790568521519162e-13,"true_LO_relative_residual":2.7137266792683825e-12,"formal_transport_residual":1.50217183199147e-17,"HOE_minus_LOE_rms":1.5697920308880423e-05,"minimum_I":0.8563929222126526,"minimum_LOE":0.9080088528913614,"tensor_min_eigenvalue":0.32452576622509455,"tensor_max_eigenvalue":0.34391366867204115,"HO_covariance_min_eigenvalue":0.32452576622509455,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":8.540177112501205e-18,"inner_iterations":1,"imaginary_residue":9.949405939387779e-17,"E_relative_rms_error":3.008436289883424e-05,"E_absolute_max_error":4.2975989158700045e-05,"face_H_relative_rms_error":0.00018433362088593307,"face_H_absolute_rms_error":4.313752120053172e-06,"face_H_absolute_max_error":6.099407850533589e-06,"D_component_max_abs_error":2.562663224070505e-06,"M1_closure_reference_max_abs_difference":0.010576222375295208,"tensor_symmetry_error":0.0,"LO_flux_realizability_excess":-0.9021483628573613,"HO_flux_realizability_excess":-0.9021559127337978,"VET_z_parity":0.0,"nonconstant_f_span":0.019387902446946603,"max_abs_Dxy":0.
+
+## 可変Eddington因子・テンソルの軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-measurements
+Coverage: reading
+
+0,"source_modes":[{"wave_numbers":[1],"computed_real":0.09209906325800502,"computed_imag":0.0,"reference_real":0.09205642897354609,"reference_imag":0.0,"complex_relative_error":0.00046313206947425713,"magnitude_relative_error":0.00046313206947425713,"phase_error_radians":0.0}],"maximum_source_mode_complex_relative_error":0.00046313206947425713,"work":{"outer_iterations":13,"inner_iterations":54,"formal_solves":14,"directional_solves":448}}{"outer_E_converged":true,"outer_D_converged":true,"true_LO_residual":true,"formal_HO_residual":true,"imaginary_roundoff":true,"global_balance":true,"positive_intensity":true,"positive_LO_energy":true,"LO_realizability":true,"HO_realizability":true,"tensor_symmetry":true,"tensor_trace":true,"tensor_PSD":true,"HO_covariance_PSD":true,"z_parity":true}true[{"outer":1,"LOE_relative_update":0.07553732956277977,"D_max_update":0.004672015028590826,"true_LO_relative_residual":0.0341113403014811,"formal_transport_residual":1.5733659524812928e-17,"HOE_minus_LOE_rms":0.003896093262298592,"minimum_I":0.8645086377168657,"minimum_LOE":0.9188537941724144,"tensor_min_eigenvalue":0.32496258262837485,"tensor_max_eigenvalue":0.34325804284247224,"HO_covariance_min_eigenvalue":0.32496258262837485,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":3.416070845000482e-18,"inner_iterations":7,"imaginary_residue":2.089163137060407e-16},{"outer":2,"LOE
+
+## 可変Eddington因子・テンソルの軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-measurements
+Coverage: reading
+
+_relative_update":0.00873619447124191,"D_max_update":0.0005756019827760084,"true_LO_relative_residual":0.004544083992559148,"formal_transport_residual":1.682850525516756e-17,"HOE_minus_LOE_rms":0.00043855913652752506,"minimum_I":0.8573760781608292,"minimum_LOE":0.9093230094745415,"tensor_min_eigenvalue":0.3245733792627476,"tensor_max_eigenvalue":0.34383364482524814,"HO_covariance_min_eigenvalue":0.3245733792627476,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":1.3664283380001927e-17,"inner_iterations":7,"imaginary_residue":2.9156465457386473e-16},{"outer":3,"LOE_relative_update":0.001055326616296715,"D_max_update":7.014086146583942e-05,"true_LO_relative_residual":0.0006225818200161343,"formal_transport_residual":1.4117851268416476e-17,"HOE_minus_LOE_rms":3.789855009023477e-05,"minimum_I":0.8565138995970457,"minimum_LOE":0.9081706186178151,"tensor_min_eigenvalue":0.3245308531517643,"tensor_max_eigenvalue":0.343903785686714,"HO_covariance_min_eigenvalue":0.3245308531517643,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":1.5372318802502168e-17,"inner_iterations":7,"imaginary_residue":2.0656364890206966e-16},{"outer":4,"LOE_relative_update":0.00012959218315963315,"D_max_update":8.642586836304922e-06,"true_LO_relative_residual":8.727728362809208e-05,"formal_transport_residual":1.554793235019426e-17,"HOE_minus_LOE_rms":9.827488415160511e-06,
+
+## 可変Eddington因子・テンソルの軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-measurements
+Coverage: reading
+
+"minimum_I":0.8564080521928821,"minimum_LOE":0.9080290927587183,"tensor_min_eigenvalue":0.32452629121405,"tensor_max_eigenvalue":0.3439124282735503,"HO_covariance_min_eigenvalue":0.32452629121405,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":1.0248212535001446e-17,"inner_iterations":6,"imaginary_residue":1.891338822620737e-16},{"outer":5,"LOE_relative_update":1.6171364204717425e-05,"D_max_update":1.0818109454358016e-06,"true_LO_relative_residual":1.2486337786114904e-05,"formal_transport_residual":1.5553598963654364e-17,"HOE_minus_LOE_rms":1.500077060780987e-05,"minimum_I":0.8563948492682114,"minimum_LOE":0.9080114320426358,"tensor_min_eigenvalue":0.3245258173279432,"tensor_max_eigenvalue":0.3439135100844955,"HO_covariance_min_eigenvalue":0.3245258173279432,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":1.3664283380001927e-17,"inner_iterations":5,"imaginary_residue":2.4655945055275504e-16},{"outer":6,"LOE_relative_update":2.0546098427778915e-06,"D_max_update":1.378984625377555e-07,"true_LO_relative_residual":1.8180142472653453e-06,"formal_transport_residual":1.4794307461116088e-17,"HOE_minus_LOE_rms":1.5616763373822316e-05,"minimum_I":0.8563931726127162,"minimum_LOE":0.9080091882046984,"tensor_min_eigenvalue":0.3245257706726944,"tensor_max_eigenvalue":0.3439136479829578,"HO_covariance_min_eigenvalue":0.3245257706726944,"tensor_trace_e
+
+## 可変Eddington因子・テンソルの軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-measurements
+Coverage: reading
+
+rror":2.220446049250313e-16,"discrete_global_balance":5.124106267500723e-18,"inner_iterations":5,"imaginary_residue":1.469302433590791e-16},{"outer":7,"LOE_relative_update":2.662664525367989e-07,"D_max_update":1.7932439699830383e-08,"true_LO_relative_residual":2.686063853392266e-07,"formal_transport_residual":1.6136824951591372e-17,"HOE_minus_LOE_rms":1.5688487192898857e-05,"minimum_I":0.856392955442704,"minimum_LOE":0.9080088974152671,"tensor_min_eigenvalue":0.32452576651661447,"tensor_max_eigenvalue":0.34391366591539746,"HO_covariance_min_eigenvalue":0.32452576651661447,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":1.708035422500241e-18,"inner_iterations":4,"imaginary_residue":1.672770183296533e-16},{"outer":8,"LOE_relative_update":3.5239200888097495e-08,"D_max_update":2.381501218451376e-09,"true_LO_relative_residual":4.015574676193759e-08,"formal_transport_residual":1.5040827761434577e-17,"HOE_minus_LOE_rms":1.5696822605147086e-05,"minimum_I":0.8563929267173868,"minimum_LOE":0.9080088589305569,"tensor_min_eigenvalue":0.32452576622481555,"tensor_max_eigenvalue":0.3439136682968986,"HO_covariance_min_eigenvalue":0.32452576622481555,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":3.416070845000482e-18,"inner_iterations":4,"imaginary_residue":2.3234339804323543e-16},{"outer":9,"LOE_relative_update":4.764452578462807e-09,"D_max_update":3
+
+## 可変Eddington因子・テンソルの軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-measurements
+Coverage: reading
+
+.230591349989709e-10,"true_LO_relative_residual":6.057129157218592e-09,"formal_transport_residual":1.472220314465026e-17,"HOE_minus_LOE_rms":1.5697792298214594e-05,"minimum_I":0.8563929228358512,"minimum_LOE":0.9080088537273011,"tensor_min_eigenvalue":0.32452576621987766,"tensor_max_eigenvalue":0.34391366861995776,"HO_covariance_min_eigenvalue":0.32452576621987766,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":1.708035422500241e-18,"inner_iterations":3,"imaginary_residue":1.7287623391287608e-16},{"outer":10,"LOE_relative_update":6.572542185434582e-10,"D_max_update":4.470496195452256e-11,"true_LO_relative_residual":9.277267842833226e-10,"formal_transport_residual":1.5119885623940377e-17,"HOE_minus_LOE_rms":1.5697905320700533e-05,"minimum_I":0.8563929223006885,"minimum_LOE":0.9080088530095142,"tensor_min_eigenvalue":0.3245257662237036,"tensor_max_eigenvalue":0.3439136686646626,"HO_covariance_min_eigenvalue":0.3245257662237036,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":6.832141690000964e-18,"inner_iterations":2,"imaginary_residue":1.0682564239162598e-16},{"outer":11,"LOE_relative_update":9.281880247353814e-11,"D_max_update":6.3285487961195486e-12,"true_LO_relative_residual":1.427653721737425e-10,"formal_transport_residual":1.591730043141687e-17,"HOE_minus_LOE_rms":1.5697918557490493e-05,"minimum_I":0.8563929222251537,"minimum_LOE":0.
+
+## 可変Eddington因子・テンソルの軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-measurements
+Coverage: reading
+
+908008852908147,"tensor_min_eigenvalue":0.32452576622482077,"tensor_max_eigenvalue":0.34391366867099116,"HO_covariance_min_eigenvalue":0.32452576622482077,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":8.540177112501205e-18,"inner_iterations":2,"imaginary_residue":1.2511154331128173e-16},{"outer":12,"LOE_relative_update":1.3664259545209372e-11,"D_max_update":9.321432514752814e-13,"true_LO_relative_residual":1.7356885159905196e-11,"formal_transport_residual":1.6122230093050097e-17,"HOE_minus_LOE_rms":1.5697920155198736e-05,"minimum_I":0.8563929222140404,"minimum_LOE":0.9080088528932243,"tensor_min_eigenvalue":0.32452576622504775,"tensor_max_eigenvalue":0.34391366867192324,"HO_covariance_min_eigenvalue":0.32452576622504775,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":1.3664283380001927e-17,"inner_iterations":1,"imaginary_residue":1.32487136516397e-16},{"outer":13,"LOE_relative_update":1.7061517420129273e-12,"D_max_update":1.1790568521519162e-13,"true_LO_relative_residual":2.7137266792683825e-12,"formal_transport_residual":1.50217183199147e-17,"HOE_minus_LOE_rms":1.5697920308880423e-05,"minimum_I":0.8563929222126526,"minimum_LOE":0.9080088528913614,"tensor_min_eigenvalue":0.32452576622509455,"tensor_max_eigenvalue":0.34391366867204115,"HO_covariance_min_eigenvalue":0.32452576622509455,"tensor_trace_error":2.220446049250313e-16,"discret
+
+## 可変Eddington因子・テンソルの軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-measurements
+Coverage: reading
+
+e_global_balance":8.540177112501205e-18,"inner_iterations":1,"imaginary_residue":9.949405939387779e-17}]
+
+## 可変Eddington因子・テンソルの軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-measurements
+Coverage: reading
+
+angle-probeangle-probe{"id":"angle-probe","shape":[65],"mu_order":64}{"mean":1.0,"modes":[{"wave_numbers":[1],"amplitude":{"real":0.3,"imag":0.0}}]}vef-fourier-scattering1d--angle-probe.npz0bf9cc93ed7ae5d3cc9d8f506347fb3660a06a279f2becab0613db521644fa24{"outer":13,"LOE_relative_update":1.7062534015339958e-12,"D_max_update":1.1801670751765414e-13,"true_LO_relative_residual":2.7649677419433897e-12,"formal_transport_residual":1.762470370339104e-17,"HOE_minus_LOE_rms":1.5697920308892725e-05,"minimum_I":0.8560385980051892,"minimum_LOE":0.9080088528913787,"tensor_min_eigenvalue":0.32452576622509743,"tensor_max_eigenvalue":0.34391366867203643,"HO_covariance_min_eigenvalue":0.32452576622509743,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":8.540177112501205e-18,"inner_iterations":1,"imaginary_residue":1.4873939921590592e-16,"E_relative_rms_error":3.0084362898696935e-05,"E_absolute_max_error":4.297598915559142e-05,"face_H_relative_rms_error":0.0001843336208869165,"face_H_absolute_rms_error":4.313752120076186e-06,"face_H_absolute_max_error":6.099407848729477e-06,"D_component_max_abs_error":2.562663219352057e-06,"M1_closure_reference_max_abs_difference":0.010576222375295208,"tensor_symmetry_error":0.0,"LO_flux_realizability_excess":-0.9021483628573662,"HO_flux_realizability_excess":-0.902155912733804,"VET_z_parity":0.0,"nonconstant_f_span":0.019387902446938998,"max_a
+
+## 可変Eddington因子・テンソルの軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-measurements
+Coverage: reading
+
+bs_Dxy":0.0,"source_modes":[{"wave_numbers":[1],"computed_real":0.09209906325800479,"computed_imag":0.0,"reference_real":0.09205642897354609,"reference_imag":0.0,"complex_relative_error":0.00046313206947184505,"magnitude_relative_error":0.00046313206947184505,"phase_error_radians":0.0}],"maximum_source_mode_complex_relative_error":0.00046313206947184505,"work":{"outer_iterations":13,"inner_iterations":54,"formal_solves":14,"directional_solves":896}}{"outer_E_converged":true,"outer_D_converged":true,"true_LO_residual":true,"formal_HO_residual":true,"imaginary_roundoff":true,"global_balance":true,"positive_intensity":true,"positive_LO_energy":true,"LO_realizability":true,"HO_realizability":true,"tensor_symmetry":true,"tensor_trace":true,"tensor_PSD":true,"HO_covariance_PSD":true,"z_parity":true}true[{"outer":1,"LOE_relative_update":0.07553732956277957,"D_max_update":0.004672015027095133,"true_LO_relative_residual":0.03411134019111459,"formal_transport_residual":1.7491084003841564e-17,"HOE_minus_LOE_rms":0.0038960932622922714,"minimum_I":0.8641756625134035,"minimum_LOE":0.9188537941724144,"tensor_min_eigenvalue":0.3249625826288171,"tensor_max_eigenvalue":0.34325804284097844,"HO_covariance_min_eigenvalue":0.3249625826288171,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":6.832141690000964e-18,"inner_iterations":7,"imaginary_residue":2.1716616920332933e-16},{"ou
+
+## 可変Eddington因子・テンソルの軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-measurements
+Coverage: reading
+
+ter":2,"LOE_relative_update":0.008736194467734592,"D_max_update":0.0005756019829871173,"true_LO_relative_residual":0.0045440839977219415,"formal_transport_residual":1.4803924781698433e-17,"HOE_minus_LOE_rms":0.0004385591365362131,"minimum_I":0.8570246770778189,"minimum_LOE":0.9093230094783804,"tensor_min_eigenvalue":0.3245733792630239,"tensor_max_eigenvalue":0.34383364482396545,"HO_covariance_min_eigenvalue":0.3245733792630239,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":1.708035422500241e-17,"inner_iterations":7,"imaginary_residue":3.2911464992858214e-16},{"outer":3,"LOE_relative_update":0.00105532661679393,"D_max_update":7.014086224532701e-05,"true_LO_relative_residual":0.0006225818817271125,"formal_transport_residual":1.631894680749146e-17,"HOE_minus_LOE_rms":3.7898550114936475e-05,"minimum_I":0.8561599876670918,"minimum_LOE":0.908170618621112,"tensor_min_eigenvalue":0.32453085315186153,"tensor_max_eigenvalue":0.3439037856862108,"HO_covariance_min_eigenvalue":0.32453085315186153,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":1.708035422500241e-18,"inner_iterations":7,"imaginary_residue":2.024357478284002e-16},{"outer":4,"LOE_relative_update":0.00012959218499088444,"D_max_update":8.642587191631801e-06,"true_LO_relative_residual":8.727731295036319e-05,"formal_transport_residual":1.7027549261236782e-17,"HOE_minus_LOE_rms":9.82748842
+
+## 可変Eddington因子・テンソルの軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-measurements
+Coverage: reading
+
+2988788e-06,"minimum_I":0.8560537873536201,"minimum_LOE":0.9080290927600153,"tensor_min_eigenvalue":0.3245262912140787,"tensor_max_eigenvalue":0.3439124282734024,"HO_covariance_min_eigenvalue":0.3245262912140787,"tensor_trace_error":1.1102230246251565e-16,"discrete_global_balance":1.5372318802502168e-17,"inner_iterations":6,"imaginary_residue":1.9077284106088189e-16},{"outer":5,"LOE_relative_update":1.6171365039852673e-05,"D_max_update":1.081811053516013e-06,"true_LO_relative_residual":1.2486346651501961e-05,"formal_transport_residual":1.921576704375602e-17,"HOE_minus_LOE_rms":1.5000770608145946e-05,"minimum_I":0.8560405337572623,"minimum_LOE":0.9080114320430207,"tensor_min_eigenvalue":0.32452581732795216,"tensor_max_eigenvalue":0.34391351008445586,"HO_covariance_min_eigenvalue":0.32452581732795216,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":3.416070845000482e-18,"inner_iterations":5,"imaginary_residue":1.215362874382352e-16},{"outer":6,"LOE_relative_update":2.054610097130085e-06,"D_max_update":1.37898489516175e-07,"true_LO_relative_residual":1.8180162683836605e-06,"formal_transport_residual":1.5451143185688423e-17,"HOE_minus_LOE_rms":1.5616763373843844e-05,"minimum_I":0.8560388496970707,"minimum_LOE":0.9080091882048053,"tensor_min_eigenvalue":0.3245257706726988,"tensor_max_eigenvalue":0.3439136479829453,"HO_covariance_min_eigenvalue":0.3245257706726988
+
+## 可変Eddington因子・テンソルの軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-measurements
+Coverage: reading
+
+,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":3.416070845000482e-18,"inner_iterations":5,"imaginary_residue":1.6587702938821193e-16},{"outer":7,"LOE_relative_update":2.6626651587068314e-07,"D_max_update":1.7932446083612774e-08,"true_LO_relative_residual":2.686070906724543e-07,"formal_transport_residual":1.5766811766128224e-17,"HOE_minus_LOE_rms":1.568848719289701e-05,"minimum_I":0.8560386314292705,"minimum_LOE":0.9080088974153043,"tensor_min_eigenvalue":0.3245257665166176,"tensor_max_eigenvalue":0.34391366591539124,"HO_covariance_min_eigenvalue":0.3245257665166176,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":1.708035422500241e-17,"inner_iterations":4,"imaginary_residue":1.6098558171187075e-16},{"outer":8,"LOE_relative_update":3.523921603536629e-08,"D_max_update":2.381502328674401e-09,"true_LO_relative_residual":4.0155943356814724e-08,"formal_transport_residual":1.543526735391007e-17,"HOE_minus_LOE_rms":1.5696822605141438e-05,"minimum_I":0.8560386025393147,"minimum_LOE":0.9080088589305779,"tensor_min_eigenvalue":0.32452576622481843,"tensor_max_eigenvalue":0.34391366829689357,"HO_covariance_min_eigenvalue":0.32452576622481843,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":1.5372318802502168e-17,"inner_iterations":4,"imaginary_residue":1.2871929259721417e-16},{"outer":9,"LOE_relative_update":4.764455424929412e-0
+
+## 可変Eddington因子・テンソルの軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-measurements
+Coverage: reading
+
+9,"D_max_update":3.2305930153242457e-10,"true_LO_relative_residual":6.056782084420739e-09,"formal_transport_residual":1.7338964294375867e-17,"HOE_minus_LOE_rms":1.569779229817957e-05,"minimum_I":0.8560385986328657,"minimum_LOE":0.908008853727319,"tensor_min_eigenvalue":0.32452576621988055,"tensor_max_eigenvalue":0.3439136686199529,"HO_covariance_min_eigenvalue":0.32452576621988055,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":1.878838964750265e-17,"inner_iterations":3,"imaginary_residue":1.9290152137919876e-16},{"outer":10,"LOE_relative_update":6.572545235220237e-10,"D_max_update":4.470501746567379e-11,"true_LO_relative_residual":9.280559227092383e-10,"formal_transport_residual":2.734764405619935e-17,"HOE_minus_LOE_rms":1.569790532071974e-05,"minimum_I":0.8560385980939157,"minimum_LOE":0.9080088530095318,"tensor_min_eigenvalue":0.32452576622370644,"tensor_max_eigenvalue":0.3439136686646579,"HO_covariance_min_eigenvalue":0.32452576622370644,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":1.708035422500241e-17,"inner_iterations":2,"imaginary_residue":1.0792393171564929e-16},{"outer":11,"LOE_relative_update":9.281900579258059e-11,"D_max_update":6.32860430727078e-12,"true_LO_relative_residual":1.4282404319050537e-10,"formal_transport_residual":1.6597982910813997e-17,"HOE_minus_LOE_rms":1.569791855752484e-05,"minimum_I":0.8560385980177955,
+
+## 可変Eddington因子・テンソルの軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-measurements
+Coverage: reading
+
+"minimum_LOE":0.9080088529081642,"tensor_min_eigenvalue":0.32452576622482365,"tensor_max_eigenvalue":0.3439136686709864,"HO_covariance_min_eigenvalue":0.32452576622482365,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":1.3664283380001927e-17,"inner_iterations":2,"imaginary_residue":1.3753888692636484e-16},{"outer":12,"LOE_relative_update":1.3664157885688354e-11,"D_max_update":9.321987626265127e-13,"true_LO_relative_residual":1.741538537312583e-11,"formal_transport_residual":1.8350752726544932e-17,"HOE_minus_LOE_rms":1.5697920155135665e-05,"minimum_I":0.8560385980065884,"minimum_LOE":0.9080088528932417,"tensor_min_eigenvalue":0.3245257662250504,"tensor_max_eigenvalue":0.34391366867191847,"HO_covariance_min_eigenvalue":0.3245257662250504,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":1.1956247957501686e-17,"inner_iterations":1,"imaginary_residue":1.5803001897589872e-16},{"outer":13,"LOE_relative_update":1.7062534015339958e-12,"D_max_update":1.1801670751765414e-13,"true_LO_relative_residual":2.7649677419433897e-12,"formal_transport_residual":1.762470370339104e-17,"HOE_minus_LOE_rms":1.5697920308892725e-05,"minimum_I":0.8560385980051892,"minimum_LOE":0.9080088528913787,"tensor_min_eigenvalue":0.32452576622509743,"tensor_max_eigenvalue":0.34391366867203643,"HO_covariance_min_eigenvalue":0.32452576622509743,"tensor_trace_error":2.22044604925
+
+## 可変Eddington因子・テンソルの軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-measurements
+Coverage: reading
+
+0313e-16,"discrete_global_balance":8.540177112501205e-18,"inner_iterations":1,"imaginary_residue":1.4873939921590592e-16}]
+
+## 可変Eddington因子・テンソルの軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-measurements
+Coverage: reading
+
+constant-controlconstant{"id":"constant-control","shape":[9],"mu_order":32}{"mean":1.0,"modes":[]}vef-fourier-scattering1d--constant-control.npz53095e23b3f43c61105ecd739003d5597a7f95493d34a9d6893c8503c017533b{"outer":1,"LOE_relative_update":0.0,"D_max_update":0.0,"true_LO_relative_residual":0.0,"formal_transport_residual":0.0,"HOE_minus_LOE_rms":3.3306690738754696e-16,"minimum_I":1.0,"minimum_LOE":1.0,"tensor_min_eigenvalue":0.3333333333333333,"tensor_max_eigenvalue":0.33333333333333337,"HO_covariance_min_eigenvalue":0.3333333333333333,"tensor_trace_error":0.0,"discrete_global_balance":0.0,"inner_iterations":0,"imaginary_residue":0.0,"E_relative_rms_error":0.0,"E_absolute_max_error":0.0,"face_H_relative_rms_error":null,"face_H_absolute_rms_error":0.0,"face_H_absolute_max_error":0.0,"D_component_max_abs_error":5.551115123125783e-17,"M1_closure_reference_max_abs_difference":5.551115123125783e-17,"tensor_symmetry_error":0.0,"LO_flux_realizability_excess":-1.0,"HO_flux_realizability_excess":-0.9999999999999997,"VET_z_parity":0.0,"nonconstant_f_span":0.0,"max_abs_Dxy":0.0,"source_modes":[],"maximum_source_mode_complex_relative_error":null,"work":{"outer_iterations":1,"inner_iterations":0,"formal_solves":2,"directional_solves":64}}{"outer_E_converged":true,"outer_D_converged":true,"true_LO_residual":true,"formal_HO_residual":true,"imaginary_roundoff":true,"global_balance":true,"posit
+
+## 可変Eddington因子・テンソルの軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-measurements
+Coverage: reading
+
+ive_intensity":true,"positive_LO_energy":true,"LO_realizability":true,"HO_realizability":true,"tensor_symmetry":true,"tensor_trace":true,"tensor_PSD":true,"HO_covariance_PSD":true,"z_parity":true,"constant_I":true,"constant_E":true,"constant_H":true,"constant_D":true}true[{"outer":1,"LOE_relative_update":0.0,"D_max_update":0.0,"true_LO_relative_residual":0.0,"formal_transport_residual":0.0,"HOE_minus_LOE_rms":3.3306690738754696e-16,"minimum_I":1.0,"minimum_LOE":1.0,"tensor_min_eigenvalue":0.3333333333333333,"tensor_max_eigenvalue":0.33333333333333337,"HO_covariance_min_eigenvalue":0.3333333333333333,"tensor_trace_error":0.0,"discrete_global_balance":0.0,"inner_iterations":0,"imaginary_residue":0.0}]
+この例の実測値・全記録 / JSON
+
+## 可変Eddington因子・テンソルの軽量検証 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vef-fourier-scattering1d-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+On the Use of Variable Eddington Factors in Non-LTE Stellar Atmospheres Computations [accessed 2026-11-26] · DOI: 10.1093/mnras/149.1.65
+確認範囲 / review_level: primary-publisher-abstract-and-bibliography
+選択箇所のみの読解です。出版社抄録・書誌のみ。原PDFの式・試験は未読であり、再現の主張はありません。
+High-Order Mixed Finite Element Variable Eddington Factor Methods [accessed 2026-11-26]
+確認範囲 / review_level: selected-primary-equations
+選択箇所のみの読解です。原論文の全試験・性能や実装全体の再現は主張しません。具体的な読解範囲と未読部分はsource-reading.jsonに記録します。
+A Family of Independent Variable Eddington Factor Methods with Efficient Preconditioned Iterative Solvers [accessed 2026-11-26] · DOI: 10.1016/j.jcp.2022.111747
+確認範囲 / review_level: selected-primary-method-scope
+選択箇所のみの読解です。原論文の全試験・性能や実装全体の再現は主張しません。具体的な読解範囲と未読部分はsource-reading.jsonに記録します。
+
+## 可変Eddington因子・テンソルの軽量検証 — 可変エディントンテンソル：周期2D非平行源の固定検証 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/
+Coverage: reading
+
+非平行な2つの源モードから全S²角度分布と3×3テンソルを求め、Dxyを含む保存的モーメント式と閉形式参照を比較します。
+手法・式・図・参照解
+使用手法
+可変Eddingtonテンソル（VET）
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+形式的なFourier角度輸送→D=K_HO/E_HO→独立な有限差分モーメント式を反復します。Dxyの両交差微分を共有面流束へ含め、局所・大域の離散収支を確認します。
+静止灰色輻射のVEF・VETモーメント閉包
+静止・定常・灰色の単位周期正方形。σt=4、σs=3、σa=1、c=1の無次元点値。q=1+0.3 cos(2πx)+0.2 sin(2π(x+y))。空間は2Dでも角度は全S²でDzzも保持します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+可変エディントンテンソル：周期2D非平行源の固定検証
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+17²/33²と12×48角度則、33²の16×64角度プローブを区別します。解析E/H/K/D、位相を含む複素モード、独立角度積分、テンソル制約、混合項の負制御、N=9²一定源を照合します。
+同じ問題の参照 · 解析参照
+本例のために導出した周期2D VETの連続Fourier応答
+正の指定等方輻射源に対する連続角度Fourier応答が、同じ固定問題の解析参照です。点値・面位置・複素位相を区別し、異なるHO/LO離散化の差は保存します。 局所M1との比較は閉包の点ごとの診断だけで、M1方程式は解きません。Athena・短い特性線法・影・交差ビーム・RHD・境界閉包の再現でもなく、固定格子でHO/LOの厳密一致や普遍的な収束率を主張しません。
+
+## 可変Eddington因子・テンソルの軽量検証 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vet-fourier-source2d-assumptions
+Coverage: reading
+
+静止・定常・灰色の単位周期正方形。σt=4、σs=3、σa=1、c=1の無次元点値。q=1+0.3 cos(2πx)+0.2 sin(2π(x+y))。空間は2Dでも角度は全S²でDzzも保持します。
+
+## 可変Eddington因子・テンソルの軽量検証 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vet-fourier-source2d-algorithm
+Coverage: reading
+
+形式的なFourier角度輸送→D=K_HO/E_HO→独立な有限差分モーメント式を反復します。Dxyの両交差微分を共有面流束へ含め、局所・大域の離散収支を確認します。
+\boldsymbol\Omega\cdot\nabla I+\sigma_tI=\sigma_sE+q,\quad D=\frac{\langle\boldsymbol\Omega\boldsymbol\Omega^TI\rangle}{\langle I\rangle}\sigma_t\sigma_aE-\partial_{xx}(D_{xx}E)-2\partial_{xy}(D_{xy}E)-\partial_{yy}(D_{yy}E)=\sigma_tqK_k=A\left[T\mathbb I+(C-T)\hat k\hat k^T\right],\quad C=\frac{\sigma_t(1-\sigma_tR)}{k^2},\quad T=\frac{R-C}{2}
+
+## 可変Eddington因子・テンソルの軽量検証 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vet-fourier-source2d-validation
+Coverage: reading
+
+17²/33²と12×48角度則、33²の16×64角度プローブを区別します。解析E/H/K/D、位相を含む複素モード、独立角度積分、テンソル制約、混合項の負制御、N=9²一定源を照合します。
+
+## 可変Eddington因子・テンソルの軽量検証 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vet-fourier-source2d-limits
+Coverage: reading
+
+局所M1との比較は閉包の点ごとの診断だけで、M1方程式は解きません。Athena・短い特性線法・影・交差ビーム・RHD・境界閉包の再現でもなく、固定格子でHO/LOの厳密一致や普遍的な収束率を主張しません。
+
+## 可変Eddington因子・テンソルの軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vet-fourier-source2d-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+finest_E_relative_rms_error0.000122281311791
+finest_face_H_relative_rms_error0.00107383900267
+finest_mode_complex_relative_error0.00179834364133
+finest_D_component_max_abs_error1.02502758956e-05
+E_error_refinement_ratio0.265528972402
+face_H_error_refinement_ratio0.266134095783
+HO_LO_gap_refinement_ratio0.265702102438
+angle_probe_E_relative_rms_difference2.39002767981e-07
+angle_probe_D_max_abs_difference2.41977090532e-07
+finest_nonconstant_f_span0.0226293251227
+finest_max_abs_Dxy0.00524320039491
+main_rows3
+constant_control_rows1
+outer_iterations_by_row{"space-coarse":13,"space-fine":13,"angle-probe":13,"constant-control":1}
+判定 / check合格
+all_row_solver_checkstrue
+finest_E_accuracytrue
+finest_face_H_accuracytrue
+complex_source_modes_include_phasetrue
+tensor_reference_accuracytrue
+E_refinestrue
+face_H_refinestrue
+HO_LO_gap_refines_not_zerotrue
+angle_probe_Etrue
+angle_probe_Dtrue
+variable_closuretrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。保存した面流束誤差・Dzz・空間/角度比較と反復残差。全3×3テンソルを保持します。全記録を表で読む
+row_idroleinputsourcearraysarrays_sha256metricscheckspassedhistory
+
+## 可変Eddington因子・テンソルの軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vet-fourier-source2d-measurements
+Coverage: reading
+
+space-coarsecoarse{"id":"space-coarse","shape":[17,17],"mu_order":12,"phi_order":48}{"mean":1.0,"modes":[{"wave_numbers":[1,0],"amplitude":{"real":0.3,"imag":0.0}},{"wave_numbers":[1,1],"amplitude":{"real":0.0,"imag":-0.2}}]}vet-fourier-source2d--space-coarse.npz9ba9cff8ccd3eee7b18d6d71b08a2f06ce00842ac671889b2f7124144624890e{"outer":13,"LOE_relative_update":5.101731351403427e-12,"D_max_update":2.4946711363327267e-13,"true_LO_relative_residual":5.313885273632329e-12,"formal_transport_residual":1.5913533983368797e-17,"HOE_minus_LOE_rms":0.00024427150194170197,"minimum_I":0.7761916867529286,"minimum_LOE":0.8670892182852173,"tensor_min_eigenvalue":0.3223558490232486,"tensor_max_eigenvalue":0.3475221335224966,"HO_covariance_min_eigenvalue":0.32235425774448295,"tensor_trace_error":4.440892098500626e-16,"discrete_global_balance":4.225762377465994e-18,"inner_iterations":1,"imaginary_residue":0.0,"E_relative_rms_error":0.00046073802491052235,"E_absolute_max_error":0.0008141583533578522,"face_H_relative_rms_error":0.004038225559219557,"face_H_absolute_rms_error":7.58376396816036e-05,"face_H_absolute_max_error":0.00017555630667803052,"D_component_max_abs_error":3.817645877191023e-05,"M1_closure_reference_max_abs_difference":0.012621029137296957,"tensor_symmetry_error":0.0,"LO_flux_realizability_excess":-0.858515913312703,"HO_flux_realizability_excess":-0.8585690979895992,"VET_z_parity":2
+
+## 可変Eddington因子・テンソルの軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vet-fourier-source2d-measurements
+Coverage: reading
+
+.0122792321330962e-16,"nonconstant_f_span":0.022506374038401333,"max_abs_Dxy":0.005213409726228309,"source_modes":[{"wave_numbers":[1,0],"computed_real":0.09268197875073177,"computed_imag":9.834501533011768e-17,"reference_real":0.09205642897354595,"reference_imag":0.0,"complex_relative_error":0.006795286153947831,"magnitude_relative_error":0.006795286153947831,"phase_error_radians":1.061101809172813e-15},{"wave_numbers":[1,1],"computed_real":-3.0732817290661774e-18,"computed_imag":-0.0419927121649812,"reference_real":-1.229312691626471e-17,"reference_imag":-0.042180838136282046,"complex_relative_error":0.00445998656292778,"magnitude_relative_error":0.00445998656292778,"phase_error_radians":2.1825258559933098e-16}],"maximum_source_mode_complex_relative_error":0.006795286153947831,"work":{"outer_iterations":13,"inner_iterations":58,"formal_solves":14,"directional_solves":8064}}{"outer_E_converged":true,"outer_D_converged":true,"true_LO_residual":true,"formal_HO_residual":true,"imaginary_roundoff":true,"global_balance":true,"positive_intensity":true,"positive_LO_energy":true,"LO_realizability":true,"HO_realizability":true,"tensor_symmetry":true,"tensor_trace":true,"tensor_PSD":true,"HO_covariance_PSD":true,"z_parity":true}true[{"outer":1,"LOE_relative_update":0.10585711592055114,"D_max_update":0.005541452740691011,"true_LO_relative_residual":0.05856371353379248,"formal_transport_r
+
+## 可変Eddington因子・テンソルの軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vet-fourier-source2d-measurements
+Coverage: reading
+
+esidual":2.4872050108885745e-17,"HOE_minus_LOE_rms":0.004552807786503003,"minimum_I":0.7888868209506004,"minimum_LOE":0.8839581948297326,"tensor_min_eigenvalue":0.3228745462023796,"tensor_max_eigenvalue":0.3466005590360413,"HO_covariance_min_eigenvalue":0.32287309877508125,"tensor_trace_error":5.551115123125783e-16,"discrete_global_balance":4.609922593599266e-18,"inner_iterations":7,"imaginary_residue":0.0},{"outer":2,"LOE_relative_update":0.012940561108502979,"D_max_update":0.0007194390594179589,"true_LO_relative_residual":0.00863914690069561,"formal_transport_residual":2.4589824664571456e-17,"HOE_minus_LOE_rms":0.0005022204123582586,"minimum_I":0.7778614700592466,"minimum_LOE":0.869306018820293,"tensor_min_eigenvalue":0.322415454497814,"tensor_max_eigenvalue":0.34740063319123105,"HO_covariance_min_eigenvalue":0.3224138836202022,"tensor_trace_error":4.440892098500626e-16,"discrete_global_balance":4.609922593599266e-18,"inner_iterations":7,"imaginary_residue":0.0},{"outer":3,"LOE_relative_update":0.0016948598265604665,"D_max_update":9.189182200086687e-05,"true_LO_relative_residual":0.0012863361340280982,"formal_transport_residual":2.5285903608661284e-17,"HOE_minus_LOE_rms":0.00022266524957619707,"minimum_I":0.7764150925117222,"minimum_LOE":0.8673854984948347,"tensor_min_eigenvalue":0.3223626738006559,"tensor_max_eigenvalue":0.3475059205373659,"HO_covariance_min_eigenvalue":0.32
+
+## 可変Eddington因子・テンソルの軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vet-fourier-source2d-measurements
+Coverage: reading
+
+23610853665474,"tensor_trace_error":4.440892098500626e-16,"discrete_global_balance":5.37824302586581e-18,"inner_iterations":7,"imaginary_residue":0.0},{"outer":4,"LOE_relative_update":0.0002261773615425512,"D_max_update":1.1892782275702007e-05,"true_LO_relative_residual":0.00019210058501157654,"formal_transport_residual":2.519776086067835e-17,"HOE_minus_LOE_rms":0.00024119291612114698,"minimum_I":0.7762219981724899,"minimum_LOE":0.8671293712118716,"tensor_min_eigenvalue":0.322356622556684,"tensor_max_eigenvalue":0.3475199383934431,"HO_covariance_min_eigenvalue":0.3223550316729392,"tensor_trace_error":4.440892098500626e-16,"discrete_global_balance":3.841602161332722e-18,"inner_iterations":6,"imaginary_residue":0.0},{"outer":5,"LOE_relative_update":3.061681949398805e-05,"D_max_update":1.5659407365808953e-06,"true_LO_relative_residual":2.8729676365916564e-05,"formal_transport_residual":2.5975602863001894e-17,"HOE_minus_LOE_rms":0.00024396167163032845,"minimum_I":0.7761958520207527,"minimum_LOE":0.8670947293200084,"tensor_min_eigenvalue":0.32235593529076867,"tensor_max_eigenvalue":0.3475218321630338,"HO_covariance_min_eigenvalue":0.3223543440667391,"tensor_trace_error":4.440892098500626e-16,"discrete_global_balance":2.304961296799633e-18,"inner_iterations":6,"imaginary_residue":0.0},{"outer":6,"LOE_relative_update":4.198130527144563e-06,"D_max_update":2.098443095399638e-07,"true_LO
+
+## 可変Eddington因子・テンソルの軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vet-fourier-source2d-measurements
+Coverage: reading
+
+_relative_residual":4.299893434038309e-06,"formal_transport_residual":2.4777977120382392e-17,"HOE_minus_LOE_rms":0.0002442442206801496,"minimum_I":0.7761922657575838,"minimum_LOE":0.867089983424949,"tensor_min_eigenvalue":0.3223558584032786,"tensor_max_eigenvalue":0.347522091624644,"HO_covariance_min_eigenvalue":0.3223542671320842,"tensor_trace_error":4.440892098500626e-16,"discrete_global_balance":4.994082809732538e-18,"inner_iterations":5,"imaginary_residue":0.0},{"outer":7,"LOE_relative_update":5.823960411643949e-07,"D_max_update":2.860011227845405e-08,"true_LO_relative_residual":6.437638036948045e-07,"formal_transport_residual":2.4792141240925303e-17,"HOE_minus_LOE_rms":0.0002442695852607682,"minimum_I":0.7761917680676429,"minimum_LOE":0.8670893256090311,"tensor_min_eigenvalue":0.3223558500018049,"tensor_max_eigenvalue":0.34752212763196727,"HO_covariance_min_eigenvalue":0.3223542587240849,"tensor_trace_error":4.440892098500626e-16,"discrete_global_balance":3.841602161332722e-18,"inner_iterations":5,"imaginary_residue":0.0},{"outer":8,"LOE_relative_update":8.16395989129313e-08,"D_max_update":3.959757188809476e-09,"true_LO_relative_residual":9.638958829790717e-08,"formal_transport_residual":2.5607133712712613e-17,"HOE_minus_LOE_rms":0.00024427145487269247,"minimum_I":0.7761916982750502,"minimum_LOE":0.8670892334744443,"tensor_min_eigenvalue":0.3223558491181162,"tensor_max_eig
+
+## 可変Eddington因子・テンソルの軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vet-fourier-source2d-measurements
+Coverage: reading
+
+envalue":0.34752213268627724,"HO_covariance_min_eigenvalue":0.3223542578394947,"tensor_trace_error":4.440892098500626e-16,"discrete_global_balance":1.1524806483998164e-18,"inner_iterations":4,"imaginary_residue":0.0},{"outer":9,"LOE_relative_update":1.1549357235152868e-08,"D_max_update":5.560817362137982e-10,"true_LO_relative_residual":1.4424181362074704e-08,"formal_transport_residual":1.4159972990440572e-17,"HOE_minus_LOE_rms":0.0002442715210182841,"minimum_I":0.7761916883975799,"minimum_LOE":0.8670892204507886,"tensor_min_eigenvalue":0.32235584903114234,"tensor_max_eigenvalue":0.34752213340284377,"HO_covariance_min_eigenvalue":0.32235425775239657,"tensor_trace_error":4.440892098500626e-16,"discrete_global_balance":9.988165619465077e-18,"inner_iterations":3,"imaginary_residue":0.0},{"outer":10,"LOE_relative_update":1.6465523073250135e-09,"D_max_update":7.905781584938154e-11,"true_LO_relative_residual":2.158389201532565e-09,"formal_transport_residual":2.4753090926614228e-17,"HOE_minus_LOE_rms":0.0002442715075655958,"minimum_I":0.7761916869887786,"minimum_LOE":0.86708921859542,"tensor_min_eigenvalue":0.3223558490236554,"tensor_max_eigenvalue":0.34752213350528854,"HO_covariance_min_eigenvalue":0.3223542577448925,"tensor_trace_error":4.440892098500626e-16,"discrete_global_balance":4.609922593599266e-18,"inner_iterations":3,"imaginary_residue":0.0},{"outer":11,"LOE_relative_update"
+
+## 可変Eddington因子・テンソルの軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vet-fourier-source2d-measurements
+Coverage: reading
+
+:2.36172788866804e-10,"D_max_update":1.1351863893338532e-11,"true_LO_relative_residual":3.2672707317257767e-10,"formal_transport_residual":2.4732184969395766e-17,"HOE_minus_LOE_rms":0.00024427150304116786,"minimum_I":0.7761916867866203,"minimum_LOE":0.8670892183294676,"tensor_min_eigenvalue":0.32235584902321596,"tensor_max_eigenvalue":0.34752213352003103,"HO_covariance_min_eigenvalue":0.3223542577444507,"tensor_trace_error":4.440892098500626e-16,"discrete_global_balance":1.1524806483998164e-18,"inner_iterations":2,"imaginary_residue":0.0},{"outer":12,"LOE_relative_update":3.4234238906853335e-11,"D_max_update":1.6533996394230144e-12,"true_LO_relative_residual":4.932358471604581e-11,"formal_transport_residual":2.4589921567734025e-17,"HOE_minus_LOE_rms":0.0002442715021027399,"minimum_I":0.7761916867573013,"minimum_LOE":0.8670892182909492,"tensor_min_eigenvalue":0.32235584902323516,"tensor_max_eigenvalue":0.34752213352217515,"HO_covariance_min_eigenvalue":0.32235425774446946,"tensor_trace_error":4.440892098500626e-16,"discrete_global_balance":7.683204322665443e-19,"inner_iterations":2,"imaginary_residue":0.0},{"outer":13,"LOE_relative_update":5.101731351403427e-12,"D_max_update":2.4946711363327267e-13,"true_LO_relative_residual":5.313885273632329e-12,"formal_transport_residual":1.5913533983368797e-17,"HOE_minus_LOE_rms":0.00024427150194170197,"minimum_I":0.7761916867529286,"minimum
+
+## 可変Eddington因子・テンソルの軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vet-fourier-source2d-measurements
+Coverage: reading
+
+_LOE":0.8670892182852173,"tensor_min_eigenvalue":0.3223558490232486,"tensor_max_eigenvalue":0.3475221335224966,"HO_covariance_min_eigenvalue":0.32235425774448295,"tensor_trace_error":4.440892098500626e-16,"discrete_global_balance":4.225762377465994e-18,"inner_iterations":1,"imaginary_residue":0.0}]
+
+## 可変Eddington因子・テンソルの軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vet-fourier-source2d-measurements
+Coverage: reading
+
+space-finefine{"id":"space-fine","shape":[33,33],"mu_order":12,"phi_order":48}{"mean":1.0,"modes":[{"wave_numbers":[1,0],"amplitude":{"real":0.3,"imag":0.0}},{"wave_numbers":[1,1],"amplitude":{"real":0.0,"imag":-0.2}}]}vet-fourier-source2d--space-fine.npz5f4aba6ca27cae803989879e247c23ffaf8187f51cff3ea271143b1e633a6470{"outer":13,"LOE_relative_update":6.330876108554714e-12,"D_max_update":2.97761815204467e-13,"true_LO_relative_residual":7.097617465830339e-12,"formal_transport_residual":2.6454672133379055e-17,"HOE_minus_LOE_rms":6.49034516316857e-05,"minimum_I":0.7762768569657201,"minimum_LOE":0.8661161658200001,"tensor_min_eigenvalue":0.32235844962731436,"tensor_max_eigenvalue":0.3476602925411886,"HO_covariance_min_eigenvalue":0.3223580246493823,"tensor_trace_error":4.440892098500626e-16,"discrete_global_balance":3.058465632576189e-18,"inner_iterations":1,"imaginary_residue":1.346117423016807e-16,"E_relative_rms_error":0.00012233929430084488,"E_absolute_max_error":0.00021756117013516096,"face_H_relative_rms_error":0.0010747095077688305,"face_H_absolute_rms_error":2.018298166294549e-05,"face_H_absolute_max_error":4.677050789270859e-05,"D_component_max_abs_error":1.034672720839902e-05,"M1_closure_reference_max_abs_difference":0.012795425905021418,"tensor_symmetry_error":0.0,"LO_flux_realizability_excess":-0.8577055320547433,"HO_flux_realizability_excess":-0.8577043860208913,"VET_z_
+
+## 可変Eddington因子・テンソルの軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vet-fourier-source2d-measurements
+Coverage: reading
+
+parity":1.5959455978986625e-16,"nonconstant_f_span":0.022629107509727575,"max_abs_Dxy":0.0052431604336188676,"source_modes":[{"wave_numbers":[1,0],"computed_real":0.09222195863816343,"computed_imag":0.0,"reference_real":0.09205642897354609,"reference_imag":0.0,"complex_relative_error":0.0017981325852310923,"magnitude_relative_error":0.0017981325852310923,"phase_error_radians":0.0},{"wave_numbers":[1,1],"computed_real":-6.524726682829203e-18,"computed_imag":-0.042129021790968404,"reference_real":6.524726682829203e-18,"reference_imag":-0.04218083813628209,"complex_relative_error":0.0012284332792598883,"magnitude_relative_error":0.0012284332792598883,"phase_error_radians":3.095594822725972e-16}],"maximum_source_mode_complex_relative_error":0.0017981325852310923,"work":{"outer_iterations":13,"inner_iterations":61,"formal_solves":14,"directional_solves":8064}}{"outer_E_converged":true,"outer_D_converged":true,"true_LO_residual":true,"formal_HO_residual":true,"imaginary_roundoff":true,"global_balance":true,"positive_intensity":true,"positive_LO_energy":true,"LO_realizability":true,"HO_realizability":true,"tensor_symmetry":true,"tensor_trace":true,"tensor_PSD":true,"HO_covariance_PSD":true,"z_parity":true}true[{"outer":1,"LOE_relative_update":0.10560787371754067,"D_max_update":0.005589610151357727,"true_LO_relative_residual":0.06036682813021987,"formal_transport_residual":2.6587844051
+
+## 可変Eddington因子・テンソルの軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vet-fourier-source2d-measurements
+Coverage: reading
+
+57139e-17,"HOE_minus_LOE_rms":0.004682457373569068,"minimum_I":0.7890712360301828,"minimum_LOE":0.8832743945733562,"tensor_min_eigenvalue":0.32288016837283706,"tensor_max_eigenvalue":0.34672127838282274,"HO_covariance_min_eigenvalue":0.32287978282484675,"tensor_trace_error":4.440892098500626e-16,"discrete_global_balance":4.0779541767682516e-18,"inner_iterations":7,"imaginary_residue":2.799612159167236e-16},{"outer":2,"LOE_relative_update":0.013137362283950026,"D_max_update":0.000730173030808301,"true_LO_relative_residual":0.00908810258236048,"formal_transport_residual":2.6366062591601056e-17,"HOE_minus_LOE_rms":0.0005652547347247897,"minimum_I":0.7779785262030523,"minimum_LOE":0.8683992897815751,"tensor_min_eigenvalue":0.32241895379164526,"tensor_max_eigenvalue":0.34753503627568594,"HO_covariance_min_eigenvalue":0.32241853452318037,"tensor_trace_error":4.440892098500626e-16,"discrete_global_balance":1.6311816707073007e-18,"inner_iterations":8,"imaginary_residue":2.5780267226593317e-16},{"outer":3,"LOE_relative_update":0.0017405922783852161,"D_max_update":9.400528371517058e-05,"true_LO_relative_residual":0.0013836679390424624,"formal_transport_residual":2.7056798687631867e-17,"HOE_minus_LOE_rms":7.901282910367224e-05,"minimum_I":0.77650759055358,"minimum_LOE":0.866425865808783,"tensor_min_eigenvalue":0.32236545084245144,"tensor_max_eigenvalue":0.3476433431323011,"HO_covariance_m
+
+## 可変Eddington因子・テンソルの軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vet-fourier-source2d-measurements
+Coverage: reading
+
+in_eigenvalue":0.32236502667491196,"tensor_trace_error":4.440892098500626e-16,"discrete_global_balance":2.9565167781569825e-18,"inner_iterations":7,"imaginary_residue":2.6931557910978813e-16},{"outer":4,"LOE_relative_update":0.00023552221342058828,"D_max_update":1.2287119160070414e-05,"true_LO_relative_residual":0.00021153111343637611,"formal_transport_residual":1.3692468069758063e-17,"HOE_minus_LOE_rms":6.273228705319688e-05,"minimum_I":0.7763086475113704,"minimum_LOE":0.866158850659371,"tensor_min_eigenvalue":0.32235925286568823,"tensor_max_eigenvalue":0.3476579606761217,"HO_covariance_min_eigenvalue":0.32235882800202,"tensor_trace_error":5.551115123125783e-16,"discrete_global_balance":1.1214373986112693e-18,"inner_iterations":7,"imaginary_residue":2.0423315799837697e-16},{"outer":5,"LOE_relative_update":3.239337884704464e-05,"D_max_update":1.6371708101980964e-06,"true_LO_relative_residual":3.240376956539211e-05,"formal_transport_residual":1.511144263489997e-17,"HOE_minus_LOE_rms":6.465410282659863e-05,"minimum_I":0.7762813006299533,"minimum_LOE":0.8661221338195215,"tensor_min_eigenvalue":0.32235854048075985,"tensor_max_eigenvalue":0.34765996669901833,"HO_covariance_min_eigenvalue":0.3223581155188668,"tensor_trace_error":4.440892098500626e-16,"discrete_global_balance":2.0389770883841259e-19,"inner_iterations":6,"imaginary_residue":2.493296091973996e-16},{"outer":6,"LOE_relati
+
+## 可変Eddington因子・テンソルの軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vet-fourier-source2d-measurements
+Coverage: reading
+
+ve_update":4.520759457098289e-06,"D_max_update":2.2241252611854279e-07,"true_LO_relative_residual":4.968388894649424e-06,"formal_transport_residual":1.7280809191051275e-17,"HOE_minus_LOE_rms":6.488430296113965e-05,"minimum_I":0.7762774861103298,"minimum_LOE":0.8661170109357941,"tensor_min_eigenvalue":0.32235845967245974,"tensor_max_eigenvalue":0.3476602463735467,"HO_covariance_min_eigenvalue":0.3223580346967701,"tensor_trace_error":5.551115123125783e-16,"discrete_global_balance":2.446772506060951e-18,"inner_iterations":5,"imaginary_residue":2.1335338393068781e-16},{"outer":7,"LOE_relative_update":6.391566519844404e-07,"D_max_update":3.077733129464022e-08,"true_LO_relative_residual":7.619460043736058e-07,"formal_transport_residual":1.688270673885004e-17,"HOE_minus_LOE_rms":6.490280739845305e-05,"minimum_I":0.7762769470395006,"minimum_LOE":0.8661162868269529,"tensor_min_eigenvalue":0.3223584506971495,"tensor_max_eigenvalue":0.34766028592081866,"HO_covariance_min_eigenvalue":0.3223580257195297,"tensor_trace_error":4.440892098500626e-16,"discrete_global_balance":1.1214373986112693e-18,"inner_iterations":5,"imaginary_residue":2.000716259323482e-16},{"outer":8,"LOE_relative_update":9.139459277119356e-08,"D_max_update":4.331304648275136e-09,"true_LO_relative_residual":1.1682304709682927e-07,"formal_transport_residual":2.610442682230459e-17,"HOE_minus_LOE_rms":6.490360652249618e-05,"mi
+
+## 可変Eddington因子・テンソルの軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vet-fourier-source2d-measurements
+Coverage: reading
+
+nimum_I":0.7762768699839231,"minimum_LOE":0.8661161833096095,"tensor_min_eigenvalue":0.3223584497339872,"tensor_max_eigenvalue":0.34766029158218914,"HO_covariance_min_eigenvalue":0.3223580247560984,"tensor_trace_error":4.440892098500626e-16,"discrete_global_balance":3.2623633414146014e-18,"inner_iterations":4,"imaginary_residue":2.230431022798904e-16},{"outer":9,"LOE_relative_update":1.319567659881384e-08,"D_max_update":6.186844370148492e-10,"true_LO_relative_residual":1.7901102213368697e-08,"formal_transport_residual":1.4944227906315575e-17,"HOE_minus_LOE_rms":6.49035025852009e-05,"minimum_I":0.7762768588616326,"minimum_LOE":0.8661161683670602,"tensor_min_eigenvalue":0.32235844963662086,"tensor_max_eigenvalue":0.3476602924011405,"HO_covariance_min_eigenvalue":0.32235802465869473,"tensor_trace_error":4.440892098500626e-16,"discrete_global_balance":2.446772506060951e-18,"inner_iterations":4,"imaginary_residue":2.0993642087819328e-16},{"outer":10,"LOE_relative_update":1.920732334812554e-09,"D_max_update":8.950878926938799e-11,"true_LO_relative_residual":2.7394045947823487e-09,"formal_transport_residual":2.611499171658409e-17,"HOE_minus_LOE_rms":6.490346223953961e-05,"minimum_I":0.776276857243032,"minimum_LOE":0.8661161661925293,"tensor_min_eigenvalue":0.3223584496278705,"tensor_max_eigenvalue":0.3476602925206404,"HO_covariance_min_eigenvalue":0.3223580246499392,"tensor_trace_erro
+
+## 可変Eddington因子・テンソルの軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vet-fourier-source2d-measurements
+Coverage: reading
+
+r":4.440892098500626e-16,"discrete_global_balance":2.1409259428033322e-18,"inner_iterations":3,"imaginary_residue":1.8590865142932664e-16},{"outer":11,"LOE_relative_update":2.811915362895266e-10,"D_max_update":1.3075485139069087e-11,"true_LO_relative_residual":4.247746390784669e-10,"formal_transport_residual":2.6345089720332485e-17,"HOE_minus_LOE_rms":6.49034534922555e-05,"minimum_I":0.7762768570061054,"minimum_LOE":0.8661161658742428,"tensor_min_eigenvalue":0.3223584496272936,"tensor_max_eigenvalue":0.3476602925381862,"HO_covariance_min_eigenvalue":0.3223580246493616,"tensor_trace_error":4.440892098500626e-16,"discrete_global_balance":2.3448236516417447e-18,"inner_iterations":2,"imaginary_residue":1.6859507738406175e-16},{"outer":12,"LOE_relative_update":4.160464794442397e-11,"D_max_update":1.9373946891221294e-12,"true_LO_relative_residual":6.558855889731954e-11,"formal_transport_residual":1.5279055395630165e-17,"HOE_minus_LOE_rms":6.490345189497009e-05,"minimum_I":0.7762768569710535,"minimum_LOE":0.8661161658271612,"tensor_min_eigenvalue":0.3223584496273011,"tensor_max_eigenvalue":0.34766029254079006,"HO_covariance_min_eigenvalue":0.32235802464936897,"tensor_trace_error":5.551115123125783e-16,"discrete_global_balance":1.733130525126507e-18,"inner_iterations":2,"imaginary_residue":2.2401365131345977e-16},{"outer":13,"LOE_relative_update":6.330876108554714e-12,"D_max_update":2.
+
+## 可変Eddington因子・テンソルの軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vet-fourier-source2d-measurements
+Coverage: reading
+
+97761815204467e-13,"true_LO_relative_residual":7.097617465830339e-12,"formal_transport_residual":2.6454672133379055e-17,"HOE_minus_LOE_rms":6.49034516316857e-05,"minimum_I":0.7762768569657201,"minimum_LOE":0.8661161658200001,"tensor_min_eigenvalue":0.32235844962731436,"tensor_max_eigenvalue":0.3476602925411886,"HO_covariance_min_eigenvalue":0.3223580246493823,"tensor_trace_error":4.440892098500626e-16,"discrete_global_balance":3.058465632576189e-18,"inner_iterations":1,"imaginary_residue":1.346117423016807e-16}]
+
+## 可変Eddington因子・テンソルの軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vet-fourier-source2d-measurements
+Coverage: reading
+
+angle-probeangle-probe{"id":"angle-probe","shape":[33,33],"mu_order":16,"phi_order":64}{"mean":1.0,"modes":[{"wave_numbers":[1,0],"amplitude":{"real":0.3,"imag":0.0}},{"wave_numbers":[1,1],"amplitude":{"real":0.0,"imag":-0.2}}]}vet-fourier-source2d--angle-probe.npz168315c2ee26eec283da3ce982feabe1795b7645166b693d785ad6f54e3957c2{"outer":13,"LOE_relative_update":6.339976666289346e-12,"D_max_update":2.985389713217046e-13,"true_LO_relative_residual":7.201550036982048e-12,"formal_transport_residual":1.540982726328267e-17,"HOE_minus_LOE_rms":6.490360424077856e-05,"minimum_I":0.7754195766038112,"minimum_LOE":0.8661158085975432,"tensor_min_eigenvalue":0.32235834477202596,"tensor_max_eigenvalue":0.34766044030587134,"HO_covariance_min_eigenvalue":0.3223579197954746,"tensor_trace_error":5.551115123125783e-16,"discrete_global_balance":2.446772506060951e-18,"inner_iterations":1,"imaginary_residue":1.8295171964683262e-16,"E_relative_rms_error":0.00012228131179061114,"E_absolute_max_error":0.0002172426059123822,"face_H_relative_rms_error":0.0010738390026674726,"face_H_absolute_rms_error":2.016663362808472e-05,"face_H_absolute_max_error":4.674045115118236e-05,"D_component_max_abs_error":1.0250275895629102e-05,"M1_closure_reference_max_abs_difference":0.012795425905021418,"tensor_symmetry_error":0.0,"LO_flux_realizability_excess":-0.8577052055441845,"HO_flux_realizability_excess":-0.85770405900
+
+## 可変Eddington因子・テンソルの軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vet-fourier-source2d-measurements
+Coverage: reading
+
+04211,"VET_z_parity":8.673617379884035e-17,"nonconstant_f_span":0.022629325122685784,"max_abs_Dxy":0.0052432003949135775,"source_modes":[{"wave_numbers":[1,0],"computed_real":0.09222197806723434,"computed_imag":0.0,"reference_real":0.09205642897354609,"reference_imag":0.0,"complex_relative_error":0.0017983436413314031,"magnitude_relative_error":0.0017983436413314031,"phase_error_radians":0.0},{"wave_numbers":[1,1],"computed_real":1.6311816707073006e-17,"computed_imag":-0.04212936010200062,"reference_real":6.524726682829203e-18,"reference_imag":-0.04218083813628209,"complex_relative_error":0.0012204127882700384,"magnitude_relative_error":0.0012204127882700384,"phase_error_radians":2.324994460018478e-16}],"maximum_source_mode_complex_relative_error":0.0017983436413314031,"work":{"outer_iterations":13,"inner_iterations":61,"formal_solves":14,"directional_solves":14336}}{"outer_E_converged":true,"outer_D_converged":true,"true_LO_residual":true,"formal_HO_residual":true,"imaginary_roundoff":true,"global_balance":true,"positive_intensity":true,"positive_LO_energy":true,"LO_realizability":true,"HO_realizability":true,"tensor_symmetry":true,"tensor_trace":true,"tensor_PSD":true,"HO_covariance_PSD":true,"z_parity":true}true[{"outer":1,"LOE_relative_update":0.10560802784611781,"D_max_update":0.005589647975946965,"true_LO_relative_residual":0.06036718697100148,"formal_transport_residual":
+
+## 可変Eddington因子・テンソルの軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vet-fourier-source2d-measurements
+Coverage: reading
+
+2.7598253649862454e-17,"HOE_minus_LOE_rms":0.004682495206710739,"minimum_I":0.7882647527379687,"minimum_LOE":0.8832742159262791,"tensor_min_eigenvalue":0.3228800662549452,"tensor_max_eigenvalue":0.3467213976657903,"HO_covariance_min_eigenvalue":0.3228796807095509,"tensor_trace_error":6.661338147750939e-16,"discrete_global_balance":6.524726682829203e-18,"inner_iterations":7,"imaginary_residue":2.6416876841647625e-16},{"outer":2,"LOE_relative_update":0.0131374529922695,"D_max_update":0.0007301886614372588,"true_LO_relative_residual":0.009088485951675999,"formal_transport_residual":1.5232878442575694e-17,"HOE_minus_LOE_rms":0.0005652673829698861,"minimum_I":0.7771286177268287,"minimum_LOE":0.8683990038296894,"tensor_min_eigenvalue":0.32241884773176005,"tensor_max_eigenvalue":0.34753517485238006,"HO_covariance_min_eigenvalue":0.32241842846489027,"tensor_trace_error":6.661338147750939e-16,"discrete_global_balance":2.75261906931857e-18,"inner_iterations":8,"imaginary_residue":2.4039693512552146e-16},{"outer":3,"LOE_relative_update":0.0017406340084360362,"D_max_update":9.401089425209452e-05,"true_LO_relative_residual":0.0013838592868498359,"formal_transport_residual":1.7751155434933376e-17,"HOE_minus_LOE_rms":7.90169928122116e-05,"minimum_I":0.7756513992412467,"minimum_LOE":0.8664255319653125,"tensor_min_eigenvalue":0.3223653454418297,"tensor_max_eigenvalue":0.3476434884715031,"HO_cov
+
+## 可変Eddington因子・テンソルの軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vet-fourier-source2d-measurements
+Coverage: reading
+
+ariance_min_eigenvalue":0.32236492127567906,"tensor_trace_error":6.661338147750939e-16,"discrete_global_balance":7.13641980934444e-19,"inner_iterations":7,"imaginary_residue":2.1849640386494449e-16},{"outer":4,"LOE_relative_update":0.00023553728481571094,"D_max_update":1.2288667401216813e-05,"true_LO_relative_residual":0.00021159218447405396,"formal_transport_residual":1.4954346862801928e-17,"HOE_minus_LOE_rms":6.273282969182044e-05,"minimum_I":0.7754515298270935,"minimum_LOE":0.8661584996858844,"tensor_min_eigenvalue":0.32235914785958214,"tensor_max_eigenvalue":0.3476581078790354,"HO_covariance_min_eigenvalue":0.3223587229972886,"tensor_trace_error":8.881784197001252e-16,"discrete_global_balance":2.0389770883841258e-18,"inner_iterations":7,"imaginary_residue":2.1543782645688528e-16},{"outer":5,"LOE_relative_update":3.239760737247397e-05,"D_max_update":1.637537417331636e-06,"true_LO_relative_residual":3.2419426233293786e-05,"formal_transport_residual":2.6409565936527666e-17,"HOE_minus_LOE_rms":6.465430441006128e-05,"minimum_I":0.7754240447774174,"minimum_LOE":0.8661217780559786,"tensor_min_eigenvalue":0.3223584355907987,"tensor_max_eigenvalue":0.3476601143443726,"HO_covariance_min_eigenvalue":0.32235801063028396,"tensor_trace_error":6.661338147750939e-16,"discrete_global_balance":1.2233862530304756e-18,"inner_iterations":6,"imaginary_residue":2.869426638433234e-16},{"outer":6,"
+
+## 可変Eddington因子・テンソルの軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vet-fourier-source2d-measurements
+Coverage: reading
+
+LOE_relative_update":4.521773948154057e-06,"D_max_update":2.2249143860619824e-07,"true_LO_relative_residual":4.971926729242826e-06,"formal_transport_residual":1.5363210392944112e-17,"HOE_minus_LOE_rms":6.488446324081582e-05,"minimum_I":0.7754202094660921,"minimum_LOE":0.8661166540247711,"tensor_min_eigenvalue":0.32235835480995806,"tensor_max_eigenvalue":0.347660394114364,"HO_covariance_min_eigenvalue":0.3223579298356485,"tensor_trace_error":6.661338147750939e-16,"discrete_global_balance":1.8350793795457133e-18,"inner_iterations":5,"imaginary_residue":2.1949559109067004e-16},{"outer":7,"LOE_relative_update":6.393769401633435e-07,"D_max_update":3.07932587761961e-08,"true_LO_relative_residual":7.6268276963802e-07,"formal_transport_residual":2.628440102377245e-17,"HOE_minus_LOE_rms":6.490296125245377e-05,"minimum_I":0.7754196672444557,"minimum_LOE":0.8661159296669696,"tensor_min_eigenvalue":0.32235834584045187,"tensor_max_eigenvalue":0.3476604336809336,"HO_covariance_min_eigenvalue":0.32235792086421267,"tensor_trace_error":6.661338147750939e-16,"discrete_global_balance":5.0974427209603145e-19,"inner_iterations":5,"imaginary_residue":2.6340408413610245e-16},{"outer":8,"LOE_relative_update":9.143929567989875e-08,"D_max_update":4.3343746369828295e-09,"true_LO_relative_residual":1.169680401400865e-07,"formal_transport_residual":2.6403424595970655e-17,"HOE_minus_LOE_rms":6.4903759332595
+
+## 可変Eddington因子・テンソルの軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vet-fourier-source2d-measurements
+Coverage: reading
+
+99e-05,"minimum_I":0.7754195897087881,"minimum_LOE":0.8661158260991304,"tensor_min_eigenvalue":0.3223583448784349,"tensor_max_eigenvalue":0.3476604393460263,"HO_covariance_min_eigenvalue":0.3223579199019269,"tensor_trace_error":6.661338147750939e-16,"discrete_global_balance":8.155908353536503e-19,"inner_iterations":4,"imaginary_residue":2.162299243008572e-16},{"outer":9,"LOE_relative_update":1.3204318985171995e-08,"D_max_update":6.192563684059849e-10,"true_LO_relative_residual":1.7928710968166945e-08,"formal_transport_residual":2.6200656364288607e-17,"HOE_minus_LOE_rms":6.490365522637182e-05,"minimum_I":0.7754195785130416,"minimum_LOE":0.8661158111468219,"tensor_min_eigenvalue":0.3223583447812847,"tensor_max_eigenvalue":0.3476604401656708,"HO_covariance_min_eigenvalue":0.3223579198047394,"tensor_trace_error":6.661338147750939e-16,"discrete_global_balance":1.1214373986112693e-18,"inner_iterations":4,"imaginary_residue":1.8245372431742287e-16},{"outer":10,"LOE_relative_update":1.9223445453339954e-09,"D_max_update":8.961237307758552e-11,"true_LO_relative_residual":2.7442692165154213e-09,"formal_transport_residual":2.6289583011816683e-17,"HOE_minus_LOE_rms":6.490361485363715e-05,"minimum_I":0.7754195768831664,"minimum_LOE":0.8661158089704715,"tensor_min_eigenvalue":0.3223583447725736,"tensor_max_eigenvalue":0.34766044028529647,"HO_covariance_min_eigenvalue":0.322357919796023,"tenso
+
+## 可変Eddington因子・テンソルの軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vet-fourier-source2d-measurements
+Coverage: reading
+
+r_trace_error":4.440892098500626e-16,"discrete_global_balance":4.0779541767682517e-19,"inner_iterations":3,"imaginary_residue":2.0406353027342418e-16},{"outer":11,"LOE_relative_update":2.8148292512562004e-10,"D_max_update":1.3093859330126634e-11,"true_LO_relative_residual":4.2575355953495564e-10,"formal_transport_residual":2.7289597234136884e-17,"HOE_minus_LOE_rms":6.490360610208679e-05,"minimum_I":0.7754195766445081,"minimum_LOE":0.8661158086518553,"tensor_min_eigenvalue":0.3223583447720036,"tensor_max_eigenvalue":0.34766044030286447,"HO_covariance_min_eigenvalue":0.32235791979545236,"tensor_trace_error":5.551115123125783e-16,"discrete_global_balance":2.1409259428033322e-18,"inner_iterations":2,"imaginary_residue":1.9151928577151078e-16},{"outer":12,"LOE_relative_update":4.1656901104713856e-11,"D_max_update":1.9406143358935424e-12,"true_LO_relative_residual":6.569226939032776e-11,"formal_transport_residual":1.6306003373338207e-17,"HOE_minus_LOE_rms":6.490360450412313e-05,"minimum_I":0.7754195766091884,"minimum_LOE":0.8661158086047154,"tensor_min_eigenvalue":0.3223583447720123,"tensor_max_eigenvalue":0.3476604403054723,"HO_covariance_min_eigenvalue":0.32235791979546097,"tensor_trace_error":5.551115123125783e-16,"discrete_global_balance":4.995493866541108e-18,"inner_iterations":2,"imaginary_residue":1.7226293621384143e-16},{"outer":13,"LOE_relative_update":6.339976666289346e-12,
+
+## 可変Eddington因子・テンソルの軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vet-fourier-source2d-measurements
+Coverage: reading
+
+"D_max_update":2.985389713217046e-13,"true_LO_relative_residual":7.201550036982048e-12,"formal_transport_residual":1.540982726328267e-17,"HOE_minus_LOE_rms":6.490360424077856e-05,"minimum_I":0.7754195766038112,"minimum_LOE":0.8661158085975432,"tensor_min_eigenvalue":0.32235834477202596,"tensor_max_eigenvalue":0.34766044030587134,"HO_covariance_min_eigenvalue":0.3223579197954746,"tensor_trace_error":5.551115123125783e-16,"discrete_global_balance":2.446772506060951e-18,"inner_iterations":1,"imaginary_residue":1.8295171964683262e-16}]
+
+## 可変Eddington因子・テンソルの軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vet-fourier-source2d-measurements
+Coverage: reading
+
+constant-controlconstant{"id":"constant-control","shape":[9,9],"mu_order":12,"phi_order":48}{"mean":1.0,"modes":[]}vet-fourier-source2d--constant-control.npz8c9f018ce1df3beb0e21e2f7d501f32f5e18cc8ff63cbd853677f927c9638658{"outer":1,"LOE_relative_update":0.0,"D_max_update":0.0,"true_LO_relative_residual":0.0,"formal_transport_residual":0.0,"HOE_minus_LOE_rms":1.1102230246251565e-16,"minimum_I":1.0,"minimum_LOE":1.0,"tensor_min_eigenvalue":0.33333333333333315,"tensor_max_eigenvalue":0.33333333333333354,"HO_covariance_min_eigenvalue":0.33333333333333304,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":0.0,"inner_iterations":0,"imaginary_residue":0.0,"E_relative_rms_error":0.0,"E_absolute_max_error":0.0,"face_H_relative_rms_error":null,"face_H_absolute_rms_error":0.0,"face_H_absolute_max_error":0.0,"D_component_max_abs_error":2.7755575615628914e-16,"M1_closure_reference_max_abs_difference":5.551115123125783e-17,"tensor_symmetry_error":0.0,"LO_flux_realizability_excess":-1.0,"HO_flux_realizability_excess":-0.9999999999999997,"VET_z_parity":2.42861286636753e-16,"nonconstant_f_span":0.0,"max_abs_Dxy":7.589415207398532e-19,"source_modes":[],"maximum_source_mode_complex_relative_error":null,"work":{"outer_iterations":1,"inner_iterations":0,"formal_solves":2,"directional_solves":1152}}{"outer_E_converged":true,"outer_D_converged":true,"true_LO_residual":true,"formal_H
+
+## 可変Eddington因子・テンソルの軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vet-fourier-source2d-measurements
+Coverage: reading
+
+O_residual":true,"imaginary_roundoff":true,"global_balance":true,"positive_intensity":true,"positive_LO_energy":true,"LO_realizability":true,"HO_realizability":true,"tensor_symmetry":true,"tensor_trace":true,"tensor_PSD":true,"HO_covariance_PSD":true,"z_parity":true,"constant_I":true,"constant_E":true,"constant_H":true,"constant_D":true}true[{"outer":1,"LOE_relative_update":0.0,"D_max_update":0.0,"true_LO_relative_residual":0.0,"formal_transport_residual":0.0,"HOE_minus_LOE_rms":1.1102230246251565e-16,"minimum_I":1.0,"minimum_LOE":1.0,"tensor_min_eigenvalue":0.33333333333333315,"tensor_max_eigenvalue":0.33333333333333354,"HO_covariance_min_eigenvalue":0.33333333333333304,"tensor_trace_error":2.220446049250313e-16,"discrete_global_balance":0.0,"inner_iterations":0,"imaginary_residue":0.0}]
+この例の実測値・全記録 / JSON
+
+## 可変Eddington因子・テンソルの軽量検証 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/#vet-fourier-source2d-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+A Godunov Method for Multidimensional Radiation Magnetohydrodynamics based on a variable Eddington tensor [accessed 2026-11-26] · DOI: 10.1088/0067-0049/199/1/14
+確認範囲 / review_level: selected-primary-equations-and-test-description
+選択箇所のみの読解です。原論文の全試験・性能や実装全体の再現は主張しません。具体的な読解範囲と未読部分はsource-reading.jsonに記録します。
+A Radiation Transfer Solver for Athena using Short Characteristics [accessed 2026-11-26]
+確認範囲 / review_level: selected-primary-equations
+選択箇所のみの読解です。原論文の全試験・性能や実装全体の再現は主張しません。具体的な読解範囲と未読部分はsource-reading.jsonに記録します。
+High-Order Mixed Finite Element Variable Eddington Factor Methods [accessed 2026-11-26]
+確認範囲 / review_level: selected-primary-equations
+選択箇所のみの読解です。原論文の全試験・性能や実装全体の再現は主張しません。具体的な読解範囲と未読部分はsource-reading.jsonに記録します。
+A Two-moment Radiation Hydrodynamics Module in Athena Using a Time-explicit Godunov Method [accessed 2026-11-26] · DOI: 10.1088/0067-0049/206/2/21
+確認範囲 / review_level: selected-primary-equations
+選択箇所のみの読解です。原論文の全試験・性能や実装全体の再現は主張しません。具体的な読解範囲と未読部分はsource-reading.jsonに記録します。
+
 ## 非周期壁面：キャビティと製造解 — 非周期壁面：キャビティと製造解 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-wall-flow/
@@ -118510,6 +120037,244 @@ Chi-Wang Shu and Stanley Osher (1988). Efficient implementation of essentially n
 SciPy developers (n.d.). scipy.integrate.quad — SciPy v1.14.1 Manual [accessed 2026-11-23]
 確認範囲 / review_level: official versioned API: QUADPACK integration, break points, epsabs/epsrel, reported error; use is evidenced by qualification receipts
 版を固定した公式APIでQUADPACK、分割点、絶対・相対公差と推定誤差の意味を確認。解析的な円・多角形の面積計算とは異なる垂直断面求積を、実行記録付きで照合します。
+
+## 可変Eddington因子・テンソル：角度輸送でモーメントを閉じる — 可変Eddington因子・テンソル：角度輸送でモーメントを閉じる [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/variable-eddington/
+Coverage: reading
+
+VEFは角度輸送からEddington閉包を求め、別のモーメント方程式と反復する方法です。1Dではスカラー因子f、多次元ではテンソルDを使います。VETはこのテンソル形を指し、VEFと無関係な別の物理モデルという意味ではありません。
+
+## 可変Eddington因子・テンソル：角度輸送でモーメントを閉じる — 灰色近似・拡散・M1との違い [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/variable-eddington/#model
+Coverage: reading
+
+灰色近似は周波数を積分する選択です。一方、VEF/VETは角度分布から圧力閉包を求めます。灰色であることだけでは、拡散近似やM1、VEFのどれを使うかは決まりません。
+ここでは静止媒質、一定の全減衰係数σtと等方散乱係数σs、正の等方輻射源qを扱います。角度平均をdΩ/(4π)、c=1とし、E・H・Kは規格化したエネルギー・流束・圧力モーメントです。通常の角度積分による物理量には共通の4π因子を戻します。
+\boldsymbol\Omega\cdot\nabla I+\sigma_tI=\sigma_sE+q,\quad E=\langle I\rangle,\quad\langle g\rangle=\frac{1}{4\pi}\int_{S^2}g\,d\Omega\mathsf D=\frac{\langle\boldsymbol\Omega\boldsymbol\Omega^{\mathsf T}I\rangle}{E},\quad\mathsf K=\mathsf DE,\quad f= D_{xx}\nabla\cdot\boldsymbol H+\sigma_aE=q,\quad\sigma_t\boldsymbol H+\nabla\cdot(\mathsf DE)=0,\quad\sigma_a=\sigma_t-\sigma_s
+
+## 可変Eddington因子・テンソル：角度輸送でモーメントを閉じる — 角度輸送とモーメント解の反復 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/variable-eddington/#algorithm
+Coverage: reading
+
+現在のモーメント解Eからq+σsEを作り、角度ごとの輸送方程式を解きます。その強度からDを計算し、別に離散化したモーメント方程式を解いてEを更新します。Dを図にするだけでなく、この更新を角度輸送へ戻します。
+本例の形式解は周期Fourier表現です。低次系には共有面流束を持つ有限差分を使い、Dxyを含む交差微分も保持します。原典のshort characteristicsや高次混合有限要素をそのまま再現した実装ではありません。
+内側の線形残差と、外側のE・Dの更新量を別々に確認します。角度輸送とモーメントは異なる空間離散化なので、固定格子で両者のEが完全一致することを停止条件にはしません。
+\sigma_t\sigma_aE-\sum_{i,j}\partial_i\partial_j(D_{ij}E)=\sigma_tq
+
+## 可変Eddington因子・テンソル：角度輸送でモーメントを閉じる — 1D VEF：周期散乱場 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/variable-eddington/#vef-1d
+Coverage: reading
+
+単位周期でq=1+0.3cos(2πx)、σt=4、σs=3を固定します。角度分布I(x,μ)からf(x)=Kxx/Eを求め、独立したスカラー・モーメント解を解析参照と比較します。
+図の縦軸μは方向余弦であり、第2の物理的な空間座標ではありません。f=1/3に固定した対照計算と区別し、空間格子の比較と角度点数の比較を別の行として保存します。
+1D VEFの図・固定入力・解析参照・実行コード
+
+## 可変Eddington因子・テンソル：角度輸送でモーメントを閉じる — 2D VET：非平行な輻射源モード [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/variable-eddington/#vet-2d
+Coverage: reading
+
+単位周期正方形でq=1+0.3cos(2πx)+0.2sin(2π(x+y))を固定します。異なる方向の2モードによりDxyが非零となり、場所によってテンソルの主軸が変わります。
+空間は2Dでも角度測度は球面S²です。Dzzを含む3×3テンソルを保持し、対称性・跡1・正値性・角度分布の実現可能性を確認します。局所的なEとHから作るM1テンソルは診断用の比較であり、この例でM1の時間発展ソルバーを実装したとは表示しません。
+2D VETの図・固定入力・解析参照・実行コード
+
+## 可変Eddington因子・テンソル：角度輸送でモーメントを閉じる — 独立な解析参照 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/variable-eddington/#reference
+Coverage: reading
+
+正の等方輻射源を先に指定し、各Fourierモードの連続角度積分から参照解を導きます。強度や閉包を先に選んで外力を逆算した製造解ではありません。一次コードは解析参照を読み込んでDを作りません。
+kの方向を極軸に取り、1/(σt+ikμ)を積分するとR(k)=atan(k/σt)/kです。散乱の自己結合を解いた振幅AからE・H・Kを別モジュールで評価します。sinモードの複素位相も比較し、一定の背景値だけで誤差が小さく見えないようにします。
+R(k)=\frac{\tan^{-1}(k/\sigma_t)}{k},\quad A_m=\frac{b_m}{1-\sigma_sR(|\boldsymbol k_m|)},\quad E_{\rm ref}=\frac{q_0}{\sigma_a}+\operatorname{Re}\sum_m A_mR(|\boldsymbol k_m|)e^{i\boldsymbol k_m\cdot\boldsymbol x}
+
+## 可変Eddington因子・テンソル：角度輸送でモーメントを閉じる — 確認する範囲と限界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/variable-eddington/#conditions
+Coverage: reading
+
+2つの固定問題は、静止・灰色・線形等方散乱・一定係数・周期境界に限定します。流入境界のVEF境界因子、真空境界、強い吸収体の影、交差ビーム、気体連成、時間発展、多周波数や相対論的輸送を検証するものではありません。
+原典からは方程式・閉包・反復の該当箇所を参照します。原典の全実験やAthenaの再現、普遍的な収束次数・高速化率、固定格子での拡散極限のAP性を主張しません。
+
+## 可変Eddington因子・テンソル：角度輸送でモーメントを閉じる — 結果を確認する順序 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/variable-eddington/#verification
+Coverage: reading
+
+まず強度とEの正値性、テンソルの跡・固有値、面流束の収支を確認します。次に線形残差と外側反復の収束を見て、解析参照との場・モード振幅・位相の誤差を比べます。
+空間格子を変えた行と角度を変えた行を混ぜず、HO/LOの格子依存の差も保存します。定数解、交差微分の符号、散乱フィードバックの省略、固定1/3閉包の対照を使い、単に残差が小さいだけでは合格しないようにします。各版の実測値と判定は、下の実行入口と配布ZIPの記録で確認できます。
+
+## 可変Eddington因子・テンソル：角度輸送でモーメントを閉じる — 固定入力で確かめる：別々の配布版 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/variable-eddington/#scoped-examples
+Coverage: reading
+
+各例の入力・観測量・診断の定義と適用範囲を確認します。検査の合格が示す内容は受入条件によって異なり、数学的な一般保証とは区別します。旧版の入力・測定・公差は保持します。
+
+## 可変Eddington因子・テンソル：角度輸送でモーメントを閉じる — 可変エディントン因子：周期1D散乱源の固定検証 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/variable-eddington/
+Coverage: reading
+
+固定した標的の計算例
+形式的な角度輸送と独立なモーメント方程式を反復結合し、位置で変わる因子fを閉形式参照と比較します。
+図の横軸xと角度余弦μは2つの空間次元ではありません。周期・一様係数の教育例で、流入境界、時間発展、物質・流体結合、非線形FLD、一般AP性や速度向上は検証しません。
+入力・結果・受入条件 · 手法・式・一次文献 · コード：run.py · コード：primary.py · コード：analytic_reference.py · テスト：test_cases.py · 配布ZIP · 保存結果 · 独立展開からの追試記録
+
+## 可変Eddington因子・テンソル：角度輸送でモーメントを閉じる — 可変エディントンテンソル：周期2D非平行源の固定検証 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/variable-eddington/
+Coverage: reading
+
+固定した標的の計算例
+非平行な2つの源モードから全S²角度分布と3×3テンソルを求め、Dxyを含む保存的モーメント式と閉形式参照を比較します。
+局所M1との比較は閉包の点ごとの診断だけで、M1方程式は解きません。Athena・短い特性線法・影・交差ビーム・RHD・境界閉包の再現でもなく、固定格子でHO/LOの厳密一致や普遍的な収束率を主張しません。
+入力・結果・受入条件 · 手法・式・一次文献 · コード：run.py · コード：primary.py · コード：analytic_reference.py · テスト：test_cases.py · 配布ZIP · 保存結果 · 独立展開からの追試記録
+
+## 可変Eddington因子・テンソル：角度輸送でモーメントを閉じる — 公開範囲と関連項目 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/variable-eddington/#publication-scope
+Coverage: reading
+
+1群・2つの軽量な固定検証例です。VEFとVETはスカラー形とテンソル形の関係を持ち、格子・角度・対照計算の行数を独立した物理問題数には数えません。
+可変Eddington因子（1D VEF）
+可変Eddingtonテンソル（VET）
+
+## 可変Eddington因子・テンソル：角度輸送でモーメントを閉じる — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/variable-eddington/#sources
+Coverage: reading
+
+原著、後続の変種、著者による著書、概説、公式資料を区別して参照します。DOI・書誌の確認と原文の該当箇所の閲覧を区別し、論文全体の監査や数値再現を行ったという意味ではありません。確認範囲の注記は引用ごとに示します。
+L. H. Auer and Dimitri Mihalas (1970). On the Use of Variable Eddington Factors in Non-LTE Stellar Atmospheres Computations. Monthly Notices of the Royal Astronomical Society149,65–74
+研究論文・提案または関連する定式化 · 抄録・書誌確認 · 確認した資料
+出版社の抄録・書誌のみを確認しました。原論文PDFの式・数値試験は未閲読で、非LTE大気計算を再現した例ではありません。
+Samuel Olivier and Terry S. Haut (2023). High-Order Mixed Finite Element Variable Eddington Factor Methods.
+研究プレプリント（査読論文版とは区別） · 原文の該当箇所を参照 · 確認した資料
+原著§2の式(1)–(3)、固定点反復、独立した空間離散化の説明を選択閲読しました。全59頁・全試験・高次混合有限要素の実装再現は主張しません。
+Samuel Olivier and Will Pazner and Terry S. Haut and Ben C. Yee (2023). A Family of Independent Variable Eddington Factor Methods with Efficient Preconditioned Iterative Solvers.
+研究論文・提案または関連する定式化 · 原文の該当箇所を参照 · 確認した資料
+導入部1–3頁から独立したHO/LO離散化と有限格子差の説明を参照しました。数値表・高次DG・大規模ソルバーの性能を採用したものではありません。
+Yan-Fei Jiang and James M. Stone and Shane W. Davis (2012). A Godunov Method for Multidimensional Radiation Magnetohydrodynamics based on a variable Eddington tensor.
+研究論文・提案または関連する定式化 · 原文の該当箇所を参照 · 確認した資料
+§3.1の手順、§3.4の式(22)–(23)、§6.5の影テストの範囲を選択閲読しました。Athena・気体連成・原著の衝撃波や雲の試験は再現していません。
+Shane W. Davis and James M. Stone and Yan-Fei Jiang (2012). A Radiation Transfer Solver for Athena using Short Characteristics.
+研究プレプリント（査読論文版とは区別） · 原文の該当箇所を参照 · 確認した資料
+
+## 可変Eddington因子・テンソル：角度輸送でモーメントを閉じる — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/variable-eddington/#sources
+Coverage: reading
+
+式(8)–(20)と§3.2–3.5の角度求積・形式解・境界の説明を選択閲読しました。本例のFourier形式解は原著のshort characteristicsの再現ではありません。
+M. Aaron Skinner and Eve C. Ostriker (2013). A Two-moment Radiation Hydrodynamics Module in Athena Using a Time-explicit Godunov Method.
+研究論文・提案または関連する定式化 · 原文の該当箇所を参照 · 確認した資料
+§2.3の式(11)–(17)から局所M1テンソルと実現可能性を参照しました。M1は点ごとの閉包診断に限り、Hyperionや時間発展するM1ソルバーは実装していません。
+
+## Wall heating：Noh問題と反射壁の数値的な過熱 — Wall heating：Noh問題と反射壁の数値的な過熱 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/wall-heating/
+Coverage: reading
+
+Wall heatingは、強い衝撃が反射壁や流れの収束中心から形成されるとき、数値解に局所的な比内部エネルギーの過大や密度のくぼみが残る現象です。ここでは外部から壁を加熱する物理過程と区別し、既存のNoh計算を使って誤差の見方を説明します。
+
+## Wall heating：Noh問題と反射壁の数値的な過熱 — まず衝撃後の厳密状態を固定する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/wall-heating/#reference
+Coverage: reading
+
+初期圧力ゼロの理想気体Noh問題で、γ=5/3、初期密度1、内向き速度−1を使います。d=1は平面、d=2は円筒半径対称、d=3は球半径対称です。下式は衝撃の後ろの一定状態で、r<r_sに適用します。衝撃をまたぐセルでは、保存量の厳密セル平均を使い、点値と取り違えません。
+比内部エネルギーeは単位質量当たり、𝓔は単位体積当たりの全エネルギー、mは運動量密度です。セル平均保存量Uから求めたe(U)と、eの厳密セル平均は一般に異なります。今回の既存図の量の定義を保ちます。
+\gamma=5/3,\quad \rho_0=1,\quad u_0=-1,\quad p_0=0:\quad r_s=t/3,\quad(\rho,p,u)_2=(4^d,4^d/3,0),\quad e_2=1/2e(U)=\frac{\mathcal E}{\rho}-\frac{|\boldsymbol m|^2}{2\rho^2},\qquad \delta_e=\frac{e(U)}{e_2}-1,\quad\delta_\rho=\frac{\rho}{\rho_2}-1
+
+## Wall heating：Noh問題と反射壁の数値的な過熱 — 局所誤差・誤差領域・全域誤差を分ける [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/wall-heating/#diagnostics
+Coverage: reading
+
+中心を含む固定した物理領域で、比内部エネルギーの最大過剰、密度の最小値、密度の積分誤差を並べます。衝撃近傍の誤差は別に測り、中心だけを除いて全域精度がよいとは判定しません。
+下の保存図は64/128/256/512格子の既存結果です。左列はr≤0.45r_sの比内部エネルギー、中央列は全域の符号付き密度誤差、右列は全域のL1/L2/L∞です。図を開くと拡大できます。球では体積重みr²が中心の小さな欠陥を弱く数えるため、局所最大誤差と積分ノルムを両方見ます。
+既存Noh保存図：原点過熱、密度誤差、格子細分化。全域誤差には原点と衝撃を含みます。新しい計算や過熱を消す処理は行っていません。
+
+## Wall heating：Noh問題と反射壁の数値的な過熱 — 既存の測定で何がわかるか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/wall-heating/#saved-results
+Coverage: reading
+
+既存の2026-11-23-r5版・N=512の中心最大比内部エネルギーの相対過剰は、平面2.58%、円筒半径対称8.16%、球半径対称20.59%です。別の2026-11-23-r2版・128² Cartesian計算では13.99%です。異なる再構築・幾何・格子の保存値であり、方式の優劣をそろえた比較ではありません。
+第3試行は全幾何を含む105条件すべてに合格していますが、球の中心最大過熱は第2試行の15.52%から20.59%へ増えています。「合格」「全域誤差の改善」「wall heatingの解消」を同じ意味にはしません。元の受入基準・失敗試行・保存値を保持します。
+平面・円筒・球の図、固定入力、コード、検証記録 · 実際の2D Cartesian Noh計算と原点過熱
+
+## Wall heating：Noh問題と反射壁の数値的な過熱 — 総量保存だけでは過熱を否定できない [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/wall-heating/#conservation
+Coverage: reading
+
+静止した不透過の反射壁では法線速度がゼロなので、Eulerの物理的な全エネルギー流束はゼロです。局所的な運動・内部エネルギーの配分誤差や数値的なエントロピー生成は、総量が保存されても残り得ます。Nohの外側境界からの流入は別に収支へ数えます。
+人工粘性・数値流束・再構築・初期の停滞処理などが結果に影響します。熱伝導などの補正を比較するときは、密度と圧力、衝撃位置、正値性、保存収支も同じ条件で確認します。本章は補正法の新実装や一般的な除去保証を示しません。
+F_{\mathcal E}=(\mathcal E+p)u_n=0\quad\hbox{at a stationary impermeable reflecting wall}
+
+## Wall heating：Noh問題と反射壁の数値的な過熱 — 出典と今回確認した範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/wall-heating/#scope
+Coverage: reading
+
+Noh（1987）は問題とwall-heating誤差の原著として引用します。出版社の書誌・抄録を確認した範囲で、原著全文や全図の再現を主張しません。固定したLANL ExactPackの解析評価器は独立な厳密状態の照合に使われたもので、独立のPDE計算コードではありません。
+本章は公開済み配布の保存データを読み解く解説です。新しい数値計算、受入基準の変更、問題数・実行例数の追加はありません。
+
+## Wall heating：Noh問題と反射壁の数値的な過熱 — 固定入力で確かめる：別々の配布版 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/wall-heating/#scoped-examples
+Coverage: reading
+
+各例の入力・観測量・診断の定義と適用範囲を確認します。検査の合格が示す内容は受入条件によって異なり、数学的な一般保証とは区別します。旧版の入力・測定・公差は保持します。
+
+## Wall heating：Noh問題と反射壁の数値的な過熱 — Noh衝撃波：初期圧力ゼロの平面・円筒・球対称計算 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/wall-heating/
+Coverage: reading
+
+固定した標的の計算例
+初期圧力ゼロのNoh問題を、独自の小型1D有限体積コードで平面・円筒・球対称に計算します。64/128/256/512格子の全域誤差、原点過熱、衝撃位置、保存収支を測り、球で現れる境界流入の時間積分誤差を解析式と照合します。
+平面・円筒は空間一次、球はMUSCL型の制限線形再構築を使う教育用計算です。原点過熱と有限格子のplateau誤差が残り、全域誤差から原点を除外しません。r²重みで中心欠陥が小さく見えるため、原点を含む固定coreの誤差と拡大図も示します。L∞や中心最大誤差のゼロ収束、滑らかな球問題での方式全体の高次精度、幾何源付き全RK段階の一般の正値性保証、Cartesian多次元、任意γの独立照合は検証していません。円筒L∞は旧系列で単調減少せず、球のL2/L∞と過熱も診断値として保持します。球の離散質量・エネルギー収支が丸め誤差でも、解析総量との差は境界時間求積のO(dt²)となります。半径方向の運動量には幾何源があり、保存されるCartesian運動量とは異なります。ExactPackは解析評価器の独立実装で、別の数値PDEエンジンではありません。
+入力・結果・受入条件 · 手法・式・一次文献 · コード：run.py · コード：noh_solver.py · コード：noh_reference.py · コード：generate_exactpack_reference.py · コード：plot_noh.py · テスト：test_noh.py · 配布ZIP · 保存結果 · 独立展開からの追試記録
+
+## Wall heating：Noh問題と反射壁の数値的な過熱 — Noh問題：実際の2次元Cartesian Euler計算 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/wall-heating/
+Coverage: reading
+
+固定した標的の計算例
+正方形の全域で密度・2成分運動量・全エネルギーを更新する、小型の2次元Euler有限体積計算です。32²・64²・128²の3格子で厳密Noh状態からの誤差・保存収支・格子方向の影響を測ります。図は実際の2次元保存配列で、1D半径解の回転表示ではありません。
+空間一次の軽量例で、原点過熱と衝撃層の誤差が残ります。最細格子でも中心最大比内部エネルギーは厳密値より約14%高いままです。軸・対角の衝撃半径差は約.501Δxで、3格子間で単調には減りません。D4偶奇性が丸め誤差でも円対称性が厳密という意味ではありません。一般の摂動安定性・原点位置ずらし・回転格子・3D Cartesian・高次精度は未検証です。旧1D平面/円筒/球の配布版と判定は変更しません。
+入力・結果・受入条件 · 手法・式・一次文献 · コード：run.py · コード：cartesian_solver.py · コード：cartesian_reference.py · テスト：test_cartesian.py · 配布ZIP · 保存結果 · 独立展開からの追試記録
+
+## Wall heating：Noh問題と反射壁の数値的な過熱 — 公開範囲と関連項目 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/wall-heating/#publication-scope
+Coverage: reading
+
+既存のNoh配布版・図・入力・参照・検証履歴を保持した説明章です。Wall heatingを測定する例であり、解消した例ではありません。
+Rusanov／局所Lax–Friedrichs流束
+Heun法／SSPRK(2,2)
+MUSCL再構成
+Minmod
+
+## Wall heating：Noh問題と反射壁の数値的な過熱 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/wall-heating/#sources
+Coverage: reading
+
+原著、後続の変種、著者による著書、概説、公式資料を区別して参照します。DOI・書誌の確認と原文の該当箇所の閲覧を区別し、論文全体の監査や数値再現を行ったという意味ではありません。確認範囲の注記は引用ごとに示します。
+W. F. Noh (1987). Errors for calculations of strong shocks using an artificial viscosity and an artificial heat flux. Journal of Computational Physics
+研究論文・提案または関連する定式化 · 抄録・書誌確認 · 確認した資料
+出版社書誌・抄録を確認。原著全文は未閲読です。冷たい流入問題と過剰wall heatingの文脈として引用し、この有限体積実装そのものの出典とはしません。
+J. Thrussell and J. M. Ferguson (2023). ExactPack: A python library of exact analytic solutions. SoftwareX
+研究論文・提案または関連する定式化 · 原文の該当箇所を参照 · 確認した資料
+固定commitの公式Noh評価器でγ=5/3の衝撃位置・密度・圧力・比内部エネルギーの式を選択確認。既存の独立照合を参照し、新しいExactPack実行や論文全体の監査は行いません。
 
 ## ウェーブレット — ウェーブレット [ja]
 

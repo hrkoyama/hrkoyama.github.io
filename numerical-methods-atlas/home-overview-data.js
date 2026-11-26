@@ -1217,6 +1217,10 @@ export const homeReadingLanguages = {
     "ja",
     "en"
   ],
+  "validation-variable-eddington-controls": [
+    "ja",
+    "en"
+  ],
   "validation-wall-flow": [
     "ja",
     "en"
@@ -1230,6 +1234,14 @@ export const homeReadingLanguages = {
     "en"
   ],
   "validation-zalesak": [
+    "ja",
+    "en"
+  ],
+  "variable-eddington": [
+    "ja",
+    "en"
+  ],
+  "wall-heating": [
     "ja",
     "en"
   ],

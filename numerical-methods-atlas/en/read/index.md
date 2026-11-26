@@ -90,6 +90,7 @@ Read about reconstruction, limiting and shock robustness, followed by low-Mach c
 - [Damping Runge–Kutta iterations for steady solutions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/steady-runge-kutta/)
 - [NASA 2D verification and validation case catalog](https://hrkoyama.github.io/numerical-methods-atlas/en/read/nasa-2d/)
 - [Mach-3 forward-facing step: lightweight 2D verification](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-forward-step/)
+- [Wall heating: numerical overheating in Noh flow and at reflecting walls](https://hrkoyama.github.io/numerical-methods-atlas/en/read/wall-heating/)
 - [Noh shocks: exact reference, origin heating and refinement](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-noh/)
 - [Noh:2D Cartesian flow and grid orientation error](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-noh-cartesian/)
 - [Sedov–Taylor point blast: lightweight spherical-radial validation](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sedov/)
@@ -135,6 +136,7 @@ Explore particle methods, distribution functions, long-range forces and transpor
 - [Particle gravity: PM, P³M, Tree, multipoles, and multigrid](https://hrkoyama.github.io/numerical-methods-atlas/en/read/particle-gravity/)
 - [Gravity kernels: isolated FFTs and a periodic slab](https://hrkoyama.github.io/numerical-methods-atlas/en/read/gravity-boundaries/)
 - [Radiation transport and moment methods](https://hrkoyama.github.io/numerical-methods-atlas/en/read/radiation-transport/)
+- [Variable Eddington factors and tensors: closing moments with angular transport](https://hrkoyama.github.io/numerical-methods-atlas/en/read/variable-eddington/)
 - [Particles, electrostatics, kinetic and radiative transport](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/)
 - [Particles and transport: independent references, conservation and statistical error](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particle-transport/)
 - [3D1/r kernels: expansions,trees and force checks](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-fmm3d/)
@@ -150,6 +152,7 @@ Explore particle methods, distribution functions, long-range forces and transpor
 - [Isotropically scattering slabs and continuum-angle references](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-scattering/)
 - [Non-equilibrium radiation: distinct diffusion and transport](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-matter/)
 - [2D shadows,beams and M1 closure](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-geometry/)
+- [Lightweight variable Eddington factor and tensor checks](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-variable-eddington-controls/)
 
 ## Electromagnetic fields, electrostatics and electronic structure
 

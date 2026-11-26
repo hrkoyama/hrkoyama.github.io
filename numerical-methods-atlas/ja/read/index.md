@@ -90,6 +90,7 @@
 - [定常解のためのダンピングRunge–Kutta反復](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/steady-runge-kutta/)
 - [NASAの2次元検証・妥当性確認問題集](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/nasa-2d/)
 - [Mach 3前向きステップ：軽量な2次元検証](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-forward-step/)
+- [Wall heating：Noh問題と反射壁の数値的な過熱](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/wall-heating/)
 - [Noh衝撃波：厳密解・過熱誤差・格子収束](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-noh/)
 - [Noh問題：2次元Cartesianと格子方向の誤差](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-noh-cartesian/)
 - [Sedov–Taylor点爆発：球対称の軽量検証](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sedov/)
@@ -135,6 +136,7 @@
 - [粒子重力：PM、P³M、ツリー、多重極、マルチグリッド](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/particle-gravity/)
 - [重力核：孤立FFTと周期スラブ](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/gravity-boundaries/)
 - [輻射輸送・モーメント法](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/radiation-transport/)
+- [可変Eddington因子・テンソル：角度輸送でモーメントを閉じる](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/variable-eddington/)
 - [粒子・静電場・運動論・輻射輸送](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/)
 - [粒子・輸送：独立参照・保存則・統計誤差](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particle-transport/)
 - [3Dの1/r核：展開・木・力の検証](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-fmm3d/)
@@ -150,6 +152,7 @@
 - [等方散乱平板と連続角度参照](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-scattering/)
 - [非平衡輻射：拡散と輸送を分ける](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-matter/)
 - [2Dの影・ビームとM1閉包](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-geometry/)
+- [可変Eddington因子・テンソルの軽量検証](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-variable-eddington-controls/)
 
 ## 電磁場・静電場・電子状態
 
