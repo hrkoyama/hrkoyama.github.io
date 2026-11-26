@@ -1,6 +1,6 @@
 // Generated from frontend/atlas/app.js by scripts/atlas_runtime_assets.py. Edit the source template.
 import {atlasIntroDescriptions,atlasDocumentVersions} from './atlas-runtime-data.mjs?v=62e4fbc3ca60';
-import {homeOverviewPage,wireHomeOverview} from './home-overview.js?v=c0ad4e365986';
+import {homeOverviewPage,wireHomeOverview} from './home-overview.js?v=8eff8d2dc521';
 import {resolveHomeLegacyURL} from './home-navigation.mjs?v=c1253d7c11ee';
 import {readingURL,rewriteReadingLinks} from './reading-urls.js';
 import {chapterEditions} from './chapter-resources.mjs?v=c15a3ccf5491';
