@@ -573,9 +573,9 @@
     },
     "catalog/atlas-depth-expansion.json": {
       "before": "2a348f6a025204d690ab0a060acea8005e98193c2ddfd30ed29422fc2be6d65e",
-      "after": "c86e499d0404c4f6ea496f5771928a3f13f3f1c603e509f30b9aefc990cf0d3b",
+      "after": "966f87869228d28790b160c2748677649d789b64cd3c3da3939e8d18dbd06983",
       "source_before_sha256": "49e2ef4c1f7865eedff70a866351b3e54393a59e8856fd1cc1ed946d1435796c",
-      "source_after_sha256": "85c5ebccb9967e32f14dca957d074273338d97a4d0a7bf6e8dac124f111910f2",
+      "source_after_sha256": "95872774fa0a0cca0340226eca5f953996e634fcc7674197892e1eae7537ca96",
       "before_git": "100644 blob a98df74043a69e45bf4f0171cd06324d2e77d8c8",
       "operations": [
         {
@@ -671,6 +671,61 @@
               "en": "Static steady grey unit-periodic square; dimensionless st=4, ss=3, sa=1 and c=1, using point samples. q=1+0.3 cos(2pi x)+0.2 sin(2pi(x+y)). Space is2D, but directions cover full S2 and Dzz is retained."
             }
           }
+        },
+        {
+          "kind": "value",
+          "parts": [
+            "case_formula_supplements",
+            "saltzman-ale-piston",
+            "source_sha256",
+            "catalog/atlas-equations.json"
+          ],
+          "before": "bb5abaa0a907e299c4584b903827edf26963298168207ae6b4a931424f88f57a",
+          "after": "ecf174410cb43ef1f584f0c3cb50dd790ecc5a41db7bc0040e63b14ba91716a8"
+        },
+        {
+          "kind": "value",
+          "parts": [
+            "case_formula_supplements",
+            "williamson-sphere-transport",
+            "source_sha256",
+            "catalog/atlas-equations.json"
+          ],
+          "before": "bb5abaa0a907e299c4584b903827edf26963298168207ae6b4a931424f88f57a",
+          "after": "ecf174410cb43ef1f584f0c3cb50dd790ecc5a41db7bc0040e63b14ba91716a8"
+        },
+        {
+          "kind": "value",
+          "parts": [
+            "case_formula_supplements",
+            "sphere-zonal-balance",
+            "source_sha256",
+            "catalog/atlas-equations.json"
+          ],
+          "before": "bb5abaa0a907e299c4584b903827edf26963298168207ae6b4a931424f88f57a",
+          "after": "ecf174410cb43ef1f584f0c3cb50dd790ecc5a41db7bc0040e63b14ba91716a8"
+        },
+        {
+          "kind": "value",
+          "parts": [
+            "case_formula_supplements",
+            "gsph-sod",
+            "source_sha256",
+            "catalog/atlas-equations.json"
+          ],
+          "before": "bb5abaa0a907e299c4584b903827edf26963298168207ae6b4a931424f88f57a",
+          "after": "ecf174410cb43ef1f584f0c3cb50dd790ecc5a41db7bc0040e63b14ba91716a8"
+        },
+        {
+          "kind": "value",
+          "parts": [
+            "case_formula_supplements",
+            "sph-pressure-acoustics",
+            "source_sha256",
+            "catalog/atlas-equations.json"
+          ],
+          "before": "bb5abaa0a907e299c4584b903827edf26963298168207ae6b4a931424f88f57a",
+          "after": "ecf174410cb43ef1f584f0c3cb50dd790ecc5a41db7bc0040e63b14ba91716a8"
         }
       ]
     },

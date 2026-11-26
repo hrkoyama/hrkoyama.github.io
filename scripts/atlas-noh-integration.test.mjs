@@ -1,3 +1,4 @@
+import {projectCatalogBeforeVefVet} from './fixtures/atlas-vef-vet-projection.mjs';
 import {projectCatalogBeforeFinal23} from './fixtures/atlas-final23-projection.mjs';
 import {problemCount,examplesAddedAfterBatch37} from './fixtures/atlas-inventory.mjs';
 import test from 'node:test';
@@ -216,10 +217,10 @@ test('spherical diagnostics distinguish discrete conservation from the signed SS
 });
 
 test('Noh reference, figure, chapter and execution connect through their actual new records',()=>{
-  const current=json('catalog/atlas-reference-supplements.json');
+  const current=projectCatalogBeforeVefVet('catalog/atlas-reference-supplements.json',json('catalog/atlas-reference-supplements.json'));
   const addition=projectCatalogBeforeFinal23('catalog/atlas-reference-supplements.json',current).cases;
   const previousIDs=new Set(addition.map(row=>row.id));
-  const registry=json('numerical-methods-atlas/validation/releases.json');
+  const registry=projectCatalogBeforeVefVet('numerical-methods-atlas/validation/releases.json',json('numerical-methods-atlas/validation/releases.json'));
   const oldGroups=new Set(projectCatalogBeforeFinal23('numerical-methods-atlas/validation/releases.json',registry).releases.map(row=>row.group));
   const newCases=registry.releases.filter(row=>!oldGroups.has(row.group)).flatMap(row=>row.case_ids);
   assert.equal(newCases.length,19);
