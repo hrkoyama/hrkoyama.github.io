@@ -177,7 +177,7 @@ class IdentityTests(unittest.TestCase):
                 safe_path(self.root, "outside")
 
     def test_json_duplicate_keys_and_nonfinite(self):
-        for text in ['{"a":1,"a":2}', '{"a":NaN}']:
+        for text in ['{"a":1,"a":2}', '{"a":NaN}', '{"a":Infinity}', '{"a":-Infinity}', '{"a":1e9999}', '{"a":-1e9999}']:
             self.write("invalid.json", text)
             with self.assertRaises(IdentityError):
                 load_json(self.root / "invalid.json")

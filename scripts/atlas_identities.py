@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import math
 from pathlib import Path, PurePosixPath
 import re
 import zipfile
@@ -49,8 +50,14 @@ def _pairs(pairs):
 
 
 def parse_json(text):
+    def finite_float(value):
+        number = float(value)
+        require(math.isfinite(number), f"nonfinite JSON number: {value}")
+        return number
+
     try:
         return json.loads(text, object_pairs_hook=_pairs,
+                          parse_float=finite_float,
                           parse_constant=lambda x: (_ for _ in ()).throw(IdentityError(f"nonfinite JSON number: {x}")))
     except json.JSONDecodeError as exc:
         raise IdentityError(f"invalid JSON: {exc}") from exc
