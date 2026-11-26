@@ -33,7 +33,7 @@
     {
       "id": "static-grey-transfer",
       "name": {
-        "ja": "静止媒質の灰色放射輸送・散乱・線形交換",
+        "ja": "静止媒質の灰色輻射輸送・散乱・線形交換",
         "en": "Static grey radiative transfer,scattering and linear exchange"
       },
       "formula": [
@@ -41,7 +41,7 @@
         "J=\\langle I\\rangle_\\Omega,\\quad\\partial_t V=\\kappa_a(J-V)\\quad(\\mathrm{linear\\ exchange})"
       ],
       "note": {
-        "ja": "正規化した角度平均を使います。物質交換は1997輸送例と周期Fourier比較で進めます。1997の光学座標では係数1、物理座標の比較ではκを放射・物質の両交換項に掛けます。",
+        "ja": "正規化した角度平均を使います。物質交換は1997輸送例と周期Fourier比較で進めます。1997の光学座標では係数1、物理座標の比較ではκを輻射・物質の両交換項に掛けます。",
         "en": "Use a normalized angular mean. Material exchange is evolved in the1997 transport example and periodic Fourier controls. The1997 optical coordinates give a unit exchange coefficient; physical-coordinate controls multiply both exchange terms by kappa."
       },
       "url": {
@@ -69,7 +69,7 @@
     }
   ],
   "equation_note": {
-    "ja": "主検証は1997型の放射輸送・物質交換です。熱・拡散方程式への関連は、別の周期Fourier制御におけるE約V、拡散係数1/[3κ(ε+1)]の極限に限ります。1996Marshak境界や輸送全体の厳密解とは区別します。",
+    "ja": "主検証は1997型の輻射輸送・物質交換です。熱・拡散方程式への関連は、別の周期Fourier制御におけるE約V、拡散係数1/[3κ(ε+1)]の極限に限ります。1996Marshak境界や輸送全体の厳密解とは区別します。",
     "en": "The main benchmark uses1997-type radiation/material transport. The heat equation is a limiting companion for separate periodic Fourier controls with E approximately V and diffusivity1/[3kappa(epsilon+1)],not the1996Marshak boundary problem or an exact solution of full transport."
   },
   "formulations": [
@@ -131,7 +131,7 @@
     {
       "id": "radiation-transport",
       "name": {
-        "ja": "放射輸送・モーメント法",
+        "ja": "輻射輸送・モーメント法",
         "en": "Radiation transport and moment methods"
       },
       "status": "educational-example",

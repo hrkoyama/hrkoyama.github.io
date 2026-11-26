@@ -170,8 +170,8 @@
     {
       "id": "radiation",
       "title": {
-        "ja": "放射輸送",
-        "en": "放射輸送"
+        "ja": "輻射輸送",
+        "en": "輻射輸送"
       }
     },
     {
@@ -4175,8 +4175,8 @@
       "id": "radiation-2",
       "field_id": "radiation",
       "title": {
-        "ja": "Su–Olson非平衡放射輸送／Marshak波",
-        "en": "Su–Olson非平衡放射輸送／Marshak波"
+        "ja": "Su–Olson非平衡輻射輸送／Marshak波",
+        "en": "Su–Olson非平衡輻射輸送／Marshak波"
       },
       "detail_language": "ja",
       "priority": "P2",
@@ -11488,14 +11488,14 @@
     }
   },
   "source_sha256": {
-    "catalog/atlas-benchmark-backlog.json": "c26f7a9b01549974d824ad550cfff0aad279cb721fed769afbb5ee4acc8e115f",
-    "catalog/atlas-detailed-reading.json": "7106bf86f5fe603d39bb4097ea5d88aa13589b6daf29d31e42a867ae781b8c03",
+    "catalog/atlas-benchmark-backlog.json": "118eb6fd76f038af15fc0504b72847100ceac39fd2fc0f1ce53188b6ecf0b314",
+    "catalog/atlas-detailed-reading.json": "5679d8af17b67600816080ca5dafdeeec4ecee81f109cae1b1d3dbc92195cdce",
     "catalog/atlas-execution-examples.json": "b67c3635f42660eaa208073af8addf82777b26337e1b7f2792987f4116fb37c2",
     "catalog/atlas-legacy-reference-contracts-2026-11-25.json": "7d4f7625c72e3c29547834d36e34dc24290a1f7f7149cbeaae3698274089684e",
     "catalog/atlas-legacy-reference-registry-2026-11-25.json": "4e1a167ca9c78210532ee49006f2a54ff5bb3f6cbf05cc9fe8d614d3f46ef8b3",
     "catalog/atlas-method-primary-references.json": "b77c3073e84e9cff001edeb9f27d20c295bf0bbb7e9a62fcb9a0e413105403eb",
-    "catalog/atlas-methods.json": "989b31c7bfe335ebf0c6d44cb9ed126aa79aad9c74d913f6d41ec853890a6418",
-    "catalog/atlas-problem-links.json": "7177cdc7e4931548b22713394e5cded9dfc110caf9b03766757c2c9ad736db86",
+    "catalog/atlas-methods.json": "a1fe46c99d579bbbb9cef07e87897c3865326966eb27962ad9a65ae89f7d7b32",
+    "catalog/atlas-problem-links.json": "3e5d0e34f7e248933adc844f56c853af725e0ce260b64adfebe69827b198bf1f",
     "catalog/atlas-reference-metadata.json": "67e404b2c1aef9aa5f1cccb16a3ce5c7a35335fc7a5195a63c03e77e2bf3064c",
     "catalog/atlas-reference-supplements.json": "87172f941063ed425b1ab96e4ef4dbbc1b68bc01ee375e87124f09106a29dd56",
     "code/numerical-methods-atlas/2026-11-22/verification.json": "29d6d2ae23191ff9037cf490c8337d8c11d090cc1ca3fa7e66dfd8caba12d5c8",
@@ -12159,12 +12159,12 @@
     "code/validated-examples/2026-11-25/thermostat-constraint-controls/verification.json": "c3273335cc6619c07d956252d65b00abf58ff3497d0a35776b3fc376ae70134e",
     "numerical-methods-atlas/assets/reference-solutions.json": "c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc",
     "numerical-methods-atlas/en/read/pinn-operators/index.html": "15b5dba49680036991ced9678f964ff279f11f55c102d8efa70f717a56c76951",
-    "numerical-methods-atlas/gallery/index.html": "457beaf4b71d0e221ac90a560939ead77d490386a2af434162a24d5944847d5f",
+    "numerical-methods-atlas/gallery/index.html": "d83a113a99ecbb80f43d24d88a120330431f82e3584426766668d09052d420be",
     "numerical-methods-atlas/ja/read/pinn-operators/index.html": "08771e94a53fe9fd867b69c3b3c160bbc5b1e0bd8fd57dff967b75d48538cc74",
     "numerical-methods-atlas/methods/thomas/index.html": "fa6bc392f70a59e024a1359c5c65df956c0168d559f02c57cd654133af60d870",
     "numerical-methods-atlas/reading/thomas-provenance.json": "a9eff54993f6f992bcddbb01ddf306adf59a234c8745a7a86557d38a3ab65ee2",
     "numerical-methods-atlas/references.json": "5e8fec9aec1febf38981a9fcf9b38ef2c1f1f40c7b48ce4c18bdbf22bae2eb11",
-    "numerical-methods-atlas/solutions/index.html": "823ab8a565516bcea81605f21fc7c6e9f2d701904bd6d0eebcdec3782ff37f3e",
+    "numerical-methods-atlas/solutions/index.html": "04314c35e6f8ead447a7edd8cf7d0ff2b59df39150fba36655e16bbccf667fe3",
     "numerical-methods-atlas/validation/annular-viscous-mms/index.html": "dc8502ecb5901a1faf28a3e632728c2dd709a6f7a4291f088457b167e29d08a0",
     "numerical-methods-atlas/validation/bfgs-lbfgs-controls/index.html": "75694193efe6cc9f4fd96fc74d0d3c3bdd8a38ea8d4f362d8bff1d53a777507f",
     "numerical-methods-atlas/validation/bratu-distributed-vjp/index.html": "6dab5714e3d621992947e20d139c6cafcb5d76f7782f04d4d1ad5eb8b7d3d604",
@@ -12207,10 +12207,10 @@
     "numerical-methods-atlas/validation/hodgkin-huxley-controls/index.html": "c3a3649b9da1e1c534c667ce9810b95b58f2d7bfb66c8e34976fde9b794ad880",
     "numerical-methods-atlas/validation/immigration-death-ssa/index.html": "019fe8ff4c7a0900e8c6eff62a79ea6b340806b1ce0912734283ecb87e3e133c",
     "numerical-methods-atlas/validation/index1-dae-consistent-initialization/index.html": "59d0969bb615f2e5af1744a44b2f658a48a09be901a44fcb3e3464b7c34e7414",
-    "numerical-methods-atlas/validation/isotropic-scattering-slab/index.html": "bab37c3c4d217830b912956d5421e81234131c69391af086e4574c899cdc04b2",
+    "numerical-methods-atlas/validation/isotropic-scattering-slab/index.html": "b4fc7b1ba8f7a7d0d25ab1ab4582db38285d94677433b8c4f7408513e54cc6f4",
     "numerical-methods-atlas/validation/jameson-steady-linear-modes/index.html": "628e9a147e65a804ef833eb295dee9ad6ea4f9be82e5a5586e926df55af86b50",
     "numerical-methods-atlas/validation/keller-segel-forced-flux/index.html": "df358a3cb171bfa9fa8429f56f56ff20eaacc9eb4ea2e7608955570ebdc21824",
-    "numerical-methods-atlas/validation/kepler-eccentricity/index.html": "72429457c56beec043a091786063438a1144eaada3bdea305e00b4c18223feb0",
+    "numerical-methods-atlas/validation/kepler-eccentricity/index.html": "10de56becb50897d44563e01f7f4791121e85b55c18851634cb376e383da1cd6",
     "numerical-methods-atlas/validation/kh-initial-growth/index.html": "20f6b80002d28ce4f7c1da8ac6c79adf47b8ea655a1922970b709240fb0f4daf",
     "numerical-methods-atlas/validation/kink-branch-derivatives/index.html": "5984ea3f9a2e5e16b5d83d7bd76dbf8a38fed9e4aca7bfc17d0974869aaf0027",
     "numerical-methods-atlas/validation/lbm-annular-couette-control/index.html": "9f2c63ed8d1b17651c1a196e787ab459ee0abffc9d8deb2e21bc508322ecec7b",
@@ -12242,14 +12242,14 @@
     "numerical-methods-atlas/validation/saltzman-ale-piston/index.html": "3ae5c0d85d12ec7d99775eae0319e8ed396e014e0e9bc1e39d98bb940ae5feb1",
     "numerical-methods-atlas/validation/schnakenberg-2d-boundary-modes/index.html": "aa48706675b987489224143570fa2fe79e966939a735142f4d5029e504b8a97f",
     "numerical-methods-atlas/validation/sedov-blast/index.html": "120e177e2c6ad88d05de9ab656d3f2550ac283684ae04a19313217423ee2db09",
-    "numerical-methods-atlas/validation/shadow-absorber2d/index.html": "8fa9e4d3f35b452fee6f348834ada1e97960c2b064e5b6eccb7e841da2ba6547",
+    "numerical-methods-atlas/validation/shadow-absorber2d/index.html": "65b751ae05c46f7df9b0a5af734f1fe66f9513243c369b725ef5532d41598f5d",
     "numerical-methods-atlas/validation/shake-rattle-pendulum/index.html": "692c8fa7878a3cb0ef5e0a6cf31d67717a2a9a248208fe419ff0f77336a39d4d",
     "numerical-methods-atlas/validation/sph-pressure-acoustics/index.html": "fe6654c5097e14097b4c7f1cfd85c82ec30b7bf8e877c2b0ebf1c48324a87bcb",
     "numerical-methods-atlas/validation/spline-shape-controls/index.html": "07977499aa9c30d06d62eec6c3332ffc34ad22fa1961eaa4d8b4419675c21e35",
     "numerical-methods-atlas/validation/srhd-collision/index.html": "350d620d12738f2db1f36bc9664f377b58d6ae3aa8b3161ef879de1f5409e932",
     "numerical-methods-atlas/validation/srmhd-alfven/index.html": "b40cf931ca0d71075d8946347b47c48ed0b9deb0e2a3addebac29118b06811de",
     "numerical-methods-atlas/validation/strang-boundary-order-reduction/index.html": "90f9510456a3a623565d6bc0dba3abc257d9d5d4508e1768f4115c20a405ce7d",
-    "numerical-methods-atlas/validation/su-olson-diffusion1996/index.html": "4b8ca29a62807a071f001d479baa3e688f0247f9ce1fb89c59f6b432ab890ad1",
+    "numerical-methods-atlas/validation/su-olson-diffusion1996/index.html": "df696627d4caecd7a57132d6fa461b1f8f0844bf5f07b31499419ddf17f71f48",
     "numerical-methods-atlas/validation/swashes-topography/index.html": "e7cd33dc141f3a3cc7ae316679ec9fe3a1ac5afb989c7f4f5b5c3a0baed613a3",
     "numerical-methods-atlas/validation/symmetric-saddle-minres/index.html": "68d19c569f410aa7662d141d67cf8fd4e6d965bd624b5ae39662719a0ffecc10",
     "numerical-methods-atlas/validation/tensor-smolyak-dimensions/index.html": "91391ee830f00b053d2383255564339f9abf3b739a97bfb4ecc5b2742dde39fd",

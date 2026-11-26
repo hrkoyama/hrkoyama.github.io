@@ -1,10 +1,10 @@
-# 純吸収平板の離散座標放射輸送
+# 純吸収平板の離散座標輻射輸送
 
-純吸収の定常放射輸送を角度と空間で離散化し、Beer–Lambert解と積分された出射フラックスで検証します。
+純吸収の定常輻射輸送を角度と空間で離散化し、Beer–Lambert解と積分された出射フラックスで検証します。
 
 **使用手法**
 
-- [放射輸送・モーメント法](https://hrkoyama.github.io/numerical-methods-atlas/methods/radiation-transport/?lang=ja) (`radiation-transport`)
+- [輻射輸送・モーメント法](https://hrkoyama.github.io/numerical-methods-atlas/methods/radiation-transport/?lang=ja) (`radiation-transport`)
 
 **方程式**
 
@@ -24,11 +24,11 @@ $$
 
 **問題の図**
 
-![純吸収平板の離散座標放射輸送：この実行例の保存済み検証図。](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/radiation-transport.png)
+![純吸収平板の離散座標輻射輸送：この実行例の保存済み検証図。](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/radiation-transport.png)
 
 この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
 
-[純吸収平板の離散座標放射輸送](https://hrkoyama.github.io/numerical-methods-atlas/problems/absorbing-slab/?lang=ja) (`absorbing-slab`)
+[純吸収平板の離散座標輻射輸送](https://hrkoyama.github.io/numerical-methods-atlas/problems/absorbing-slab/?lang=ja) (`absorbing-slab`)
 
 [この問題のコード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/absorbing-slab/?lang=ja#code-ja)
 
@@ -41,7 +41,7 @@ $$
 参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
 ## 前提・単位・境界
 
-光学的厚さ0.7の一様平板。正の半球から単位強度が入射し、逆向きの入射・散乱・内部放射はゼロです。
+光学的厚さ0.7の一様平板。正の半球から単位強度が入射し、逆向きの入射・散乱・内部輻射はゼロです。
 
 ## 採用した計算法
 
@@ -61,7 +61,7 @@ $$
 
 ## 確認の限界
 
-多重散乱、熱放射、周波数再分配、動的媒質、放射流体連成は未実装です。StamnesらのDISORTの全機能・安定化を再現したとは表示しません。
+多重散乱、熱輻射、周波数再分配、動的媒質、輻射流体連成は未実装です。StamnesらのDISORTの全機能・安定化を再現したとは表示しません。
 
 ## 保存実測値と判定
 

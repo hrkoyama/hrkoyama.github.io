@@ -264,7 +264,7 @@ e=0.1/0.7の16固定軌道で、保存量と同時刻の位相誤差、実際の
 
 [この実行例の式と条件](https://hrkoyama.github.io/numerical-methods-atlas/validation/kepler-eccentricity/?lang=ja#kepler-eccentricity-ja-algorithm)
 
-独自の中心力KDK Verlet。固定・保存刻み再生・再生成刻みを区別し、cubic Hermite軌道の正の放射速度交差をbrentqで局在化。
+独自の中心力KDK Verlet。固定・保存刻み再生・再生成刻みを区別し、cubic Hermite軌道の正の動径速度での交差をbrentqで局在化。
 
 $$
 \ddot q=-q/\|q\|^3
@@ -324,7 +324,7 @@ a=μ=換算質量=1、軟化なし。1周期は512/1024/2048刻み、10周期は
 
 ### 採用した計算法
 
-独自の中心力KDK Verlet。固定・保存刻み再生・再生成刻みを区別し、cubic Hermite軌道の正の放射速度交差をbrentqで局在化。
+独自の中心力KDK Verlet。固定・保存刻み再生・再生成刻みを区別し、cubic Hermite軌道の正の動径速度での交差をbrentqで局在化。
 
 $$
 \ddot q=-q/\|q\|^3

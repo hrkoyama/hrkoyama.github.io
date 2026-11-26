@@ -1,6 +1,6 @@
 # 粒子・輸送：独立参照・保存則・統計誤差
 
-周期力、FMM、PIC、衝突、放射輸送の既存問題を別版で検証します。決定論的な離散誤差、保存則、有限粒子数の偏りと統計誤差を分けます。
+周期力、FMM、PIC、衝突、輻射輸送の既存問題を別版で検証します。決定論的な離散誤差、保存則、有限粒子数の偏りと統計誤差を分けます。
 
 共通22実行例の台帳とは別に管理する追加検証集です。配布ZIPを独立展開し、各グループの全固定入力と検査を実行した記録を示します。設定・手法・刻み幅の違いを独立した物理問題の数には加算しません。
 
@@ -710,13 +710,13 @@ Sandiaの公式DSMC記念文書とDOI書誌を確認。出版社本文は取得�
 
 Original code: MIT. Text/figures/inputs/data/third-party material: separate terms at https://hrkoyama.github.io/LICENSING.md and https://hrkoyama.github.io/rights/.
 
-## 放射輸送：空間・角度収束と光子統計
+## 輻射輸送：空間・角度収束と光子統計
 
 純吸収平板で特性解・独立適応求積・光子生存率を比較し、離散収支と標本誤差・区間被覆を別々に測ります。
 
 **使用手法**
 
-- [放射輸送・モーメント法](https://hrkoyama.github.io/numerical-methods-atlas/methods/radiation-transport/?lang=ja) (`radiation-transport`)
+- [輻射輸送・モーメント法](https://hrkoyama.github.io/numerical-methods-atlas/methods/radiation-transport/?lang=ja) (`radiation-transport`)
 
 **方程式**
 
@@ -736,11 +736,11 @@ $$
 
 **問題の図**
 
-![放射輸送：空間・角度収束と光子統計：この実行例の保存済み検証図。](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/results/radiation-convergence.png)
+![輻射輸送：空間・角度収束と光子統計：この実行例の保存済み検証図。](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/results/radiation-convergence.png)
 
 この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
 
-[純吸収平板の離散座標放射輸送](https://hrkoyama.github.io/numerical-methods-atlas/problems/absorbing-slab/?lang=ja) (`absorbing-slab`)
+[純吸収平板の離散座標輻射輸送](https://hrkoyama.github.io/numerical-methods-atlas/problems/absorbing-slab/?lang=ja) (`absorbing-slab`)
 
 [この問題のコード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/absorbing-slab/?lang=ja#code-ja)
 
@@ -753,11 +753,11 @@ $$
 参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
 ### 前提・単位・境界
 
-定常一様平板、光学的厚さ.1/.7/3、正の半球から単位強度、逆入射・散乱・内部放射0。フラックス基準の光子入射方向はpdf=2muです。
+定常一様平板、光学的厚さ.1/.7/3、正の半球から単位強度、逆入射・散乱・内部輻射0。フラックス基準の光子入射方向はpdf=2muです。
 
 **編集上の補足**
 
-純吸収平板の空間・角度誤差を分離し、特性解・適応求積・光子生存率を照合します。有限seedの区間被覆を全seed保証とせず、散乱や放射流体連成は未検証です。
+純吸収平板の空間・角度誤差を分離し、特性解・適応求積・光子生存率を照合します。有限seedの区間被覆を全seed保証とせず、散乱や輻射流体連成は未検証です。
 
 ### 採用した計算法
 
@@ -777,7 +777,7 @@ $$
 
 ### 確認の限界
 
-区間被覆は有限の固定seedでの観測で、ちょうど95%の実測値や全seedの成功を保証しません。決定論的求積誤差を統計誤差へ含めず、多重散乱・周波数依存・熱放射・放射流体連成は未検証です。
+区間被覆は有限の固定seedでの観測で、ちょうど95%の実測値や全seedの成功を保証しません。決定論的求積誤差を統計誤差へ含めず、多重散乱・周波数依存・熱輻射・輻射流体連成は未検証です。
 
 ### 保存実測値と判定
 

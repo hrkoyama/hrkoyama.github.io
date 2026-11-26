@@ -8141,7 +8141,7 @@
           {
             "id": "static-grey-transfer",
             "name": {
-              "ja": "静止媒質の灰色放射輸送・散乱・線形交換",
+              "ja": "静止媒質の灰色輻射輸送・散乱・線形交換",
               "en": "Static grey radiative transfer,scattering and linear exchange"
             },
             "problem_ids": [
@@ -40017,7 +40017,7 @@
                 "en": "a=mu=reduced mass=1, without softening. One-period runs use 512/1024/2048 steps; ten-period controls use h0=2π/2048. Variable steps use h=h0|q| at the current state, with only the final step shortened to the physical endpoint."
               },
               "algorithm": {
-                "ja": "独自の中心力KDK Verlet。固定・保存刻み再生・再生成刻みを区別し、cubic Hermite軌道の正の放射速度交差をbrentqで局在化。",
+                "ja": "独自の中心力KDK Verlet。固定・保存刻み再生・再生成刻みを区別し、cubic Hermite軌道の正の動径速度での交差をbrentqで局在化。",
                 "en": "Original central-force KDK Verlet. Fixed, replayed and regenerated schedules are distinct. Positive radial crossings of cubic Hermite trajectories are localized by brentq."
               },
               "validation": {
@@ -40081,6 +40081,26 @@
                   }
                 }
               ],
+              "editorial_terminology": {
+                "kind": "Japanese-display-terminology",
+                "schema_version": 1,
+                "raw_source": {
+                  "path": "code/validated-examples/2026-11-24/geometric-controls/cases.json",
+                  "sha256": "f97c3c5cef1540cba0c16b8f8d32d70696d4d22105eaf784ff2e17cd3ccecd8b",
+                  "case_pointer": "/1"
+                },
+                "raw_case_canonical_sha256": "027077406fcb14ceffdaa91fc7dcff2defe72f83afeb9138b8164449eaae8008",
+                "editorial_source_sha256": {
+                  "catalog/atlas-terminology.json": "b861b1b1d4323c71bae2594065fd58649cb47e088dae858c4105e6340c4122b9",
+                  "scripts/atlas_terminology.py": "3abe65776c82d3f0c3fd01396ad9efb799ebba3515b50fe7844db0f01778779c"
+                },
+                "fields": {
+                  "algorithm": {
+                    "raw_ja_sha256": "de6b67bc9233abc7a0108aec0828cd6bc1ddc9ac7934410e241792df46bb8042",
+                    "display_ja_sha256": "2eccb5fb30153c006e68ec77bd28f0d1099e370c3e2a0e50f370d8e6f7e9eba3"
+                  }
+                }
+              },
               "measured": {
                 "id": "kepler-eccentricity",
                 "passed": true,
@@ -41072,7 +41092,11 @@
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-geometric-controls/#multifrequency-resonance"
               }
             }
-          ]
+          ],
+          "editorial_source_sha256": {
+            "catalog/atlas-terminology.json": "b861b1b1d4323c71bae2594065fd58649cb47e088dae858c4105e6340c4122b9",
+            "scripts/atlas_terminology.py": "3abe65776c82d3f0c3fd01396ad9efb799ebba3515b50fe7844db0f01778779c"
+          }
         },
         {
           "group": "quantum-small",
@@ -41710,7 +41734,7 @@
             ],
             "role": "execution",
             "method_note": {
-              "ja": "位置のみの力でkick半分→drift→kick半分。独立のbracketed Kepler rootと解析速度を使用。 独自の中心力KDK Verlet。固定・保存刻み再生・再生成刻みを区別し、cubic Hermite軌道の正の放射速度交差をbrentqで局在化。",
+              "ja": "位置のみの力でkick半分→drift→kick半分。独立のbracketed Kepler rootと解析速度を使用。 独自の中心力KDK Verlet。固定・保存刻み再生・再生成刻みを区別し、cubic Hermite軌道の正の動径速度での交差をbrentqで局在化。",
               "en": "Position-only kick-half/drift/kick-half; separate bracketed Kepler root and analytic velocities. Original central-force KDK Verlet. Fixed, replayed and regenerated schedules are distinct. Positive radial crossings of cubic Hermite trajectories are localized by brentq."
             },
             "reference_url": {

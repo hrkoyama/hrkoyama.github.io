@@ -7602,7 +7602,7 @@
       "id": "absorbing-slab",
       "group": "transport",
       "name": {
-        "ja": "純吸収平板の離散座標放射輸送",
+        "ja": "純吸収平板の離散座標輻射輸送",
         "en": "Discrete-ordinate radiation transport through an absorbing slab"
       },
       "chapter": "validation-particles",
@@ -7651,7 +7651,7 @@
           "id": "radiation-transport",
           "url": "/numerical-methods-atlas/validation/radiation-transport/",
           "name": {
-            "ja": "純吸収平板の離散座標放射輸送",
+            "ja": "純吸収平板の離散座標輻射輸送",
             "en": "Discrete-ordinate radiation transport through an absorbing slab"
           }
         },
@@ -7659,7 +7659,7 @@
           "id": "radiation-convergence",
           "url": "/numerical-methods-atlas/validation/radiation-convergence/",
           "name": {
-            "ja": "放射輸送：空間・角度収束と光子統計",
+            "ja": "輻射輸送：空間・角度収束と光子統計",
             "en": "Radiation transport: space/angle convergence and photon statistics"
           }
         }
@@ -7697,7 +7697,7 @@
             "id": "radiation-transport",
             "url": "/numerical-methods-atlas/validation/radiation-transport/",
             "name": {
-              "ja": "純吸収平板の離散座標放射輸送",
+              "ja": "純吸収平板の離散座標輻射輸送",
               "en": "Discrete-ordinate radiation transport through an absorbing slab"
             }
           },
@@ -7705,7 +7705,7 @@
             "id": "radiation-convergence",
             "url": "/numerical-methods-atlas/validation/radiation-convergence/",
             "name": {
-              "ja": "放射輸送：空間・角度収束と光子統計",
+              "ja": "輻射輸送：空間・角度収束と光子統計",
               "en": "Radiation transport: space/angle convergence and photon statistics"
             }
           }
@@ -7732,7 +7732,7 @@
         {
           "id": "radiation-transport",
           "title": {
-            "ja": "純吸収平板の離散座標放射輸送",
+            "ja": "純吸収平板の離散座標輻射輸送",
             "en": "Discrete-ordinate radiation transport through an absorbing slab"
           },
           "group": "particles",
@@ -7756,7 +7756,7 @@
         {
           "id": "radiation-convergence",
           "title": {
-            "ja": "放射輸送：空間・角度収束と光子統計",
+            "ja": "輻射輸送：空間・角度収束と光子統計",
             "en": "Radiation transport: space/angle convergence and photon statistics"
           },
           "group": "particle-transport",
@@ -19110,7 +19110,7 @@
     }
   ],
   "source_sha256": {
-    "catalog/atlas-gallery.json": "ed3412a4196a5e0bfebde524f834b98754ad3dfe8320465f662230e62b91768f",
+    "catalog/atlas-gallery.json": "2c1c73c48ca1596c673120ff5ec5925b33e0ab4a667f292127b9af1a3e34b851",
     "scripts/render-atlas-gallery.py": "62956b5a0ece0c5144ec079bb30f36e44b3ccf97e4b56b677d4de356cdbab04c",
     "code/numerical-methods-atlas/2026-11-21/numart/benchmarks.py": "dc8f83aafea473b5f0e1e7bf82630484dd60aa446859c1f602571adc3c59f019",
     "code/numerical-methods-atlas/2026-11-21/numart/solvers.py": "7811862ea3384cef825a1d382c24c6e19a175fb688a024fa4117959eed4bf05d",
@@ -19157,8 +19157,8 @@
     "code/periodic-dft/2026-11-22/verification.json": "5de4662728e0114aea5576dc7e93dee03fcc02e32d516e1d8da77e5b8f4511e5",
     "code/periodic-forces/2026-11-22/results/preview.png": "ea952ee104c44d0b229c56751d9c147629d58f661ebb95c2821e6b895b24e4fb",
     "code/periodic-forces/2026-11-22/verification.json": "e29d65bc89b7edac45a81d3cbae4048911f7fc8848cc47a35764f0041e296b7f",
-    "catalog/atlas-test-problems.json": "8aa618c508f213ea8e07e2683c2573357f06d052517326508d85465e4da81c43",
-    "catalog/atlas-depth-expansion.json": "d559e4bbc6643cb6f149f97a7c3d9b27eed2d9f38ac3b5f1e9811f83c3db0936",
+    "catalog/atlas-test-problems.json": "6f056c7aac9da887d8631fcaf66287d685ee32c1113d24e16c713fd947153d9b",
+    "catalog/atlas-depth-expansion.json": "49e2ef4c1f7865eedff70a866351b3e54393a59e8856fd1cc1ed946d1435796c",
     "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
     "code/validated-examples/2026-11-22/foundations/inputs.json": "9b07ca782d9b9de4ef467189d6710f3fa346d23be154200358f005e4eceebff1",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
@@ -19858,17 +19858,19 @@
     "code/numerical-methods-atlas/2026-11-21/tests/test_sparse_fem.py": "4076e514e0b9b5fd94dead4af33fe7e7548fba6a7b48b3e21a406034f7170afb",
     "code/numerical-methods-atlas/2026-11-21/tests/test_runge_kutta.py": "920a5eb560afe7f560cae8d22f879f125851f4ee0451b24720d0eca0082c31ce",
     "code/numerical-methods-atlas/2026-11-21/tests/test_new_models.py": "2937daf8fa8ad86882ac06e47835a6309ca1df3d0283c7dfb7b9606dc3906b1f",
-    "numerical-methods-atlas/gallery/preview-manifest.json": "8c3e0bc226cc36e0c3f22172f61744f80a530278ecfecfcc91ac5a942ad3fdce",
+    "numerical-methods-atlas/gallery/preview-manifest.json": "10811a962736e0481fba13931deb6667ea9137c1525fed54a49a3f84d2da61e9",
     "numerical-methods-atlas/gallery/calculations.json": "d98cd75e1c58177bfc716e8b68d6bfba1358d5135ac8e2ee0989eb3df77942a6",
     "numerical-methods-atlas/gallery/verification.json": "46c39543afa9d943dfef896fadbc8f84d847f1a145d9b1427a2336de7a3a50f9",
-    "numerical-methods-atlas/test-cases/index.json": "13ef7e1c3870a0505541d7d29454d676057b6e5eeab77cefb145bdd54ddb867c",
+    "numerical-methods-atlas/test-cases/index.json": "3f71f8d860a7ade3b07bfe8d757cb551e325a4e0e77afda5778d4ad3fe444f69",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
     "scripts/atlas_execution_discovery.py": "3431dae95fb0adc68e1deca07b406b70bd99480f9ad6023a31765cb07ccf84be",
-    "scripts/atlas_depth_release.py": "48ffa3e1134485b17d50fc104612c06e3110411c76b9ece93e8cf93ce0920d9b",
-    "scripts/atlas_goal_availability.py": "110f9026c13acbba1c02bfc6dd3234ba3e7ead631a5fefd129cee9d9ec30721b",
+    "scripts/atlas_depth_release.py": "cdf3955313805d931ad9706f26af67e70f8500f883ac86544babd2c09a03afb9",
+    "scripts/atlas_goal_availability.py": "91872ccf7efa87549e2d5535e3a2577e96938f9245b081ba5bddf66faeaf5a2f",
     "code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip": "1d130f886c31647aa5ba565fb10703a64d8af249c5715b4b2301401a3cfe22e2",
     "code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip": "18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c",
     "code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip": "8d2c39d6166a6b8715329574ed699515b0aa5b1f4c08fbec46b97400c50025b6",
+    "catalog/atlas-terminology.json": "b861b1b1d4323c71bae2594065fd58649cb47e088dae858c4105e6340c4122b9",
+    "scripts/atlas_terminology.py": "3abe65776c82d3f0c3fd01396ad9efb799ebba3515b50fe7844db0f01778779c",
     "code/validated-examples/2026-11-22/mhd/atlas-mhd-2026-11-22.zip": "2e7eeaaacaeb918671228cc56ab333d0c4ca5a9879241846f5772594552d0b16",
     "code/validated-examples/2026-11-22/thermostats/atlas-thermostats-2026-11-22.zip": "38142da988bf0c790eab7e7f10f8d1e209d074c3627f73a207f5223a24e18d65",
     "code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip": "d7608d121ad2c5a2b5fb8db8c87bc648f372bb666c3079e6b4835b276d3b5979",

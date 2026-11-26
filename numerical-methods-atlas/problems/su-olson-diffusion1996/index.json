@@ -69,7 +69,7 @@
         "\\epsilon=4a/\\alpha,\\quad e_m/E_0=v/\\epsilon,\\quad \\mathcal E=\\epsilon u+v"
       ],
       "note": {
-        "ja": "実際の放射・物質2場とMarshak境界を進め、固定版ExactPackの独立積分参照と比較します。",
+        "ja": "実際の輻射・物質2場とMarshak境界を進め、固定版ExactPackの独立積分参照と比較します。",
         "en": "Advance actual radiation/material fields with the Marshak boundary and compare with independently qualified pinned ExactPack integrals."
       }
     }
@@ -88,7 +88,7 @@
       },
       "formula": "epsilon*u_tau-u_xx=v-u; v_tau=u-v; u(0,tau)-2/sqrt(3)*u_x(0,tau)=1; u(infinity,tau)=0; epsilon*u+v is the capacity-weighted total.",
       "assumptions": {
-        "ja": "初期の放射・物質変数が0、ε=1の半無限Marshak拡散です。無次元評価関数を直接用い、物理単位の質量吸収係数ラッパーに起因する曖昧な規約は持ち込みません。",
+        "ja": "初期の輻射・物質変数が0、ε=1の半無限Marshak拡散です。無次元評価関数を直接用い、物理単位の質量吸収係数ラッパーに起因する曖昧な規約は持ち込みません。",
         "en": "Half-space Marshak diffusion with zero initial radiation/material variables and epsilon1. Direct dimensionless evaluator; no ambiguous physical mass-opacity wrapper convention."
       },
       "relation": "same-problem",
@@ -110,7 +110,7 @@
     {
       "id": "radiation-transport",
       "name": {
-        "ja": "放射輸送・モーメント法",
+        "ja": "輻射輸送・モーメント法",
         "en": "Radiation transport and moment methods"
       },
       "status": "educational-example",
@@ -135,7 +135,7 @@
     }
   ],
   "method_note": {
-    "ja": "保存的FVと後退Euler。放射物質の反対sourceを同じSchur補元で結合し、Robinのβ+h/2半セル抵抗を用います。ε.25/2の同じ交換operatorも解析検査します。",
+    "ja": "保存的FVと後退Euler。輻射物質の反対sourceを同じSchur補元で結合し、Robinのβ+h/2半セル抵抗を用います。ε.25/2の同じ交換operatorも解析検査します。",
     "en": "Conservative FV/backwardEuler with opposite exchange sources coupled by a shared Schur complement and Robin half-cell resistance beta+h/2. Analytic nonunitepsilon.25/2controls exercise the same exchange operators."
   },
   "executions": [
@@ -155,7 +155,7 @@
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/su-olson-diffusion1996/?lang=en"
       },
       "scope": {
-        "ja": "実際の放射・物質2場とMarshak境界を進め、固定版ExactPackの独立積分参照と比較します。",
+        "ja": "実際の輻射・物質2場とMarshak境界を進め、固定版ExactPackの独立積分参照と比較します。",
         "en": "Advance actual radiation/material fields with the Marshak boundary and compare with independently qualified pinned ExactPack integrals."
       },
       "assumptions": {

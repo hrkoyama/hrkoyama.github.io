@@ -2068,7 +2068,7 @@
     }
   ],
   "source_sha256": {
-    "catalog/atlas-gallery.json": "ed3412a4196a5e0bfebde524f834b98754ad3dfe8320465f662230e62b91768f",
+    "catalog/atlas-gallery.json": "2c1c73c48ca1596c673120ff5ec5925b33e0ab4a667f292127b9af1a3e34b851",
     "scripts/render-atlas-gallery.py": "62956b5a0ece0c5144ec079bb30f36e44b3ccf97e4b56b677d4de356cdbab04c",
     "code/numerical-methods-atlas/2026-11-21/numart/benchmarks.py": "dc8f83aafea473b5f0e1e7bf82630484dd60aa446859c1f602571adc3c59f019",
     "code/numerical-methods-atlas/2026-11-21/numart/solvers.py": "7811862ea3384cef825a1d382c24c6e19a175fb688a024fa4117959eed4bf05d",
@@ -2115,8 +2115,8 @@
     "code/periodic-dft/2026-11-22/verification.json": "5de4662728e0114aea5576dc7e93dee03fcc02e32d516e1d8da77e5b8f4511e5",
     "code/periodic-forces/2026-11-22/results/preview.png": "ea952ee104c44d0b229c56751d9c147629d58f661ebb95c2821e6b895b24e4fb",
     "code/periodic-forces/2026-11-22/verification.json": "e29d65bc89b7edac45a81d3cbae4048911f7fc8848cc47a35764f0041e296b7f",
-    "catalog/atlas-test-problems.json": "8aa618c508f213ea8e07e2683c2573357f06d052517326508d85465e4da81c43",
-    "catalog/atlas-depth-expansion.json": "d559e4bbc6643cb6f149f97a7c3d9b27eed2d9f38ac3b5f1e9811f83c3db0936",
+    "catalog/atlas-test-problems.json": "6f056c7aac9da887d8631fcaf66287d685ee32c1113d24e16c713fd947153d9b",
+    "catalog/atlas-depth-expansion.json": "49e2ef4c1f7865eedff70a866351b3e54393a59e8856fd1cc1ed946d1435796c",
     "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
     "code/validated-examples/2026-11-22/foundations/inputs.json": "9b07ca782d9b9de4ef467189d6710f3fa346d23be154200358f005e4eceebff1",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
@@ -3341,6 +3341,35 @@
         "catalog/atlas-depth-expansion.json": {
           "before": "a3fa27c909cda00ef31a0919afffe3275a132bc03193841879563384fdb84249",
           "after": "d559e4bbc6643cb6f149f97a7c3d9b27eed2d9f38ac3b5f1e9811f83c3db0936"
+        }
+      },
+      "producer": {
+        "path": "scripts/prime-atlas-gallery-metadata.py",
+        "sha256": "a00a82bf2607067296ae6ea8a143f891a4fa3adaa74051440eb5964540cf3265"
+      },
+      "historical_primary_records_unchanged": true,
+      "scientific_preview_execution": false,
+      "historical_figures_rerendered": false
+    },
+    {
+      "on": "2026-11-25",
+      "date_role": "Source catalog reviewed_on; not execution time.",
+      "scope": "Register already qualified canonical PNG metadata before reverse routes; retain all prior picture records/images and original numerical-preview receipts.",
+      "primary_item_count_before": 172,
+      "primary_item_count_after": 172,
+      "added_primary_ids": [],
+      "changed_catalog_bindings": {
+        "catalog/atlas-gallery.json": {
+          "before": "ed3412a4196a5e0bfebde524f834b98754ad3dfe8320465f662230e62b91768f",
+          "after": "2c1c73c48ca1596c673120ff5ec5925b33e0ab4a667f292127b9af1a3e34b851"
+        },
+        "catalog/atlas-test-problems.json": {
+          "before": "8aa618c508f213ea8e07e2683c2573357f06d052517326508d85465e4da81c43",
+          "after": "6f056c7aac9da887d8631fcaf66287d685ee32c1113d24e16c713fd947153d9b"
+        },
+        "catalog/atlas-depth-expansion.json": {
+          "before": "d559e4bbc6643cb6f149f97a7c3d9b27eed2d9f38ac3b5f1e9811f83c3db0936",
+          "after": "49e2ef4c1f7865eedff70a866351b3e54393a59e8856fd1cc1ed946d1435796c"
         }
       },
       "producer": {

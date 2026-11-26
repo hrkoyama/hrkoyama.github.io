@@ -1,7 +1,7 @@
 // Generated from frontend/atlas/app.js by scripts/atlas_runtime_assets.py. Edit the source template.
-import {atlasIntroDescriptions,atlasDocumentVersions} from './atlas-runtime-data.mjs?v=9e755ee268e1';
-import {homeOverviewPage,wireHomeOverview} from './home-overview.js?v=68d393661fbb';
-import {resolveHomeLegacyURL} from './home-navigation.mjs?v=715594d10bb8';
+import {atlasIntroDescriptions,atlasDocumentVersions} from './atlas-runtime-data.mjs?v=9af417894dfe';
+import {homeOverviewPage,wireHomeOverview} from './home-overview.js?v=602743587ece';
+import {resolveHomeLegacyURL} from './home-navigation.mjs?v=b8eea2810f60';
 import {readingURL,rewriteReadingLinks} from './reading-urls.js';
 import {chapterEditions} from './chapter-resources.mjs?v=336830640a23';
 import {expansionPage,wireExpansion} from './shock-expansion.js';
@@ -332,7 +332,7 @@ async function route(options={}) {
 document.querySelector('.skip-link').addEventListener('click',e=>{e.preventDefault();main.focus();main.scrollIntoView();});
 document.querySelector('#figure-dialog').addEventListener('click',e=>{if(e.target===e.currentTarget)e.currentTarget.close();});
 try {
- [localeCatalog,references,sod,experiments,foundations,coverage,translationStatus,glossary,site]=await Promise.all(['locales/messages.json?v=014c9a41fe53','references.json?v=5e8fec9aec1f','sod.json','experiments.json','foundations.json','coverage.json?v=e3cad543377d','translation-status.json','glossary.json','site.json'].map(async file=>{const response=await fetch(file);if(!response.ok)throw Error(`Cannot load ${file}`);return response.json();}));
+ [localeCatalog,references,sod,experiments,foundations,coverage,translationStatus,glossary,site]=await Promise.all(['locales/messages.json?v=3a5053933857','references.json?v=5e8fec9aec1f','sod.json','experiments.json','foundations.json','coverage.json?v=9999de3e4be7','translation-status.json','glossary.json','site.json'].map(async file=>{const response=await fetch(file);if(!response.ok)throw Error(`Cannot load ${file}`);return response.json();}));
  repo=site.repositoryUrl;
  references.sort((a,b)=>a.year-b.year||a.id.localeCompare(b.id));
  let saved;try{saved=localStorage.getItem('hrkoyama.home.language') || localStorage.getItem('numart-language');}catch{}

@@ -1,5 +1,5 @@
 // Generated from frontend/search/engine.mjs by scripts/search_assets.py. Edit the source template.
-import {findMethods,tokenIncludes} from './method-search.mjs?v=4b377a4b35ce';
+import {findMethods,tokenIncludes} from './method-search.mjs?v=4e232938761d';
 import {unpackSearchIndex} from './compact-index.mjs?v=5ac38c56172d';
 import {publicNavigationPath} from './navigation.mjs?v=cbd24e09fe05';
 const ORIGIN = 'https://hrkoyama.github.io';

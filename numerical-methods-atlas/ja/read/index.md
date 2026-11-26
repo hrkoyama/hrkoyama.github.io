@@ -127,15 +127,15 @@
 
 粒子法、分布関数、長距離力と輸送方程式を読みます。
 
-- [粒子法と平滑化粒子流体力学](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/particles-sph/)
+- [粒子法とSmoothed Particle Hydrodynamics（SPH）](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/particles-sph/)
 - [Godunov平滑化粒子流体力学（GSPH）](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/gsph/)
 - [格子Boltzmann法：衝突、並進、流体運動の回復](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/lattice-boltzmann/)
 - [Chapman–Enskog展開：分布から輸送へ](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/chapman-enskog/)
 - [DSMC・運動論輸送](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/dsmc/)
 - [粒子重力：PM、P³M、ツリー、多重極、マルチグリッド](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/particle-gravity/)
 - [重力核：孤立FFTと周期スラブ](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/gravity-boundaries/)
-- [放射輸送・モーメント法](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/radiation-transport/)
-- [粒子・静電場・運動論・放射輸送](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/)
+- [輻射輸送・モーメント法](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/radiation-transport/)
+- [粒子・静電場・運動論・輻射輸送](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/)
 - [粒子・輸送：独立参照・保存則・統計誤差](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particle-transport/)
 - [3Dの1/r核：展開・木・力の検証](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-fmm3d/)
 - [重力軌道：Keplerと軟化有限粒子](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-gravity-dynamics/)
@@ -148,7 +148,7 @@
 - [曲面LBMの環状Couette流](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-annulus/)
 - [LBMの曲面壁とRe20円柱](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-curved-boundary/)
 - [等方散乱平板と連続角度参照](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-scattering/)
-- [非平衡放射：拡散と輸送を分ける](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-matter/)
+- [非平衡輻射：拡散と輸送を分ける](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-matter/)
 - [2Dの影・ビームとM1閉包](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-geometry/)
 
 ## 電磁場・静電場・電子状態

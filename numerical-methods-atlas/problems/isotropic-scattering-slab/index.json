@@ -33,7 +33,7 @@
     {
       "id": "static-grey-transfer",
       "name": {
-        "ja": "静止媒質の灰色放射輸送・散乱・線形交換",
+        "ja": "静止媒質の灰色輻射輸送・散乱・線形交換",
         "en": "Static grey radiative transfer,scattering and linear exchange"
       },
       "formula": [
@@ -41,7 +41,7 @@
         "J=\\langle I\\rangle_\\Omega,\\quad\\partial_t V=\\kappa_a(J-V)\\quad(\\mathrm{linear\\ exchange})"
       ],
       "note": {
-        "ja": "正規化した角度平均を使います。物質交換は1997輸送例と周期Fourier比較で進めます。1997の光学座標では係数1、物理座標の比較ではκを放射・物質の両交換項に掛けます。",
+        "ja": "正規化した角度平均を使います。物質交換は1997輸送例と周期Fourier比較で進めます。1997の光学座標では係数1、物理座標の比較ではκを輻射・物質の両交換項に掛けます。",
         "en": "Use a normalized angular mean. Material exchange is evolved in the1997 transport example and periodic Fourier controls. The1997 optical coordinates give a unit exchange coefficient; physical-coordinate controls multiply both exchange terms by kappa."
       },
       "url": {
@@ -88,7 +88,7 @@
       },
       "formula": "J(x)=.5*E2(x)+omega/2*integral_0^L E1(|x-y|)J(y)dy; R=2omega*integral J E2(x)dx; T=2E3(L)+2omega*integral J E2(L-x)dx; A=4(1-omega)*integral J dx.",
       "assumptions": {
-        "ja": "平行平板の定常な光学厚さ座標を用い、左の入射放射輝度は1、右の入射は真空、等方散乱の単一散乱アルベドを固定します。入射半球流束はπ、符号付き角度の平均はJ=(1/2)∫I dμです。",
+        "ja": "平行平板の定常な光学厚さ座標を用い、左の入射輻射輝度は1、右の入射は真空、等方散乱の単一散乱アルベドを固定します。入射半球流束はπ、符号付き角度の平均はJ=(1/2)∫I dμです。",
         "en": "Plane-parallel steady optical-depth slab, unit incoming radiance on the left,vacuum incoming on the right,isotropic single-scattering albedo. Incoming hemispherical flux pi; signed-angle J=.5*integral I."
       },
       "relation": "same-problem",
@@ -110,7 +110,7 @@
     {
       "id": "radiation-transport",
       "name": {
-        "ja": "放射輸送・モーメント法",
+        "ja": "輻射輸送・モーメント法",
         "en": "Radiation transport and moment methods"
       },
       "status": "educational-example",

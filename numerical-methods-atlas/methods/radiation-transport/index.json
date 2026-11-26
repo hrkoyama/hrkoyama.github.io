@@ -1,7 +1,7 @@
 {
   "id": "radiation-transport",
   "name": {
-    "ja": "放射輸送・モーメント法",
+    "ja": "輻射輸送・モーメント法",
     "en": "Radiation transport and moment methods"
   },
   "group": {
@@ -10,7 +10,7 @@
     "en": "Coupling, constraints & particles"
   },
   "summary": {
-    "ja": "純吸収平板の離散座標放射輸送: 純吸収の定常放射輸送を角度と空間で離散化し、Beer–Lambert解と積分された出射フラックスで検証します。 放射輸送：空間・角度収束と光子統計: 純吸収平板で特性解・独立適応求積・光子生存率を比較し、離散収支と標本誤差・区間被覆を別々に測ります。 追加固定例：等方散乱平板の反射・透過・吸収。条件と検証範囲は各配布版で確認してください。 追加固定例：Su–Olson1996非平衡拡散、Su–Olson1997角度輸送の独立公開表比較。条件と検証範囲は各配布版で確認してください。 追加固定例：2D吸収影と保存的M1輸送、2D反向beamとM1閉包の情報損失。条件と検証範囲は各配布版で確認してください。",
+    "ja": "純吸収平板の離散座標輻射輸送: 純吸収の定常輻射輸送を角度と空間で離散化し、Beer–Lambert解と積分された出射フラックスで検証します。 輻射輸送：空間・角度収束と光子統計: 純吸収平板で特性解・独立適応求積・光子生存率を比較し、離散収支と標本誤差・区間被覆を別々に測ります。 追加固定例：等方散乱平板の反射・透過・吸収。条件と検証範囲は各配布版で確認してください。 追加固定例：Su–Olson1996非平衡拡散、Su–Olson1997角度輸送の独立公開表比較。条件と検証範囲は各配布版で確認してください。 追加固定例：2D吸収影と保存的M1輸送、2D反向beamとM1閉包の情報損失。条件と検証範囲は各配布版で確認してください。",
     "en": "Discrete-ordinate radiation transport through an absorbing slab: Discretize steady pure-absorption transfer in angle and space, checking Beer–Lambert rays and integrated exit flux. Radiation transport: space/angle convergence and photon statistics: Compare characteristics, independent adaptive integration and photon survival in a pure-absorption slab; separate discrete balance, sampling error and interval coverage. Additional fixed examples: Isotropic scattering in a finite slab. See each release for assumptions and checked scope. Additional fixed examples: Su–Olson1996 non-equilibrium diffusion, Su–Olson transport with an independently published analytical table. See each release for assumptions and checked scope. Additional fixed examples: Two-dimensional absorber shadow and M1 transport, Opposing beams and information loss in the M1 closure. See each release for assumptions and checked scope."
   },
   "status": "educational-example",
@@ -36,7 +36,7 @@
     "en": "Preserve the published fixed-input scope; validate conditions, references and criteria separately for extensions."
   },
   "limitations": {
-    "ja": "純吸収平板の離散座標放射輸送: 多重散乱、熱放射、周波数再分配、動的媒質、放射流体連成は未実装です。StamnesらのDISORTの全機能・安定化を再現したとは表示しません。 放射輸送：空間・角度収束と光子統計: 区間被覆は有限の固定seedでの観測で、ちょうど95%の実測値や全seedの成功を保証しません。決定論的求積誤差を統計誤差へ含めず、多重散乱・周波数依存・熱放射・放射流体連成は未検証です。 今回の追加固定例：有限の4平板に限定。MC、一般角度phase関数、DISORT再現、普遍的次数や厳密連続体誤差境界は認証しません。 今回の追加固定例：1996拡散であり1997角度輸送とは別です。原典本文は未読、公式ソフトの選択値を資格。物理単位の質量opacity解釈は使わず無次元関数を直接参照します。 原1997本文・原表と直接照合したとはしません。公開表の転記か再生成かは著者READMEに未記載。source停止後、一般散乱、全時空間の連続体誤差や角度次数は未認証です。 この追加はκhを解像したN∝κ²の半離散周期制御で、固定格子AP性や主SSPRK2の拡散時間次数を認証しません。初期F0と非零Fick流束の初期層を保持し、極限判定は最終s=.25のみ。両行列伝播にSciPy sparse expm_multiplyを共有し、DOP853照合は参照伝播器の資格です。 今回の追加固定例：6軸は整列beam用で一般角度収束ではありません。反向beamのM1差はモデル情報損失として示し、角度輸送への収束を要求しません。相対論・気体流体・多周波RHDではありません。 6軸は整列beam用で一般角度収束ではありません。反向beamのM1差はモデル情報損失として示し、角度輸送への収束を要求しません。相対論・気体流体・多周波RHDではありません。",
+    "ja": "純吸収平板の離散座標輻射輸送: 多重散乱、熱輻射、周波数再分配、動的媒質、輻射流体連成は未実装です。StamnesらのDISORTの全機能・安定化を再現したとは表示しません。 輻射輸送：空間・角度収束と光子統計: 区間被覆は有限の固定seedでの観測で、ちょうど95%の実測値や全seedの成功を保証しません。決定論的求積誤差を統計誤差へ含めず、多重散乱・周波数依存・熱輻射・輻射流体連成は未検証です。 今回の追加固定例：有限の4平板に限定。MC、一般角度phase関数、DISORT再現、普遍的次数や厳密連続体誤差境界は認証しません。 今回の追加固定例：1996拡散であり1997角度輸送とは別です。原典本文は未読、公式ソフトの選択値を資格。物理単位の質量opacity解釈は使わず無次元関数を直接参照します。 原1997本文・原表と直接照合したとはしません。公開表の転記か再生成かは著者READMEに未記載。source停止後、一般散乱、全時空間の連続体誤差や角度次数は未認証です。 この追加はκhを解像したN∝κ²の半離散周期制御で、固定格子AP性や主SSPRK2の拡散時間次数を認証しません。初期F0と非零Fick流束の初期層を保持し、極限判定は最終s=.25のみ。両行列伝播にSciPy sparse expm_multiplyを共有し、DOP853照合は参照伝播器の資格です。 今回の追加固定例：6軸は整列beam用で一般角度収束ではありません。反向beamのM1差はモデル情報損失として示し、角度輸送への収束を要求しません。相対論・気体流体・多周波RHDではありません。 6軸は整列beam用で一般角度収束ではありません。反向beamのM1差はモデル情報損失として示し、角度輸送への収束を要求しません。相対論・気体流体・多周波RHDではありません。",
     "en": "Discrete-ordinate radiation transport through an absorbing slab: Multiple scattering, thermal emission, frequency redistribution, moving media and radiation–fluid coupling are unimplemented. This does not reproduce full DISORT functionality/stabilization. Radiation transport: space/angle convergence and photon statistics: Coverage is observed over finite fixed seeds; neither exactly 95% empirical coverage nor all-seed success is guaranteed. Keep deterministic quadrature error separate from statistical error. Multiple scattering, frequency dependence, thermal emission and radiation hydrodynamics are unvalidated. Additional fixed examples: Limited to fourfixedisotropic slabs;noMC,generalphase-function/DISORT reproduction,universalorder or rigorouscontinuumerrorbound. Additional fixed examples: This1996diffusion model is distinct from1997angular transport. Original paper fulltext unread;officialsoftware selected values qualified. Direct dimensionless functions avoid ambiguous mass-opacity physical-wrapper units. No direct original1997fulltext/tablecomparison claim. TheauthorREADMEdoesnotstate transcriptionversusregeneration. Source-offprofiles,generalscattering,globalcontinuumerrorandangularorderarenotcertified. The addition is a resolved N~kappa^2 semidiscrete periodic control,not fixed-grid AP or an SSPRK2 diffusion-time order certificate. Initial F0 versus nonzero Fick flux is retained;limit gates use final s=.25 only. SciPy sparse expm_multiply is shared;DOP853 qualifies the reference propagator. Additional fixed examples: Six aligned directions do not demonstrate general angular convergence. The M1 opposing-beam mismatch is expected information loss and is not required to converge to angular transport. No relativistic, gas-dynamical or multifrequency radiation hydrodynamics is implemented. Six aligned directions do not demonstrate general angular convergence. The M1 opposing-beam mismatch is expected information loss and is not required to converge to angular transport. No relativistic, gas-dynamical or multifrequency radiation hydrodynamics is implemented."
   },
   "metadata_review": {
@@ -51,7 +51,10 @@
     "放射輸送法",
     "radiative transfer",
     "radiation transport",
-    "放射モーメント法"
+    "放射モーメント法",
+    "輻射輸送法",
+    "輻射モーメント法",
+    "放射輸送・モーメント法"
   ],
   "depth_previous_status": "planned",
   "depth_release": {
@@ -85,18 +88,18 @@
       {
         "id": "radiation-transport",
         "title": {
-          "ja": "純吸収平板の離散座標放射輸送",
+          "ja": "純吸収平板の離散座標輻射輸送",
           "en": "Discrete-ordinate radiation transport through an absorbing slab"
         },
         "method_ids": [
           "radiation-transport"
         ],
         "summary": {
-          "ja": "純吸収の定常放射輸送を角度と空間で離散化し、Beer–Lambert解と積分された出射フラックスで検証します。",
+          "ja": "純吸収の定常輻射輸送を角度と空間で離散化し、Beer–Lambert解と積分された出射フラックスで検証します。",
           "en": "Discretize steady pure-absorption transfer in angle and space, checking Beer–Lambert rays and integrated exit flux."
         },
         "assumptions": {
-          "ja": "光学的厚さ0.7の一様平板。正の半球から単位強度が入射し、逆向きの入射・散乱・内部放射はゼロです。",
+          "ja": "光学的厚さ0.7の一様平板。正の半球から単位強度が入射し、逆向きの入射・散乱・内部輻射はゼロです。",
           "en": "A uniform slab of optical depth 0.7 receives unit intensity over the positive hemisphere, with zero reverse inflow, scattering and emission."
         },
         "algorithm": {
@@ -108,7 +111,7 @@
           "en": "With 32–512 cells, check all ray intensities, spatial flux error, positivity and discrete absorption balance. A separate 4–32-ordinate sweep compares exit flux with the analytic 2pi E3(tau) representation."
         },
         "limits": {
-          "ja": "多重散乱、熱放射、周波数再分配、動的媒質、放射流体連成は未実装です。StamnesらのDISORTの全機能・安定化を再現したとは表示しません。",
+          "ja": "多重散乱、熱輻射、周波数再分配、動的媒質、輻射流体連成は未実装です。StamnesらのDISORTの全機能・安定化を再現したとは表示しません。",
           "en": "Multiple scattering, thermal emission, frequency redistribution, moving media and radiation–fluid coupling are unimplemented. This does not reproduce full DISORT functionality/stabilization."
         },
         "equations": [
@@ -143,6 +146,38 @@
             }
           }
         ],
+        "editorial_terminology": {
+          "kind": "Japanese-display-terminology",
+          "schema_version": 1,
+          "raw_source": {
+            "path": "code/validated-examples/2026-11-22/particles/cases.json",
+            "sha256": "f6e68b2ec8d0cd56357b1aeecea3f9c40cf22f89e7f9c1b8b9442ad020ddbf86",
+            "case_pointer": "/5"
+          },
+          "raw_case_canonical_sha256": "88463f8030038867ddfd20cbdfe6dc0f2002e0558d935d76474a26bfc194b646",
+          "editorial_source_sha256": {
+            "catalog/atlas-terminology.json": "b861b1b1d4323c71bae2594065fd58649cb47e088dae858c4105e6340c4122b9",
+            "scripts/atlas_terminology.py": "3abe65776c82d3f0c3fd01396ad9efb799ebba3515b50fe7844db0f01778779c"
+          },
+          "fields": {
+            "title": {
+              "raw_ja_sha256": "a07a8a1e5b6871d4f94aa39009e9dbc99f8de74620639f6516cb90f182038bdf",
+              "display_ja_sha256": "c4595bae420d4b162f674a968955984f8f3578865ab717bdfe1220276c3e96b7"
+            },
+            "summary": {
+              "raw_ja_sha256": "d14eb101dd8c288af62194cd74e6ab03c86e61e22e3ec2dd561c832756a54d24",
+              "display_ja_sha256": "b5f590f05eb3560c62603d4185912f426399e4fe8f3dd3d4ad07f768ae810a36"
+            },
+            "assumptions": {
+              "raw_ja_sha256": "83d43893b904fcc2a3a9f79fbb3d09130b0bdd9d433fbb74da681bfafcf70825",
+              "display_ja_sha256": "75321869fe3e19088fbb7d95d82f0c15c54c0d39c4d357bf1bd65be235a02202"
+            },
+            "limits": {
+              "raw_ja_sha256": "aa24a9fdacc249d1fc97a0fa8d067675ae00f9ff61e88de714d71270c6641931",
+              "display_ja_sha256": "5fdb54b963de3ef839b2ff2b4caaf066200f6e88a6beb9000ce68382119c7f9a"
+            }
+          }
+        },
         "measured": {
           "id": "radiation-transport",
           "passed": true,
@@ -306,10 +341,14 @@
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#radiation-transport"
         }
       }
-    ]
+    ],
+    "editorial_source_sha256": {
+      "catalog/atlas-terminology.json": "b861b1b1d4323c71bae2594065fd58649cb47e088dae858c4105e6340c4122b9",
+      "scripts/atlas_terminology.py": "3abe65776c82d3f0c3fd01396ad9efb799ebba3515b50fe7844db0f01778779c"
+    }
   },
   "depth_scope": {
-    "ja": "純吸収平板の離散座標放射輸送: 純吸収の定常放射輸送を角度と空間で離散化し、Beer–Lambert解と積分された出射フラックスで検証します。 放射輸送：空間・角度収束と光子統計: 純吸収平板で特性解・独立適応求積・光子生存率を比較し、離散収支と標本誤差・区間被覆を別々に測ります。",
+    "ja": "純吸収平板の離散座標輻射輸送: 純吸収の定常輻射輸送を角度と空間で離散化し、Beer–Lambert解と積分された出射フラックスで検証します。 輻射輸送：空間・角度収束と光子統計: 純吸収平板で特性解・独立適応求積・光子生存率を比較し、離散収支と標本誤差・区間被覆を別々に測ります。",
     "en": "Discrete-ordinate radiation transport through an absorbing slab: Discretize steady pure-absorption transfer in angle and space, checking Beer–Lambert rays and integrated exit flux. Radiation transport: space/angle convergence and photon statistics: Compare characteristics, independent adaptive integration and photon survival in a pure-absorption slab; separate discrete balance, sampling error and interval coverage."
   },
   "depth_additional_releases": [
@@ -348,7 +387,7 @@
         {
           "id": "radiation-convergence",
           "title": {
-            "ja": "放射輸送：空間・角度収束と光子統計",
+            "ja": "輻射輸送：空間・角度収束と光子統計",
             "en": "Radiation transport: space/angle convergence and photon statistics"
           },
           "method_ids": [
@@ -359,7 +398,7 @@
             "en": "Compare characteristics, independent adaptive integration and photon survival in a pure-absorption slab; separate discrete balance, sampling error and interval coverage."
           },
           "assumptions": {
-            "ja": "定常一様平板、光学的厚さ.1/.7/3、正の半球から単位強度、逆入射・散乱・内部放射0。フラックス基準の光子入射方向はpdf=2muです。",
+            "ja": "定常一様平板、光学的厚さ.1/.7/3、正の半球から単位強度、逆入射・散乱・内部輻射0。フラックス基準の光子入射方向はpdf=2muです。",
             "en": "Steady uniform slab, optical depths .1/.7/3, unit incoming positive-hemisphere intensity, no reverse inflow/scattering/emission. Incoming photon directions for a flux estimator have density 2mu."
           },
           "algorithm": {
@@ -371,7 +410,7 @@
             "en": "Refine 16–256 cells and 4–64 ordinates separately; compare QUADPACK integration with E3. For 64 seeds and 1024/4096/16384 photons, record mean error, RMSE, binomial standard deviation and observed 95% Clopper–Pearson coverage. Check photon exit-plus-absorption counts, positivity and discrete flux balance."
           },
           "limits": {
-            "ja": "区間被覆は有限の固定seedでの観測で、ちょうど95%の実測値や全seedの成功を保証しません。決定論的求積誤差を統計誤差へ含めず、多重散乱・周波数依存・熱放射・放射流体連成は未検証です。",
+            "ja": "区間被覆は有限の固定seedでの観測で、ちょうど95%の実測値や全seedの成功を保証しません。決定論的求積誤差を統計誤差へ含めず、多重散乱・周波数依存・熱輻射・輻射流体連成は未検証です。",
             "en": "Coverage is observed over finite fixed seeds; neither exactly 95% empirical coverage nor all-seed success is guaranteed. Keep deterministic quadrature error separate from statistical error. Multiple scattering, frequency dependence, thermal emission and radiation hydrodynamics are unvalidated."
           },
           "equations": [
@@ -427,6 +466,34 @@
             "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.quad.html",
             "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.stats.binomtest.html"
           ],
+          "editorial_terminology": {
+            "kind": "Japanese-display-terminology",
+            "schema_version": 1,
+            "raw_source": {
+              "path": "code/validated-examples/2026-11-22/particle-transport/cases.json",
+              "sha256": "3d3dd9cbc6c62666bb76f893762cf27b33b2606a34e87ffe8c4275e258b96f66",
+              "case_pointer": "/5"
+            },
+            "raw_case_canonical_sha256": "04f5b5b2d5138ed0f95659155ed4e3aadc29cd347ce219d64b02eaf98e680fd1",
+            "editorial_source_sha256": {
+              "catalog/atlas-terminology.json": "b861b1b1d4323c71bae2594065fd58649cb47e088dae858c4105e6340c4122b9",
+              "scripts/atlas_terminology.py": "3abe65776c82d3f0c3fd01396ad9efb799ebba3515b50fe7844db0f01778779c"
+            },
+            "fields": {
+              "title": {
+                "raw_ja_sha256": "af0a704208e72127c03295ddc3882525b209e8c3874f68286439b3a8443235b9",
+                "display_ja_sha256": "48e578395b0db01cb31f2ae07726596c1eb371532b56d96ee4ec1d62026ee5bb"
+              },
+              "assumptions": {
+                "raw_ja_sha256": "4bcdd930e8dbb002d5f74fca2cddfb1f1bb770d463de3c2bf881504bf0d7ed12",
+                "display_ja_sha256": "75161f202dbc8f603a146450a77b7ca001dcb5adfca323fd4db09d95cf109761"
+              },
+              "limits": {
+                "raw_ja_sha256": "2e11064a21ed6493184dfb5613ad0ba2fd06fdafd32d85054f5df63d6682907c",
+                "display_ja_sha256": "a998061ccf9e2077fa498326020e226c24d64cfeb22a60e4cc9c2fd71f8f1308"
+              }
+            }
+          },
           "measured": {
             "id": "radiation-convergence",
             "passed": true,
@@ -9700,7 +9767,11 @@
             "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particle-transport/#radiation-convergence"
           }
         }
-      ]
+      ],
+      "editorial_source_sha256": {
+        "catalog/atlas-terminology.json": "b861b1b1d4323c71bae2594065fd58649cb47e088dae858c4105e6340c4122b9",
+        "scripts/atlas_terminology.py": "3abe65776c82d3f0c3fd01396ad9efb799ebba3515b50fe7844db0f01778779c"
+      }
     },
     {
       "group": "radiation-scattering",
@@ -11063,7 +11134,7 @@
             "en": "Su–Olson1996 non-equilibrium diffusion"
           },
           "summary": {
-            "ja": "実際の放射・物質2場とMarshak境界を進め、固定版ExactPackの独立積分参照と比較します。",
+            "ja": "実際の輻射・物質2場とMarshak境界を進め、固定版ExactPackの独立積分参照と比較します。",
             "en": "Advance actual radiation/material fields with the Marshak boundary and compare with independently qualified pinned ExactPack integrals."
           },
           "assumptions": {
@@ -11071,7 +11142,7 @@
             "en": "Nondimensionalepsilon1,x0..16,initialu=v0,leftRobin inflow/right0;128/256/512cells plus half-step/domain24probes."
           },
           "algorithm": {
-            "ja": "保存的FVと後退Euler。放射物質の反対sourceを同じSchur補元で結合し、Robinのβ+h/2半セル抵抗を用います。ε.25/2の同じ交換operatorも解析検査します。",
+            "ja": "保存的FVと後退Euler。輻射物質の反対sourceを同じSchur補元で結合し、Robinのβ+h/2半セル抵抗を用います。ε.25/2の同じ交換operatorも解析検査します。",
             "en": "Conservative FV/backwardEuler with opposite exchange sources coupled by a shared Schur complement and Robin half-cell resistance beta+h/2. Analytic nonunitepsilon.25/2controls exercise the same exchange operators."
           },
           "validation": {
@@ -11121,6 +11192,30 @@
               }
             }
           ],
+          "editorial_terminology": {
+            "kind": "Japanese-display-terminology",
+            "schema_version": 1,
+            "raw_source": {
+              "path": "code/validated-examples/2026-11-24-r2/radiation-matter/cases.json",
+              "sha256": "c5522498e8c797035b7c093d4371d88a7950e19f26ab6c6495faa81e7e1b8ebb",
+              "case_pointer": "/0"
+            },
+            "raw_case_canonical_sha256": "d5ae6ee697212653007b4a4d759718a19680de64b5ae90ce62a770a6d40228d8",
+            "editorial_source_sha256": {
+              "catalog/atlas-terminology.json": "b861b1b1d4323c71bae2594065fd58649cb47e088dae858c4105e6340c4122b9",
+              "scripts/atlas_terminology.py": "3abe65776c82d3f0c3fd01396ad9efb799ebba3515b50fe7844db0f01778779c"
+            },
+            "fields": {
+              "summary": {
+                "raw_ja_sha256": "ff9f335140bb2d24d20d1c594ae4362b95098a13f1b8898cbf2004b81e7bbfb1",
+                "display_ja_sha256": "7265272c36215f3467cc0e22a80c8d6154d70da007d873d8a0cc0307ca3f7fb7"
+              },
+              "algorithm": {
+                "raw_ja_sha256": "4eb75411a48a0b3f6f118ceeaa7934b37ca5b65c5f5f9edc15792642b5a54dc6",
+                "display_ja_sha256": "b304263c6678104095f1580f6e53b428fc9b51dd504e4d7eaea9e62a1b97cbd7"
+              }
+            }
+          },
           "measured": {
             "id": "su-olson-diffusion1996",
             "passed": true,
@@ -12311,7 +12406,11 @@
             "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-matter/#su-olson-transport1997"
           }
         }
-      ]
+      ],
+      "editorial_source_sha256": {
+        "catalog/atlas-terminology.json": "b861b1b1d4323c71bae2594065fd58649cb47e088dae858c4105e6340c4122b9",
+        "scripts/atlas_terminology.py": "3abe65776c82d3f0c3fd01396ad9efb799ebba3515b50fe7844db0f01778779c"
+      }
     },
     {
       "group": "radiation-geometry",
@@ -14692,7 +14791,7 @@
       {
         "id": "static-grey-transfer",
         "name": {
-          "ja": "静止媒質の灰色放射輸送・散乱・線形交換",
+          "ja": "静止媒質の灰色輻射輸送・散乱・線形交換",
           "en": "Static grey radiative transfer,scattering and linear exchange"
         },
         "problem_ids": [
@@ -14754,7 +14853,7 @@
       {
         "id": "absorbing-slab",
         "name": {
-          "ja": "純吸収平板の離散座標放射輸送",
+          "ja": "純吸収平板の離散座標輻射輸送",
           "en": "Discrete-ordinate radiation transport through an absorbing slab"
         },
         "image": {
@@ -14781,11 +14880,11 @@
             "id": "radiation-transport",
             "kind": "supplement",
             "name": {
-              "ja": "純吸収平板の離散座標放射輸送",
+              "ja": "純吸収平板の離散座標輻射輸送",
               "en": "Discrete-ordinate radiation transport through an absorbing slab"
             },
             "scope": {
-              "ja": "純吸収の定常放射輸送を角度と空間で離散化し、Beer–Lambert解と積分された出射フラックスで検証します。",
+              "ja": "純吸収の定常輻射輸送を角度と空間で離散化し、Beer–Lambert解と積分された出射フラックスで検証します。",
               "en": "Discretize steady pure-absorption transfer in angle and space, checking Beer–Lambert rays and integrated exit flux."
             },
             "method_ids": [
@@ -14803,7 +14902,7 @@
             "id": "radiation-convergence",
             "kind": "supplement",
             "name": {
-              "ja": "放射輸送：空間・角度収束と光子統計",
+              "ja": "輻射輸送：空間・角度収束と光子統計",
               "en": "Radiation transport: space/angle convergence and photon statistics"
             },
             "scope": {
@@ -14926,7 +15025,7 @@
               "en": "Su–Olson1996 non-equilibrium diffusion"
             },
             "scope": {
-              "ja": "実際の放射・物質2場とMarshak境界を進め、固定版ExactPackの独立積分参照と比較します。",
+              "ja": "実際の輻射・物質2場とMarshak境界を進め、固定版ExactPackの独立積分参照と比較します。",
               "en": "Advance actual radiation/material fields with the Marshak boundary and compare with independently qualified pinned ExactPack integrals."
             },
             "method_ids": [
@@ -14944,7 +15043,7 @@
         ],
         "role": "execution",
         "method_note": {
-          "ja": "保存的FVと後退Euler。放射物質の反対sourceを同じSchur補元で結合し、Robinのβ+h/2半セル抵抗を用います。ε.25/2の同じ交換operatorも解析検査します。",
+          "ja": "保存的FVと後退Euler。輻射物質の反対sourceを同じSchur補元で結合し、Robinのβ+h/2半セル抵抗を用います。ε.25/2の同じ交換operatorも解析検査します。",
           "en": "Conservative FV/backwardEuler with opposite exchange sources coupled by a shared Schur complement and Robin half-cell resistance beta+h/2. Analytic nonunitepsilon.25/2controls exercise the same exchange operators."
         },
         "reference_url": {
@@ -15142,7 +15241,7 @@
       {
         "problem_id": "absorbing-slab",
         "problem_name": {
-          "ja": "純吸収平板の離散座標放射輸送",
+          "ja": "純吸収平板の離散座標輻射輸送",
           "en": "Discrete-ordinate radiation transport through an absorbing slab"
         },
         "reference_url": {

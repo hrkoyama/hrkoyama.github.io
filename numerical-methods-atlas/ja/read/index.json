@@ -1105,7 +1105,7 @@
       "chapters": [
         {
           "id": "particles-sph",
-          "title": "粒子法と平滑化粒子流体力学",
+          "title": "粒子法とSmoothed Particle Hydrodynamics（SPH）",
           "url": "/numerical-methods-atlas/ja/read/particles-sph/",
           "kind": "chapter",
           "language": "ja",
@@ -1113,7 +1113,7 @@
             "ja",
             "en"
           ],
-          "search_text": "particles-sph 粒子法と平滑化粒子流体力学 Particle methods and smoothed particle hydrodynamics 粒子・運動論・輸送 Particles, kinetic methods and transport"
+          "search_text": "particles-sph 粒子法とSmoothed Particle Hydrodynamics（SPH） Particle methods and smoothed particle hydrodynamics 粒子・運動論・輸送 Particles, kinetic methods and transport"
         },
         {
           "id": "gsph",
@@ -1189,7 +1189,7 @@
         },
         {
           "id": "radiation-transport",
-          "title": "放射輸送・モーメント法",
+          "title": "輻射輸送・モーメント法",
           "url": "/numerical-methods-atlas/ja/read/radiation-transport/",
           "kind": "chapter",
           "language": "ja",
@@ -1197,11 +1197,11 @@
             "ja",
             "en"
           ],
-          "search_text": "radiation-transport 放射輸送・モーメント法 Radiation transport and moment methods 粒子・運動論・輸送 Particles, kinetic methods and transport"
+          "search_text": "radiation-transport 輻射輸送・モーメント法 Radiation transport and moment methods 粒子・運動論・輸送 Particles, kinetic methods and transport"
         },
         {
           "id": "validation-particles",
-          "title": "粒子・静電場・運動論・放射輸送",
+          "title": "粒子・静電場・運動論・輻射輸送",
           "url": "/numerical-methods-atlas/ja/read/validation-particles/",
           "kind": "chapter",
           "language": "ja",
@@ -1209,7 +1209,7 @@
             "ja",
             "en"
           ],
-          "search_text": "validation-particles 粒子・静電場・運動論・放射輸送 Particles, electrostatics, kinetic and radiative transport 粒子・運動論・輸送 Particles, kinetic methods and transport"
+          "search_text": "validation-particles 粒子・静電場・運動論・輻射輸送 Particles, electrostatics, kinetic and radiative transport 粒子・運動論・輸送 Particles, kinetic methods and transport"
         },
         {
           "id": "validation-particle-transport",
@@ -1357,7 +1357,7 @@
         },
         {
           "id": "validation-radiation-matter",
-          "title": "非平衡放射：拡散と輸送を分ける",
+          "title": "非平衡輻射：拡散と輸送を分ける",
           "url": "/numerical-methods-atlas/ja/read/validation-radiation-matter/",
           "kind": "chapter",
           "language": "ja",
@@ -1365,7 +1365,7 @@
             "ja",
             "en"
           ],
-          "search_text": "validation-radiation-matter 非平衡放射：拡散と輸送を分ける Non-equilibrium radiation: distinct diffusion and transport 粒子・運動論・輸送 Particles, kinetic methods and transport"
+          "search_text": "validation-radiation-matter 非平衡輻射：拡散と輸送を分ける Non-equilibrium radiation: distinct diffusion and transport 粒子・運動論・輸送 Particles, kinetic methods and transport"
         },
         {
           "id": "validation-radiation-geometry",

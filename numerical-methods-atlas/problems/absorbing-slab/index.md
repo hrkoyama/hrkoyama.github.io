@@ -1,4 +1,4 @@
-# 純吸収平板の離散座標放射輸送 / Discrete-ordinate radiation transport through an absorbing slab
+# 純吸収平板の離散座標輻射輸送 / Discrete-ordinate radiation transport through an absorbing slab
 
 https://hrkoyama.github.io/numerical-methods-atlas/problems/absorbing-slab/
 
@@ -12,7 +12,7 @@ https://hrkoyama.github.io/numerical-methods-atlas/problems/absorbing-slab/
 
 定常離散座標輸送 μ∂xI=-κI、純吸収・指定流入。相対論的M1の式ではなく、既存一覧に同じ専用式はありません。
 
-#### 純吸収平板の離散座標放射輸送
+#### 純吸収平板の離散座標輻射輸送
 
 補助実行例 · 実行例の定義・検証式
 
@@ -24,9 +24,9 @@ $$
 F_{\rm out}=2\pi\int_0^1\mu e^{-\tau/\mu}d\mu=2\pi E_3(\tau)
 $$
 
-純吸収の定常放射輸送を角度と空間で離散化し、Beer–Lambert解と積分された出射フラックスで検証します。
+純吸収の定常輻射輸送を角度と空間で離散化し、Beer–Lambert解と積分された出射フラックスで検証します。
 
-#### 放射輸送：空間・角度収束と光子統計
+#### 輻射輸送：空間・角度収束と光子統計
 
 補助実行例 · 実行例の定義・検証式
 
@@ -42,9 +42,9 @@ $$
 
 ### 厳密解・参照解
 
-純吸収・指定流入の平板に対する各方向の解析的な指数減衰と離散座標解を比較します。相対論的M1モーメント閉包とは別の放射モデルです。 追加版は解析rayと連続角度参照を保持し、固定角度の空間誤差と厳密rayの角度誤差、流入・流出・体積吸収の収支を分けます。散乱や多次元閉包へ拡張しません。
+純吸収・指定流入の平板に対する各方向の解析的な指数減衰と離散座標解を比較します。相対論的M1モーメント閉包とは別の輻射モデルです。 追加版は解析rayと連続角度参照を保持し、固定角度の空間誤差と厳密rayの角度誤差、流入・流出・体積吸収の収支を分けます。散乱や多次元閉包へ拡張しません。
 
-#### 純吸収平板の離散座標放射輸送
+#### 純吸収平板の離散座標輻射輸送
 
 32〜512セルで全方向の強度誤差・空間フラックス誤差・正値性・離散吸収収支を確認。4〜32方向の別系列は、出射フラックス2pi E3(tau)の解析表示と比較します。
 
@@ -52,7 +52,7 @@ $$
 
 [参照・検証条件の詳細](https://hrkoyama.github.io/numerical-methods-atlas/validation/radiation-transport/?lang=ja)
 
-#### 放射輸送：空間・角度収束と光子統計
+#### 輻射輸送：空間・角度収束と光子統計
 
 16〜256セル・4〜64方向を別に収束させ、QUADPACK積分とE3を照合。64seed・1024/4096/16384光子で平均誤差、RMSE、二項標準偏差と95% Clopper–Pearson区間の実測被覆を記録します。全光子の出射＋吸収、正値性と離散フラックス収支を確認します。
 
@@ -64,17 +64,17 @@ $$
 
 この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。
 
-- [放射輸送・モーメント法](https://hrkoyama.github.io/numerical-methods-atlas/methods/radiation-transport/?lang=ja) — この問題の実行例で使用; 手法台帳の状態：教育用例・関連コードあり
+- [輻射輸送・モーメント法](https://hrkoyama.github.io/numerical-methods-atlas/methods/radiation-transport/?lang=ja) — この問題の実行例で使用; 手法台帳の状態：教育用例・関連コードあり
 
 ### コード・実行
 
-#### [純吸収平板の離散座標放射輸送](https://hrkoyama.github.io/numerical-methods-atlas/validation/radiation-transport/?lang=ja)
+#### [純吸収平板の離散座標輻射輸送](https://hrkoyama.github.io/numerical-methods-atlas/validation/radiation-transport/?lang=ja)
 
 補助実行例
 
-純吸収の定常放射輸送を角度と空間で離散化し、Beer–Lambert解と積分された出射フラックスで検証します。
+純吸収の定常輻射輸送を角度と空間で離散化し、Beer–Lambert解と積分された出射フラックスで検証します。
 
-光学的厚さ0.7の一様平板。正の半球から単位強度が入射し、逆向きの入射・散乱・内部放射はゼロです。
+光学的厚さ0.7の一様平板。正の半球から単位強度が入射し、逆向きの入射・散乱・内部輻射はゼロです。
 
 [コード / ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip) · [検証記録](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json)
 
@@ -90,20 +90,20 @@ python -m pytest -q
 python run.py --input inputs.json --output output
 ```
 
-多重散乱、熱放射、周波数再分配、動的媒質、放射流体連成は未実装です。StamnesらのDISORTの全機能・安定化を再現したとは表示しません。
+多重散乱、熱輻射、周波数再分配、動的媒質、輻射流体連成は未実装です。StamnesらのDISORTの全機能・安定化を再現したとは表示しません。
 
 同じ配布版で共有するソースとテストを含みます。すべてがこの問題専用とは限りません。
 
 - [/code/validated-examples/2026-11-22/particles/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/run.py)
 - [/code/validated-examples/2026-11-22/particles/test_particles.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/test_particles.py)
 
-#### [放射輸送：空間・角度収束と光子統計](https://hrkoyama.github.io/numerical-methods-atlas/validation/radiation-convergence/?lang=ja)
+#### [輻射輸送：空間・角度収束と光子統計](https://hrkoyama.github.io/numerical-methods-atlas/validation/radiation-convergence/?lang=ja)
 
 補助実行例
 
 純吸収平板で特性解・独立適応求積・光子生存率を比較し、離散収支と標本誤差・区間被覆を別々に測ります。
 
-定常一様平板、光学的厚さ.1/.7/3、正の半球から単位強度、逆入射・散乱・内部放射0。フラックス基準の光子入射方向はpdf=2muです。
+定常一様平板、光学的厚さ.1/.7/3、正の半球から単位強度、逆入射・散乱・内部輻射0。フラックス基準の光子入射方向はpdf=2muです。
 
 [コード / ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/atlas-particle-transport-2026-11-22.zip) · [検証記録](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/verification.json)
 
@@ -119,7 +119,7 @@ python -m pytest -q
 python run.py --input inputs.json --output output
 ```
 
-区間被覆は有限の固定seedでの観測で、ちょうど95%の実測値や全seedの成功を保証しません。決定論的求積誤差を統計誤差へ含めず、多重散乱・周波数依存・熱放射・放射流体連成は未検証です。
+区間被覆は有限の固定seedでの観測で、ちょうど95%の実測値や全seedの成功を保証しません。決定論的求積誤差を統計誤差へ含めず、多重散乱・周波数依存・熱輻射・輻射流体連成は未検証です。
 
 同じ配布版で共有するソースとテストを含みます。すべてがこの問題専用とは限りません。
 

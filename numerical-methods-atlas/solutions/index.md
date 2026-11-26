@@ -2168,7 +2168,7 @@ Rin.2/Rout.4、中心(.5,.5)、内壁接線速度.02、外壁静止、ν.01。N8
 
 `J(x)=.5*E2(x)+omega/2*integral_0^L E1(|x-y|)J(y)dy; R=2omega*integral J E2(x)dx; T=2E3(L)+2omega*integral J E2(L-x)dx; A=4(1-omega)*integral J dx.`
 
-平行平板の定常な光学厚さ座標を用い、左の入射放射輝度は1、右の入射は真空、等方散乱の単一散乱アルベドを固定します。入射半球流束はπ、符号付き角度の平均はJ=(1/2)∫I dμです。
+平行平板の定常な光学厚さ座標を用い、左の入射輻射輝度は1、右の入射は真空、等方散乱の単一散乱アルベドを固定します。入射半球流束はπ、符号付き角度の平均はJ=(1/2)∫I dμです。
 
 [保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/isotropic-scattering-slab/?lang=ja#isotropic-scattering-slab-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-scattering/#isotropic-scattering-slab)
 
@@ -2198,7 +2198,7 @@ Rin.2/Rout.4、中心(.5,.5)、内壁接線速度.02、外壁静止、ν.01。N8
 
 `epsilon*u_tau-u_xx=v-u; v_tau=u-v; u(0,tau)-2/sqrt(3)*u_x(0,tau)=1; u(infinity,tau)=0; epsilon*u+v is the capacity-weighted total.`
 
-初期の放射・物質変数が0、ε=1の半無限Marshak拡散です。無次元評価関数を直接用い、物理単位の質量吸収係数ラッパーに起因する曖昧な規約は持ち込みません。
+初期の輻射・物質変数が0、ε=1の半無限Marshak拡散です。無次元評価関数を直接用い、物理単位の質量吸収係数ラッパーに起因する曖昧な規約は持ち込みません。
 
 [保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/su-olson-diffusion1996/?lang=ja#su-olson-diffusion1996-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-matter/#su-olson-diffusion1996)
 
@@ -2220,7 +2220,7 @@ Rin.2/Rout.4、中心(.5,.5)、内壁接線速度.02、外壁静止、ν.01。N8
 
 - [実行・検証：Su–Olson1996非平衡拡散](https://hrkoyama.github.io/numerical-methods-atlas/validation/su-olson-diffusion1996/?lang=ja) (`su-olson-diffusion1996`) · [コードZIP：Su–Olson1996非平衡拡散](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/atlas-radiation-matter-2026-11-24-r2.zip)
 
-この実行例の範囲：実際の放射・物質2場とMarshak境界を進め、固定版ExactPackの独立積分参照と比較します。
+この実行例の範囲：実際の輻射・物質2場とMarshak境界を進め、固定版ExactPackの独立積分参照と比較します。
 
 
 

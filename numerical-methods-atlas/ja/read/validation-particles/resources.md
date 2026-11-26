@@ -1,4 +1,4 @@
-# 粒子・静電場・運動論・放射輸送
+# 粒子・静電場・運動論・輻射輸送
 
 この章の関連資料
 
@@ -32,7 +32,7 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/
 - [DSMC・運動論輸送](<https://hrkoyama.github.io/numerical-methods-atlas/methods/dsmc/?lang=ja>)
 
   この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。
-- [放射輸送・モーメント法](<https://hrkoyama.github.io/numerical-methods-atlas/methods/radiation-transport/?lang=ja>)
+- [輻射輸送・モーメント法](<https://hrkoyama.github.io/numerical-methods-atlas/methods/radiation-transport/?lang=ja>)
 
   この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。
 - [Ewald法](<https://hrkoyama.github.io/numerical-methods-atlas/methods/ewald/?lang=ja>)
@@ -41,7 +41,7 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/
 - [高速多重極法の移動演算](<https://hrkoyama.github.io/numerical-methods-atlas/methods/fmm/?lang=ja>)
 - [Particle-in-Cell（PIC）](<https://hrkoyama.github.io/numerical-methods-atlas/methods/pic/?lang=ja>)
 - [DSMC・運動論輸送](<https://hrkoyama.github.io/numerical-methods-atlas/methods/dsmc/?lang=ja>)
-- [放射輸送・モーメント法](<https://hrkoyama.github.io/numerical-methods-atlas/methods/radiation-transport/?lang=ja>)
+- [輻射輸送・モーメント法](<https://hrkoyama.github.io/numerical-methods-atlas/methods/radiation-transport/?lang=ja>)
 
 ## 方程式
 
@@ -98,7 +98,7 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/
   テスト問題の代表図。条件と出典は問題別ページで確認できます。
 
   https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/dsmc.png
-- [純吸収平板の離散座標放射輸送](<https://hrkoyama.github.io/numerical-methods-atlas/problems/absorbing-slab/?lang=ja>)
+- [純吸収平板の離散座標輻射輸送](<https://hrkoyama.github.io/numerical-methods-atlas/problems/absorbing-slab/?lang=ja>)
 
   テスト問題の代表図。条件と出典は問題別ページで確認できます。
 
@@ -128,7 +128,7 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/
   この実行例自身の保存済み検証図です。
 
   https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/dsmc.png
-- [純吸収平板の離散座標放射輸送](<https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/radiation-transport.png>)
+- [純吸収平板の離散座標輻射輸送](<https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/radiation-transport.png>)
 
   この実行例自身の保存済み検証図です。
 
@@ -153,9 +153,9 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/
 - [等質DSMC衝突成分の保存則・Maxwell分布：参照・比較条件](<https://hrkoyama.github.io/numerical-methods-atlas/problems/maxwell-collisions/?lang=ja#references-ja>)
 
   等質衝突成分の運動量・エネルギー保存、異方性緩和と分布モーメントを確認します。有限粒子数の平衡はmicrocanonicalで、Maxwell/Gamma分布は大粒子数極限の基準です。空間輸送を含むBoltzmann方程式全体の厳密解検証ではありません。 追加版は固定運動量・エネルギー球面の有限粒子数モーメントを導出し、独立な射影正規標本と複数seedで比較します。衝突roundは物理時間ではなく、hard-sphere空間輸送へ対応を広げません。
-- [純吸収平板の離散座標放射輸送：参照・比較条件](<https://hrkoyama.github.io/numerical-methods-atlas/problems/absorbing-slab/?lang=ja#references-ja>)
+- [純吸収平板の離散座標輻射輸送：参照・比較条件](<https://hrkoyama.github.io/numerical-methods-atlas/problems/absorbing-slab/?lang=ja#references-ja>)
 
-  純吸収・指定流入の平板に対する各方向の解析的な指数減衰と離散座標解を比較します。相対論的M1モーメント閉包とは別の放射モデルです。 追加版は解析rayと連続角度参照を保持し、固定角度の空間誤差と厳密rayの角度誤差、流入・流出・体積吸収の収支を分けます。散乱や多次元閉包へ拡張しません。
+  純吸収・指定流入の平板に対する各方向の解析的な指数減衰と離散座標解を比較します。相対論的M1モーメント閉包とは別の輻射モデルです。 追加版は解析rayと連続角度参照を保持し、固定角度の空間誤差と厳密rayの角度誤差、流入・流出・体積吸収の収支を分けます。散乱や多次元閉包へ拡張しません。
 - [中性周期セルのEwald和と独立theta積分：参照・検証](<https://hrkoyama.github.io/numerical-methods-atlas/validation/ewald/?lang=ja#ewald-ja-validation>)
 
   分割alphaを3点、実空間打切りを3点、逆空間打切りを4点で確認。NaClのMadelung定数は3次元和を呼ばない独立な1次元Jacobi-theta積分と照合し、求積の誤差推定も保存します。
@@ -176,7 +176,7 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/
 - [等質DSMC衝突成分の保存則・Maxwell分布：参照・検証](<https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc/?lang=ja#dsmc-ja-validation>)
 
   粒子512・2048・8192、16 seedで、運動量・運動エネルギー、Maxwellの2次/4次モーメント、Gamma(3/2,1)のエネルギーCDFを比較。異方性の期待減衰率(N−2)/(2(N−1))も独立に照合します。 有限Nの成分4次モーメントは3−6/(3N−1)であり、Maxwell値3との有限N偏りとseed間の標本誤差を区別します。
-- [純吸収平板の離散座標放射輸送：参照・検証](<https://hrkoyama.github.io/numerical-methods-atlas/validation/radiation-transport/?lang=ja#radiation-transport-ja-validation>)
+- [純吸収平板の離散座標輻射輸送：参照・検証](<https://hrkoyama.github.io/numerical-methods-atlas/validation/radiation-transport/?lang=ja#radiation-transport-ja-validation>)
 
   32〜512セルで全方向の強度誤差・空間フラックス誤差・正値性・離散吸収収支を確認。4〜32方向の別系列は、出射フラックス2pi E3(tau)の解析表示と比較します。
 
@@ -226,11 +226,11 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/
   availability: run
 
   有限粒子数の平衡をMaxwell極限と区別し、独立な球面標本、解析的異方性減衰、seed間誤差と比較します。
-- [純吸収平板の離散座標放射輸送](<https://hrkoyama.github.io/numerical-methods-atlas/validation/radiation-transport/?lang=ja>)
+- [純吸収平板の離散座標輻射輸送](<https://hrkoyama.github.io/numerical-methods-atlas/validation/radiation-transport/?lang=ja>)
   availability: run
 
-  純吸収の定常放射輸送を角度と空間で離散化し、Beer–Lambert解と積分された出射フラックスで検証します。
-- [放射輸送：空間・角度収束と光子統計](<https://hrkoyama.github.io/numerical-methods-atlas/validation/radiation-convergence/?lang=ja>)
+  純吸収の定常輻射輸送を角度と空間で離散化し、Beer–Lambert解と積分された出射フラックスで検証します。
+- [輻射輸送：空間・角度収束と光子統計](<https://hrkoyama.github.io/numerical-methods-atlas/validation/radiation-convergence/?lang=ja>)
   availability: run
 
   純吸収平板で特性解・独立適応求積・光子生存率を比較し、離散収支と標本誤差・区間被覆を別々に測ります。

@@ -88,13 +88,13 @@ Edition and terms: https://hrkoyama.github.io/numerical-methods-atlas/code-and-d
 
 ![保存した実計算場の科学プレビュー。](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/results/su-olson-diffusion1996-preview.png)
 
-保存的FVと後退Euler。放射物質の反対sourceを同じSchur補元で結合し、Robinのβ+h/2半セル抵抗を用います。ε.25/2の同じ交換operatorも解析検査します。
+保存的FVと後退Euler。輻射物質の反対sourceを同じSchur補元で結合し、Robinのβ+h/2半セル抵抗を用います。ε.25/2の同じ交換operatorも解析検査します。
 
 [この問題の参照・検証資料](https://hrkoyama.github.io/numerical-methods-atlas/problems/su-olson-diffusion1996/?lang=ja#references-ja) · [この問題のコード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/su-olson-diffusion1996/?lang=ja#code-ja)
 
 - [Su–Olson1996非平衡拡散](https://hrkoyama.github.io/numerical-methods-atlas/validation/su-olson-diffusion1996/?lang=ja) (`su-olson-diffusion1996`) · [コードZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/atlas-radiation-matter-2026-11-24-r2.zip)
 
-実際の放射・物質2場とMarshak境界を進め、固定版ExactPackの独立積分参照と比較します。
+実際の輻射・物質2場とMarshak境界を進め、固定版ExactPackの独立積分参照と比較します。
 
 ##### [時間離散拡散の随伴とcheckpoint](https://hrkoyama.github.io/numerical-methods-atlas/problems/diffusion-discrete-adjoint/?lang=ja) (`diffusion-discrete-adjoint`)
 
@@ -204,7 +204,7 @@ Robertsonの保存制約DAEと全ODEを同じ固定時間格子で比較し、�
 
 [検証記録](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/verification.json)
 
-実際の放射・物質2場とMarshak境界を進め、固定版ExactPackの独立積分参照と比較します。
+実際の輻射・物質2場とMarshak境界を進め、固定版ExactPackの独立積分参照と比較します。
 
 ##### 時間離散拡散の随伴とcheckpoint (`diffusion-discrete-adjoint`)
 

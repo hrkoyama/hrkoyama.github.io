@@ -1,4 +1,4 @@
-# 放射輸送・モーメント法
+# 輻射輸送・モーメント法
 
 この章の関連資料
 
@@ -8,7 +8,7 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/radiation-transport/
 
 ## 手法
 
-- [放射輸送・モーメント法](<https://hrkoyama.github.io/numerical-methods-atlas/methods/radiation-transport/?lang=ja>)
+- [輻射輸送・モーメント法](<https://hrkoyama.github.io/numerical-methods-atlas/methods/radiation-transport/?lang=ja>)
 
 ## 方程式
 
@@ -24,11 +24,11 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/radiation-transport/
 
 ## コード・検証
 
-- [純吸収平板の離散座標放射輸送](<https://hrkoyama.github.io/numerical-methods-atlas/validation/radiation-transport/?lang=ja>)
+- [純吸収平板の離散座標輻射輸送](<https://hrkoyama.github.io/numerical-methods-atlas/validation/radiation-transport/?lang=ja>)
   availability: run
 
-  純吸収の定常放射輸送を角度と空間で離散化し、Beer–Lambert解と積分された出射フラックスで検証します。
-- [放射輸送：空間・角度収束と光子統計](<https://hrkoyama.github.io/numerical-methods-atlas/validation/radiation-convergence/?lang=ja>)
+  純吸収の定常輻射輸送を角度と空間で離散化し、Beer–Lambert解と積分された出射フラックスで検証します。
+- [輻射輸送：空間・角度収束と光子統計](<https://hrkoyama.github.io/numerical-methods-atlas/validation/radiation-convergence/?lang=ja>)
   availability: run
 
   純吸収平板で特性解・独立適応求積・光子生存率を比較し、離散収支と標本誤差・区間被覆を別々に測ります。
@@ -39,7 +39,7 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/radiation-transport/
 - [Su–Olson1996非平衡拡散](<https://hrkoyama.github.io/numerical-methods-atlas/validation/su-olson-diffusion1996/?lang=ja>)
   availability: run
 
-  実際の放射・物質2場とMarshak境界を進め、固定版ExactPackの独立積分参照と比較します。
+  実際の輻射・物質2場とMarshak境界を進め、固定版ExactPackの独立積分参照と比較します。
 - [Su–Olson1997角度輸送の独立公開表比較](<https://hrkoyama.github.io/numerical-methods-atlas/validation/su-olson-transport1997/?lang=ja>)
   availability: run
 
@@ -52,7 +52,7 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/radiation-transport/
   availability: run
 
   保存した反向packetの実進行からM1の限界を示し、別の閉M1MMSで数値実装を検証します。
-- [放射輸送・モーメント法：コード・検証](<https://hrkoyama.github.io/numerical-methods-atlas/methods/radiation-transport/?lang=ja#method-execution-ja>)
+- [輻射輸送・モーメント法：コード・検証](<https://hrkoyama.github.io/numerical-methods-atlas/methods/radiation-transport/?lang=ja#method-execution-ja>)
   availability: source
 
   手法固有の配布版と関連ソースを案内します。固定入力例は別の項目で区別します。

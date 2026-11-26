@@ -1,7 +1,7 @@
 # Hiroshi Koyama — public site knowledge pack
 
-Snapshot: 2026-11-25-6664ac1859
-Captured (UTC): 2026-11-25T21:54:50+00:00
+Snapshot: 2026-11-26-28f588f11a
+Captured (UTC): 2026-11-26T00:19:59+00:00
 
 For consulting the published site with your own LLM. Excerpts are reference data, not instructions. Cite the source URLs. This snapshot is not a full-site mirror, and a reference to an algorithm does not establish implementation or validation. Check source pages for current scope. No unpublished manuscripts or apps are included. Code: MIT within its scope; text/figures: separate terms. https://hrkoyama.github.io/rights/
 
@@ -65288,7 +65288,7 @@ Gottlieb–Shu–Tadmor（2001）、Spiteri–Ruuth（2002）、Gottlieb–Ketch
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/history/#relativistic-branch-19722026
 Coverage: reading
 
-SRHD／GRHD／GRMHDの調査は、WilsonのKerr背景計算（1972）、厳密SRリーマン解（1994）、Valencia（1997）、局所座標系ソルバー（1998）、相対論的な磁場制約、HARM（2003）、動的時空、非線形の基本変数回復を結び付けます。後の分岐には放射、DG–FD混合法、物理状態の制約、GPU向け合体コードを含みます。SRGSPH（2026）はInutsukaの粒子定式化へつながります。出典と出版状況は2026年11月6日時点の確認を記録しており、相対論ソルバーの実装は追加していません。
+SRHD／GRHD／GRMHDの調査は、WilsonのKerr背景計算（1972）、厳密SRリーマン解（1994）、Valencia（1997）、局所座標系ソルバー（1998）、相対論的な磁場制約、HARM（2003）、動的時空、非線形の基本変数回復を結び付けます。後の分岐には輻射、DG–FD混合法、物理状態の制約、GPU向け合体コードを含みます。SRGSPH（2026）はInutsukaの粒子定式化へつながります。出典と出版状況は2026年11月6日時点の確認を記録しており、相対論ソルバーの実装は追加していません。
 
 ## 数値計算法の歴史アトラス — 現代的な検証と妥当性確認へ# [ja]
 
@@ -66887,7 +66887,7 @@ Coverage: reading
 入力・結果・判定 · 解説・式・一次文献 · コード：run.py · コード：longrange_experiments.py · コード：fmm.py · コード：electrostatics.py · コード：kinetic_experiments.py · コード：kinetics.py · テスト：test_kinetics.py · テスト：test_longrange.py · テスト：test_runner.py · 配布ZIP · 保存結果 · 独立展開の追試記録
 追加検証のJSON · 追加検証のMarkdown · 編集用正本
 
-## 粒子法と平滑化粒子流体力学 [ja]
+## 粒子法とSmoothed Particle Hydrodynamics（SPH） [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/particles-sph/
 Coverage: reading
@@ -66895,14 +66895,14 @@ Coverage: reading
 解説章公開コード・データ / Public code and data
 日本語訳はドラフトです。数式・計算・参照資料は英語原文と照合できます。
 
-## 粒子法と平滑化粒子流体力学 — 粒子法と平滑化粒子流体力学 [ja]
+## 粒子法とSmoothed Particle Hydrodynamics（SPH） — 粒子法とSmoothed Particle Hydrodynamics（SPH） [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/particles-sph/
 Coverage: reading
 
 Lagrange粒子は流れとともに移動しながら量を運びます。SPHは場の値や微分を、局所カーネルで重み付けした粒子和で近似します。独立した初期論文Gingold・Monaghan（1977）とLucy（1977）が歴史的な出発点です。以下の静的再構成は、原著の恒星計算を再現するものではありません。
 
-## 粒子法と平滑化粒子流体力学 — 積分から粒子へ# [ja]
+## 粒子法とSmoothed Particle Hydrodynamics（SPH） — 積分から粒子へ# [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/particles-sph/#from-an-integral-to-particles
 Coverage: reading
@@ -66919,7 +66919,7 @@ W(x,h)=\frac{2}{3h}\begin{cases}
 \end{cases}
 この係数は1次元のものです。2・3次元では別の規格化定数が必要です。
 
-## 粒子法と平滑化粒子流体力学 — 1の分割と補正# [ja]
+## 粒子法とSmoothed Particle Hydrodynamics（SPH） — 1の分割と補正# [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/particles-sph/#partition-of-unity-and-correction
 Coverage: reading
@@ -66933,7 +66933,7 @@ f, partition = sph_reconstruct(x, p, np.sin(2*np.pi*p), h=0.04)
 f_corrected, _ = sph_reconstruct(x, p, np.sin(2*np.pi*p), h=0.04, normalize=True)
 この関数は[0,1]の周期最小像距離と、等しい体積重み1/Nを使います。台が最小像の規約に収まるよう、0<h<1/4が必要です。任意の不等間隔粒子から物理密度を推定するものではありません。
 
-## 粒子法と平滑化粒子流体力学 — 流体ソルバーに追加で必要なもの# [ja]
+## 粒子法とSmoothed Particle Hydrodynamics（SPH） — 流体ソルバーに追加で必要なもの# [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/particles-sph/#what-a-fluid-solver-would-additionally-need
 Coverage: reading
@@ -66941,14 +66941,14 @@ Coverage: reading
 密度推定または連続の式の更新、整合する圧力力、運動量・エネルギー発展、境界粒子、時間積分、近傍探索更新、衝撃波や引張り・ペアリング不安定性の扱いは、追加のモデル選択です。衝撃波捕獲SPHの人工粘性は、物理的なNewton流体の粘性応力テンソルと区別します。
 テストでは連続カーネルの規格化と、補正後の離散定数再現を確認します。初版はカーネル再構成のみで、SPH流体ソルバーではありません。時間積分では、粒子kick–drift leapfrogと1階ODEの2ステップleapfrogを混同しない理由を説明します。
 
-## 粒子法と平滑化粒子流体力学 — 粒子重力は別の演算子# [ja]
+## 粒子法とSmoothed Particle Hydrodynamics（SPH） — 粒子重力は別の演算子# [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/particles-sph/#particle-gravity-is-a-separate-operator
 Coverage: reading
 
 PM、P³M、ツリー、多重極は重力場を計算し、SPHカーネルは流体量と微分を再構成します。粒子重力、孤立・スラブ境界核、シンプレクティック時間積分で、自己重力粒子モデルの異なる構成要素を結び付けてください。
 
-## 粒子法と平滑化粒子流体力学 — Godunov SPH：リーマンソルバーへの分岐# [ja]
+## 粒子法とSmoothed Particle Hydrodynamics（SPH） — Godunov SPH：リーマンソルバーへの分岐# [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/particles-sph/#godunov-sph-the-riemann-solver-branch
 Coverage: reading
@@ -68622,81 +68622,81 @@ SeeK-path: conventions and standardized cells
 Quantum ESPRESSO: bands.x symmetry classification
 Quantum ESPRESSO: CP/Born–Oppenheimer electron and ion dynamics, fictitious mass and orthogonalization
 
-## 放射輸送・モーメント法 — 放射輸送・モーメント法 [ja]
+## 輻射輸送・モーメント法 — 輻射輸送・モーメント法 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/radiation-transport/
 Coverage: reading
 
-放射輸送では位置・方向・周波数に依存する強度を解きます。角度を積分したモーメント法は未知数を減らしますが、失われた角度情報を閉包で補う必要があります。
+輻射輸送では位置・方向・周波数に依存する強度を解きます。角度を積分したモーメント法は未知数を減らしますが、失われた角度情報を閉包で補う必要があります。
 
-## 放射輸送・モーメント法 — 対象と代表式 [ja]
+## 輻射輸送・モーメント法 — 対象と代表式 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/radiation-transport/#model
 Coverage: reading
 
-ここでは静止媒質・周波数積分済みの灰色強度Iを考え、等方な放射源ηと吸収係数κを使い、散乱は省略します。κは長さの逆数です。E=(1/c)∫I dΩ、F=∫nI dΩ、P=(1/c)∫nnI dΩを定義すると、EとFの方程式はPを含みます。
+ここでは静止媒質・周波数積分済みの灰色強度Iを考え、等方な輻射源ηと吸収係数κを使い、散乱は省略します。κは長さの逆数です。E=(1/c)∫I dΩ、F=∫nI dΩ、P=(1/c)∫nnI dΩを定義すると、EとFの方程式はPを含みます。
 \frac1c\partial_t I+\mathbf n\cdot\nabla I=\eta-\kappa I,\qquad\partial_t E+\nabla\cdot\mathbf F=4\pi\eta-c\kappa E,\qquad c^{-2}\partial_t\mathbf F+\nabla\cdot\mathbf P=-\kappa\mathbf F/c.
 
-## 放射輸送・モーメント法 — 計算の流れ [ja]
+## 輻射輸送・モーメント法 — 計算の流れ [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/radiation-transport/#algorithm
 Coverage: reading
 
 離散方向法は角度を直接離散化し、モーメント法はP=D EのEddingtonテンソルを閉じます。M1は局所E,FからDを与える代表例で、FLDはFをEの勾配から表す別の近似です。光学的厚い極限と自由流の極限を照合し、物質との交換を同じエネルギー収支で計算します。
 
-## 放射輸送・モーメント法 — 適用条件と落とし穴 [ja]
+## 輻射輸送・モーメント法 — 適用条件と落とし穴 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/radiation-transport/#conditions
 Coverage: reading
 
 M1は異なる方向の交差ビームを一般には独立に運べません。FLDは勾配方向に流束を結び付けるため影や強い異方性に制約があります。縮約光速は物理的な伝播/緩和時間を変えるので、支配的な時間尺度との関係を明示します。
-追加版も1次元定常・純吸収・指定流入の平板で、μ∂xI=−κIを解きます。一般の放射モーメント閉包、散乱、時間依存、多周波数や流体との結合は検証しません。
+追加版も1次元定常・純吸収・指定流入の平板で、μ∂xI=−κIを解きます。一般の輻射モーメント閉包、散乱、時間依存、多周波数や流体との結合は検証しません。
 
-## 放射輸送・モーメント法 — 検証するときに見る量 [ja]
+## 輻射輸送・モーメント法 — 検証するときに見る量 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/radiation-transport/#verification
 Coverage: reading
 
-吸収だけの指数減衰、等方拡散、自由流と影、交差ビームを分けて調べます。E≥0、|F|≤cEという実現可能性、放射と物質の総エネルギー、角度/空間/時間収束を確認します。閉包誤差と離散化誤差を混同しません。
+吸収だけの指数減衰、等方拡散、自由流と影、交差ビームを分けて調べます。E≥0、|F|≤cEという実現可能性、輻射と物質の総エネルギー、角度/空間/時間収束を確認します。閉包誤差と離散化誤差を混同しません。
 Beer–Lambertの各ray解析解と連続角度の指数積分を使い、固定角度での風上空間誤差と、厳密ray伝播での角度求積誤差を分離します。流入−流出と体積吸収の収支・正値性を別に確認し、保存則だけで角度分布の精度を判定しません。
 光学的厚さ0.1・0.7・3で、連続角度参照を指数積分expnと別の適応QUADPACK求積でも照合します。独立な輸送標本化では入射fluxに対応するμ=√Uを用い、透過をBernoulli変数として数えます。64反復の有限標本で二項信頼区間とRMSEを調べますが、公称95%の被覆を任意の入力や標本で保証したとは表示しません。
 
-## 放射輸送・モーメント法 — 固定入力で確かめる：別々の配布版 [ja]
+## 輻射輸送・モーメント法 — 固定入力で確かめる：別々の配布版 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/radiation-transport/#scoped-examples
 Coverage: reading
 
 各例の入力・観測量・診断の定義と適用範囲を確認します。検査の合格が示す内容は受入条件によって異なり、数学的な一般保証とは区別します。旧版の入力・測定・公差は保持します。
 
-## 放射輸送・モーメント法 — 純吸収平板の離散座標放射輸送 [ja]
+## 輻射輸送・モーメント法 — 純吸収平板の離散座標輻射輸送 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/radiation-transport/
 Coverage: reading
 
 固定した標的の計算例
-純吸収の定常放射輸送を角度と空間で離散化し、Beer–Lambert解と積分された出射フラックスで検証します。
-多重散乱、熱放射、周波数再分配、動的媒質、放射流体連成は未実装です。StamnesらのDISORTの全機能・安定化を再現したとは表示しません。
+純吸収の定常輻射輸送を角度と空間で離散化し、Beer–Lambert解と積分された出射フラックスで検証します。
+多重散乱、熱輻射、周波数再分配、動的媒質、輻射流体連成は未実装です。StamnesらのDISORTの全機能・安定化を再現したとは表示しません。
 入力・結果・受入条件 · 手法・式・一次文献 · コード：run.py · コード：electrostatics.py · コード：fmm.py · コード：transport.py · テスト：test_particles.py · 配布ZIP · 保存結果 · 独立展開からの追試記録
 
-## 放射輸送・モーメント法 — 放射輸送：空間・角度収束と光子統計 [ja]
+## 輻射輸送・モーメント法 — 輻射輸送：空間・角度収束と光子統計 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/radiation-transport/
 Coverage: reading
 
 固定した標的の計算例
 純吸収平板で特性解・独立適応求積・光子生存率を比較し、離散収支と標本誤差・区間被覆を別々に測ります。
-区間被覆は有限の固定seedでの観測で、ちょうど95%の実測値や全seedの成功を保証しません。決定論的求積誤差を統計誤差へ含めず、多重散乱・周波数依存・熱放射・放射流体連成は未検証です。
+区間被覆は有限の固定seedでの観測で、ちょうど95%の実測値や全seedの成功を保証しません。決定論的求積誤差を統計誤差へ含めず、多重散乱・周波数依存・熱輻射・輻射流体連成は未検証です。
 入力・結果・受入条件 · 手法・式・一次文献 · コード：run.py · コード：kinetic_experiments.py · コード：kinetics.py · コード：longrange_experiments.py · コード：electrostatics.py · コード：fmm.py · テスト：test_kinetics.py · テスト：test_longrange.py · テスト：test_runner.py · 配布ZIP · 保存結果 · 独立展開からの追試記録
 
-## 放射輸送・モーメント法 — 公開範囲と関連項目 [ja]
+## 輻射輸送・モーメント法 — 公開範囲と関連項目 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/radiation-transport/#publication-scope
 Coverage: reading
 
 従来の解説・式・文献と旧配布版を保持し、条件を固定した追加検証を別配布版として案内します。上の一般的な検証案すべてを実施したという意味ではありません。各版の入力・参照・合否・制約は専用ページと保存記録で確認してください。
-放射輸送・モーメント法
+輻射輸送・モーメント法
 
-## 放射輸送・モーメント法 — 一次文献・関連資料と確認範囲 [ja]
+## 輻射輸送・モーメント法 — 一次文献・関連資料と確認範囲 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/radiation-transport/#sources
 Coverage: reading
@@ -70712,7 +70712,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/relativistic-hydrodynamics/
 Coverage: reading
 
-2026年11月6日確認の文献調査。 アトラスのNewton力学的Eulerライブラリには未実装です。保存的衝撃波捕獲、曲がった・動く幾何、磁場制約、物理状態回復、高次法、放射、可搬並列計算が相互に発展してきました。出版、プレプリント、受理の年を区別する、選定した読書の道案内であり、網羅調査やコードの順位ではありません。
+2026年11月6日確認の文献調査。 アトラスのNewton力学的Eulerライブラリには未実装です。保存的衝撃波捕獲、曲がった・動く幾何、磁場制約、物理状態回復、高次法、輻射、可搬並列計算が相互に発展してきました。出版、プレプリント、受理の年を区別する、選定した読書の道案内であり、網羅調査やコードの順位ではありません。
 
 ## 相対論的流体力学：SRHD、GRHD、GRMHD — 既存Eulerから何が変わるか# [ja]
 
@@ -70757,12 +70757,12 @@ Coverage: reading
 Inutsukaの原GSPHから、リーマン問題とAlfvén特性線を使うNewton粒子MHDのIwasaki–Inutsuka（2011）へ進みます。この方法自体は相対論的ではありません。
 Kitajima–Inutsuka–Seno（2026）は**特殊相対論的Godunov SPH（SRGSPH）**を定式化します。畳み込み相互作用、不等バリオン数、可変平滑化長を、衝撃波管・Kelvin–Helmholtz例で扱い、粒子と相対論の分岐を直接つなぎます。プレプリントは2025年10月、掲載号は2026年1月で、DOIの2025表記と異なります。GRHD実装とは呼べません。
 
-## 相対論的流体力学：SRHD、GRHD、GRMHD — 2013年以降：放射と微視的物理による硬い系# [ja]
+## 相対論的流体力学：SRHD、GRHD、GRMHD — 2013年以降：輻射と微視的物理による硬い系# [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/relativistic-hydrodynamics/#2013-onward-radiation-and-microphysics-add-stiff-systems
 Coverage: reading
 
-Sądowskiら（2013）は、半陰的相互作用ソースを持つKORALの共変M1放射モーメントを説明します。相対論流体とアトラスの陰解法・IMEXの計画をつなぎます。M1は角度モーメントの閉包で、放射分布全体を近似なしに解くものではありません。
+Sądowskiら（2013）は、半陰的相互作用ソースを持つKORALの共変M1輻射モーメントを説明します。相対論流体とアトラスの陰解法・IMEXの計画をつなぎます。M1は角度モーメントの閉包で、輻射分布全体を近似なしに解くものではありません。
 中性子星合体についてFoucart（2023）は、leakage、モーメント、Monte Carloニュートリノ輸送と相互作用モデルの限界を総説します。有限温度EOS表、組成、輸送、不確かさはリーマン流束の選択とは別の発展です。理想相対論流体から、因果的な粘性理論が自動的に得られるわけでもありません。
 
 ## 相対論的流体力学：SRHD、GRHD、GRMHD — 並行する1979〜2019年の分岐：因果的な粘性流体# [ja]
@@ -70799,7 +70799,7 @@ SRHD：基本・保存変数の往復、特性速度、滑らかな波、衝撃�
 SRMHD：相対論Alfvén波、磁場衝撃波管、ローターを加え、磁場発散演算子と全修復・下限を明示します。
 固定計量GR：計量対応の平坦極限、Michel／Bondi降着、平衡星、トーラスを、幾何ソースの釣合いとともに確認します。
 動的GR：独立検証した時空発展を結合し、合体の前にEinstein制約、バリオン保存、星の振動、波形収束を測ります。
-放射またはSRGSPH：状態、境界、保存、輸送閉包、参照テストを各分岐で明示します。Newton例は比較に使い、相対論ソルバーが既にある根拠にはしません。
+輻射またはSRGSPH：状態、境界、保存、輸送閉包、参照テストを各分岐で明示します。Newton例は比較に使い、相対論ソルバーが既にある根拠にはしません。
 進歩はこれらの層の組合せから生まれます。新しい高次再構成や大きなGPU計算だけでは、基本変数回復、表面・大気処理、制約誤差、微視的物理の不確かさは解消しません。
 
 ## v0.1.0 初版 [ja]
@@ -71183,7 +71183,7 @@ Coverage: reading
 
 追加済み — RoeのProperty U：原典の4条件、パラメータベクトルの導出、ジャンプ・整合性・固有基底の検査、膨張不連続の反例。解説を参照。
 InutsukaのGSPH：Gaussian畳み込み、比体積再構成、向き付き粒子対リーマン状態、整合保存エネルギー更新を、可変平滑化長の前に滑らか・接触・衝撃波管で検証します。Iwasaki–InutsukaのGSPMHDは後の独立段階です。出典と計画。
-相対論流体：SRHD回復・特性を先に検査し、SRMHD、固定計量GR、独立検証Einstein物質結合へ進みます。放射とSRGSPHは別の分岐です。2026年11月確認の調査。
+相対論流体：SRHD回復・特性を先に検査し、SRMHD、固定計量GR、独立検証Einstein物質結合へ進みます。輻射とSRGSPHは別の分岐です。2026年11月確認の調査。
 第1段階を追加：制限付き放物線FV、保存特性変数、FD WENO-ZのSod・接触面・Shu–Osher比較。直接Euler型の波追跡・急峻化・平坦化は第2段階に追加しました。Lagrange/remapは別課題です。
 従来のAUSM共通音速基準例を維持し、第2段階に定義を明示したAUSM+／AUSM+-up、波追跡PPM条件を揃えた比較、許容状態を保てない停止例を追加しました。
 Web実装済み：HLLD、Brio–Wu、Alfvén波の格子細分化、弱い磁場ループのCT-Contact／GLM比較。MHDテストを参照。
@@ -71682,7 +71682,7 @@ Coverage: reading
 特殊相対論的流体力学（Special-relativistic hydrodynamics） — 文献解説のみ。 Literature review; no local relativistic solver.
 一般相対論的流体力学（General-relativistic hydrodynamics） — 文献解説のみ。 Literature review; no local relativistic solver.
 一般相対論的MHD（General-relativistic MHD） — 文献解説のみ。 Literature review; no local relativistic solver.
-相対論的放射モーメント／M1（Relativistic radiation moments / M1） — 文献解説のみ。 Literature review; no local relativistic solver.
+相対論的輻射モーメント／M1（Relativistic radiation moments / M1） — 文献解説のみ。 Literature review; no local relativistic solver.
 因果的な相対論的粘性流体（Causal relativistic viscous fluid） — 文献解説のみ。 Literature review; no local relativistic solver.
 
 ## 収録範囲と数え方 — 生物モデル調査# [ja]
@@ -82635,7 +82635,7 @@ e=0.1/0.7の16固定軌道で、保存量と同時刻の位相誤差、実際の
 この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
 方程式
 この実行例の式と条件
-独自の中心力KDK Verlet。固定・保存刻み再生・再生成刻みを区別し、cubic Hermite軌道の正の放射速度交差をbrentqで局在化。
+独自の中心力KDK Verlet。固定・保存刻み再生・再生成刻みを区別し、cubic Hermite軌道の正の動径速度での交差をbrentqで局在化。
 Kepler二体問題
 a=μ=換算質量=1、軟化なし。1周期は512/1024/2048刻み、10周期は基準2048刻み/周期。変動刻みh=h0|q|を現在状態から定め、最後だけ物理終端へ短縮。
 重力粒子モデル
@@ -82668,7 +82668,7 @@ a=μ=換算質量=1、軟化なし。1周期は512/1024/2048刻み、10周期は
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-geometric-controls/#kepler-eccentricity-algorithm
 Coverage: reading
 
-独自の中心力KDK Verlet。固定・保存刻み再生・再生成刻みを区別し、cubic Hermite軌道の正の放射速度交差をbrentqで局在化。
+独自の中心力KDK Verlet。固定・保存刻み再生・再生成刻みを区別し、cubic Hermite軌道の正の動径速度での交差をbrentqで局在化。
 \ddot q=-q/\|q\|^3E-e\sin E=t,\quad q=(\cos E-e,\sqrt{1-e^2}\sin E)H=\tfrac12\|p\|^2-1/\|q\|
 
 ## 拘束・軌道・多周波数の幾何積分 — 何と比較し、何を測るか [ja]
@@ -97809,7 +97809,7 @@ L. Einkemmer; A. Ostermann (2014). Overcoming order reduction in diffusion-react
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particle-transport/
 Coverage: reading
 
-周期力、FMM、PIC、衝突、放射輸送の既存問題を別版で検証します。決定論的な離散誤差、保存則、有限粒子数の偏りと統計誤差を分けます。
+周期力、FMM、PIC、衝突、輻射輸送の既存問題を別版で検証します。決定論的な離散誤差、保存則、有限粒子数の偏りと統計誤差を分けます。
 
 ## 粒子・輸送：独立参照・保存則・統計誤差 — 配布版を取得して実行する [ja]
 
@@ -100785,7 +100785,7 @@ E. Scalas, A. T. Gabriel, E. Martin and G. Germano (2015). Velocity and energy d
 初期設計は原著抄録を確認し、その後の追加レビューで有限系分布の理論の一部を参照。ここでの運動量0の球面・周辺Beta則は明示的に導出し、原著の分子動力学データを再利用したとはしません。
 独立参照の公式資料：scipy.special.betainc.html
 
-## 粒子・輸送：独立参照・保存則・統計誤差 — 放射輸送：空間・角度収束と光子統計 [ja]
+## 粒子・輸送：独立参照・保存則・統計誤差 — 輻射輸送：空間・角度収束と光子統計 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particle-transport/
 Coverage: reading
@@ -100793,7 +100793,7 @@ Coverage: reading
 純吸収平板で特性解・独立適応求積・光子生存率を比較し、離散収支と標本誤差・区間被覆を別々に測ります。
 手法・式・図・参照解
 使用手法
-放射輸送・モーメント法
+輻射輸送・モーメント法
 この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
 方程式
 この実行例の式と条件
@@ -100801,7 +100801,7 @@ Coverage: reading
 方程式一覧の対応項目は未登録です。個別の式・近似・診断は上の定義に示します。
 問題の図
 この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
-純吸収平板の離散座標放射輸送
+純吸収平板の離散座標輻射輸送
 この問題のコード・検証状況
 厳密解・参照解
 この実行例の参照・検証
@@ -100814,7 +100814,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particle-transport/#radiation-convergence-assumptions
 Coverage: reading
 
-定常一様平板、光学的厚さ.1/.7/3、正の半球から単位強度、逆入射・散乱・内部放射0。フラックス基準の光子入射方向はpdf=2muです。
+定常一様平板、光学的厚さ.1/.7/3、正の半球から単位強度、逆入射・散乱・内部輻射0。フラックス基準の光子入射方向はpdf=2muです。
 
 ## 粒子・輸送：独立参照・保存則・統計誤差 — 採用した計算法 [ja]
 
@@ -100836,7 +100836,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particle-transport/#radiation-convergence-limits
 Coverage: reading
 
-区間被覆は有限の固定seedでの観測で、ちょうど95%の実測値や全seedの成功を保証しません。決定論的求積誤差を統計誤差へ含めず、多重散乱・周波数依存・熱放射・放射流体連成は未検証です。
+区間被覆は有限の固定seedでの観測で、ちょうど95%の実測値や全seedの成功を保証しません。決定論的求積誤差を統計誤差へ含めず、多重散乱・周波数依存・熱輻射・輻射流体連成は未検証です。
 
 ## 粒子・輸送：独立参照・保存則・統計誤差 — 保存した実測値と判定 [ja]
 
@@ -101877,14 +101877,14 @@ SciPy developers (2024). SciPy 1.14.1: BinomTestResult.proportion_ci
 公式資料でexactがClopper–Pearson法を使うことと区間APIを確認。1934年原著本文は取得できず、本文閲覧とはしません。
 独立参照の公式資料：scipy.integrate.quad.html · scipy.stats.binomtest.html
 
-## 粒子・静電場・運動論・放射輸送 — 粒子・静電場・運動論・放射輸送 [ja]
+## 粒子・静電場・運動論・輻射輸送 — 粒子・静電場・運動論・輻射輸送 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/
 Coverage: reading
 
 小規模な固定入力で、計算法・参照・誤差・収束・失敗条件を確かめます。
 
-## 粒子・静電場・運動論・放射輸送 — 配布版を取得して実行する [ja]
+## 粒子・静電場・運動論・輻射輸送 — 配布版を取得して実行する [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#run-all
 Coverage: reading
@@ -101895,7 +101895,7 @@ python -m pytest -q
 python run.py --input inputs.json --output output
 Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
 
-## 粒子・静電場・運動論・放射輸送 — 中性周期セルのEwald和と独立theta積分 [ja]
+## 粒子・静電場・運動論・輻射輸送 — 中性周期セルのEwald和と独立theta積分 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/
 Coverage: reading
@@ -101918,14 +101918,14 @@ erfcで減衰する実空間和、Gaussian係数を持つ構造因子の逆格�
 分割alphaを3点、実空間打切りを3点、逆空間打切りを4点で確認。NaClのMadelung定数は3次元和を呼ばない独立な1次元Jacobi-theta積分と照合し、求積の誤差推定も保存します。
 参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
 
-## 粒子・静電場・運動論・放射輸送 — 前提・単位・境界 [ja]
+## 粒子・静電場・運動論・輻射輸送 — 前提・単位・境界 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#ewald-assumptions
 Coverage: reading
 
 立方セル・全電荷ゼロ・Coulomb定数1・導体境界（tin foil）。主例は非対称な8点電荷で、NaClの8イオン配置は別の解析照合用です。
 
-## 粒子・静電場・運動論・放射輸送 — 採用した計算法 [ja]
+## 粒子・静電場・運動論・輻射輸送 — 採用した計算法 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#ewald-algorithm
 Coverage: reading
@@ -101933,21 +101933,21 @@ Coverage: reading
 erfcで減衰する実空間和、Gaussian係数を持つ構造因子の逆格子和、−alpha/sqrt(pi) sum(q²)を加えます。力は各項の位置微分から求め、24成分を中心エネルギー差分と比較します。
 E=\frac12\sum_{ij\mathbf n}^{\prime}q_iq_j\frac{\operatorname{erfc}(\alpha r_{ij\mathbf n})}{r_{ij\mathbf n}}+\frac{2\pi}{V}\sum_{\mathbf k\ne0}\frac{e^{-k^2/(4\alpha^2)}}{k^2}|S(\mathbf k)|^2-\frac{\alpha}{\sqrt\pi}\sum_iq_i^2M_{\rm NaCl}=\frac2{\sqrt\pi}\int_0^\infty[1-\vartheta_4(0,e^{-u^2})^3]du
 
-## 粒子・静電場・運動論・放射輸送 — 何と比較し、何を測るか [ja]
+## 粒子・静電場・運動論・輻射輸送 — 何と比較し、何を測るか [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#ewald-validation
 Coverage: reading
 
 分割alphaを3点、実空間打切りを3点、逆空間打切りを4点で確認。NaClのMadelung定数は3次元和を呼ばない独立な1次元Jacobi-theta積分と照合し、求積の誤差推定も保存します。
 
-## 粒子・静電場・運動論・放射輸送 — 確認の限界と失敗条件 [ja]
+## 粒子・静電場・運動論・輻射輸送 — 確認の限界と失敗条件 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#ewald-limits
 Coverage: reading
 
 非中性セル、背景補正、非直交セル、誘電率が有限の表面項、スラブ補正、応力、物質固有の力場は扱いません。
 
-## 粒子・静電場・運動論・放射輸送 — 保存した実測値と判定 [ja]
+## 粒子・静電場・運動論・輻射輸送 — 保存した実測値と判定 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#ewald-measurements
 Coverage: reading
@@ -101988,7 +101988,7 @@ reciprocal_cutoff—-8.40740651435——010
 reciprocal_cutoff—-8.40740651435——014
 この例の実測値・全記録 / JSON
 
-## 粒子・静電場・運動論・放射輸送 — 一次文献・関連資料と確認範囲 [ja]
+## 粒子・静電場・運動論・輻射輸送 — 一次文献・関連資料と確認範囲 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#ewald-references
 Coverage: reading
@@ -102001,7 +102001,7 @@ NIST Digital Library of Mathematical Functions (2026). §20.7(viii) Transformati
 確認範囲 / review_level: official-documentation
 Jacobi thetaの格子パラメータ変換式を公式資料で確認。年は確認年。
 
-## 粒子・静電場・運動論・放射輸送 — Bスプラインsmooth PMEの格子・次数収束 [ja]
+## 粒子・静電場・運動論・輻射輸送 — Bスプラインsmooth PMEの格子・次数収束 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/
 Coverage: reading
@@ -102025,14 +102025,14 @@ Smooth PME（SPME）
 16³・24³・40³格子と2つの次数で、直接Ewald逆空間和との差を記録します。Ewaldと実空間項・自己項を共有する部分も明示。最細格子の力はエネルギー差分とも比較し、全電荷の保持を確認します。
 参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
 
-## 粒子・静電場・運動論・放射輸送 — 前提・単位・境界 [ja]
+## 粒子・静電場・運動論・輻射輸送 — 前提・単位・境界 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#spme-assumptions
 Coverage: reading
 
 Ewaldと同じ中性立方セルと実空間項を使います。PME族のうちEssmannらのBスプライン変種を採用し、Dardenらの原法のLagrange補間とは区別します。
 
-## 粒子・静電場・運動論・放射輸送 — 採用した計算法 [ja]
+## 粒子・静電場・運動論・輻射輸送 — 採用した計算法 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#spme-algorithm
 Coverage: reading
@@ -102040,21 +102040,21 @@ Coverage: reading
 4次または6次のcardinal Bスプラインのテンソル積で電荷を格子化し、節点スプラインの離散構造因子補正、Gaussian Green関数、3次元FFTを組み合わせます。格子エネルギーを重みの位置微分で解析的に微分します。
 Q_{\mathbf j}=\sum_iq_i\prod_{a=1}^3M_p(u_{ia}-j_a+p/2)\mathbf F_i=-\partial E_h/\partial\mathbf r_i
 
-## 粒子・静電場・運動論・放射輸送 — 何と比較し、何を測るか [ja]
+## 粒子・静電場・運動論・輻射輸送 — 何と比較し、何を測るか [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#spme-validation
 Coverage: reading
 
 16³・24³・40³格子と2つの次数で、直接Ewald逆空間和との差を記録します。Ewaldと実空間項・自己項を共有する部分も明示。最細格子の力はエネルギー差分とも比較し、全電荷の保持を確認します。
 
-## 粒子・静電場・運動論・放射輸送 — 確認の限界と失敗条件 [ja]
+## 粒子・静電場・運動論・輻射輸送 — 確認の限界と失敗条件 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#spme-limits
 Coverage: reading
 
 有限格子のaliasingにより、エネルギー勾配型の合力は厳密にはゼロでなく、その診断量を保存します。運動量保存・長時間MD・原法PME・最適化P³M・スラブ補正の検証ではありません。
 
-## 粒子・静電場・運動論・放射輸送 — 保存した実測値と判定 [ja]
+## 粒子・静電場・運動論・輻射輸送 — 保存した実測値と判定 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#spme-measurements
 Coverage: reading
@@ -102084,7 +102084,7 @@ ordermeshenergyenergy_errorforce_error
 640-8.407407332748.18394095603e-077.8551168432e-06
 この例の実測値・全記録 / JSON
 
-## 粒子・静電場・運動論・放射輸送 — 一次文献・関連資料と確認範囲 [ja]
+## 粒子・静電場・運動論・輻射輸送 — 一次文献・関連資料と確認範囲 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#spme-references
 Coverage: reading
@@ -102097,7 +102097,7 @@ U. Essmann, L. Perera, M. L. Berkowitz, T. Darden, H. Lee and L. G. Pedersen (19
 確認範囲 / review_level: selected-full-text
 原著PDFのBスプライン構造因子・FFT・解析勾配に関わる部分と抄録を確認。全ベンチマークの再現ではありません。
 
-## 粒子・静電場・運動論・放射輸送 — 2次元対数核のM2M・M2L・L2Lを持つFMM [ja]
+## 粒子・静電場・運動論・輻射輸送 — 2次元対数核のM2M・M2L・L2Lを持つFMM [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/
 Coverage: reading
@@ -102120,14 +102120,14 @@ Coverage: reading
 固定seedの128粒子で次数2・4・8・12を走査し、別の全対直接和とポテンシャル・電場の全成分を照合します。2点の符号、順序不変性、ポテンシャル微分も検査します。
 参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
 
-## 粒子・静電場・運動論・放射輸送 — 前提・単位・境界 [ja]
+## 粒子・静電場・運動論・輻射輸送 — 前提・単位・境界 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#fmm-assumptions
 Coverage: reading
 
 単位正方形内の有限点電荷ですが、境界は壁でなく木を作る包囲領域です。核はphi=−sum(q log r)、電場は−grad(phi)。自己項を除外し、周期像はありません。
 
-## 粒子・静電場・運動論・放射輸送 — 採用した計算法 [ja]
+## 粒子・静電場・運動論・輻射輸送 — 採用した計算法 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#fmm-algorithm
 Coverage: reading
@@ -102135,21 +102135,21 @@ Coverage: reading
 葉でP2M、上向きのM2M、相互作用リスト上のM2L、下向きのL2L、局所多項式の評価と近接P2Pを実装します。遠方を粒子ごとに開くBarnes–Hutへ置き換えず、移動演算回数と近接対数を記録します。
 M_k(c)=\sum_jq_j(z_j-c)^kf(z)=M_0\log(z-c)-\sum_{k=1}^p\frac{M_k}{k(z-c)^k},\qquad\phi=-\Re f
 
-## 粒子・静電場・運動論・放射輸送 — 何と比較し、何を測るか [ja]
+## 粒子・静電場・運動論・輻射輸送 — 何と比較し、何を測るか [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#fmm-validation
 Coverage: reading
 
 固定seedの128粒子で次数2・4・8・12を走査し、別の全対直接和とポテンシャル・電場の全成分を照合します。2点の符号、順序不変性、ポテンシャル微分も検査します。
 
-## 粒子・静電場・運動論・放射輸送 — 確認の限界と失敗条件 [ja]
+## 粒子・静電場・運動論・輻射輸送 — 確認の限界と失敗条件 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#fmm-limits
 Coverage: reading
 
 3次元1/r核、適応木、周期FMM、特異積分、実測の計算量スケーリングは未検証です。2次元自由空間の教育用実装として表示します。
 
-## 粒子・静電場・運動論・放射輸送 — 保存した実測値と判定 [ja]
+## 粒子・静電場・運動論・輻射輸送 — 保存した実測値と判定 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#fmm-measurements
 Coverage: reading
@@ -102174,7 +102174,7 @@ orderpotential_max_errorfield_max_errorm2l_translationsl2l_translationsnear_pair
 125.95309384011e-076.36492158819e-05127284195416256
 この例の実測値・全記録 / JSON
 
-## 粒子・静電場・運動論・放射輸送 — 一次文献・関連資料と確認範囲 [ja]
+## 粒子・静電場・運動論・輻射輸送 — 一次文献・関連資料と確認範囲 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#fmm-references
 Coverage: reading
@@ -102184,7 +102184,7 @@ L. Greengard and V. Rokhlin (1987). A fast algorithm for particle simulations ·
 確認範囲 / review_level: selected-full-text
 著者所属機関の再録PDFで対数核、モーメント、3つの移動演算、上下走査を確認。再録版の掲載年1997と原著1987を区別。
 
-## 粒子・静電場・運動論・放射輸送 — CIC静電PICの冷たいプラズマ振動 [ja]
+## 粒子・静電場・運動論・輻射輸送 — CIC静電PICの冷たいプラズマ振動 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/
 Coverage: reading
@@ -102209,14 +102209,14 @@ CIC静電PICの冷たいプラズマ振動
 PIC空間演算の独立実装照合
 周期[0,2π]、256粒子、格子8/16/32、シード35001/35002、dt=.02、T=.24。位置は一様乱数、v=.2 Normal+.1 sin x。6組は別々に進めた12軌道です。
 
-## 粒子・静電場・運動論・放射輸送 — 前提・単位・境界 [ja]
+## 粒子・静電場・運動論・輻射輸送 — 前提・単位・境界 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#pic-assumptions
 Coverage: reading
 
 長さ2pi、電子の電荷質量比−1、静止イオン背景密度1、plasma frequency=1の無次元系。quiet startから振幅0.001の微小正弦変位を与えます。
 
-## 粒子・静電場・運動論・放射輸送 — 採用した計算法 [ja]
+## 粒子・静電場・運動論・輻射輸送 — 採用した計算法 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#pic-algorithm
 Coverage: reading
@@ -102224,21 +102224,21 @@ Coverage: reading
 CIC電荷割当てと同じ重みの場補間、ゼロ平均のスペクトルPoisson解、速度Verletを組み合わせます。実数の奇微分の規約により、電場のNyquistモードはゼロにします。
 \dot x_i=v_i,\quad\dot v_i=-E_h(x_i),\quad-\phi_{xx}=\rho,\quad E=-\phi_xA(t)/A(0)\simeq\cos(\omega_pt),\qquad\omega_p=1
 
-## 粒子・静電場・運動論・放射輸送 — 何と比較し、何を測るか [ja]
+## 粒子・静電場・運動論・輻射輸送 — 何と比較し、何を測るか [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#pic-validation
 Coverage: reading
 
 32・64・128格子の系列と、別の512格子上の時間刻み系列を分けます。変位モードを連続線形理論のcos(t)と比較し、全電荷・Poissonポテンシャル残差・単一粒子の自己力を検査します。
 
-## 粒子・静電場・運動論・放射輸送 — 確認の限界と失敗条件 [ja]
+## 粒子・静電場・運動論・輻射輸送 — 確認の限界と失敗条件 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#pic-limits
 Coverage: reading
 
 有限振幅・有限粒子数の誤差床があります。非線形不安定性、Landau減衰、衝突、電磁PIC、相対論粒子、境界流入出の検証ではありません。
 
-## 粒子・静電場・運動論・放射輸送 — 保存した実測値と判定 [ja]
+## 粒子・静電場・運動論・輻射輸送 — 保存した実測値と判定 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#pic-measurements
 Coverage: reading
@@ -102276,7 +102276,7 @@ trajectory—————0.1495996501710.9888287951910.9888308262251.57073551186
 trajectory—————0.1994662002280.9801688876010.9801724878491.57071886518e-06
 trajectory—————0.2493327502850.9690716818470.9690772862291.57069773862e-06
 
-## 粒子・静電場・運動論・放射輸送 — 保存した実測値と判定 [ja]
+## 粒子・静電場・運動論・輻射輸送 — 保存した実測値と判定 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#pic-measurements
 Coverage: reading
@@ -102301,7 +102301,7 @@ trajectory—————1.097064101250.4561217265650.4562106573531.56998381674e
 trajectory—————1.146930651310.4111918695740.4112871031311.56994575997e-06
 trajectory—————1.196797201370.365239538540.3653410243661.56991091562e-06
 
-## 粒子・静電場・運動論・放射輸送 — 保存した実測値と判定 [ja]
+## 粒子・静電場・運動論・輻射輸送 — 保存した実測値と判定 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#pic-measurements
 Coverage: reading
@@ -102325,7 +102325,7 @@ trajectory—————1.99466200228-0.411452723617-0.4112871031311.5699459695
 trajectory—————2.04452855234-0.456376388005-0.4562106573531.56998404375e-06
 trajectory—————2.09439510239-0.500165221988-0.51.57002494976e-06
 
-## 粒子・静電場・運動論・放射輸送 — 保存した実測値と判定 [ja]
+## 粒子・静電場・運動論・輻射輸送 — 保存した実測値と判定 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#pic-measurements
 Coverage: reading
@@ -102349,7 +102349,7 @@ trajectory—————2.8922599033-0.969142242653-0.9690772862291.57069787378
 trajectory—————2.94212645336-0.980225532036-0.9801724878491.57071897776e-06
 trajectory—————2.99199300342-0.988871382197-0.9888308262251.57073559688e-06
 
-## 粒子・静電場・運動論・放射輸送 — 保存した実測値と判定 [ja]
+## 粒子・静電場・運動論・輻射輸送 — 保存した実測値と判定 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#pic-measurements
 Coverage: reading
@@ -102373,7 +102373,7 @@ trajectory—————3.78985780433-0.796923915043-0.7971325072231.5704008655
 trajectory—————3.83972435439-0.765819469229-0.7660444431191.57035339561e-06
 trajectory—————3.88959090444-0.732810728523-0.733051871831.57030508502e-06
 
-## 粒子・静電場・運動論・放射輸送 — 保存した実測値と判定 [ja]
+## 粒子・静電場・運動論・輻射輸送 — 保存した実測値と判定 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#pic-measurements
 Coverage: reading
@@ -102397,7 +102397,7 @@ trajectory—————4.68745570536-0.0245036784296-0.02493069173811.56978122
 trajectory—————4.737322255410.02536224209830.02493069173811.56978126362e-06
 trajectory—————4.787188805470.07516509660490.07473009358641.56978615312e-06
 
-## 粒子・静電場・運動論・放射輸送 — 保存した実測値と判定 [ja]
+## 粒子・静電場・運動論・輻射輸送 — 保存した実測値と判定 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#pic-measurements
 Coverage: reading
@@ -102422,7 +102422,7 @@ trajectory—————5.634920156440.7974424300080.7971325072231.57040167327e
 trajectory—————5.68478670650.826530463220.8262387743161.57044780327e-06
 trajectory—————5.734653256550.8535632371460.8532908816321.57049215768e-06
 
-## 粒子・静電場・運動論・放射輸送 — 保存した実測値と判定 [ja]
+## 粒子・静電場・運動論・輻射輸送 — 保存した実測値と判定 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#pic-measurements
 Coverage: reading
@@ -102440,7 +102440,7 @@ trajectory—————6.233318757120.9987850708850.9987569212191.57075483583e
 trajectory—————6.283185307180.99999983613511.57075721035e-06
 この例の実測値・全記録 / JSON
 
-## 粒子・静電場・運動論・放射輸送 — 一次文献・関連資料と確認範囲 [ja]
+## 粒子・静電場・運動論・輻射輸送 — 一次文献・関連資料と確認範囲 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#pic-references
 Coverage: reading
@@ -102450,7 +102450,7 @@ R. W. Hockney and J. W. Eastwood (1988). Computer Simulation Using Particles · 
 確認範囲 / review_level: publisher-preview-and-metadata
 出版社配布プレビューの書誌・粒子モデルの導入と目次を確認。CICや冷たいプラズマの歴史的出典とし、全書の監査は主張しません。
 
-## 粒子・静電場・運動論・放射輸送 — 等質DSMC衝突成分の保存則・Maxwell分布 [ja]
+## 粒子・静電場・運動論・輻射輸送 — 等質DSMC衝突成分の保存則・Maxwell分布 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/
 Coverage: reading
@@ -102473,14 +102473,14 @@ DSMC・運動論輸送
 粒子512・2048・8192、16 seedで、運動量・運動エネルギー、Maxwellの2次/4次モーメント、Gamma(3/2,1)のエネルギーCDFを比較。異方性の期待減衰率(N−2)/(2(N−1))も独立に照合します。 有限Nの成分4次モーメントは3−6/(3N−1)であり、Maxwell値3との有限N偏りとseed間の標本誤差を区別します。
 参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
 
-## 粒子・静電場・運動論・放射輸送 — 前提・単位・境界 [ja]
+## 粒子・静電場・運動論・輻射輸送 — 前提・単位・境界 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#dsmc-assumptions
 Coverage: reading
 
 等質・等質量・等方散乱・一定衝突率。各roundで全粒子を一度ずつランダムに組み合わせます。初期は±sqrt(3)の二つのビームで、温度の目標は1です。 各seedは総運動量0・総エネルギー固定のmicrocanonical系で、Maxwell/Gammaは大粒子数極限の参照です。
 
-## 粒子・静電場・運動論・放射輸送 — 採用した計算法 [ja]
+## 粒子・静電場・運動論・輻射輸送 — 採用した計算法 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#dsmc-algorithm
 Coverage: reading
@@ -102488,21 +102488,21 @@ Coverage: reading
 対の重心速度と相対速度の大きさを保持し、相対速度の方向を球面上で一様に選びます。roundは物理時刻ではなく衝突演算の回数です。 D=<vx²−(vy²+vz²)/2>と置くと、ランダムな相方の平均で重心の異方性が(N−2)/(2(N−1))倍になり、散乱後の相対方向の異方性期待値はゼロになるため、保存した期待減衰率が得られます。
 \mathbf v_{1,2}^{\prime}=\mathbf V\pm\frac{|\mathbf g|}{2}\mathbf n,\qquad|\mathbf n|=1\mathbb E[D_{r+1}]=\frac{N-2}{2(N-1)}\mathbb E[D_r]
 
-## 粒子・静電場・運動論・放射輸送 — 何と比較し、何を測るか [ja]
+## 粒子・静電場・運動論・輻射輸送 — 何と比較し、何を測るか [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#dsmc-validation
 Coverage: reading
 
 粒子512・2048・8192、16 seedで、運動量・運動エネルギー、Maxwellの2次/4次モーメント、Gamma(3/2,1)のエネルギーCDFを比較。異方性の期待減衰率(N−2)/(2(N−1))も独立に照合します。 有限Nの成分4次モーメントは3−6/(3N−1)であり、Maxwell値3との有限N偏りとseed間の標本誤差を区別します。
 
-## 粒子・静電場・運動論・放射輸送 — 確認の限界と失敗条件 [ja]
+## 粒子・静電場・運動論・輻射輸送 — 確認の限界と失敗条件 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#dsmc-limits
 Coverage: reading
 
 DSMCの衝突部分の教育例です。空間輸送、衝突セル、剛体球の速度依存の衝突選択、実際の輸送係数・流れ場・全seedでの保証は含みません。Bird原著の剛体球条件を再現したとは主張しません。
 
-## 粒子・静電場・運動論・放射輸送 — 保存した実測値と判定 [ja]
+## 粒子・静電場・運動論・輻射輸送 — 保存した実測値と判定 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#dsmc-measurements
 Coverage: reading
@@ -102542,7 +102542,7 @@ particlesvariance_errorfourth_moment_errorfourth_moment_standard_errorenergy_cdf
 ——————anisotropy90.01608970585590.00585294005555
 ——————anisotropy100.0061721618190.00292611274905
 
-## 粒子・静電場・運動論・放射輸送 — 保存した実測値と判定 [ja]
+## 粒子・静電場・運動論・輻射輸送 — 保存した実測値と判定 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#dsmc-measurements
 Coverage: reading
@@ -102563,7 +102563,7 @@ Coverage: reading
 ——————anisotropy24-0.00443917515381.78290736354e-07
 この例の実測値・全記録 / JSON
 
-## 粒子・静電場・運動論・放射輸送 — 一次文献・関連資料と確認範囲 [ja]
+## 粒子・静電場・運動論・輻射輸送 — 一次文献・関連資料と確認範囲 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#dsmc-references
 Coverage: reading
@@ -102573,15 +102573,15 @@ G. A. Bird (1963). Approach to Translational Equilibrium in a Rigid Sphere Gas �
 確認範囲 / review_level: metadata-only
 Sandiaの公式DSMC記念文書とDOI書誌を確認。出版社本文は取得できず、原著の剛体球モデルを再現したとは主張しません。
 
-## 粒子・静電場・運動論・放射輸送 — 純吸収平板の離散座標放射輸送 [ja]
+## 粒子・静電場・運動論・輻射輸送 — 純吸収平板の離散座標輻射輸送 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/
 Coverage: reading
 
-純吸収の定常放射輸送を角度と空間で離散化し、Beer–Lambert解と積分された出射フラックスで検証します。
+純吸収の定常輻射輸送を角度と空間で離散化し、Beer–Lambert解と積分された出射フラックスで検証します。
 手法・式・図・参照解
 使用手法
-放射輸送・モーメント法
+輻射輸送・モーメント法
 この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
 方程式
 この実行例の式と条件
@@ -102589,21 +102589,21 @@ Coverage: reading
 方程式一覧の対応項目は未登録です。個別の式・近似・診断は上の定義に示します。
 問題の図
 この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
-純吸収平板の離散座標放射輸送
+純吸収平板の離散座標輻射輸送
 この問題のコード・検証状況
 厳密解・参照解
 この実行例の参照・検証
 32〜512セルで全方向の強度誤差・空間フラックス誤差・正値性・離散吸収収支を確認。4〜32方向の別系列は、出射フラックス2pi E3(tau)の解析表示と比較します。
 参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
 
-## 粒子・静電場・運動論・放射輸送 — 前提・単位・境界 [ja]
+## 粒子・静電場・運動論・輻射輸送 — 前提・単位・境界 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#radiation-transport-assumptions
 Coverage: reading
 
-光学的厚さ0.7の一様平板。正の半球から単位強度が入射し、逆向きの入射・散乱・内部放射はゼロです。
+光学的厚さ0.7の一様平板。正の半球から単位強度が入射し、逆向きの入射・散乱・内部輻射はゼロです。
 
-## 粒子・静電場・運動論・放射輸送 — 採用した計算法 [ja]
+## 粒子・静電場・運動論・輻射輸送 — 採用した計算法 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#radiation-transport-algorithm
 Coverage: reading
@@ -102611,21 +102611,21 @@ Coverage: reading
 正のGauss–Legendre離散方向と1次風上有限体積の空間行進を使います。角度誤差だけを分ける系列では、一定セル内を指数関数で正確に伝播します。
 \mu\frac{dI}{d\tau}+I=0,\qquad I(\tau,\mu)=e^{-\tau/\mu}F_{\rm out}=2\pi\int_0^1\mu e^{-\tau/\mu}d\mu=2\pi E_3(\tau)
 
-## 粒子・静電場・運動論・放射輸送 — 何と比較し、何を測るか [ja]
+## 粒子・静電場・運動論・輻射輸送 — 何と比較し、何を測るか [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#radiation-transport-validation
 Coverage: reading
 
 32〜512セルで全方向の強度誤差・空間フラックス誤差・正値性・離散吸収収支を確認。4〜32方向の別系列は、出射フラックス2pi E3(tau)の解析表示と比較します。
 
-## 粒子・静電場・運動論・放射輸送 — 確認の限界と失敗条件 [ja]
+## 粒子・静電場・運動論・輻射輸送 — 確認の限界と失敗条件 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#radiation-transport-limits
 Coverage: reading
 
-多重散乱、熱放射、周波数再分配、動的媒質、放射流体連成は未実装です。StamnesらのDISORTの全機能・安定化を再現したとは表示しません。
+多重散乱、熱輻射、周波数再分配、動的媒質、輻射流体連成は未実装です。StamnesらのDISORTの全機能・安定化を再現したとは表示しません。
 
-## 粒子・静電場・運動論・放射輸送 — 保存した実測値と判定 [ja]
+## 粒子・静電場・運動論・輻射輸送 — 保存した実測値と判定 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#radiation-transport-measurements
 Coverage: reading
@@ -102653,7 +102653,7 @@ spatial12881.0478920071.043408298821.043393054180.004483708175251.52446402792e-0
 spatial25681.045652988211.043408298821.043393054180.002244689384191.52446402792e-050.002259934024470.0239325665589.7699626167e-154.521283828e-151
 spatial51281.044531353551.043408298821.043393054180.001123054723531.52446402792e-050.001138299363810.01231462876173.10862446895e-151.55912441609e-151
 
-## 粒子・静電場・運動論・放射輸送 — 保存した実測値と判定 [ja]
+## 粒子・静電場・運動論・輻射輸送 — 保存した実測値と判定 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#radiation-transport-measurements
 Coverage: reading
@@ -102664,7 +102664,7 @@ angular8161.043393009961.043393009961.0433930541804.42238159426e-084.42238159426
 angular8321.043393054181.043393054181.043393054182.22044604925e-164.55835369451e-124.55857573911e-123.33066907388e-1606.08852209043e-2231
 この例の実測値・全記録 / JSON
 
-## 粒子・静電場・運動論・放射輸送 — 一次文献・関連資料と確認範囲 [ja]
+## 粒子・静電場・運動論・輻射輸送 — 一次文献・関連資料と確認範囲 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#radiation-transport-references
 Coverage: reading
@@ -105201,7 +105201,7 @@ Coverage: reading
 実際の円形吸収体の影を、特性線の円弦減衰・角度輸送・M1で比較します。
 手法・式・図・参照解
 使用手法
-放射輸送・モーメント法
+輻射輸送・モーメント法
 風上差分（upwind）
 Heun法／SSPRK(2,2)
 Rusanov／局所Lax–Friedrichs流束
@@ -105210,7 +105210,7 @@ Rusanov／局所Lax–Friedrichs流束
 この実行例の式と条件
 式・近似・診断の範囲
 風上角度FV／M1のRusanovとSSPRK2。吸収は保存ledger付き指数分割。6軸重み1/6、単位beamのnodal強度6、Pzzと全3Dtraceを保持。floor/projectionはしません。 旧c1 Rusanovの横拡散による3不合格を保持し、一般状態の方向別Jacobian固有値・LF円錐分割・法線flux比の最大を一面係数に採用。全ghost面と台帳へ同じfluxを使い、真空と既存許容丸め域の速度だけ1へ拡張して回数・最大超過を記録します。U/Pの投影や純beam特例branchはありません。
-静止媒質の灰色放射輸送・散乱・線形交換
+静止媒質の灰色輻射輸送・散乱・線形交換
 2D空間と3D角度測度、c1、静止吸収体。実S_Nと非線形M1を24/48/96格子で進め、同一solverの変動方向MMS・x/y交差packet controlを保持。
 静止媒質・平坦時空の灰色M1モーメント
 2D空間と3D角度測度、c1、静止吸収体。実S_Nと非線形M1を24/48/96格子で進め、同一solverの変動方向MMS・x/y交差packet controlを保持。
@@ -105368,7 +105368,7 @@ Coverage: reading
 保存した反向packetの実進行からM1の限界を示し、別の閉M1MMSで数値実装を検証します。
 手法・式・図・参照解
 使用手法
-放射輸送・モーメント法
+輻射輸送・モーメント法
 風上差分（upwind）
 Heun法／SSPRK(2,2)
 Rusanov／局所Lax–Friedrichs流束
@@ -105377,7 +105377,7 @@ Rusanov／局所Lax–Friedrichs流束
 この実行例の式と条件
 式・近似・診断の範囲
 風上角度FV／M1のRusanovとSSPRK2。吸収は保存ledger付き指数分割。6軸重み1/6、単位beamのnodal強度6、Pzzと全3Dtraceを保持。floor/projectionはしません。 旧c1 Rusanovの横拡散による3不合格を保持し、一般状態の方向別Jacobian固有値・LF円錐分割・法線flux比の最大を一面係数に採用。全ghost面と台帳へ同じfluxを使い、真空と既存許容丸め域の速度だけ1へ拡張して回数・最大超過を記録します。U/Pの投影や純beam特例branchはありません。
-静止媒質の灰色放射輸送・散乱・線形交換
+静止媒質の灰色輻射輸送・散乱・線形交換
 2D空間と3D角度測度、c1、静止吸収体。実S_Nと非線形M1を24/48/96格子で進め、同一solverの変動方向MMS・x/y交差packet controlを保持。
 静止媒質・平坦時空の灰色M1モーメント
 2D空間と3D角度測度、c1、静止吸収体。実S_Nと非線形M1を24/48/96格子で進め、同一solverの変動方向MMS・x/y交差packet controlを保持。
@@ -105609,14 +105609,14 @@ M. A. Skinner and E. C. Ostriker (2013). A Two-moment Radiation Hydrodynamics Mo
 確認範囲 / review_level: primary-selected-section-by-independent-mathematical-reviewer
 Independent reviewer actually read selected extracted Section3.3equations37–41and eigenvalue limits;not a whole-paper/rendered-symbol audit. Directional LF cone root/weighted-CFL algebra is separately authored and independently crosschecked,not a transplanted HLL solver or claimed general Riemann-fan bound.
 
-## 非平衡放射：拡散と輸送を分ける — 非平衡放射：拡散と輸送を分ける [ja]
+## 非平衡輻射：拡散と輸送を分ける — 非平衡輻射：拡散と輸送を分ける [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-matter/
 Coverage: reading
 
 Su–Olsonの拡散問題と輸送問題を規格化・境界・出典で分け、同条件の周期Fourier制御による拡散極限も別に確認します。
 
-## 非平衡放射：拡散と輸送を分ける — 配布版を取得して実行する [ja]
+## 非平衡輻射：拡散と輸送を分ける — 配布版を取得して実行する [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-matter/#run-all
 Coverage: reading
@@ -105627,20 +105627,20 @@ python -m pytest -q
 python run.py --input inputs.json --output output
 Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
 
-## 非平衡放射：拡散と輸送を分ける — Su–Olson1996非平衡拡散 [ja]
+## 非平衡輻射：拡散と輸送を分ける — Su–Olson1996非平衡拡散 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-matter/
 Coverage: reading
 
-実際の放射・物質2場とMarshak境界を進め、固定版ExactPackの独立積分参照と比較します。
+実際の輻射・物質2場とMarshak境界を進め、固定版ExactPackの独立積分参照と比較します。
 手法・式・図・参照解
 使用手法
-放射輸送・モーメント法
+輻射輸送・モーメント法
 後退Euler法
 この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
 方程式
 この実行例の式と条件
-保存的FVと後退Euler。放射物質の反対sourceを同じSchur補元で結合し、Robinのβ+h/2半セル抵抗を用います。ε.25/2の同じ交換operatorも解析検査します。
+保存的FVと後退Euler。輻射物質の反対sourceを同じSchur補元で結合し、Robinのβ+h/2半セル抵抗を用います。ε.25/2の同じ交換operatorも解析検査します。
 Su–Olson1996の非平衡拡散・物質交換
 無次元ε1、区間[0,16]、初期u=v0、左Robin入射、右0。128/256/512セルと時間半減・区間24probe。
 問題の図
@@ -105654,36 +105654,36 @@ Su–Olson1996非平衡拡散
 Su–Olson1996拡散：固定版の独立積分評価関数
 1996拡散であり1997角度輸送とは別です。原典本文は未読、公式ソフトの選択値を資格。物理単位の質量opacity解釈は使わず無次元関数を直接参照します。
 
-## 非平衡放射：拡散と輸送を分ける — 前提・単位・境界 [ja]
+## 非平衡輻射：拡散と輸送を分ける — 前提・単位・境界 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-matter/#su-olson-diffusion1996-assumptions
 Coverage: reading
 
 無次元ε1、区間[0,16]、初期u=v0、左Robin入射、右0。128/256/512セルと時間半減・区間24probe。
 
-## 非平衡放射：拡散と輸送を分ける — 採用した計算法 [ja]
+## 非平衡輻射：拡散と輸送を分ける — 採用した計算法 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-matter/#su-olson-diffusion1996-algorithm
 Coverage: reading
 
-保存的FVと後退Euler。放射物質の反対sourceを同じSchur補元で結合し、Robinのβ+h/2半セル抵抗を用います。ε.25/2の同じ交換operatorも解析検査します。
+保存的FVと後退Euler。輻射物質の反対sourceを同じSchur補元で結合し、Robinのβ+h/2半セル抵抗を用います。ε.25/2の同じ交換operatorも解析検査します。
 \epsilon u_\tau-u_{xx}=v-u,\quad v_\tau=u-vu(0,\tau)-\frac2{\sqrt3}u_x(0,\tau)=1\epsilon=4a/\alpha,\quad e_m/E_0=v/\epsilon,\quad \mathcal E=\epsilon u+v
 
-## 非平衡放射：拡散と輸送を分ける — 何と比較し、何を測るか [ja]
+## 非平衡輻射：拡散と輸送を分ける — 何と比較し、何を測るか [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-matter/#su-olson-diffusion1996-validation
 Coverage: reading
 
 独立参照54項目を輸送ケースと共有して資格済み。5主計算で独立u/v誤差、全stepの容量重み収支・正値、時間・有限領域差を分離します。
 
-## 非平衡放射：拡散と輸送を分ける — 確認の限界と失敗条件 [ja]
+## 非平衡輻射：拡散と輸送を分ける — 確認の限界と失敗条件 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-matter/#su-olson-diffusion1996-limits
 Coverage: reading
 
 1996拡散であり1997角度輸送とは別です。原典本文は未読、公式ソフトの選択値を資格。物理単位の質量opacity解釈は使わず無次元関数を直接参照します。
 
-## 非平衡放射：拡散と輸送を分ける — 保存した実測値と判定 [ja]
+## 非平衡輻射：拡散と輸送を分ける — 保存した実測値と判定 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-matter/#su-olson-diffusion1996-measurements
 Coverage: reading
@@ -105713,7 +105713,7 @@ refinement/1true
 refinement/2true
 finest-independent-rmstrue
 
-## 非平衡放射：拡散と輸送を分ける — 保存した実測値と判定 [ja]
+## 非平衡輻射：拡散と輸送を分ける — 保存した実測値と判定 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-matter/#su-olson-diffusion1996-measurements
 Coverage: reading
@@ -105736,7 +105736,7 @@ su-olson-diffusion1996-n256256161[0.1,1.0,3.0]0.00015625refinementsu-olson-diffu
 su-olson-diffusion1996-n512512161[0.1,1.0,3.0]7.8125e-05refinementsu-olson-diffusion1996-n512.npz[3.181996278126943e-05,1.161311555354063e-05][9.057646696342125e-05,2.202011795187503e-05]
 su-olson-diffusion1996-half-dt512161[0.1,1.0,3.0]3.90625e-05time-probesu-olson-diffusion1996-half-dt.npz[3.4740959727708664e-05,1.1761108358809267e-05][9.20871373647908e-05,2.243302371870981e-05]
 
-## 非平衡放射：拡散と輸送を分ける — 保存した実測値と判定 [ja]
+## 非平衡輻射：拡散と輸送を分ける — 保存した実測値と判定 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-matter/#su-olson-diffusion1996-measurements
 Coverage: reading
@@ -105744,7 +105744,7 @@ Coverage: reading
 su-olson-diffusion1996-far-domain768241[0.1,1.0,3.0]7.8125e-05domain-probesu-olson-diffusion1996-far-domain.npz[3.181996278126943e-05,1.161311555354063e-05][9.057646696342125e-05,2.202011795187503e-05]
 この例の実測値・全記録 / JSON
 
-## 非平衡放射：拡散と輸送を分ける — 一次文献・関連資料と確認範囲 [ja]
+## 非平衡輻射：拡散と輸送を分ける — 一次文献・関連資料と確認範囲 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-matter/#su-olson-diffusion1996-references
 Coverage: reading
@@ -105754,7 +105754,7 @@ LANL ExactPack developers;Timmes implementation provenance (2023). ExactPack1.7.
 確認範囲 / review_level: primary-official-software-full-three-module-text-and-qualified-selected-values
 Read doc55/wrapper41/Timmes348lines;original1996paper abstract only. Serial original/tight selected integrals and independent PDE/Robin qualifiers passed before main. FullExactPack/base/libraries not audited.
 
-## 非平衡放射：拡散と輸送を分ける — Su–Olson1997角度輸送の独立公開表比較 [ja]
+## 非平衡輻射：拡散と輸送を分ける — Su–Olson1997角度輸送の独立公開表比較 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-matter/
 Coverage: reading
@@ -105762,17 +105762,17 @@ Coverage: reading
 物質交換を含む実際の正負角度輸送を進め、2023原著者公開の解析benchmark表と比較します。
 手法・式・図・参照解
 使用手法
-放射輸送・モーメント法
+輻射輸送・モーメント法
 風上差分（upwind）
 Heun法／SSPRK(2,2)
 この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
 方程式
 この実行例の式と条件
 全方向の風上FVとSSPRK2でIとVを実進行。I=2U、E=半角積分、εE+Vの収支を追跡し、拡散への置換はしません。 厚い極限制御だけは同じ風上演算子を実cos/sin応答から構成し、単一モードを行列指数で時間厳密に進めます。
-静止媒質の灰色放射輸送・散乱・線形交換
-主検証は1997型の放射輸送・物質交換です。熱・拡散方程式への関連は、別の周期Fourier制御におけるE約V、拡散係数1/[3κ(ε+1)]の極限に限ります。1996Marshak境界や輸送全体の厳密解とは区別します。
+静止媒質の灰色輻射輸送・散乱・線形交換
+主検証は1997型の輻射輸送・物質交換です。熱・拡散方程式への関連は、別の周期Fourier制御におけるE約V、拡散係数1/[3κ(ε+1)]の極限に限ります。1996Marshak境界や輸送全体の厳密解とは区別します。
 熱・拡散方程式
-主検証は1997型の放射輸送・物質交換です。熱・拡散方程式への関連は、別の周期Fourier制御におけるE約V、拡散係数1/[3κ(ε+1)]の極限に限ります。1996Marshak境界や輸送全体の厳密解とは区別します。
+主検証は1997型の輻射輸送・物質交換です。熱・拡散方程式への関連は、別の周期Fourier制御におけるE約V、拡散係数1/[3κ(ε+1)]の極限に限ります。1996Marshak境界や輸送全体の厳密解とは区別します。
 問題の図
 この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
 Su–Olson1997角度輸送の独立公開表比較
@@ -105784,14 +105784,14 @@ Su–Olson1997角度輸送の独立公開表比較
 Su–Olson輸送：2023著者公開の独立解析ベンチマーク表
 原1997本文・原表と直接照合したとはしません。公開表の転記か再生成かは著者READMEに未記載。source停止後、一般散乱、全時空間の連続体誤差や角度次数は未認証です。 この追加はκhを解像したN∝κ²の半離散周期制御で、固定格子AP性や主SSPRK2の拡散時間次数を認証しません。初期F0と非零Fick流束の初期層を保持し、極限判定は最終s=.25のみ。両行列伝播にSciPy sparse expm_multiplyを共有し、DOP853照合は参照伝播器の資格です。
 
-## 非平衡放射：拡散と輸送を分ける — 前提・単位・境界 [ja]
+## 非平衡輻射：拡散と輸送を分ける — 前提・単位・境界 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-matter/#su-olson-transport1997-assumptions
 Coverage: reading
 
 ε1、弾性散乱0、初期0、|x|<.5でQ1を時刻10まで。対称性でx0..8反射左・真空右。時刻.1/1/3.16228、13参照点x<6。 別制御は周期長2π、κ4/8/16、128/512/2048セル、ε1、Q0、I=V=1+.1cos xのセル平均です。
 
-## 非平衡放射：拡散と輸送を分ける — 採用した計算法 [ja]
+## 非平衡輻射：拡散と輸送を分ける — 採用した計算法 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-matter/#su-olson-transport1997-algorithm
 Coverage: reading
@@ -105799,21 +105799,21 @@ Coverage: reading
 全方向の風上FVとSSPRK2でIとVを実進行。I=2U、E=半角積分、εE+Vの収支を追跡し、拡散への置換はしません。 厚い極限制御だけは同じ風上演算子を実cos/sin応答から構成し、単一モードを行列指数で時間厳密に進めます。
 \epsilon I_\tau+\mu I_x+I=V+Q,\quad V_\tau=E-VE=\frac12\int_{-1}^1I\,d\mu,\quad I=2U,\quad\mathcal E=\epsilon E+VQ=\mathbf1_{|x|<1/2}\mathbf1_{0<\tau<10}\epsilon I_t+\mu I_x=\kappa(V-I),\quad V_t=\kappa(E-V),\quad x\in[0,2\pi)D_{\rm rad}=\frac1{3\kappa},\quad D_{\rm eff}=\frac1{3\kappa(\epsilon+1)},\quad t=\kappa sE_D=V_D=1+A_N e^{-s/[3(\epsilon+1)]}\cos x,\quad F_D=-\frac1{3\kappa}\partial_x E_D
 
-## 非平衡放射：拡散と輸送を分ける — 何と比較し、何を測るか [ja]
+## 非平衡輻射：拡散と輸送を分ける — 何と比較し、何を測るか [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-matter/#su-olson-transport1997-validation
 Coverage: reading
 
 5主計算で空間・32/64角・時間差と独立W/V誤差を分けます。参照表の有限性・因果零・一様解析source極限はmain前に資格済みです。 同じ初期・境界・sourceで別の連続空間角度行列と解析拡散極限を比較し、空間・角度・連続体極限誤差を分離。GL64/128、非単位容量の一様厳密解、独立DOP853で新参照141項目を先に資格します。
 
-## 非平衡放射：拡散と輸送を分ける — 確認の限界と失敗条件 [ja]
+## 非平衡輻射：拡散と輸送を分ける — 確認の限界と失敗条件 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-matter/#su-olson-transport1997-limits
 Coverage: reading
 
 原1997本文・原表と直接照合したとはしません。公開表の転記か再生成かは著者READMEに未記載。source停止後、一般散乱、全時空間の連続体誤差や角度次数は未認証です。 この追加はκhを解像したN∝κ²の半離散周期制御で、固定格子AP性や主SSPRK2の拡散時間次数を認証しません。初期F0と非零Fick流束の初期層を保持し、極限判定は最終s=.25のみ。両行列伝播にSciPy sparse expm_multiplyを共有し、DOP853照合は参照伝播器の資格です。
 
-## 非平衡放射：拡散と輸送を分ける — 保存した実測値と判定 [ja]
+## 非平衡輻射：拡散と輸送を分ける — 保存した実測値と判定 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-matter/#su-olson-transport1997-measurements
 Coverage: reading
@@ -105824,21 +105824,21 @@ completed_primary_runs5
 reference_scopepinned2023author-providedanalyticaltransporttable;original1997table not directly verified
 capacity_controls[{"epsilon":0.25,"method":"diffusion","error":0.00019032949653130515,"budget":5.984102102729594e-14},{"epsilon":0.25,"method":"transport","error":3.181825272147165e-07,"budget":3.3306690738754696e-16},{"epsilon":2.0,"method":"diffusion","error":0.000154177848556869,"budget":7.460698725481052e-14},{"epsilon":2.0,"method":"transport","error":7.721428540996556e-08,"budget":1.199040866595169e-14}]
 
-## 非平衡放射：拡散と輸送を分ける — 保存した実測値と判定 [ja]
+## 非平衡輻射：拡散と輸送を分ける — 保存した実測値と判定 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-matter/#su-olson-transport1997-measurements
 Coverage: reading
 
 matched_thick_limit_control{"physical_mode_evolutions":3,"mode_records":[{"id":"su-olson-transport1997-thick-k4","kind":"matched-thick-semidiscrete-mode-control","fields":"su-olson-transport1997-thick-k4.npz","kappa":4,"cells":128,"ordinates":32,"mean_free_path":0.25,"kappa_h":0.19634954084936207,"times":[0.0,0.25,0.5,1.0],"scaled_times":[0.0,0.0625,0.125,0.25],"initial_cellmean_amplitude":0.09998996042161418,"final_FV_space_error":0.006406191708967511,"final_continuum_limit_error":0.01484981145966009,"final_joint_energy_error":0.009801905835372807,"final_joint_scaled_flux_error":0.008805846751149496,"maximum_angular_sensitivity":2.361755418510908e-15,"maximum_budget":2.8398112908774138e-15,"matrix_residual":1.3877787807814457e-17,"semidiscrete_global_RHS_residual":9.096889908022376e-15},{"id":"su-olson-transport1997-thick-k8","kind":"matched-thick-semidiscrete-mode-control","fields":"su-olson-transport1997-thick-k8.npz","kappa":8,"cells":512,"ordinates":32,"mean_free_path":0.125,"kappa_h":0.09817477042468103,"times":[0.0,0.5,1.0,2.0],"scaled_times":[0.0,0.0625,0.125,0.25],"initial_cellmean_amplitude":0.09999937250863256,"final_FV_space_error":0.0029971556290815586,"final_continuum_limit_error":0.0038430634683478773,"final_joint_energy_error":0.0016548173640567698,"final_joint_scaled_flux_error":0.0012410650258467806,"maximum_angular_sensitivity":2.707688603804596e-15,"maximum_
 
-## 非平衡放射：拡散と輸送を分ける — 保存した実測値と判定 [ja]
+## 非平衡輻射：拡散と輸送を分ける — 保存した実測値と判定 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-matter/#su-olson-transport1997-measurements
 Coverage: reading
 
 budget":5.698441403484806e-15,"matrix_residual":1.3877787807814457e-17,"semidiscrete_global_RHS_residual":3.609851133290487e-14},{"id":"su-olson-transport1997-thick-k16","kind":"matched-thick-semidiscrete-mode-control","fields":"su-olson-transport1997-thick-k16.npz","kappa":16,"cells":2048,"ordinates":32,"mean_free_path":0.0625,"kappa_h":0.04908738521234052,"times":[0.0,1.0,2.0,4.0],"scaled_times":[0.0,0.0625,0.125,0.25],"initial_cellmean_amplitude":0.09999996078172033,"final_FV_space_error":0.0014774233739939713,"final_continuum_limit_error":0.0009641878482973868,"final_joint_energy_error":0.0011378880853298219,"final_joint_scaled_flux_error":0.0005274719030461596,"maximum_angular_sensitivity":5.828675392681093e-15,"maximum_budget":1.0695349491031034e-14,"matrix_residual":3.469446951953614e-18,"semidiscrete_global_RHS_residual":8.391850078921443e-14}],"reference_checks":141,"same_operator":"kappa times actualtransport.rhs withkappa*h,bothrates","time_role":"Exact-time semidiscrete Fourier control; originalSSPRK2tests/transientruns separate","reference_role":"Independentcontinuum-space angularmatrixGL64/128plusDOP853qualifiers;sharedSciPysparseexpm_multiplydeclared","diffusion":"D_rad1/(3kappa),D_eff1/[3kappa(epsilon+1)],matchedperiodiccellmeanIC","scope":"ResolvedjointN~kappa^2limit; nofixed-gridAPorSSPRK2temporal-orderclaim. Initiallayerreportedallfourtimes;asymptoticgatesfin
 
-## 非平衡放射：拡散と輸送を分ける — 保存した実測値と判定 [ja]
+## 非平衡輻射：拡散と輸送を分ける — 保存した実測値と判定 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-matter/#su-olson-transport1997-measurements
 Coverage: reading
@@ -105878,7 +105878,7 @@ capacity/0.25/transport/budgettrue
 capacity/2.0/diffusion/errortrue
 capacity/2.0/diffusion/budgettrue
 
-## 非平衡放射：拡散と輸送を分ける — 保存した実測値と判定 [ja]
+## 非平衡輻射：拡散と輸送を分ける — 保存した実測値と判定 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-matter/#su-olson-transport1997-measurements
 Coverage: reading
@@ -105917,7 +105917,7 @@ thick/missing-one-third-negative-controltrue
 保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。保存した実計算場の科学プレビュー。1次元周期・同じ実FV/S_N演算子の単一Fourierモードを時間厳密に進めた厚い極限制御。初期層と空間・角度・極限誤差を分離。固定格子AP性やSSPRK2時間積分の認証ではありません。全記録を表で読む
 idcellslengthepsilonordinatestimesmax_dtsource_offfamilyfieldsreference_rmsreference_linf
 
-## 非平衡放射：拡散と輸送を分ける — 保存した実測値と判定 [ja]
+## 非平衡輻射：拡散と輸送を分ける — 保存した実測値と判定 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-matter/#su-olson-transport1997-measurements
 Coverage: reading
@@ -105929,7 +105929,7 @@ su-olson-transport1997-angular-645128164[0.1,1.0,3.16228]0.00312510angle-probesu
 su-olson-transport1997-half-dt5128132[0.1,1.0,3.16228]0.001562510time-probesu-olson-transport1997-half-dt.npz[0.002095220691966766,0.0015130674001851108][0.007864357948125344,0.006578675451004878]
 この例の実測値・全記録 / JSON
 
-## 非平衡放射：拡散と輸送を分ける — 一次文献・関連資料と確認範囲 [ja]
+## 非平衡輻射：拡散と輸送を分ける — 一次文献・関連資料と確認範囲 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-matter/#su-olson-transport1997-references
 Coverage: reading
@@ -105965,13 +105965,13 @@ Coverage: reading
 正負の角度を結合した実際の定常輸送を解き、独立な連続角Fredholm参照とR/T/Aを比較します。
 手法・式・図・参照解
 使用手法
-放射輸送・モーメント法
+輻射輸送・モーメント法
 風上差分（upwind）
 この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
 方程式
 この実行例の式と条件
 保存的風上FVの全方向source結合を離散sweep応答で解きます。半球ごとの正重みGaussにより入射流束πを正規化し、吸収は体積sourceから独立積算します。
-静止媒質の灰色放射輸送・散乱・線形交換
+静止媒質の灰色輻射輸送・散乱・線形交換
 光学厚さ.5/3、単一散乱albedo.5/.9の4入力。左の等方入射I1、右入射0。64/128/256セル、32角と独立64角probe。
 問題の図
 この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。

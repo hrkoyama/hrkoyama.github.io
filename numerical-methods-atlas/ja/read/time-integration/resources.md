@@ -65,7 +65,7 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/time-integration/
 - [Su–Olson1996非平衡拡散](<https://hrkoyama.github.io/numerical-methods-atlas/validation/su-olson-diffusion1996/?lang=ja>)
   availability: run
 
-  実際の放射・物質2場とMarshak境界を進め、固定版ExactPackの独立積分参照と比較します。
+  実際の輻射・物質2場とMarshak境界を進め、固定版ExactPackの独立積分参照と比較します。
 - [時間離散拡散の随伴とcheckpoint](<https://hrkoyama.github.io/numerical-methods-atlas/validation/diffusion-discrete-adjoint/?lang=ja>)
   availability: run
 

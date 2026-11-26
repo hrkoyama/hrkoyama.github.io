@@ -33,7 +33,7 @@
     {
       "id": "static-grey-transfer",
       "name": {
-        "ja": "静止媒質の灰色放射輸送・散乱・線形交換",
+        "ja": "静止媒質の灰色輻射輸送・散乱・線形交換",
         "en": "Static grey radiative transfer,scattering and linear exchange"
       },
       "formula": [
@@ -41,7 +41,7 @@
         "J=\\langle I\\rangle_\\Omega,\\quad\\partial_t V=\\kappa_a(J-V)\\quad(\\mathrm{linear\\ exchange})"
       ],
       "note": {
-        "ja": "正規化した角度平均を使います。物質交換は1997輸送例と周期Fourier比較で進めます。1997の光学座標では係数1、物理座標の比較ではκを放射・物質の両交換項に掛けます。",
+        "ja": "正規化した角度平均を使います。物質交換は1997輸送例と周期Fourier比較で進めます。1997の光学座標では係数1、物理座標の比較ではκを輻射・物質の両交換項に掛けます。",
         "en": "Use a normalized angular mean. Material exchange is evolved in the1997 transport example and periodic Fourier controls. The1997 optical coordinates give a unit exchange coefficient; physical-coordinate controls multiply both exchange terms by kappa."
       },
       "url": {
@@ -61,7 +61,7 @@
         "\\chi=\\frac{3+4f^2}{5+2\\sqrt{4-3f^2}},\\quad f=|\\boldsymbol F|/E"
       ],
       "note": {
-        "ja": "c=1、2D空間で3D圧力のPzzを保持。等方・真空分岐、閉じたPDEの製造解、角度法とのビーム差を区別し、相対論的放射流体とは扱いません。",
+        "ja": "c=1、2D空間で3D圧力のPzzを保持。等方・真空分岐、閉じたPDEの製造解、角度法とのビーム差を区別し、相対論的輻射流体とは扱いません。",
         "en": "c=1,2D space with full3D pressure including Pzz. Separate isotropic/vacuum branches,closed-PDE MMS and beam defects against angular transport; no relativistic-fluid claim."
       },
       "url": {
@@ -130,7 +130,7 @@
     {
       "id": "radiation-transport",
       "name": {
-        "ja": "放射輸送・モーメント法",
+        "ja": "輻射輸送・モーメント法",
         "en": "Radiation transport and moment methods"
       },
       "status": "educational-example",

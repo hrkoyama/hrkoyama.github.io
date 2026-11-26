@@ -38,7 +38,7 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-geometric-
   正準方程式と分離可能なHamiltonianの代表形。調和・4次ポテンシャルの振動子で、エネルギー誤差とシンプレクティック性を比べます。
 - [この実行例の式と条件](<https://hrkoyama.github.io/numerical-methods-atlas/validation/kepler-eccentricity/?lang=ja#kepler-eccentricity-ja-algorithm>)
 
-  独自の中心力KDK Verlet。固定・保存刻み再生・再生成刻みを区別し、cubic Hermite軌道の正の放射速度交差をbrentqで局在化。
+  独自の中心力KDK Verlet。固定・保存刻み再生・再生成刻みを区別し、cubic Hermite軌道の正の動径速度での交差をbrentqで局在化。
 - [Kepler二体問題](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#kepler-two-body-ja>)
 
   無次元化した平面楕円軌道で位相、角運動量、エネルギーと刻みの影響を分けます。

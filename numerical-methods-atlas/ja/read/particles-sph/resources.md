@@ -1,4 +1,4 @@
-# 粒子法と平滑化粒子流体力学
+# 粒子法とSmoothed Particle Hydrodynamics（SPH）
 
 この章の関連資料
 

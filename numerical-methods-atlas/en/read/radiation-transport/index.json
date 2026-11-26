@@ -70,22 +70,22 @@
       }
     }
   ],
-  "source_sha256": "7106bf86f5fe603d39bb4097ea5d88aa13589b6daf29d31e42a867ae781b8c03",
+  "source_sha256": "5679d8af17b67600816080ca5dafdeeec4ecee81f109cae1b1d3dbc92195cdce",
   "scoped_supplements": [
     {
       "id": "radiation-transport",
       "title": {
-        "ja": "純吸収平板の離散座標放射輸送",
+        "ja": "純吸収平板の離散座標輻射輸送",
         "en": "Discrete-ordinate radiation transport through an absorbing slab"
       },
       "group": "particles",
       "problem_id": "absorbing-slab",
       "summary": {
-        "ja": "純吸収の定常放射輸送を角度と空間で離散化し、Beer–Lambert解と積分された出射フラックスで検証します。",
+        "ja": "純吸収の定常輻射輸送を角度と空間で離散化し、Beer–Lambert解と積分された出射フラックスで検証します。",
         "en": "Discretize steady pure-absorption transfer in angle and space, checking Beer–Lambert rays and integrated exit flux."
       },
       "limits": {
-        "ja": "多重散乱、熱放射、周波数再分配、動的媒質、放射流体連成は未実装です。StamnesらのDISORTの全機能・安定化を再現したとは表示しません。",
+        "ja": "多重散乱、熱輻射、周波数再分配、動的媒質、輻射流体連成は未実装です。StamnesらのDISORTの全機能・安定化を再現したとは表示しません。",
         "en": "Multiple scattering, thermal emission, frequency redistribution, moving media and radiation–fluid coupling are unimplemented. This does not reproduce full DISORT functionality/stabilization."
       },
       "reading": {
@@ -109,7 +109,7 @@
     {
       "id": "radiation-convergence",
       "title": {
-        "ja": "放射輸送：空間・角度収束と光子統計",
+        "ja": "輻射輸送：空間・角度収束と光子統計",
         "en": "Radiation transport: space/angle convergence and photon statistics"
       },
       "group": "particle-transport",
@@ -119,7 +119,7 @@
         "en": "Compare characteristics, independent adaptive integration and photon survival in a pure-absorption slab; separate discrete balance, sampling error and interval coverage."
       },
       "limits": {
-        "ja": "区間被覆は有限の固定seedでの観測で、ちょうど95%の実測値や全seedの成功を保証しません。決定論的求積誤差を統計誤差へ含めず、多重散乱・周波数依存・熱放射・放射流体連成は未検証です。",
+        "ja": "区間被覆は有限の固定seedでの観測で、ちょうど95%の実測値や全seedの成功を保証しません。決定論的求積誤差を統計誤差へ含めず、多重散乱・周波数依存・熱輻射・輻射流体連成は未検証です。",
         "en": "Coverage is observed over finite fixed seeds; neither exactly 95% empirical coverage nor all-seed success is guaranteed. Keep deterministic quadrature error separate from statistical error. Multiple scattering, frequency dependence, thermal emission and radiation hydrodynamics are unvalidated."
       },
       "reading": {
@@ -146,12 +146,14 @@
     }
   ],
   "supplemental_source_sha256": {
-    "catalog/atlas-depth-expansion.json": "d559e4bbc6643cb6f149f97a7c3d9b27eed2d9f38ac3b5f1e9811f83c3db0936",
+    "catalog/atlas-depth-expansion.json": "49e2ef4c1f7865eedff70a866351b3e54393a59e8856fd1cc1ed946d1435796c",
     "code/validated-examples/2026-11-22/particles/source-manifest.json": "63cefd473db691db611628f6501b2b58d6727c055ffde1b9a4962bfecfacd125",
     "code/validated-examples/2026-11-22/particles/verification.json": "48744c4ce661cb76ce7cba81d55bbbb2737885c472966237e78c9e3dfcbf43b7",
     "code/validated-examples/2026-11-22/particles/cases.json": "f6e68b2ec8d0cd56357b1aeecea3f9c40cf22f89e7f9c1b8b9442ad020ddbf86",
     "code/validated-examples/2026-11-22/particles/results/result.json": "ed038f2af0d25bb29235e5f2853e0c8360974e8a499475f4b5cb3146d142ad60",
     "code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip": "8d2c39d6166a6b8715329574ed699515b0aa5b1f4c08fbec46b97400c50025b6",
+    "catalog/atlas-terminology.json": "b861b1b1d4323c71bae2594065fd58649cb47e088dae858c4105e6340c4122b9",
+    "scripts/atlas_terminology.py": "3abe65776c82d3f0c3fd01396ad9efb799ebba3515b50fe7844db0f01778779c",
     "code/validated-examples/2026-11-22/particle-transport/source-manifest.json": "d5724e7fd43635a489acb3b9ae90ac83fcce734ee89b6f29bc80cbdd4cefac97",
     "code/validated-examples/2026-11-22/particle-transport/verification.json": "a16b3b90fd815909a8f3241dd7c04aeedabb2dd964da603eadd851fd6a0e171d",
     "code/validated-examples/2026-11-22/particle-transport/cases.json": "3d3dd9cbc6c62666bb76f893762cf27b33b2606a34e87ffe8c4275e258b96f66",

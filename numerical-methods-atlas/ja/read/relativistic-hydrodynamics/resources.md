@@ -21,9 +21,9 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/relativistic-hydrodyn
 - [一般相対論的MHD（GRMHD）](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#grmhd-ja>)
 
   理想電気伝導の代表形。物質と電磁場の応力エネルギー、磁場制約、計量を組み合わせます。状態方程式・時空の扱いを含む完全系は解説先へ。文献解説のみ。
-- [相対論的放射モーメント・M1](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#m1-radiation-ja>)
+- [相対論的輻射モーメント・M1](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#m1-radiation-ja>)
 
-  Gνを物質が受け取る四元力と定義した模式形。Rは放射の応力エネルギー、Pは放射圧テンソル。M1は角度モーメントの閉包で、放射分布全体を厳密に解くものではありません。文献解説のみ。
+  Gνを物質が受け取る四元力と定義した模式形。Rは輻射の応力エネルギー、Pは輻射圧テンソル。M1は角度モーメントの閉包で、輻射分布全体を厳密に解くものではありません。文献解説のみ。
 - [因果的な相対論的粘性流体](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#causal-viscous-ja>)
 
   下段はIsrael–Stewart型の緩和を示す模式式で、完全な構成則ではありません。追加緩和変数を使わないBDNKなどの一階理論と区別します。因果性の条件は理論・状態方程式に依存し、文献解説のみです。

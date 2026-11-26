@@ -3,7 +3,7 @@
   "generated_by": "atlas-chapter-resources",
   "id": "validation-radiation-matter",
   "title": {
-    "ja": "非平衡放射：拡散と輸送を分ける",
+    "ja": "非平衡輻射：拡散と輸送を分ける",
     "en": "Non-equilibrium radiation: distinct diffusion and transport"
   },
   "routes": {
@@ -23,7 +23,7 @@
         {
           "id": "radiation-transport",
           "name": {
-            "ja": "放射輸送・モーメント法",
+            "ja": "輻射輸送・モーメント法",
             "en": "Radiation transport and moment methods"
           },
           "url": {
@@ -33,7 +33,7 @@
           "status": "educational-example",
           "role": "execution",
           "note": {
-            "ja": "保存的FVと後退Euler。放射物質の反対sourceを同じSchur補元で結合し、Robinのβ+h/2半セル抵抗を用います。ε.25/2の同じ交換operatorも解析検査します。",
+            "ja": "保存的FVと後退Euler。輻射物質の反対sourceを同じSchur補元で結合し、Robinのβ+h/2半セル抵抗を用います。ε.25/2の同じ交換operatorも解析検査します。",
             "en": "Conservative FV/backwardEuler with opposite exchange sources coupled by a shared Schur complement and Robin half-cell resistance beta+h/2. Analytic nonunitepsilon.25/2controls exercise the same exchange operators."
           },
           "context_problem_id": "su-olson-diffusion1996"
@@ -51,7 +51,7 @@
           "status": "educational-example",
           "role": "execution",
           "note": {
-            "ja": "保存的FVと後退Euler。放射物質の反対sourceを同じSchur補元で結合し、Robinのβ+h/2半セル抵抗を用います。ε.25/2の同じ交換operatorも解析検査します。",
+            "ja": "保存的FVと後退Euler。輻射物質の反対sourceを同じSchur補元で結合し、Robinのβ+h/2半セル抵抗を用います。ε.25/2の同じ交換operatorも解析検査します。",
             "en": "Conservative FV/backwardEuler with opposite exchange sources coupled by a shared Schur complement and Robin half-cell resistance beta+h/2. Analytic nonunitepsilon.25/2controls exercise the same exchange operators."
           },
           "context_problem_id": "su-olson-diffusion1996"
@@ -59,7 +59,7 @@
         {
           "id": "radiation-transport",
           "name": {
-            "ja": "放射輸送・モーメント法",
+            "ja": "輻射輸送・モーメント法",
             "en": "Radiation transport and moment methods"
           },
           "url": {
@@ -113,7 +113,7 @@
         {
           "id": "radiation-transport",
           "name": {
-            "ja": "放射輸送・モーメント法",
+            "ja": "輻射輸送・モーメント法",
             "en": "Radiation transport and moment methods"
           },
           "url": {
@@ -183,7 +183,7 @@
         {
           "id": "static-grey-transfer",
           "name": {
-            "ja": "静止媒質の灰色放射輸送・散乱・線形交換",
+            "ja": "静止媒質の灰色輻射輸送・散乱・線形交換",
             "en": "Static grey radiative transfer,scattering and linear exchange"
           },
           "url": {
@@ -191,7 +191,7 @@
             "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#static-grey-transfer-en"
           },
           "note": {
-            "ja": "正規化した角度平均を使います。物質交換は1997輸送例と周期Fourier比較で進めます。1997の光学座標では係数1、物理座標の比較ではκを放射・物質の両交換項に掛けます。 主検証は1997型の放射輸送・物質交換です。熱・拡散方程式への関連は、別の周期Fourier制御におけるE約V、拡散係数1/[3κ(ε+1)]の極限に限ります。1996Marshak境界や輸送全体の厳密解とは区別します。",
+            "ja": "正規化した角度平均を使います。物質交換は1997輸送例と周期Fourier比較で進めます。1997の光学座標では係数1、物理座標の比較ではκを輻射・物質の両交換項に掛けます。 主検証は1997型の輻射輸送・物質交換です。熱・拡散方程式への関連は、別の周期Fourier制御におけるE約V、拡散係数1/[3κ(ε+1)]の極限に限ります。1996Marshak境界や輸送全体の厳密解とは区別します。",
             "en": "Use a normalized angular mean. Material exchange is evolved in the1997 transport example and periodic Fourier controls. The1997 optical coordinates give a unit exchange coefficient; physical-coordinate controls multiply both exchange terms by kappa. The main benchmark uses1997-type radiation/material transport. The heat equation is a limiting companion for separate periodic Fourier controls with E approximately V and diffusivity1/[3kappa(epsilon+1)],not the1996Marshak boundary problem or an exact solution of full transport."
           },
           "context_problem_id": "su-olson-transport1997"
@@ -207,7 +207,7 @@
             "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#heat-en"
           },
           "note": {
-            "ja": "一定拡散係数νの代表形。モードの減衰、時間積分、境界条件へ。 主検証は1997型の放射輸送・物質交換です。熱・拡散方程式への関連は、別の周期Fourier制御におけるE約V、拡散係数1/[3κ(ε+1)]の極限に限ります。1996Marshak境界や輸送全体の厳密解とは区別します。",
+            "ja": "一定拡散係数νの代表形。モードの減衰、時間積分、境界条件へ。 主検証は1997型の輻射輸送・物質交換です。熱・拡散方程式への関連は、別の周期Fourier制御におけるE約V、拡散係数1/[3κ(ε+1)]の極限に限ります。1996Marshak境界や輸送全体の厳密解とは区別します。",
             "en": "A representative constant-diffusivity form: mode decay, time integration and boundaries. The main benchmark uses1997-type radiation/material transport. The heat equation is a limiting companion for separate periodic Fourier controls with E approximately V and diffusivity1/[3kappa(epsilon+1)],not the1996Marshak boundary problem or an exact solution of full transport."
           },
           "context_problem_id": "su-olson-transport1997"
@@ -215,7 +215,7 @@
         {
           "id": "static-grey-transfer",
           "name": {
-            "ja": "静止媒質の灰色放射輸送・散乱・線形交換",
+            "ja": "静止媒質の灰色輻射輸送・散乱・線形交換",
             "en": "Static grey radiative transfer,scattering and linear exchange"
           },
           "url": {
@@ -223,7 +223,7 @@
             "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#static-grey-transfer-en"
           },
           "note": {
-            "ja": "正規化した角度平均を使います。物質交換は1997輸送例と周期Fourier比較で進めます。1997の光学座標では係数1、物理座標の比較ではκを放射・物質の両交換項に掛けます。",
+            "ja": "正規化した角度平均を使います。物質交換は1997輸送例と周期Fourier比較で進めます。1997の光学座標では係数1、物理座標の比較ではκを輻射・物質の両交換項に掛けます。",
             "en": "Use a normalized angular mean. Material exchange is evolved in the1997 transport example and periodic Fourier controls. The1997 optical coordinates give a unit exchange coefficient; physical-coordinate controls multiply both exchange terms by kappa."
           }
         },
@@ -253,7 +253,7 @@
             "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/su-olson-diffusion1996/?lang=en#su-olson-diffusion1996-en-algorithm"
           },
           "note": {
-            "ja": "保存的FVと後退Euler。放射物質の反対sourceを同じSchur補元で結合し、Robinのβ+h/2半セル抵抗を用います。ε.25/2の同じ交換operatorも解析検査します。",
+            "ja": "保存的FVと後退Euler。輻射物質の反対sourceを同じSchur補元で結合し、Robinのβ+h/2半セル抵抗を用います。ε.25/2の同じ交換operatorも解析検査します。",
             "en": "Conservative FV/backwardEuler with opposite exchange sources coupled by a shared Schur complement and Robin half-cell resistance beta+h/2. Analytic nonunitepsilon.25/2controls exercise the same exchange operators."
           },
           "role": "example-definition"
@@ -426,7 +426,7 @@
           },
           "reference_kind": "semi-analytic",
           "note": {
-            "ja": "半解析解 初期の放射・物質変数が0、ε=1の半無限Marshak拡散です。無次元評価関数を直接用い、物理単位の質量吸収係数ラッパーに起因する曖昧な規約は持ち込みません。 1996拡散であり1997角度輸送とは別です。原典本文は未読、公式ソフトの選択値を資格。物理単位の質量opacity解釈は使わず無次元関数を直接参照します。",
+            "ja": "半解析解 初期の輻射・物質変数が0、ε=1の半無限Marshak拡散です。無次元評価関数を直接用い、物理単位の質量吸収係数ラッパーに起因する曖昧な規約は持ち込みません。 1996拡散であり1997角度輸送とは別です。原典本文は未読、公式ソフトの選択値を資格。物理単位の質量opacity解釈は使わず無次元関数を直接参照します。",
             "en": "Semi-analytic reference Half-space Marshak diffusion with zero initial radiation/material variables and epsilon1. Direct dimensionless evaluator; no ambiguous physical mass-opacity wrapper convention. This1996diffusion model is distinct from1997angular transport. Original paper fulltext unread;officialsoftware selected values qualified. Direct dimensionless functions avoid ambiguous mass-opacity physical-wrapper units."
           },
           "relation": "same-problem",
@@ -477,7 +477,7 @@
           },
           "reference_kind": "semi-analytic",
           "note": {
-            "ja": "半解析解 初期の放射・物質変数が0、ε=1の半無限Marshak拡散です。無次元評価関数を直接用い、物理単位の質量吸収係数ラッパーに起因する曖昧な規約は持ち込みません。",
+            "ja": "半解析解 初期の輻射・物質変数が0、ε=1の半無限Marshak拡散です。無次元評価関数を直接用い、物理単位の質量吸収係数ラッパーに起因する曖昧な規約は持ち込みません。",
             "en": "Semi-analytic reference Half-space Marshak diffusion with zero initial radiation/material variables and epsilon1. Direct dimensionless evaluator; no ambiguous physical mass-opacity wrapper convention."
           }
         },
@@ -525,7 +525,7 @@
           },
           "reference_kind": "semi-analytic",
           "note": {
-            "ja": "半解析解 初期の放射・物質変数が0、ε=1の半無限Marshak拡散です。無次元評価関数を直接用い、物理単位の質量吸収係数ラッパーに起因する曖昧な規約は持ち込みません。 1996拡散であり1997角度輸送とは別です。原典本文は未読、公式ソフトの選択値を資格。物理単位の質量opacity解釈は使わず無次元関数を直接参照します。",
+            "ja": "半解析解 初期の輻射・物質変数が0、ε=1の半無限Marshak拡散です。無次元評価関数を直接用い、物理単位の質量吸収係数ラッパーに起因する曖昧な規約は持ち込みません。 1996拡散であり1997角度輸送とは別です。原典本文は未読、公式ソフトの選択値を資格。物理単位の質量opacity解釈は使わず無次元関数を直接参照します。",
             "en": "Semi-analytic reference Half-space Marshak diffusion with zero initial radiation/material variables and epsilon1. Direct dimensionless evaluator; no ambiguous physical mass-opacity wrapper convention. This1996diffusion model is distinct from1997angular transport. Original paper fulltext unread;officialsoftware selected values qualified. Direct dimensionless functions avoid ambiguous mass-opacity physical-wrapper units."
           },
           "relation": "same-problem",
@@ -583,7 +583,7 @@
             "backward-euler"
           ],
           "note": {
-            "ja": "実際の放射・物質2場とMarshak境界を進め、固定版ExactPackの独立積分参照と比較します。",
+            "ja": "実際の輻射・物質2場とMarshak境界を進め、固定版ExactPackの独立積分参照と比較します。",
             "en": "Advance actual radiation/material fields with the Marshak boundary and compare with independently qualified pinned ExactPack integrals."
           }
         },
@@ -666,17 +666,18 @@
   "language": "en",
   "source_sha256": {
     "catalog/atlas-chapter-links.json": "25052f683597a0f4ad507eaed60c1e3d076628bdbd6501968998b1cbb7a194fe",
-    "catalog/atlas-depth-expansion.json": "d559e4bbc6643cb6f149f97a7c3d9b27eed2d9f38ac3b5f1e9811f83c3db0936",
-    "catalog/atlas-detailed-reading.json": "7106bf86f5fe603d39bb4097ea5d88aa13589b6daf29d31e42a867ae781b8c03",
-    "catalog/atlas-equations.json": "f904a3d85199505331f3ef3ba6cd52530fbc7423120f0551dde0063e4e51d093",
+    "catalog/atlas-depth-expansion.json": "49e2ef4c1f7865eedff70a866351b3e54393a59e8856fd1cc1ed946d1435796c",
+    "catalog/atlas-detailed-reading.json": "5679d8af17b67600816080ca5dafdeeec4ecee81f109cae1b1d3dbc92195cdce",
+    "catalog/atlas-equations.json": "bb5abaa0a907e299c4584b903827edf26963298168207ae6b4a931424f88f57a",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
     "catalog/atlas-execution-examples.json": "b67c3635f42660eaa208073af8addf82777b26337e1b7f2792987f4116fb37c2",
-    "catalog/atlas-goals.json": "232ec3ffc35708fd9795c263203df0f70bdeecb7d65aaccfb97ea159e49b71fd",
-    "catalog/atlas-methods.json": "989b31c7bfe335ebf0c6d44cb9ed126aa79aad9c74d913f6d41ec853890a6418",
-    "catalog/atlas-problem-links.json": "7177cdc7e4931548b22713394e5cded9dfc110caf9b03766757c2c9ad736db86",
+    "catalog/atlas-goals.json": "c91c79682df6d474d166520060d7890cc8b6384a2626ede9c28085fd39b580c5",
+    "catalog/atlas-methods.json": "a1fe46c99d579bbbb9cef07e87897c3865326966eb27962ad9a65ae89f7d7b32",
+    "catalog/atlas-problem-links.json": "3e5d0e34f7e248933adc844f56c853af725e0ce260b64adfebe69827b198bf1f",
     "catalog/atlas-reference-metadata.json": "67e404b2c1aef9aa5f1cccb16a3ce5c7a35335fc7a5195a63c03e77e2bf3064c",
     "catalog/atlas-reference-supplements.json": "87172f941063ed425b1ab96e4ef4dbbc1b68bc01ee375e87124f09106a29dd56",
-    "catalog/atlas-test-problems.json": "8aa618c508f213ea8e07e2683c2573357f06d052517326508d85465e4da81c43",
+    "catalog/atlas-terminology.json": "b861b1b1d4323c71bae2594065fd58649cb47e088dae858c4105e6340c4122b9",
+    "catalog/atlas-test-problems.json": "6f056c7aac9da887d8631fcaf66287d685ee32c1113d24e16c713fd947153d9b",
     "code/numerical-methods-atlas/2026-11-21/atlas-code-2026-11-21.zip": "f17c0cfcf6956a2677dcdc874235806ae9c5453514be02e6d3274732bcdebe4f",
     "code/numerical-methods-atlas/2026-11-21/numart/coordinates.py": "c05903b96e57667c9a492aabc5c9ab1375ad37f774108ce189d4f43a3225d862",
     "code/numerical-methods-atlas/2026-11-21/numart/geometry.py": "ce62b61ff5989643e87fbdbda8507179b1c0c94af094c91c09d142c1a2a23a84",
@@ -1182,12 +1183,13 @@
     "numerical-methods-atlas/assets/reference-solutions.json": "c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "numerical-methods-atlas/equations/index.json": "7e83d2e11e764c012d412f1560ca8e665221da06b3a74e235fcbc029fc368fcf",
-    "numerical-methods-atlas/gallery/preview-manifest.json": "8c3e0bc226cc36e0c3f22172f61744f80a530278ecfecfcc91ac5a942ad3fdce",
-    "numerical-methods-atlas/locales/messages.json": "014c9a41fe537bca0a1bae7698174b9b6b236e56cd1f7935029d5408c95d630d",
-    "numerical-methods-atlas/methods/index.json": "79a92863fc6509a99e6d33222d3b5051ab456d1e3ad2ca3e949e13de6d2a0f14",
-    "numerical-methods-atlas/problems/index.json": "5df76b8ff2a73d57c83d5dc776cdba7b63fdb6d92822158abcbf44954edd4598",
-    "numerical-methods-atlas/solutions/index.json": "f3493303a78735e0db098ff4ac0b9705440fda17dae363317c79f1aa65f262a5",
-    "numerical-methods-atlas/validation/index.json": "fd0774f8c49a5ae0cca0e87f3f4a3ae85c01a5c645ab687fceb8acc4e7ca5a56"
+    "numerical-methods-atlas/equations/index.json": "8e8d3990a748b939cac24c2dfc0dffe55ee6b06df1f2a0b95899c750b2cbcc47",
+    "numerical-methods-atlas/gallery/preview-manifest.json": "10811a962736e0481fba13931deb6667ea9137c1525fed54a49a3f84d2da61e9",
+    "numerical-methods-atlas/locales/messages.json": "3a5053933857964a616b1707614318df1f9f3fbd9797c485afbe9f233322ccfe",
+    "numerical-methods-atlas/methods/index.json": "8e740e4a390a75b622928f5a01c38c9fd474e0f06625028a80e54360aa0249d2",
+    "numerical-methods-atlas/problems/index.json": "3a0c1dc655b13e477d9b982ec7f4e7de89a9c16c6b2425917c71405b9381c2cc",
+    "numerical-methods-atlas/solutions/index.json": "cda547a22c374d0eaaacb4d66b32de8aae3c26f2f331bc56c72607ceec0def84",
+    "numerical-methods-atlas/validation/index.json": "661e17dd4c31db1b94d3f40b6cc9b8e5b6920462ba7796a0e20d9979ed1b97d7",
+    "scripts/atlas_terminology.py": "3abe65776c82d3f0c3fd01396ad9efb799ebba3515b50fe7844db0f01778779c"
   }
 }

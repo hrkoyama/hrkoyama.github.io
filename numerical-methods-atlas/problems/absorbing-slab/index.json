@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "absorbing-slab",
   "name": {
-    "ja": "純吸収平板の離散座標放射輸送",
+    "ja": "純吸収平板の離散座標輻射輸送",
     "en": "Discrete-ordinate radiation transport through an absorbing slab"
   },
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/absorbing-slab/",
@@ -38,7 +38,7 @@
     {
       "id": "supplement-radiation-transport",
       "name": {
-        "ja": "純吸収平板の離散座標放射輸送",
+        "ja": "純吸収平板の離散座標輻射輸送",
         "en": "Discrete-ordinate radiation transport through an absorbing slab"
       },
       "source": "supplement",
@@ -48,14 +48,14 @@
         "F_{\\rm out}=2\\pi\\int_0^1\\mu e^{-\\tau/\\mu}d\\mu=2\\pi E_3(\\tau)"
       ],
       "note": {
-        "ja": "純吸収の定常放射輸送を角度と空間で離散化し、Beer–Lambert解と積分された出射フラックスで検証します。",
+        "ja": "純吸収の定常輻射輸送を角度と空間で離散化し、Beer–Lambert解と積分された出射フラックスで検証します。",
         "en": "Discretize steady pure-absorption transfer in angle and space, checking Beer–Lambert rays and integrated exit flux."
       }
     },
     {
       "id": "supplement-radiation-convergence",
       "name": {
-        "ja": "放射輸送：空間・角度収束と光子統計",
+        "ja": "輻射輸送：空間・角度収束と光子統計",
         "en": "Radiation transport: space/angle convergence and photon statistics"
       },
       "source": "supplement",
@@ -72,14 +72,14 @@
   ],
   "references": [],
   "reference_note": {
-    "ja": "純吸収・指定流入の平板に対する各方向の解析的な指数減衰と離散座標解を比較します。相対論的M1モーメント閉包とは別の放射モデルです。 追加版は解析rayと連続角度参照を保持し、固定角度の空間誤差と厳密rayの角度誤差、流入・流出・体積吸収の収支を分けます。散乱や多次元閉包へ拡張しません。",
+    "ja": "純吸収・指定流入の平板に対する各方向の解析的な指数減衰と離散座標解を比較します。相対論的M1モーメント閉包とは別の輻射モデルです。 追加版は解析rayと連続角度参照を保持し、固定角度の空間誤差と厳密rayの角度誤差、流入・流出・体積吸収の収支を分けます。散乱や多次元閉包へ拡張しません。",
     "en": "Compare discrete ordinates with analytic directional exponential attenuation through a purely absorbing slab with specified inflow. This differs from relativistic M1 moment closure. The companion retains analytic rays and a continuum-angle reference, separating fixed-ordinate spatial error, exact-ray angular error and inflow/outflow/volume-absorption balance. It does not extend to scattering or multidimensional closures."
   },
   "methods": [
     {
       "id": "radiation-transport",
       "name": {
-        "ja": "放射輸送・モーメント法",
+        "ja": "輻射輸送・モーメント法",
         "en": "Radiation transport and moment methods"
       },
       "status": "educational-example",
@@ -99,7 +99,7 @@
       "id": "radiation-transport",
       "kind": "supplement",
       "name": {
-        "ja": "純吸収平板の離散座標放射輸送",
+        "ja": "純吸収平板の離散座標輻射輸送",
         "en": "Discrete-ordinate radiation transport through an absorbing slab"
       },
       "method_ids": [
@@ -110,15 +110,15 @@
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/radiation-transport/?lang=en"
       },
       "scope": {
-        "ja": "純吸収の定常放射輸送を角度と空間で離散化し、Beer–Lambert解と積分された出射フラックスで検証します。",
+        "ja": "純吸収の定常輻射輸送を角度と空間で離散化し、Beer–Lambert解と積分された出射フラックスで検証します。",
         "en": "Discretize steady pure-absorption transfer in angle and space, checking Beer–Lambert rays and integrated exit flux."
       },
       "assumptions": {
-        "ja": "光学的厚さ0.7の一様平板。正の半球から単位強度が入射し、逆向きの入射・散乱・内部放射はゼロです。",
+        "ja": "光学的厚さ0.7の一様平板。正の半球から単位強度が入射し、逆向きの入射・散乱・内部輻射はゼロです。",
         "en": "A uniform slab of optical depth 0.7 receives unit intensity over the positive hemisphere, with zero reverse inflow, scattering and emission."
       },
       "limits": {
-        "ja": "多重散乱、熱放射、周波数再分配、動的媒質、放射流体連成は未実装です。StamnesらのDISORTの全機能・安定化を再現したとは表示しません。",
+        "ja": "多重散乱、熱輻射、周波数再分配、動的媒質、輻射流体連成は未実装です。StamnesらのDISORTの全機能・安定化を再現したとは表示しません。",
         "en": "Multiple scattering, thermal emission, frequency redistribution, moving media and radiation–fluid coupling are unimplemented. This does not reproduce full DISORT functionality/stabilization."
       },
       "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/inputs.json",
@@ -150,7 +150,7 @@
       "id": "radiation-convergence",
       "kind": "supplement",
       "name": {
-        "ja": "放射輸送：空間・角度収束と光子統計",
+        "ja": "輻射輸送：空間・角度収束と光子統計",
         "en": "Radiation transport: space/angle convergence and photon statistics"
       },
       "method_ids": [
@@ -165,11 +165,11 @@
         "en": "Compare characteristics, independent adaptive integration and photon survival in a pure-absorption slab; separate discrete balance, sampling error and interval coverage."
       },
       "assumptions": {
-        "ja": "定常一様平板、光学的厚さ.1/.7/3、正の半球から単位強度、逆入射・散乱・内部放射0。フラックス基準の光子入射方向はpdf=2muです。",
+        "ja": "定常一様平板、光学的厚さ.1/.7/3、正の半球から単位強度、逆入射・散乱・内部輻射0。フラックス基準の光子入射方向はpdf=2muです。",
         "en": "Steady uniform slab, optical depths .1/.7/3, unit incoming positive-hemisphere intensity, no reverse inflow/scattering/emission. Incoming photon directions for a flux estimator have density 2mu."
       },
       "limits": {
-        "ja": "区間被覆は有限の固定seedでの観測で、ちょうど95%の実測値や全seedの成功を保証しません。決定論的求積誤差を統計誤差へ含めず、多重散乱・周波数依存・熱放射・放射流体連成は未検証です。",
+        "ja": "区間被覆は有限の固定seedでの観測で、ちょうど95%の実測値や全seedの成功を保証しません。決定論的求積誤差を統計誤差へ含めず、多重散乱・周波数依存・熱輻射・輻射流体連成は未検証です。",
         "en": "Coverage is observed over finite fixed seeds; neither exactly 95% empirical coverage nor all-seed success is guaranteed. Keep deterministic quadrature error separate from statistical error. Multiple scattering, frequency dependence, thermal emission and radiation hydrodynamics are unvalidated."
       },
       "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/inputs.json",

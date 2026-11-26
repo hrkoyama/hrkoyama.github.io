@@ -123,7 +123,7 @@ $$
 
 [コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/su-olson-transport1997/?lang=ja#code-ja)
 
-主検証は1997型の放射輸送・物質交換です。熱・拡散方程式への関連は、別の周期Fourier制御におけるE約V、拡散係数1/[3κ(ε+1)]の極限に限ります。1996Marshak境界や輸送全体の厳密解とは区別します。
+主検証は1997型の輻射輸送・物質交換です。熱・拡散方程式への関連は、別の周期Fourier制御におけるE約V、拡散係数1/[3κ(ε+1)]の極限に限ります。1996Marshak境界や輸送全体の厳密解とは区別します。
 
 - [実行・検証：Su–Olson1997角度輸送の独立公開表比較](https://hrkoyama.github.io/numerical-methods-atlas/validation/su-olson-transport1997/?lang=ja) (`su-olson-transport1997`) · [コードZIP：Su–Olson1997角度輸送の独立公開表比較](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/atlas-radiation-matter-2026-11-24-r2.zip)
 
@@ -1574,7 +1574,7 @@ $$
 
 
 
-### 相対論的放射モーメント・M1
+### 相対論的輻射モーメント・M1
 
 ID: `m1-radiation` · reading
 
@@ -1586,7 +1586,7 @@ $$
 P^{ij}=D_{\rm M1}^{ij}(E,\boldsymbol F)\,E
 $$
 
-Gνを物質が受け取る四元力と定義した模式形。Rは放射の応力エネルギー、Pは放射圧テンソル。M1は角度モーメントの閉包で、放射分布全体を厳密に解くものではありません。文献解説のみ。
+Gνを物質が受け取る四元力と定義した模式形。Rは輻射の応力エネルギー、Pは輻射圧テンソル。M1は角度モーメントの閉包で、輻射分布全体を厳密に解くものではありません。文献解説のみ。
 
 [解説](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/relativistic-hydrodynamics/#2013-onward-radiation-and-microphysics-add-stiff-systems)
 
@@ -3114,7 +3114,7 @@ $$
 
 
 
-### 静止媒質の灰色放射輸送・散乱・線形交換
+### 静止媒質の灰色輻射輸送・散乱・線形交換
 
 ID: `static-grey-transfer` · local-example
 
@@ -3126,7 +3126,7 @@ $$
 J=\langle I\rangle_\Omega,\quad\partial_t V=\kappa_a(J-V)\quad(\mathrm{linear\ exchange})
 $$
 
-正規化した角度平均を使います。物質交換は1997輸送例と周期Fourier比較で進めます。1997の光学座標では係数1、物理座標の比較ではκを放射・物質の両交換項に掛けます。
+正規化した角度平均を使います。物質交換は1997輸送例と周期Fourier比較で進めます。1997の光学座標では係数1、物理座標の比較ではκを輻射・物質の両交換項に掛けます。
 
 [解説](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-matter/)
 
@@ -3151,7 +3151,7 @@ $$
 
 [コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/su-olson-transport1997/?lang=ja#code-ja)
 
-主検証は1997型の放射輸送・物質交換です。熱・拡散方程式への関連は、別の周期Fourier制御におけるE約V、拡散係数1/[3κ(ε+1)]の極限に限ります。1996Marshak境界や輸送全体の厳密解とは区別します。
+主検証は1997型の輻射輸送・物質交換です。熱・拡散方程式への関連は、別の周期Fourier制御におけるE約V、拡散係数1/[3κ(ε+1)]の極限に限ります。1996Marshak境界や輸送全体の厳密解とは区別します。
 
 - [実行・検証：Su–Olson1997角度輸送の独立公開表比較](https://hrkoyama.github.io/numerical-methods-atlas/validation/su-olson-transport1997/?lang=ja) (`su-olson-transport1997`) · [コードZIP：Su–Olson1997角度輸送の独立公開表比較](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/atlas-radiation-matter-2026-11-24-r2.zip)
 
@@ -3214,7 +3214,7 @@ x=√3κz。1997輸送のx=κzとは規格化も境界・参照も分けます�
 
 - [実行・検証：Su–Olson1996非平衡拡散](https://hrkoyama.github.io/numerical-methods-atlas/validation/su-olson-diffusion1996/?lang=ja) (`su-olson-diffusion1996`) · [コードZIP：Su–Olson1996非平衡拡散](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/atlas-radiation-matter-2026-11-24-r2.zip)
 
-この実行例の範囲：実際の放射・物質2場とMarshak境界を進め、固定版ExactPackの独立積分参照と比較します。
+この実行例の範囲：実際の輻射・物質2場とMarshak境界を進め、固定版ExactPackの独立積分参照と比較します。
 
 
 
@@ -3235,7 +3235,7 @@ $$
 \chi=\frac{3+4f^2}{5+2\sqrt{4-3f^2}},\quad f=|\boldsymbol F|/E
 $$
 
-c=1、2D空間で3D圧力のPzzを保持。等方・真空分岐、閉じたPDEの製造解、角度法とのビーム差を区別し、相対論的放射流体とは扱いません。
+c=1、2D空間で3D圧力のPzzを保持。等方・真空分岐、閉じたPDEの製造解、角度法とのビーム差を区別し、相対論的輻射流体とは扱いません。
 
 [解説](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-geometry/)
 

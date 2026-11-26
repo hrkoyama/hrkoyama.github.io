@@ -526,7 +526,7 @@
     {
       "id": "transport",
       "name": {
-        "ja": "放射輸送",
+        "ja": "輻射輸送",
         "en": "Radiative transport"
       },
       "supplemental_examples": [
@@ -541,7 +541,7 @@
         "sph-pressure-acoustics"
       ],
       "scope": {
-        "ja": "従来の1次元純吸収平板を保持します。追加の固定例では、等方散乱平板、規格化を分けた非平衡拡散と輸送・物質交換、2Dの影・ビームと静止M1を扱います。拡散極限の比較は平均自由行程を解像したFourierモードに限定し、固定格子APや一般の放射流体連成へは広げません。",
+        "ja": "従来の1次元純吸収平板を保持します。追加の固定例では、等方散乱平板、規格化を分けた非平衡拡散と輸送・物質交換、2Dの影・ビームと静止M1を扱います。拡散極限の比較は平均自由行程を解像したFourierモードに限定し、固定格子APや一般の輻射流体連成へは広げません。",
         "en": "Preserve the original 1D absorbing slab. Additional fixed examples cover isotropic scattering, distinct non-equilibrium diffusion and transport/material exchange, and 2D shadows/beams with static M1. Diffusion-limit comparisons use mean-free-path-resolved Fourier modes; they do not establish fixed-grid AP behavior or general radiation hydrodynamics."
       },
       "reference": {
@@ -549,11 +549,11 @@
         "en": "Exact-ray solutions and continuum-angle exponential-integral flux provide independent references. Distinguish refinement of the reference quadrature itself from inflow/outflow/volume-absorption balance diagnostics."
       },
       "refinement": {
-        "ja": "厳密rayでの純角度誤差と、同じ角度求積に対する空間誤差を分離。 保存量の整合だけで放射の角度分布の精度を保証しません。",
+        "ja": "厳密rayでの純角度誤差と、同じ角度求積に対する空間誤差を分離。 保存量の整合だけで輻射の角度分布の精度を保証しません。",
         "en": "Separate pure angular error using exact rays from spatial error at a fixed angular quadrature. Balance consistency alone does not guarantee angular-distribution accuracy."
       },
       "next": {
-        "ja": "多群・周波数依存、温度依存不透明度の非線形連成、放射流体と固定格子APは別の検証が必要です。",
+        "ja": "多群・周波数依存、温度依存不透明度の非線形連成、輻射流体と固定格子APは別の検証が必要です。",
         "en": "Multigroup/frequency dependence, nonlinear temperature-dependent opacity, radiation hydrodynamics and fixed-grid AP behavior require separate validation."
       },
       "examples": [],
@@ -642,11 +642,11 @@
   "registry": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
   "verification_receipt": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json",
   "source_sha256": {
-    "catalog/atlas-depth.json": "2bdfa9f245e35a4c6ad436907291b2b14b129dc2e677640d2ceac183e1c58e66",
+    "catalog/atlas-depth.json": "2e1f2d3ced4117feebfe44d997b54de61aecdcc57882fa4c10e4ee4f7e784c47",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "catalog/atlas-depth-expansion.json": "d559e4bbc6643cb6f149f97a7c3d9b27eed2d9f38ac3b5f1e9811f83c3db0936",
-    "catalog/atlas-equations.json": "f904a3d85199505331f3ef3ba6cd52530fbc7423120f0551dde0063e4e51d093",
+    "catalog/atlas-depth-expansion.json": "49e2ef4c1f7865eedff70a866351b3e54393a59e8856fd1cc1ed946d1435796c",
+    "catalog/atlas-equations.json": "bb5abaa0a907e299c4584b903827edf26963298168207ae6b4a931424f88f57a",
     "code/validated-examples/2026-11-22/mhd/source-manifest.json": "49c66703b1b7891c41437abaf871fc69d9b3a2067731f9a1f7b0a2d4e5ff4061",
     "code/validated-examples/2026-11-22/mhd/verification.json": "272fdb476f16cd8f97e5cf3b8f9c7aab921ff56ed2448a0714a6473fa0c72597",
     "code/validated-examples/2026-11-22/mhd/cases.json": "4d7633246bc3652d7ff75d1e2195824e8c883b0336c7d60962ff220b20fbd31c",
@@ -882,6 +882,8 @@
     "code/validated-examples/2026-11-24/geometric-controls/cases.json": "f97c3c5cef1540cba0c16b8f8d32d70696d4d22105eaf784ff2e17cd3ccecd8b",
     "code/validated-examples/2026-11-24/geometric-controls/results/result.json": "1e0ba587a26f6b15380621e3b04f44f2dee205d5ffe49086fd23c8972c85510b",
     "code/validated-examples/2026-11-24/geometric-controls/atlas-geometric-controls-2026-11-24.zip": "4e3ef28ab6c91ae62918b7effc6f37097ec0f5a4ed878d4d33fa06e1945329a2",
+    "catalog/atlas-terminology.json": "b861b1b1d4323c71bae2594065fd58649cb47e088dae858c4105e6340c4122b9",
+    "scripts/atlas_terminology.py": "3abe65776c82d3f0c3fd01396ad9efb799ebba3515b50fe7844db0f01778779c",
     "code/validated-examples/2026-11-25/quadrature-controls/source-manifest.json": "7742ff5dd15bd7b848464e4ada267e7d861825f961ea0e15a982be46e2b8708e",
     "code/validated-examples/2026-11-25/quadrature-controls/verification.json": "cfc7e98903ca8dcc5b11245f15d94b6711aa5ab7992ec29b2c9b291552b85e08",
     "code/validated-examples/2026-11-25/quadrature-controls/cases.json": "f900a3245e2b6ae3b446e553a17f93b507444654bce72ffeb1003b95bc97446b",

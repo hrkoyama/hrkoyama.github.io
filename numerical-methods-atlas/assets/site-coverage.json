@@ -4210,15 +4210,15 @@
   },
   "public_extension_sha256": {
     "catalog/atlas-quantum.json": "3feb53116924e72bf9ff8dd952a87ec6b287d3623ce024294b37933d495dc195",
-    "catalog/atlas-methods.json": "989b31c7bfe335ebf0c6d44cb9ed126aa79aad9c74d913f6d41ec853890a6418",
-    "catalog/atlas-equations.json": "f904a3d85199505331f3ef3ba6cd52530fbc7423120f0551dde0063e4e51d093",
+    "catalog/atlas-methods.json": "a1fe46c99d579bbbb9cef07e87897c3865326966eb27962ad9a65ae89f7d7b32",
+    "catalog/atlas-equations.json": "bb5abaa0a907e299c4584b903827edf26963298168207ae6b4a931424f88f57a",
     "catalog/atlas-method-primary-references.json": "b77c3073e84e9cff001edeb9f27d20c295bf0bbb7e9a62fcb9a0e413105403eb"
   },
   "equation_execution_source_sha256": {
     "numerical-methods-atlas/assets/biological-models.json": "bf5fc19ef07d4c979a55706ff39904b3a7db020b4aa145b4a33bc89e681e40cb",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "catalog/atlas-equations.json": "f904a3d85199505331f3ef3ba6cd52530fbc7423120f0551dde0063e4e51d093",
+    "catalog/atlas-equations.json": "bb5abaa0a907e299c4584b903827edf26963298168207ae6b4a931424f88f57a",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
     "code/validated-examples/2026-11-23/weno-critical/source-manifest.json": "abd8b0a29bb81b7d98b897ec0a0eb409f77873857ec8199c3767f1ede11b43a5",
     "code/validated-examples/2026-11-23/weno-critical/verification.json": "ccbf3c6a2fe7055b324a0d98c152da909242f36e0c82ca3281038e4c9b0c165f",
@@ -4300,6 +4300,8 @@
     "code/validated-examples/2026-11-24/geometric-controls/cases.json": "f97c3c5cef1540cba0c16b8f8d32d70696d4d22105eaf784ff2e17cd3ccecd8b",
     "code/validated-examples/2026-11-24/geometric-controls/results/result.json": "1e0ba587a26f6b15380621e3b04f44f2dee205d5ffe49086fd23c8972c85510b",
     "code/validated-examples/2026-11-24/geometric-controls/atlas-geometric-controls-2026-11-24.zip": "4e3ef28ab6c91ae62918b7effc6f37097ec0f5a4ed878d4d33fa06e1945329a2",
+    "catalog/atlas-terminology.json": "b861b1b1d4323c71bae2594065fd58649cb47e088dae858c4105e6340c4122b9",
+    "scripts/atlas_terminology.py": "3abe65776c82d3f0c3fd01396ad9efb799ebba3515b50fe7844db0f01778779c",
     "code/validated-examples/2026-11-25/thermostat-constraint-controls/source-manifest.json": "6e64499f6bda68ad17ccc7402e49a7296b82d500174ce0eb238e0acd076cc45e",
     "code/validated-examples/2026-11-25/thermostat-constraint-controls/verification.json": "c3273335cc6619c07d956252d65b00abf58ff3497d0a35776b3fc376ae70134e",
     "code/validated-examples/2026-11-25/thermostat-constraint-controls/cases.json": "8763d8bb27b77b5f014914065a50a49a2e2b2b552128ce4c595b6a391de17c32",

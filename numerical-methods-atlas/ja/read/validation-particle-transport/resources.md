@@ -14,7 +14,7 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particle-t
 - [高速多重極法の移動演算](<https://hrkoyama.github.io/numerical-methods-atlas/methods/fmm/?lang=ja>)
 - [Particle-in-Cell（PIC）](<https://hrkoyama.github.io/numerical-methods-atlas/methods/pic/?lang=ja>)
 - [DSMC・運動論輸送](<https://hrkoyama.github.io/numerical-methods-atlas/methods/dsmc/?lang=ja>)
-- [放射輸送・モーメント法](<https://hrkoyama.github.io/numerical-methods-atlas/methods/radiation-transport/?lang=ja>)
+- [輻射輸送・モーメント法](<https://hrkoyama.github.io/numerical-methods-atlas/methods/radiation-transport/?lang=ja>)
 
 ## 方程式
 
@@ -64,7 +64,7 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particle-t
   この実行例自身の保存済み検証図です。
 
   https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/results/dsmc-statistics.png
-- [放射輸送：空間・角度収束と光子統計](<https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/results/radiation-convergence.png>)
+- [輻射輸送：空間・角度収束と光子統計](<https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/results/radiation-convergence.png>)
 
   この実行例自身の保存済み検証図です。
 
@@ -92,7 +92,7 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particle-t
 - [DSMC衝突成分：有限N平衡・保存則・統計誤差：参照・検証](<https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-statistics/?lang=ja#dsmc-statistics-ja-validation>)
 
   全roundの運動量・エネルギーの最大保存誤差は決定論的な許容値で検査します。最初の6roundの異方性、4点のエネルギーCDF、4次モーメントと有限NのBeta参照との差は、独立seed間の標準誤差で測ります。NによるCDF標準誤差の減少と、有限NからMaxwellへの偏りを分けます。
-- [放射輸送：空間・角度収束と光子統計：参照・検証](<https://hrkoyama.github.io/numerical-methods-atlas/validation/radiation-convergence/?lang=ja#radiation-convergence-ja-validation>)
+- [輻射輸送：空間・角度収束と光子統計：参照・検証](<https://hrkoyama.github.io/numerical-methods-atlas/validation/radiation-convergence/?lang=ja#radiation-convergence-ja-validation>)
 
   16〜256セル・4〜64方向を別に収束させ、QUADPACK積分とE3を照合。64seed・1024/4096/16384光子で平均誤差、RMSE、二項標準偏差と95% Clopper–Pearson区間の実測被覆を記録します。全光子の出射＋吸収、正値性と離散フラックス収支を確認します。
 
@@ -118,7 +118,7 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particle-t
   availability: run
 
   有限粒子数の平衡をMaxwell極限と区別し、独立な球面標本、解析的異方性減衰、seed間誤差と比較します。
-- [放射輸送：空間・角度収束と光子統計](<https://hrkoyama.github.io/numerical-methods-atlas/validation/radiation-convergence/?lang=ja>)
+- [輻射輸送：空間・角度収束と光子統計](<https://hrkoyama.github.io/numerical-methods-atlas/validation/radiation-convergence/?lang=ja>)
   availability: run
 
   純吸収平板で特性解・独立適応求積・光子生存率を比較し、離散収支と標本誤差・区間被覆を別々に測ります。

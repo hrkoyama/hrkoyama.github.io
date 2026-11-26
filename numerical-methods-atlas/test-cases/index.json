@@ -3692,7 +3692,7 @@
       "id": "absorbing-slab",
       "group": "transport",
       "name": {
-        "ja": "純吸収平板の離散座標放射輸送",
+        "ja": "純吸収平板の離散座標輻射輸送",
         "en": "Discrete-ordinate radiation transport through an absorbing slab"
       },
       "chapter": "validation-particles",
@@ -3741,7 +3741,7 @@
           "id": "radiation-transport",
           "url": "/numerical-methods-atlas/validation/radiation-transport/",
           "name": {
-            "ja": "純吸収平板の離散座標放射輸送",
+            "ja": "純吸収平板の離散座標輻射輸送",
             "en": "Discrete-ordinate radiation transport through an absorbing slab"
           }
         },
@@ -3749,7 +3749,7 @@
           "id": "radiation-convergence",
           "url": "/numerical-methods-atlas/validation/radiation-convergence/",
           "name": {
-            "ja": "放射輸送：空間・角度収束と光子統計",
+            "ja": "輻射輸送：空間・角度収束と光子統計",
             "en": "Radiation transport: space/angle convergence and photon statistics"
           }
         }
@@ -9040,7 +9040,7 @@
     }
   },
   "source_sha256": {
-    "catalog/atlas-test-problems.json": "8aa618c508f213ea8e07e2683c2573357f06d052517326508d85465e4da81c43",
+    "catalog/atlas-test-problems.json": "6f056c7aac9da887d8631fcaf66287d685ee32c1113d24e16c713fd947153d9b",
     "numerical-methods-atlas/equation-gallery.json": "e99af38238a50232f92875817c4556ab6c730289db13014efdd41913096c902e",
     "numerical-methods-atlas/cip.json": "3aa33fbffad6b9ad76310e9b713629a1a35b4e30e419db0c531180cf769e6b6f",
     "numerical-methods-atlas/limiters.json": "3242180ba171420220fd349cac93dff552466070f886f3d00a70927939255312",
