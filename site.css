@@ -145,3 +145,50 @@ html body:has(> .site-top) :is(.period .period-label, .period .dates, .evidence-
 html body:has(> .site-top) :is(.library-count, #catalogue-count):not(:where(svg *, math *, .katex *, .MathJax *, mjx-container *, [role="img"] *, [role="alert"], [role="alert"] *, [data-status], [data-status] *, .error, .error *, .warning, .warning *, .success, .success *, .pass, .pass *, .fail, .fail *)):not(:has(svg, canvas, math, .katex, .MathJax, mjx-container)) {
   color: var(--site-visual-muted);
 }
+
+
+/* Normal download/navigation links in validation panels still used the UA blue.
+   Keep current/disabled/status links and scientific/math hosts unchanged. */
+html body:has(> .site-top) .validation-main .validation-actions > a:not([aria-current]):not([aria-disabled="true"]):not(:where([data-status], [role="alert"], [role="alert"] *, .error, .error *, .warning, .warning *, .success, .success *, .pass, .pass *, .fail, .fail *, svg *, math *, .katex *, .MathJax *, mjx-container *, [role="img"] *)):not(:has(svg, canvas, math, .katex, .MathJax, mjx-container)) {
+  color: var(--site-visual-link);
+}
+
+/* Remaining measured nonsemantic captions: selectors match authored --muted
+   prose, including the nested div in the astrophysics appendix/path panels. */
+html body:has(> .site-top) :is(
+  .appendix-link p, .path-note p,
+  .bibliography-hero > .eyebrow, .catalogue-count,
+  #book-main .notebook-heading > .source-name,
+  #book-main .notebook-original > #book-id,
+  #book-main .notebook-original > .source-name,
+  #book-main .lecture-info > .eyebrow, #book-main .lecture-info > p,
+  #book-main .material-records .material-relation,
+  #book-main .material-records .material-creator,
+  .library-bibliography p, .library-footer-note p
+):not(:where(svg *, math *, .katex *, .MathJax *, mjx-container *, [role="img"] *, .hero-film *, [role="alert"], [role="alert"] *, [data-status], [data-status] *, .book-error, .book-error *, .error, .error *, .warning, .warning *, .success, .success *, .pass, .pass *, .fail, .fail *)):not(:has(svg, canvas, math, .katex, .MathJax, mjx-container)) {
+  color: var(--site-visual-muted);
+}
+/* The handoff eyebrow was authored as an accent, not a status color. */
+html body:has(> .site-top) .guide-layout #handoff > .eyebrow:not(:where([role="alert"], [data-status], .error, .warning, .success)):not(:has(svg, canvas, math, .katex, .MathJax, mjx-container)) {
+  color: var(--site-visual-accent);
+}
+
+/* The original notebook sample: explicit author-muted explanatory prose and
+   unselected segmented controls; selected green remains unchanged. */
+html body:has(> .site-top) main:has(#reader-title) :is(
+  .section-heading .eyebrow, .about-section > .eyebrow, .contents-note p,
+  .transcript-aside > p, .editorial-note p, .about-section > div > div > p,
+  .segmented button[aria-pressed="false"]
+):not(:where(svg *, math *, .katex *, .MathJax *, mjx-container *, [role="img"] *, [role="alert"], [role="alert"] *, [data-status], [data-status] *, .book-error, .book-error *, .error, .error *, .warning, .warning *, .success, .success *, .pass, .pass *, .fail, .fail *)):not(:has(svg, canvas, math, .katex, .MathJax, mjx-container)) {
+  color: var(--site-visual-muted);
+}
+
+/* Reference filters must fit the available grid track at the shared 16px
+   control size. Plain bibliographic notes may include an unbroken source URL. */
+html body:has(> .site-top) .reference-layout > .reference-aside,
+html body:has(> .site-top) .reference-layout > #reference-results {
+  min-width: 0;
+}
+html body:has(> .site-top) .reference-layout .reference-item .reference-note {
+  overflow-wrap: anywhere;
+}
