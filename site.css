@@ -20,6 +20,7 @@ body>.site-top~.site-header .language-switch{display:none!important}
 @media(max-width:600px){.site-chrome .site-search{order:4;flex:1 1 100%;min-width:0}.site-content-note{order:5}}
 
 
+@media screen {
 /* Shared visual system: loaded last, after archive-specific styles.
    Only HTML reading/UI roles are normalized. Legacy palette tokens, body/main
    font inheritance, scientific SVG/canvas and math typography remain intact. */
@@ -191,4 +192,6 @@ html body:has(> .site-top) .reference-layout > #reference-results {
 }
 html body:has(> .site-top) .reference-layout .reference-item .reference-note {
   overflow-wrap: anywhere;
+}
+
 }
