@@ -76,7 +76,17 @@ test('six particle/transport checks retain all five historical images and add on
   for(const id of ids){
    const entry=item.supplemental_execution_entries.find(x=>x.id===id);
    assert.ok(entry,problem+' '+id);assert.equal(entry.group,'particle-transport');
-   assert.deepEqual(entry.title,cases.find(x=>x.id===id).title);
+   const expectedTitle=structuredClone(cases.find(x=>x.id===id).title);
+   if(id==='radiation-convergence'){
+    const mappingPath='catalog/atlas-terminology.json',helperPath='scripts/atlas_terminology.py';
+    const plan=json(mappingPath).cases[id];
+    assert.equal(plan.source.path,base+'cases.json');assert.equal(plan.source.sha256,digest(base+'cases.json'));
+    assert.equal(plan.fields.title.before,expectedTitle.ja);
+    assert.equal(plan.fields.title.after,plan.fields.title.before.replaceAll('放射','輻射'));
+    assert.notEqual(plan.fields.title.after,plan.fields.title.before);expectedTitle.ja=plan.fields.title.after;
+    for(const path of [mappingPath,helperPath,base+'cases.json'])assert.equal(gallery.source_sha256[path],digest(path),path);
+   }
+   assert.deepEqual(entry.title,expectedTitle);
    assert.ok(entry.download.endsWith('/particle-transport/atlas-particle-transport-2026-11-22.zip'));
   }
  }
