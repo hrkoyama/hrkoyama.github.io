@@ -52,6 +52,26 @@ function projectSearchWorkflowBeforeReviewedBatch48Extension(current){
  return current.replace(capacity,'').replace(renderer,'').replace(chromium,'').replace(aggregate,chromium+aggregate);
 }
 
+// Invert only the six reviewed 2026-11-27 execution-entry presentation blocks.
+// The incoming source SHA and every scientific/canonical assertion stay fixed.
+function projectExecutionEntrySourceBeforeReviewedA3(current){
+ const blocks=[
+  {label:"stylesheet",current:String.raw`    for name in ['atlas-resources','atlas-execution','atlas-discovery','atlas-execution-entry']:`,previous:String.raw`    for name in ['atlas-resources','atlas-execution','atlas-discovery']:`},
+  {label:"main-marker",current:String.raw`    return head+'</head><body class="profile-page" data-site-language-anchors="suffix"><main id="main" class="profile-main atlas-resource-main atlas-execution-main atlas-entry-main" data-execution-entry-layout>'+''.join(sections)+'</main></body></html>\n'`,previous:String.raw`    return head+'</head><body class="profile-page" data-site-language-anchors="suffix"><main id="main" class="profile-main atlas-resource-main atlas-execution-main atlas-entry-main">'+''.join(sections)+'</main></body></html>\n'`},
+  {label:"compact-related-resources",current:String.raw`            example=guide.render_example(x,read_result(x,root),lang,heading_level=1,navigation=navigation['executions'][ident],compact_navigation=True)`,previous:String.raw`            example=guide.render_example(x,read_result(x,root),lang,heading_level=1,navigation=navigation['executions'][ident])`},
+  {label:"single-primary-actions",current:String.raw`            intro='<p class="intro execution-outcome">'+ESC(item['outcome'][lang])+'</p>'`,previous:String.raw`            intro='<p class="intro execution-outcome">'+ESC(item['outcome'][lang])+'</p><nav class="resource-nav entry-actions">'+link(x['inputs']['url'],'固定入力 / JSON' if ja else 'Fixed input / JSON')+link(x['release']['download'],'対応するコード / ZIP' if ja else 'Code edition / ZIP')+link('/numerical-methods-atlas/code-and-data/?lang='+lang+'#execution-steps-'+lang,'環境準備と共通手順' if ja else 'Setup and common steps')+'</nav>'`},
+  {label:"two-registry-gateway",current:String.raw`        body='<section data-site-language="'+lang+'" lang="'+lang+'"><p class="eyebrow">22 FIXED-INPUT EXAMPLES</p><h1>'+('何を確かめるか、問題から選ぶ' if ja else 'Choose the result you want to check')+'</h1><p class="intro">'+('入力を取得し、計算し、結果を判定する22の入口です。各例で使える条件と確かめられる量を確認できます。' if ja else 'Twenty-two paths from fixed input to computation and numerical decisions. Each example states its conditions and what you can check.')+'</p>'
+        body+=guide.render_execution_gateway(navigation,lang,root,'#execution-shared-examples-'+lang)
+        body+='<nav class="resource-nav">'+link('/numerical-methods-atlas/?lang='+lang,'文字で探す' if ja else 'Search by words')+link('/numerical-methods-atlas/equations/?lang='+lang,'数式から探す' if ja else 'Browse by formula')+link('/numerical-methods-atlas/gallery/?lang='+lang,'絵から探す' if ja else 'Browse by picture')+link('/numerical-methods-atlas/code-and-data/?lang='+lang,'共通手順と全実行記録' if ja else 'Common steps and execution records')+link('/numerical-methods-atlas/code-and-data/ci/?lang='+lang,'Linuxの継続検証' if ja else 'Linux verification CI')+'</nav><ul class="execution-entry-index">'`,previous:String.raw`        body='<section data-site-language="'+lang+'" lang="'+lang+'"><p class="eyebrow">22 FIXED-INPUT EXAMPLES</p><h1>'+('何を確かめるか、問題から選ぶ' if ja else 'Choose the result you want to check')+'</h1><p class="intro">'+('入力を取得し、計算し、結果を判定する22の入口です。各例で使える条件と確かめられる量を確認できます。' if ja else 'Twenty-two paths from fixed input to computation and numerical decisions. Each example states its conditions and what you can check.')+'</p><nav class="resource-nav">'+link('/numerical-methods-atlas/?lang='+lang,'文字で探す' if ja else 'Search by words')+link('/numerical-methods-atlas/equations/?lang='+lang,'数式から探す' if ja else 'Browse by formula')+link('/numerical-methods-atlas/gallery/?lang='+lang,'絵から探す' if ja else 'Browse by picture')+link('/numerical-methods-atlas/code-and-data/?lang='+lang,'共通手順と全実行記録' if ja else 'Common steps and execution records')+link('/numerical-methods-atlas/code-and-data/ci/?lang='+lang,'Linuxの継続検証' if ja else 'Linux verification CI')+'</nav><ul class="execution-entry-index">'`},
+  {label:"shared-example-anchor",current:String.raw`        body=body.removesuffix('<ul class="execution-entry-index">')+supplementary_entry(root,navigation,lang)+'<ul class="execution-entry-index" id="execution-shared-examples-'+lang+'">'`,previous:String.raw`        body=body.removesuffix('<ul class="execution-entry-index">')+supplementary_entry(root,navigation,lang)+'<ul class="execution-entry-index">'`},
+ ];
+ for(const block of blocks){
+  assert.equal(current.split(block.current).length-1,1,'reviewed-execution-entry-block/'+block.label);
+  current=current.replace(block.current,block.previous);
+ }
+ return current;
+}
+
 test('batch38–47 preserves existing scientific files, search details, equations and references',()=>{
  for(const [path,hash] of Object.entries(baseline.immutable_files))assert.equal(sha(path),hash,path);
  for(const [path,hash] of Object.entries(baseline.incoming_ea8564_preservation.immutable_files)){
@@ -63,6 +83,9 @@ test('batch38–47 preserves existing scientific files, search details, equation
   }else if(path==='.github/workflows/atlas-search-quality.yml'){
    const projected=projectSearchWorkflowBeforeReviewedBatch48Extension(bytes(path).toString('utf8'));
    assert.equal(createHash('sha256').update(projected).digest('hex'),hash,path+'/preserved-incoming-release-before-reviewed-2026-11-24-extension');
+  }else if(path==='scripts/build-atlas-execution-entries.py'){
+   const projected=projectExecutionEntrySourceBeforeReviewedA3(bytes(path).toString('utf8'));
+   assert.equal(createHash('sha256').update(projected).digest('hex'),hash,path+'/preserved-incoming-release-before-reviewed-2026-11-27-UI');
   }else assert.equal(sha(path),hash,path+'/preserved-incoming-release');
  }
  const methods=json('catalog/atlas-methods.json').methods.map(projectMethodBeforeBatch68);
