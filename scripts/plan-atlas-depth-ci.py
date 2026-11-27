@@ -23,7 +23,9 @@ def main():
         event = strict_json(event_path.read_bytes())
         value = plan(os.environ.get("GITHUB_EVENT_NAME", ""), event, os.environ.get("GITHUB_SHA", ""),
                      os.environ.get("GITHUB_REF", ""), os.environ.get("GITHUB_REPOSITORY", ""),
-                     os.environ.get("GITHUB_RUN_ID", ""), Client(os.environ.get("GITHUB_TOKEN", "")))
+                     os.environ.get("GITHUB_RUN_ID", ""), Client(os.environ.get("GITHUB_TOKEN", "")),
+                     run_attempt=(int(os.environ["GITHUB_RUN_ATTEMPT"])
+                                  if "GITHUB_RUN_ATTEMPT" in os.environ else None))
     except Exception as error:
         # An invalid event cannot bind a trusted successful main commit. A failed
         # planner job prevents its dependent numerical job from starting.

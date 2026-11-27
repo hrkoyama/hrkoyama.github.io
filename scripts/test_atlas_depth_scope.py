@@ -87,6 +87,8 @@ class FakeClient:
         }
         self.blobs = {}
         self.tree_entries = {}
+        for status in ['queued', 'in_progress', 'waiting', 'pending', 'requested']:
+            self.responses[RUNS.replace('status=completed', 'status='+status)] = {'total_count': 0, 'workflow_runs': []}
         for endpoint in FAILURE_RUNS.values():
             self.responses[endpoint] = {'total_count': 0, 'workflow_runs': []}
 
@@ -789,6 +791,67 @@ class ScopeTests(unittest.TestCase):
         self.client.responses['/git/ref/heads/main'] = {}
         self.full()
 
+    def test_retry_is_full_even_if_its_prior_failed_attempt_disappears_from_listing(self):
+        # GitHub lists the latest in-progress attempt; the previous attempt's
+        # scientific failure may no longer appear under status=completed/failure.
+        value = self.choose(run_attempt=2)
+        self.assertEqual(value['mode'], 'full')
+        self.assertTrue(value['run_full'])
+        self.assertEqual(value['reason'], 'workflow-retry-always-full')
+        self.assertEqual(value['run_attempt'], 2)
+        self.assertNotIn(RUNS, self.client.calls)
+        self.client.responses['/git/ref/heads/main']['object']['sha'] = MID
+        with self.assertRaises(InvalidEvent):
+            self.choose(run_attempt=2)
+
+    def test_invalid_run_attempt_does_not_authorize_reuse(self):
+        for attempt in [0, -1, True, '2']:
+            with self.subTest(attempt=attempt), self.assertRaises(InvalidEvent):
+                self.choose(run_attempt=attempt)
+
+    def test_missing_current_attempt_is_full_instead_of_assuming_first_attempt(self):
+        value = self.choose(run_attempt=None)
+        self.assertEqual(value['mode'], 'full')
+        self.assertEqual(value['reason'], 'missing-current-run-attempt')
+        code, value, output = self.run_cli(run_attempt=None)
+        self.assertEqual(code, 0)
+        self.assertEqual(value['reason'], 'missing-current-run-attempt')
+        self.assertIn('run_full=true', output)
+
+    def test_other_queued_or_active_retry_cannot_hide_its_prior_full_failure(self):
+        for status in ['queued', 'in_progress', 'waiting', 'pending', 'requested']:
+            with self.subTest(status=status):
+                self.client = FakeClient()
+                retry = run_record(50, MID); retry.update(status=status, conclusion=None, run_attempt=2)
+                endpoint = RUNS.replace('status=completed', 'status='+status)
+                self.client.responses[endpoint] = {'total_count': 1, 'workflow_runs': [retry]}
+                self.assertEqual(self.full()['reason'], 'concurrent-retry-history-uncertain')
+
+    def test_first_attempt_active_history_is_complete_and_stable_before_reuse(self):
+        endpoint = RUNS.replace('status=completed', 'status=queued')
+        fresh = run_record(200, MID); fresh.update(status='queued', conclusion=None)
+        self.client.responses[endpoint] = {'total_count': 1, 'workflow_runs': [fresh]}
+        self.reuse()
+        for scenario in ['incomplete', 'unavailable', 'unknown_attempt']:
+            with self.subTest(scenario=scenario):
+                self.client = FakeClient()
+                value = {'total_count': 1, 'workflow_runs': [fresh]}
+                if scenario == 'incomplete': value['workflow_runs'] = []
+                if scenario == 'unavailable': value = RuntimeError('private-token-must-not-leak')
+                if scenario == 'unknown_attempt':
+                    value = copy.deepcopy(value); value['workflow_runs'][0].pop('run_attempt')
+                self.client.responses[endpoint] = value
+                result = self.full(); self.assertNotIn('private-token-must-not-leak', str(result))
+        self.client = FakeClient(); get = self.client.get; reads = []
+        def changing_get(path):
+            if path == endpoint:
+                reads.append(path)
+                if len(reads) == 2:
+                    return {'total_count': 1, 'workflow_runs': [fresh]}
+            return get(path)
+        with mock.patch.object(self.client, 'get', side_effect=changing_get):
+            self.assertEqual(self.full()['reason'], 'active-history-changed-during-classification')
+
     def test_manual_and_weekly_events_always_execute_full(self):
         for event in ['workflow_dispatch', 'schedule']:
             with self.subTest(event=event):
@@ -893,7 +956,7 @@ class ScopeTests(unittest.TestCase):
                 self.compare()['files'] = [changed(path)]
                 self.full()
 
-    def run_cli(self, *, api_error=False, sha=TARGET):
+    def run_cli(self, *, api_error=False, sha=TARGET, run_attempt=1):
         spec = importlib.util.spec_from_file_location('atlas_scope_cli_test',
             Path(__file__).with_name('plan-atlas-depth-ci.py'))
         cli = importlib.util.module_from_spec(spec); spec.loader.exec_module(cli)
@@ -905,7 +968,10 @@ class ScopeTests(unittest.TestCase):
             report_path, output_path = root/'plan.json', root/'github-output'
             environment = {'GITHUB_EVENT_NAME':'workflow_run','GITHUB_EVENT_PATH':str(event_path),
                 'GITHUB_SHA':sha,'GITHUB_REF':'refs/heads/main','GITHUB_REPOSITORY':REPO,
-                'GITHUB_RUN_ID':'10000','GITHUB_TOKEN':'secret-value-must-not-leak'}
+                'GITHUB_RUN_ID':'10000','GITHUB_RUN_ATTEMPT':str(run_attempt),
+                'GITHUB_TOKEN':'secret-value-must-not-leak'}
+            if run_attempt is None:
+                environment.pop('GITHUB_RUN_ATTEMPT')
             with mock.patch.dict(os.environ, environment, clear=True), \
                  mock.patch.object(cli, 'Client', return_value=self.client), \
                  mock.patch.object(sys, 'argv', ['plan-atlas-depth-ci.py','--output',str(report_path),'--github-output',str(output_path)]), \
@@ -919,6 +985,16 @@ class ScopeTests(unittest.TestCase):
         self.assertEqual(dict(line.split('=',1)for line in output.splitlines()),
             {'run_full':'false','mode':'reuse','target_sha':TARGET})
         self.assertFalse(report['numerical_execution_performed_by_planner'])
+
+    def test_cli_passes_the_real_workflow_attempt_to_the_fail_closed_retry_gate(self):
+        code, report, output = self.run_cli(run_attempt=2)
+        self.assertEqual(code, 0)
+        self.assertEqual(report['mode'], 'full')
+        self.assertEqual(report['reason'], 'workflow-retry-always-full')
+        self.assertIn('run_full=true', output)
+        code, report, output = self.run_cli(run_attempt=0)
+        self.assertEqual(code, 1)
+        self.assertEqual(report['mode'], 'blocked')
 
     def test_cli_uncertain_api_emits_full_and_sanitizes_private_error(self):
         code, report, output = self.run_cli(api_error=True)

@@ -30,6 +30,7 @@ SCIENTIFIC_JOB = "public-supplements"
 EXECUTION_STEP = "Install three pinned wheel dependencies and verify public ZIPs"
 RUNS_ENDPOINT = "/actions/workflows/" + WORKFLOW + "/runs?branch=main&status=completed&per_page=100"
 FAILURE_STATUSES = ("failure", "cancelled", "timed_out")
+ACTIVE_STATUSES = ("queued", "in_progress", "waiting", "pending", "requested")
 SHA = re.compile(r"[0-9a-f]{40}\Z")
 MAX_COMPARE_FILES = 300
 MAX_HTML_FILES = 24
@@ -535,14 +536,41 @@ def _active_detail_keys(client, sha):
     return keys, receipts
 
 
-def plan(event_name, event, sha, ref, repo, run_id, client):
+
+def _active_retry_history(client, current_run_id):
+    """A queued retry can hide another run's failed earlier attempt as well."""
+    rows = []
+    for status in ACTIVE_STATUSES:
+        value = client.get("/actions/workflows/" + WORKFLOW + "/runs?branch=main&status=" + status + "&per_page=100")
+        runs = value.get("workflow_runs")
+        require(isinstance(runs, list) and type(value.get("total_count")) is int
+                and value["total_count"] == len(runs) <= 100, "incomplete-active-history")
+        for run in runs:
+            require(isinstance(run, dict) and type(run.get("id")) is int and run["id"] > 0
+                    and run.get("status") == status and type(run.get("run_attempt")) is int
+                    and run["run_attempt"] > 0 and run.get("head_branch") == "main"
+                    and run.get("head_repository", {}).get("full_name") == REPOSITORY
+                    and SHA.fullmatch(run.get("head_sha", "")), "invalid-active-history")
+            if str(run["id"]) == str(current_run_id):
+                require(run["run_attempt"] == 1, "current-run-attempt-mismatch")
+                continue
+            require(run["run_attempt"] == 1, "concurrent-retry-history-uncertain")
+            rows.append({key: run[key] for key in ("id", "run_attempt", "head_sha", "status")})
+    require(len({row["id"] for row in rows}) == len(rows), "ambiguous-active-history")
+    rows.sort(key=lambda row: row["id"])
+    return {"other_first_attempt_count": len(rows), "sha256": canonical_digest(rows)}
+
+def plan(event_name, event, sha, ref, repo, run_id, client, run_attempt=1):
     """Plan fresh full verification or evidenced reuse; uncertainty always runs full."""
     _event_target(event_name, event, sha, ref, repo, run_id)
+    if run_attempt is not None and (type(run_attempt) is not int or run_attempt < 1):
+        raise InvalidEvent("invalid-run-attempt")
     result = {"schema_version": 1, "mode": "full", "run_full": True, "target_sha": sha,
               "event": event_name, "reason": "full-by-default", "reasons": [], "baseline": None,
               "changed_files": [], "comparison_sha256": None, "science_execution": "scheduled-full",
               "created_at_utc": datetime.now(timezone.utc).isoformat(), "repository": REPOSITORY,
-              "history_window": 100, "numerical_execution_performed_by_planner": False}
+              "history_window": 100, "run_attempt": run_attempt,
+              "numerical_execution_performed_by_planner": False}
     def full(reason):
         result.update(reason=reason, reasons=[reason])
         return result
@@ -554,6 +582,13 @@ def plan(event_name, event, sha, ref, repo, run_id, client):
         require(isinstance(current_sha, str) and SHA.fullmatch(current_sha), "invalid-main-ref-response")
         if current_sha != sha:
             raise InvalidEvent("target-is-not-current-main")
+        # A rerun can hide its own earlier failed attempt from the completed/
+        # failed run listings while its latest attempt is in progress. Never
+        # infer that absent current-run history authorizes reuse.
+        if run_attempt is None:
+            return full("missing-current-run-attempt")
+        if run_attempt > 1:
+            return full("workflow-retry-always-full")
         baseline = _baseline(client, run_id)
         result["baseline"] = baseline
         comparison = client.get(f'/compare/{baseline["sha"]}...{sha}?per_page=1&page=1')
@@ -577,6 +612,7 @@ def plan(event_name, event, sha, ref, repo, run_id, client):
         # The complete cumulative diff must pass the source boundary first.
         # Generated files alone are not evidence: unchanged canonical sources and
         # the exact successful prepare --check are both required.
+        result["active_history"] = _active_retry_history(client, run_id)
         result["public_site_check"] = _verified_site_check(client, event, sha)
         entries = {}
         for file, row in zip(files, result["changed_files"]):
@@ -646,6 +682,8 @@ def plan(event_name, event, sha, ref, repo, run_id, client):
         result["comparison_sha256"] = canonical_digest(result["changed_files"])
         if any(not row["safe"] for row in result["changed_files"]):
             return full("critical-html-or-catalog-content")
+        require(_active_retry_history(client, run_id) == result["active_history"],
+                "active-history-changed-during-classification")
         result.update(mode="reuse", run_full=False, reason="only-reviewed-presentation-prose-or-identity-changes",
                       reasons=["only-reviewed-presentation-prose-or-identity-changes"],
                       science_execution="not-rerun-reused-proof")
