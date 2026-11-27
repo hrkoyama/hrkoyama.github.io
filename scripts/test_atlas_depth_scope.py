@@ -629,6 +629,68 @@ class ScopeTests(unittest.TestCase):
         self.client.blobs[('site.js', TARGET)] = script_after
         self.full()
 
+    def test_actual_root_copy_and_search_main_query_cache_change_reuse_with_derived_query(self):
+        root = Path(__file__).resolve().parents[1]
+        root_before = (root / 'index.html').read_bytes()
+        copy_changes = [
+            ('ja', '人が式・条件・図・参照値から根拠を読み、AIも同じ公開条件で実行・検証できる、数値計算テスト問題ライブラリです。',
+             '人が式・条件・図・参照値を読んで確かめ、AIも同じ公開条件で実行・検証できる、数値計算テスト問題ライブラリです。'),
+            ('en', 'A numerical test-problem library where people can inspect equations, conditions, figures and references, and AI agents can run and verify code under the same published conditions.',
+             'A numerical test-problem library where people can read and check equations, conditions, figures and references, and AI agents can run and verify code under the same published conditions.'),
+        ]
+        # Preserve the actual DOM while choosing fixture text independently of
+        # whatever legitimate introduction wording is currently published.
+        slots = []
+        for language, old, new in copy_changes:
+            pattern = re.compile(
+                rb'(<div class="home-feature-copy"><h3><a href="/numerical-methods-atlas/\?lang='
+                + language.encode() + rb'">[^<>]*</a></h3><p>)([^<>]*)(</p>)')
+            root_before, replacements = pattern.subn(
+                lambda match: match[1] + old.encode() + match[3], root_before)
+            self.assertEqual(replacements, 1, 'retain exactly one actual NaN introduction DOM per language')
+            slots.append((pattern, new.encode()))
+        root_after = root_before
+        for pattern, new in slots:
+            root_after, replacements = pattern.subn(lambda match: match[1] + new + match[3], root_after)
+            self.assertEqual(replacements, 1)
+        query_path = 'search/query-index.json'
+        query_after = b'{"kind":"site","fixture_label":"Read and check the evidence"}'
+        version = hashlib.sha256(query_after).hexdigest()[:12].encode()
+        search_path = 'search/index.html'
+        search_before = (root / search_path).read_bytes()
+        self.assertIn(b'<main class="profile-main search-main"', search_before)
+        pattern = re.compile(rb'(data-search-index="/search/query-index.json\?v=)([0-9a-f]{12})(")')
+        search_after, replacements = pattern.subn(lambda match: match[1] + version + match[3], search_before)
+        self.assertEqual(replacements, 1, 'use the actual search main query-index attribute')
+        self.set_blob_change('index.html', root_before, root_after)
+        for path, before, after in [(query_path, None, query_after), (search_path, search_before, search_after)]:
+            record = changed(path)
+            record['sha'] = git_blob_sha(after)
+            self.compare()['files'].append(record)
+            self.client.blobs[(path, TARGET)] = after
+            if before is not None:
+                self.client.blobs[(path, BASE)] = before
+        result = self.reuse()
+        self.assertEqual({row['filename'] for row in result['changed_files']},
+                         {'index.html', query_path, search_path})
+        safe_records = copy.deepcopy(self.compare()['files'])
+        count_changed, counts = re.subn(rb'(data-search-count=")([0-9]+)(")',
+            lambda match: match[1] + str(int(match[2]) + 1).encode() + match[3], search_after, count=1)
+        self.assertEqual(counts, 1)
+        for mutation, invalid in [
+                ('query_url', search_after.replace(b'data-search-index="/search/query-index.json?',
+                                                   b'data-search-index="/search/unreviewed-index.json?', 1)),
+                ('count', count_changed),
+                ('script', search_after.replace(b'src="/search/search.js?',
+                                                b'src="/search/unreviewed-search.js?', 1))]:
+            with self.subTest(mutation=mutation):
+                self.assertNotEqual(invalid, search_after)
+                self.compare()['files'] = copy.deepcopy(safe_records)
+                record = next(item for item in self.compare()['files'] if item['filename'] == search_path)
+                record['sha'] = git_blob_sha(invalid)
+                self.client.blobs[(search_path, TARGET)] = invalid
+                self.full()
+
     def test_actual_root_intro_copy_is_reusable_until_a_scientific_change_is_mixed_in(self):
         path = 'index.html'
         before = (Path(__file__).resolve().parents[1] / path).read_bytes()

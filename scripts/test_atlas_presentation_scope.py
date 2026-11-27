@@ -5,8 +5,10 @@ Derived outputs require the caller's separate, same-SHA generation proof.
 """
 import copy
 import json
+import os
 from pathlib import Path
 import re
+import subprocess
 import unittest
 
 from atlas_presentation_scope import (presentation_kind, presentation_signature,
@@ -27,6 +29,16 @@ def encode(value):
 
 def catalog(name):
     return json.loads((ROOT / name).read_text(encoding="utf-8"))
+
+
+def actual_source_bytes(name):
+    """Read the real page, using immutable local Git objects in sparse copies."""
+    path = ROOT / name
+    if path.is_file():
+        return path.read_bytes()
+    return subprocess.check_output(
+        ["git", "show", "HEAD:" + name], cwd=ROOT,
+        env={**os.environ, "GIT_NO_LAZY_FETCH": "1", "GIT_TERMINAL_PROMPT": "0"})
 
 
 def set_leaf(value, path, replacement):
@@ -249,6 +261,63 @@ class PresentationScopeTests(unittest.TestCase):
                 self.protected(path, before, after.replace(asset, b"/other/asset", 1))
                 self.protected(path, before, after.replace(b"abcdef012345", b"abcdef0123456", 1))
         self.protected(path, before, before.replace(b'<head>', b'<head data-version="abcdef012345">', 1))
+
+    def test_actual_full_search_main_owns_both_query_cache_versions(self):
+        path = "search/index.html"
+        before = actual_source_bytes(path)
+        self.assertEqual(before.count(b'<main class="profile-main search-main"'), 1)
+        changed = before
+        expected = {}
+        for attribute, index, token in [
+            (b"data-search-index", b"/search/query-index.json", b"abcdef012345"),
+            (b"data-atlas-search-index", b"/search/atlas-query-index.json", b"fedcba543210"),
+        ]:
+            pattern = re.compile(rb'(' + attribute + rb'="' + re.escape(index) + rb'\?v=)([0-9a-f]{12})(")')
+            self.assertEqual(len(pattern.findall(before)), 1)
+            after = pattern.sub(lambda m: m[1] + token + m[3], before)
+            with self.subTest(attribute=attribute):
+                self.equivalent(path, before, after)
+            changed = pattern.sub(lambda m: m[1] + token + m[3], changed)
+            expected[index.decode().lstrip("/")] = token.decode()
+        self.equivalent(path, before, changed)
+        query_refs = {row["path"]: row["version"] for row in presentation_cache_references(path, changed)
+                      if row["path"] in expected}
+        self.assertEqual(query_refs, expected)
+
+    def test_search_main_cache_does_not_hide_unknown_context_attributes_counts_or_urls(self):
+        path = "search/index.html"
+        before = actual_source_bytes(path)
+        query = re.compile(rb'(data-search-index="/search/query-index\.json\?v=)([0-9a-f]{12})(")')
+        self.assertEqual(len(query.findall(before)), 1)
+        for opening in [
+            b'<main class="profile-main search-main extra"',
+            b'<main class="other-main"',
+            b'<body class="profile-main search-main"',
+            b'<div class="profile-main search-main"',
+        ]:
+            unknown = before.replace(b'<main class="profile-main search-main"', opening, 1)
+            changed = query.sub(lambda m: m[1] + b"abcdef012345" + m[3], unknown)
+            with self.subTest(opening=opening):
+                self.protected(path, unknown, changed)
+                self.assertFalse(any(row["path"] in {"search/query-index.json", "search/atlas-query-index.json"}
+                                     for row in presentation_cache_references(path, unknown)))
+        for attribute in (b"data-search-count", b"data-atlas-search-count"):
+            pattern = re.compile(rb'(' + attribute + rb'=")([0-9]+)(")')
+            self.assertEqual(len(pattern.findall(before)), 1)
+            changed = pattern.sub(lambda m: m[1] + str(int(m[2]) + 1).encode() + m[3], before)
+            with self.subTest(attribute=attribute):
+                self.protected(path, before, changed)
+        self.protected(path, before, before.replace(b"/search/query-index.json?v=", b"/other/query-index.json?v=", 1))
+        self.protected(path, before, before.replace(b'<main class="profile-main search-main"',
+                       b'<main data-unknown="changed" class="profile-main search-main"', 1))
+        for unknown in [
+            b'<main class="profile-main search-main" data-loader-data-search-index="/search/query-index.json?v=111111111111"></main>',
+            b'<main class="profile-main search-main" data-unknown=\'data-search-index="/search/query-index.json?v=111111111111"\'></main>',
+        ]:
+            with self.subTest(unknown=unknown):
+                changed = unknown.replace(b"111111111111", b"222222222222")
+                self.protected(path, unknown, changed)
+                self.assertEqual(presentation_cache_references(path, unknown), [])
 
     def test_handwritten_imports_allow_only_known_twelve_hex_cache_values(self):
         fixtures = {

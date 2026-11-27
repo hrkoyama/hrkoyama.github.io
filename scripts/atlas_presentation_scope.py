@@ -296,12 +296,18 @@ def _copy_attributes(token, names, attributes=None):
 
 def _html_versions(path, text):
     references = []
-    # Only real link/script/body tags and the named attributes are cache owners;
+    # Only real link/script tags and the exact search-main configuration own
+    # cache attributes. Body attributes and arbitrary main elements stay exact;
     # strings in inline code, text, comments and download links stay exact.
     def tag(name, token):
         attributes = _unique_attributes(token)
         allowed = {"link": {"href"}, "script": {"src"},
-                   "body": {"data-search-index", "data-atlas-search-index"}}[name]
+                   "main": set()}[name]
+        if name == "main" and path == "search/index.html":
+            values = {attribute: token[left:right] if left is not None else None
+                      for attribute, left, right in attributes}
+            if values.get("class") == "profile-main search-main":
+                allowed = {"data-search-index", "data-atlas-search-index"}
         replacements = []
         for attribute, left, right in attributes:
             if attribute not in allowed or left is None:
@@ -326,7 +332,7 @@ def _html_versions(path, text):
             for found in re.finditer("\n", text):
                 self.offsets.append(found.end())
         def handle_starttag(self, name, attrs):
-            if not self.protected and name in {"link", "script", "body"}:
+            if not self.protected and name in {"link", "script", "main"}:
                 line, column = self.getpos()
                 start = self.offsets[line - 1] + column
                 self.rows.append((name, start, start + len(self.get_starttag_text())))
