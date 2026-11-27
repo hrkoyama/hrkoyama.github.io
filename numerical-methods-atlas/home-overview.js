@@ -1,5 +1,5 @@
 import {homeLandingCopy,homeCollectionInventory} from './atlas-home-data.js?v=5f443a2261c7';
-import {homeSearchPage,wireHomeSearch} from './home-search.js?v=62565d88446c';
+import {homeSearchPage,wireHomeSearch} from './home-search.js?v=97483928a6ff';
 import {t,currentLanguage} from './i18n.js';
 import {homeAreas,homeCopy,homePaths,homeReadingLanguages} from './home-overview-data.js?v=14c895d7e5e3';
 const esc=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
