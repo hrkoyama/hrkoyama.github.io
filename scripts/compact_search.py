@@ -433,6 +433,8 @@ def pack_term_memberships(rows, term_count):
 
 def write_compact(root, source, kind):
     """Project source records without executing or changing any scientific asset."""
+    if kind not in ('atlas', 'site'):
+        raise ValueError('Expected an atlas or site detail-reference inventory')
     directory = root/'search/details'
     directory.mkdir(parents=True, exist_ok=True)
     references = set()
@@ -521,5 +523,18 @@ def write_compact(root, source, kind):
         'scope': 'Same public search terms; original text and explicit navigation are loaded from fixed public files as needed. Search queries are never transmitted.',
     }
     path = root/'search'/('atlas-query-index.json' if kind == 'atlas' else 'query-index.json')
-    path.write_bytes(encoded(encode_row_literals(encode_row_shapes(encode_row_pool(encode_vocabulary_columns(encode_vocabulary_alphabet(encode_row_strings(payload))))))))
+    raw = encoded(encode_row_literals(encode_row_shapes(encode_row_pool(encode_vocabulary_columns(encode_vocabulary_alphabet(encode_row_strings(payload)))))))
+    path.write_bytes(raw)
+    # Historical content-addressed details remain public.  This small, fully
+    # rewritten inventory distinguishes the current index's actual references
+    # from an unrelated but correctly named detail left in that directory.
+    manifest = {
+        'schema_version': 1, 'kind': kind,
+        'index_path': path.relative_to(root).as_posix(),
+        'index_git_blob_sha': hashlib.sha1(b'blob '+str(len(raw)).encode()+b'\0'+raw).hexdigest(),
+        'index_sha256': hashlib.sha256(raw).hexdigest(),
+        'detail_keys': sorted(references),
+    }
+    manifest_path = root/'search'/('atlas-detail-references.json' if kind == 'atlas' else 'detail-references.json')
+    manifest_path.write_bytes(encoded(manifest))
     return path

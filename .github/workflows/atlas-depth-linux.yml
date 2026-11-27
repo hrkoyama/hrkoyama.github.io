@@ -41,6 +41,7 @@ jobs:
           sparse-checkout-cone-mode: false
           sparse-checkout: |
             /scripts/atlas_depth_scope.py
+            /scripts/atlas_presentation_scope.py
             /scripts/plan-atlas-depth-ci.py
       - name: Prepare Python for the standard-library scope check
         uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7

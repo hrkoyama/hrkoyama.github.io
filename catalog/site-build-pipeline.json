@@ -466,6 +466,7 @@
       "outputs": [
         "numerical-methods-atlas/home-search-index.json",
         "search/atlas-query-index.json",
+        "search/atlas-detail-references.json",
         "search/details/*.json",
         "search/asset-manifest.json"
       ],
@@ -555,6 +556,7 @@
       "outputs": [
         "search/index.json",
         "search/query-index.json",
+        "search/detail-references.json",
         "search/details/*.json",
         "search/asset-manifest.json"
       ],

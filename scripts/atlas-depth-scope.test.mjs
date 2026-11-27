@@ -8,7 +8,7 @@ const root = fileURLToPath(new URL('../', import.meta.url));
 const workflow = readFileSync(new URL('../.github/workflows/atlas-depth-linux.yml', import.meta.url), 'utf8');
 
 test('Linux scope decisions preserve full checks after science changes, failures and uncertain comparisons', () => {
-  execFileSync('python3', ['-B', '-m', 'unittest', 'discover', '-s', 'scripts', '-p', 'test_atlas_depth_scope.py', '-v'],
+  execFileSync('python3', ['-B', '-m', 'unittest', 'discover', '-s', 'scripts', '-p', 'test_atlas_*scope.py', '-v'],
     {cwd: root, encoding: 'utf8', stdio: 'pipe', timeout: 30_000});
 });
 
@@ -35,4 +35,10 @@ test('the scope gate is source-only and the full scientific job keeps public-onl
   assert.match(workflow, /cron: '37 3 \* \* 1'/);
   assert.match(workflow, /group: atlas-depth-public-linux/);
   assert.match(workflow, /cancel-in-progress: false/);
+});
+
+// A small fixture checks manifest generation without rebuilding the atlas.
+test('active detail references are regenerated from the current compact index', () => {
+  execFileSync('python3', ['-B', '-m', 'unittest', 'discover', '-s', 'scripts', '-p', 'test_atlas_detail_references.py', '-v'],
+    {cwd: root, encoding: 'utf8', stdio: 'pipe', timeout: 30_000});
 });
