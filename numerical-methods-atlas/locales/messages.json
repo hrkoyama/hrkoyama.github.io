@@ -9807,5 +9807,13 @@
   "reference.vef-vet.933ab65d9fc9": {
     "en": "Static steady grey unit-periodic square; dimensionless st=4, ss=3, sa=1 and c=1, using point samples. q=1+0.3 cos(2pi x)+0.2 sin(2pi(x+y)). Space is2D, but directions cover full S2 and Dzz is retained. Positive prescribed isotropic source; physical angle space remains S2.",
     "ja": "静止・定常・灰色の単位周期正方形。σt=4、σs=3、σa=1、c=1の無次元点値。q=1+0.3 cos(2πx)+0.2 sin(2π(x+y))。空間は2Dでも角度は全S²でDzzも保持します。 正の指定等方輻射源を使い、角度空間は球面S²を保ちます。"
+  },
+  "ui.entry-role-guides-by-field": {
+    "en": "Guides by field",
+    "ja": "分野別ガイド"
+  },
+  "ui.entry-role-calculation-examples": {
+    "en": "Calculation examples",
+    "ja": "計算例"
   }
 }

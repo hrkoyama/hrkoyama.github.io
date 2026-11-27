@@ -114,7 +114,7 @@ def build(root=ROOT):
         head = '<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+escape(title)+' | '+('数値計算法アトラス' if ja else 'Numerical Methods Atlas')+'</title><meta name="description" content="'+escape(catalog['description'][language],quote=True)+'"><link rel="canonical" href="'+ORIGIN+BASE+language+'/read/">'
         head += ''.join('<link rel="alternate" hreflang="'+edition+'" href="'+ORIGIN+BASE+edition+'/read/">' for edition in ['ja','en'])
         head += '<link rel="stylesheet" href="/styles/atlas-reading-index.css?v='+digest(root/'styles/atlas-reading-index.css')+'"><script type="module" src="'+BASE+'reading-index.mjs?v='+digest(atlas/'reading-index.mjs')+'"></script>'
-        related = '<p class="reading-related">'+('適用条件・コード・検証例を手法名から調べる：' if ja else 'Look up a method’s conditions, code and checks: ')+'<a href="'+BASE+'methods/?lang='+language+'">'+('手法・コードの対応表' if ja else 'Methods and code reference')+'</a></p>'
+        related = '<p class="reading-related">'+('適用条件・コード・検証例を手法名から調べる：' if ja else 'Look up a method’s conditions, code and checks: ')+'<a href="'+BASE+'methods/?lang='+language+'">'+('全手法一覧' if ja else 'All methods')+'</a></p>'
         guide_label = '学習ガイド（おすすめの順番）' if ja else 'Learning guide (suggested order)'
         role = ('この目次は全章・資料を'+str(len(groups))+'分類で網羅します。学習ガイドの分野地図は、おすすめの経路を示す別の見方です。' if ja else 'This index covers every chapter and resource in '+str(len(groups))+' categories. The learning guide’s field map is a separate view of suggested paths.')
         intro = '<nav class="reading-breadcrumb" aria-label="'+('アトラスの案内' if ja else 'Atlas navigation')+'"><a href="'+BASE+'?lang='+language+'">'+('アトラス' if ja else 'Atlas home')+'</a><span aria-hidden="true">/</span><a data-reading-learning-guide href="'+BASE+'explore/?lang='+language+'">'+guide_label+'</a></nav><header class="reading-heading"><h1>'+escape(title)+'</h1><p>'+escape(catalog['description'][language])+'</p><p data-reading-index-role>'+escape(role)+'</p>'+related+'</header>'
@@ -122,7 +122,7 @@ def build(root=ROOT):
                          language=language if language in p.get('available_languages', []) else p['language'])
                     for p in catalog.get('learning_packages', [])]
         featured = ''.join('<section class="reading-group"><h2><a href="'+p['url']+'">'+escape(p['title'][language])+'</a></h2><p>'+escape(p['description'][language])+'</p></section>' for p in packages)
-        tail = '<footer class="reading-footer"><a href="index.json">JSON</a><a href="index.md">Markdown</a><a href="'+BASE+'methods/?lang='+language+'">'+('手法・コードの対応表' if ja else 'Methods and code reference')+'</a></footer>'
+        tail = '<footer class="reading-footer"><a href="index.json">JSON</a><a href="index.md">Markdown</a><a href="'+BASE+'methods/?lang='+language+'">'+('全手法一覧' if ja else 'All methods')+'</a></footer>'
         page = '<!doctype html><html lang="'+language+'"><head>'+head+'</head><body class="atlas-reading-index"><main class="reading-index" id="reading-index" data-language="'+language+'">'+intro+featured+controls+jump+''.join(body)+tail+'</main></body></html>\n'
         directory = atlas / language / 'read'
         (directory/'index.html').write_text(page)

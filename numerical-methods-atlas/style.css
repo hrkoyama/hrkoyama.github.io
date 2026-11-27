@@ -109,3 +109,9 @@ body[data-page=shock-expansion] .lab-results,body[data-page=shock-expansion] .la
 /* Static reading pages retain crawlable, keyboard-accessible language links. */
 .language-switch a{font:inherit;font-size:11px;padding:5px 9px;text-decoration:none;color:var(--ink)}
 .language-switch a[aria-current="page"]{text-decoration:underline;text-underline-offset:4px}
+/* Keep the atlas entrance menu readable and tappable with the chapter menus. */
+@media screen and (max-width:620px){
+ body>.site-header{flex-wrap:nowrap}
+ body>.site-header>.brand{min-width:0}
+ body>.site-header>.mobile-menu{min-width:44px;min-height:44px;padding:8px;font-family:var(--sans);font-size:16px;line-height:1.4;letter-spacing:normal;flex-shrink:0}
+}

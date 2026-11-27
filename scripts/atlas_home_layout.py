@@ -40,7 +40,7 @@ def build_home_layout(root, copy, sections, metrics, featured, maps, context):
         description = '基礎から学ぶための案内です。おすすめの順番と分野の地図から、学びたい経路を選べます。' if ja else 'A guide to learning from the foundations. Choose a path using the suggested study order and field map.'
         descriptions[lang] = description
         links = [(f'/numerical-methods-atlas/methods/?lang={lang}',
-                  '手法・コードの対応表' if ja else 'Methods and code reference',
+                  '全手法一覧' if ja else 'All methods',
                   '手法名から、適用条件・対応するコードとテスト・公開状況を調べます。' if ja else 'Look up a method to check its conditions, related code and tests, and publication status.'),
                  (f'/numerical-methods-atlas/connections/?lang={lang}',
                   '分野をつなぐ' if ja else 'Connections across fields',

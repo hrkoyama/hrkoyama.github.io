@@ -243,7 +243,7 @@ def navigation(language, chapter, record, resources):
         ('learn', '学ぶ・調べる' if ja else 'Learn and look up', [
             link(BASE+'explore/?lang='+language, '学習ガイド（おすすめ順）' if ja else 'Learning guide (suggested order)'),
             link(BASE+language+'/read/', '分野別の全章目次' if ja else 'Complete chapter index', attributes=' data-reading-all-chapters'),
-            link(BASE+'methods/?lang='+language, '手法・コードの対応表' if ja else 'Methods and code reference'),
+            link(BASE+'methods/?lang='+language, '全手法一覧' if ja else 'All methods'),
         ]),
         ('resources', '学習資料' if ja else 'Learning resources', [
             link(BASE+language+'/read/textbooks/', '教科書案内' if ja else 'Textbook guide', 'textbooks'),
@@ -319,6 +319,15 @@ def build(root=ROOT, openings_only=False):
                 text = match[0]
                 for old in old_labels:
                     text = text.replace('>'+old+'</a>', '>'+new_label+'</a>')
+                # Role names follow these existing header destinations only.
+                labels = {
+                    BASE+'?lang='+language+'#/methods': '分野別ガイド' if language == 'ja' else 'Guides by field',
+                    BASE+'?lang='+language+'#/equations': '計算例' if language == 'ja' else 'Calculation examples',
+                    BASE+'methods/?lang='+language: '全手法一覧' if language == 'ja' else 'All methods',
+                }
+                for href, label in labels.items():
+                    anchor = r'(<a\b[^>]*\bhref="'+re.escape(href)+r'"[^>]*>)[^<]*(</a>)'
+                    text = re.sub(anchor, lambda item:item[1]+label+item[2], text)
                 return text
             text = re.sub(r'<header class="site-header">.*?</header>', header_labels, text, flags=re.S)
             if text != original:

@@ -98,8 +98,8 @@ test('both contents pages share group order and one consistent entry per real ch
 
 test('the complete index distinguishes lookup, suggested learning order and learning resources', () => {
   const expected = {
-    ja:{title:'分野別の全章目次',purpose:/理論・導出・計算例/,reference:'手法・コードの対応表',referencePurpose:/適用条件・コード・検証例/},
-    en:{title:'Complete chapter index',purpose:/theory, derivations and worked examples/,reference:'Methods and code reference',referencePurpose:/conditions, code and checks/}
+    ja:{title:'分野別の全章目次',purpose:/理論・導出・計算例/,reference:'全手法一覧',referencePurpose:/適用条件・コード・検証例/},
+    en:{title:'Complete chapter index',purpose:/theory, derivations and worked examples/,reference:'All methods',referencePurpose:/conditions, code and checks/}
   };
   const text = html => decode(html.replace(/<[^>]+>/g, '')).trim();
   for (const lang of ['ja','en']) {

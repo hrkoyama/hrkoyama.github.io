@@ -90,10 +90,14 @@ def execution_shortcuts(lang):
 sections=[]
 for lang in ['ja','en']:
     ja=lang=='ja'
-    title='数式から探す' if ja else 'Browse by equation'
+    title='方程式・モデル一覧' if ja else 'Equations and models'
     body='<section data-site-language="'+lang+'" lang="'+lang+'"><p class="eyebrow">EQUATIONS / ALL ATLAS MODELS</p><h1>'+title+'</h1>'
     intro=(f'アトラスに収録中の全{len(records)}方程式・モデルを並べました。式の形から選び、解説、関連するテスト問題の図、実行コードへ進めます。' if ja else f'Browse all {len(records)} equation/model entries in the atlas. Recognize a formula and explore its explanation, related test-problem figures and execution code.')
     body+='<p class="intro">'+intro+'</p>'
+    body+='<nav class="resource-nav entry-role-links" data-entry-role-links aria-label="'+('ほかの入口' if ja else 'Other ways to explore')+'">'
+    body+=link('/numerical-methods-atlas/methods/?lang='+lang,'全手法一覧' if ja else 'All methods')
+    body+=link('/numerical-methods-atlas/?lang='+lang+'#/methods','分野別ガイド' if ja else 'Guides by field')
+    body+=link('/numerical-methods-atlas/?lang='+lang+'#/equations','計算例（保存結果）' if ja else 'Calculation examples (saved results)')+'</nav>'
     summary=(f'計算例あり{status_counts["local-example"]}項目・文献解説のみ{status_counts["reading"]}項目。モデルの種類数であり、表示する式の行数ではありません。' if ja else f'{status_counts["local-example"]} entries link to scoped local examples; {status_counts["reading"]} are literature-only. These count model entries, not displayed equation lines.')
     note=('式は代表形、または明記した模式形です。係数・単位・次元・構成則・境界条件は解説先で確認してください。「計算例あり」には縮約模型やFourier記号の検証も含みます。図と固定入力の条件の違いは各問題ページで確認できます。' if ja else 'Formulas are representative or explicitly schematic forms. Consult each chapter for coefficients, units, dimensions, closure and boundaries. Local examples can include reduced models and Fourier-symbol checks. Each problem page distinguishes saved-image conditions from fixed execution inputs.')
     body+='<p>'+note+'</p>'
@@ -156,7 +160,7 @@ for lang in ['ja','en']:
 
 digest=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()[:12]
 head='<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
-head+='<title data-page-title-ja="数式から探す | 数値計算法アトラス" data-page-title-en="Browse by equation | Numerical Methods Atlas">数式から探す | 数値計算法アトラス</title>'
+head+='<title data-page-title-ja="方程式・モデル一覧 | 数値計算法アトラス" data-page-title-en="Equations and models | Numerical Methods Atlas">方程式・モデル一覧 | 数値計算法アトラス</title>'
 head+='<meta name="description" content="公開'+str(len(execution_examples))+'問題の式から入力・実行・判定へ。全'+str(len(records))+'方程式・モデルの解説一覧も掲載。Find fixed-input examples by formula and browse every atlas model.">'
 head+='<link rel="canonical" href="'+ORIGIN+URL+'">'
 head+='<link rel="stylesheet" href="/numerical-methods-atlas/vendor/katex.min.css">'

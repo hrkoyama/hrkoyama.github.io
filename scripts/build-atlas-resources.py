@@ -82,7 +82,7 @@ def page(title_ja,title_en,url,sections,structured=None,extra_head=''):
 def write(path,text):
     p=ROOT/path.lstrip('/');p.parent.mkdir(parents=True,exist_ok=True);p.write_text(text)
 def nav(lang):
-    labels=(['手法・コードの対応表','コード・入力・検証'] if lang=='ja' else ['Methods and code reference','Code, inputs and checks'])+[READING_TITLES[lang]]
+    labels=(['全手法一覧','コード・入力・検証'] if lang=='ja' else ['All methods','Code, inputs and checks'])+[READING_TITLES[lang]]
     return '<nav class="resource-nav" aria-label="Atlas resources">'+''.join(link(u,l) for u,l in zip(['/numerical-methods-atlas/methods/','/numerical-methods-atlas/code-and-data/',f'/numerical-methods-atlas/{lang}/read/'],labels))+'</nav>'
 AUTODIFF_RELEASES={}
 def autodiff_release_record(x):
@@ -332,9 +332,13 @@ for lang in ['ja','en']:
     intro=(f'手法名ごとに、適用条件、関連コード、検証記録、公開状況を確認する対応表です。全{len(METHODS)}項目を、状態と日英のキーワードで探せます。教育用例・解説のみ・収録予定を区別して表示します。' if ja else f'Look up each named method’s applicable conditions, related code, verification records and publication status. Search {len(METHODS)} entries by status and English or Japanese keywords. Educational examples, reading-only entries and planned coverage remain distinct.')
     definition,divider,guidance=intro.partition('。' if ja else '. ')
     assert divider and guidance
-    body='<section data-method-map data-site-language="'+lang+'" lang="'+lang+'"><p class="eyebrow">NUMERICAL METHODS / OPEN RESEARCH RESOURCES</p><h1>'+('手法・コードの対応表' if ja else 'Methods and code reference')+'</h1><p class="intro resource-lead">'+definition+('。' if ja else '.')+'</p>'
+    body='<section data-method-map data-site-language="'+lang+'" lang="'+lang+'"><p class="eyebrow">NUMERICAL METHODS / OPEN RESEARCH RESOURCES</p><h1>'+('全手法一覧' if ja else 'All methods')+'</h1><p class="intro resource-lead">'+definition+('。' if ja else '.')+'</p>'
+    body+='<nav class="resource-nav entry-role-links" data-entry-role-links aria-label="'+('ほかの入口' if ja else 'Other ways to explore')+'">'
+    body+=link('/numerical-methods-atlas/?lang='+lang+'#/methods','分野別ガイド' if ja else 'Guides by field')
+    body+=link('/numerical-methods-atlas/equations/?lang='+lang,'方程式・モデル一覧' if ja else 'Equations and models')
+    body+=link('/numerical-methods-atlas/?lang='+lang+'#/equations','計算例（保存結果）' if ja else 'Calculation examples (saved results)')+'</nav>'
     body+='<details class="comparison-details method-map-overview" data-comparison-detail open><summary>'+('分野・一覧の使い方' if ja else 'Groups and how to use this reference')+'</summary>'
-    body+='<p class="method-map-guidance">'+guidance+'</p>'
+    body+='<p class="method-map-guidance">'+('手法・コードの対応表：' if ja else 'Methods and code reference: ')+guidance+'</p>'
     body+='<p class="method-reading-entry">'+('理論・導出の解説を探すときは、' if ja else 'Find explanations of theory and derivations in the ')+link(f'/numerical-methods-atlas/{lang}/read/',READING_TITLES[lang])+('へ。読む順番は' if ja else '. For a suggested reading order, use the ')+link(f'/numerical-methods-atlas/explore/?lang={lang}','学習ガイド' if ja else 'learning guide')+('で選べます。' if ja else '.')+'</p>'+nav(lang)
     body+='<details class="method-map-about"><summary>'+('一覧の範囲・状態の説明' if ja else 'Scope and status definitions')+'</summary>'
     body+='<p class="resource-summary">'+(f'既存{existing_count}項目のうち教育用例{example_count}・解説のみ{reading_count}、拡張候補{planned_count}。教育用例は完成した汎用ソルバーの数ではありません。公開コード配布版の既存検査は{verification["passed"]}件通過・{verification["skipped"]}件対象外です。' if ja else f'{existing_count} existing entries: {example_count} with scoped educational examples and {reading_count} reading-only. Another {planned_count} are development candidates. These are not counts of complete production solvers. The code edition passes {verification["passed"]} existing checks, with {verification["skipped"]} inapplicable cases skipped.')+'</p>'
@@ -360,7 +364,7 @@ for lang in ['ja','en']:
 method_routes_head='<link rel="stylesheet" href="/styles/atlas-method-routes.css?v='+hashlib.sha256((ROOT/'styles/atlas-method-routes.css').read_bytes()).hexdigest()[:12]+'">'
 map_head='<link rel="stylesheet" href="/styles/atlas-methods.css?v='+hashlib.sha256((ROOT/'styles/atlas-methods.css').read_bytes()).hexdigest()[:12]+'"><script type="module" src="/atlas-methods.mjs?v='+hashlib.sha256((ROOT/'atlas-methods.mjs').read_bytes()).hexdigest()[:12]+'"></script>'+method_routes_head
 map_head+='<link rel="stylesheet" href="/styles/atlas-comparison-overview.css?v='+hashlib.sha256((ROOT/'styles/atlas-comparison-overview.css').read_bytes()).hexdigest()[:12]+'"><script type="module" src="/frontend/atlas/comparison-overview.js?v='+hashlib.sha256((ROOT/'frontend/atlas/comparison-overview.js').read_bytes()).hexdigest()[:12]+'"></script>'
-map_page=page('手法・コードの対応表','Methods and code reference','/numerical-methods-atlas/methods/',''.join(sections),extra_head=map_head)
+map_page=page('全手法一覧','All methods','/numerical-methods-atlas/methods/',''.join(sections),extra_head=map_head)
 map_page=map_page.replace('<body class="profile-page">','<body class="profile-page" data-site-language-anchors="suffix">',1)
 map_page=map_page.replace('<main class="profile-main atlas-resource-main" id="main">','<main class="profile-main atlas-resource-main" id="main" data-comparison-overview="methods">',1)
 write('/numerical-methods-atlas/methods/index.html',map_page)
@@ -583,7 +587,7 @@ for p in ATLAS.rglob('*.html'):
     if p==ATLAS/'index.html':
         marker='<!-- public-resource-entry -->'
         new=re.sub(r'<!-- public-resource-entry -->.*?<!-- /public-resource-entry -->','',new,flags=re.S)
-        entry=marker+'<nav aria-label="Public atlas resources" style="display:flex;flex-wrap:wrap;gap:12px 24px;padding:16px 5%;border-bottom:1px solid #d2d3c8">'+link('/numerical-methods-atlas/methods/','手法・コードの対応表 / Methods and code reference')+link('/numerical-methods-atlas/code-and-data/','コード・入力・検証 / Code, inputs and checks')+'</nav><!-- /public-resource-entry -->'
+        entry=marker+'<nav aria-label="Public atlas resources" style="display:flex;flex-wrap:wrap;gap:12px 24px;padding:16px 5%;border-bottom:1px solid #d2d3c8">'+link('/numerical-methods-atlas/methods/','全手法一覧 / All methods')+link('/numerical-methods-atlas/code-and-data/','コード・入力・検証 / Code, inputs and checks')+'</nav><!-- /public-resource-entry -->'
         new=new.replace('<main',entry+'<main',1)
     if new!=text:p.write_text(new)
 site_config=ATLAS/'site.json'

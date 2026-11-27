@@ -65,7 +65,7 @@ export function renderHomeBrowse(lang=currentLanguage(),{headingId}={}){
  const cards=[
   {id:'solutions',title:ja?'厳密解・参照解':'Exact and reference solutions',description:ja?'計算結果を照合する基準を探す。':'Find a standard for checking a computed result.',visual:'<span class="home-browse-formula" aria-hidden="true">u<sub>exact</sub><br>u<sub>ref</sub></span>'},
   {id:'gallery',title:ja?'テスト問題（名前と図）':'Test problems by name and figure',description:ja?'問題名と保存済みの図から選ぶ。':'Choose a problem by name or stored figure.',visual:'<img src="/numerical-methods-atlas/assets/field-taylor-green.png" width="1575" height="690" loading="lazy" alt="'+(ja?'保存済みTaylor–Green渦の速度・圧力場':'Stored Taylor–Green velocity and pressure fields')+'">'},
-  {id:'equations',title:ja?'方程式':'Equations',description:ja?'解きたい方程式から解説へ進む。':'Start with the equation you want to solve.',visual:'<span class="home-browse-formula" aria-hidden="true">F(u) = 0<br>∂<sub>t</sub>u = …</span>'},
+  {id:'equations',title:ja?'方程式・モデル一覧':'Equations and models',description:ja?'解きたい方程式から解説へ進む。':'Start with the equation you want to solve.',visual:'<span class="home-browse-formula" aria-hidden="true">F(u) = 0<br>∂<sub>t</sub>u = …</span>'},
  ];
  return `<nav class="page-width home-browse" aria-labelledby="${esc(headingId)}"><h2 id="${esc(headingId)}">${ja?'式や図から探す':'Browse by equations and figures'}</h2><ul class="home-browse-grid">${cards.map(card=>`<li><a class="home-browse-card" data-home-browse="${card.id}" href="/numerical-methods-atlas/${card.id}/?lang=${lang}"><span class="home-browse-visual">${card.visual}</span><span class="home-browse-copy"><strong>${esc(card.title)}</strong><span>${esc(card.description)}</span></span></a></li>`).join('')}</ul></nav>`;
 }

@@ -8,8 +8,8 @@ const read=path=>readFileSync(new URL(path,root),'utf8');
 test('the method index explains its code-reference role and links to learning in each language',()=>{
   const html=read('numerical-methods-atlas/methods/index.html');
   const copy={
-    ja:{title:'手法・コードの対応表',scope:['適用条件','関連コード','検証記録','公開状況'],learning:'分野別の全章目次',reason:'理論・導出'},
-    en:{title:'Methods and code reference',scope:['applicable conditions','related code','verification records','publication status'],learning:'Complete chapter index',reason:'theory and derivations'},
+    ja:{title:'全手法一覧',scope:['適用条件','関連コード','検証記録','公開状況'],learning:'分野別の全章目次',reason:'理論・導出'},
+    en:{title:'All methods',scope:['applicable conditions','related code','verification records','publication status'],learning:'Complete chapter index',reason:'theory and derivations'},
   };
   for(const [lang,text] of Object.entries(copy)){
     assert.ok(html.includes(`data-page-title-${lang}="${text.title} | `));
