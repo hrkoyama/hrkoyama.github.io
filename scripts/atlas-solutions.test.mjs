@@ -39,6 +39,19 @@ function concealedReferenceMarkup(html){
     match[1].toLowerCase()==='details'||/\shidden(?=\s|=|\/?>)/i.test(match[0].replace(/"[^"]*"|'[^']*'/g,'')));
 }
 function withoutProblemRoutes(html){
+  // Only the new, explicitly owned wrapper may surround optional problem
+  // routes. Any scientific text moved into it must still fail this check.
+  for(const detail of blocks(html,'data-comparison-detail').reverse()){
+    const opening=html.slice(detail.start,html.indexOf('>',detail.start)+1);
+    assert.match(opening,/^<details\b/);
+    assert.match(detail.attributes['data-comparison-detail'],/^solution-[a-z0-9-]+-(ja|en)$/);
+    assert.match(opening.replace(/"[^"]*"|'[^']*'/g,''),/\sopen(?=\s|>)/,'no-JavaScript related routes remain available');
+    const routes=blocks(detail.body,'data-problem-routes');
+    assert.equal(routes.length,1,'one existing related-problem block per disclosure');
+    const remaining=detail.body.slice(0,routes[0].start)+detail.body.slice(routes[0].end);
+    assert.match(remaining,/^<summary>(関連する問題の図・コードと検証状況|Related problem figures, code and validation status)<\/summary><div class="comparison-details-body"><\/div>$/,'the disclosure contains related routes only');
+    html=html.slice(0,detail.start)+html.slice(detail.end);
+  }
   for(const block of blocks(html,'data-problem-routes').reverse())html=html.slice(0,block.start)+html.slice(block.end);
   return html;
 }
@@ -47,10 +60,11 @@ import contextlib,hashlib,importlib.util,io,json,pathlib,shutil,sys,tempfile
 site=pathlib.Path.cwd()
 sys.path.insert(0,str(site/'scripts'))
 from atlas_problem_routes import load_problem_routes
+from atlas_problem_route_cards import render_problem_routes
 routes=load_problem_routes(site)
 spec=importlib.util.spec_from_file_location('solutions_builder',site/'scripts/build-atlas-solutions.py')
 module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
-inputs=['numerical-methods-atlas/assets/reference-solutions.json','numerical-methods-atlas/locales/messages.json','styles/atlas-solutions.css','styles/atlas-problem-routes.css','catalog/atlas-reference-supplements.json','catalog/atlas-reference-metadata.json']
+inputs=['numerical-methods-atlas/assets/reference-solutions.json','numerical-methods-atlas/locales/messages.json','styles/atlas-solutions.css','styles/atlas-problem-routes.css','styles/atlas-comparison-overview.css','frontend/atlas/comparison-overview.js','catalog/atlas-reference-supplements.json','catalog/atlas-reference-metadata.json']
 before={name:hashlib.sha256((site/name).read_bytes()).hexdigest() for name in inputs}
 with tempfile.TemporaryDirectory(prefix='atlas-solutions-fixture-') as temporary:
     root=pathlib.Path(temporary)
@@ -62,7 +76,8 @@ with tempfile.TemporaryDirectory(prefix='atlas-solutions-fixture-') as temporary
     with contextlib.redirect_stdout(io.StringIO()):module.build(root,problem_routes=routes)
     second={path.name:hashlib.sha256(path.read_bytes()).hexdigest() for path in output.iterdir()}
     after={name:hashlib.sha256((site/name).read_bytes()).hexdigest() for name in inputs}
-    print(json.dumps(dict(record=data,html=(output/'index.html').read_text(),markdown=(output/'index.md').read_text(),first=first,second=second,inputs_unchanged=before==after)))
+    expected_routes={language:{case['id']:hashlib.sha256(render_problem_routes(case.get('related_problems',[]),language,heading_level=3,limit=3).encode()).hexdigest() for case in data['cases']} for language in ['ja','en']}
+    print(json.dumps(dict(record=data,html=(output/'index.html').read_text(),markdown=(output/'index.md').read_text(),first=first,second=second,inputs_unchanged=before==after,expected_problem_routes_sha256=expected_routes)))
 `],{cwd:fileURLToPath(root),encoding:'utf8',maxBuffer:4*1024*1024}));
 
 test('the saved-solution index derives every existing case and source hash without changing scientific inputs',()=>{
@@ -157,6 +172,10 @@ test('each edition exposes all names, formulas and assumptions as visible static
   assert.equal(concealedReferenceMarkup('<p title="hidden units">visible</p>'),false);
   assert.equal(concealedReferenceMarkup('<p data-hidden="true">visible</p>'),false);
   for(const markup of ['<p hidden>text</p>','<p HIDDEN="until-found">text</p>','<input hidden/>','<p title="a > b" hidden>text</p>','<details><summary>name</summary>formula</details>'])assert.equal(concealedReferenceMarkup(markup),true,markup);
+  const optional='<details data-comparison-detail="solution-fixture-en" open><summary>Related problem figures, code and validation status</summary><div class="comparison-details-body"><section data-problem-routes>related routes</section></div></details>';
+  assert.equal(withoutProblemRoutes('<p>visible scientific condition</p>'+optional),'<p>visible scientific condition</p>');
+  assert.throws(()=>withoutProblemRoutes(optional.replace('<div class="comparison-details-body">','<div class="comparison-details-body"><p>hidden scientific condition</p>')));
+  assert.throws(()=>withoutProblemRoutes(optional.replace(' open>','>')));
   for(const language of ['ja','en']){
     const section=blocks(rendered.html,'data-site-language',language)[0]?.body;
     assert.ok(section);
@@ -169,6 +188,18 @@ test('each edition exposes all names, formulas and assumptions as visible static
       const body=label(original);
       assert.equal(card.attributes['data-solution-kind'],row.kind);
       assert.ok(body.includes(row.title[language])&&body.includes(row.formula)&&body.includes(row.assumptions[language]));
+      const disclosures=blocks(card.body,'data-comparison-detail');
+      assert.equal(disclosures.length,row.related_problems.length?1:0);
+      if(disclosures.length){
+        assert.equal(disclosures[0].attributes['data-comparison-detail'],`solution-${row.id}-${language}`);
+        const related=blocks(disclosures[0].body,'data-problem-routes')[0];
+        const raw=disclosures[0].body.slice(related.start,related.end);
+        assert.equal(createHash('sha256').update(raw).digest('hex'),rendered.expected_problem_routes_sha256[language][row.id],row.id+' the complete unchanged problem-route renderer output is retained');
+      }
+      if(row.sampling_note)assert.ok(body.includes(row.sampling_note[language]),row.id+' complete sampling note stays visible');
+      const sampling=row.reference_contract?.sampling;
+      const samplingText=typeof sampling==='string'?sampling:sampling?.[language];
+      if(samplingText)assert.ok(body.includes(samplingText),row.id+' complete reference sampling scope stays visible');
       assert.equal(concealedReferenceMarkup(original),false,'the original reference name, formula and conditions stay visible before optional related-problem disclosures');
     }
     const taylor=cards.find(card=>card.attributes['data-solution-id']==='taylor-green');

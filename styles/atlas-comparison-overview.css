@@ -1,0 +1,127 @@
+/* Comparison indexes share controls, while scientific text and images retain their styles. */
+@media screen {
+  main#main[data-comparison-overview] .comparison-details {
+    margin: .75rem 0;
+    padding: .5rem 0;
+    border-top: 1px solid var(--site-visual-rule, #d2d3c8);
+  }
+  main#main[data-comparison-overview] .comparison-details > summary {
+    min-height: 2.75rem;
+    align-content: center;
+    font-family: var(--site-visual-font-body, system-ui, sans-serif);
+    font-size: .875rem;
+    font-weight: 500;
+    line-height: 1.65;
+    color: var(--site-visual-link, #1c4168);
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: .2em;
+  }
+  main#main[data-comparison-overview] .comparison-details > summary:focus-visible {
+    outline: 2px solid var(--site-visual-accent, #386552);
+    outline-offset: 3px;
+  }
+  main#main[data-comparison-overview] .comparison-details-body {
+    margin-top: .75rem;
+    min-width: 0;
+  }
+  main#main[data-comparison-overview] .comparison-primary-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .25rem 1rem;
+    margin: .5rem 0;
+    padding: 0;
+  }
+  main#main[data-comparison-overview] .comparison-primary-links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    font-size: .875rem;
+    line-height: 1.6;
+    color: var(--site-visual-link, #1c4168);
+    text-decoration: underline;
+    text-underline-offset: .2em;
+    overflow-wrap: anywhere;
+  }
+  main#main[data-comparison-overview] .comparison-primary-links a[data-comparison-empty="true"] {
+    background: transparent;
+    border: 0;
+    padding-inline: 0;
+    color: var(--site-visual-muted, #59665e);
+    font-weight: 400;
+  }
+  main#main[data-comparison-overview="methods"] .method-list {
+    align-items: start;
+  }
+  main#main[data-comparison-overview="methods"] .method-map-overview {
+    margin: .75rem 0;
+  }
+  main#main[data-comparison-overview="methods"] .method-list .comparison-details {
+    margin-bottom: 0;
+  }
+  main#main[data-comparison-overview="equations"] .equation-model-inventory {
+    margin-top: 1.5rem;
+  }
+  main#main[data-comparison-overview="equations"] .comparison-index-choices {
+    border-block: 1px solid var(--site-visual-rule, #d2d3c8);
+    padding-block: .5rem;
+  }
+  main#main[data-comparison-overview="gallery"] .gallery-grid {
+    align-items: start;
+  }
+  main#main[data-comparison-overview="gallery"] .gallery-preview-details {
+    margin-bottom: 0;
+  }
+  main#main[data-comparison-overview] .comparison-solution-controls {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    gap: .75rem 1rem;
+    max-width: 42rem;
+    margin: 1rem 0;
+  }
+  main#main[data-comparison-overview] .comparison-solution-controls label {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    min-width: 0;
+    font-size: 1rem;
+  }
+  main#main[data-comparison-overview] :is(.method-filter-fields select, [data-comparison-solution-kind]) {
+    appearance: none;
+    min-height: 2.875rem;
+    min-width: 0;
+    max-width: 100%;
+    padding: .5rem 2.25rem .5rem .75rem;
+    border: 1px solid var(--site-visual-rule, #d2d3c8);
+    border-radius: 3px;
+    font: inherit;
+    font-size: 1rem;
+    color: var(--site-visual-ink, #25382f);
+    background-color: var(--site-visual-surface, #fffdf7);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='m4 6 4 4 4-4' fill='none' stroke='%231c4168' stroke-width='1.5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right .75rem center;
+    background-size: 1rem;
+  }
+  main#main[data-comparison-overview] [data-comparison-solution-count] {
+    margin: 0 0 .5rem;
+    font-size: .875rem;
+    line-height: 1.65;
+    color: var(--site-visual-muted, #59665e);
+  }
+  main#main[data-comparison-overview] [data-comparison-solution-kind]:focus-visible {
+    outline: 2px solid var(--site-visual-accent, #386552);
+    outline-offset: 3px;
+  }
+  @media (max-width: 600px) {
+    main#main[data-comparison-overview] .comparison-solution-controls {
+      grid-template-columns: minmax(0, 1fr);
+      gap: .5rem;
+    }
+    main#main[data-comparison-overview] [data-comparison-solution-count] {
+      margin: 0;
+    }
+  }
+}

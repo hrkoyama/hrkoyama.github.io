@@ -176,13 +176,19 @@ for lang in ['ja', 'en']:
         body += gallery_card_intro(x, lang)
         if example:
             body += '<p class="gallery-execution-badge">' + link(destination, '実行・検証例あり →' if ja else 'Run and validate →') + '</p>'
+        supplementary_previews = []
         for extra in extras:
             preview = extra.get('preview')
             shared_preview = preview is not None and preview['url'] == x['image']
             badge = ('実行・検証例あり →' if ja else 'Run and validate →') if shared_preview else ('補助実行例：' if ja else 'Supplementary run: ') + extra['title'][lang]
             body += '<p class="gallery-execution-badge gallery-supplemental-badge" data-supplemental-execution="' + extra['id'] + '">' + link(extra['url'][lang], badge) + '</p>'
             if preview and not shared_preview:
-                body += '<figure class="gallery-supplement-preview" data-supplemental-preview="' + esc(extra['id']) + '"><a href="' + esc(extra['url'][lang]) + '"><img src="' + esc(preview['url']) + '" alt="' + esc(preview['caption'][lang]) + '" width="' + str(preview['width']) + '" height="' + str(preview['height']) + '" loading="lazy" decoding="async"></a><figcaption>' + esc(preview['caption'][lang]) + '</figcaption></figure>'
+                supplementary_previews.append('<figure class="gallery-supplement-preview" data-supplemental-preview="' + esc(extra['id']) + '"><a href="' + esc(extra['url'][lang]) + '"><img src="' + esc(preview['url']) + '" alt="' + esc(preview['caption'][lang]) + '" width="' + str(preview['width']) + '" height="' + str(preview['height']) + '" loading="lazy" decoding="async"></a><figcaption>' + esc(preview['caption'][lang]) + '</figcaption></figure>')
+
+        if supplementary_previews:
+            label = ('補助図 ' + str(len(supplementary_previews)) + '件を開く' if ja else
+                     'Supplementary figures (' + str(len(supplementary_previews)) + ')')
+            body += '<details class="comparison-details gallery-preview-details" data-comparison-detail="gallery-' + x['id'] + '-' + lang + '" open><summary>' + label + '</summary><div class="comparison-details-body">' + ''.join(supplementary_previews) + '</div></details>'
 
         body += '</div></li>'
     body += '</ul><p class="gallery-empty" data-gallery-empty hidden>' + ('該当する問題がありません。検索語や分野を変えてください。' if ja else 'No matching problems. Try another query or domain.') + '</p><p>'
@@ -192,8 +198,10 @@ for lang in ['ja', 'en']:
 doc = '<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title data-page-title-ja="絵から探す：58のテスト計算 | 数値計算法アトラス" data-page-title-en="Browse 58 test problems by picture | Numerical Methods Atlas">絵から探す：58のテスト計算 | 数値計算法アトラス</title><meta name="description" content="数値計算法アトラス全58問題の画像一覧。波形、衝撃波、渦、重力、Poisson問題、時間積分、関数近似から解説へ。A visual index of all 58 numerical test problems."><link rel="canonical" href="' + ORIGIN + ROUTE + '">'
 for style in ['atlas-resources', 'atlas-gallery']:
     doc += '<link rel="stylesheet" href="/styles/' + style + '.css?v=' + sha(ROOT / 'styles' / (style + '.css'))[:12] + '">'
+doc += '<link rel="stylesheet" href="/styles/atlas-comparison-overview.css?v=' + sha(ROOT / 'styles/atlas-comparison-overview.css')[:12] + '">'
+doc += '<script type="module" src="/frontend/atlas/comparison-overview.js?v=' + sha(ROOT / 'frontend/atlas/comparison-overview.js')[:12] + '"></script>'
 doc=doc.replace('58',str(len(ids)))
-doc += '<script type="module" src="/atlas-gallery.mjs?v=' + sha(ROOT / 'atlas-gallery.mjs')[:12] + '"></script></head><body class="profile-page"><main id="main" class="profile-main atlas-resource-main atlas-gallery-main">' + ''.join(sections) + '</main></body></html>\n'
+doc += '<script type="module" src="/atlas-gallery.mjs?v=' + sha(ROOT / 'atlas-gallery.mjs')[:12] + '"></script></head><body class="profile-page" data-site-language-anchors="suffix"><main id="main" class="profile-main atlas-resource-main atlas-gallery-main" data-comparison-overview="gallery">' + ''.join(sections) + '</main></body></html>\n'
 (DEST / 'index.html').write_text(doc)
 (DEST / 'index.json').write_text(json.dumps({'schema_version': 1, 'url': ORIGIN + ROUTE, 'reviewed_on': mapping['reviewed_on'], 'scope': mapping['scope'], 'counts': {'test_problems': len(ids), 'runnable_problems': len(runnable_problem_ids), 'common_runnable_problems': len(runnable), 'supplemental_runnable_problems': len(supplemental_problem_ids), 'supplemental_case_count': len(supplemental_case_ids), 'supplemental_release_case_count': len(supplements), 'groups': dict(counts), 'visual_sources': dict(Counter(x['source_kind'] for x in items))}, 'items': items, 'source_sha256': receipts}, ensure_ascii=False, indent=2) + '\n')
 

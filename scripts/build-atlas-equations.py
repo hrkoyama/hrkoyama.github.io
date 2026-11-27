@@ -95,25 +95,30 @@ for lang in ['ja','en']:
     intro=(f'アトラスに収録中の全{len(records)}方程式・モデルを並べました。式の形から選び、解説、関連するテスト問題の図、実行コードへ進めます。' if ja else f'Browse all {len(records)} equation/model entries in the atlas. Recognize a formula and explore its explanation, related test-problem figures and execution code.')
     body+='<p class="intro">'+intro+'</p>'
     summary=(f'計算例あり{status_counts["local-example"]}項目・文献解説のみ{status_counts["reading"]}項目。モデルの種類数であり、表示する式の行数ではありません。' if ja else f'{status_counts["local-example"]} entries link to scoped local examples; {status_counts["reading"]} are literature-only. These count model entries, not displayed equation lines.')
-    body+='<p class="resource-summary">'+summary+'</p>'
     note=('式は代表形、または明記した模式形です。係数・単位・次元・構成則・境界条件は解説先で確認してください。「計算例あり」には縮約模型やFourier記号の検証も含みます。図と固定入力の条件の違いは各問題ページで確認できます。' if ja else 'Formulas are representative or explicitly schematic forms. Consult each chapter for coefficients, units, dimensions, closure and boundaries. Local examples can include reduced models and Fourier-symbol checks. Each problem page distinguishes saved-image conditions from fixed execution inputs.')
-    body+='<p>'+note+'</p><nav class="resource-nav">'
-    body+=link('/numerical-methods-atlas/?lang='+lang,'アトラスの冒頭' if ja else 'Atlas home')
-    body+=link('/numerical-methods-atlas/?lang='+lang+'#/coverage?kind=equation','収録台帳と数え方' if ja else 'Coverage inventory and counting rules')
-    body+=link('/numerical-methods-atlas/test-cases/?lang='+lang,'テスト計算の全体一覧' if ja else 'All test problems')+'</nav>'
-    body+='<nav class="resource-nav" aria-label="'+('実行例とモデルの一覧' if ja else 'Examples and model inventory')+'">'
+    body+='<p>'+note+'</p>'
+    body+='<nav class="resource-nav comparison-primary-links comparison-index-choices" aria-label="'+('実行例とモデルの一覧' if ja else 'Examples and model inventory')+'">'
     body+=link('#execution-formulas-'+lang,f'{len(execution_examples)}問題の式・実行へ' if ja else f'{len(execution_examples)} example formulas and runs')
     body+=link('#all-models-'+lang,f'全{len(records)}方程式・モデルへ' if ja else f'All {len(records)} equations and models')+'</nav>'
+    body+='<details class="comparison-details" data-comparison-detail="equations-scope-'+lang+'" open><summary>'+('収録範囲と関連一覧' if ja else 'Coverage and related indexes')+'</summary><div class="comparison-details-body">'
+    body+='<p class="resource-summary">'+summary+'</p><nav class="resource-nav">'
+    body+=link('/numerical-methods-atlas/?lang='+lang,'アトラスの冒頭' if ja else 'Atlas home')
+    body+=link('/numerical-methods-atlas/?lang='+lang+'#/coverage?kind=equation','収録台帳と数え方' if ja else 'Coverage inventory and counting rules')
+    body+=link('/numerical-methods-atlas/test-cases/?lang='+lang,'テスト計算の全体一覧' if ja else 'All test problems')+'</nav></div></details>'
+    body+='<details class="comparison-details comparison-execution-formulas" data-comparison-detail="execution-formulas-'+lang+'" open><summary>'+(
+        f'共通{len(execution_examples)}実行例の式と入力を見る' if ja else
+        f'Formulas and inputs for the common {len(execution_examples)} execution examples')+'</summary><div class="comparison-details-body">'
     body+=execution_shortcuts(lang)
+    body+='</div></details>'
     body+='<section class="equation-model-inventory" id="all-models-'+lang+'"><h2>'+(
         f'全{len(records)}方程式・モデルの解説を探す' if ja else f'Explore all {len(records)} equation/model explanations')+'</h2>'
-    body+='<nav class="resource-nav" aria-label="Equation groups">'
-    body+=''.join(link('#'+g['id']+'-'+lang,g[lang]+' ('+str(counts[g['id']])+')') for g in data['groups'])+'</nav>'
+    body+='<details class="comparison-details" data-comparison-detail="model-groups-'+lang+'" open><summary>'+('モデルの分野' if ja else 'Model groups')+'</summary><div class="comparison-details-body"><nav class="resource-nav" aria-label="Equation groups">'
+    body+=''.join(link('#'+g['id']+'-'+lang,g[lang]+' ('+str(counts[g['id']])+')') for g in data['groups'])+'</nav></div></details>'
     for group in data['groups']:
         group_rows=[x for x in records if x['group']==group['id']]
         body+='<section><h2 id="'+group['id']+'-'+lang+'">'+esc(group[lang])+' — '+str(len(group_rows))+'</h2>'
-        body+='<nav class="equation-jump-list" aria-label="'+esc(group[lang])+'">'
-        body+=''.join(link('#'+x['id']+'-'+lang,x['name'][lang]) for x in group_rows)+'</nav><div class="equation-index">'
+        body+='<details class="comparison-details" data-comparison-detail="model-list-'+group['id']+'-'+lang+'" open><summary>'+('この分野のモデル名一覧' if ja else 'Model names in this group')+' ('+str(len(group_rows))+')</summary><div class="comparison-details-body"><nav class="equation-jump-list" aria-label="'+esc(group[lang])+'">'
+        body+=''.join(link('#'+x['id']+'-'+lang,x['name'][lang]) for x in group_rows)+'</nav></div></details><div class="equation-index">'
         for x in group_rows:
             route=reading(x['chapter'],lang,x.get('section'))
             wide=' equation-entry-wide' if any(len(f)>95 for f in x['formula']) else ''
@@ -123,21 +128,26 @@ for lang in ['ja','en']:
             label=('限定した計算例あり' if x.get('execution_scope') else '計算例あり') if x['status']=='local-example' and ja else ('Scoped local example' if x['status']=='local-example' else ('文献解説のみ・専用ソルバーなし' if ja else 'Literature only / no dedicated solver'))
             body+='<p class="resource-status">'+label+'</p><div class="equation-preview">'+''.join(math['rendered'][x['id']])+'</div>'
             if wide:body+='<p class="equation-scroll-note">'+('長い数式は横にスクロールして読めます。' if ja else 'Scroll horizontally to read long equations.')+'</p>'
-            body+='<p>'+esc(x['note'][lang])+'</p>'+link(route,'このモデルの解説へ →' if ja else 'Read this model →')
+            body+='<p>'+esc(x['note'][lang])+'</p><nav class="comparison-primary-links">'+link(route,'このモデルの解説へ →' if ja else 'Read this model →')
             for chapter in x.get('related_chapters',[]):body+=' · '+link(reading(chapter,lang),'関連するテストの解説' if ja else 'Related test definitions')
+            body+='</nav>'
+            examples=related_examples(x['id'])
+            supplements=evidence['supplemental'][x['id']]
+            has_details=bool(x.get('execution_scope') or examples or supplements or problem_routes['equations'][x['id']])
+            if has_details:
+                body+='<details class="comparison-details" data-comparison-detail="model-'+x['id']+'-'+lang+'" open><summary>'+('条件・関連する問題と検証状況' if ja else 'Conditions, related problems and validation status')+'</summary><div class="comparison-details-body">'
             if x.get('execution_scope'):
                 body+='<p class="equation-execution-scope">'+esc(x['execution_scope'][lang])+'</p>'
-            examples=related_examples(x['id'])
             if examples:
                 assert x['status']=='local-example','Reading-only entries cannot gain executable claims'
                 body+='<div class="model-execution-links"><p>'+('このモデルに対応する固定入力・実行例' if ja else 'Fixed-input execution examples for this model')+'</p><ul>'
                 body+=''.join('<li>'+link(entry_url(e['id'],lang),e['execution']['name'][lang])+'</li>' for e in examples)+'</ul></div>'
-            supplements=evidence['supplemental'][x['id']]
             if supplements:
                 assert x['status']=='local-example'
                 body+='<div class="model-supplemental-links"><p>'+('共通22実行例とは別の、限定した補助実行例' if ja else 'Scoped supplemental runs, separate from the common 22 registry')+'</p><ul>'
                 body+=''.join('<li>'+link(e['url']+'?lang='+lang,e['title'][lang])+'</li>' for e in supplements)+'</ul></div>'
             body+=render_problem_routes(problem_routes['equations'][x['id']],lang,heading_level=4,limit=3)
+            if has_details:body+='</div></details>'
             body+='</article>'
         body+='</div></section>'
     body+='</section>'
@@ -153,9 +163,11 @@ head+='<link rel="stylesheet" href="/numerical-methods-atlas/vendor/katex.min.cs
 head+='<link rel="stylesheet" href="/styles/atlas-resources.css?v='+digest(ROOT/'styles/atlas-resources.css')+'">'
 head+='<link rel="stylesheet" href="/styles/atlas-purpose.css?v='+digest(ROOT/'styles/atlas-purpose.css')+'">'
 head+='<link rel="stylesheet" href="/styles/atlas-equations.css?v='+digest(ROOT/'styles/atlas-equations.css')+'">'
-head+='<link rel="stylesheet" href="/styles/atlas-problem-routes.css?v='+digest(ROOT/'styles/atlas-problem-routes.css')+'"></head>'
+head+='<link rel="stylesheet" href="/styles/atlas-problem-routes.css?v='+digest(ROOT/'styles/atlas-problem-routes.css')+'">'
+head+='<link rel="stylesheet" href="/styles/atlas-comparison-overview.css?v='+digest(ROOT/'styles/atlas-comparison-overview.css')+'">'
+head+='<script type="module" src="/frontend/atlas/comparison-overview.js?v='+digest(ROOT/'frontend/atlas/comparison-overview.js')+'"></script></head>'
 dest=ROOT/URL.lstrip('/');dest.mkdir(parents=True,exist_ok=True)
-(dest/'index.html').write_text(head+'<body class="profile-page" data-site-language-anchors="suffix"><main id="main" class="profile-main atlas-resource-main">'+''.join(sections)+'</main></body></html>\n')
+(dest/'index.html').write_text(head+'<body class="profile-page" data-site-language-anchors="suffix"><main id="main" class="profile-main atlas-resource-main" data-comparison-overview="equations">'+''.join(sections)+'</main></body></html>\n')
 public={**data,'url':ORIGIN+URL,'counts':{'total':len(records),'local_example':status_counts['local-example'],'reading_only':status_counts['reading'],'groups':dict(counts)},'formula_renderer':{'name':math['renderer'],'version':math['version']},'equations':[{**x,'reading':{lang:ORIGIN+reading(x['chapter'],lang,x.get('section')) for lang in ['ja','en']},'execution_examples':[{'id':e['id'],'name':e['execution']['name'],'entry':{lang:entry_url(e['id'],lang) for lang in ['ja','en']}} for e in related_examples(x['id'])],
         'supplemental_execution_examples':[{'id':e['id'],'name':e['title'],'entry':{lang:ORIGIN+e['url']+'?lang='+lang for lang in ['ja','en']},'code_urls':e['code_urls'],'test_urls':e['test_urls'],'verification':e['verification'],'results':e['results']} for e in evidence['supplemental'][x['id']]]} for x in records],
         'execution_example_count':len(execution_examples),

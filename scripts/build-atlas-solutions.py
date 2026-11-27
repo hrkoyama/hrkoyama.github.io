@@ -131,6 +131,8 @@ def section(data, language):
     body += ('次元は元データの定義に従います。有限次元の代数問題とODE・DAEには空間次元を割り当てません。Taylor–Greenは2次元の式ですが、既存の表示は y = π/4 のx方向断面です。' if ja else
              'Dimensions follow the source metadata. Finite-dimensional algebraic problems and ODE/DAE models have no assigned spatial dimension. Taylor–Green has a two-dimensional formula; the existing display is an x-slice at y = π/4.') + '</p></details>'
     body += '<div class="solutions-summary">' + ''.join('<span>' + escape(next(case['kind_label'][language] for case in data['cases'] if case['kind'] == kind)) + ' · ' + str(data['counts'].get(kind, 0)) + '</span>' for kind in KIND_NAMES if data['counts'].get(kind)) + '</div>'
+    body += '<!-- comparison-solution-controls:' + language + ' --><div class="comparison-solution-controls" data-comparison-solution-controls hidden><label>' + ('種類から選ぶ' if ja else 'Choose a reference type') + '<select data-comparison-solution-kind><option value="all">' + ('すべて' if ja else 'All') + ' (' + str(data['count']) + ')</option>'
+    body += ''.join('<option value="' + kind + '">' + escape(next(case['kind_label'][language] for case in data['cases'] if case['kind'] == kind)) + ' (' + str(data['counts'].get(kind, 0)) + ')</option>' for kind in KIND_NAMES if data['counts'].get(kind)) + '</select></label><p data-comparison-solution-count role="status" aria-live="polite">' + (str(data['count']) + ' / ' + str(data['count']) + '件を表示' if ja else 'Showing ' + str(data['count']) + ' of ' + str(data['count']) + ' references') + '</p></div><!-- /comparison-solution-controls:' + language + ' -->'
     body += '<div class="solutions-grid">'
     for case in data['cases']:
         body += '<article class="solution-card" id="solution-' + case['id'] + '-' + language + '" data-solution-id="' + case['id'] + '" data-solution-kind="' + case['kind'] + '">'
@@ -141,7 +143,7 @@ def section(data, language):
             body += '<p class="solution-sampling">' + escape(case['sampling_note'][language]) + '</p>'
         if reference_contract_text(case, language):
             body += '<p class="solution-sampling">'+escape(reference_contract_text(case, language))+'</p>'
-        body += '<nav class="solution-links" aria-label="' + escape(case['title'][language], quote=True) + '">'
+        body += '<nav class="solution-links comparison-primary-links" aria-label="' + escape(case['title'][language], quote=True) + '">'
         body += link(case['view'][language], '保存済みの解を表示 →' if ja else 'View the saved profile →')
         body += link(case['reading'][language], '定義・条件を読む' if ja else 'Read definitions and conditions') + '</nav>'
         if case.get('citations'):
@@ -149,7 +151,13 @@ def section(data, language):
             for citation in case['citations']:
                 body += '<li>'+escape(citation_role(citation, language))+': '+link(citation['url'], citation['title'])+(' — '+escape(citation.get('note', '')) if citation.get('note') else '')+'</li>'
             body += '</ul></details>'
-        body += render_problem_routes(case.get('related_problems', []), language, heading_level=3, limit=3) + '</article>'
+        related_problems = case.get('related_problems', [])
+        if related_problems:
+            body += '<details class="comparison-details" data-comparison-detail="solution-' + case['id'] + '-' + language + '" open><summary>' + ('関連する問題の図・コードと検証状況' if ja else 'Related problem figures, code and validation status') + '</summary><div class="comparison-details-body">'
+        body += render_problem_routes(related_problems, language, heading_level=3, limit=3)
+        if related_problems:
+            body += '</div></details>'
+        body += '</article>'
     body += '</div><footer class="solutions-footer">' + link('index.json', 'JSON') + link('index.md', 'Markdown')
     body += link('/' + SOURCE, '参照値の元データ' if ja else 'Source reference values')
     if data.get('metadata_source'):
@@ -192,11 +200,13 @@ def build(root=ROOT, problem_routes=None):
     data['problem_routes_source_sha256'] = problem_routes['source_sha256']
     css_hash = digest(root / 'styles/atlas-solutions.css')[:12]
     routes_css_hash = digest(root / 'styles/atlas-problem-routes.css')[:12]
+    comparison_css_hash = digest(root / 'styles/atlas-comparison-overview.css')[:12]
+    comparison_js_hash = digest(root / 'frontend/atlas/comparison-overview.js')[:12]
     head = '<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
     head += '<title data-page-title-ja="厳密解・参照解 | 数値計算法アトラス" data-page-title-en="Exact and reference solutions | Numerical Methods Atlas">厳密解・参照解 | 数値計算法アトラス</title>'
     head += '<meta name="description" content="保存済みの解析・半解析・製造解と有限格子数値参照を、式・適用条件・限界から選ぶ一覧。Analytic, semi-analytic, manufactured and finite-grid numerical references, with assumptions and limits.">'
-    head += '<link rel="canonical" href="' + ORIGIN + ROUTE + '"><link rel="stylesheet" href="/styles/atlas-solutions.css?v=' + css_hash + '"><link rel="stylesheet" href="/styles/atlas-problem-routes.css?v=' + routes_css_hash + '"></head>'
-    document = head + '<body class="profile-page atlas-solutions" data-site-language-anchors="suffix"><main id="main" class="solutions-index">' + ''.join(section(data, language) for language in ['ja', 'en']) + '</main></body></html>\n'
+    head += '<link rel="canonical" href="' + ORIGIN + ROUTE + '"><link rel="stylesheet" href="/styles/atlas-solutions.css?v=' + css_hash + '"><link rel="stylesheet" href="/styles/atlas-problem-routes.css?v=' + routes_css_hash + '"><link rel="stylesheet" href="/styles/atlas-comparison-overview.css?v=' + comparison_css_hash + '"><script type="module" src="/frontend/atlas/comparison-overview.js?v=' + comparison_js_hash + '"></script></head>'
+    document = head + '<body class="profile-page atlas-solutions" data-site-language-anchors="suffix"><main id="main" class="solutions-index" data-comparison-overview="solutions">' + ''.join(section(data, language) for language in ['ja', 'en']) + '</main></body></html>\n'
     directory = root / ROUTE.strip('/')
     directory.mkdir(parents=True, exist_ok=True)
     (directory / 'index.html').write_text(document)

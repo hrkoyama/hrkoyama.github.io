@@ -282,19 +282,60 @@ def method_filter_controls(lang):
     body+='<div><label for="method-status-'+lang+'">'+('状態' if ja else 'Status')+'</label><select data-method-status id="method-status-'+lang+'">'
     body+=''.join('<option value="'+key+'">'+esc(labels[key][0 if ja else 1])+' ('+str(counts[key])+')</option>' for key in labels)+'</select></div>'
     body+='<button type="button" data-method-reset>'+('絞り込みを解除' if ja else 'Clear filters')+'</button></div>'
+    body+='<details class="comparison-details method-filter-instructions" data-comparison-detail open><summary>'+('検索の使い方' if ja else 'How to use the filters')+'</summary>'
     body+='<p id="method-filter-hint-'+lang+'" class="method-filter-hint">'+('日英の名称・別名・分野・説明を検索します。複数語はすべて含む項目を表示します。' if ja else 'Search names, aliases, domains and summaries in either language. Every word must match.')+'</p>'
     body+='<p class="method-filter-hint">'+('条件はこのタブ内で保持し、言語を切り替えても引き継ぎます。検索語はブラウザ内で処理します。' if ja else 'Filters stay in this tab across language changes. Search terms are processed in your browser.')+'</p>'
+    body+='</details>'
     body+='<p class="method-filter-count" data-method-count role="status" aria-live="polite" aria-atomic="true">'+(str(len(METHODS))+' / '+str(len(METHODS))+'項目を表示' if ja else 'Showing '+str(len(METHODS))+' of '+str(len(METHODS))+' entries')+'</p></form>'
     body+='<noscript><p>'+('この環境では全件を表示しています。ブラウザのページ内検索でも手法名を探せます。' if ja else 'All entries are shown here. You can also use your browser’s Find in page to locate a method.')+'</p></noscript>'
     return body
+
+
+def method_map_summary(method,lang):
+    """Present the exact definition before the existing release-bound scopes."""
+    definition,scopes=method_intro_parts(method)[lang]
+    intro='<p class="comparison-definition">'+esc(definition)+'</p>'
+    if not scopes:return intro,''
+    title='追加実行例と確認範囲' if lang=='ja' else 'Additional executions and checked scope'
+    details='<details class="comparison-details method-map-summary" data-comparison-detail open><summary>'+title+'</summary>'
+    details+=''.join('<p>'+esc(scope)+'</p>' for scope in scopes)+'</details>'
+    return intro,details
+
+
+def method_map_route_links(route,lang,base):
+    """Keep all destinations; known empty picture/equation lists are plain links."""
+    links=render_method_route_links(route,lang,base=base)
+    opening='<nav class="method-route-links"'
+    assert links.startswith(opening)
+    links=links.replace(opening,'<nav class="method-route-links comparison-primary-links"',1)
+    for key in ('equations','problems'):
+        if not route.get(key,[]):
+            marker='data-method-route-link="'+key+'"'
+            assert links.count(marker)==1
+            links=links.replace(marker,marker+' data-comparison-empty="true"',1)
+    return links
+
+
+def render_method_map_row(method,lang):
+    """The comparison index changes layout, never its scientific record."""
+    ja=lang=='ja'
+    badge=('<span class="method-curated">'+('条件・文献を個別整理' if ja else 'Conditions and sources curated')+'</span>') if method.get('method_review') else ''
+    intro,details=method_map_summary(method,lang)
+    body='<li data-method-id="'+method['id']+'" data-status="'+method['status']+'" data-search="'+esc(method_search_text(method),quote=True)+'">'+link(method['id']+'/',method['name'][lang])+'<br><span class="resource-status">'+status(method,lang)+'</span>'+badge+intro
+    body+=method_map_route_links(METHOD_ROUTES['methods'][method['id']],lang,base=ORIGIN+'/numerical-methods-atlas/methods/'+method['id']+'/?lang='+lang)
+    return body+details+'</li>'
+
 
 sections=[]
 for lang in ['ja','en']:
     ja=lang=='ja'
     intro=(f'手法名ごとに、適用条件、関連コード、検証記録、公開状況を確認する対応表です。全{len(METHODS)}項目を、状態と日英のキーワードで探せます。教育用例・解説のみ・収録予定を区別して表示します。' if ja else f'Look up each named method’s applicable conditions, related code, verification records and publication status. Search {len(METHODS)} entries by status and English or Japanese keywords. Educational examples, reading-only entries and planned coverage remain distinct.')
-    body='<section data-method-map data-site-language="'+lang+'" lang="'+lang+'"><p class="eyebrow">NUMERICAL METHODS / OPEN RESEARCH RESOURCES</p><h1>'+('手法・コードの対応表' if ja else 'Methods and code reference')+'</h1><p class="intro resource-lead">'+intro+'</p>'
+    definition,divider,guidance=intro.partition('。' if ja else '. ')
+    assert divider and guidance
+    body='<section data-method-map data-site-language="'+lang+'" lang="'+lang+'"><p class="eyebrow">NUMERICAL METHODS / OPEN RESEARCH RESOURCES</p><h1>'+('手法・コードの対応表' if ja else 'Methods and code reference')+'</h1><p class="intro resource-lead">'+definition+('。' if ja else '.')+'</p>'
+    body+='<details class="comparison-details method-map-overview" data-comparison-detail open><summary>'+('分野・一覧の使い方' if ja else 'Groups and how to use this reference')+'</summary>'
+    body+='<p class="method-map-guidance">'+guidance+'</p>'
     body+='<p class="method-reading-entry">'+('理論・導出の解説を探すときは、' if ja else 'Find explanations of theory and derivations in the ')+link(f'/numerical-methods-atlas/{lang}/read/',READING_TITLES[lang])+('へ。読む順番は' if ja else '. For a suggested reading order, use the ')+link(f'/numerical-methods-atlas/explore/?lang={lang}','学習ガイド' if ja else 'learning guide')+('で選べます。' if ja else '.')+'</p>'+nav(lang)
-    body+=method_filter_controls(lang)
     body+='<details class="method-map-about"><summary>'+('一覧の範囲・状態の説明' if ja else 'Scope and status definitions')+'</summary>'
     body+='<p class="resource-summary">'+(f'既存{existing_count}項目のうち教育用例{example_count}・解説のみ{reading_count}、拡張候補{planned_count}。教育用例は完成した汎用ソルバーの数ではありません。公開コード配布版の既存検査は{verification["passed"]}件通過・{verification["skipped"]}件対象外です。' if ja else f'{existing_count} existing entries: {example_count} with scoped educational examples and {reading_count} reading-only. Another {planned_count} are development candidates. These are not counts of complete production solvers. The code edition passes {verification["passed"]} existing checks, with {verification["skipped"]} inapplicable cases skipped.')+'</p>'
     body+='<p>'+('この対応表は関連コードと検証範囲を確認するために拡充しています。未収録の分野もあり、すべての手法や原論文を網羅するものではありません。' if ja else 'This reference is being expanded to connect methods with related code and verification scope. Coverage has gaps and does not exhaust every method or original paper.')+'</p>'
@@ -304,22 +345,24 @@ for lang in ['ja','en']:
     if REVIEWED:
         body+='<details class="reviewed-methods" id="reviewed-'+lang+'"><summary>'+('主要24手法：条件・制約・一次文献を個別整理' if ja else '24 priority methods: curated conditions, limits and primary sources')+'</summary><p>'+('解く問題、採用形、使える条件・避ける条件、単位と境界、既存の確認範囲を同じ順で読めます。文献を整理した状態と、専用コードが実装・検証された状態は別です。' if ja else 'Read the problem, adopted formulation, suitable and unsuitable conditions, units, boundaries and existing checks in a common order. Source curation and a numerically verified dedicated implementation are separate states.')+'</p><p>'+link('reviewed.json','主要24手法 / JSON' if ja else '24 reviewed records / JSON')+'</p><ul class="reviewed-links">'+''.join('<li>'+link(x['id']+'/?lang='+lang,x['name'][lang])+'</li>' for x in REVIEWED)+'</ul></details>'
     body+='<nav class="resource-nav method-group-nav" aria-label="'+('手法の分野' if ja else 'Method groups')+'">'+''.join('<a data-method-group-link="'+g['id']+'" href="#'+g['id']+'-'+lang+'">'+esc(g[lang])+'</a>' for g in DATA['groups'])+'</nav>'
+    body+='</details>'
+    body+=method_filter_controls(lang)
     body+='<p class="method-filter-empty" data-method-empty hidden>'+('該当する手法がありません。キーワードや状態を変えるか、絞り込みを解除してください。' if ja else 'No methods match. Change the keywords or status, or clear the filters.')+'</p>'
     for group in DATA['groups']:
         rows=[x for x in METHODS if x['group']['id']==group['id']]
         if not rows:continue
         body+='<section data-method-group="'+group['id']+'" id="'+group['id']+'-'+lang+'"><h2>'+esc(group[lang])+' — <span data-method-group-count>'+str(len(rows))+'</span></h2><ul class="method-list">'
         for x in rows:
-            badge=('<span class="method-curated">'+('条件・文献を個別整理' if ja else 'Conditions and sources curated')+'</span>') if x.get('method_review') else ''
-            body+='<li data-method-id="'+x['id']+'" data-status="'+x['status']+'" data-search="'+esc(method_search_text(x),quote=True)+'">'+link(x['id']+'/',x['name'][lang])+'<br><span class="resource-status">'+status(x,lang)+'</span>'+badge+'<p>'+esc(x['summary'][lang])+'</p>'
-            body+=render_method_route_links(METHOD_ROUTES['methods'][x['id']],lang,base=ORIGIN+'/numerical-methods-atlas/methods/'+x['id']+'/?lang='+lang)+'</li>'
+            body+=render_method_map_row(x,lang)
         body+='</ul></section>'
     body+='<p class="method-navigation-downloads">'+link('index.json','手法台帳 / JSON' if ja else 'Method registry / JSON')+' · '+link('navigation.json','問題・式・参照の対応 / JSON' if ja else 'Problem/evidence navigation / JSON')+'</p>'
     body+='</section>';sections.append(body)
 method_routes_head='<link rel="stylesheet" href="/styles/atlas-method-routes.css?v='+hashlib.sha256((ROOT/'styles/atlas-method-routes.css').read_bytes()).hexdigest()[:12]+'">'
 map_head='<link rel="stylesheet" href="/styles/atlas-methods.css?v='+hashlib.sha256((ROOT/'styles/atlas-methods.css').read_bytes()).hexdigest()[:12]+'"><script type="module" src="/atlas-methods.mjs?v='+hashlib.sha256((ROOT/'atlas-methods.mjs').read_bytes()).hexdigest()[:12]+'"></script>'+method_routes_head
+map_head+='<link rel="stylesheet" href="/styles/atlas-comparison-overview.css?v='+hashlib.sha256((ROOT/'styles/atlas-comparison-overview.css').read_bytes()).hexdigest()[:12]+'"><script type="module" src="/frontend/atlas/comparison-overview.js?v='+hashlib.sha256((ROOT/'frontend/atlas/comparison-overview.js').read_bytes()).hexdigest()[:12]+'"></script>'
 map_page=page('手法・コードの対応表','Methods and code reference','/numerical-methods-atlas/methods/',''.join(sections),extra_head=map_head)
 map_page=map_page.replace('<body class="profile-page">','<body class="profile-page" data-site-language-anchors="suffix">',1)
+map_page=map_page.replace('<main class="profile-main atlas-resource-main" id="main">','<main class="profile-main atlas-resource-main" id="main" data-comparison-overview="methods">',1)
 write('/numerical-methods-atlas/methods/index.html',map_page)
 published={**DATA,'methods':[public_record(x) for x in METHODS],'problem_navigation_source_sha256':METHOD_ROUTES['source_sha256'],'code_release':{'download':ORIGIN+CODE+archive,'manifest':ORIGIN+CODE+'source-manifest.json','verification':ORIGIN+CODE+'verification.json','sha256':archive_hash}}
 validate_public_methods(ROOT,published['methods'])

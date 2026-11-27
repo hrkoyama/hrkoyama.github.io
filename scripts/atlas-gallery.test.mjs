@@ -11,6 +11,7 @@ const bytes = p => readFileSync(new URL(p, root));
 const read = p => bytes(p).toString();
 const json = p => JSON.parse(read(p));
 const digest = p => createHash('sha256').update(bytes(p)).digest('hex');
+const escape = value => String(value).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#x27;');
 const inventory = json('numerical-methods-atlas/test-cases/index.json');
 const gallery = json('numerical-methods-atlas/gallery/index.json');
 const html = read('numerical-methods-atlas/gallery/index.html');
@@ -96,7 +97,7 @@ test('six particle/transport checks retain all five historical images and add on
  assert.equal(gallery.counts.runnable_problems,runnableProblemCount);
 });
 
-test('optional navigation, domain buttons and image policies start collapsed while problem names and primary actions precede supplements', () => {
+test('index controls start collapsed while primary actions stay visible and auxiliary previews progressively disclose', () => {
   const protectedFiles = ['preview-manifest.json','calculations.json','verification.json'].map(name => 'numerical-methods-atlas/gallery/'+name).concat('catalog/atlas-gallery.json');
   const before = protectedFiles.map(digest);
   // Execute only the HTML/index builder with filesystem writes intercepted.
@@ -125,7 +126,9 @@ print(json.dumps({'html': writes['numerical-methods-atlas/gallery/index.html'], 
   assert.equal(sections.length,2);
   for (const [index,match] of sections.entries()) {
     const section = match[1], ja = index === 0;
-    const disclosures = [...section.matchAll(/<details\b([^>]*)>([\s\S]*?)<\/details>/g)];
+    const allDisclosures = [...section.matchAll(/<details\b([^>]*)>([\s\S]*?)<\/details>/g)];
+    const disclosures = allDisclosures.filter(row => !/\bdata-comparison-detail=/.test(row[1]));
+    const previewDisclosures = allDisclosures.filter(row => /\bdata-comparison-detail=/.test(row[1]));
     assert.equal(disclosures.length,3);
     assert.ok(disclosures.every(row => !/\bopen(?:\s|=|$)/.test(row[1])),'all native disclosures are closed by default');
     assert.ok(section.includes('<nav class="resource-nav gallery-navigation"'));
@@ -139,10 +142,32 @@ print(json.dumps({'html': writes['numerical-methods-atlas/gallery/index.html'], 
     assert.equal((disclosures[2][2].match(/class="gallery-note"/g)||[]).length,3);
     assert.equal((disclosures[2][2].match(/class="gallery-availability-note"/g)||[]).length,1,'the existing runnable-count explanation is retained in the help disclosure');
     assert.ok(disclosures[2][2].includes(String(runnableProblemCount)));
+    const previewItems = gallery.items.filter(item => item.supplemental_execution_entries.some(entry => entry.preview && entry.preview.url !== item.image));
+    assert.equal(previewDisclosures.length,previewItems.length,'only cards with non-shared auxiliary figures get a disclosure');
+    const lang=ja?'ja':'en';
+    for(const item of previewItems){
+      const previews=item.supplemental_execution_entries.filter(entry => entry.preview && entry.preview.url !== item.image);
+      const disclosure=previewDisclosures.find(row => row[1].includes(`data-comparison-detail="gallery-${item.id}-${lang}"`));
+      assert.ok(disclosure,item.id+' owns its auxiliary figures');
+      assert.ok(/\bopen(?:\s|=|$)/.test(disclosure[1]),'no-JavaScript readers retain the complete figures');
+      const heading=ja?`補助図 ${previews.length}件を開く`:`Supplementary figures (${previews.length})`;
+      assert.ok(disclosure[2].startsWith(`<summary>${heading}</summary>`));
+      assert.equal((disclosure[2].match(/data-supplemental-preview=/g)||[]).length,previews.length);
+      for(const entry of previews){
+        assert.ok(disclosure[2].includes(`data-supplemental-preview="${entry.id}"`));
+        assert.ok(disclosure[2].includes(`href="${escape(entry.url[lang])}"`));
+        assert.ok(disclosure[2].includes(`src="${escape(entry.preview.url)}"`));
+        assert.ok(disclosure[2].includes(`<figcaption>${escape(entry.preview.caption[lang])}</figcaption>`));
+      }
+    }
     const visible = section.replace(/<details\b[^>]*>[\s\S]*?<\/details>/g,'');
     for (const selector of ['type="search"','data-gallery-reset','data-gallery-runnable','data-gallery-count','class="gallery-grid"']) assert.ok(visible.includes(selector),selector+' is visible without expanding optional controls');
     assert.ok(!visible.includes('data-gallery-group='));
     for (const tile of section.match(/<li class="gallery-tile"[\s\S]*?<\/li>/g)||[]) {
+      const overview=tile.replace(/<details\b[^>]*>[\s\S]*?<\/details>/g,'');
+      assert.ok(overview.includes('class="gallery-image-link"'),'the primary problem image stays visible');
+      assert.ok(overview.includes('<h2>')&&overview.includes('class="gallery-card-links"'),'the problem name and main destinations stay visible');
+      assert.equal((overview.match(/data-supplemental-execution=/g)||[]).length,(tile.match(/data-supplemental-execution=/g)||[]).length,'all supplementary run badges stay outside auxiliary-figure disclosures');
       const supplement=tile.indexOf('data-supplemental-execution=');
       if(supplement<0)continue;
       assert.ok(tile.indexOf('<h2>')<supplement,'the problem title precedes supplementary runs');
