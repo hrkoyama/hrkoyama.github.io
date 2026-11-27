@@ -1,8 +1,8 @@
 Introduce and share the Numerical Methods Atlas
 
-A bilingual atlas for choosing numerical methods and checking calculations. Follow assumptions and original papers to public code, fixed inputs and reference comparisons for 22 representative problems.
+NaN is a numerical test-problem library. Inspect equations, conditions, figures and references; run public code with fixed inputs for 22 representative problems and check results against the same published criteria.
 
-A numerical-computation resource for graduate students, researchers and the AI assistants supporting their research and implementation. Find methods through words, formulas or pictures; examine assumptions and original papers; then follow fixed inputs and public code to reference values and tolerances for 22 representative problems. Analytic solutions, independent references and higher-resolution numerical comparisons are distinguished, alongside scoped educational examples, reading-only material and planned coverage.
+A bilingual numerical test-problem library where people can inspect the evidence and AI agents can run and verify code under the same published conditions. Follow equations, assumptions, figures, original papers, reference solutions, errors and residuals to see what was checked and within which limits. For 22 representative problems, public code, fixed inputs, execution steps, reference values, tolerances and acceptance criteria support result comparisons. Analytic solutions, independent references and higher-resolution numerical comparisons remain distinct, alongside educational examples, reading-only material and planned coverage.
 
 https://hrkoyama.github.io/numerical-methods-atlas/?lang=en
 
