@@ -2,7 +2,7 @@
   "$schema": "./schemas/atlas-identities.schema.json",
   "schema_version": 1,
   "namespace": "NMA",
-  "scope": "atlas-current",
+  "scope":  "atlas-current",
   "revision_policy": "hex-min2-no-wrap-v1",
   "allocation": {
     "P": 175,
