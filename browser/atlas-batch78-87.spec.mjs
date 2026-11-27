@@ -117,6 +117,13 @@ test('three new groups render their own figures, code and reference routes',asyn
   const code=details.locator(`a[href="${release.base}run.py"]`);await expect(code).toBeVisible();
   const codeURL=new URL(await code.getAttribute('href'));expect(codeURL.origin).toBe(publicOrigin);
   expect((await page.request.head(codeURL.pathname)).ok()).toBe(true);
+  // Open the intentionally closed auxiliary resources before checking its reference.
+  const resources=page.locator(`section[data-site-language="${language}"] [data-validation-case="${id}"] > details.execution-resource-details`);
+  await expect(resources).toHaveCount(1);expect(await resources.evaluate(node=>node.open)).toBe(false);
+  const resourcesSummary=resources.locator(':scope > summary');
+  await expect(resourcesSummary).toHaveCount(1);await expect(resourcesSummary).toBeVisible();
+  await resourcesSummary.focus();await expect(resourcesSummary).toBeFocused();
+  await resourcesSummary.press('Enter');await expect(resources).toHaveAttribute('open','');
   const reference=page.locator(`[data-execution-reference-id="${id}"] [data-execution-reference-link]:visible`);
   await expect(reference).toHaveCount(1);const referenceURL=new URL(await reference.getAttribute('href'),page.url());
   expect(referenceURL.pathname).toBe('/numerical-methods-atlas/solutions/');expect(referenceURL.searchParams.get('lang')).toBe(language);expect(referenceURL.hash).toBe(`#solution-${id}-${language}`);
