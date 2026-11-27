@@ -1,5 +1,5 @@
 // Generated from frontend/search/home-search.js by scripts/search_assets.py. Edit the source template.
-import {atlasSearch} from '../search/engine.mjs?v=d2a160d9e833';
+import {atlasSearch} from '../search/engine.mjs?v=92d6becd8046';
 import {currentLanguage} from './i18n.js';
 import {readingURL} from './reading-urls.js';
 import {appendMethodCard,tokenIncludes} from '../search/method-search.mjs?v=4e232938761d';
@@ -68,7 +68,7 @@ export function homeSearchPage({compact=false,staticMode=false}={}){
 }
 let indexPromise;
 function loadIndex(){
- if(!indexPromise)indexPromise=fetch(new URL('../search/atlas-query-index.json?v=8db9a52f6f20',import.meta.url)).then(r=>{if(!r.ok)throw Error('Search index unavailable');return r.json();}).catch(error=>{indexPromise=null;throw error;});
+ if(!indexPromise)indexPromise=fetch(new URL('../search/atlas-query-index.json?v=e2aea1bccc88',import.meta.url)).then(r=>{if(!r.ok)throw Error('Search index unavailable');return r.json();}).catch(error=>{indexPromise=null;throw error;});
  return indexPromise;
 }
 export function wireHomeSearch(){

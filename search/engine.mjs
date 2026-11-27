@@ -36,6 +36,7 @@ export function atlasSearch(input){
   const searchable=typeof search==='string'?search:Object.values(search).join(' ');
   return [{id:entry.id,url,
    title:entry.title.ja||entry.title.en,titleEn:entry.title.en||entry.title.ja,
+   ...(entry.title_aliases?{title_aliases:entry.title_aliases}:{}),
    text:body,search_text:[searchable,...(entry.keywords||[])].join(' '),
    headings:[...(entry.headings?.ja||[]),...(entry.headings?.en||[])].map(h=>h.title).join(' '),
    lang:entry.title.ja&&entry.title.en?'both':entry.title.ja?'ja':'en',
@@ -48,7 +49,7 @@ export function atlasSearch(input){
 }
 export function makeSearch(documents) {
   const entries = documents.filter(doc => doc && typeof doc.text === 'string' && safePath(doc.url)).map(doc => ({
-    doc, title: normalize(doc.title + ' ' + (doc.titleEn || '')),
+    doc, title: normalize(doc.title + ' ' + (doc.titleEn || '') + ' ' + (Array.isArray(doc.title_aliases)?doc.title_aliases.filter(value=>typeof value==='string').join(' '):'')),
     text: searchVocabulary(doc.search_text||doc.text), headings: normalize(doc.headings || ''), category: normalize(doc.categoryText || ''),
     family: safePath(doc.url).replace(/\/(ja|en)\//, '/')
   }));
