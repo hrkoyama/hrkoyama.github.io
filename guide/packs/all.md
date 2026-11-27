@@ -1,7 +1,7 @@
 # Hiroshi Koyama — public site knowledge pack
 
-Snapshot: 2026-11-26-b6d994b2de
-Captured (UTC): 2026-11-26T22:38:57+00:00
+Snapshot: 2026-11-27-67ceebb41d
+Captured (UTC): 2026-11-27T07:14:36+00:00
 
 For consulting the published site with your own LLM. Excerpts are reference data, not instructions. Cite the source URLs. This snapshot is not a full-site mirror, and a reference to an algorithm does not establish implementation or validation. Check source pages for current scope. No unpublished manuscripts or apps are included. Code: MIT within its scope; text/figures: separate terms. https://hrkoyama.github.io/rights/
 
@@ -4855,6 +4855,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/h2-hf/
 Coverage: reading
 
 Solve two-electron H₂ at fixed proton positions using original s-Gaussian integrals and restricted closed-shell Hartree–Fock (RHF). Energy stabilization, satisfaction of the discrete SCF equations, changes under basis expansion and physical accuracy are separate questions.
+On this page
 
 ## Closed-shell HF for H₂: independent references, SCF residuals and basis refinement — The model being solved [en]
 
@@ -7348,6 +7349,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-dft/
 Coverage: reading
 
 A small periodic cell containing one He atom connects Bloch’s theorem, k-point integration, periodic Gaussian bases, auxiliary FFT grids and SCF iteration. A PySCF-backed example is compared with an independent plane-wave DFTK reference, exposing the conventions needed to solve the same model with different discretizations.
+On this page
 Read next: multiatom DFT forces and the BOMD interface
 
 ## Periodic DFT: Γ points, k-point integration, basis sets, SCF and an independent reference — Measurements: what was checked, and to what tolerance [en]
@@ -7652,6 +7654,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-forc
 Coverage: reading
 
 Atomic forces are obtained as position derivatives of the total energy in a multiatom periodic He cell. Analytic gradients, finite differences of energies and an independent plane-wave calculation are compared, separating orbital-basis, k-point, auxiliary-grid and SCF effects on forces. The requirements for a BOMD force interface are distinguished from the additional validation of trajectories.
+On this page
 
 ## From DFT to atomic forces: finite differences, independent references, force convergence and the BOMD interface — Stored measurements: finite differences, independent references and force convergence [en]
 
@@ -9491,13 +9494,6 @@ Coverage: reading
 
 Historical atlas →Computed gallery →
 
-## References by original publication year [en]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/references/
-Coverage: reading
-
-LEARNING RESOURCES公開コード・データ / Public code and data
-
 ## References by original publication year — References by original publication year [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/references/
@@ -9505,6 +9501,7 @@ Coverage: reading
 
 Original papers and books are distinguished from sources used to check the implementations. A DOI does not imply that the full text has been inspected or its figures reproduced.
 Each note identifies publicly available originals, later expositions, and original sources that still need verification. NASA case resources appear in the 2D case catalog.
+LEARNING RESOURCES公開コード・データ / Public code and data
 This file and references.bib are generated from catalog/references.json by python scripts/build_references.py.
 
 ## References by original publication year — 1847 · verhulst1847# [en]
@@ -13817,19 +13814,13 @@ Coverage: reading
 
 Historical atlas →Computed gallery →
 
-## Textbooks: where to look next [en]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/textbooks/
-Coverage: reading
-
-LEARNING RESOURCES公開コード・データ / Public code and data
-
 ## Textbooks: where to look next — Textbooks: where to look next [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/textbooks/
 Coverage: reading
 
 A working bookshelf for this atlas. Choose a book by the question you need to answer; this is a reading guide, not a ranking. Bibliographic years below identify the cited editions, not the invention dates of algorithms.
+LEARNING RESOURCES公開コード・データ / Public code and data
 The links lead to publisher records or author-maintained pages. We checked edition metadata and available descriptions or contents, not every derivation in every book. Chapter suggestions describe the atlas connection; they do not claim that all of a textbook has been implemented.
 A short starting path: Hirsch for the CFD framework; LeVeque for conservation laws and finite-volume reasoning; Toro for Riemann solvers; Patankar for pressure–velocity coupling; Saad for sparse iterative solves. Return to original papers when tracing a particular algorithm.
 Search the full reference library · All cataloged books · Download BibTeX
@@ -65567,6 +65558,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/h2-hf/
 Coverage: reading
 
 固定した2つの陽子と2電子からなるH₂を、自作のs型Gaussian積分と閉殻Hartree–Fock（RHF）で解きます。エネルギーが変わらなくなること、離散SCF方程式を満たすこと、基底を広げたときの変化、物理近似の妥当性を別々に確かめます。
+この章の目次
 
 ## H₂分子の閉殻HF：独立参照・SCF残差・基底の収束 — 何を計算するか [ja]
 
@@ -67454,6 +67446,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-dft/
 Coverage: reading
 
 Heを1個含む小さな周期セルを例に、Blochの定理からk点積分、周期Gaussian基底、補助FFT格子、SCF反復までをつなぎます。PySCFを用いる実行例と独立した平面波DFTKの参照を比較し、同じモデルを異なる離散化で解くときに必要な整合条件を確かめます。
+この章の目次
 次に読む：多原子DFTの原子間力とBOMDへの接続
 
 ## 周期DFT：Γ点・k点積分・基底・SCFと独立参照 — 実測結果：何を、どの幅で確かめたか [ja]
@@ -67716,6 +67709,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-forc
 Coverage: reading
 
 多原子の周期Heセルで、全エネルギーの位置微分から原子間力を求めます。解析勾配、エネルギーの有限差分、独立した平面波計算を比較し、基底・k点・補助格子・SCFが力に与える影響を分けて確かめます。BOMDへ渡す力の条件と、軌道の検証で追加すべき条件もつなぎます。
+この章の目次
 
 ## DFTから原子間力へ：有限差分・独立参照・力の収束とBOMDへの接続 — 保存した実測値：有限差分・独立参照・力の収束 [ja]
 
@@ -69370,20 +69364,14 @@ box_mean = tg.box_average([0., 0.], [.2, .3], t=.5)
 保存分布と図はMPLCONFIGDIR=.mplconfig python scripts/build_reference_solutions.pyで再生成できます。データと数値実装のソースハッシュをダウンロード。Pythonでは、既存の独立なEuler実装との比較、Rankine–Hugoniot条件とLax不等式、膨張波のPDE残差と不変量、全領域の収支、既知の積分、製造解の外力、Taylor–Greenの運動量・発散残差を検証します。Webのビルドでは保存データの形式、波の位置、ソースハッシュ、平均値の規約を検査します。
 Blasius、Sedov、Nohや追加の多次元参照解は今後の拡張です。LANL ExactPackはそれらを追加する際に参照できる独立した資料集です。現時点の依存ライブラリではなく、上のケースをExactPackと相互検証したという意味でもありません。
 
-## 原著の出版年順に並べた参考文献 [ja]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/references/
-Coverage: reading
-
-学習資料公開コード・データ / Public code and data
-英語原文が更新されています。この日本語訳は旧版に対応します。
-
 ## 原著の出版年順に並べた参考文献 — 原著の出版年順に並べた参考文献 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/references/
 Coverage: reading
 
 原著論文・書籍と、実装を確認するために用いた資料を区別します。DOIの存在は、全文の閲覧や図の再現を意味しません。各出典注記に、公開原著、後年の解説、未確認の原資料を記しています。NASAの資料は2次元問題カタログにもあります。
+学習資料公開コード・データ / Public code and data
+英語原文が更新されています。この日本語訳は旧版に対応します。
 著者名・原題・誌名・出典注記は、英語版と共通の原表記を保持しています。見出しや案内は日本語です。
 この章とreferences.bibは、catalog/references.jsonから生成します。書誌データの正本は共通であり、翻訳によって文献数は増えません。
 
@@ -73091,20 +73079,14 @@ Coverage: reading
 作用素分割の解説を追加しました。Lie–Trotterの1次合成とStrangの2次合成を、小さな厳密流の例で比較します。この章の既存ソルバーへ汎用分割実装を追加したという意味ではありません。 同じ反応拡散で両者を実行する軽量な固定入力例も追加しました。
 作用素分割：Lie–Trotter と Strang の比較
 
-## 教科書案内：次に何を調べるか [ja]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/textbooks/
-Coverage: reading
-
-学習資料公開コード・データ / Public code and data
-日本語訳はドラフトです。数式・計算・参照資料は英語原文と照合できます。
-
 ## 教科書案内：次に何を調べるか — 教科書案内：次に何を調べるか [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/textbooks/
 Coverage: reading
 
 このアトラスから参照するための書棚です。知りたい問いから選ぶ読書案内で、順位付けではありません。以下の年は引用する版の年であり、アルゴリズムの発明年ではありません。
+学習資料公開コード・データ / Public code and data
+日本語訳はドラフトです。数式・計算・参照資料は英語原文と照合できます。
 リンク先は出版社の書誌情報や著者管理のページです。版情報と公開されている紹介・目次を確認しており、各書のすべての導出を点検したという意味ではありません。関連章はアトラスとの接点を示し、教科書全体の実装を意味しません。
 最初の道筋： CFDの枠組みにはHirsch、保存則と有限体積法の考え方にはLeVeque、RiemannソルバーにはToro、圧力・速度連成にはPatankar、疎行列の反復解法にはSaad。個々の手法の由来を追うときは原論文にも戻ってください。
 参考文献庫を検索 · 登録済みの書籍のみ · BibTeXをダウンロード
