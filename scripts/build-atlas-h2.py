@@ -13,6 +13,7 @@ import struct
 import subprocess
 import struct
 import xml.etree.ElementTree as ET
+from atlas_reading_presentation import specialized_reading_layout
 
 ROOT=Path(__file__).resolve().parents[1]
 ATLAS=ROOT/'numerical-methods-atlas'
@@ -104,6 +105,7 @@ def build():
         ja=lang=='ja';title=data['title'][lang]
         body='<h1>'+e(title)+'</h1>'+para(data['intro'][lang])
         body+='<aside class="resource-summary">'+para('この実装は孤立した2電子H₂の有限s型基底RHFです。一般の分子HF、完全基底極限、相関を含む正しい解離曲線、分子・周期DFTの実装ではありません。' if ja else 'This implementation covers isolated two-electron H2 RHF in finite s-only bases. It does not implement general molecular HF, establish a complete-basis limit, recover the correlated dissociation curve, or supply molecular/periodic DFT.')+'</aside>'
+        opening = body
         body+='<nav class="resource-nav">'+link('/numerical-methods-atlas/code-and-data/examples/h2-rhf/?lang='+lang,'固定入力・コード・テスト・判定条件' if ja else 'Fixed input, code, tests and acceptance')+' · '+link(base+'molecular-hf-2026-11-22.zip','ZIP')+' · '+link(base+'verification.json','独立展開の検証 / JSON' if ja else 'Independent-extraction verification / JSON')+'</nav>'
         markdown='# '+title+'\n\n'+data['intro'][lang]+'\n\n'
         for section in data['sections']:
@@ -127,7 +129,8 @@ def build():
         nav='<nav class="resource-nav">'+link(f'/numerical-methods-atlas/{lang}/read/','解説章の目次' if ja else 'Reading contents')+' · '+link(SOURCE,'編集用正本 / JSON' if ja else 'Editable source / JSON')+' · '+link(route(lang)+'index.json','JSON')+' · '+link(route(lang)+'index.md','Markdown')+'</nav>'
         toc='<nav aria-label="'+('この章の目次' if ja else 'On this page')+'">'+''.join(link('#'+h['id'],h['title']) for h in headings)+'</nav>'
         style='<style>.h2-reading{max-width:1100px;margin:auto;padding:1.2rem}.h2-reading .prose{max-width:84ch;margin:auto}.h2-reading .resource-nav,.h2-reading>nav{display:flex;flex-wrap:wrap;gap:.5rem}.h2-reading>nav a{padding:.3rem}.h2-reading .math-block,.h2-table{max-width:100%;overflow-x:auto}.h2-table{margin:1rem 0}.h2-table table{border-collapse:collapse;min-width:100%;font-size:.95rem}.h2-table td,.h2-table th{border-bottom:1px solid #becbc3;padding:.55rem;text-align:left}.h2-table td:not(:first-child){font-variant-numeric:tabular-nums;white-space:nowrap}.h2-reading img{width:100%;height:auto}.h2-reading pre{white-space:pre;overflow:auto;padding:1rem;background:#eef3ef}.h2-reading li{margin-bottom:1rem}.h2-reading h2{scroll-margin-top:1rem}.h2-citations{font-size:.95rem}.h2-reading .resource-summary{border-left:4px solid #386552;padding:.3rem 1rem;background:#eef3ef}.h2-reading{overflow-wrap:anywhere}</style>'
-        document='<!doctype html><html lang="'+lang+'"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+e(title)+' | Numerical Methods Atlas</title><meta name="description" content="'+e(data['intro'][lang],quote=True)+'"><link rel="canonical" href="'+ORIGIN+route(lang)+'">'+''.join('<link rel="alternate" hreflang="'+l+'" href="'+ORIGIN+route(l)+'">' for l in ['ja','en'])+'<link rel="stylesheet" href="/numerical-methods-atlas/vendor/katex.min.css"><link rel="stylesheet" href="/numerical-methods-atlas/style.css"><link rel="stylesheet" href="/styles/atlas-resources.css">'+style+'</head><body class="profile-page" data-content-language="'+lang+'"><main id="main" class="h2-reading">'+nav+toc+'<article class="prose" lang="'+lang+'">'+body+'</article></main></body></html>\n'
+        style = style.replace('</style>', '.h2-reading .specialized-reading-toc{margin:1rem 0}.h2-reading .specialized-reading-toc>summary{min-height:44px;box-sizing:border-box;padding:.5rem 0;cursor:pointer}.h2-reading .specialized-reading-toc>nav{display:flex;flex-wrap:wrap;gap:.5rem 1rem;padding:.6rem 0}</style>', 1)
+        document='<!doctype html><html lang="'+lang+'"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+e(title)+' | Numerical Methods Atlas</title><meta name="description" content="'+e(data['intro'][lang],quote=True)+'"><link rel="canonical" href="'+ORIGIN+route(lang)+'">'+''.join('<link rel="alternate" hreflang="'+l+'" href="'+ORIGIN+route(l)+'">' for l in ['ja','en'])+'<link rel="stylesheet" href="/numerical-methods-atlas/vendor/katex.min.css"><link rel="stylesheet" href="/numerical-methods-atlas/style.css"><link rel="stylesheet" href="/styles/atlas-resources.css">'+style+'</head><body class="profile-page" data-content-language="'+lang+'"><main id="main" class="h2-reading">'+specialized_reading_layout(nav, toc, body, opening, lang, plain_toc=True)+'</main></body></html>\n'
         (directory/'index.html').write_text(document)
         dump(directory/'index.json',{**entry,'url':ORIGIN+route(lang),'methods':data['methods'],'execution_example':'h2-rhf','references':data['references'],'source_sha256':sources,'measurements':results['metrics']})
         markdown+='## '+('保存した実測値' if ja else 'Stored measurements')+'\n\n'+'\n'.join('- '+k+': '+number(v) for k,v in results['metrics'].items())+'\n\n'+ORIGIN+base+package['results']+'\n\n'

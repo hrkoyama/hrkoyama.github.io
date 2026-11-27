@@ -14,6 +14,7 @@ ASSET = re.compile(r'<link\b[^>]*href="/styles/atlas-reading-navigation[.]css[^\
 WRAP = re.compile(r'<div class="chapter-wrap"(?: data-reading-layout="opening-first")?>')
 JUMP = re.compile(r'<!-- chapter-resource-jump -->.*?<!-- /chapter-resource-jump -->', re.S)
 POSITION = '<!-- chapter-resource-position -->'
+RESOURCE_OPENINGS = frozenset(['textbooks', 'references'])
 
 
 class ArticleSpan:
@@ -176,6 +177,44 @@ def legacy_reading_layout(text):
             article[1]+science+article[3]+text[article.end():])
 
 
+def resource_breadcrumb(language):
+    if language not in ['ja', 'en']:
+        raise ValueError('Unknown reading resource language')
+    label = '分野別の全章目次' if language == 'ja' else 'Complete chapter index'
+    return ('<!-- resource-reading-breadcrumb --><nav class="reading-breadcrumb resource-reading-breadcrumb" aria-label="'+label+'">'
+            '<a href="'+BASE+language+'/read/">'+label+'</a></nav><!-- /resource-reading-breadcrumb -->')
+
+
+def restore_resource_article(text, language):
+    """Remove the one declared resource breadcrumb, then undo the shared layout."""
+    if 'resource-reading-breadcrumb' in text:
+        breadcrumb = marked_part(text, 'resource-reading-breadcrumb')
+        if breadcrumb[0] != resource_breadcrumb(language):
+            raise ValueError('Unexpected reading resource breadcrumb')
+        text = text[:breadcrumb.start()]+text[breadcrumb.end():]
+    return restore_legacy_article(text)
+
+
+def resource_reading_layout(text, language, chapter):
+    """Give the two existing resource articles a title-first, reversible opening.
+
+    Existing translation/draft notices remain visible directly after the lead;
+    only their position changes. The desktop contents and full article retain
+    the same bytes, while the shared mobile disclosure copies its exact links.
+    """
+    if chapter not in RESOURCE_OPENINGS:
+        raise ValueError('Unknown reading resource opening')
+    text = legacy_reading_layout(restore_resource_article(text, language))
+    opening = marked_part(text, 'legacy-reading-opening')
+    metadata = marked_part(text, 'legacy-reading-metadata')
+    if metadata.start() < opening.end():
+        raise ValueError('Unexpected reading resource metadata position')
+    text = (text[:opening.end()]+metadata[0]+text[opening.end():metadata.start()]+
+            text[metadata.end():])
+    wrap = WRAP.search(text)
+    return text[:wrap.end()]+resource_breadcrumb(language)+text[wrap.end():]
+
+
 def navigation(language, chapter, record, resources):
     ja = language == 'ja'
     matches = [group for group in record['groups'] if any(row['id'] == chapter for row in group['chapters'])]
@@ -247,6 +286,7 @@ def build(root=ROOT, openings_only=False):
     count = 0
     updates = []
     openings = {language: [] for language in ['ja', 'en']}
+    resource_openings = {language: [] for language in ['ja', 'en']}
     for language in ['ja', 'en']:
         for page in (root/'numerical-methods-atlas'/language/'read').glob('*/index.html'):
             original = page.read_text()
@@ -260,8 +300,7 @@ def build(root=ROOT, openings_only=False):
             if replaced != 1:
                 raise ValueError('Expected one legacy reading sidebar: '+str(page))
             text = ASSET.sub('', text).replace('</head>', stylesheet+'</head>', 1)
-            # Learning resources retain their existing template. Only the old
-            # reading-shell chapter family gains the reversible opening layout.
+            # Keep the existing 44-chapter projection and its CLI scope intact.
             if eligible:
                 text = legacy_reading_layout(text)
                 openings[language].append(page.parent.name)
@@ -271,6 +310,9 @@ def build(root=ROOT, openings_only=False):
                 text, changed = re.subn(r'(<div class="chapter-topline"><span>).*?(</span>)', lambda m:m[1]+label+m[2], text, count=1)
                 if changed != 1:
                     raise ValueError('Missing resource category: '+str(page))
+                if page.parent.name in RESOURCE_OPENINGS and 'class="reading-shell page-width"' in original:
+                    text = resource_reading_layout(text, language, page.parent.name)
+                    resource_openings[language].append(page.parent.name)
             old_labels = ['解説章の目次', '分野別に解説を読む'] if language == 'ja' else ['Reading chapters', 'Learn by field']
             new_label = '分野別の全章目次' if language == 'ja' else 'Complete chapter index'
             def header_labels(match):
@@ -284,10 +326,13 @@ def build(root=ROOT, openings_only=False):
             count += 1
     if set(openings['ja']) != set(openings['en']):
         raise ValueError('Legacy opening scope must match in Japanese and English')
+    if set(resource_openings['ja']) != set(resource_openings['en']):
+        raise ValueError('Resource opening scope must match in Japanese and English')
     for page, text in updates:
         page.write_text(text)
     print('Built field-aware navigation:', count, 'existing sidebars; other page templates and chapter content retained.')
     print('Opening-first legacy chapters:', len(openings['ja']), 'logical chapters;', sum(map(len, openings.values())), 'editions.')
+    print('Opening-first learning resources:', len(resource_openings['ja']), 'logical resources;', sum(map(len, resource_openings.values())), 'editions.')
 
 
 if __name__ == '__main__':

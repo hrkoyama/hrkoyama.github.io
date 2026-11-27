@@ -191,7 +191,8 @@ for language in ['ja','en']:
   current=page.read_text();chapter=page.parent.name
   eligible=chapter in documents and chapter not in resources and 'class="reading-shell page-width"' in current and bool(m.SIDEBAR.search(current))
   if not eligible:
-   assert 'data-reading-layout="opening-first"' not in current,'Non-legacy page opted in: '+str(page)
+   if chapter not in m.RESOURCE_OPENINGS:
+    assert 'data-reading-layout="opening-first"' not in current,'Non-legacy page opted in: '+str(page)
    continue
   scope.append(chapter);before=m.restore_legacy_article(current);after=m.legacy_reading_layout(before)
   assert m.restore_legacy_article(after)==before,'Original page byte projection: '+str(page)
@@ -247,6 +248,65 @@ print(json.dumps(dict(editions=checked,logical_chapters=len(scopes['ja']),with_e
   const result=JSON.parse(output);
   assert.equal(result.editions,88);
   assert.equal(result.logical_chapters,44);
+  assert.equal(result.byte_projection,true);
+  assert.equal(result.href_multiset,true);
+  assert.equal(result.upstream_refresh,true);
+});
+
+test('the two resource openings preserve full articles, visible notices and both contents routes', () => {
+  const output = execFileSync('python3', ['-B','-c',String.raw`
+import collections,importlib.util,json,pathlib,re
+path=pathlib.Path('scripts/build-atlas-reading-navigation.py')
+spec=importlib.util.spec_from_file_location('reading_navigation',path);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
+root=pathlib.Path.cwd();checked=0;notices=0;toc_links={}
+hrefs=lambda html:collections.Counter(re.findall(r'\bhref="([^"]*)"',html))
+for language in ['ja','en']:
+ for chapter in sorted(m.RESOURCE_OPENINGS):
+  page=root/'numerical-methods-atlas'/language/'read'/chapter/'index.html'
+  current=page.read_text();before=m.restore_resource_article(current,language)
+  after=m.resource_reading_layout(before,language,chapter)
+  assert m.restore_resource_article(after,language)==before,'Exact resource inverse: '+str(page)
+  assert m.resource_reading_layout(after,language,chapter)==after,'Idempotent resource opening'
+  opening=m.marked_part(after,'legacy-reading-opening')
+  metadata=m.marked_part(after,'legacy-reading-metadata')
+  mobile=m.marked_part(after,'legacy-reading-mobile-toc')
+  breadcrumb=m.marked_part(after,'resource-reading-breadcrumb')
+  article=m.ARTICLE.search(after);original=m.ARTICLE.search(before)
+  assert breadcrumb[0]==m.resource_breadcrumb(language)
+  assert breadcrumb.end()==opening.start() and opening.end()==metadata.start()
+  assert metadata.end()==after.index(m.POSITION)<mobile.start()<article.start()
+  assert len(re.findall(r'<h1\b',after))==1 and '<h1' in opening[1]
+  assert '<h1' not in article[2] and '<p' in opening[1]
+  desktop=re.search(r'<aside class="chapter-toc">.*?</aside>',before,re.S)[0]
+  assert desktop in after,'The complete desktop contents are unchanged'
+  nav=re.search(r'<nav\b[^>]*>(.*?)</nav>',desktop,re.S)
+  assert nav[1] in mobile[1] and mobile[1].startswith('<nav ')
+  assert not re.search(r'<details\b[^>]*\bopen(?:\s|=|>)',mobile[1])
+  toc_links[language+'/'+chapter]=len(re.findall(r'<a\b',nav[1]))
+  without_added=after
+  for name in ['resource-reading-breadcrumb','legacy-reading-mobile-toc']:
+   part=m.marked_part(without_added,name);without_added=without_added[:part.start()]+without_added[part.end():]
+  assert hrefs(without_added)==hrefs(before),'Only the exact parent and mobile-copy links are added'
+  assert re.findall(r'\bid="([^"]+)"',after)==re.findall(r'\bid="([^"]+)"',before)
+  for note in re.findall(r'<p class="translation-notice">.*?</p>',before,re.S):
+   assert metadata[1].count(note)==1 and after.count(note)==1,'Existing notice remains visible outside details'
+   notices+=1
+  refreshed=original[2].replace('</h1>',' [refreshed]</h1>',1)
+  upstream=after[:article.start(2)]+refreshed+after[article.end(2):]
+  expected=before[:original.start(2)]+refreshed+before[original.end(2):]
+  assert m.resource_reading_layout(upstream,language,chapter)==m.resource_reading_layout(expected,language,chapter)
+  for invalid in [after.replace(m.resource_breadcrumb(language),m.resource_breadcrumb(language)*2,1),after.replace(m.resource_breadcrumb(language),m.resource_breadcrumb('en' if language=='ja' else 'ja'),1)]:
+   try:m.restore_resource_article(invalid,language)
+   except ValueError:pass
+   else:raise AssertionError('Unexpected resource breadcrumb accepted')
+  checked+=1
+assert checked==4 and notices==2 and len(toc_links)==4 and all(toc_links.values())
+print(json.dumps(dict(editions=checked,logical_resources=len(m.RESOURCE_OPENINGS),visible_translation_notices=notices,toc_links=toc_links,byte_projection=True,href_multiset=True,upstream_refresh=True)))
+`],{cwd:fileURLToPath(root),encoding:'utf8'});
+  const result=JSON.parse(output);
+  assert.equal(result.editions,4);
+  assert.equal(result.logical_resources,2);
+  assert.equal(result.visible_translation_notices,2);
   assert.equal(result.byte_projection,true);
   assert.equal(result.href_multiset,true);
   assert.equal(result.upstream_refresh,true);

@@ -58,3 +58,24 @@
 @media print {
   .chapter-wrap[data-reading-layout="opening-first"] .legacy-reading-mobile-toc { display:none; }
 }
+
+/* The original static reading header keeps its native menu button and focus. */
+@media screen and (max-width:620px) {
+  body > .site-header > .mobile-menu {
+    box-sizing:border-box;
+    min-width:44px;
+    min-height:44px;
+    padding:8px;
+    font-family:var(--site-visual-font-body,system-ui,sans-serif);
+    font-size:16px;
+    line-height:1.5;
+    letter-spacing:normal;
+  }
+}
+
+/* Keep the readable button inside the fixed-height header at narrow widths. */
+@media screen and (max-width:620px) {
+  body > .site-header { flex-wrap:nowrap; }
+  body > .site-header > .brand { min-width:0; }
+  body > .site-header > .mobile-menu { flex-shrink:0; }
+}
