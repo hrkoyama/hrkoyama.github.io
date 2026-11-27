@@ -2,9 +2,9 @@
   "ja": {
     "title": "このアトラスでできること",
     "paragraphs": [
-      "大学院生・研究者と、調査や実装を支援するAIのための数値計算資料集です。分野地図から手法を選び、適用条件・数式・一次文献を読み、公開コードとデータまでたどれます。",
+      "人が根拠を読んで確認し、AIも同じ公開条件でコードを実行・検証するための、数値計算テスト問題ライブラリです。問題の式・適用条件・図・参照解・誤差や残差から、判定の根拠と限界をたどれます。",
       "代表22問題には、固定入力・実行手順・JSON/CSV出力・結果の判定基準があります。Poisson方程式、Barnes–Hut、水素型原子・Heなどを手元で実行し、解析解・数値参照・残差などと照合できます。",
-      "AIからは、静的本文とJSON/Markdown、版を固定したコード・入力・検証記録を参照できます。人もAIも、使える条件と確認範囲を読み、出典を残して利用するための入口です。"
+      "AIからも、人が読む本文に対応したJSON/Markdownと、版を固定したコード・入力・検証記録を参照できます。実行例のある問題では、人と同じ公開入力・参照値・許容誤差・判定基準で結果を照合できます。"
     ],
     "map": "手法の見取り図",
     "code": "公開コード・入力・検証",
@@ -51,14 +51,14 @@
     "status_note": "教育用例・関連コードあり、解説のみ、実装予定を区別しています。22例は全80問題から選んだ実行経路です。分野ごとの実装・検証範囲で、参照・収束確認と未実装の差を確認できます。汎用の分子・周期DFTソルバーではありません。",
     "scope_toggle": "収録範囲と利用条件",
     "share": "紹介文・共有用画像",
-    "meta_description": "An Atlas of Numerical Methods。解説・方程式・実行コード・検証例を人とAIがたどり、軽量・低コストなLLMでの開発にも利用できる日英の数値計算資料集です。"
+    "meta_description": "人が式・条件・参照値・誤差や残差から根拠を確認し、AIも同じ公開入力・手順・判定基準で実行・検証できる、日英の数値計算テスト問題ライブラリです。"
   },
   "en": {
     "title": "What you can do with this atlas",
     "paragraphs": [
-      "A numerical-computation resource for graduate students, researchers and the AI assistants supporting their work. Use the field map to choose a method, read its assumptions, equations and original papers, then follow the links to public code and data.",
+      "A numerical test-problem library for people to inspect the evidence and AI agents to run and verify code under the same published conditions. Follow equations, assumptions, figures, reference solutions, errors and residuals to understand the basis and limits of each check.",
       "Twenty-two representative problems include fixed inputs, execution steps, JSON/CSV outputs and acceptance criteria. Run examples such as Poisson, Barnes–Hut and hydrogenic/He atoms locally, and compare results with analytic solutions, numerical references or residual checks.",
-      "AI agents can consult static text and JSON/Markdown, and retrieve versioned code, inputs and verification records. Both people and AI can inspect the conditions and scope of each check and retain the sources when reusing the material."
+      "AI agents can consult JSON and Markdown corresponding to the human-readable text, alongside versioned code, inputs and verification records. For problems with runnable examples, they can compare results using the same published inputs, reference values, tolerances and acceptance criteria as people."
     ],
     "map": "Method map",
     "code": "Public code, inputs and checks",
@@ -105,6 +105,6 @@
     "status_note": "Educational code, reading only and planned implementations are distinct. The 22 recipes select paths through 80 problems. The field-evidence page separates references, refinement checks and unimplemented scope. This is not a general molecular/periodic DFT solver.",
     "scope_toggle": "Coverage and use",
     "share": "Introduction and sharing materials",
-    "meta_description": "An Atlas of Numerical Methods for people and AI. Explanations, code and validation support development with lightweight, lower-cost LLMs."
+    "meta_description": "A bilingual numerical test-problem library: inspect the evidence and run and verify code with the same published inputs, procedures and acceptance criteria."
   }
 }
