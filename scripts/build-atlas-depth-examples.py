@@ -143,6 +143,24 @@ def validation_tools(links, language):
             label+'</summary><div>'+links+'</div></details></nav>')
 
 
+def execution_registry_note(scope, language):
+    """Keep only the unchanged registry bookkeeping in a native disclosure."""
+    label = '台帳・件数の説明' if language == 'ja' else 'Registry and counting notes'
+    return ('<details class="execution-registry-note"><summary>'+label+
+            '</summary>'+scope+'</details>')
+
+
+def validation_entry_links(common_count, language):
+    """Short routes to the existing common selector and two existing cases."""
+    ja = language == 'ja'
+    return ('<nav class="execution-entry-quicklinks execution-collection-links" data-execution-collection-links aria-label="'+
+            ('実行例を選ぶ' if ja else 'Choose an execution example')+'">'+
+            link('/numerical-methods-atlas/code-and-data/examples/?lang='+language,
+                 '共通'+str(common_count)+'例から選ぶ' if ja else 'Choose among the common '+str(common_count)+' examples')+
+            link(case_route('noh-shock', language), 'Noh')+
+            link(case_route('vef-fourier-scattering1d', language), 'VEF')+'</nav>')
+
+
 def validation_case_layout(case_html, parent, tools, scope, language):
     """Present the existing case title and lead before auxiliary navigation."""
     opening = re.match(r'(<article\b[^>]*>)(<h1>.*?</h1><p>.*?</p>)', case_html, re.S)
@@ -150,7 +168,7 @@ def validation_case_layout(case_html, parent, tools, scope, language):
         raise ValueError('Standalone validation needs an existing H1 and lead')
     return ('<nav class="validation-breadcrumb">'+parent+'</nav>'+opening[1]+
             '<div class="validation-opening" data-chapter-opening>'+opening[2]+'</div>'+
-            validation_tools(tools, language)+scope+case_html[opening.end():])
+            validation_tools(tools, language)+execution_registry_note(scope, language)+case_html[opening.end():])
 
 
 def validation_chapter_layout(body, parent, tools, language):
@@ -180,8 +198,11 @@ def document(url, title, description, body, language=None, alternates=None):
         head += '<link rel="stylesheet" href="/styles/'+name+'.css?v='+digest(ROOT/'styles'/(name+'.css'))[:12]+'">'
     head += '<link rel="stylesheet" href="/numerical-methods-atlas/vendor/katex.min.css">'
     head += '<link rel="stylesheet" href="/numerical-methods-atlas/styles/atlas-execution-navigation.css?v='+digest(ATLAS/'styles/atlas-execution-navigation.css')[:12]+'">'
+    if language is None:
+        head += '<link rel="stylesheet" href="/styles/atlas-execution-entry.css?v='+digest(ROOT/'styles/atlas-execution-entry.css')[:12]+'">'
     attribute = ' data-content-language="'+language+'"' if language else ' data-site-language-anchors="suffix"'
-    return head+'</head><body class="profile-page"'+attribute+'><main id="main" class="validation-main">'+body+'</main></body></html>\n'
+    layout = ' data-execution-entry-layout' if language is None else ''
+    return head+'</head><body class="profile-page"'+attribute+'><main id="main" class="validation-main"'+layout+'>'+body+'</main></body></html>\n'
 
 
 def group_commands(data, language):
@@ -266,10 +287,24 @@ def render_case(case, measured, data, language, rendered, heading_level=2, comma
     level = heading_level+1
     body = '<article class="validation-case" data-validation-case="'+ident+'" id="'+anchor+'"><h'+str(heading_level)+'>'+escape(case['title'][language])+'</h'+str(heading_level)+'>'+paragraph(case['summary'][language])
     base = data['base']
-    body += '<nav class="validation-actions" aria-label="'+('コード・入力・検証' if ja else 'Code, inputs and verification')+'">'+link(case_route(ident, language), '固定入力・実行入口' if ja else 'Fixed-input execution entry')+link(base+data['verification']['archive']['file'], 'コード / ZIP' if ja else 'Code / ZIP')+link(base+'inputs.json', '固定入力 / JSON' if ja else 'Fixed input / JSON')+link(base+'results/result.json', '全結果 / JSON' if ja else 'All results / JSON')+link(base+'source-manifest.json', '配布物のSHA-256' if ja else 'Release SHA-256 manifest')+link(base+'verification.json', '独立展開の検証記録' if ja else 'Independent-extraction receipt')+'</nav>'
+    if commands:
+        run_id = 'execution-run-'+ident+'-'+language
+        body += ('<!-- execution-actions --><nav class="validation-actions execution-primary-actions" data-execution-actions aria-label="'+
+                 ('コード・入力・検証' if ja else 'Code, inputs and verification')+'">'+
+                 '<a class="execution-primary-action" href="'+escape(case_route(ident, language)+'#'+run_id, quote=True)+'">'+
+                 ('実行手順へ' if ja else 'Run instructions')+'</a>'+
+                 '<a class="execution-download-action" href="'+escape(base+data['verification']['archive']['file'], quote=True)+'">'+
+                 ('ZIPを取得' if ja else 'Download ZIP')+'</a>'+link(base+'inputs.json', '固定入力 / JSON' if ja else 'Fixed input / JSON')+'</nav>'+
+                 '<details class="execution-supporting-links"><summary>'+('結果・検証記録' if ja else 'Results and verification')+'</summary><nav class="validation-actions">'+
+                 link(base+'results/result.json', '全結果 / JSON' if ja else 'All results / JSON')+
+                 link(base+'source-manifest.json', '配布物のSHA-256' if ja else 'Release SHA-256 manifest')+
+                 link(base+'verification.json', '独立展開の検証記録' if ja else 'Independent-extraction receipt')+
+                 '</nav></details><!-- /execution-actions -->')
+    else:
+        body += '<nav class="validation-actions" aria-label="'+('コード・入力・検証' if ja else 'Code, inputs and verification')+'">'+link(case_route(ident, language), '固定入力・実行入口' if ja else 'Fixed-input execution entry')+link(base+data['verification']['archive']['file'], 'コード / ZIP' if ja else 'Code / ZIP')+link(base+'inputs.json', '固定入力 / JSON' if ja else 'Fixed input / JSON')+link(base+'results/result.json', '全結果 / JSON' if ja else 'All results / JSON')+link(base+'source-manifest.json', '配布物のSHA-256' if ja else 'Release SHA-256 manifest')+link(base+'verification.json', '独立展開の検証記録' if ja else 'Independent-extraction receipt')+'</nav>'
     if navigation:
         resources = render_execution_navigation(navigation, language)
-        if heading_level == 2:
+        if heading_level == 2 or commands:
             resources = '<details class="execution-resource-details"><summary>'+('手法・式・図・参照解' if ja else 'Methods, equations, figures and references')+'</summary>'+resources+'</details>'
         body += resources
     initial = initial_input_name(data)
@@ -323,7 +358,7 @@ def render_case(case, measured, data, language, rendered, heading_level=2, comma
         body += '<details class="validation-records"><summary>'+('独立参照の記録を表で読む' if ja else 'Read independent-reference records')+'</summary>'+record_tables(measured['reference_records'], language, ident+' reference records')+'</details>'
     body += '<p>'+link(case_route(ident)+'index.json', 'この例の実測値・全記録 / JSON' if ja else 'Measurements and complete records / JSON')+'</p>'
     if commands:
-        body += '<h'+str(level)+'>'+('取得して再実行する' if ja else 'Download and rerun')+'</h'+str(level)+'>'+group_commands(data, language)
+        body += '<h'+str(level)+' id="'+run_id+'">'+('取得して再実行する' if ja else 'Download and rerun')+'</h'+str(level)+'>'+group_commands(data, language)
         body += '<details><summary>'+('コード・テストの個別ファイル' if ja else 'Individual code and test files')+'</summary><ul>'+''.join('<li>'+link(url, url.split(data['base'], 1)[-1])+'</li>' for url in depth_code_urls(data, [ident])+data['test_urls'])+'</ul></details>'
     body += '<h'+str(level)+' id="'+anchor+'-references">'+('一次文献・関連資料と確認範囲' if ja else 'Primary sources and review scope')+'</h'+str(level)+'>'+reference_html(case, language, anchor)+'</article>'
     return body
@@ -526,7 +561,7 @@ def build():
     dump(search_path, search)
     sections, markdown = [], ''
     for language in LANGUAGES:
-        ja = language == 'ja'; body = '<section data-site-language="'+language+'" lang="'+language+'"><h1>'+escape(catalog['title'][language])+'</h1>'+paragraph(scope_text(language, common_count))
+        ja = language == 'ja'; body = '<section data-site-language="'+language+'" lang="'+language+'"><h1>'+escape(catalog['title'][language])+'</h1>'+validation_entry_links(common_count, language)+execution_registry_note(paragraph(scope_text(language, common_count)), language)
         for field in ['policy', 'routine_policy']:
             if catalog.get(field):
                 body += paragraph(catalog[field][language])

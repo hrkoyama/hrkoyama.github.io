@@ -44,12 +44,12 @@ def document(url,title,description,sections,root=ROOT):
     head='<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
     head+='<title data-page-title-ja="'+ESC(title['ja'],quote=True)+'" data-page-title-en="'+ESC(title['en'],quote=True)+'">'+ESC(title['ja'])+'</title>'
     head+='<meta name="description" data-description-ja="'+ESC(description['ja'],quote=True)+'" data-description-en="'+ESC(description['en'],quote=True)+'" content="'+ESC(description['ja'],quote=True)+'"><link rel="canonical" href="'+ORIGIN+url+'">'
-    for name in ['atlas-resources','atlas-execution','atlas-discovery']:
+    for name in ['atlas-resources','atlas-execution','atlas-discovery','atlas-execution-entry']:
         digest=hashlib.sha256((root/'styles'/f'{name}.css').read_bytes()).hexdigest()[:12]
         head+='<link rel="stylesheet" href="/styles/'+name+'.css?v='+digest+'">'
     navigation_css='numerical-methods-atlas/styles/atlas-execution-navigation.css'
     head+='<link rel="stylesheet" href="/'+navigation_css+'?v='+hashlib.sha256((root/navigation_css).read_bytes()).hexdigest()[:12]+'">'
-    return head+'</head><body class="profile-page" data-site-language-anchors="suffix"><main id="main" class="profile-main atlas-resource-main atlas-execution-main atlas-entry-main">'+''.join(sections)+'</main></body></html>\n'
+    return head+'</head><body class="profile-page" data-site-language-anchors="suffix"><main id="main" class="profile-main atlas-resource-main atlas-execution-main atlas-entry-main" data-execution-entry-layout>'+''.join(sections)+'</main></body></html>\n'
 
 def read_result(record,root=ROOT):
     asset=next(x for x in record['outputs'] if x['id']=='results')
@@ -105,8 +105,8 @@ def build(root=ROOT):
             ja=lang=='ja'
             body='<section data-site-language="'+lang+'" lang="'+lang+'"><p class="eyebrow">'+('固定入力から実行・検証' if ja else 'FIXED INPUT · EXECUTION · VALIDATION')+'</p>'
             body+='<nav class="resource-nav">'+link(ENTRY_BASE+'?lang='+lang,'22問題から選ぶ' if ja else 'Choose among 22 problems')+link('/numerical-methods-atlas/?lang='+lang,'アトラスの冒頭' if ja else 'Atlas home')+'</nav>'
-            example=guide.render_example(x,read_result(x,root),lang,heading_level=1,navigation=navigation['executions'][ident])
-            intro='<p class="intro execution-outcome">'+ESC(item['outcome'][lang])+'</p><nav class="resource-nav entry-actions">'+link(x['inputs']['url'],'固定入力 / JSON' if ja else 'Fixed input / JSON')+link(x['release']['download'],'対応するコード / ZIP' if ja else 'Code edition / ZIP')+link('/numerical-methods-atlas/code-and-data/?lang='+lang+'#execution-steps-'+lang,'環境準備と共通手順' if ja else 'Setup and common steps')+'</nav>'
+            example=guide.render_example(x,read_result(x,root),lang,heading_level=1,navigation=navigation['executions'][ident],compact_navigation=True)
+            intro='<p class="intro execution-outcome">'+ESC(item['outcome'][lang])+'</p>'
             example=example.replace('</h1>','</h1>'+intro,1)
             example=example.replace('<details class="execution-validation"','<details class="execution-validation" open',1)
             body+=example
@@ -126,8 +126,10 @@ def build(root=ROOT):
     parent=root/ENTRY_BASE.lstrip('/');sections=[]
     for lang in ['ja','en']:
         ja=lang=='ja'
-        body='<section data-site-language="'+lang+'" lang="'+lang+'"><p class="eyebrow">22 FIXED-INPUT EXAMPLES</p><h1>'+('何を確かめるか、問題から選ぶ' if ja else 'Choose the result you want to check')+'</h1><p class="intro">'+('入力を取得し、計算し、結果を判定する22の入口です。各例で使える条件と確かめられる量を確認できます。' if ja else 'Twenty-two paths from fixed input to computation and numerical decisions. Each example states its conditions and what you can check.')+'</p><nav class="resource-nav">'+link('/numerical-methods-atlas/?lang='+lang,'文字で探す' if ja else 'Search by words')+link('/numerical-methods-atlas/equations/?lang='+lang,'数式から探す' if ja else 'Browse by formula')+link('/numerical-methods-atlas/gallery/?lang='+lang,'絵から探す' if ja else 'Browse by picture')+link('/numerical-methods-atlas/code-and-data/?lang='+lang,'共通手順と全実行記録' if ja else 'Common steps and execution records')+link('/numerical-methods-atlas/code-and-data/ci/?lang='+lang,'Linuxの継続検証' if ja else 'Linux verification CI')+'</nav><ul class="execution-entry-index">'
-        body=body.removesuffix('<ul class="execution-entry-index">')+supplementary_entry(root,navigation,lang)+'<ul class="execution-entry-index">'
+        body='<section data-site-language="'+lang+'" lang="'+lang+'"><p class="eyebrow">22 FIXED-INPUT EXAMPLES</p><h1>'+('何を確かめるか、問題から選ぶ' if ja else 'Choose the result you want to check')+'</h1><p class="intro">'+('入力を取得し、計算し、結果を判定する22の入口です。各例で使える条件と確かめられる量を確認できます。' if ja else 'Twenty-two paths from fixed input to computation and numerical decisions. Each example states its conditions and what you can check.')+'</p>'
+        body+=guide.render_execution_gateway(navigation,lang,root,'#execution-shared-examples-'+lang)
+        body+='<nav class="resource-nav">'+link('/numerical-methods-atlas/?lang='+lang,'文字で探す' if ja else 'Search by words')+link('/numerical-methods-atlas/equations/?lang='+lang,'数式から探す' if ja else 'Browse by formula')+link('/numerical-methods-atlas/gallery/?lang='+lang,'絵から探す' if ja else 'Browse by picture')+link('/numerical-methods-atlas/code-and-data/?lang='+lang,'共通手順と全実行記録' if ja else 'Common steps and execution records')+link('/numerical-methods-atlas/code-and-data/ci/?lang='+lang,'Linuxの継続検証' if ja else 'Linux verification CI')+'</nav><ul class="execution-entry-index">'
+        body=body.removesuffix('<ul class="execution-entry-index">')+supplementary_entry(root,navigation,lang)+'<ul class="execution-entry-index" id="execution-shared-examples-'+lang+'">'
         for item in data['examples']:
             x=item['execution'];body+='<li data-entry-id="'+x['id']+'"><h2>'+link(entry_url(x['id'],lang),x['name'][lang])+'</h2><p>'+ESC(item['outcome'][lang])+'</p>'+link(entry_url(x['id'],lang),'入力・実行・判定へ →' if ja else 'Input, execution and checks →')
             body+='<details class="execution-resource-details"><summary>'+('手法・式・図・参照解' if ja else 'Methods, equations, figures and references')+'</summary>'+render_execution_navigation(navigation['executions'][x['id']],lang)+'</details></li>'

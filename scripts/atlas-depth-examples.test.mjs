@@ -32,7 +32,7 @@ test('validation page wrappers put the existing title and lead before optional r
 import ast,re
 from pathlib import Path
 source=Path('scripts/build-atlas-depth-examples.py')
-names={'validation_tools','validation_case_layout','validation_chapter_layout'}
+names={'validation_tools','execution_registry_note','validation_case_layout','validation_chapter_layout'}
 functions=[node for node in ast.parse(source.read_text()).body if isinstance(node,ast.FunctionDef) and node.name in names]
 assert len(functions)==len(names)
 namespace={'re':re}
@@ -40,7 +40,7 @@ exec(compile(ast.Module(body=functions,type_ignores=[]),str(source),'exec'),name
 parent='<a href="/numerical-methods-atlas/validation/">Index</a>'
 tools='<a href="index.json">JSON</a><a href="index.md">Markdown</a>'
 opening='<h1>Noh / Bratu</h1><p>Existing assumptions and verification goal.</p>'
-scope='<aside class="validation-scope"><p>Existing limits remain visible.</p></aside>'
+scope='<aside class="validation-scope"><p>Existing registry and counting notes.</p></aside>'
 scientific='<nav class="validation-actions"><a href="fixed.zip">Code / ZIP</a></nav><h2 id="reference">Reference</h2><pre><code>x &lt; tolerance</code></pre><div class="validation-math"><math><mi>u</mi></math></div>'
 article='<article class="validation-case" data-validation-case="fixed" id="fixed-ja">'
 for language in ('ja','en'):
@@ -52,6 +52,9 @@ for language in ('ja','en'):
   assert '<details>' in rendered and '<details open' not in rendered
   assert rendered.index('</p>')<rendered.index('<summary>')
  assert article in case and '<!-- chapter-resource-position -->' in chapter
+ ledger=re.search(r'<details class="execution-registry-note">.*?</details>',case,re.S)
+ assert ledger is not None and scope in ledger[0]
+ assert scientific not in ledger[0] and case.index(scientific)>=ledger.end()
 for function,bad in [('validation_case_layout','<article><h2>No H1</h2></article>'),('validation_chapter_layout','<h1>Missing lead</h1>')]:
  try:namespace[function](bad,parent,tools,*([scope,'ja'] if function.endswith('case_layout') else ['ja']))
  except ValueError:pass

@@ -30,6 +30,39 @@ def paragraph(value):
     return '<p>' + esc(value) + '</p>'
 
 
+def execution_run_id(ident, lang):
+    if (lang not in ['ja', 'en'] or not isinstance(ident, str) or not ident or
+            any(char not in 'abcdefghijklmnopqrstuvwxyz0123456789-' for char in ident)):
+        raise ValueError('Execution heading needs a registered slug and language')
+    return 'execution-run-' + ident + '-' + lang
+
+
+def render_execution_gateway(navigation, lang, root=ROOT, shared_target=None):
+    """Select existing registries without combining their counting units."""
+    from atlas_registration import registered_groups
+    if lang not in ['ja', 'en']:
+        raise ValueError('Execution gateway needs a supported language')
+    ja = lang == 'ja'
+    records = navigation['executions']
+    shared = sum(row['kind'] == 'common' for row in records.values())
+    supplements = {ident: row for ident, row in records.items() if row['kind'] == 'supplement'}
+    groups = len(registered_groups(root))
+    quick = ['noh-shock', 'vef-fourier-scattering1d']
+    if not shared or not supplements or not set(quick) <= supplements.keys():
+        raise ValueError('Execution gateway needs the existing common and supplementary routes')
+    shared_target = shared_target or '/numerical-methods-atlas/code-and-data/examples/?lang=' + lang
+    title = '実行する例を選ぶ' if ja else 'Choose an example to run'
+    shared_label = f'共通の{shared}実行例' if ja else f'{shared} shared execution examples'
+    supplement_label = f'追加検証集：{groups}群・{len(supplements)}ケース' if ja else f'Validation supplements: {groups} groups, {len(supplements)} cases'
+    body = '<section class="execution-entry-gateway" data-execution-gateway aria-labelledby="execution-gateway-' + lang + '"><h2 id="execution-gateway-' + lang + '">' + title + '</h2><div class="execution-entry-paths">'
+    body += '<article><h3>' + link(shared_target, shared_label) + '</h3></article>'
+    body += '<article><h3>' + link('/numerical-methods-atlas/validation/?lang=' + lang, supplement_label) + '</h3></article></div>'
+    body += '<nav class="execution-entry-quicklinks" aria-label="' + ('固定入力への近道' if ja else 'Quick links to fixed inputs') + '">'
+    for ident in quick:
+        body += link('/numerical-methods-atlas/validation/' + ident + '/?lang=' + lang, supplements[ident]['name'][lang])
+    return body + '</nav></section>'
+
+
 def localized(value, lang):
     return value[lang] if isinstance(value, dict) else value
 
@@ -176,7 +209,15 @@ def render_example(x, result, lang, heading_level=2, navigation=None, compact_na
     body = ''
     release = x['release']
     body += '<section class="execution-example" id="' + x['id'] + '-' + lang + '" data-execution-example="' + x['id'] + '"><h'+str(heading_level)+'>' + esc(x['name'][lang]) + '</h'+str(heading_level)+'>'
-    body += paragraph(x['scope'][lang]) + '<p>' + link(x['reading'][lang], '式・図・誤差の解説' if ja else 'Equations, figures and error analysis') + ' · ' + link(release['download'], '対応するコードZIP' if ja else 'Code ZIP for this example') + '</p>'
+    body += paragraph(x['scope'][lang])
+    body += '<nav class="execution-primary-actions" data-execution-actions aria-label="' + ('入力・実行・取得' if ja else 'Input, run and download') + '">'
+    body += '<a class="execution-primary-action" href="#' + execution_run_id(x['id'], lang) + '">' + ('実行手順へ' if ja else 'Run instructions') + '</a>'
+    body += '<a class="execution-download-action" href="' + esc(release['download']) + '">' + ('ZIPを取得' if ja else 'Download ZIP') + '</a>'
+    body += link(x['inputs']['url'], '固定入力 / JSON' if ja else 'Fixed input / JSON')
+    body += link(x['reading'][lang], '式・図・誤差の解説' if ja else 'Equations, figures and error analysis')
+    if heading_level == 1:
+        body += link(ROUTE + '?lang=' + lang + '#execution-steps-' + lang, '環境準備と共通手順' if ja else 'Setup and common steps')
+    body += '</nav>'
     if navigation is not None:
         from atlas_execution_navigation import render_execution_navigation
         navigation_html = render_execution_navigation(navigation, lang)
@@ -188,7 +229,8 @@ def render_example(x, result, lang, heading_level=2, navigation=None, compact_na
         value = x[key][lang]
         body += '<dt>' + (jlabel if ja else elabel) + '</dt><dd>' + (bullet(value) if isinstance(value, list) else esc(value)) + '</dd>'
     body += '</dl>'
-    body += '<h3>' + ('入力と実行' if ja else 'Inputs and execution') + '</h3><p>' + link(x['inputs']['url'], '固定入力 / ' + x['inputs']['path'] if ja else 'Fixed input / ' + x['inputs']['path']) + '</p>'
+    run_heading = 'h' + str(heading_level + 1)
+    body += '<' + run_heading + ' id="' + execution_run_id(x['id'], lang) + '">' + ('入力と実行' if ja else 'Inputs and execution') + '</' + run_heading + '><p>' + link(x['inputs']['url'], '固定入力 / ' + x['inputs']['path'] if ja else 'Fixed input / ' + x['inputs']['path']) + '</p>'
     body += '<p>' + ('実行する場所：' if ja else 'Run from: ') + '<code>' + esc(release['archive_directory']) + '</code>' + ('（ZIPを展開した中の配布版フォルダ）' if ja else ' (the edition directory inside the extracted ZIP)') + '</p>'
     body += '<pre tabindex="0"><code>' + esc(x['commands']['install'] + '\n' + x['commands']['run']) + '</code></pre>'
     if x.get('shared_runner_cases') and len(x['shared_runner_cases']) > 1:
@@ -221,12 +263,14 @@ def render_example(x, result, lang, heading_level=2, navigation=None, compact_na
     return body.replace('<h3>','<'+subheading+'>').replace('</h3>','</'+subheading+'>')
 
 
-def render_language(data, releases, receipt, results, lang, navigation=None, problem_count=None):
+def render_language(data, releases, receipt, results, lang, navigation=None, problem_count=None, root=ROOT):
     ja = lang == 'ja'
     examples = data['examples']
     body = '<section data-site-language="' + lang + '" lang="' + lang + '"><p class="eyebrow">PUBLIC CODE · FIXED INPUTS · CHECKED OUTPUTS</p>'
     body += '<h1>' + ('コードを取得し、結果を確かめる' if ja else 'Get the code. Reproduce the result.') + '</h1>'
     body += '<p class="intro">' + (f'移流・衝撃波・Poisson・ODE・粒子・原子など、{len(examples)}の代表問題を固定入力から実行できます。条件を読み、JSON/CSVを生成し、解析解・数値参照・保存則などの基準で結果を確かめます。' if ja else f'Run {len(examples)} representative advection, shock, Poisson, ODE, particle and atomic problems from fixed inputs. Generate JSON/CSV and inspect analytic references, numerical references, conservation and other acceptance conditions.') + '</p>'
+    if navigation is not None:
+        body += render_execution_gateway(navigation, lang, root)
     body += '<nav class="resource-nav" aria-label="' + ('関連資料' if ja else 'Related resources') + '">' + ''.join(link(u, t) for u, t in [('/numerical-methods-atlas/?lang=' + lang, 'アトラス冒頭' if ja else 'Atlas home'), ('/numerical-methods-atlas/methods/?lang=' + lang, '手法・コードの対応表' if ja else 'Methods and code reference'), ('/numerical-methods-atlas/agent-kits/rkdg2d/?lang=' + lang, 'RKDG：AI向けコードと固定テスト' if ja else 'RKDG: code and fixed tests for AI agents'), ('examples.json', '実行例の共通台帳 / JSON' if ja else 'Common execution registry / JSON'), ('#execution-steps-' + lang, '共通の実行手順' if ja else 'Common reproduction steps'), ('/numerical-methods-atlas/code-and-data/ci/?lang=' + lang, 'Linuxの継続検証' if ja else 'Linux verification CI')]) + '</nav>'
     body += '<h2>' + ('まず、確かめたい例を選ぶ' if ja else 'Choose the result you want to check') + '</h2><div class="execution-choices">'
     for x in examples:
@@ -300,16 +344,16 @@ def build(root=ROOT):
     for x in examples:
         result = next(out for out in x['outputs'] if out['format'] == 'json')
         results[x['id']] = json.loads((root / urlparse(result['url']).path.lstrip('/')).read_text())
-    sections = ''.join(render_language(data, releases, receipt, results, lang, navigation, problem_count) for lang in ['ja', 'en'])
+    sections = ''.join(render_language(data, releases, receipt, results, lang, navigation, problem_count, root) for lang in ['ja', 'en'])
     document = '<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
     document += '<title data-page-title-ja="コード・入力・検証 | 数値計算法アトラス" data-page-title-en="Code, inputs and validation | Numerical Methods Atlas">コード・入力・検証 | 数値計算法アトラス</title>'
     document += '<meta name="description" content="代表22問題の公開コード、固定入力、実行手順、JSON/CSV出力、参照値と許容誤差。Public code, fixed inputs, reproduction commands and numerical acceptance checks for 22 representative problems."><link rel="canonical" href="' + ORIGIN + ROUTE + '">'
-    for name in ['atlas-resources', 'atlas-execution']:
+    for name in ['atlas-resources', 'atlas-execution', 'atlas-execution-entry']:
         digest = hashlib.sha256((root / 'styles' / (name + '.css')).read_bytes()).hexdigest()[:12]
         document += '<link rel="stylesheet" href="/styles/' + name + '.css?v=' + digest + '">'
     navigation_css='numerical-methods-atlas/styles/atlas-execution-navigation.css'
     document += '<link rel="stylesheet" href="/'+navigation_css+'?v='+hashlib.sha256((root/navigation_css).read_bytes()).hexdigest()[:12]+'">'
-    document += '</head><body class="profile-page" data-site-language-anchors="suffix"><main id="main" class="profile-main atlas-resource-main atlas-execution-main">' + sections + '</main></body></html>\n'
+    document += '</head><body class="profile-page" data-site-language-anchors="suffix"><main id="main" class="profile-main atlas-resource-main atlas-execution-main" data-execution-entry-layout>' + sections + '</main></body></html>\n'
     return document
 
 
