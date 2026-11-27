@@ -193,8 +193,9 @@ def main(root=ROOT, navigation=None):
     path=ATLAS/'home-search-index.json'
     index={'version':1,'entries':build_chapter_entries(ROOT)}
     page_cache={}
-    def add(ident,title,keywords,routes,kind='resource'):
+    def add(ident,title,keywords,routes,kind='resource',title_aliases=()):
         entry={'id':ident,'title':title,'headings':{'ja':[],'en':[]},'keywords':keywords,'routes':routes,'origin':'public-problem-registry' if kind=='problem' else 'public-method-registry','kind':kind}
+        if title_aliases:entry['title_aliases']=list(title_aliases)
         if kind in {'resource','problem'}:
             # Resource names and prose also follow their current public pages.
             entry['keywords']=list(dict.fromkeys([*keywords,*title.values()]))
@@ -237,7 +238,7 @@ def main(root=ROOT, navigation=None):
                 for values in review[name].values():extra+=values
         add('registry-'+x['id'],x['name'],list(x['name'].values())+x.get('aliases',[])+list(x['group'].values())+extra,{lang:'/numerical-methods-atlas/methods/'+x['id']+'/?lang='+lang for lang in ['ja','en']},'method')
         index['entries'][-1]['method']=method_records[x['id']]
-    add('public-method-map',{'ja':'手法の見取り図','en':'A map of numerical methods'},['手法 見取り図','method map','主要24手法','適用条件','条件と制約','一次文献','primary references','priority methods'],{lang:'/numerical-methods-atlas/methods/?lang='+lang for lang in ['ja','en']})
+    add('public-method-map',{'ja':'手法の見取り図','en':'A map of numerical methods'},['手法 見取り図','method map','主要24手法','適用条件','条件と制約','一次文献','primary references','priority methods'],{lang:'/numerical-methods-atlas/methods/?lang='+lang for lang in ['ja','en']},title_aliases=['手法・コードの対応表','Methods and code reference'])
     add('public-code-guide',{'ja':'コード・入力・検証を取得する','en':'Get code, inputs and verification'},['公開コード','データ','download','code edition'],{lang:'/numerical-methods-atlas/code-and-data/?lang='+lang for lang in ['ja','en']})
     add('shared-execution-guide',{'ja':'代表22問題を固定入力から実行・検証する','en':'Run and validate 22 fixed-input representative problems'},['共通手順','実行方法','検証','固定入力','コード データ','再現','Barnes Hut','水素型原子','ヘリウム','reproduce','validation','execution guide','代表22問題','線形移流','Sod','Shu Osher','Poisson','Bratu','調和振動子','硬いODE','周期PM','Taylor Green','Brio Wu'],{lang:'/numerical-methods-atlas/code-and-data/?lang='+lang for lang in ['ja','en']})
     add('equation-index',{'ja':'数式から探す','en':'Browse by equation'},['数式検索','方程式の一覧','equation index','formula'],{lang:'/numerical-methods-atlas/equations/?lang='+lang for lang in ['ja','en']})

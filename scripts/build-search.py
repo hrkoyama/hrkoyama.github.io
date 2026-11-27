@@ -55,6 +55,13 @@ navigation=json.loads((ROOT/'search/atlas-navigation.json').read_text())
 method_records={urlparse(method['url']).path:method for method in search_methods(ROOT,navigation)}
 atlas_index=json.loads((ROOT/'numerical-methods-atlas/home-search-index.json').read_text())
 execution_records={urlparse(entry['routes']['en']).path:entry for entry in atlas_index['entries'] if entry.get('kind')=='execution-example'}
+title_alias_records={}
+for entry in atlas_index['entries']:
+ if not entry.get('title_aliases'):continue
+ for route in entry.get('routes',{}).values():
+  parsed_route=urlparse(route)
+  if parsed_route.fragment:continue
+  title_alias_records[parsed_route.path]=list(dict.fromkeys([*title_alias_records.get(parsed_route.path,[]),*entry['title_aliases']]))
 atlas_records={}
 for entry in atlas_index['entries']:
  if 'search_navigation' not in entry:continue
@@ -88,6 +95,7 @@ for url in urls:
   for name in ['content.json','committees.json','comparison.json']:text+=' '+flatten(json.loads((ROOT/'hpci-policy'/name).read_text()))
  if parsed.path=='/hpci-policy/history.html':text+=' '+flatten(json.loads((ROOT/'hpci-policy/history.json').read_text()))
  doc=record(parsed.path,title,parser.titles.get('en',''),text,lang,category);doc['headings']=''.join(parser.headings).strip()
+ if parsed.path in title_alias_records:doc['title_aliases']=title_alias_records[parsed.path]
  if parsed.path in method_records:doc['method']=method_records[parsed.path]
  if parsed.path in execution_records:doc['execution']=execution_records[parsed.path]
  if parsed.path in atlas_records:
