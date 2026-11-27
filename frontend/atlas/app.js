@@ -148,6 +148,8 @@ function renderShell() {
  // /atlas-social-locale
  document.querySelectorAll('[data-reading-index]').forEach(a=>{a.href=readingURL(new URL('.',import.meta.url), '', currentLanguage());});
  localizeTree(document.body);
+ document.querySelector('.site-header [data-nav="methods"]').textContent=currentLanguage()==='ja'?'\u5206\u91ce\u5225\u30ac\u30a4\u30c9':'Guides by field';
+ document.querySelector('.site-header [data-nav="equations"]').textContent=currentLanguage()==='ja'?'\u8a08\u7b97\u4f8b':'Calculation examples';
 }
 async function changeLanguage(language, {historyEntry=true}={}) {
  if (switching || language===currentLanguage()) return;
