@@ -45,21 +45,28 @@ def render_registry(registry):
     return (json.dumps(registry, ensure_ascii=False, indent=2, allow_nan=False) + '\n').encode('utf-8')
 
 
-def build():
-    render_depth_verifier(ROOT)
-    payload = render_registry(build_registry(ROOT))
-    workflow = ROOT / WORKFLOW_PATH
+def bind_workflow(root, payload):
+    """Bind existing registry bytes and the rendered verifier without rebuilding ZIP metadata."""
+    root = Path(root)
+    workflow = root / WORKFLOW_PATH
     text = workflow.read_text()
-    pins = {'ATLAS_DEPTH_BOOTSTRAP_SHA256': digest(ROOT / VERIFIER_PATH),
+    pins = {'ATLAS_DEPTH_BOOTSTRAP_SHA256': digest(root / VERIFIER_PATH),
             'ATLAS_DEPTH_REGISTRY_SHA256': hashlib.sha256(payload).hexdigest()}
     for key, expected in pins.items():
         text, count = re.subn(r"(" + re.escape(key) + r": ')[0-9a-f]{64}(')",
                               lambda match: match[1] + expected + match[2], text)
         assert count == 1, 'Expected exactly one workflow pin: ' + key
+    workflow.write_text(text)
+    return pins
+
+
+def build():
+    render_depth_verifier(ROOT)
+    payload = render_registry(build_registry(ROOT))
+    bind_workflow(ROOT, payload)
     target = ROOT / REGISTRY_PATH
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_bytes(payload)
-    workflow.write_text(text)
     print('Built',len(json.loads(payload)['releases']),'reviewed public releases with',json.loads(payload)['case_count'],'cases; bound two SHA-256 workflow pins.')
 
 

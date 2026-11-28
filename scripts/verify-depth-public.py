@@ -35,7 +35,9 @@ ORIGIN = 'https://hrkoyama.github.io'
 REGISTRY_URL = ORIGIN + '/numerical-methods-atlas/validation/releases.json'
 GROUPS = ('foundations', 'models', 'particles', 'mhd', 'thermostats', 'biology', 'mcmc', 'mhd-convergence', 'foundations-conditioning', 'particle-transport', 'splitting', 'noh', 'noh-cartesian', 'sedov', 'double-mach', 'forward-step', 'low-mach', 'guderley', 'euler-positivity', 'zalesak', 'weno-critical', 'shallow-water', 'wall-flow', 'level-set', 'sem-fr', 'instability-growth', 'mhd-transport', 'mesh-boundary', 'moving-waves', 'relativistic', 'coefficient-diffusion', 'slab-ewald', 'fmm3d', 'gravity-dynamics', 'warm-pic', 'pic-spatial', 'dsmc-wall', 'dsmc-shock', 'lbm-cavity', 'lbm-taylor-green', 'lbm-annulus', 'lbm-curved-boundary', 'radiation-scattering', 'radiation-matter', 'radiation-geometry', 'stochastic-accuracy', 'stochastic-estimation', 'maxwell-cylinder', 'maxwell-lorentz', 'maxwell-grazing', 'linear-algebra-spectral', 'bratu-continuation-jfnk', 'globalization-controls', 'reverse-higher-ad', 'adjoint', 'inverse-optimization', 'ode-adaptivity', 'steady-rk', 'dae-controls', 'geometric-controls', 'quadrature-controls', 'approximation-controls', 'small-models', 'biology-ode-controls', 'biology-space-controls', 'thermostat-constraint-controls', 'quantum-small', 'continuum-particle-controls', 'variable-eddington-controls')
 DIRECT_PINS = {'numpy': '2.0.2', 'scipy': '1.14.1', 'pytest': '8.3.5'}
-GROUP_TIMEOUT_SECONDS = 120
+# Operational wall-clock guard for the entire test/integrity/driver sequence.
+# Frozen solver step/time budgets and scientific acceptance remain in each ZIP.
+GROUP_TIMEOUT_SECONDS = 240
 MAX_DOWNLOAD_BYTES = 64 * 1024 * 1024
 MAX_UNCOMPRESSED_BYTES = 128 * 1024 * 1024
 MAX_ARCHIVE_MEMBERS = 1000
@@ -275,8 +277,13 @@ def inspect_environment():
             versions[name] = importlib.metadata.version(name)
         except importlib.metadata.PackageNotFoundError:
             versions[name] = None
+    try:
+        affinity = len(os.sched_getaffinity(0)) if hasattr(os, 'sched_getaffinity') else None
+    except OSError:
+        affinity = None
     return {'python': platform.python_version(), 'operating_system': platform.system(),
             'machine': platform.machine(), 'dependencies': versions,
+            'cpu_count': os.cpu_count(), 'cpu_affinity_count': affinity,
             'source_checkout_required': False, 'plot_regeneration': False}
 
 
@@ -294,12 +301,15 @@ def clean_environment(temporary):
 
 def run_process(command, cwd, log_directory, name, environment, timeout):
     """Preserve streaming logs and kill the whole POSIX process group on timeout."""
-    require(timeout > 0, 'Group execution budget exhausted')
+    require(type(timeout) in (int, float) and math.isfinite(timeout) and timeout > 0,
+            'Group execution budget must be finite and positive')
     logs = Path(log_directory)
     logs.mkdir(parents=True, exist_ok=True)
     started = time.monotonic()
+    cpu_started = os.times()
     record = {'command': command, 'started': True, 'completed': False, 'timed_out': False,
-              'exit_code': None, 'stdout': name + '.stdout.log', 'stderr': name + '.stderr.log'}
+              'exit_code': None, 'stdout': name + '.stdout.log', 'stderr': name + '.stderr.log',
+              'started_at_utc': utc_now(), 'timeout_seconds': timeout}
     with (logs / record['stdout']).open('wb') as stdout, (logs / record['stderr']).open('wb') as stderr:
         process = subprocess.Popen(command, cwd=cwd, env=environment, stdout=stdout, stderr=stderr,
                                    start_new_session=os.name == 'posix')
@@ -314,6 +324,11 @@ def run_process(command, cwd, log_directory, name, environment, timeout):
                 process.kill()
             process.wait()
     record['duration_seconds'] = time.monotonic() - started
+    cpu_finished = os.times()
+    record['child_cpu_seconds'] = max(0., cpu_finished.children_user + cpu_finished.children_system -
+                                    cpu_started.children_user - cpu_started.children_system)
+    record['finished_at_utc'] = utc_now()
+    record['termination'] = 'wall_timeout' if record['timed_out'] else 'process_exit'
     return record
 
 
@@ -356,6 +371,8 @@ def verify(registry_url, expected_registry_sha256, output_dir):
     report = {'schema_version': 1, 'started_at_utc': utc_now(), 'registry_url': registry_url,
               'expected_registry_sha256': expected_registry_sha256, 'registry_sha256': None,
               'status': 'running', 'phase': 'registry', 'passed': False,
+              'execution_limits': {'group_wall_seconds': GROUP_TIMEOUT_SECONDS,
+                                   'scope': 'outer_orchestration_only'},
               'source_checkout': False, 'environment': {}, 'acquisitions': [], 'groups': []}
     active = None
     def save():

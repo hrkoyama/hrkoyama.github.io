@@ -112,6 +112,7 @@ test('workflow uses a fresh guarded public-only Linux environment, exact wheels 
   assert.match(workflow, /conclusion == 'success'/);
   assert.match(workflow, /runs-on: ubuntu-24\.04/);
   assert.match(workflow, /python-version: '3\.12'/);
+  assert.match(scienceWorkflow, /timeout-minutes: 45/);
   assert.match(workflow, /python -m venv "\$ATLAS_VENV"/);
   assert.match(workflow, /--only-binary=:all: --no-cache-dir/);
   assert.match(workflow, /numpy==2\.0\.2 scipy==1\.14\.1 pytest==8\.3\.5/);
@@ -125,6 +126,33 @@ test('workflow uses a fresh guarded public-only Linux environment, exact wheels 
   assert.equal(pythonBlocks.length, 4);
   for (const block of shellBlocks()) execFileSync('bash', ['-n'], {input: block});
   for (const block of pythonBlocks) python(`compile(${JSON.stringify(block)}, '<workflow-python>', 'exec')`);
+});
+
+test('small verifier rebuild binds both hashes without scanning or changing scientific releases', () => {
+  python(String.raw`
+with tempfile.TemporaryDirectory() as temporary:
+    root = Path(temporary)
+    verifier = root/u.VERIFIER_PATH
+    verifier.parent.mkdir(parents=True)
+    verifier.write_bytes(b'# isolated rendered verifier\n')
+    workflow = root/u.WORKFLOW_PATH
+    workflow.parent.mkdir(parents=True)
+    template = "# preserve the workflow\nenv:\n  ATLAS_DEPTH_BOOTSTRAP_SHA256: '"+'0'*64+"'\n  ATLAS_DEPTH_REGISTRY_SHA256: '"+'1'*64+"'\n"
+    workflow.write_text(template)
+    registry = b'{"frozen":"registry fixture"}\n'
+    pins = u.bind_workflow(root, registry)
+    assert pins == {'ATLAS_DEPTH_BOOTSTRAP_SHA256':v.digest(verifier.read_bytes()),
+                    'ATLAS_DEPTH_REGISTRY_SHA256':v.digest(registry)}
+    expected = template.replace('0'*64, pins['ATLAS_DEPTH_BOOTSTRAP_SHA256']).replace('1'*64, pins['ATLAS_DEPTH_REGISTRY_SHA256'])
+    assert workflow.read_text() == expected
+    u.bind_workflow(root, registry)
+    assert workflow.read_text() == expected
+    for bad in [template.replace('  ATLAS_DEPTH_REGISTRY_SHA256:', '  WRONG_PIN:'), template+template]:
+        workflow.write_text(bad)
+        rejects(lambda: u.bind_workflow(root, registry))
+        assert workflow.read_text() == bad
+    assert not (root/'code').exists() and not (root/u.REGISTRY_PATH).exists()
+`);
 });
 
 test('canonical registry URLs, group prefixes and all JSON numeric decisions reject unsafe variants', () => {
@@ -273,12 +301,23 @@ with tempfile.TemporaryDirectory() as temporary:
     result = v.run_process([sys.executable, '-c', 'print("unit-process-ok")'], directory,
                            directory, 'success', environment, 5)
     assert result['completed'] and result['exit_code']==0 and not result['timed_out']
+    assert result['timeout_seconds']==5 and result['termination']=='process_exit'
+    assert result['child_cpu_seconds']>=0 and v.math.isfinite(result['child_cpu_seconds'])
+    assert v.datetime.datetime.fromisoformat(result['started_at_utc']).tzinfo is not None
+    assert v.datetime.datetime.fromisoformat(result['finished_at_utc']).tzinfo is not None
     assert (directory/'success.stdout.log').read_text().strip()=='unit-process-ok'
     result = v.run_process([sys.executable, '-c', 'import time; print("started", flush=True); time.sleep(5)'],
                            directory, directory, 'timeout', environment, 0.2)
     assert result['timed_out'] and not result['completed'] and result['exit_code'] is None
+    assert result['timeout_seconds']==0.2 and result['termination']=='wall_timeout'
     assert result['duration_seconds'] < 3
     assert (directory/'timeout.stdout.log').is_file() and (directory/'timeout.stderr.log').is_file()
+    for invalid in [0, -1, float('nan'), float('inf'), True]:
+        rejects(lambda: v.run_process([sys.executable, '-c', 'raise RuntimeError("must not launch")'],
+                                      directory, directory, 'invalid', environment, invalid))
+    host = v.inspect_environment()
+    for key in ['cpu_count', 'cpu_affinity_count']:
+        assert host[key] is None or (type(host[key]) is int and host[key]>0)
 `);
 });
 
@@ -297,7 +336,7 @@ v.inspect_environment = lambda: {'python': '3.12.0', 'operating_system': 'Linux'
 mode = 'success'
 def fake_process(command, cwd, log_directory, name, environment, timeout):
     global mode
-    assert 0 < timeout <= 120
+    assert 0 < timeout <= v.GROUP_TIMEOUT_SECONDS
     assert not any(key in environment for key in ['GITHUB_TOKEN', 'AWS_SECRET_ACCESS_KEY', 'PYTHONPATH'])
     directory = Path(log_directory)
     for stream in ['stdout', 'stderr']: (directory/(name+'.'+stream+'.log')).write_text('mock '+name+' '+stream+'\n')
@@ -326,6 +365,52 @@ v.run_process = fake_process
 os.environ['GITHUB_TOKEN'] = 'do-not-inherit'
 os.environ['AWS_SECRET_ACCESS_KEY'] = 'do-not-inherit'
 `;
+
+test('operational wall guard admits a slow fixed driver and retains one shared bounded group deadline', () => {
+  python(mockedPipeline + String.raw`
+# Use the same immutable fixture bytes and numerical decisions as the existing
+# state-machine tests. Virtual elapsed time exercises the resource guard only.
+registry['releases'] = registry['releases'][:2]
+registry['case_count'] = sum(len(r['case_ids']) for r in registry['releases'])
+v.GROUPS = tuple(r['group'] for r in registry['releases'])
+registry_bytes = json.dumps(registry).encode('utf-8')
+assert v.GROUP_TIMEOUT_SECONDS == 240
+original_process, original_clock = v.run_process, v.time.monotonic
+clock, calls = [0.0], []
+charges = {'pytest': 8.0, 'run': 150.0}
+v.time.monotonic = lambda: clock[0]
+def elapsed_process(command, cwd, log_directory, name, environment, timeout):
+    calls.append((name, timeout))
+    record = original_process(command, cwd, log_directory, name, environment, timeout)
+    elapsed = min(charges[name], timeout)
+    clock[0] += elapsed
+    record['duration_seconds'] = elapsed
+    if charges[name] > timeout:
+        record.update(completed=False, timed_out=True, exit_code=None)
+    return record
+v.run_process = elapsed_process
+try:
+    with tempfile.TemporaryDirectory() as temporary:
+        report = v.verify(v.REGISTRY_URL, v.digest(registry_bytes), Path(temporary)/'slow')
+        assert report['passed'] is True, brief_report(report)
+        assert report['execution_limits'] == {'group_wall_seconds': 240, 'scope': 'outer_orchestration_only'}
+        assert calls == [('pytest', 240.0), ('run', 232.0)] * 2
+        assert all(g['run_process']['duration_seconds'] == 150 for g in report['groups'])
+        assert report['tests'] == sum(r['tests'] for r in registry['releases'])
+    # Tests and driver each fit individually, but their combined250seconds do
+    # not fit. Resetting the deadline before the driver would wrongly pass.
+    charges['pytest'] = 100.0
+    calls.clear()
+    with tempfile.TemporaryDirectory() as temporary:
+        report = v.verify(v.REGISTRY_URL, v.digest(registry_bytes), Path(temporary)/'over-budget')
+        assert report['passed'] is False and report['error']['phase'] == 'execution'
+        assert calls == [('pytest', 240.0), ('run', 140.0)]
+        assert report['groups'][0]['run_process']['timed_out'] is True
+        assert report['groups'][0]['passed'] is False
+finally:
+    v.run_process, v.time.monotonic = original_process, original_clock
+`, 60_000);
+});
 
 test('full verifier state machine accepts every mixed-edition saved fixture case without scientific execution', () => {
   python(mockedPipeline + String.raw`
