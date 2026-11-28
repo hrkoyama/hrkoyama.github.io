@@ -1,5 +1,5 @@
 {
-  "scope": "Public viewing assets only; selected notebook pages and existing pixel-level redactions retained. Private originals, OCR audit material and old Git history are not included.",
+  "scope": "Public viewing assets only: selected handwritten notebook pages with existing redactions, public metadata, and reviewed material cover/title PNGs. Private originals, document bodies, exercises, full OCR and private review records are excluded.",
   "notebooks": 41,
   "selected_pages": 1170,
   "files": [
@@ -20,13 +20,248 @@
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
-      "bytes": 676,
-      "sha256": "8674d41dd58bb6ba705fa6ab3816e484cb14b17874528753d172ea9a53cd440b"
+      "bytes": 1384,
+      "sha256": "3d8ebf2d8e03e6fa35c7fc447762deb0a7df0b57f91e7161608fafa71eab9f23"
     },
     {
       "path": "app.js",
       "bytes": 3646,
       "sha256": "c9140e8eeee413958497fcc48550980835d91358fbb2986d956fb0200a581d29"
+    },
+    {
+      "path": "assets/material-previews/b001-first-page.png",
+      "bytes": 23005,
+      "sha256": "62017dbf190d1b4e5e2fb4ab62f00fddab8479561507d80fc1df334b3020ccff"
+    },
+    {
+      "path": "assets/material-previews/b002-first-page.png",
+      "bytes": 71378,
+      "sha256": "a5e7f4998c23d1d27837038f1847a0aa71dcdcfa54ccdf6126fcb5915585d2f3"
+    },
+    {
+      "path": "assets/material-previews/b004-first-page.png",
+      "bytes": 119169,
+      "sha256": "afb1a9efdd6218776437a53ccd066520981d536e99d06205fca8874a67b07437"
+    },
+    {
+      "path": "assets/material-previews/b005-first-page.png",
+      "bytes": 96692,
+      "sha256": "a79e26f90d4b68340a53a8549abd16f72e728671a1dd3ec3168ad30d166a9d02"
+    },
+    {
+      "path": "assets/material-previews/b007-first-page.png",
+      "bytes": 112711,
+      "sha256": "ff3c95434cb81cf57fb0d94300663df47158012aa9239eaf9441f103455d9036"
+    },
+    {
+      "path": "assets/material-previews/b008-first-page.png",
+      "bytes": 82562,
+      "sha256": "728ef3c8f8d93729754c68d98735db79e119233f73f25fe4c426509028f2808b"
+    },
+    {
+      "path": "assets/material-previews/b009-first-page.png",
+      "bytes": 98113,
+      "sha256": "e9771e1d6ec7e3c6bf74dc4215257ad05f02ed2563ed570bb56bd1b0bcfe062b"
+    },
+    {
+      "path": "assets/material-previews/b011-first-page.png",
+      "bytes": 3066,
+      "sha256": "5c598060bb6a441629c45a3cb8fc64eda98ca26ebbb8213740e9817bc194b0b9"
+    },
+    {
+      "path": "assets/material-previews/b012-first-page.png",
+      "bytes": 65742,
+      "sha256": "a0e5884a8051ca45ab4460ee4738b838063479f6675aa6aa07b908c393af4f28"
+    },
+    {
+      "path": "assets/material-previews/b013-first-page.png",
+      "bytes": 85697,
+      "sha256": "809fb8968813c21e4847d98b982120b60dc00d621bd604af7dfcf844317beb30"
+    },
+    {
+      "path": "assets/material-previews/b014-first-page.png",
+      "bytes": 3154,
+      "sha256": "fa09b29e9ac401cfd65866486b49d8074d1415cbcddd1aa124cbc9c0dc942752"
+    },
+    {
+      "path": "assets/material-previews/b016-first-page.png",
+      "bytes": 52264,
+      "sha256": "a3ba433ff749b577a32c81e04da6e48b668a806cc49dbb179521083e0ab79c08"
+    },
+    {
+      "path": "assets/material-previews/b017-first-page.png",
+      "bytes": 28082,
+      "sha256": "568f205bcb2383a023bbaa7503fccb47d34621b541c12bba2b1b51b71ab61a45"
+    },
+    {
+      "path": "assets/material-previews/b018-first-page.png",
+      "bytes": 138413,
+      "sha256": "0ffdecfd6e4c49a6e34783501d8e725964a627c0fdfacdae3c5bcd61e3cbc9f8"
+    },
+    {
+      "path": "assets/material-previews/b019-first-page.png",
+      "bytes": 128078,
+      "sha256": "b879f88600962e62d288a255e89d71282b1ebbff27f8225093c5204eef8588dc"
+    },
+    {
+      "path": "assets/material-previews/b022-first-page.png",
+      "bytes": 41125,
+      "sha256": "61a8c6d7862d7413c8894ffdd20c7b74ace6552dc74f49e02059211df7b80b82"
+    },
+    {
+      "path": "assets/material-previews/b023-first-page.png",
+      "bytes": 13145,
+      "sha256": "4c8884ee1714871897b17467326002ccd0610a8f3b92a225fdfaa5e563595df9"
+    },
+    {
+      "path": "assets/material-previews/b025-first-page.png",
+      "bytes": 7261,
+      "sha256": "0a0f042f1c47734d78e6475406e55d2fb3152e303290734294a0fe448730509b"
+    },
+    {
+      "path": "assets/material-previews/b027-first-page.png",
+      "bytes": 13397,
+      "sha256": "e6a43ed6e14b76e9063bbf29794119ca47193fe03bfdaa196444253f89951596"
+    },
+    {
+      "path": "assets/material-previews/b029-first-page.png",
+      "bytes": 18354,
+      "sha256": "7b7153c2434d5a6218cefb7354dc954bcc993c335b2b7d158242c61668e22525"
+    },
+    {
+      "path": "assets/material-previews/b030-first-page.png",
+      "bytes": 12036,
+      "sha256": "596aef2eca4c912d8e5df1dfc159882c76503b074436997980d9297492819c1b"
+    },
+    {
+      "path": "assets/material-previews/b036-first-page.png",
+      "bytes": 22688,
+      "sha256": "73dd55f2fb3a9c0d79a5531df77faf8bf2550a94b5086937dbf2ea3459a74238"
+    },
+    {
+      "path": "assets/material-previews/b038-first-page.png",
+      "bytes": 40330,
+      "sha256": "a379e44c98cdda02c4d39532fac1683c88833e46075d2288d7732c1cd033dc24"
+    },
+    {
+      "path": "assets/material-previews/b042-first-page.png",
+      "bytes": 2400,
+      "sha256": "da20e9e23210ead8749e35ed56bc120dee0daa757fed342e04b843813dd86738"
+    },
+    {
+      "path": "assets/material-previews/b043-first-page.png",
+      "bytes": 2481,
+      "sha256": "415758d5b81dde6bb422b0924cbce90123087924e0b58c164f51c9f965bcc4e4"
+    },
+    {
+      "path": "assets/material-previews/b046-first-page.png",
+      "bytes": 101397,
+      "sha256": "a6aa4e93c342f30ff392a2f8f6ccaea2182fe733b288ef839e43f5ecfd91bd91"
+    },
+    {
+      "path": "assets/material-previews/b050-first-page.png",
+      "bytes": 19423,
+      "sha256": "5d79d4bda4232fb1679323946119532401e18950735cec552ca08c852d1f9763"
+    },
+    {
+      "path": "assets/material-previews/b052-first-page.png",
+      "bytes": 30424,
+      "sha256": "9548a17ae1a53a2929b45d6f07d619c3b46b759845373dfaa85b25ab9ffc8140"
+    },
+    {
+      "path": "assets/material-previews/b053-first-page.png",
+      "bytes": 22377,
+      "sha256": "d7806d6d46e1ca6cafbd2adcbfb5f37d0ab6be029b5d7b4d2b776208e654ce7b"
+    },
+    {
+      "path": "assets/material-previews/b055-first-page.png",
+      "bytes": 12414,
+      "sha256": "cecbb447ddd8ca91b7e5d79dce3f537cc8b986c84047f8068af7d1e9585a34f4"
+    },
+    {
+      "path": "assets/material-previews/b071-first-page.png",
+      "bytes": 36322,
+      "sha256": "b05391226b612f58b6791ad1b92d0568c1eefaa0d78266ea643c33a1d0c1df79"
+    },
+    {
+      "path": "assets/material-previews/b073-first-page.png",
+      "bytes": 16145,
+      "sha256": "4789764130c46bed7ed7e9cbca0daec104a2d2255441c8e592c8b0563421b4b7"
+    },
+    {
+      "path": "assets/material-previews/b076-first-page.png",
+      "bytes": 14640,
+      "sha256": "e5681f99020ee4a66bee5f7909e1c1baac56442054b5cb8cd0b1d37d2cdec1ef"
+    },
+    {
+      "path": "assets/material-previews/b079-first-page.png",
+      "bytes": 63413,
+      "sha256": "4997492b5b9020010bca200cf1544dc2813891d3bacb0a2696f31b73ccfc115c"
+    },
+    {
+      "path": "assets/material-previews/b084-first-page.png",
+      "bytes": 14640,
+      "sha256": "695231379796cf1b8c8391d69a2a731647b00eea425bc92ca2b8e4d9f04573ef"
+    },
+    {
+      "path": "assets/material-previews/b088-first-page.png",
+      "bytes": 9887,
+      "sha256": "e2cf13fd8b894f9429e2fe87a55e4e4de78c5492a4a9c1c8089e04d9626d004a"
+    },
+    {
+      "path": "assets/material-previews/b089-first-page.png",
+      "bytes": 148602,
+      "sha256": "494f8ba755dcc2aff5e61291d34da755f05c90322c05d57ed94acffe5a58ac41"
+    },
+    {
+      "path": "assets/material-previews/b091-first-page.png",
+      "bytes": 37290,
+      "sha256": "594ee4f9c71c0ebd140d52a4d8b7abece14bf2dad9ae914c8c56988c1e2cce97"
+    },
+    {
+      "path": "assets/material-previews/b092-first-page.png",
+      "bytes": 19337,
+      "sha256": "f47b905f7e6a9519e84f9d9685808a3e90dfa78d65055487bdc0f1f90a1304f8"
+    },
+    {
+      "path": "assets/material-previews/b095-first-page.png",
+      "bytes": 406854,
+      "sha256": "d00fe9fe45c6c7107bd73f42ae10361f4631840adf96d401d03bace82115bd26"
+    },
+    {
+      "path": "assets/material-previews/b096-first-page.png",
+      "bytes": 39590,
+      "sha256": "83962a61edc777eca6f75e1a88d42c8084b6e157b8901a6fd1db5b07d5a1ac9f"
+    },
+    {
+      "path": "assets/material-previews/b097-first-page.png",
+      "bytes": 119762,
+      "sha256": "6697c55d14503712175c2b2aefa197239449184790092d5a87266782b236dbcb"
+    },
+    {
+      "path": "assets/material-previews/b099-first-page.png",
+      "bytes": 6603,
+      "sha256": "b13c6a30d6c1601da8b8352a36c1593f56ea771ef2b6b1e2491be8f571632863"
+    },
+    {
+      "path": "assets/material-previews/b100-first-page.png",
+      "bytes": 59086,
+      "sha256": "c675d494ebb763f94c43254e7c9f64fb4abe8148e81a2675b2478835f0fd8aa1"
+    },
+    {
+      "path": "assets/material-previews/b102-first-page.png",
+      "bytes": 31616,
+      "sha256": "d5a7e03509ba6f01ab61674747de806b7714bf8da402ca21bcaeea7d5228e8d2"
+    },
+    {
+      "path": "assets/material-previews/b103-first-page.png",
+      "bytes": 16054,
+      "sha256": "352ae278e0f7b7f3b99fa452c5db6e81402d1e72117f66f8293ddbe7105d956b"
+    },
+    {
+      "path": "assets/material-previews/b109-first-page.png",
+      "bytes": 14018,
+      "sha256": "db12d7ae3ade2a765e22ef9d20088096d86f70b2140ef73b7a25c1ec82c80ce4"
     },
     {
       "path": "assets/notebooks/n024/001-thumb.webp",
@@ -12020,13 +12255,18 @@
     },
     {
       "path": "bibliography.html",
-      "bytes": 57373,
-      "sha256": "aa9bc50a441b2fdd3587e2ec513b528f30ba310a4d5dc874cee3c18519130c64"
+      "bytes": 127453,
+      "sha256": "386f54ec7cb9a21ebe49b701c8fd9b09181a5e1ff9c2d3372f581aad153d067e"
+    },
+    {
+      "path": "bibliography.js",
+      "bytes": 2138,
+      "sha256": "125e2de9497eca5387e4f14ba5b6b7061cd39500d5f7464c3e3bfd9df582ee6e"
     },
     {
       "path": "bibliography.json",
-      "bytes": 32629,
-      "sha256": "9a572d8d0d2b6c635ef484b283d3c7553c3ebc3fa75a1d82e6ec278ea707df78"
+      "bytes": 86859,
+      "sha256": "09a3a84da02cee282aa3bd05bbe235325bc9a1a5d89b27bf7b0dd30c7cfa95a7"
     },
     {
       "path": "catalog.js",
@@ -12045,8 +12285,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 10235,
-      "sha256": "83404ff07e947e81e8fc296fdbecff9f83898785ceeb578333e9ca37c48545d4"
+      "bytes": 10813,
+      "sha256": "714664760b052a73841edbe0e34fac8b02d94a47b64ef1e34e3b56c241a1d5b7"
     },
     {
       "path": "library.css",
@@ -12055,8 +12295,8 @@
     },
     {
       "path": "library.js",
-      "bytes": 5776,
-      "sha256": "97254948c4cb7d50b4c7c3c58d51d1dab14a30275ba065ec87b0087e716c3b36"
+      "bytes": 5900,
+      "sha256": "a6fec28ce137508715196d0bffd44ced74fc4445886323a99179f6d5d89b5a95"
     },
     {
       "path": "material-links.json",
@@ -12064,14 +12304,34 @@
       "sha256": "e00bd9ac7f3ccb2b5dd827c84fe67b795b11fab341880ccce1476f2ea610b072"
     },
     {
+      "path": "material-preview-data.js",
+      "bytes": 56472,
+      "sha256": "58bc5401fc044ea44f0f0d67eb4f7d134f3583cc2d87d579afe78dd7d44149cc"
+    },
+    {
+      "path": "material-preview-manifest.json",
+      "bytes": 11604,
+      "sha256": "398270cfdda9cd3cf67bbfaa21709700e2d40fc897f6840cfaa7565b21254036"
+    },
+    {
+      "path": "material-previews.css",
+      "bytes": 2835,
+      "sha256": "c8f27d0dda4b05777605c68ae98895575a023b2ffd093962fa4755728c0dadb3"
+    },
+    {
+      "path": "material-previews.js",
+      "bytes": 5178,
+      "sha256": "09cc25cd3f0a6f3d94094f517b6e1a39aa1ecbfb28a6c67639c0731fd6e35ffb"
+    },
+    {
       "path": "notebook.html",
-      "bytes": 8547,
-      "sha256": "691773b0ed1b79ab463684ed7bf854daa16c8b6fdb011badf0d6f1af468d1d8a"
+      "bytes": 8806,
+      "sha256": "18e7ca8798a3dbce8a12e0289f86cd2e789e2ee1990a4b6e2db1805a17bef1c0"
     },
     {
       "path": "notebook.js",
-      "bytes": 9183,
-      "sha256": "b08b5935ac5c506fda3d03aed618444faab9fbaa9783191dbcad2d99e724459a"
+      "bytes": 9602,
+      "sha256": "21320a122e430584fbda900555b30b278573edd4c6da8e6cbece5dfe6d59dd09"
     },
     {
       "path": "quantum-a-excerpt.md",
@@ -12089,5 +12349,6 @@
       "sha256": "ae30ede47abc0ead2af84e9bb216dc52e25490215335cf579247bbfd73f6e496"
     }
   ],
-  "bibliographic_entries": 68
+  "bibliographic_entries": 68,
+  "material_previews": 47
 }
