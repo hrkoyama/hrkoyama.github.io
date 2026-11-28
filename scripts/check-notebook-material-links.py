@@ -6,6 +6,7 @@ import subprocess
 from collections import Counter
 from html.parser import HTMLParser
 from pathlib import Path
+from notebook_previews import validate_previews
 
 
 def read_catalog(text):
@@ -13,10 +14,14 @@ def read_catalog(text):
 
 
 class Cards(HTMLParser):
-    def __init__(self):
+    def __init__(self, materials):
         super().__init__()
         self.current = None
         self.cards = {}
+        self.materials = materials
+        self.images = {}
+        self.creators = {}
+        self.in_creator = False
 
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
@@ -24,14 +29,31 @@ class Cards(HTMLParser):
             self.current = attrs['id']
             assert self.current not in self.cards, 'Duplicate bibliography anchor'
             self.cards[self.current] = []
+            self.images[self.current] = []
+            self.creators[self.current] = []
         if self.current:
-            assert tag not in {'img', 'iframe', 'object', 'embed'}, 'Material body embedded in bibliography'
+            assert tag not in {'iframe', 'object', 'embed'}, 'Material body embedded in bibliography'
+            if tag == 'img':
+                approved = self.materials[self.current]['preview']
+                assert approved['image'] and attrs.get('src') == approved['image'], 'Unapproved material image'
+                assert 'srcset' not in attrs, 'Alternative image sources are not allowlisted'
+                assert attrs.get('width') == str(approved['width']) and attrs.get('height') == str(approved['height'])
+                self.images[self.current].append(attrs['src'])
+            if tag == 'p' and 'creator' in attrs.get('class','').split():
+                assert 'hidden' not in attrs and 'style' not in attrs
+                self.in_creator = True
             if tag == 'a':
                 self.cards[self.current].append(attrs['href'])
 
     def handle_endtag(self, tag):
+        if tag == 'p':
+            self.in_creator = False
         if tag == 'article':
             self.current = None
+
+    def handle_data(self, data):
+        if self.current and self.in_creator:
+            self.creators[self.current].append(data)
 
 
 def main():
@@ -47,6 +69,11 @@ def main():
     books = {n['id']: n for n in catalog['notebooks']}
     bibliography = json.loads((site / 'bibliography.json').read_text())
     materials = {e['id']: e for e in bibliography['entries']}
+    preview_images = validate_previews(site, bibliography['entries'])
+    browser_data = (site / 'material-preview-data.js').read_text()
+    assert browser_data.startswith('window.NOTEBOOK_MATERIAL_PREVIEWS = ') and browser_data.endswith(';\n')
+    browser_data = json.loads(browser_data.split('=',1)[1].strip().removesuffix(';'))
+    assert browser_data == {entry['id']:{key:entry[key] for key in ['title','creator','preview']} for entry in bibliography['entries']}
     assert len(books) == len(catalog['notebooks']) == 41
     assert len(materials) == len(bibliography['entries'])
     assert not ({'n082', 'n086'} & books.keys())
@@ -72,11 +99,14 @@ def main():
             source = materials[material['id']]
             assert material['title'] == source['title'] and material['creator'] == source['creator']
             assert material['label'] == links['relation_labels'][material['relation']]
-    cards = Cards()
+    cards = Cards(materials)
     cards.feed((site / 'bibliography.html').read_text())
     assert cards.cards.keys() == materials.keys()
     for material_id, material in materials.items():
-        assert set(material) <= {'id','source_ids','title','creator','kind','note','title_status','reference_url','creator_source','related_notebooks'}
+        assert set(material) <= {'id','source_ids','title','creator','kind','note','title_status','reference_url','creator_source','related_notebooks','preview','holding_status'}
+        expected_image = [material['preview']['image']] if material['preview']['image'] else []
+        assert cards.images[material_id] == expected_image, 'Exactly one approved preview image is permitted'
+        assert ''.join(cards.creators[material_id]).strip() == (material.get('creator') or '著者・講師名：未確認'), 'Instructor / author name removed'
         assert all(re.fullmatch(r'n[0-9]{3}|hdd-inutsuka', source_id) for source_id in material.get('source_ids', []))
         assert len(material['title']) <= 300 and len(material.get('note', '')) <= 1000
         expected = {(l['notebook_id'], l['relation']) for l in links['links'] if l['material_id'] == material_id}
@@ -97,6 +127,10 @@ def main():
     assert '杉本大一郎' in materials['b092']['note'] and '同一講義かは未確認' in materials['b092']['note']
     assert materials['b099']['creator'] is None, 'A matching course does not establish material authorship'
     assert materials['b076']['kind'] == '記事'
+    assert materials['b109']['title'] == '分子雲の収縮・分裂過程'
+    assert materials['b109']['creator'] == '犬塚修一郎' and materials['b109']['title_status'] == 'identified'
+    assert materials['b109']['preview']['year_label'] is None
+    assert materials['b078']['preview']['image'] is None and materials['b078']['creator'] == 'S. I. Blinnikov'
     assert books['n090']['lecture_year_status'] == 'provisional'
     assert books['n063']['lecture_year'] == 1993 and books['n063']['lecture_year_status'] == 'confirmed'
     assert books['n064']['lecture_year'] == 1992 and books['n064']['lecture_year_status'] == 'provisional'
@@ -121,9 +155,11 @@ def main():
         assert {n['id'] for n in baseline['notebooks']} == books.keys()
         for previous in baseline['notebooks']:
             current = books[previous['id']]
+            assert previous.get('lecturer') == current.get('lecturer'), 'Notebook instructor changed'
             for field in ['source', 'source_pages', 'pages', 'frames', 'pdf', 'redaction_policy_sha256']:
                 assert previous.get(field) == current.get(field), (previous['id'], field, 'Viewing assets or redactions changed')
     print(json.dumps({'notebooks': len(books), 'bibliography_records': len(materials),
+                      'approved_preview_images':len(preview_images),'metadata_only':len(materials)-len(preview_images),
                       'confirmed_links': len(pairs), 'linked_notebooks': len({n for n, _ in pairs}),
                       'relations': dict(Counter(l['relation'] for l in links['links'])),
                       'public_page_allowlist_and_redactions_retained': bool(args.baseline_ref)}, ensure_ascii=False))

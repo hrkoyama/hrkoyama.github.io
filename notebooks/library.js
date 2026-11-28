@@ -2,7 +2,7 @@
   'use strict';
   const books = window.NOTEBOOKS.notebooks;
   const $ = id => document.getElementById(id);
-  const groupNames = {'kyoto-u': ['京都大学', 'Kyoto University'], 'u-tokyo': ['東京大学', 'The University of Tokyo']};
+  const groupNames = {'kyoto-u': ["京都大学理学部", "Faculty of Science, Kyoto University"], 'u-tokyo': ["東京大学大学院理学系研究科天文学専攻", "Department of Astronomy, Graduate School of Science, The University of Tokyo"]};
   let group = 'all';
   const countPages = items => items.reduce((n, book) => n + book.frames.length, 0);
   function english() {

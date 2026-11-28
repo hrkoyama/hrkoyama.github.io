@@ -1,7 +1,7 @@
 (() => {
  'use strict';
  const $=id=>document.getElementById(id);
- const groupNames={'kyoto-u':['京都大学','Kyoto University'],'u-tokyo':['東京大学','The University of Tokyo']};
+ const groupNames={'kyoto-u':["京都大学理学部", "Faculty of Science, Kyoto University"],'u-tokyo':["東京大学大学院理学系研究科天文学専攻", "Department of Astronomy, Graduate School of Science, The University of Tokyo"]};
  function english(){
   const selected=document.querySelector('[data-site-lang][aria-current="page"]');
   const requested=selected?.dataset.siteLang||new URL(location.href).searchParams.get('lang');
@@ -38,13 +38,14 @@
   const section=document.createElement('section');section.className='lecture-info related-materials';section.id='related-materials';
   const put=(tag,ja,en)=>{const el=document.createElement(tag);el.dataset.uiJa=ja;el.dataset.uiEn=en;el.textContent=typeof english==='function'&&english()?en:ja;return el;};
   const title=put('h2','対応する資料の目録','Related material records');
-  section.append(title,put('p','資料の本文・画像・PDFは非公開です。リンク先では表題・氏名と、自筆ノートとの関係を紹介しています。','The material text, images and PDFs remain private. Links show bibliographic information and its relationship to this notebook.'));
+  section.append(title,put('p','資料の存在と、このノートとの関係を紹介しています。表紙・表題の確認済み部分だけを表示し、資料の本文・問題・原本PDFは非公開です。講師・著者名は残しています。','These records show the materials and their relationship to this notebook. Only reviewed cover / title portions are shown. Document bodies, questions and full original PDFs remain private; instructor and author names are retained.'));
   const list=document.createElement('ul');list.className='material-records';
   for(const material of book.related_materials){
    const item=document.createElement('li');const a=document.createElement('a');a.href=`bibliography.html#${encodeURIComponent(material.id)}`;a.textContent=material.title;
    const relation=document.createElement('p');relation.className='material-relation';relation.textContent=material.label;
    item.append(a,relation);
    if(material.creator){const person=document.createElement('p');person.className='material-creator';person.textContent=`資料の氏名表記：${material.creator}`;item.append(person);}
+   const preview=window.NotebookMaterialPreviews?.create(material.id);if(preview)item.append(preview);
    list.append(item);
   }
   section.append(list);$('lecture-info').after(section);

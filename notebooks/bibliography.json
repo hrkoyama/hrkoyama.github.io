@@ -1,7 +1,7 @@
 {
-  "schema_version": 1,
-  "updated_on": "2026-11-22",
-  "scope": "関連資料の書誌情報のみ。本文・スキャン画像・PDFは非公開。",
+  "schema_version": 2,
+  "updated_on": "2026-11-28",
+  "scope": "書誌情報と、原本先頭から確認した表紙・表題部分のみ。資料本文・設問・図・原本PDFは非公開。講師・著者名は残しています。",
   "entries": [
     {
       "id": "b001",
@@ -14,7 +14,27 @@
       "note": "",
       "title_status": "identified",
       "reference_url": null,
-      "related_notebooks": []
+      "related_notebooks": [],
+      "preview": {
+        "label": {
+          "ja": "扉のみ",
+          "en": "Title page only"
+        },
+        "caption": {
+          "ja": "先頭の扉1枚。本文は含みません。",
+          "en": "The first scanned title page; body pages are excluded."
+        },
+        "alt": {
+          "ja": "固体物理学演習 ― キッテルの理解を深めるために（改訂版）の表題部分。本文は非掲載。",
+          "en": "Title portion of 固体物理学演習 ― キッテルの理解を深めるために（改訂版）; body excluded."
+        },
+        "mode": "cover",
+        "image": "assets/material-previews/b001-first-page.png",
+        "width": 1000,
+        "height": 1415,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b002",
@@ -28,7 +48,27 @@
       "note": "日本語版の２分冊。",
       "title_status": "identified",
       "reference_url": null,
-      "related_notebooks": []
+      "related_notebooks": [],
+      "preview": {
+        "label": {
+          "ja": "扉のみ",
+          "en": "Title page only"
+        },
+        "caption": {
+          "ja": "先頭の扉1枚。本文は含みません。",
+          "en": "The first scanned title page; body pages are excluded."
+        },
+        "alt": {
+          "ja": "流体力学 1・2の表題部分。本文は非掲載。",
+          "en": "Title portion of 流体力学 1・2; body excluded."
+        },
+        "mode": "cover",
+        "image": "assets/material-previews/b002-first-page.png",
+        "width": 1000,
+        "height": 1414,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b004",
@@ -41,7 +81,27 @@
       "note": "",
       "title_status": "identified",
       "reference_url": null,
-      "related_notebooks": []
+      "related_notebooks": [],
+      "preview": {
+        "label": {
+          "ja": "扉のみ",
+          "en": "Title page only"
+        },
+        "caption": {
+          "ja": "先頭の扉1枚。本文は含みません。",
+          "en": "The first scanned title page; body pages are excluded."
+        },
+        "alt": {
+          "ja": "場の古典論 ― 電気力学、特殊および一般相対性理論の表題部分。本文は非掲載。",
+          "en": "Title portion of 場の古典論 ― 電気力学、特殊および一般相対性理論; body excluded."
+        },
+        "mode": "cover",
+        "image": "assets/material-previews/b004-first-page.png",
+        "width": 1000,
+        "height": 1414,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b005",
@@ -55,7 +115,27 @@
       "note": "２分冊。",
       "title_status": "identified",
       "reference_url": null,
-      "related_notebooks": []
+      "related_notebooks": [],
+      "preview": {
+        "label": {
+          "ja": "扉のみ",
+          "en": "Title page only"
+        },
+        "caption": {
+          "ja": "先頭の扉1枚。本文は含みません。",
+          "en": "The first scanned title page; body pages are excluded."
+        },
+        "alt": {
+          "ja": "物理的運動学 1・2の表題部分。本文は非掲載。",
+          "en": "Title portion of 物理的運動学 1・2; body excluded."
+        },
+        "mode": "cover",
+        "image": "assets/material-previews/b005-first-page.png",
+        "width": 1000,
+        "height": 1414,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b007",
@@ -68,7 +148,27 @@
       "note": "",
       "title_status": "identified",
       "reference_url": null,
-      "related_notebooks": []
+      "related_notebooks": [],
+      "preview": {
+        "label": {
+          "ja": "扉のみ",
+          "en": "Title page only"
+        },
+        "caption": {
+          "ja": "先頭の扉1枚。本文は含みません。",
+          "en": "The first scanned title page; body pages are excluded."
+        },
+        "alt": {
+          "ja": "弾性理論（増補新版）の表題部分。本文は非掲載。",
+          "en": "Title portion of 弾性理論（増補新版）; body excluded."
+        },
+        "mode": "cover",
+        "image": "assets/material-previews/b007-first-page.png",
+        "width": 1000,
+        "height": 1414,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b008",
@@ -81,7 +181,27 @@
       "note": "",
       "title_status": "identified",
       "reference_url": null,
-      "related_notebooks": []
+      "related_notebooks": [],
+      "preview": {
+        "label": {
+          "ja": "扉のみ",
+          "en": "Title page only"
+        },
+        "caption": {
+          "ja": "先頭の扉1枚。本文は含みません。",
+          "en": "The first scanned title page; body pages are excluded."
+        },
+        "alt": {
+          "ja": "力学（増訂第3版）の表題部分。本文は非掲載。",
+          "en": "Title portion of 力学（増訂第3版）; body excluded."
+        },
+        "mode": "cover",
+        "image": "assets/material-previews/b008-first-page.png",
+        "width": 1000,
+        "height": 1414,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b009",
@@ -100,7 +220,27 @@
           "notebook_id": "n060",
           "relation": "reference_book"
         }
-      ]
+      ],
+      "preview": {
+        "label": {
+          "ja": "扉のみ",
+          "en": "Title page only"
+        },
+        "caption": {
+          "ja": "先頭の扉1枚。本文は含みません。",
+          "en": "The first scanned title page; body pages are excluded."
+        },
+        "alt": {
+          "ja": "量子力学 ― 非相対論的理論 1・2の表題部分。本文は非掲載。",
+          "en": "Title portion of 量子力学 ― 非相対論的理論 1・2; body excluded."
+        },
+        "mode": "cover",
+        "image": "assets/material-previews/b009-first-page.png",
+        "width": 1000,
+        "height": 1414,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b011",
@@ -113,7 +253,27 @@
       "note": "見出しのみ確認。出典書籍と版は未確認。",
       "title_status": "tentative",
       "reference_url": null,
-      "related_notebooks": []
+      "related_notebooks": [],
+      "preview": {
+        "label": {
+          "ja": "先頭の見出しのみ",
+          "en": "Opening heading only"
+        },
+        "caption": {
+          "ja": "先頭ページの見出しだけを切り抜き。資料全体の表紙ではありません。本文・数式・図は除いています。",
+          "en": "Only the opening heading is retained. This is not a cover for the entire material; text, equations and figures are excluded."
+        },
+        "alt": {
+          "ja": "Sound（流体力学の章・抜粋）の表題部分。本文は非掲載。",
+          "en": "Title portion of Sound（流体力学の章・抜粋）; body excluded."
+        },
+        "mode": "masked_first_page",
+        "image": "assets/material-previews/b011-first-page.png",
+        "width": 405,
+        "height": 225,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b012",
@@ -126,7 +286,27 @@
       "note": "",
       "title_status": "identified",
       "reference_url": "https://www.informit.com/store/patterns-for-parallel-programming-9780132651189",
-      "related_notebooks": []
+      "related_notebooks": [],
+      "preview": {
+        "label": {
+          "ja": "扉のみ",
+          "en": "Title page only"
+        },
+        "caption": {
+          "ja": "先頭の扉1枚。本文は含みません。",
+          "en": "The first scanned title page; body pages are excluded."
+        },
+        "alt": {
+          "ja": "Patterns for Parallel Programmingの表題部分。本文は非掲載。",
+          "en": "Title portion of Patterns for Parallel Programming; body excluded."
+        },
+        "mode": "cover",
+        "image": "assets/material-previews/b012-first-page.png",
+        "width": 1000,
+        "height": 1414,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b013",
@@ -139,7 +319,30 @@
       "note": "名古屋大学大型計算機センターニュース Vol.31 No.4。",
       "title_status": "identified",
       "reference_url": "https://icts.nagoya-u.ac.jp/ja/center/pub/news90-02.html",
-      "related_notebooks": []
+      "related_notebooks": [],
+      "preview": {
+        "label": {
+          "ja": "表紙のみ",
+          "en": "Cover only"
+        },
+        "caption": {
+          "ja": "先頭の表紙1枚。本文は含みません。",
+          "en": "The first scanned cover; body pages are excluded."
+        },
+        "alt": {
+          "ja": "VPP FortranからHPFへの表題部分。本文は非掲載。",
+          "en": "Title portion of VPP FortranからHPFへ; body excluded."
+        },
+        "mode": "cover",
+        "image": "assets/material-previews/b013-first-page.png",
+        "width": 1414,
+        "height": 2000,
+        "year_label": {
+          "ja": "資料の記載：2000年11月",
+          "en": "Date on material: November 2000"
+        }
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b014",
@@ -162,7 +365,27 @@
           "notebook_id": "n074",
           "relation": "reference_book"
         }
-      ]
+      ],
+      "preview": {
+        "label": {
+          "ja": "先頭の章題部分のみ",
+          "en": "Chapter heading only"
+        },
+        "caption": {
+          "ja": "先頭の見開きから章題のみを切り抜き。本文・数式・図は除いています。",
+          "en": "Only the chapter heading is retained from the first scanned spread. Prose, equations and figures are excluded."
+        },
+        "alt": {
+          "ja": "第5章「統計力学の原理」の章題のみを残した画像。",
+          "en": "Chapter heading 第5章「統計力学の原理」, with the body excluded."
+        },
+        "mode": "masked_first_page",
+        "image": "assets/material-previews/b014-first-page.png",
+        "width": 560,
+        "height": 155,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b016",
@@ -175,7 +398,27 @@
       "note": "先頭記事の表題・著者を記載。後続記事の書誌は確認中。",
       "title_status": "identified",
       "reference_url": null,
-      "related_notebooks": []
+      "related_notebooks": [],
+      "preview": {
+        "label": {
+          "ja": "先頭の表題部分のみ",
+          "en": "Title block only"
+        },
+        "caption": {
+          "ja": "先頭から表題・氏名などの識別部分だけを切り抜き、本文・問題・図を除いています。",
+          "en": "Cropped to identifying information such as the title and name; prose, exercises and figures are excluded."
+        },
+        "alt": {
+          "ja": "数学コンチェルト ― 第1話「アイオロスの竪琴」の表題部分。本文は非掲載。",
+          "en": "Title portion of 数学コンチェルト ― 第1話「アイオロスの竪琴」; body excluded."
+        },
+        "mode": "masked_first_page",
+        "image": "assets/material-previews/b016-first-page.png",
+        "width": 450,
+        "height": 245,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b017",
@@ -188,7 +431,27 @@
       "note": "先頭記事の表題・著者を記載。後続記事の書誌は確認中。",
       "title_status": "identified",
       "reference_url": null,
-      "related_notebooks": []
+      "related_notebooks": [],
+      "preview": {
+        "label": {
+          "ja": "先頭の表題部分のみ",
+          "en": "Title block only"
+        },
+        "caption": {
+          "ja": "先頭から表題・氏名などの識別部分だけを切り抜き、本文・問題・図を除いています。",
+          "en": "Cropped to identifying information such as the title and name; prose, exercises and figures are excluded."
+        },
+        "alt": {
+          "ja": "ハイレベル・ゼミ ― 基底としてのn進法の表題部分。本文は非掲載。",
+          "en": "Title portion of ハイレベル・ゼミ ― 基底としてのn進法; body excluded."
+        },
+        "mode": "masked_first_page",
+        "image": "assets/material-previews/b017-first-page.png",
+        "width": 430,
+        "height": 220,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b018",
@@ -201,7 +464,27 @@
       "note": "先頭記事の表題・著者を記載。後続記事の書誌は確認中。",
       "title_status": "identified",
       "reference_url": null,
-      "related_notebooks": []
+      "related_notebooks": [],
+      "preview": {
+        "label": {
+          "ja": "先頭の表題部分のみ",
+          "en": "Title block only"
+        },
+        "caption": {
+          "ja": "先頭から表題・氏名などの識別部分だけを切り抜き、本文・問題・図を除いています。",
+          "en": "Cropped to identifying information such as the title and name; prose, exercises and figures are excluded."
+        },
+        "alt": {
+          "ja": "一数の広場 ― ax+by=cの整数解の表題部分。本文は非掲載。",
+          "en": "Title portion of 一数の広場 ― ax+by=cの整数解; body excluded."
+        },
+        "mode": "masked_first_page",
+        "image": "assets/material-previews/b018-first-page.png",
+        "width": 430,
+        "height": 245,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b019",
@@ -214,7 +497,27 @@
       "note": "先頭記事の表題・著者を記載。後続記事の書誌は確認中。",
       "title_status": "identified",
       "reference_url": null,
-      "related_notebooks": []
+      "related_notebooks": [],
+      "preview": {
+        "label": {
+          "ja": "先頭の表題部分のみ",
+          "en": "Title block only"
+        },
+        "caption": {
+          "ja": "先頭から表題・氏名などの識別部分だけを切り抜き、本文・問題・図を除いています。",
+          "en": "Cropped to identifying information such as the title and name; prose, exercises and figures are excluded."
+        },
+        "alt": {
+          "ja": "受験数学を超えて ― 対称行列の話の表題部分。本文は非掲載。",
+          "en": "Title portion of 受験数学を超えて ― 対称行列の話; body excluded."
+        },
+        "mode": "masked_first_page",
+        "image": "assets/material-previews/b019-first-page.png",
+        "width": 415,
+        "height": 215,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b020",
@@ -227,7 +530,25 @@
       "note": "仮題。資料全体の正式な表題・著者は未確認。",
       "title_status": "tentative",
       "reference_url": null,
-      "related_notebooks": []
+      "related_notebooks": [],
+      "preview": {
+        "label": {
+          "ja": "書誌情報のみ",
+          "en": "Metadata only"
+        },
+        "caption": {
+          "ja": "先頭は本文・参考文献のページで、独立した表紙がないため、画像を掲載せず書誌情報で案内します。",
+          "en": "The first scan contains body text and references rather than a cover; bibliographic information is shown without an image."
+        },
+        "alt": {
+          "ja": "",
+          "en": ""
+        },
+        "mode": "metadata_only",
+        "image": null,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b022",
@@ -240,7 +561,27 @@
       "note": "副題：宇宙におけるX線と原子、電子との相互作用。",
       "title_status": "identified",
       "reference_url": null,
-      "related_notebooks": []
+      "related_notebooks": [],
+      "preview": {
+        "label": {
+          "ja": "先頭の表題部分のみ",
+          "en": "Title block only"
+        },
+        "caption": {
+          "ja": "先頭から表題・氏名などの識別部分だけを切り抜き、本文・問題・図を除いています。",
+          "en": "Cropped to identifying information such as the title and name; prose, exercises and figures are excluded."
+        },
+        "alt": {
+          "ja": "課題演習 宇宙における微視的過程の表題部分。本文は非掲載。",
+          "en": "Title portion of 課題演習 宇宙における微視的過程; body excluded."
+        },
+        "mode": "masked_first_page",
+        "image": "assets/material-previews/b022-first-page.png",
+        "width": 1135,
+        "height": 155,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b023",
@@ -258,7 +599,30 @@
           "notebook_id": "n024",
           "relation": "course_material"
         }
-      ]
+      ],
+      "preview": {
+        "label": {
+          "ja": "問題を除き表題のみ",
+          "en": "Exam heading only"
+        },
+        "caption": {
+          "ja": "試験の表題だけを残しています。設問・図・手書きの計算は画像から除去しました。",
+          "en": "Only the exam heading is retained. Questions, figures and handwritten calculations are removed from the exported image."
+        },
+        "alt": {
+          "ja": "物理数学（1993後期）試験問題の表題のみ。問題と手書き計算は非掲載。",
+          "en": "Heading of the 1993 second-term mathematical physics exam, with questions and handwritten calculations excluded."
+        },
+        "mode": "masked_first_page",
+        "image": "assets/material-previews/b023-first-page.png",
+        "width": 660,
+        "height": 90,
+        "year_label": {
+          "ja": "試験表題の記載：1993後期",
+          "en": "Term printed in exam heading: 1993, second term"
+        }
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b023-1992",
@@ -271,7 +635,25 @@
       "note": "表題の92は授業年度、1993年2月23日は試験日として区別。講師名は未確認。",
       "title_status": "identified",
       "reference_url": null,
-      "related_notebooks": []
+      "related_notebooks": [],
+      "preview": {
+        "label": {
+          "ja": "書誌情報のみ",
+          "en": "Metadata only"
+        },
+        "caption": {
+          "ja": "この試験は同じ保存ファイルの途中にあります。先頭にある1993年度の試験画像は流用しません。",
+          "en": "This exam appears later in a combined scan. The first-page image of the different 1993 exam is not reused."
+        },
+        "alt": {
+          "ja": "",
+          "en": ""
+        },
+        "mode": "metadata_only",
+        "image": null,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b025",
@@ -284,7 +666,27 @@
       "note": "先頭の見出しを記載。同じ保存資料に「特殊関数の性質」などの別章も含みます。全体の正式表題・講師名は未確認。",
       "title_status": "tentative",
       "reference_url": null,
-      "related_notebooks": []
+      "related_notebooks": [],
+      "preview": {
+        "label": {
+          "ja": "先頭の見出しのみ",
+          "en": "Opening heading only"
+        },
+        "caption": {
+          "ja": "先頭ページの見出しだけを切り抜き。資料全体の表紙ではありません。本文・数式・図は除いています。",
+          "en": "Only the opening heading is retained. This is not a cover for the entire material; text, equations and figures are excluded."
+        },
+        "alt": {
+          "ja": "Γ関数・Β関数の表題部分。本文は非掲載。",
+          "en": "Title portion of Γ関数・Β関数; body excluded."
+        },
+        "mode": "masked_first_page",
+        "image": "assets/material-previews/b025-first-page.png",
+        "width": 270,
+        "height": 101,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b026",
@@ -303,7 +705,25 @@
           "notebook_id": "n024",
           "relation": "course_material"
         }
-      ]
+      ],
+      "preview": {
+        "label": {
+          "ja": "書誌情報のみ",
+          "en": "Metadata only"
+        },
+        "caption": {
+          "ja": "先頭が数式・図を含む本文のため、今回は画像を掲載せず、書誌情報で存在を示します。",
+          "en": "The first scan is a body spread containing equations and a figure. This pilot shows bibliographic information without an image."
+        },
+        "alt": {
+          "ja": "",
+          "en": ""
+        },
+        "mode": "metadata_only",
+        "image": null,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b027",
@@ -316,7 +736,27 @@
       "note": "",
       "title_status": "identified",
       "reference_url": null,
-      "related_notebooks": []
+      "related_notebooks": [],
+      "preview": {
+        "label": {
+          "ja": "問題を除き表題のみ",
+          "en": "Assignment / exam heading only"
+        },
+        "caption": {
+          "ja": "課題・試験の表題部分のみ。設問・式・図・提出先などは画像から除去しています。",
+          "en": "Only the assignment or exam title block is retained. Questions, equations, figures and submission details are removed from the image."
+        },
+        "alt": {
+          "ja": "物理数学特論レポート問題の表題部分。本文は非掲載。",
+          "en": "Title portion of 物理数学特論レポート問題; body excluded."
+        },
+        "mode": "masked_first_page",
+        "image": "assets/material-previews/b027-first-page.png",
+        "width": 430,
+        "height": 97,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b028",
@@ -334,7 +774,25 @@
           "notebook_id": "n028",
           "relation": "same_source"
         }
-      ]
+      ],
+      "preview": {
+        "label": {
+          "ja": "書誌情報のみ",
+          "en": "Metadata only"
+        },
+        "caption": {
+          "ja": "先頭は自筆ノートです。後ろに添付された図版集の表紙としては使わず、書誌情報で案内します。",
+          "en": "The first scan is a handwritten notebook page, not a cover of the attached figures; no image is shown."
+        },
+        "alt": {
+          "ja": "",
+          "en": ""
+        },
+        "mode": "metadata_only",
+        "image": null,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b029",
@@ -356,7 +814,27 @@
           "notebook_id": "n040",
           "relation": "exercise_solution"
         }
-      ]
+      ],
+      "preview": {
+        "label": {
+          "ja": "問題を除き表題のみ",
+          "en": "Assignment / exam heading only"
+        },
+        "caption": {
+          "ja": "課題・試験の表題部分のみ。設問・式・図・提出先などは画像から除去しています。",
+          "en": "Only the assignment or exam title block is retained. Questions, equations, figures and submission details are removed from the image."
+        },
+        "alt": {
+          "ja": "物理数学演習問題（複素解析）の表題部分。本文は非掲載。",
+          "en": "Title portion of 物理数学演習問題（複素解析）; body excluded."
+        },
+        "mode": "masked_first_page",
+        "image": "assets/material-previews/b029-first-page.png",
+        "width": 495,
+        "height": 98,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b029-functions",
@@ -374,7 +852,25 @@
           "notebook_id": "n033",
           "relation": "exercise_solution"
         }
-      ]
+      ],
+      "preview": {
+        "label": {
+          "ja": "書誌情報のみ",
+          "en": "Metadata only"
+        },
+        "caption": {
+          "ja": "複数の演習をまとめた保存ファイルの途中の章です。先頭の別章の画像は流用しません。",
+          "en": "This chapter appears later in a combined scan. The first-page image of another chapter is not reused."
+        },
+        "alt": {
+          "ja": "",
+          "en": ""
+        },
+        "mode": "metadata_only",
+        "image": null,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b029-green",
@@ -392,7 +888,25 @@
           "notebook_id": "n041",
           "relation": "exercise_solution"
         }
-      ]
+      ],
+      "preview": {
+        "label": {
+          "ja": "書誌情報のみ",
+          "en": "Metadata only"
+        },
+        "caption": {
+          "ja": "複数の演習をまとめた保存ファイルの途中の章です。先頭の別章の画像は流用しません。",
+          "en": "This chapter appears later in a combined scan. The first-page image of another chapter is not reused."
+        },
+        "alt": {
+          "ja": "",
+          "en": ""
+        },
+        "mode": "metadata_only",
+        "image": null,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b029-lie",
@@ -410,7 +924,25 @@
           "notebook_id": "n041",
           "relation": "exercise_solution"
         }
-      ]
+      ],
+      "preview": {
+        "label": {
+          "ja": "書誌情報のみ",
+          "en": "Metadata only"
+        },
+        "caption": {
+          "ja": "複数の演習をまとめた保存ファイルの途中の章です。先頭の別章の画像は流用しません。",
+          "en": "This chapter appears later in a combined scan. The first-page image of another chapter is not reused."
+        },
+        "alt": {
+          "ja": "",
+          "en": ""
+        },
+        "mode": "metadata_only",
+        "image": null,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b029-pde",
@@ -428,7 +960,25 @@
           "notebook_id": "n041",
           "relation": "exercise_solution"
         }
-      ]
+      ],
+      "preview": {
+        "label": {
+          "ja": "書誌情報のみ",
+          "en": "Metadata only"
+        },
+        "caption": {
+          "ja": "複数の演習をまとめた保存ファイルの途中の章です。先頭の別章の画像は流用しません。",
+          "en": "This chapter appears later in a combined scan. The first-page image of another chapter is not reused."
+        },
+        "alt": {
+          "ja": "",
+          "en": ""
+        },
+        "mode": "metadata_only",
+        "image": null,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b030",
@@ -450,7 +1000,27 @@
           "notebook_id": "n045",
           "relation": "exercise_solution"
         }
-      ]
+      ],
+      "preview": {
+        "label": {
+          "ja": "問題を除き表題のみ",
+          "en": "Assignment / exam heading only"
+        },
+        "caption": {
+          "ja": "課題・試験の表題部分のみ。設問・式・図・提出先などは画像から除去しています。",
+          "en": "Only the assignment or exam title block is retained. Questions, equations, figures and submission details are removed from the image."
+        },
+        "alt": {
+          "ja": "電磁気学演習の表題部分。本文は非掲載。",
+          "en": "Title portion of 電磁気学演習; body excluded."
+        },
+        "mode": "masked_first_page",
+        "image": "assets/material-previews/b030-first-page.png",
+        "width": 355,
+        "height": 110,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b036",
@@ -472,7 +1042,27 @@
           "notebook_id": "n044",
           "relation": "exercise_solution"
         }
-      ]
+      ],
+      "preview": {
+        "label": {
+          "ja": "問題を除き表題のみ",
+          "en": "Assignment / exam heading only"
+        },
+        "caption": {
+          "ja": "課題・試験の表題部分のみ。設問・式・図・提出先などは画像から除去しています。",
+          "en": "Only the assignment or exam title block is retained. Questions, equations, figures and submission details are removed from the image."
+        },
+        "alt": {
+          "ja": "量子力学演習の表題部分。本文は非掲載。",
+          "en": "Title portion of 量子力学演習; body excluded."
+        },
+        "mode": "masked_first_page",
+        "image": "assets/material-previews/b036-first-page.png",
+        "width": 500,
+        "height": 205,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b037",
@@ -498,7 +1088,25 @@
           "notebook_id": "n043",
           "relation": "exercise_solution"
         }
-      ]
+      ],
+      "preview": {
+        "label": {
+          "ja": "書誌情報のみ",
+          "en": "Metadata only"
+        },
+        "caption": {
+          "ja": "先頭が演習問題の本文のため、画像を掲載せず書誌情報で存在を示します。",
+          "en": "The first scan consists of exercises; the material is represented by bibliographic information without an image."
+        },
+        "alt": {
+          "ja": "",
+          "en": ""
+        },
+        "mode": "metadata_only",
+        "image": null,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b038",
@@ -511,7 +1119,27 @@
       "note": "",
       "title_status": "identified",
       "reference_url": null,
-      "related_notebooks": []
+      "related_notebooks": [],
+      "preview": {
+        "label": {
+          "ja": "問題を除き表題のみ",
+          "en": "Assignment / exam heading only"
+        },
+        "caption": {
+          "ja": "課題・試験の表題部分のみ。設問・式・図・提出先などは画像から除去しています。",
+          "en": "Only the assignment or exam title block is retained. Questions, equations, figures and submission details are removed from the image."
+        },
+        "alt": {
+          "ja": "統計熱力学演習2組レポート問題（2回目）の表題部分。本文は非掲載。",
+          "en": "Title portion of 統計熱力学演習2組レポート問題（2回目）; body excluded."
+        },
+        "mode": "masked_first_page",
+        "image": "assets/material-previews/b038-first-page.png",
+        "width": 955,
+        "height": 240,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b042",
@@ -533,7 +1161,30 @@
           "notebook_id": "n039",
           "relation": "exercise_solution"
         }
-      ]
+      ],
+      "preview": {
+        "label": {
+          "ja": "問題を除き表題のみ",
+          "en": "Assignment / exam heading only"
+        },
+        "caption": {
+          "ja": "課題・試験の表題部分のみ。設問・式・図・提出先などは画像から除去しています。",
+          "en": "Only the assignment or exam title block is retained. Questions, equations, figures and submission details are removed from the image."
+        },
+        "alt": {
+          "ja": "1993年度前期 Report 問題（物理数学演習レポートに添付）の表題部分。本文は非掲載。",
+          "en": "Title portion of 1993年度前期 Report 問題（物理数学演習レポートに添付）; body excluded."
+        },
+        "mode": "masked_first_page",
+        "image": "assets/material-previews/b042-first-page.png",
+        "width": 366,
+        "height": 105,
+        "year_label": {
+          "ja": "課題表題の記載：1993年度前期",
+          "en": "Term in assignment heading: 1993, first term"
+        }
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b043",
@@ -551,7 +1202,27 @@
           "notebook_id": "n043",
           "relation": "same_source"
         }
-      ]
+      ],
+      "preview": {
+        "label": {
+          "ja": "問題を除き表題のみ",
+          "en": "Assignment / exam heading only"
+        },
+        "caption": {
+          "ja": "課題・試験の表題部分のみ。設問・式・図・提出先などは画像から除去しています。",
+          "en": "Only the assignment or exam title block is retained. Questions, equations, figures and submission details are removed from the image."
+        },
+        "alt": {
+          "ja": "統計熱力学演習II組レポート問題の表題部分。本文は非掲載。",
+          "en": "Title portion of 統計熱力学演習II組レポート問題; body excluded."
+        },
+        "mode": "masked_first_page",
+        "image": "assets/material-previews/b043-first-page.png",
+        "width": 400,
+        "height": 115,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b046",
@@ -565,7 +1236,27 @@
       "note": "前半の表題で確認。同題の連続資料をまとめて記載。",
       "title_status": "identified",
       "reference_url": null,
-      "related_notebooks": []
+      "related_notebooks": [],
+      "preview": {
+        "label": {
+          "ja": "先頭の表題部分のみ",
+          "en": "Title block only"
+        },
+        "caption": {
+          "ja": "先頭から表題・氏名などの識別部分だけを切り抜き、本文・問題・図を除いています。",
+          "en": "Cropped to identifying information such as the title and name; prose, exercises and figures are excluded."
+        },
+        "alt": {
+          "ja": "一般相対論を使わない、電波天文学の立場から見た重力レンズの表題部分。本文は非掲載。",
+          "en": "Title portion of 一般相対論を使わない、電波天文学の立場から見た重力レンズ; body excluded."
+        },
+        "mode": "masked_first_page",
+        "image": "assets/material-previews/b046-first-page.png",
+        "width": 1110,
+        "height": 490,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b048",
@@ -578,7 +1269,25 @@
       "note": "仮題。資料全体の正式な表題・著者は未確認。",
       "title_status": "tentative",
       "reference_url": null,
-      "related_notebooks": []
+      "related_notebooks": [],
+      "preview": {
+        "label": {
+          "ja": "書誌情報のみ",
+          "en": "Metadata only"
+        },
+        "caption": {
+          "ja": "先頭が図表のページのため、画像を掲載せず書誌情報で存在を示します。",
+          "en": "The first scan contains figures and tables; the material is represented by bibliographic information without an image."
+        },
+        "alt": {
+          "ja": "",
+          "en": ""
+        },
+        "mode": "metadata_only",
+        "image": null,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b050",
@@ -596,7 +1305,30 @@
           "notebook_id": "n049",
           "relation": "course_material"
         }
-      ]
+      ],
+      "preview": {
+        "label": {
+          "ja": "問題を除き表題のみ",
+          "en": "Assignment / exam heading only"
+        },
+        "caption": {
+          "ja": "表題と講師名を残しています。設問・式・図、提出先の住所・部屋番号・締切は除去しています。",
+          "en": "The title and instructor name are retained. Questions, equations, figures, submission addresses, room numbers and deadlines are excluded."
+        },
+        "alt": {
+          "ja": "原子核物理学（1993前期）レポートについての表題部分。本文は非掲載。",
+          "en": "Title portion of 原子核物理学（1993前期）レポートについて; body excluded."
+        },
+        "mode": "masked_first_page",
+        "image": "assets/material-previews/b050-first-page.png",
+        "width": 605,
+        "height": 215,
+        "year_label": {
+          "ja": "課題表題の記載：1993前期",
+          "en": "Term in assignment heading: 1993, first term"
+        }
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b052",
@@ -614,7 +1346,27 @@
           "notebook_id": "n051",
           "relation": "course_material"
         }
-      ]
+      ],
+      "preview": {
+        "label": {
+          "ja": "問題を除き表題のみ",
+          "en": "Assignment / exam heading only"
+        },
+        "caption": {
+          "ja": "同じ先頭ページにある表題と講師・著者名を抜き出して配置。本文・問題・図、住所や部屋番号は除いています。",
+          "en": "The title and instructor / author name are extracted from the same first scan and arranged together. Body text, questions, figures, addresses and room numbers are excluded."
+        },
+        "alt": {
+          "ja": "銀河天文学特論 II 課題レポートの表題部分。本文は非掲載。",
+          "en": "Title portion of 銀河天文学特論 II 課題レポート; body excluded."
+        },
+        "mode": "masked_first_page",
+        "image": "assets/material-previews/b052-first-page.png",
+        "width": 900,
+        "height": 225,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b053",
@@ -632,7 +1384,27 @@
           "notebook_id": "n051",
           "relation": "course_material"
         }
-      ]
+      ],
+      "preview": {
+        "label": {
+          "ja": "先頭の見出しのみ",
+          "en": "Opening heading only"
+        },
+        "caption": {
+          "ja": "先頭ページの見出しだけを切り抜き。資料全体の表紙ではありません。本文・数式・図は除いています。",
+          "en": "Only the opening heading is retained. This is not a cover for the entire material; text, equations and figures are excluded."
+        },
+        "alt": {
+          "ja": "膨張宇宙における構造形成の表題部分。本文は非掲載。",
+          "en": "Title portion of 膨張宇宙における構造形成; body excluded."
+        },
+        "mode": "masked_first_page",
+        "image": "assets/material-previews/b053-first-page.png",
+        "width": 720,
+        "height": 145,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b055",
@@ -650,7 +1422,27 @@
           "notebook_id": "n054",
           "relation": "course_material"
         }
-      ]
+      ],
+      "preview": {
+        "label": {
+          "ja": "問題を除き表題のみ",
+          "en": "Assignment / exam heading only"
+        },
+        "caption": {
+          "ja": "課題・試験の表題部分のみ。設問・式・図・提出先などは画像から除去しています。",
+          "en": "Only the assignment or exam title block is retained. Questions, equations, figures and submission details are removed from the image."
+        },
+        "alt": {
+          "ja": "実験物理学B（中村）レポート問題の表題部分。本文は非掲載。",
+          "en": "Title portion of 実験物理学B（中村）レポート問題; body excluded."
+        },
+        "mode": "masked_first_page",
+        "image": "assets/material-previews/b055-first-page.png",
+        "width": 530,
+        "height": 105,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b055-maihara",
@@ -668,7 +1460,25 @@
           "notebook_id": "n054",
           "relation": "course_material"
         }
-      ]
+      ],
+      "preview": {
+        "label": {
+          "ja": "書誌情報のみ",
+          "en": "Metadata only"
+        },
+        "caption": {
+          "ja": "同じ保存ファイルの途中にある別担当の課題です。先頭にある中村担当の課題画像は流用しません。",
+          "en": "This assignment by a different instructor appears later in a combined scan. The first-page Nakamura assignment is not reused."
+        },
+        "alt": {
+          "ja": "",
+          "en": ""
+        },
+        "mode": "metadata_only",
+        "image": null,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b059",
@@ -686,7 +1496,25 @@
           "notebook_id": "n058",
           "relation": "course_material"
         }
-      ]
+      ],
+      "preview": {
+        "label": {
+          "ja": "書誌情報のみ",
+          "en": "Metadata only"
+        },
+        "caption": {
+          "ja": "先頭が図表のページのため、画像を掲載せず書誌情報で存在を示します。",
+          "en": "The first scan contains figures; the material is represented by bibliographic information without an image."
+        },
+        "alt": {
+          "ja": "",
+          "en": ""
+        },
+        "mode": "metadata_only",
+        "image": null,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b069",
@@ -704,7 +1532,25 @@
           "notebook_id": "n068",
           "relation": "course_material"
         }
-      ]
+      ],
+      "preview": {
+        "label": {
+          "ja": "書誌情報のみ",
+          "en": "Metadata only"
+        },
+        "caption": {
+          "ja": "先頭がICのピン配置図のため、画像を掲載せず書誌情報で存在を示します。",
+          "en": "The first scan contains IC pin diagrams; bibliographic information is shown without an image."
+        },
+        "alt": {
+          "ja": "",
+          "en": ""
+        },
+        "mode": "metadata_only",
+        "image": null,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b071",
@@ -717,7 +1563,30 @@
       "note": "担当と年度はこの試験の記載。同じ保存資料には1991年度の試験と別の手書きページも含まれます。",
       "title_status": "identified",
       "reference_url": null,
-      "related_notebooks": []
+      "related_notebooks": [],
+      "preview": {
+        "label": {
+          "ja": "問題を除き表題のみ",
+          "en": "Assignment / exam heading only"
+        },
+        "caption": {
+          "ja": "課題・試験の表題部分のみ。設問・式・図・提出先などは画像から除去しています。",
+          "en": "Only the assignment or exam title block is retained. Questions, equations, figures and submission details are removed from the image."
+        },
+        "alt": {
+          "ja": "近代物理学1 前期試験問題（1989年度）の表題部分。本文は非掲載。",
+          "en": "Title portion of 近代物理学1 前期試験問題（1989年度）; body excluded."
+        },
+        "mode": "masked_first_page",
+        "image": "assets/material-previews/b071-first-page.png",
+        "width": 1195,
+        "height": 130,
+        "year_label": {
+          "ja": "試験表題の記載：1989年度",
+          "en": "Academic year in exam heading: 1989"
+        }
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b071-1991",
@@ -730,7 +1599,25 @@
       "note": "1989年度の試験と同じ保存資料に含まれる別年度の試験。N070の担当とは未照合。",
       "title_status": "identified",
       "reference_url": null,
-      "related_notebooks": []
+      "related_notebooks": [],
+      "preview": {
+        "label": {
+          "ja": "書誌情報のみ",
+          "en": "Metadata only"
+        },
+        "caption": {
+          "ja": "同じ保存ファイルの途中にある1991年度の試験です。先頭の1989年度の画像は流用しません。",
+          "en": "The 1991 exam appears later in a combined scan. The first-page image of the 1989 exam is not reused."
+        },
+        "alt": {
+          "ja": "",
+          "en": ""
+        },
+        "mode": "metadata_only",
+        "image": null,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b073",
@@ -748,7 +1635,30 @@
           "notebook_id": "n072",
           "relation": "course_material"
         }
-      ]
+      ],
+      "preview": {
+        "label": {
+          "ja": "問題を除き表題のみ",
+          "en": "Assignment / exam heading only"
+        },
+        "caption": {
+          "ja": "課題・試験の表題部分のみ。設問・式・図・提出先などは画像から除去しています。",
+          "en": "Only the assignment or exam title block is retained. Questions, equations, figures and submission details are removed from the image."
+        },
+        "alt": {
+          "ja": "電磁気学 試験問題（1992年度後期）の表題部分。本文は非掲載。",
+          "en": "Title portion of 電磁気学 試験問題（1992年度後期）; body excluded."
+        },
+        "mode": "masked_first_page",
+        "image": "assets/material-previews/b073-first-page.png",
+        "width": 645,
+        "height": 105,
+        "year_label": {
+          "ja": "試験日：1993年2月19日（1992年度後期）",
+          "en": "Exam date: 19 February 1993 (second term of 1992)"
+        }
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b076",
@@ -770,7 +1680,27 @@
           "notebook_id": "n075",
           "relation": "reference_article"
         }
-      ]
+      ],
+      "preview": {
+        "label": {
+          "ja": "先頭の表題部分のみ",
+          "en": "Title block only"
+        },
+        "caption": {
+          "ja": "同じ先頭ページにある表題と講師・著者名を抜き出して配置。本文・問題・図、住所や部屋番号は除いています。",
+          "en": "The title and instructor / author name are extracted from the same first scan and arranged together. Body text, questions, figures, addresses and room numbers are excluded."
+        },
+        "alt": {
+          "ja": "Maxwell方程式の表題部分。本文は非掲載。",
+          "en": "Title portion of Maxwell方程式; body excluded."
+        },
+        "mode": "masked_first_page",
+        "image": "assets/material-previews/b076-first-page.png",
+        "width": 355,
+        "height": 175,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b077",
@@ -783,7 +1713,25 @@
       "note": "出版情報ページで著者・書名を確認。",
       "title_status": "identified",
       "reference_url": null,
-      "related_notebooks": []
+      "related_notebooks": [],
+      "preview": {
+        "label": {
+          "ja": "書誌情報のみ",
+          "en": "Metadata only"
+        },
+        "caption": {
+          "ja": "先頭が出版情報と目次のページのため、今回は書誌情報のみで案内します。",
+          "en": "The first scan contains publication information and a contents page; only bibliographic information is shown."
+        },
+        "alt": {
+          "ja": "",
+          "en": ""
+        },
+        "mode": "metadata_only",
+        "image": null,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b078",
@@ -796,7 +1744,25 @@
       "note": "講義案内の表題・講師名で確認。",
       "title_status": "identified",
       "reference_url": null,
-      "related_notebooks": []
+      "related_notebooks": [],
+      "preview": {
+        "label": {
+          "ja": "書誌情報のみ",
+          "en": "Metadata only"
+        },
+        "caption": {
+          "ja": "先頭に連絡先を含むメールのヘッダーがあるため、画像を掲載せず書誌情報で案内します。",
+          "en": "The first scan contains email headers with contact information; bibliographic information is shown without an image."
+        },
+        "alt": {
+          "ja": "",
+          "en": ""
+        },
+        "mode": "metadata_only",
+        "image": null,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b079",
@@ -809,7 +1775,27 @@
       "note": "引用文献の著者と、資料自体の作成者を区別。作成者は未確認。",
       "title_status": "identified",
       "reference_url": null,
-      "related_notebooks": []
+      "related_notebooks": [],
+      "preview": {
+        "label": {
+          "ja": "先頭の表題部分のみ",
+          "en": "Title block only"
+        },
+        "caption": {
+          "ja": "先頭から表題・氏名などの識別部分だけを切り抜き、本文・問題・図を除いています。",
+          "en": "Cropped to identifying information such as the title and name; prose, exercises and figures are excluded."
+        },
+        "alt": {
+          "ja": "一般相対論的MHDコードの概要とその応用例の表題部分。本文は非掲載。",
+          "en": "Title portion of 一般相対論的MHDコードの概要とその応用例; body excluded."
+        },
+        "mode": "masked_first_page",
+        "image": "assets/material-previews/b079-first-page.png",
+        "width": 980,
+        "height": 295,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b080",
@@ -827,7 +1813,25 @@
           "notebook_id": "n080",
           "relation": "same_source"
         }
-      ]
+      ],
+      "preview": {
+        "label": {
+          "ja": "書誌情報のみ",
+          "en": "Metadata only"
+        },
+        "caption": {
+          "ja": "先頭は自筆ノートです。後ろに添付された課題の表紙としては使わず、書誌情報で案内します。",
+          "en": "The first scan is a handwritten notebook page, not the attached assignment; no image is shown."
+        },
+        "alt": {
+          "ja": "",
+          "en": ""
+        },
+        "mode": "metadata_only",
+        "image": null,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b083",
@@ -840,7 +1844,25 @@
       "note": "University of Helsinki, HU-TFT-84-36（1984年8月3日）。表紙と著者欄で確認。自筆ノートとの対応は未確認。",
       "title_status": "identified",
       "reference_url": null,
-      "related_notebooks": []
+      "related_notebooks": [],
+      "preview": {
+        "label": {
+          "ja": "書誌情報のみ",
+          "en": "Metadata only"
+        },
+        "caption": {
+          "ja": "先頭は表題のない受入印のページです。論文の表紙としては使わず、書誌情報で案内します。",
+          "en": "The first scan is an accession-stamp page without the paper title; it is not used as a cover image."
+        },
+        "alt": {
+          "ja": "",
+          "en": ""
+        },
+        "mode": "metadata_only",
+        "image": null,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b084",
@@ -853,7 +1875,27 @@
       "note": "",
       "title_status": "identified",
       "reference_url": null,
-      "related_notebooks": []
+      "related_notebooks": [],
+      "preview": {
+        "label": {
+          "ja": "先頭の表題部分のみ",
+          "en": "Title block only"
+        },
+        "caption": {
+          "ja": "先頭から表題・氏名などの識別部分だけを切り抜き、本文・問題・図を除いています。",
+          "en": "Cropped to identifying information such as the title and name; prose, exercises and figures are excluded."
+        },
+        "alt": {
+          "ja": "Celestial Mechanics and Stellar Dynamicsの表題部分。本文は非掲載。",
+          "en": "Title portion of Celestial Mechanics and Stellar Dynamics; body excluded."
+        },
+        "mode": "masked_first_page",
+        "image": "assets/material-previews/b084-first-page.png",
+        "width": 710,
+        "height": 115,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b085-chapter",
@@ -871,7 +1913,25 @@
           "notebook_id": "n085",
           "relation": "same_source"
         }
-      ]
+      ],
+      "preview": {
+        "label": {
+          "ja": "書誌情報のみ",
+          "en": "Metadata only"
+        },
+        "caption": {
+          "ja": "先頭は自筆ノートです。後ろに添付された書籍章の表紙としては使わず、書誌情報で案内します。",
+          "en": "The first scan is a handwritten notebook page, not the attached book chapter; no image is shown."
+        },
+        "alt": {
+          "ja": "",
+          "en": ""
+        },
+        "mode": "metadata_only",
+        "image": null,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b085-figures",
@@ -889,7 +1949,25 @@
           "notebook_id": "n085",
           "relation": "same_source"
         }
-      ]
+      ],
+      "preview": {
+        "label": {
+          "ja": "書誌情報のみ",
+          "en": "Metadata only"
+        },
+        "caption": {
+          "ja": "先頭は自筆ノートです。後ろに添付された図版集の表紙としては使わず、書誌情報で案内します。",
+          "en": "The first scan is a handwritten notebook page, not the attached figures; no image is shown."
+        },
+        "alt": {
+          "ja": "",
+          "en": ""
+        },
+        "mode": "metadata_only",
+        "image": null,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b085-peaks",
@@ -907,7 +1985,25 @@
           "notebook_id": "n085",
           "relation": "same_source"
         }
-      ]
+      ],
+      "preview": {
+        "label": {
+          "ja": "書誌情報のみ",
+          "en": "Metadata only"
+        },
+        "caption": {
+          "ja": "先頭は自筆ノートです。後ろに添付された参考論文の表紙としては使わず、書誌情報で案内します。",
+          "en": "The first scan is a handwritten notebook page, not the attached paper; no image is shown."
+        },
+        "alt": {
+          "ja": "",
+          "en": ""
+        },
+        "mode": "metadata_only",
+        "image": null,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b088",
@@ -929,7 +2025,27 @@
       "creator_source": {
         "type": "assignment_heading_and_signature",
         "confirmed_on": "2026-11-22"
-      }
+      },
+      "preview": {
+        "label": {
+          "ja": "問題を除き表題のみ",
+          "en": "Assignment / exam heading only"
+        },
+        "caption": {
+          "ja": "課題・試験の表題部分のみ。設問・式・図・提出先などは画像から除去しています。",
+          "en": "Only the assignment or exam title block is retained. Questions, equations, figures and submission details are removed from the image."
+        },
+        "alt": {
+          "ja": "場の量子論I レポート問題の表題部分。本文は非掲載。",
+          "en": "Title portion of 場の量子論I レポート問題; body excluded."
+        },
+        "mode": "masked_first_page",
+        "image": "assets/material-previews/b088-first-page.png",
+        "width": 500,
+        "height": 90,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b089",
@@ -942,7 +2058,27 @@
       "note": "",
       "title_status": "identified",
       "reference_url": null,
-      "related_notebooks": []
+      "related_notebooks": [],
+      "preview": {
+        "label": {
+          "ja": "扉のみ",
+          "en": "Title page only"
+        },
+        "caption": {
+          "ja": "先頭の扉1枚。本文は含みません。",
+          "en": "The first scanned title page; body pages are excluded."
+        },
+        "alt": {
+          "ja": "カオス科学の基礎と展開 ― 複雑系の理解に向けての表題部分。本文は非掲載。",
+          "en": "Title portion of カオス科学の基礎と展開 ― 複雑系の理解に向けて; body excluded."
+        },
+        "mode": "cover",
+        "image": "assets/material-previews/b089-first-page.png",
+        "width": 1000,
+        "height": 1414,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b091",
@@ -960,7 +2096,30 @@
           "notebook_id": "n090",
           "relation": "course_material"
         }
-      ]
+      ],
+      "preview": {
+        "label": {
+          "ja": "先頭の表題部分のみ",
+          "en": "Title block only"
+        },
+        "caption": {
+          "ja": "表題・氏名・日付だけを切り抜き。下に続く参考文献の本文は除いています。",
+          "en": "Cropped to the title, name and date; the reference-list body below is excluded."
+        },
+        "alt": {
+          "ja": "References for Interstellar Mediumの表題、著者名、日付を残した切り抜き。",
+          "en": "Title block of References for Interstellar Medium with author and date."
+        },
+        "mode": "masked_first_page",
+        "image": "assets/material-previews/b091-first-page.png",
+        "width": 815,
+        "height": 300,
+        "year_label": {
+          "ja": "資料の日付：1999年4月12日",
+          "en": "Date printed on material: 12 April 1999"
+        }
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b092",
@@ -979,7 +2138,30 @@
           "notebook_id": "n094",
           "relation": "content_correspondence"
         }
-      ]
+      ],
+      "preview": {
+        "label": {
+          "ja": "先頭の表題部分のみ",
+          "en": "Title block only"
+        },
+        "caption": {
+          "ja": "先頭から表題・氏名などの識別部分だけを切り抜き、本文・問題・図を除いています。",
+          "en": "Cropped to identifying information such as the title and name; prose, exercises and figures are excluded."
+        },
+        "alt": {
+          "ja": "星の進化の表題部分。本文は非掲載。",
+          "en": "Title portion of 星の進化; body excluded."
+        },
+        "mode": "masked_first_page",
+        "image": "assets/material-previews/b092-first-page.png",
+        "width": 750,
+        "height": 175,
+        "year_label": {
+          "ja": "資料の日付：1995年4月19日",
+          "en": "Date on material: 19 April 1995"
+        }
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b095",
@@ -992,7 +2174,27 @@
       "note": "修士論文。",
       "title_status": "identified",
       "reference_url": null,
-      "related_notebooks": []
+      "related_notebooks": [],
+      "preview": {
+        "label": {
+          "ja": "表紙のみ",
+          "en": "Cover only"
+        },
+        "caption": {
+          "ja": "先頭の表紙1枚。本文は含みません。",
+          "en": "The first scanned cover; body pages are excluded."
+        },
+        "alt": {
+          "ja": "原始ガス雲の分裂と星形成の表題部分。本文は非掲載。",
+          "en": "Title portion of 原始ガス雲の分裂と星形成; body excluded."
+        },
+        "mode": "cover",
+        "image": "assets/material-previews/b095-first-page.png",
+        "width": 1414,
+        "height": 2000,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b096",
@@ -1005,7 +2207,30 @@
       "note": "",
       "title_status": "identified",
       "reference_url": null,
-      "related_notebooks": []
+      "related_notebooks": [],
+      "preview": {
+        "label": {
+          "ja": "先頭の表題部分のみ",
+          "en": "Title block only"
+        },
+        "caption": {
+          "ja": "先頭から表題・氏名などの識別部分だけを切り抜き、本文・問題・図を除いています。",
+          "en": "Cropped to identifying information such as the title and name; prose, exercises and figures are excluded."
+        },
+        "alt": {
+          "ja": "部分電離イオンのオパシティーの表題部分。本文は非掲載。",
+          "en": "Title portion of 部分電離イオンのオパシティー; body excluded."
+        },
+        "mode": "masked_first_page",
+        "image": "assets/material-previews/b096-first-page.png",
+        "width": 770,
+        "height": 335,
+        "year_label": {
+          "ja": "資料の日付：2002年5月9日",
+          "en": "Date on material: 9 May 2002"
+        }
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b097",
@@ -1018,7 +2243,27 @@
       "note": "修士論文。",
       "title_status": "identified",
       "reference_url": null,
-      "related_notebooks": []
+      "related_notebooks": [],
+      "preview": {
+        "label": {
+          "ja": "表紙のみ",
+          "en": "Cover only"
+        },
+        "caption": {
+          "ja": "先頭の表紙1枚。本文は含みません。",
+          "en": "The first scanned cover; body pages are excluded."
+        },
+        "alt": {
+          "ja": "降着円盤における磁気回転不安定性の表題部分。本文は非掲載。",
+          "en": "Title portion of 降着円盤における磁気回転不安定性; body excluded."
+        },
+        "mode": "cover",
+        "image": "assets/material-previews/b097-first-page.png",
+        "width": 1414,
+        "height": 2000,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b099",
@@ -1036,7 +2281,27 @@
           "notebook_id": "n098",
           "relation": "course_material"
         }
-      ]
+      ],
+      "preview": {
+        "label": {
+          "ja": "先頭の見出しのみ",
+          "en": "Opening heading only"
+        },
+        "caption": {
+          "ja": "先頭ページの見出しだけを切り抜き。資料全体の表紙ではありません。本文・数式・図は除いています。",
+          "en": "Only the opening heading is retained. This is not a cover for the entire material; text, equations and figures are excluded."
+        },
+        "alt": {
+          "ja": "パルサー・宇宙線・活動銀河中心核関連の講義資料の表題部分。本文は非掲載。",
+          "en": "Title portion of パルサー・宇宙線・活動銀河中心核関連の講義資料; body excluded."
+        },
+        "mode": "masked_first_page",
+        "image": "assets/material-previews/b099-first-page.png",
+        "width": 335,
+        "height": 130,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b100",
@@ -1052,7 +2317,30 @@
       "note": "前後２分冊のTIFF・PDF版をまとめて記載。前半の表題・講師名で確認。",
       "title_status": "identified",
       "reference_url": null,
-      "related_notebooks": []
+      "related_notebooks": [],
+      "preview": {
+        "label": {
+          "ja": "表紙のみ",
+          "en": "Cover only"
+        },
+        "caption": {
+          "ja": "先頭の表紙1枚。資料名・講師名・所属・年月を確認しました。",
+          "en": "The first-page cover, showing the title, lecturer, affiliation and date."
+        },
+        "alt": {
+          "ja": "宇宙磁場観測法の表紙。田村元秀、1998年9月。",
+          "en": "Cover of 宇宙磁場観測法, 田村元秀, September 1998."
+        },
+        "mode": "cover",
+        "image": "assets/material-previews/b100-first-page.png",
+        "width": 1415,
+        "height": 2000,
+        "year_label": {
+          "ja": "資料の記載：1998年9月",
+          "en": "Date printed on material: September 1998"
+        }
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b102",
@@ -1069,7 +2357,30 @@
         "type": "owner_confirmation",
         "confirmed_on": "2026-11-11"
       },
-      "related_notebooks": []
+      "related_notebooks": [],
+      "preview": {
+        "label": {
+          "ja": "先頭の表題部分のみ",
+          "en": "Title block only"
+        },
+        "caption": {
+          "ja": "先頭から表題・氏名などの識別部分だけを切り抜き、本文・問題・図を除いています。",
+          "en": "Cropped to identifying information such as the title and name; prose, exercises and figures are excluded."
+        },
+        "alt": {
+          "ja": "輻射流体力学の定式化の表題部分。本文は非掲載。",
+          "en": "Title portion of 輻射流体力学の定式化; body excluded."
+        },
+        "mode": "masked_first_page",
+        "image": "assets/material-previews/b102-first-page.png",
+        "width": 1130,
+        "height": 155,
+        "year_label": {
+          "ja": "資料の日付：1996年2月29日",
+          "en": "Date on material: 29 February 1996"
+        }
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b103",
@@ -1086,25 +2397,61 @@
         "type": "owner_confirmation",
         "confirmed_on": "2026-11-11"
       },
-      "related_notebooks": []
+      "related_notebooks": [],
+      "preview": {
+        "label": {
+          "ja": "先頭の表題部分のみ",
+          "en": "Title block only"
+        },
+        "caption": {
+          "ja": "先頭から表題・氏名などの識別部分だけを切り抜き、本文・問題・図を除いています。",
+          "en": "Cropped to identifying information such as the title and name; prose, exercises and figures are excluded."
+        },
+        "alt": {
+          "ja": "研究者としてのノウハウ論の表題部分。本文は非掲載。",
+          "en": "Title portion of 研究者としてのノウハウ論; body excluded."
+        },
+        "mode": "masked_first_page",
+        "image": "assets/material-previews/b103-first-page.png",
+        "width": 445,
+        "height": 135,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     },
     {
       "id": "b109",
       "source_ids": [
         "hdd-inutsuka"
       ],
-      "title": "犬塚修一郎のノート（正式表題未確認）",
+      "title": "分子雲の収縮・分裂過程",
       "creator": "犬塚修一郎",
       "kind": "講義資料",
-      "note": "所蔵者の記憶とHDDの保存目録から登録。正式な表題・本文・資料の作成者表記は、原本確認待ち。",
-      "title_status": "tentative",
-      "creator_source": {
-        "type": "owner_recollection_and_filename",
-        "confirmed_on": "2026-11-11",
-        "body_checked": false
-      },
+      "note": "原本の先頭で表題・犬塚修一郎の氏名・国立天文台の所属表記を確認しました。講義年月と自筆ノートとの対応は未確認です。",
+      "title_status": "identified",
+      "creator_source": "原本の表題欄で確認（2026年11月28日）",
       "reference_url": null,
-      "related_notebooks": []
+      "related_notebooks": [],
+      "preview": {
+        "label": {
+          "ja": "先頭の表題部分のみ",
+          "en": "Title block only"
+        },
+        "caption": {
+          "ja": "表題・氏名・所属だけを残し、下に続く目次は除いています。",
+          "en": "Only the title, name and affiliation are retained; the contents below are excluded."
+        },
+        "alt": {
+          "ja": "分子雲の収縮・分裂過程。犬塚修一郎（国立天文台）の表記を残した表題部分。",
+          "en": "Title block of 分子雲の収縮・分裂過程, 犬塚修一郎（国立天文台）."
+        },
+        "mode": "masked_first_page",
+        "image": "assets/material-previews/b109-first-page.png",
+        "width": 1355,
+        "height": 305,
+        "year_label": null
+      },
+      "holding_status": "scan_verified"
     }
   ]
 }
